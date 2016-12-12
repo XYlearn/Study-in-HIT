@@ -470,7 +470,6 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_titleMousePressed
 
     private void titleMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseDragged
-        //Point p = this.getLocation();
         windowPoint.x = evt.getX()+windowPoint.x;
         windowPoint.y = evt.getY()+windowPoint.y;
         this.setLocation(windowPoint.x, windowPoint.y);
