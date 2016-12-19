@@ -5,7 +5,9 @@
  */
 package gui;
 
+import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
@@ -29,13 +31,18 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Launcher = new javax.swing.JDialog();
+        usernameInputer = new javax.swing.JComboBox<>();
+        launchButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        rememberUser = new javax.swing.JCheckBox();
+        rememberKey = new javax.swing.JCheckBox();
+        autoLaunch = new javax.swing.JCheckBox();
+        passwordInputer = new javax.swing.JPasswordField();
         lauch = new javax.swing.JPanel();
         lauchButton = new javax.swing.JButton();
         lauchLabel = new javax.swing.JLabel();
         windowButton = new javax.swing.JPanel();
-        closeButton = new javax.swing.JButton();
-        maximizeButton = new javax.swing.JButton();
-        minimizeButton = new javax.swing.JButton();
         settingButton = new javax.swing.JButton();
         announcementPanel = new javax.swing.JPanel();
         announcementShow = new javax.swing.JScrollPane();
@@ -75,11 +82,105 @@ public class Home extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
+        Launcher.setAlwaysOnTop(true);
+        Launcher.setBackground(new java.awt.Color(204, 204, 255));
+        Launcher.setResizable(false);
+
+        usernameInputer.setEditable(true);
+        usernameInputer.setModel(new javax.swing.DefaultComboBoxModel<>());
+        usernameInputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameInputerActionPerformed(evt);
+            }
+        });
+
+        launchButton.setText("登录");
+        launchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                launchButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("文泉驿等宽微米黑", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("登录学在工大");
+
+        rememberUser.setText("记住用户名");
+        rememberUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rememberUserActionPerformed(evt);
+            }
+        });
+
+        rememberKey.setText("记住密码");
+
+        autoLaunch.setText("自动登录");
+
+        passwordInputer.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout LauncherLayout = new javax.swing.GroupLayout(Launcher.getContentPane());
+        Launcher.getContentPane().setLayout(LauncherLayout);
+        LauncherLayout.setHorizontalGroup(
+            LauncherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LauncherLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LauncherLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(LauncherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordInputer)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, LauncherLayout.createSequentialGroup()
+                        .addComponent(rememberUser, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rememberKey, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(autoLaunch))
+                    .addComponent(usernameInputer, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(launchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        LauncherLayout.setVerticalGroup(
+            LauncherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LauncherLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(LauncherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameInputer, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(launchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordInputer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(LauncherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rememberKey)
+                    .addComponent(rememberUser)
+                    .addComponent(autoLaunch))
+                .addGap(54, 54, 54))
+        );
+
         setBackground(new java.awt.Color(204, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Monaco", 0, 18)); // NOI18N
-        setUndecorated(true);
+
+        lauch.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lauchMouseDragged(evt);
+            }
+        });
+        lauch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lauchMousePressed(evt);
+            }
+        });
 
         lauchButton.setText("登录");
+        lauchButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lauchButtonMouseClicked(evt);
+            }
+        });
 
         lauchLabel.setText("点击登录");
 
@@ -100,27 +201,6 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(lauchLabel))
         );
 
-        closeButton.setText("X");
-        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeButtonMouseClicked(evt);
-            }
-        });
-        closeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeButtonActionPerformed(evt);
-            }
-        });
-
-        maximizeButton.setText("jButton12");
-        maximizeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                maximizeButtonMouseClicked(evt);
-            }
-        });
-
-        minimizeButton.setText("jButton13");
-
         settingButton.setText("jButton14");
 
         javax.swing.GroupLayout windowButtonLayout = new javax.swing.GroupLayout(windowButton);
@@ -130,24 +210,11 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, windowButtonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(settingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minimizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(maximizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(48, 48, 48))
         );
         windowButtonLayout.setVerticalGroup(
             windowButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(windowButtonLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addGroup(windowButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(maximizeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(minimizeButton)
-                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addComponent(settingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(settingButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
         );
 
         announcementShow.setViewportView(announcementText);
@@ -250,7 +317,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(messageButtonPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(508, Short.MAX_VALUE))
+                .addContainerGap(514, Short.MAX_VALUE))
         );
         messageButtonPanelLayout.setVerticalGroup(
             messageButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +384,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(33, 33, 33)
                                 .addComponent(messageButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(centerAreaLayout.createSequentialGroup()
                         .addComponent(jScrollPane3)
@@ -346,7 +413,7 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(centerAreaLayout.createSequentialGroup()
                                 .addComponent(messageSendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)))
         );
 
         rightArea.addTab("tab1", centerArea);
@@ -367,7 +434,7 @@ public class Home extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
+            .addGap(0, 150, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout leftAreaLayout = new javax.swing.GroupLayout(leftArea);
@@ -393,7 +460,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -418,7 +485,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(windowButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(midArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1160, Short.MAX_VALUE)
+            .addComponent(midArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1172, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(buttonArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -445,24 +512,9 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_closeButtonActionPerformed
-
     private void exchangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exchangeButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exchangeButtonActionPerformed
-
-    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_closeButtonMouseClicked
-
-    private void maximizeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeButtonMouseClicked
-        if(this.getExtendedState() == this.NORMAL)
-            this.setExtendedState(this.MAXIMIZED_BOTH);
-        else
-            this.setExtendedState(this.NORMAL);
-    }//GEN-LAST:event_maximizeButtonMouseClicked
 
     private void titleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMousePressed
         windowPoint .x = this.getX();
@@ -478,6 +530,38 @@ public class Home extends javax.swing.JFrame {
     private void titleMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_titleMouseReleased
+
+    private void lauchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lauchMousePressed
+        windowPoint .x = this.getX();
+        windowPoint.y = this.getY();
+    }//GEN-LAST:event_lauchMousePressed
+
+    private void lauchMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lauchMouseDragged
+        windowPoint.x = evt.getX()+windowPoint.x;
+        windowPoint.y = evt.getY()+windowPoint.y;
+        this.setLocation(windowPoint.x, windowPoint.y);
+    }//GEN-LAST:event_lauchMouseDragged
+
+    private void lauchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lauchButtonMouseClicked
+       Dimension dim = Launcher.getPreferredSize();
+       int fatherWidth = this.getWidth();
+       int fatherHeight = this.getHeight();
+        Launcher.setSize(dim);
+        Launcher.setLocation( (fatherWidth-dim.width)/2, (fatherHeight-dim.height)/2);
+        Launcher.setVisible(true);
+    }//GEN-LAST:event_lauchButtonMouseClicked
+
+    private void usernameInputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameInputerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameInputerActionPerformed
+
+    private void rememberUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rememberUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rememberUserActionPerformed
+
+    private void launchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_launchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_launchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -515,15 +599,16 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog Launcher;
     private javax.swing.JTextPane announcementEdit;
     private javax.swing.JScrollPane announcementEditPanel;
     private javax.swing.JPanel announcementPanel;
     private javax.swing.JButton announcementSendButton;
     private javax.swing.JScrollPane announcementShow;
     private javax.swing.JTextPane announcementText;
+    private javax.swing.JCheckBox autoLaunch;
     private javax.swing.JPanel buttonArea;
     private javax.swing.JPanel centerArea;
-    private javax.swing.JButton closeButton;
     private javax.swing.JButton exchangeButton;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
@@ -532,6 +617,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -548,17 +634,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel lauch;
     private javax.swing.JButton lauchButton;
     private javax.swing.JLabel lauchLabel;
+    private javax.swing.JButton launchButton;
     private javax.swing.JPanel leftArea;
-    private javax.swing.JButton maximizeButton;
     private javax.swing.JPanel messageButtonPanel;
     private javax.swing.JButton messageSendButton;
     private javax.swing.JSplitPane midArea;
-    private javax.swing.JButton minimizeButton;
     private javax.swing.JToolBar painterToolPanel;
+    private javax.swing.JPasswordField passwordInputer;
+    private javax.swing.JCheckBox rememberKey;
+    private javax.swing.JCheckBox rememberUser;
     private javax.swing.JTabbedPane rightArea;
     private javax.swing.JButton settingButton;
     private javax.swing.JPanel title;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JComboBox<String> usernameInputer;
     private javax.swing.JPanel windowButton;
     // End of variables declaration//GEN-END:variables
 
