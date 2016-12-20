@@ -16,6 +16,7 @@ class MyExpression
     private static final int BORDER=3,HEIGHT=30;
     //********目前的除号是从右向左运算的
     //********根号还不能画出
+    //********括号全部舍去了
     //需要处理的符号：
     //替换：int sum root
     //图像处理（优先级升序）：(^) /
