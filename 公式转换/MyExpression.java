@@ -13,7 +13,7 @@ class MyExpression
     public ArrayList<MyExpression> expressions=new ArrayList<MyExpression>();
     private ArrayList<String> strings=new ArrayList<String>();
     private ArrayList<String> operators=new ArrayList<String>();
-    private static final int BORDER=3;
+    private static final int BORDER=3,HEIGHT=30;
     //********目前的除号是从右向左运算的
     //********根号还不能画出
     //需要处理的符号：
@@ -168,39 +168,64 @@ class MyExpression
         }
     }
 
-    protected int getWidth()
+    protected int getWidth(int divide)
     {
-        int sum=0;
-        Iterator<MyExpression> itm=expressions.iterator();
-        Iterator<String> its=strings.iterator();
-        Iterator<String> itc=operators.iterator();
-        while(itm.hasNext())
-            sum+=itm.next().getWidth()+BORDER;
-        if(sum==0)
-            while(its.hasNext())
-                sum+=getWidth(its.next())+BORDER;
-        while(itc.hasNext())
-            sum+=getWidth(itc.next())+BORDER;
-        return sum;
-    }
+        //如果到达最底部则直接统计字符串长度
+        if(expressions.size()==0)
+            return getWidth(strings.get(0))/divide;
 
-    protected int getHeight()
-    {
-        if(expressions.size()==0) return getHeight(strings.get(0))+BORDER*2;
-        int max=expressions.get(0).getHeight();
+        //如果只有一个表达式
+        if(expressions.size()==1)
+            return expressions.get(0).getWidth(divide);
+
+        int sum=0;
+        boolean last=false;//记录最后一个表达式是否被统计过
         for(int i=0;i!=operators.size();i++)
         {
             if(operators.get(i)=="/")
-                max=Math.max(max,expressions.get(i).getHeight()+expressions.get(i+1).getHeight()+BORDER*2);
+            {
+                last=true;
+                sum+=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide));
+            }
             else if(operators.get(i)=="^")
-                max=Math.max(max,expressions.get(i).getHeight()+expressions.get(i+1).getHeight()/3);
+            {
+                last=true;
+                sum+=Math.max(expressions.get(i).getWidth(1),expressions.get(i+1).getWidth(1))/(divide<3?(divide+1):divide);
+            }
             else
             {
-                max=Math.max(max,expressions.get(i+1).getHeight());
-                max=Math.max(max,getHeight(operators.get(i)));
+                last=false;
+                sum+=expressions.get(i).getWidth(divide);
+                continue;
+            }
+            if(++i!=operators.size())
+                sum+=getWidth(operators.get(i))/divide;
+            else break;
+        }
+
+        //如果最后一个表达式未被统计过
+        if(!last)
+            sum+=expressions.get(expressions.size()-1).getWidth(divide);
+        return sum;
+    }
+
+    protected int getHeight(int divide)
+    {
+        if(expressions.size()==0) return getHeight(strings.get(0))/divide;
+        int max=expressions.get(0).getHeight(divide);
+        for(int i=0;i!=operators.size();i++)
+        {
+            if(operators.get(i)=="/")
+                max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide)+BORDER*2);
+            else if(operators.get(i)=="^")
+                max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide));
+            else
+            {
+                max=Math.max(max,expressions.get(i+1).getHeight(divide));
+                max=Math.max(max,getHeight(operators.get(i))/divide);
             }
         }
-        return max+BORDER*2;
+        return max;
     }
 
     public String toString()
@@ -216,7 +241,7 @@ class MyExpression
 
     public BufferedImage toImage()
     {
-        int w=getWidth(),h=getHeight();
+        int w=getWidth(1),h=getHeight(1);
         BufferedImage b=new BufferedImage(w,h, BufferedImage.TYPE_INT_RGB);
         Graphics2D g=b.createGraphics();
         g.setFont(new Font("Arial",0,30));
@@ -242,7 +267,6 @@ class MyExpression
         {
             g.setFont(new Font("Arial",0,30/divide));
             g.drawString(strings.get(0),x,y);
-            x+=getWidth(strings.get(0))/divide;
             return;
         }
 
@@ -252,36 +276,32 @@ class MyExpression
             expressions.get(0).draw(g,x,y,divide);
             return;
         }
-
+        //sin(^1/3)x+a(n^)+f(1/n^)x
         //对所有表达式依次绘图
         boolean last=false;//记录最后一个表达式是否被画过
         for(int i=0;i!=operators.size();i++)
         {
             if(operators.get(i)=="/")
             {
-                g.setFont(new Font("Arial",0,30/divide));
-                expressions.get(i).draw(g,x,y-BORDER-expressions.get(i).getHeight()/2,divide);
-                g.drawLine(x,y-10/divide,
-                           x+Math.max(expressions.get(i).getWidth(),expressions.get(i+1).getWidth())/divide,y-10/divide);
-                expressions.get(i+1).draw(g,x,y+(BORDER+expressions.get(i+1).getHeight()/2)/divide,divide);
+                expressions.get(i).draw(g,x,y-BORDER/divide-expressions.get(i).getHeight(divide)/2,divide);
+                g.drawLine(x,y-HEIGHT/(divide*3),
+                           x+Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide)),y-HEIGHT/(divide*3));
+                expressions.get(i+1).draw(g,x,y+BORDER/divide+expressions.get(i+1).getHeight(divide)/2,divide);
                 last=true;
-                x+=Math.max(expressions.get(i).getWidth(),expressions.get(i+1).getWidth())/divide;
+                x+=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide));
             }
             else if(operators.get(i)=="^")
             {
-                g.setFont(new Font("Arial",0,30/(divide<3?(divide+1):divide)));
-                expressions.get(i).draw(g,x,y,divide);
-                g.setFont(new Font("Arial",0,30/(divide<3?(divide+1):divide)));
-                expressions.get(i+1).draw(g,x+expressions.get(i).getWidth()/divide,y-10/divide,(divide<3?(divide+1):divide));
+                expressions.get(i).draw(g,x,y+expressions.get(i).getHeight(divide<3?(divide+1):divide)-HEIGHT/(divide*2),(divide<3?(divide+1):divide));
+                expressions.get(i+1).draw(g,x,y-HEIGHT/(2*divide),(divide<3?(divide+1):divide));
                 last=true;
-                x+=expressions.get(i).getWidth()/divide+expressions.get(i+1).getWidth()/(divide<3?(divide+1):divide);
+                x+=Math.max(expressions.get(i).getWidth(1),expressions.get(i+1).getWidth(1))/(divide<3?(divide+1):divide);
             }
             else
             {
-                g.setFont(new Font("Arial",0,30/divide));
                 expressions.get(i).draw(g,x,y,divide);
                 last=false;
-                x+=expressions.get(i).getWidth()/divide;
+                x+=expressions.get(i).getWidth(divide);
                 continue;
             }
             if(++i!=operators.size())
@@ -295,10 +315,7 @@ class MyExpression
 
         //如果最后一个表达式未被画过则绘制
         if(!last)
-        {
-            g.setFont(new Font("Arial",0,30/divide));
             expressions.get(expressions.size()-1).draw(g,x,y,divide);
-        }
     }
 
     private static int getWidth(String a)
@@ -313,19 +330,19 @@ class MyExpression
 
     private static int getHeight(String a)
     {
-        return 30;
+        return HEIGHT;
     }
 
     private static int getWidth(char a)
     {
         if(a=='/'||a=='f'||a=='l'||a=='i'||a=='j'||a=='I'||a=='r'||a=='t')
-            return 8;
+            return 7;
         else if(a>='A'&&a<='Z'&&a!='I'&&a!='M'&&a!='W')
-            return 22;
+            return 21;
         else if(a=='%'||a=='M'||a=='m'||a=='w')
-            return 27;
+            return 26;
         else if(a=='W')
-            return 32;
+            return 31;
         else
             return 17;
     }
