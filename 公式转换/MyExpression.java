@@ -14,9 +14,7 @@ class MyExpression
     private ArrayList<String> strings=new ArrayList<String>();
     private ArrayList<String> operators=new ArrayList<String>();
     private static final int BORDER=3,HEIGHT=30;
-    //********目前的除号是从右向左运算的
     //********根号还不能画出
-    //********括号全部舍去了
     //需要处理的符号：
     //替换：int sum root
     //图像处理（优先级升序）：(^) /
@@ -36,12 +34,66 @@ class MyExpression
         abc.toImage();
     }
 
+    private boolean isEmpty()
+    {
+        return expressions.size()==0&&strings.size()==1&&strings.get(0)=="";
+    }
+
+    private boolean peelable(char o)
+    {
+        if(o=='/')
+        {
+            if(expressions.size()==2&&operators.get(0)=='/')
+                return false;
+            return true;
+        }
+        int i;
+        if(expressions.size()==0)
+        {
+            String a=strings.get(0);
+            if((a.charAt(0)=='('&&a.charAt(a.length()-1)==')')||(a.charAt(0)=='{'&&a.charAt(a.length()-1)=='}')||(a.charAt(0)=='|'&&a.charAt(a.length()-1)=='|'))
+                return true;
+            for(i=0;i<a.length();i++)
+            {
+                if(a.charAt(i)=='+') return false;
+                if(a.charAt(i)=='-') return false;
+                if(a.charAt(i)=='*') return false;
+                if(a.charAt(i)=='=') return false;
+            }
+            if(a.indexOf("sin")>=0) return false;
+            if(a.indexOf("cos")>=0) return false;
+            if(a.indexOf("tan")>=0) return false;
+            if(a.indexOf("cot")>=0) return false;
+            if(a.indexOf("sec")>=0) return false;
+            if(a.indexOf("csc")>=0) return false;
+            if(a.indexOf("sinh")>=0) return false;
+            if(a.indexOf("cosh")>=0) return false;
+            if(a.indexOf("tanh")>=0) return false;
+            if(a.indexOf("coth")>=0) return false;
+            if(a.indexOf("sech")>=0) return false;
+            if(a.indexOf("csch")>=0) return false;
+            if(a.indexOf("log")>=0) return false;
+            if(a.indexOf("ln")>=0) return false;
+            if(a.indexOf("lg")>=0) return false;
+            return true;
+        }
+        else if(expressions.size()==1)
+            return expressions.get(0).peelable();
+        else
+        {
+            for(i=0;i<operators.size();i++)
+                if(operators.get(i)=="/") return false;
+            return true;
+        }
+    }
+
     public boolean read(String e)
     {
         int i,index,cur=0,first1=-1,last1=-1,last=-1;
         boolean ok=true;
+        boolean peeled=false;
         //中文字符变英文字符
-        //
+        
         //括号配对查错及去最外层括号
         for(i=0;i<e.length();i++)
         {
@@ -59,10 +111,13 @@ class MyExpression
                 }
         }
         if(first1==0&&last1==e.length())
+        {
             e=e.substring(1,e.length()-1);
+            peeled=true;
+        }
         
         //寻找^
-        index=getOuterCharIndex('^',e);
+        index=getOuterCharIndex('^',e,true);
 
         //找到^，开始处理
         if(index>=0)
@@ -81,7 +136,7 @@ class MyExpression
         }
 
         //没有读到^，开始尝试/
-        index=getOuterCharIndex('/',e);
+        index=getOuterCharIndex('/',e,false);
 
         //找到外层/，开始处理
         if(index>=0)
@@ -144,28 +199,39 @@ class MyExpression
         }
         else
         {
+            expressions.add(new MyExpression());
+            operators.add("(");
             if(first1>0)
             {
                 strings.add(e.substring(0,first1));
-                operators.add("");
-                expressions.add(new MyExpression());
                 ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1));
                 if(!ok) return false;
+            }
+            else
+            {
+                strings.add("");
+                expressions.get(expressions.size()-1).read("");
             }
             strings.add(e.substring(first1,last1));
             expressions.add(new MyExpression());
             ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1));
             if(!ok) return false;
+            operators.add(")");
+            expressions.add(new MyExpression());
             if(last1<e.length())
             {
                 strings.add(e.substring(last1,e.length()));
-                operators.add("");
-                expressions.add(new MyExpression());
                 ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1));
                 if(!ok) return false;
             }
+            else
+            {
+                strings.add("");
+                expressions.get(expressions.size()-1).read("");
+            }
+            System.out.println(e);
             //运算符个数查错
-            return operators.size()<expressions.size();   
+            return operators.size()<expressions.size();
         }
     }
 
@@ -183,6 +249,7 @@ class MyExpression
         boolean last=false;//记录最后一个表达式是否被统计过
         for(int i=0;i!=operators.size();i++)
         {
+            sum+=getWidth(operators.get(i))/divide;
             if(operators.get(i)=="/")
             {
                 last=true;
@@ -277,7 +344,7 @@ class MyExpression
             expressions.get(0).draw(g,x,y,divide);
             return;
         }
-        //sin(^1/3)x+a(n^)+f(1/n^)x
+        
         //对所有表达式依次绘图
         boolean last=false;//记录最后一个表达式是否被画过
         for(int i=0;i!=operators.size();i++)
@@ -302,7 +369,10 @@ class MyExpression
             {
                 expressions.get(i).draw(g,x,y,divide);
                 last=false;
-                x+=expressions.get(i).getWidth(divide);
+                g.setFont(new Font("Arial",0,30/divide));
+                g.drawString(operators.get(i),x,y);
+                if(operators.get(i)=="("||operators.get(i)==")") System.out.println(operators.get(i)+":"+x);
+                x+=expressions.get(i).getWidth(divide)+getWidth(operators.get(i));
                 continue;
             }
             if(++i!=operators.size())
@@ -353,20 +423,28 @@ class MyExpression
         return 30;
     }
 
-    private static int getOuterCharIndex(char a,String e)
+    private static int getOuterCharIndex(char a,String e,boolean fromhead)
     {
-        int cur,index;
-        index=e.indexOf(a);
-        while(index>=0)
+        int cur=0,index;
+        if(fromhead)
         {
-            cur=0;
-            for(int i=0;i<index;i++)
+            for(index=0;index<e.length();index++)
             {
-                if(e.charAt(i)=='(') cur++;
-                else if(e.charAt(i)==')') cur--;
+                if(e.charAt(index)=='(') cur++;
+                else if(e.charAt(index)==')') cur--;
+                if(cur>0) continue;
+                if(e.charAt(index)==a) return index;
             }
-            if(cur==0) return index;
-            index=e.indexOf(a,index+1);
+        }
+        else
+        {
+            for(index=e.length()-1;index>=0;index--)
+            {
+                if(e.charAt(index)=='(') cur--;
+                else if(e.charAt(index)==')') cur++;
+                if(cur>0) continue;
+                if(e.charAt(index)==a) return index;
+            }
         }
         return -1;
     }
@@ -381,7 +459,7 @@ class MyExpression
             if(tmp=='(') if(k>0) {k--; continue;} else return -1;
             if(tmp==')') {k++; continue;}
             if(k>0) continue;
-            if((tmp>='a'&&tmp<='z')||(tmp>='A'&&tmp<='Z')||(tmp>='0'&&tmp<='9')||tmp=='.'||tmp=='*'||tmp=='!'||tmp=='?') continue;
+            if((tmp>='a'&&tmp<='z')||(tmp>='A'&&tmp<='Z')||(tmp>='0'&&tmp<='9')||tmp=='.'||tmp=='*'||tmp=='/'||tmp=='!'||tmp=='?') continue;
             break;
         }
         if(k>0) return -1;
@@ -398,7 +476,7 @@ class MyExpression
             if(tmp=='(') {k++; continue;}
             if(tmp==')') if(k>0) {k--; continue;} else return -1;
             if(k>0) continue;
-            if((tmp>='a'&&tmp<='z')||(tmp>='A'&&tmp<='Z')||(tmp>='0'&&tmp<='9')||tmp=='.'||tmp=='*'||tmp=='!'||tmp=='?') continue;
+            if((tmp>='a'&&tmp<='z')||(tmp>='A'&&tmp<='Z')||(tmp>='0'&&tmp<='9')||tmp=='.'||tmp=='*'||tmp=='/'||tmp=='!'||tmp=='?') continue;
             break;
         }
         if(k>0) return -1;
