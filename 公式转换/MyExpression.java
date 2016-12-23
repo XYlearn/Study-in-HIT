@@ -39,6 +39,7 @@ class MyExpression
         return expressions.size()==0&&strings.size()==1&&strings.get(0)=="";
     }
 
+    /*//判断一个表达式是否可以去括号
     private boolean peelable(char o)
     {
         if(o=='/')
@@ -85,9 +86,14 @@ class MyExpression
                 if(operators.get(i)=="/") return false;
             return true;
         }
-    }
+    }*/
 
     public boolean read(String e)
+    {
+    	return read(e,true);
+    }
+
+    private boolean read(String e,boolean peelable)
     {
         int i,index,cur=0,first1=-1,last1=-1,last=-1;
         boolean ok=true;
@@ -95,25 +101,14 @@ class MyExpression
         //中文字符变英文字符
         
         //括号配对查错及去最外层括号
-        for(i=0;i<e.length();i++)
+        switch(outerBracket(e))
         {
-            if(e.charAt(i)=='(')
-            {
-                if(first1==-1) first1=i;
-                cur++;
-            }
-            else if(e.charAt(i)==')')
-                if(cur<=0) return false;
-                else if (cur--==1)
-                {
-                    last1=i+1;
-                    break;
-                }
-        }
-        if(first1==0&&last1==e.length())
-        {
-            e=e.substring(1,e.length()-1);
-            peeled=true;
+        	case 1:
+            	e=e.substring(1,e.length()-1);
+            	peeled=true;
+            	break;
+            case -1:
+            	return false;
         }
         
         //寻找^
@@ -122,6 +117,8 @@ class MyExpression
         //找到^，开始处理
         if(index>=0)
         {
+        	//找到相邻括号的起止位置
+        	//分段，保证括号peelable=false;
             operators.add("^");
             strings.add(e.substring(0,index));
             expressions.add(new MyExpression());
@@ -235,7 +232,7 @@ class MyExpression
         }
     }
 
-    protected int getWidth(int divide)
+    private int getWidth(int divide)
     {
         //如果到达最底部则直接统计字符串长度
         if(expressions.size()==0)
@@ -277,7 +274,7 @@ class MyExpression
         return sum;
     }
 
-    protected int getHeight(int divide)
+    private int getHeight(int divide)
     {
         if(expressions.size()==0) return getHeight(strings.get(0))/divide;
         int max=expressions.get(0).getHeight(divide);
@@ -328,7 +325,7 @@ class MyExpression
         return b;
     }
 
-    void draw(Graphics2D g,int x,int y,int divide)
+    private void draw(Graphics2D g,int x,int y,int divide)
     {
         //如果到达最底部则绘制字符串
         if(expressions.size()==0)
@@ -481,5 +478,29 @@ class MyExpression
         }
         if(k>0) return -1;
         return i;
+    }
+
+    private static int outerBracket(String e)
+    {
+    	//括号配对查错，返回是否有最外层括号
+    	int first=-1,last=-1,i,cur=0;
+        for(i=0;i<e.length();i++)
+        {
+            if(e.charAt(i)=='(')
+            {
+                if(first==-1) first=i;
+                cur++;
+            }
+            else if(e.charAt(i)==')')
+                if(cur<=0) return -1;
+                else if (cur--==1)
+                {
+                    last=i+1;
+                    break;
+                }
+        }
+        if(first==0&&last==e.length())
+        	return 1;
+        return 0;
     }
 }
