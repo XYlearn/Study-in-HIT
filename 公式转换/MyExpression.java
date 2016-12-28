@@ -13,6 +13,7 @@ class MyExpression
 	public ArrayList<MyExpression> expressions=new ArrayList<MyExpression>();
 	private ArrayList<String> strings=new ArrayList<String>();
 	private ArrayList<String> operators=new ArrayList<String>();
+	private static final Font[] fonts={new Font("Arial",0,30),new Font("Arial",0,15),new Font("Arial",0,10)};
 	private static final int BORDER=3,HEIGHT=30;
 	//********根号还不能画出
 	//需要处理的符号：
@@ -31,12 +32,7 @@ class MyExpression
 			System.out.println("格式有误");
 			return;
 		}
-		abc.toImage();
-	}
-
-	private boolean isEmpty()
-	{
-		return expressions.size()==0&&strings.size()==1&&strings.get(0)=="";
+		abc.toImage("test");
 	}
 
 	/*//判断一个表达式是否可以去括号
@@ -347,19 +343,20 @@ class MyExpression
 		return a;
 	}
 
-	public BufferedImage toImage()
+	public BufferedImage toImage(String filename)
 	{
 		int w=getWidth(1),h=getHeight(1);
+		int inity;
 		BufferedImage b=new BufferedImage(w,h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g=b.createGraphics();
-		g.setFont(new Font("Arial",0,30));
+		g.setFont(fonts[0]);
 		g.setColor(new Color(0,0,0));
 		g.setBackground(new Color(255,255,255));
 		g.clearRect(0,0,w,h);
-		draw(g,2,h/2+10,1);
+		draw(g,2,h/2+HEIGHT/3,1);
 		try
 		{
-			ImageIO.write(b, "jpg", new File("D:\\test.jpg"));
+			ImageIO.write(b, "jpg", new File("D:\\"+filename+".jpg"));
 		}
 		catch(IOException e)
 		{
@@ -373,7 +370,7 @@ class MyExpression
 		//如果到达最底部则绘制字符串
 		if(expressions.size()==0)
 		{
-			g.setFont(new Font("Arial",0,30/divide));
+			g.setFont(fonts[divide-1]);
 			g.drawString(strings.get(0),x,y);
 			//System.out.println(strings.get(0)+":"+x);
 			return;
@@ -411,7 +408,7 @@ class MyExpression
 				expressions.get(i).draw(g,x,y,divide);
 				x+=expressions.get(i).getWidth(divide);
 				last=false;
-				g.setFont(new Font("Arial",0,30/divide));
+				g.setFont(fonts[divide-1]);
 				g.drawString(operators.get(i),x,y);
 				//System.out.println(operators.get(i)+":"+x);
 				x+=getWidth(operators.get(i));
@@ -419,7 +416,7 @@ class MyExpression
 			}
 			if(++i!=operators.size())
 			{
-				g.setFont(new Font("Arial",0,30/divide));
+				g.setFont(fonts[divide-1]);
 				g.drawString(operators.get(i),x,y);
 				//System.out.println(operators.get(i)+":"+x);
 				x+=getWidth(operators.get(i))/divide;
@@ -457,6 +454,8 @@ class MyExpression
 			return 26;
 		else if(a=='W')
 			return 31;
+		else if(a=='∫')
+			return 10;
 		else
 			return 17;
 	}
