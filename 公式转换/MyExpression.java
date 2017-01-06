@@ -13,6 +13,7 @@ class MyExpression
 	public ArrayList<MyExpression> expressions=new ArrayList<MyExpression>();
 	private ArrayList<String> strings=new ArrayList<String>();
 	private ArrayList<String> operators=new ArrayList<String>();
+	private int inity=-1,height=-1,width=-1;
 	private static final Font[] fonts={new Font("Arial",0,30),new Font("Arial",0,15),new Font("Arial",0,10)};
 	private static final int BORDER=3,HEIGHT=30;
 	//********根号还不能画出
@@ -86,6 +87,10 @@ class MyExpression
 
 	public boolean read(String e)
 	{
+		e=e.replaceAll("int","∫");
+		e=e.replaceAll("sum","∑");
+		e=e.replaceAll("->","→");
+		e=e.replaceAll("<-","←");
 		return read(e,true);
 	}
 
@@ -118,11 +123,11 @@ class MyExpression
 			operators.add("^");
 			strings.add(e.substring(0,index));
 			expressions.add(new MyExpression());
-			ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1));
+			ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1),true);
 			if(!ok) return false;
 			strings.add(e.substring(index+1,e.length()));
 			expressions.add(new MyExpression());
-			ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1));
+			ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1),true);
 			if(!ok) return false;
 			//运算符个数查错
 			return operators.size()<expressions.size();
@@ -143,7 +148,7 @@ class MyExpression
 			if(hasOuterBracket==1&&!peelable)
 			{
 				expressions.add(new MyExpression());
-				expressions.get(expressions.size()-1).read("");
+				expressions.get(expressions.size()-1).read("",true);
 				operators.add("(");
 			}
 			if(l>0)
@@ -151,6 +156,7 @@ class MyExpression
 				strings.add(e.substring(0,l));
 				expressions.add(new MyExpression());
 				operators.add("");
+				System.out.println(strings.get(strings.size()-1)+"   found, operator\"\"");
 				ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1),false);
 				if(!ok) return false;
 			}
@@ -162,6 +168,8 @@ class MyExpression
 				operators.add("/");
 				expressions.add(new MyExpression());
 				strings.add(e.substring(index+1,r));
+				System.out.println(strings.get(strings.size()-2)+"  ,  "+strings.get(strings.size()-1)+"   found, operator\"/\"");
+				System.out.println("operators:"+operators.size());
 				ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1),true);
 			}
 			else
@@ -183,7 +191,7 @@ class MyExpression
 			{
 				operators.add(")");
 				expressions.add(new MyExpression());
-				expressions.get(expressions.size()-1).read("");
+				expressions.get(expressions.size()-1).read("",true);
 			}
 			//运算符个数查错
 			return operators.size()<expressions.size();
@@ -236,7 +244,7 @@ class MyExpression
 			if(hasOuterBracket==1&&!peelable)
 			{
 				expressions.add(new MyExpression());
-				expressions.get(expressions.size()-1).read("");
+				expressions.get(expressions.size()-1).read("",true);
 				operators.add("(");
 			}
 			if(first>0)
@@ -264,7 +272,7 @@ class MyExpression
 			{
 				operators.add(")");
 				expressions.add(new MyExpression());
-				expressions.get(expressions.size()-1).read("");
+				expressions.get(expressions.size()-1).read("",true);
 			}
 			//运算符个数查错
 			return operators.size()<expressions.size();
@@ -273,23 +281,23 @@ class MyExpression
 
 	private int getWidth(int divide)
 	{
+		if(width!=-1) return width;
 		//如果到达最底部则直接统计字符串长度
 		if(expressions.size()==0)
-			return getWidth(strings.get(0))/divide;
+			return width=getWidth(strings.get(0))/divide;
 
 		//如果只有一个表达式
 		if(expressions.size()==1)
-			return expressions.get(0).getWidth(divide);
+			return width=expressions.get(0).getWidth(divide);
 
 		int sum=0;
 		boolean last=false;//记录最后一个表达式是否被统计过
 		for(int i=0;i!=operators.size();i++)
 		{
-			sum+=getWidth(operators.get(i))/divide;
 			if(operators.get(i)=="/")
 			{
 				last=true;
-				sum+=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide));
+				sum+=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide))+BORDER*2;
 			}
 			else if(operators.get(i)=="^")
 			{
@@ -299,7 +307,7 @@ class MyExpression
 			else
 			{
 				last=false;
-				sum+=expressions.get(i).getWidth(divide);
+				sum+=expressions.get(i).getWidth(divide)+getWidth(operators.get(i))/divide;
 				continue;
 			}
 			if(++i!=operators.size())
@@ -310,26 +318,24 @@ class MyExpression
 		//如果最后一个表达式未被统计过
 		if(!last)
 			sum+=expressions.get(expressions.size()-1).getWidth(divide);
-		return sum;
+		return width=sum;
 	}
 
 	private int getHeight(int divide)
 	{
-		if(expressions.size()==0) return getHeight(strings.get(0))/divide;
+		if(height!=-1) return height;
+		if(expressions.size()==0) return height=getHeight(strings.get(0))/divide;
 		int max=expressions.get(0).getHeight(divide);
 		for(int i=0;i!=operators.size();i++)
 		{
 			if(operators.get(i)=="/")
-				max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide)+BORDER*2);
+				max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide)+(BORDER*2)/divide);
 			else if(operators.get(i)=="^")
 				max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide));
 			else
-			{
 				max=Math.max(max,expressions.get(i+1).getHeight(divide));
-				max=Math.max(max,getHeight(operators.get(i))/divide);
-			}
 		}
-		return max;
+		return height=max;
 	}
 
 	public String toString()
@@ -346,14 +352,14 @@ class MyExpression
 	public BufferedImage toImage(String filename)
 	{
 		int w=getWidth(1),h=getHeight(1);
-		int inity;
+		int i,inity=0;
 		BufferedImage b=new BufferedImage(w,h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g=b.createGraphics();
 		g.setFont(fonts[0]);
 		g.setColor(new Color(0,0,0));
 		g.setBackground(new Color(255,255,255));
 		g.clearRect(0,0,w,h);
-		draw(g,2,h/2+HEIGHT/3,1);
+		draw(g,2,getinity(1),1);
 		try
 		{
 			ImageIO.write(b, "jpg", new File("D:\\"+filename+".jpg"));
@@ -372,6 +378,7 @@ class MyExpression
 		{
 			g.setFont(fonts[divide-1]);
 			g.drawString(strings.get(0),x,y);
+			System.out.println(strings.get(0)+":::::"+y);
 			//System.out.println(strings.get(0)+":"+x);
 			return;
 		}
@@ -385,21 +392,23 @@ class MyExpression
 		
 		//对所有表达式依次绘图
 		boolean last=false;//记录最后一个表达式是否被画过
+		int inity=0;
 		for(int i=0;i!=operators.size();i++)
 		{
 			if(operators.get(i)=="/")
 			{
-				expressions.get(i).draw(g,x,y-BORDER/divide-expressions.get(i).getHeight(divide)/2,divide);
-				g.drawLine(x,y-HEIGHT/(divide*3),
-						   x+Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide)),y-HEIGHT/(divide*3));
-				expressions.get(i+1).draw(g,x,y+BORDER/divide+expressions.get(i+1).getHeight(divide)/2,divide);
+				expressions.get(i).draw(g,x,y-HEIGHT/(2*divide)-expressions.get(i).getHeight(divide)+expressions.get(i).getinity(divide),divide);
+				g.drawLine(x,y-HEIGHT/(divide*2),
+						   x+Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide)),y-HEIGHT/(divide*2));
+				expressions.get(i+1).draw(g,x,y-HEIGHT/(2*divide)+BORDER+expressions.get(i+1).getinity(divide),divide);
+				//System.out.println("-------------"+expressions.get(i+1).toString()+":"+(y+BORDER/divide+expressions.get(i+1).getHeight(divide)/2));
 				last=true;
 				x+=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide));
 			}
 			else if(operators.get(i)=="^")
 			{
-				expressions.get(i).draw(g,x,y+expressions.get(i).getHeight(divide<3?(divide+1):divide)-HEIGHT/(divide*2),(divide<3?(divide+1):divide));
-				expressions.get(i+1).draw(g,x,y-HEIGHT/(2*divide),(divide<3?(divide+1):divide));
+				expressions.get(i).draw(g,x,y-HEIGHT/(divide*2)+expressions.get(i).getinity(divide<3?(divide+1):divide),(divide<3?(divide+1):divide));
+				expressions.get(i+1).draw(g,x,y-HEIGHT/(divide*2)-expressions.get(i+1).getHeight(divide<3?(divide+1):divide)+expressions.get(i+1).getinity(divide<3?(divide+1):divide),(divide<3?(divide+1):divide));
 				last=true;
 				x+=Math.max(expressions.get(i).getWidth(1),expressions.get(i+1).getWidth(1))/(divide<3?(divide+1):divide);
 			}
@@ -429,6 +438,29 @@ class MyExpression
 			expressions.get(expressions.size()-1).draw(g,x,y,divide);
 	}
 
+	private int getinity(int divide)
+	{
+		if(inity!=-1) return inity;
+		if(expressions.size()==0) return inity=HEIGHT;
+		else if(expressions.size()==1) return inity=expressions.get(0).getinity(divide);
+		else
+		{
+			for(int i=0;i<operators.size();i++)
+			{
+				if(operators.get(i)=="^")
+					inity=Math.max(inity,expressions.get(i+1).getHeight(divide<3?(divide+1):divide)+HEIGHT/(2*divide));
+				else if(operators.get(i)=="/")
+					inity=Math.max(inity,(expressions.get(i).getHeight(1)+BORDER+HEIGHT/2)/divide);
+				else
+				{
+					inity=Math.max(inity,expressions.get(i).getinity(divide));
+					if(i==operators.size()-1) inity=Math.max(inity,expressions.get(i+1).getinity(divide));
+				}
+			}
+			return inity;
+		}
+	}
+
 	private static int getWidth(String a)
 	{
 		if(a=="") return 0;
@@ -448,9 +480,9 @@ class MyExpression
 	{
 		if(a=='/'||a=='f'||a=='l'||a=='i'||a=='j'||a=='I'||a=='r'||a=='t')
 			return 7;
-		else if(a>='A'&&a<='Z'&&a!='I'&&a!='M'&&a!='W')
+		else if((a>='A'&&a<='Z'&&a!='I'&&a!='M'&&a!='W')||a=='←'||a=='→')
 			return 21;
-		else if(a=='%'||a=='M'||a=='m'||a=='w')
+		else if(a=='%'||a=='M'||a=='m'||a=='w'||a=='∑')
 			return 26;
 		else if(a=='W')
 			return 31;
@@ -462,7 +494,7 @@ class MyExpression
 
 	private static int getHeight(char a)
 	{
-		return 30;
+		return HEIGHT;
 	}
 
 	private static int getOuterCharIndex(char a,String e,boolean fromhead)
