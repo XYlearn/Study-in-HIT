@@ -59,17 +59,17 @@ public class Home extends javax.swing.JFrame {
         midArea = new javax.swing.JSplitPane();
         rightArea = new javax.swing.JTabbedPane();
         centerArea = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        inputScrollPanel = new javax.swing.JScrollPane();
+        inputTextPanel = new javax.swing.JTextPane();
         messageButtonPanel = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         messageSendButton = new javax.swing.JButton();
         exchangeButton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        jPanel9 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        showScrollPanel = new javax.swing.JScrollPane();
+        showTextPanel = new javax.swing.JTextPane();
+        drawPanel = new javax.swing.JPanel();
+        roomScrollPanel = new javax.swing.JScrollPane();
+        roomList = new javax.swing.JList<>();
         painterToolPanel = new javax.swing.JToolBar();
         jButton10 = new javax.swing.JButton();
         leftArea = new javax.swing.JPanel();
@@ -78,9 +78,9 @@ public class Home extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane3 = new javax.swing.JTextPane();
         jPanel2 = new javax.swing.JPanel();
-        jMenuBar = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        menuBar = new javax.swing.JMenuBar();
+        editMenu = new javax.swing.JMenu();
+        fileMenu = new javax.swing.JMenu();
 
         Launcher.setAlwaysOnTop(true);
         Launcher.setBackground(new java.awt.Color(204, 204, 255));
@@ -227,13 +227,13 @@ public class Home extends javax.swing.JFrame {
         announcementPanel.setLayout(announcementPanelLayout);
         announcementPanelLayout.setHorizontalGroup(
             announcementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, announcementPanelLayout.createSequentialGroup()
-                .addGroup(announcementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(announcementEditPanel)
-                    .addComponent(announcementShow))
+            .addGroup(announcementPanelLayout.createSequentialGroup()
+                .addGroup(announcementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(announcementEditPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                    .addComponent(announcementShow, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(announcementSendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(363, 363, 363))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         announcementPanelLayout.setVerticalGroup(
             announcementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +306,7 @@ public class Home extends javax.swing.JFrame {
         midArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         midArea.setDividerLocation(250);
 
-        jScrollPane2.setViewportView(jTextPane1);
+        inputScrollPanel.setViewportView(inputTextPanel);
 
         jButton4.setText("jButton4");
 
@@ -335,28 +335,28 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jTextPane2.setEditable(false);
-        jScrollPane3.setViewportView(jTextPane2);
+        showTextPanel.setEditable(false);
+        showScrollPanel.setViewportView(showTextPanel);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        drawPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout drawPanelLayout = new javax.swing.GroupLayout(drawPanel);
+        drawPanel.setLayout(drawPanelLayout);
+        drawPanelLayout.setHorizontalGroup(
+            drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        drawPanelLayout.setVerticalGroup(
+            drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        roomList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(jList1);
+        roomScrollPanel.setViewportView(roomList);
 
         painterToolPanel.setOrientation(javax.swing.SwingConstants.VERTICAL);
         painterToolPanel.setRollover(true);
@@ -377,21 +377,21 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(centerAreaLayout.createSequentialGroup()
                         .addGroup(centerAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(centerAreaLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2)
+                                .addComponent(inputScrollPanel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(messageSendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(centerAreaLayout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(messageButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                        .addComponent(roomScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(centerAreaLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
+                        .addComponent(showScrollPanel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(exchangeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(painterToolPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -399,9 +399,9 @@ public class Home extends javax.swing.JFrame {
             centerAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(centerAreaLayout.createSequentialGroup()
                 .addGroup(centerAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(showScrollPanel)
                     .addComponent(exchangeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painterToolPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(centerAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,11 +409,11 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(messageButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(centerAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
+                            .addComponent(inputScrollPanel)
                             .addGroup(centerAreaLayout.createSequentialGroup()
                                 .addComponent(messageSendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)))
+                    .addComponent(roomScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)))
         );
 
         rightArea.addTab("tab1", centerArea);
@@ -467,13 +467,13 @@ public class Home extends javax.swing.JFrame {
 
         midArea.setLeftComponent(leftArea);
 
-        jMenu2.setText("Edit");
-        jMenuBar.add(jMenu2);
+        editMenu.setText("Edit");
+        menuBar.add(editMenu);
 
-        jMenu1.setText("File");
-        jMenuBar.add(jMenu1);
+        fileMenu.setText("File");
+        menuBar.add(fileMenu);
 
-        setJMenuBar(jMenuBar);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -609,7 +609,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JCheckBox autoLaunch;
     private javax.swing.JPanel buttonArea;
     private javax.swing.JPanel centerArea;
+    private javax.swing.JPanel drawPanel;
+    private javax.swing.JMenu editMenu;
     private javax.swing.JButton exchangeButton;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JScrollPane inputScrollPanel;
+    private javax.swing.JTextPane inputTextPanel;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -618,24 +623,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
     private javax.swing.JPanel lauch;
     private javax.swing.JButton lauchButton;
     private javax.swing.JLabel lauchLabel;
     private javax.swing.JButton launchButton;
     private javax.swing.JPanel leftArea;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel messageButtonPanel;
     private javax.swing.JButton messageSendButton;
     private javax.swing.JSplitPane midArea;
@@ -644,7 +640,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JCheckBox rememberKey;
     private javax.swing.JCheckBox rememberUser;
     private javax.swing.JTabbedPane rightArea;
+    private javax.swing.JList<String> roomList;
+    private javax.swing.JScrollPane roomScrollPanel;
     private javax.swing.JButton settingButton;
+    private javax.swing.JScrollPane showScrollPanel;
+    private javax.swing.JTextPane showTextPanel;
     private javax.swing.JPanel title;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JComboBox<String> usernameInputer;
