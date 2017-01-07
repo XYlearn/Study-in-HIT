@@ -10,21 +10,19 @@ import java.util.Scanner;
 
 class MyExpression
 {
-	public ArrayList<MyExpression> expressions=new ArrayList<MyExpression>();
+	private ArrayList<MyExpression> expressions=new ArrayList<MyExpression>();
 	private ArrayList<String> strings=new ArrayList<String>();
 	private ArrayList<String> operators=new ArrayList<String>();
 	private int inity=-1,height=-1,width=-1;
 	private static final Font[] fonts={new Font("Arial",0,30),new Font("Arial",0,15),new Font("Arial",0,10)};
-	private static final int BORDER=3,HEIGHT=30;
-	//********根号还不能画出
+	private static final int BORDER=5,HEIGHT=30;
+	// ********根号还不能画出
 	//需要处理的符号：
-	//替换：int sum root
-	//图像处理（优先级升序）：(^) /
-	//比/优先级低的符号：=|+|-|sin|cos|tan|cot|sec|csc|sinh|cosh|tanh|coth|sech|csch|log|ln|lg|\\{|\\}|\\(|\\)|\\|
+	//替换：root
 
 	MyExpression(){}
 
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		Scanner s=new Scanner(System.in);
 		MyExpression abc=new MyExpression();
@@ -34,55 +32,6 @@ class MyExpression
 			return;
 		}
 		abc.toImage("test");
-	}
-
-	/*//判断一个表达式是否可以去括号
-	private boolean peelable(char o)
-	{
-		if(o=='/')
-		{
-			if(expressions.size()==2&&operators.get(0)=='/')
-				return false;
-			return true;
-		}
-		int i;
-		if(expressions.size()==0)
-		{
-			String a=strings.get(0);
-			if((a.charAt(0)=='('&&a.charAt(a.length()-1)==')')||(a.charAt(0)=='{'&&a.charAt(a.length()-1)=='}')||(a.charAt(0)=='|'&&a.charAt(a.length()-1)=='|'))
-				return true;
-			for(i=0;i<a.length();i++)
-			{
-				if(a.charAt(i)=='+') return false;
-				if(a.charAt(i)=='-') return false;
-				if(a.charAt(i)=='*') return false;
-				if(a.charAt(i)=='=') return false;
-			}
-			if(a.indexOf("sin")>=0) return false;
-			if(a.indexOf("cos")>=0) return false;
-			if(a.indexOf("tan")>=0) return false;
-			if(a.indexOf("cot")>=0) return false;
-			if(a.indexOf("sec")>=0) return false;
-			if(a.indexOf("csc")>=0) return false;
-			if(a.indexOf("sinh")>=0) return false;
-			if(a.indexOf("cosh")>=0) return false;
-			if(a.indexOf("tanh")>=0) return false;
-			if(a.indexOf("coth")>=0) return false;
-			if(a.indexOf("sech")>=0) return false;
-			if(a.indexOf("csch")>=0) return false;
-			if(a.indexOf("log")>=0) return false;
-			if(a.indexOf("ln")>=0) return false;
-			if(a.indexOf("lg")>=0) return false;
-			return true;
-		}
-		else if(expressions.size()==1)
-			return expressions.get(0).peelable();
-		else
-		{
-			for(i=0;i<operators.size();i++)
-				if(operators.get(i)=="/") return false;
-			return true;
-		}
 	}*/
 
 	public boolean read(String e)
@@ -156,7 +105,7 @@ class MyExpression
 				strings.add(e.substring(0,l));
 				expressions.add(new MyExpression());
 				operators.add("");
-				System.out.println(strings.get(strings.size()-1)+"   found, operator\"\"");
+				//System.out.println(strings.get(strings.size()-1)+"   found, operator\"\"");
 				ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1),false);
 				if(!ok) return false;
 			}
@@ -168,8 +117,8 @@ class MyExpression
 				operators.add("/");
 				expressions.add(new MyExpression());
 				strings.add(e.substring(index+1,r));
-				System.out.println(strings.get(strings.size()-2)+"  ,  "+strings.get(strings.size()-1)+"   found, operator\"/\"");
-				System.out.println("operators:"+operators.size());
+				//System.out.println(strings.get(strings.size()-2)+"  ,  "+strings.get(strings.size()-1)+"   found, operator\"/\"");
+				//System.out.println("operators:"+operators.size());
 				ok=ok&&expressions.get(expressions.size()-1).read(strings.get(strings.size()-1),true);
 			}
 			else
@@ -302,7 +251,7 @@ class MyExpression
 			else if(operators.get(i)=="^")
 			{
 				last=true;
-				sum+=Math.max(expressions.get(i).getWidth(1),expressions.get(i+1).getWidth(1))/(divide<3?(divide+1):divide);
+				sum+=Math.max(expressions.get(i).getWidth(divide<3?(divide+1):divide),expressions.get(i+1).getWidth(divide<3?(divide+1):divide));
 			}
 			else
 			{
@@ -331,7 +280,7 @@ class MyExpression
 			if(operators.get(i)=="/")
 				max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide)+(BORDER*2)/divide);
 			else if(operators.get(i)=="^")
-				max=Math.max(max,expressions.get(i).getHeight(divide)+expressions.get(i+1).getHeight(divide));
+				max=Math.max(max,expressions.get(i).getHeight(divide<3?(divide+1):divide)+expressions.get(i+1).getHeight(divide<3?(divide+1):divide));
 			else
 				max=Math.max(max,expressions.get(i+1).getHeight(divide));
 		}
@@ -351,7 +300,7 @@ class MyExpression
 
 	public BufferedImage toImage(String filename)
 	{
-		int w=getWidth(1),h=getHeight(1);
+		int w=getWidth(1)+BORDER*4,h=getHeight(1);
 		int i,inity=0;
 		BufferedImage b=new BufferedImage(w,h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g=b.createGraphics();
@@ -378,7 +327,7 @@ class MyExpression
 		{
 			g.setFont(fonts[divide-1]);
 			g.drawString(strings.get(0),x,y);
-			System.out.println(strings.get(0)+":::::"+y);
+			//System.out.println(strings.get(0)+":::::"+y);
 			//System.out.println(strings.get(0)+":"+x);
 			return;
 		}
@@ -392,15 +341,19 @@ class MyExpression
 		
 		//对所有表达式依次绘图
 		boolean last=false;//记录最后一个表达式是否被画过
-		int inity=0;
+		int inity=0,lineWidth;
 		for(int i=0;i!=operators.size();i++)
 		{
 			if(operators.get(i)=="/")
 			{
-				expressions.get(i).draw(g,x,y-HEIGHT/(2*divide)-expressions.get(i).getHeight(divide)+expressions.get(i).getinity(divide),divide);
-				g.drawLine(x,y-HEIGHT/(divide*2),
-						   x+Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide)),y-HEIGHT/(divide*2));
-				expressions.get(i+1).draw(g,x,y-HEIGHT/(2*divide)+BORDER+expressions.get(i+1).getinity(divide),divide);
+				lineWidth=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide));
+				g.drawLine(x,y-HEIGHT/(divide*2),x+lineWidth,y-HEIGHT/(divide*2));
+				expressions.get(i).draw(g,
+					x+(lineWidth-expressions.get(i).getWidth(divide))/2,
+					y-HEIGHT/(2*divide)-expressions.get(i).getHeight(divide)+expressions.get(i).getinity(divide),divide);
+				expressions.get(i+1).draw(g,
+					x+(lineWidth-expressions.get(i+1).getWidth(divide))/2,
+					y-HEIGHT/(2*divide)+BORDER+expressions.get(i+1).getinity(divide),divide);
 				//System.out.println("-------------"+expressions.get(i+1).toString()+":"+(y+BORDER/divide+expressions.get(i+1).getHeight(divide)/2));
 				last=true;
 				x+=Math.max(expressions.get(i).getWidth(divide),expressions.get(i+1).getWidth(divide));
@@ -410,7 +363,7 @@ class MyExpression
 				expressions.get(i).draw(g,x,y-HEIGHT/(divide*2)+expressions.get(i).getinity(divide<3?(divide+1):divide),(divide<3?(divide+1):divide));
 				expressions.get(i+1).draw(g,x,y-HEIGHT/(divide*2)-expressions.get(i+1).getHeight(divide<3?(divide+1):divide)+expressions.get(i+1).getinity(divide<3?(divide+1):divide),(divide<3?(divide+1):divide));
 				last=true;
-				x+=Math.max(expressions.get(i).getWidth(1),expressions.get(i+1).getWidth(1))/(divide<3?(divide+1):divide);
+				x+=Math.max(expressions.get(i).getWidth(divide<3?(divide+1):divide),expressions.get(i+1).getWidth(divide<3?(divide+1):divide));
 			}
 			else
 			{
@@ -441,7 +394,7 @@ class MyExpression
 	private int getinity(int divide)
 	{
 		if(inity!=-1) return inity;
-		if(expressions.size()==0) return inity=HEIGHT;
+		if(expressions.size()==0) return inity=HEIGHT/divide;
 		else if(expressions.size()==1) return inity=expressions.get(0).getinity(divide);
 		else
 		{
@@ -450,7 +403,7 @@ class MyExpression
 				if(operators.get(i)=="^")
 					inity=Math.max(inity,expressions.get(i+1).getHeight(divide<3?(divide+1):divide)+HEIGHT/(2*divide));
 				else if(operators.get(i)=="/")
-					inity=Math.max(inity,(expressions.get(i).getHeight(1)+BORDER+HEIGHT/2)/divide);
+					inity=Math.max(inity,expressions.get(i).getHeight(divide)+(BORDER+HEIGHT/2)/divide);
 				else
 				{
 					inity=Math.max(inity,expressions.get(i).getinity(divide));
