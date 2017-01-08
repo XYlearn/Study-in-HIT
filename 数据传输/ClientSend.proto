@@ -85,10 +85,10 @@ message ContentMessage {
     }
     message PictureMessage {
         PICTURETYPE picture_type = 1;
-        repeated uint64 pictureBinary = 2;
+        repeated int64 pictureBinary = 2;
     }
     message VoiceMessage {
-
+        repeated int64 voiceBinary = 1;
     }
     repeated TextMessage textMessage = 2;
     repeated PictureMessage pictureMessage = 3;
@@ -102,53 +102,53 @@ message AnnouncementMessage {
 
 //进入房间消息
 message RoomEnterRequest {
-    uint64 roomID = 1;
+    int64 roomID = 1;
 }
 
 //赞问题
 message GoodQuestionRequest {
-    uint64 questionID = 1;
+    int64 questionID = 1;
     string reason = 2;
 }
 
 //踩问题
 message BadQuestionRequest {
-    uint64 questionID = 1;
+    int64 questionID = 1;
     string reason = 2;
 }
 
 //赞用户
 message GoodUserRequest {
-    uint64 userID = 1;
+    int64 userID = 1;
     string reason = 2;
 }
 
 //踩用户
 message BadUserRequest {
-    uint64 userID = 1;
+    int64 userID = 1;
     string reason = 2;
 }
 
 //需要房间信息
 message RoomInformationRequest {
-    uint64 roomID = 1;
+    int64 roomID = 1;
 }
 
 //需要问题信息
 message QuestionInformationRequest {
-    uint64 questionID = 1;
+    int64 questionID = 1;
 }
 
 //需要用户信息
 message UserInformationRequest {
-    uint64 username = 1;
+    int64 username = 1;
 }
 
 //更新房间列表请求
 message GetRoomListRequest {
     LIST_REFERENCE reference = 1;
     RANKORDER rankorder = 2;
-    uint32 roomNumber = 3;
+    int32 roomNumber = 3;
 }
 
 //创建房间
@@ -158,7 +158,7 @@ message CreateRoomRequest {
 
 //删除房间
 message AbandonRoomRequest {
-    uint64 roomID = 1;
+    int64 roomID = 1;
 }
 
 //提出问题
@@ -169,7 +169,7 @@ message CreateQuestionRequest {
 
 //取消问题
 message AbandonQuestionRequest {
-    uint64 questionID = 1;
+    int64 questionID = 1;
 }
 
 //搜索内容
@@ -184,7 +184,7 @@ message Message {
     string username = 2;
     LaunchRequest lauchRequest = 3;
     LogoutMessage logoutMessage = 4;
-    ContentMessage textMessage = 5;
+    ContentMessage contentMessage = 5;
     AnnouncementMessage announcementMessage = 6;
     RoomEnterRequest roomEnterRequest = 7;
     GoodQuestionRequest goodQuestionRequest = 8;
