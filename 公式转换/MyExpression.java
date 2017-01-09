@@ -37,6 +37,7 @@ class MyExpression
 	public boolean read(String e)
 	{
 		e=e.replaceAll("int","∫");
+		e=e.replaceAll("inf","∞");
 		e=e.replaceAll("sum","∑");
 		e=e.replaceAll("->","→");
 		e=e.replaceAll("<-","←");
@@ -433,9 +434,9 @@ class MyExpression
 	{
 		if(a=='/'||a=='f'||a=='l'||a=='i'||a=='j'||a=='I'||a=='r'||a=='t')
 			return 7;
-		else if((a>='A'&&a<='Z'&&a!='I'&&a!='M'&&a!='W')||a=='←'||a=='→')
+		else if(a>='A'&&a<='Z'&&a!='I'&&a!='M'&&a!='W')
 			return 21;
-		else if(a=='%'||a=='M'||a=='m'||a=='w'||a=='∑')
+		else if(a=='%'||a=='M'||a=='m'||a=='w'||a=='∑'||a=='←'||a=='→'||a=='∞')
 			return 26;
 		else if(a=='W')
 			return 31;
