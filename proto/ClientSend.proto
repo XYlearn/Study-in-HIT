@@ -1,0 +1,203 @@
+syntax = "proto3";
+option java_outer_classname = "ClientSendMessage";
+
+//消息类型序号
+enum MSG {
+   //登录登出信息
+   LAUNCH_REQUEST = 0;
+   LOGOUT_MESSAGE = 1;
+   //发送对话消息
+   CONTENT_MESSAGE = 2;
+   ANNOUNCEMENT_MESSAGE = 3;
+   //进入房间
+   ROOM_ENTER_REQUEST = 4;
+   //评价信息
+   GOOD_QUESTION_REQUEST = 5;
+   BAD_QUESTION_REQUEST = 6;
+   GOOD_USER_REQUEST = 7;
+   BAD_USER_REQUEST = 8;
+   //消息显示信息
+   ROOM_INFORMATION_REQUEST = 9;
+   QUESTION_INFORMATION_REQUEST = 10;
+   USER_INFORMATION_REQUEST = 11;
+   GET_ROOM_LIST_REQUEST = 12;
+   //创建删除房间
+   CREATE_ROOM_REQUEST = 13;
+   ABANDON_ROOM_REQUEST = 14;
+   //创建取消问题
+   CREATE_QUESTION_REQUEST = 15;
+   ABANDON_QUESTION_REQUEST = 16;
+   //搜索内容
+   SEARCH_INFORMATION_REQUEST = 17;
+}
+
+//-----------枚举定义---------------//
+
+//内容类型
+enum CONTENT_TYPE {
+    TEXT_MESSAGE = 0;
+    PICTURE_MESSAGE = 1;
+    VOICE_MESSAGE = 2;
+}
+//图像类型
+enum PICTURETYPE {
+    JPEG = 0;
+    PNG = 1;
+    GIF = 2;
+}
+//搜索类型
+enum SEARCHTYPE {
+    ROOM = 0;
+    QUESTION = 1;
+}
+
+// 排序类型
+enum RANKORDER {
+    ASCENDING = 0;
+    DESCENDING = 1;
+}
+
+// 排序参照
+enum LIST_REFERENCE {
+    QUESTION_NUMBERS = 0;
+    PRAISE_TIMES = 1;
+    USERS_IN_ROOM = 2;
+    CLICK_TIMES = 3;
+    TIME = 4;
+}
+
+//-----------底层消息--------------//
+
+//登入信息
+message LaunchRequest {
+    string password = 2;
+}
+
+//登出信息
+message LogoutMessage {
+}
+
+//发送信息
+message ContentMessage {
+    CONTENT_TYPE send_type = 1;
+    message TextMessage {
+        string text = 1;
+    }
+    message PictureMessage {
+        PICTURETYPE picture_type = 1;
+        repeated int64 pictureBinary = 2;
+    }
+    message VoiceMessage {
+        repeated int64 voiceBinary = 1;
+    }
+    repeated TextMessage textMessage = 2;
+    repeated PictureMessage pictureMessage = 3;
+    repeated VoiceMessage voiceMessage = 4;
+}
+
+//通告信息
+message AnnouncementMessage {
+    string text = 1;
+}
+
+//进入房间消息
+message RoomEnterRequest {
+    int64 roomID = 1;
+}
+
+//赞问题
+message GoodQuestionRequest {
+    int64 questionID = 1;
+    string reason = 2;
+}
+
+//踩问题
+message BadQuestionRequest {
+    int64 questionID = 1;
+    string reason = 2;
+}
+
+//赞用户
+message GoodUserRequest {
+    int64 userID = 1;
+    string reason = 2;
+}
+
+//踩用户
+message BadUserRequest {
+    int64 userID = 1;
+    string reason = 2;
+}
+
+//需要房间信息
+message RoomInformationRequest {
+    int64 roomID = 1;
+}
+
+//需要问题信息
+message QuestionInformationRequest {
+    int64 questionID = 1;
+}
+
+//需要用户信息
+message UserInformationRequest {
+    int64 username = 1;
+}
+
+//更新房间列表请求
+message GetRoomListRequest {
+    LIST_REFERENCE reference = 1;
+    RANKORDER rankorder = 2;
+    int32 roomNumber = 3;
+}
+
+//创建房间
+message CreateRoomRequest {
+    string description = 1;
+}
+
+//删除房间
+message AbandonRoomRequest {
+    int64 roomID = 1;
+}
+
+//提出问题
+message CreateQuestionRequest {
+    ContentMessage stem = 1;
+    ContentMessage additon = 2;
+}
+
+//取消问题
+message AbandonQuestionRequest {
+    int64 questionID = 1;
+}
+
+//搜索内容
+message SearchInformationRequest {
+    SEARCHTYPE searchType = 1;
+    string keyword = 2;
+}
+
+//----------------顶层消息----------------------
+message Message {
+    MSG msg_type = 1;
+    string username = 2;
+    LaunchRequest lauchRequest = 3;
+    LogoutMessage logoutMessage = 4;
+    ContentMessage contentMessage = 5;
+    AnnouncementMessage announcementMessage = 6;
+    RoomEnterRequest roomEnterRequest = 7;
+    GoodQuestionRequest goodQuestionRequest = 8;
+    BadQuestionRequest badQuestionRequest =9;
+    GoodUserRequest goodUserRequest = 10;
+    BadUserRequest badUserRequest = 11;
+    RoomInformationRequest roomInformationRequest = 12;
+    QuestionInformationRequest questionInformationRequest = 13;
+    UserInformationRequest userInformationRequest = 14;
+    GetRoomListRequest getRoomListRequest = 15;
+    CreateRoomRequest createRoomRequest = 16;
+    AbandonRoomRequest abandonRoomRequest = 17;
+    CreateQuestionRequest createQuestionRequest = 18;
+    AbandonQuestionRequest abandonQuestionRequest = 19;
+    SearchInformationRequest searchInformationRequest = 20;
+}
