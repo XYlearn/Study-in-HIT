@@ -1,0 +1,220 @@
+syntax = "proto3";
+option java_outer_classname = "ServerResponseMessage";
+option java_package = "com";
+
+//消息类型序号
+enum MSG {
+   //登录登出回复
+   LAUNCH_RESPONSE = 0;
+   //发送对话消息及公告消息
+   SEND_CONTENT = 2;
+   ANNOUNCEMENT_MESSAGE = 3;
+   //进入问题房间回复
+   QUESTION_ENTER_RESPONSE = 4;
+   //评价信息
+   GOOD_QUESTION_RESPONSE = 5;
+   BAD_QUESTION_RESPONSE = 6;
+   GOOD_USER_RESPONSE = 7;
+   BAD_USER_RESPONSE = 8;
+   //消息显示信息
+   QUESTION_INFORMATION_RESPONSE = 10;
+   USER_INFORMATION_RESPONSE = 11;
+   GET_QUESTION_LIST_RESPONSE = 12;
+   //创建取消问题
+   CREATE_QUESTION_RESPONSE = 15;
+   ABANDON_QUESTION_RESPONSE = 16;
+   //搜索内容
+   SEARCH_INFORMATION_RESPONSE = 17;
+}
+
+//-----------枚举定义---------------//
+
+//内容类型
+enum CONTENT_TYPE {
+    TEXT_MESSAGE = 0;
+    PICTURE_MESSAGE = 1;
+    VOICE_MESSAGE = 2;
+}
+//图像类型
+enum PICTURETYPE {
+    JPEG = 0;
+    PNG = 1;
+    GIF = 2;
+}
+//音频类型
+enum VOICETYPE {
+    MP4 = 0;
+}
+//搜索类型
+enum SEARCHTYPE {
+    QUESTION = 0;
+}
+//登录状态
+enum LOGIN_STATUS {
+    ONLINE = 0;
+    OFFLINE = 1;
+    SECRET = 2;
+}
+
+
+//-----------底层消息--------------//
+
+//发送信息
+message ContentMessage {
+    CONTENT_TYPE send_type = 1;
+    message TextMessage {
+        string text = 1;
+    }
+    message PictureMessage {
+        repeated int64 pictureBinary = 1;
+        string path = 2;
+    }
+    message VoiceMessage {
+        repeated int64 voiceBinary = 1;
+        string path = 2;
+    }
+    PICTURETYPE picture_type = 2;
+    VOICETYPE voice_type = 3;
+    TextMessage textMessage = 4;
+    repeated PictureMessage pictureMessage = 5;
+    repeated VoiceMessage voiceMessage = 6;
+}
+
+//记录消息体
+message Record {
+    ContentMessage contentMessage = 1;
+    string time = 2;
+    string date = 3;
+    string user = 4;
+}
+
+//问题列表项消息体
+message QuestionListMessage {
+    int64 questionID = 1;
+    string questionDescription = 2;
+    int32 good = 3;
+    int32 bad = 4;
+    int32 userNum = 5;
+    string time = 6;
+    string date = 7;
+    string owner = 8;
+}
+
+//问题信息消息体
+message QuestionMessage {
+    string stem = 1;
+    string addition = 2;
+    string time = 3;
+    string date = 4;
+    string owner = 5;
+    repeated Record record = 6;    
+}
+
+//用户信息消息体
+message UserMessage {
+    string username = 1;
+    int32 good = 2;
+    int32 bad = 3;
+    int32 questionNum = 4;
+    int32 solvedQuestionNum = 5;
+}
+
+//-------------具体消息-------------//
+
+//登入回复
+message LaunchResponse {
+    LOGIN_STATUS status = 1;
+    string information = 2;
+}
+
+message SendContent {
+    int64 questionID = 1;
+    repeated ContentMessage contentMessage = 2;
+    string time = 3;
+    string date = 4;
+    string record = 5;
+}
+
+//通告信息
+message AnnouncementMessage {
+    string time = 1;
+    string text = 2;
+}
+
+//进入问题房间回复
+message QuestionEnterResponse {
+    bool allow = 1;
+    QuestionMessage questionMessage = 2;
+}
+
+//赞问题回复
+message GoodQuestionResponse {
+    bool success = 1;
+}
+
+//踩问题回复
+message BadQuestionResponse {
+    bool success = 1;
+}
+
+//赞用户回复
+message GoodUserResponse {
+    bool success = 1;
+}
+
+//踩用户回复
+message BadUserResponse {
+    bool success = 1;
+}
+
+//问题信息回复
+message QuestionInformationResponse {
+    QuestionMessage questionMessage = 1;
+}
+
+//用户信息回复
+message UserInformationResponse {
+    UserMessage userMessage = 1;
+}
+
+//更新问题房间列表回复
+message GetQuestionListResponse {
+    int32 num = 1;
+    repeated QuestionListMessage questionListMessage = 2;
+}
+
+//提出问题回复
+message CreateQuestionResponse {
+    bool success = 1;
+}
+
+//取消问题回复
+message AbandonQuestionResponse {
+    int64 questionID = 1;
+}
+
+//搜索内容回复
+message SearchInformationResponse {
+    SEARCHTYPE searchType = 1;
+    QuestionMessage questionMessage = 3;
+}
+
+//----------------顶层消息----------------------
+message Message {
+    MSG msg_type = 1;
+    string username = 2;
+    LaunchResponse lauchResponse = 3;
+    SendContent sendContent = 5;
+    AnnouncementMessage announcementMessage = 6;
+    QuestionEnterResponse questionEnterResponse = 7;
+    GoodQuestionResponse goodQuestionResponse = 8;
+    BadQuestionResponse badQuestionResponse =9;
+    GoodUserResponse goodUserResponse = 10;
+    BadUserResponse badUserResponse = 11;
+    QuestionInformationResponse questionInformationResponse = 13;
+    UserInformationResponse userInformationResponse = 14;
+    GetQuestionListResponse getQuestionListResponse = 15;
+    CreateQuestionResponse createQuestionResponse = 18;
+    AbandonQuestionResponse abandonQuestionResponse = 19;
+    SearchInformationResponse searchInformationResponse = 20;
+}
