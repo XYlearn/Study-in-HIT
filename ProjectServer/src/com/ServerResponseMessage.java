@@ -60,17 +60,17 @@ public final class ServerResponseMessage {
      */
     GOOD_QUESTION_RESPONSE(5),
     /**
-     * <code>BAD_QUESTION_RESPONSE = 6;</code>
-     */
-    BAD_QUESTION_RESPONSE(6),
-    /**
      * <code>GOOD_USER_RESPONSE = 7;</code>
      */
     GOOD_USER_RESPONSE(7),
     /**
-     * <code>BAD_USER_RESPONSE = 8;</code>
+     * <pre>
+     *获取COS Sign回复
+     * </pre>
+     *
+     * <code>GET_COS_SIGN_RESPONSE = 9;</code>
      */
-    BAD_USER_RESPONSE(8),
+    GET_COS_SIGN_RESPONSE(9),
     /**
      * <pre>
      *消息显示信息
@@ -147,17 +147,17 @@ public final class ServerResponseMessage {
      */
     public static final int GOOD_QUESTION_RESPONSE_VALUE = 5;
     /**
-     * <code>BAD_QUESTION_RESPONSE = 6;</code>
-     */
-    public static final int BAD_QUESTION_RESPONSE_VALUE = 6;
-    /**
      * <code>GOOD_USER_RESPONSE = 7;</code>
      */
     public static final int GOOD_USER_RESPONSE_VALUE = 7;
     /**
-     * <code>BAD_USER_RESPONSE = 8;</code>
+     * <pre>
+     *获取COS Sign回复
+     * </pre>
+     *
+     * <code>GET_COS_SIGN_RESPONSE = 9;</code>
      */
-    public static final int BAD_USER_RESPONSE_VALUE = 8;
+    public static final int GET_COS_SIGN_RESPONSE_VALUE = 9;
     /**
      * <pre>
      *消息显示信息
@@ -219,9 +219,8 @@ public final class ServerResponseMessage {
         case 3: return ANNOUNCEMENT_MESSAGE;
         case 4: return QUESTION_ENTER_RESPONSE;
         case 5: return GOOD_QUESTION_RESPONSE;
-        case 6: return BAD_QUESTION_RESPONSE;
         case 7: return GOOD_USER_RESPONSE;
-        case 8: return BAD_USER_RESPONSE;
+        case 9: return GET_COS_SIGN_RESPONSE;
         case 10: return QUESTION_INFORMATION_RESPONSE;
         case 11: return USER_INFORMATION_RESPONSE;
         case 12: return GET_QUESTION_LIST_RESPONSE;
@@ -688,208 +687,19 @@ public final class ServerResponseMessage {
     // @@protoc_insertion_point(enum_scope:SEARCHTYPE)
   }
 
-  /**
-   * <pre>
-   *登录状态
-   * </pre>
-   *
-   * Protobuf enum {@code LOGIN_STATUS}
-   */
-  public enum LOGIN_STATUS
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>ONLINE = 0;</code>
-     */
-    ONLINE(0),
-    /**
-     * <code>OFFLINE = 1;</code>
-     */
-    OFFLINE(1),
-    /**
-     * <code>SECRET = 2;</code>
-     */
-    SECRET(2),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>ONLINE = 0;</code>
-     */
-    public static final int ONLINE_VALUE = 0;
-    /**
-     * <code>OFFLINE = 1;</code>
-     */
-    public static final int OFFLINE_VALUE = 1;
-    /**
-     * <code>SECRET = 2;</code>
-     */
-    public static final int SECRET_VALUE = 2;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static LOGIN_STATUS valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static LOGIN_STATUS forNumber(int value) {
-      switch (value) {
-        case 0: return ONLINE;
-        case 1: return OFFLINE;
-        case 2: return SECRET;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<LOGIN_STATUS>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        LOGIN_STATUS> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<LOGIN_STATUS>() {
-            public LOGIN_STATUS findValueByNumber(int number) {
-              return LOGIN_STATUS.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return com.ServerResponseMessage.getDescriptor().getEnumTypes().get(5);
-    }
-
-    private static final LOGIN_STATUS[] VALUES = values();
-
-    public static LOGIN_STATUS valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private LOGIN_STATUS(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:LOGIN_STATUS)
-  }
-
   public interface ContentMessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ContentMessage)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
+     * <code>optional string content = 1;</code>
      */
-    int getSendTypeValue();
+    java.lang.String getContent();
     /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
+     * <code>optional string content = 1;</code>
      */
-    com.ServerResponseMessage.CONTENT_TYPE getSendType();
-
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    int getPictureTypeValue();
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    com.ServerResponseMessage.PICTURETYPE getPictureType();
-
-    /**
-     * <code>optional .VOICETYPE voice_type = 3;</code>
-     */
-    int getVoiceTypeValue();
-    /**
-     * <code>optional .VOICETYPE voice_type = 3;</code>
-     */
-    com.ServerResponseMessage.VOICETYPE getVoiceType();
-
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-     */
-    boolean hasTextMessage();
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-     */
-    com.ServerResponseMessage.ContentMessage.TextMessage getTextMessage();
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-     */
-    com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder getTextMessageOrBuilder();
-
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    java.util.List<com.ServerResponseMessage.ContentMessage.PictureMessage> 
-        getPictureMessageList();
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    com.ServerResponseMessage.ContentMessage.PictureMessage getPictureMessage(int index);
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    int getPictureMessageCount();
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    java.util.List<? extends com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder> 
-        getPictureMessageOrBuilderList();
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder getPictureMessageOrBuilder(
-        int index);
-
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    java.util.List<com.ServerResponseMessage.ContentMessage.VoiceMessage> 
-        getVoiceMessageList();
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    com.ServerResponseMessage.ContentMessage.VoiceMessage getVoiceMessage(int index);
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    int getVoiceMessageCount();
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    java.util.List<? extends com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder> 
-        getVoiceMessageOrBuilderList();
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder getVoiceMessageOrBuilder(
-        int index);
+    com.google.protobuf.ByteString
+        getContentBytes();
   }
   /**
    * <pre>
@@ -907,11 +717,7 @@ public final class ServerResponseMessage {
       super(builder);
     }
     private ContentMessage() {
-      sendType_ = 0;
-      pictureType_ = 0;
-      voiceType_ = 0;
-      pictureMessage_ = java.util.Collections.emptyList();
-      voiceMessage_ = java.util.Collections.emptyList();
+      content_ = "";
     }
 
     @java.lang.Override
@@ -939,53 +745,10 @@ public final class ServerResponseMessage {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              sendType_ = rawValue;
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-
-              pictureType_ = rawValue;
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-
-              voiceType_ = rawValue;
-              break;
-            }
-            case 34: {
-              com.ServerResponseMessage.ContentMessage.TextMessage.Builder subBuilder = null;
-              if (textMessage_ != null) {
-                subBuilder = textMessage_.toBuilder();
-              }
-              textMessage_ = input.readMessage(com.ServerResponseMessage.ContentMessage.TextMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(textMessage_);
-                textMessage_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-                pictureMessage_ = new java.util.ArrayList<com.ServerResponseMessage.ContentMessage.PictureMessage>();
-                mutable_bitField0_ |= 0x00000010;
-              }
-              pictureMessage_.add(
-                  input.readMessage(com.ServerResponseMessage.ContentMessage.PictureMessage.parser(), extensionRegistry));
-              break;
-            }
-            case 50: {
-              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
-                voiceMessage_ = new java.util.ArrayList<com.ServerResponseMessage.ContentMessage.VoiceMessage>();
-                mutable_bitField0_ |= 0x00000020;
-              }
-              voiceMessage_.add(
-                  input.readMessage(com.ServerResponseMessage.ContentMessage.VoiceMessage.parser(), extensionRegistry));
+              content_ = s;
               break;
             }
           }
@@ -996,12 +759,6 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-          pictureMessage_ = java.util.Collections.unmodifiableList(pictureMessage_);
-        }
-        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
-          voiceMessage_ = java.util.Collections.unmodifiableList(voiceMessage_);
-        }
         makeExtensionsImmutable();
       }
     }
@@ -1017,2007 +774,38 @@ public final class ServerResponseMessage {
               com.ServerResponseMessage.ContentMessage.class, com.ServerResponseMessage.ContentMessage.Builder.class);
     }
 
-    public interface TextMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:ContentMessage.TextMessage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      java.lang.String getText();
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      com.google.protobuf.ByteString
-          getTextBytes();
+    public static final int CONTENT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object content_;
+    /**
+     * <code>optional string content = 1;</code>
+     */
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
     }
     /**
-     * Protobuf type {@code ContentMessage.TextMessage}
+     * <code>optional string content = 1;</code>
      */
-    public  static final class TextMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:ContentMessage.TextMessage)
-        TextMessageOrBuilder {
-      // Use TextMessage.newBuilder() to construct.
-      private TextMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
       }
-      private TextMessage() {
-        text_ = "";
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-      }
-      private TextMessage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        int mutable_bitField0_ = 0;
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!input.skipField(tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 10: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                text_ = s;
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ServerResponseMessage.internal_static_ContentMessage_TextMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ServerResponseMessage.internal_static_ContentMessage_TextMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ServerResponseMessage.ContentMessage.TextMessage.class, com.ServerResponseMessage.ContentMessage.TextMessage.Builder.class);
-      }
-
-      public static final int TEXT_FIELD_NUMBER = 1;
-      private volatile java.lang.Object text_;
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      public java.lang.String getText() {
-        java.lang.Object ref = text_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          text_ = s;
-          return s;
-        }
-      }
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTextBytes() {
-        java.lang.Object ref = text_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          text_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        if (!getTextBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_);
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (!getTextBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, text_);
-        }
-        memoizedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ServerResponseMessage.ContentMessage.TextMessage)) {
-          return super.equals(obj);
-        }
-        com.ServerResponseMessage.ContentMessage.TextMessage other = (com.ServerResponseMessage.ContentMessage.TextMessage) obj;
-
-        boolean result = true;
-        result = result && getText()
-            .equals(other.getText());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        hash = (37 * hash) + TEXT_FIELD_NUMBER;
-        hash = (53 * hash) + getText().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.ServerResponseMessage.ContentMessage.TextMessage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code ContentMessage.TextMessage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:ContentMessage.TextMessage)
-          com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_TextMessage_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_TextMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  com.ServerResponseMessage.ContentMessage.TextMessage.class, com.ServerResponseMessage.ContentMessage.TextMessage.Builder.class);
-        }
-
-        // Construct using com.ServerResponseMessage.ContentMessage.TextMessage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        public Builder clear() {
-          super.clear();
-          text_ = "";
-
-          return this;
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_TextMessage_descriptor;
-        }
-
-        public com.ServerResponseMessage.ContentMessage.TextMessage getDefaultInstanceForType() {
-          return com.ServerResponseMessage.ContentMessage.TextMessage.getDefaultInstance();
-        }
-
-        public com.ServerResponseMessage.ContentMessage.TextMessage build() {
-          com.ServerResponseMessage.ContentMessage.TextMessage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public com.ServerResponseMessage.ContentMessage.TextMessage buildPartial() {
-          com.ServerResponseMessage.ContentMessage.TextMessage result = new com.ServerResponseMessage.ContentMessage.TextMessage(this);
-          result.text_ = text_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.ServerResponseMessage.ContentMessage.TextMessage) {
-            return mergeFrom((com.ServerResponseMessage.ContentMessage.TextMessage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(com.ServerResponseMessage.ContentMessage.TextMessage other) {
-          if (other == com.ServerResponseMessage.ContentMessage.TextMessage.getDefaultInstance()) return this;
-          if (!other.getText().isEmpty()) {
-            text_ = other.text_;
-            onChanged();
-          }
-          onChanged();
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.ServerResponseMessage.ContentMessage.TextMessage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.ServerResponseMessage.ContentMessage.TextMessage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-
-        private java.lang.Object text_ = "";
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public java.lang.String getText() {
-          java.lang.Object ref = text_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            text_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public com.google.protobuf.ByteString
-            getTextBytes() {
-          java.lang.Object ref = text_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b = 
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            text_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public Builder setText(
-            java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
-          text_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public Builder clearText() {
-          
-          text_ = getDefaultInstance().getText();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public Builder setTextBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
-          text_ = value;
-          onChanged();
-          return this;
-        }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:ContentMessage.TextMessage)
-      }
-
-      // @@protoc_insertion_point(class_scope:ContentMessage.TextMessage)
-      private static final com.ServerResponseMessage.ContentMessage.TextMessage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new com.ServerResponseMessage.ContentMessage.TextMessage();
-      }
-
-      public static com.ServerResponseMessage.ContentMessage.TextMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<TextMessage>
-          PARSER = new com.google.protobuf.AbstractParser<TextMessage>() {
-        public TextMessage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new TextMessage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<TextMessage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<TextMessage> getParserForType() {
-        return PARSER;
-      }
-
-      public com.ServerResponseMessage.ContentMessage.TextMessage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    public interface PictureMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:ContentMessage.PictureMessage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>repeated int64 pictureBinary = 1;</code>
-       */
-      java.util.List<java.lang.Long> getPictureBinaryList();
-      /**
-       * <code>repeated int64 pictureBinary = 1;</code>
-       */
-      int getPictureBinaryCount();
-      /**
-       * <code>repeated int64 pictureBinary = 1;</code>
-       */
-      long getPictureBinary(int index);
-
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      java.lang.String getPath();
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      com.google.protobuf.ByteString
-          getPathBytes();
-    }
-    /**
-     * Protobuf type {@code ContentMessage.PictureMessage}
-     */
-    public  static final class PictureMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:ContentMessage.PictureMessage)
-        PictureMessageOrBuilder {
-      // Use PictureMessage.newBuilder() to construct.
-      private PictureMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-      private PictureMessage() {
-        pictureBinary_ = java.util.Collections.emptyList();
-        path_ = "";
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-      }
-      private PictureMessage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        int mutable_bitField0_ = 0;
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!input.skipField(tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 8: {
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                  pictureBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                pictureBinary_.add(input.readInt64());
-                break;
-              }
-              case 10: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-                  pictureBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                while (input.getBytesUntilLimit() > 0) {
-                  pictureBinary_.add(input.readInt64());
-                }
-                input.popLimit(limit);
-                break;
-              }
-              case 18: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                path_ = s;
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-            pictureBinary_ = java.util.Collections.unmodifiableList(pictureBinary_);
-          }
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ServerResponseMessage.internal_static_ContentMessage_PictureMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ServerResponseMessage.internal_static_ContentMessage_PictureMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ServerResponseMessage.ContentMessage.PictureMessage.class, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder.class);
-      }
-
-      private int bitField0_;
-      public static final int PICTUREBINARY_FIELD_NUMBER = 1;
-      private java.util.List<java.lang.Long> pictureBinary_;
-      /**
-       * <code>repeated int64 pictureBinary = 1;</code>
-       */
-      public java.util.List<java.lang.Long>
-          getPictureBinaryList() {
-        return pictureBinary_;
-      }
-      /**
-       * <code>repeated int64 pictureBinary = 1;</code>
-       */
-      public int getPictureBinaryCount() {
-        return pictureBinary_.size();
-      }
-      /**
-       * <code>repeated int64 pictureBinary = 1;</code>
-       */
-      public long getPictureBinary(int index) {
-        return pictureBinary_.get(index);
-      }
-      private int pictureBinaryMemoizedSerializedSize = -1;
-
-      public static final int PATH_FIELD_NUMBER = 2;
-      private volatile java.lang.Object path_;
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      public java.lang.String getPath() {
-        java.lang.Object ref = path_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          path_ = s;
-          return s;
-        }
-      }
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPathBytes() {
-        java.lang.Object ref = path_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          path_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (getPictureBinaryList().size() > 0) {
-          output.writeUInt32NoTag(10);
-          output.writeUInt32NoTag(pictureBinaryMemoizedSerializedSize);
-        }
-        for (int i = 0; i < pictureBinary_.size(); i++) {
-          output.writeInt64NoTag(pictureBinary_.get(i));
-        }
-        if (!getPathBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, path_);
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        {
-          int dataSize = 0;
-          for (int i = 0; i < pictureBinary_.size(); i++) {
-            dataSize += com.google.protobuf.CodedOutputStream
-              .computeInt64SizeNoTag(pictureBinary_.get(i));
-          }
-          size += dataSize;
-          if (!getPictureBinaryList().isEmpty()) {
-            size += 1;
-            size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
-          }
-          pictureBinaryMemoizedSerializedSize = dataSize;
-        }
-        if (!getPathBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, path_);
-        }
-        memoizedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ServerResponseMessage.ContentMessage.PictureMessage)) {
-          return super.equals(obj);
-        }
-        com.ServerResponseMessage.ContentMessage.PictureMessage other = (com.ServerResponseMessage.ContentMessage.PictureMessage) obj;
-
-        boolean result = true;
-        result = result && getPictureBinaryList()
-            .equals(other.getPictureBinaryList());
-        result = result && getPath()
-            .equals(other.getPath());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (getPictureBinaryCount() > 0) {
-          hash = (37 * hash) + PICTUREBINARY_FIELD_NUMBER;
-          hash = (53 * hash) + getPictureBinaryList().hashCode();
-        }
-        hash = (37 * hash) + PATH_FIELD_NUMBER;
-        hash = (53 * hash) + getPath().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.ServerResponseMessage.ContentMessage.PictureMessage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code ContentMessage.PictureMessage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:ContentMessage.PictureMessage)
-          com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_PictureMessage_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_PictureMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  com.ServerResponseMessage.ContentMessage.PictureMessage.class, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder.class);
-        }
-
-        // Construct using com.ServerResponseMessage.ContentMessage.PictureMessage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        public Builder clear() {
-          super.clear();
-          pictureBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          path_ = "";
-
-          return this;
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_PictureMessage_descriptor;
-        }
-
-        public com.ServerResponseMessage.ContentMessage.PictureMessage getDefaultInstanceForType() {
-          return com.ServerResponseMessage.ContentMessage.PictureMessage.getDefaultInstance();
-        }
-
-        public com.ServerResponseMessage.ContentMessage.PictureMessage build() {
-          com.ServerResponseMessage.ContentMessage.PictureMessage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public com.ServerResponseMessage.ContentMessage.PictureMessage buildPartial() {
-          com.ServerResponseMessage.ContentMessage.PictureMessage result = new com.ServerResponseMessage.ContentMessage.PictureMessage(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            pictureBinary_ = java.util.Collections.unmodifiableList(pictureBinary_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.pictureBinary_ = pictureBinary_;
-          result.path_ = path_;
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.ServerResponseMessage.ContentMessage.PictureMessage) {
-            return mergeFrom((com.ServerResponseMessage.ContentMessage.PictureMessage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(com.ServerResponseMessage.ContentMessage.PictureMessage other) {
-          if (other == com.ServerResponseMessage.ContentMessage.PictureMessage.getDefaultInstance()) return this;
-          if (!other.pictureBinary_.isEmpty()) {
-            if (pictureBinary_.isEmpty()) {
-              pictureBinary_ = other.pictureBinary_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensurePictureBinaryIsMutable();
-              pictureBinary_.addAll(other.pictureBinary_);
-            }
-            onChanged();
-          }
-          if (!other.getPath().isEmpty()) {
-            path_ = other.path_;
-            onChanged();
-          }
-          onChanged();
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.ServerResponseMessage.ContentMessage.PictureMessage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.ServerResponseMessage.ContentMessage.PictureMessage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-        private int bitField0_;
-
-        private java.util.List<java.lang.Long> pictureBinary_ = java.util.Collections.emptyList();
-        private void ensurePictureBinaryIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-            pictureBinary_ = new java.util.ArrayList<java.lang.Long>(pictureBinary_);
-            bitField0_ |= 0x00000001;
-           }
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public java.util.List<java.lang.Long>
-            getPictureBinaryList() {
-          return java.util.Collections.unmodifiableList(pictureBinary_);
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public int getPictureBinaryCount() {
-          return pictureBinary_.size();
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public long getPictureBinary(int index) {
-          return pictureBinary_.get(index);
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public Builder setPictureBinary(
-            int index, long value) {
-          ensurePictureBinaryIsMutable();
-          pictureBinary_.set(index, value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public Builder addPictureBinary(long value) {
-          ensurePictureBinaryIsMutable();
-          pictureBinary_.add(value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public Builder addAllPictureBinary(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-          ensurePictureBinaryIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, pictureBinary_);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 1;</code>
-         */
-        public Builder clearPictureBinary() {
-          pictureBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-          return this;
-        }
-
-        private java.lang.Object path_ = "";
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public java.lang.String getPath() {
-          java.lang.Object ref = path_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            path_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public com.google.protobuf.ByteString
-            getPathBytes() {
-          java.lang.Object ref = path_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b = 
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            path_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public Builder setPath(
-            java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
-          path_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public Builder clearPath() {
-          
-          path_ = getDefaultInstance().getPath();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public Builder setPathBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
-          path_ = value;
-          onChanged();
-          return this;
-        }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:ContentMessage.PictureMessage)
-      }
-
-      // @@protoc_insertion_point(class_scope:ContentMessage.PictureMessage)
-      private static final com.ServerResponseMessage.ContentMessage.PictureMessage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new com.ServerResponseMessage.ContentMessage.PictureMessage();
-      }
-
-      public static com.ServerResponseMessage.ContentMessage.PictureMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<PictureMessage>
-          PARSER = new com.google.protobuf.AbstractParser<PictureMessage>() {
-        public PictureMessage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new PictureMessage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<PictureMessage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<PictureMessage> getParserForType() {
-        return PARSER;
-      }
-
-      public com.ServerResponseMessage.ContentMessage.PictureMessage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    public interface VoiceMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:ContentMessage.VoiceMessage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      java.util.List<java.lang.Long> getVoiceBinaryList();
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      int getVoiceBinaryCount();
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      long getVoiceBinary(int index);
-
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      java.lang.String getPath();
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      com.google.protobuf.ByteString
-          getPathBytes();
-    }
-    /**
-     * Protobuf type {@code ContentMessage.VoiceMessage}
-     */
-    public  static final class VoiceMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:ContentMessage.VoiceMessage)
-        VoiceMessageOrBuilder {
-      // Use VoiceMessage.newBuilder() to construct.
-      private VoiceMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-      private VoiceMessage() {
-        voiceBinary_ = java.util.Collections.emptyList();
-        path_ = "";
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-      }
-      private VoiceMessage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        int mutable_bitField0_ = 0;
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!input.skipField(tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 8: {
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                  voiceBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                voiceBinary_.add(input.readInt64());
-                break;
-              }
-              case 10: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-                  voiceBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                while (input.getBytesUntilLimit() > 0) {
-                  voiceBinary_.add(input.readInt64());
-                }
-                input.popLimit(limit);
-                break;
-              }
-              case 18: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                path_ = s;
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-            voiceBinary_ = java.util.Collections.unmodifiableList(voiceBinary_);
-          }
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ServerResponseMessage.internal_static_ContentMessage_VoiceMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ServerResponseMessage.internal_static_ContentMessage_VoiceMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ServerResponseMessage.ContentMessage.VoiceMessage.class, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder.class);
-      }
-
-      private int bitField0_;
-      public static final int VOICEBINARY_FIELD_NUMBER = 1;
-      private java.util.List<java.lang.Long> voiceBinary_;
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      public java.util.List<java.lang.Long>
-          getVoiceBinaryList() {
-        return voiceBinary_;
-      }
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      public int getVoiceBinaryCount() {
-        return voiceBinary_.size();
-      }
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      public long getVoiceBinary(int index) {
-        return voiceBinary_.get(index);
-      }
-      private int voiceBinaryMemoizedSerializedSize = -1;
-
-      public static final int PATH_FIELD_NUMBER = 2;
-      private volatile java.lang.Object path_;
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      public java.lang.String getPath() {
-        java.lang.Object ref = path_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          path_ = s;
-          return s;
-        }
-      }
-      /**
-       * <code>optional string path = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPathBytes() {
-        java.lang.Object ref = path_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          path_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (getVoiceBinaryList().size() > 0) {
-          output.writeUInt32NoTag(10);
-          output.writeUInt32NoTag(voiceBinaryMemoizedSerializedSize);
-        }
-        for (int i = 0; i < voiceBinary_.size(); i++) {
-          output.writeInt64NoTag(voiceBinary_.get(i));
-        }
-        if (!getPathBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, path_);
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        {
-          int dataSize = 0;
-          for (int i = 0; i < voiceBinary_.size(); i++) {
-            dataSize += com.google.protobuf.CodedOutputStream
-              .computeInt64SizeNoTag(voiceBinary_.get(i));
-          }
-          size += dataSize;
-          if (!getVoiceBinaryList().isEmpty()) {
-            size += 1;
-            size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
-          }
-          voiceBinaryMemoizedSerializedSize = dataSize;
-        }
-        if (!getPathBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, path_);
-        }
-        memoizedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ServerResponseMessage.ContentMessage.VoiceMessage)) {
-          return super.equals(obj);
-        }
-        com.ServerResponseMessage.ContentMessage.VoiceMessage other = (com.ServerResponseMessage.ContentMessage.VoiceMessage) obj;
-
-        boolean result = true;
-        result = result && getVoiceBinaryList()
-            .equals(other.getVoiceBinaryList());
-        result = result && getPath()
-            .equals(other.getPath());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (getVoiceBinaryCount() > 0) {
-          hash = (37 * hash) + VOICEBINARY_FIELD_NUMBER;
-          hash = (53 * hash) + getVoiceBinaryList().hashCode();
-        }
-        hash = (37 * hash) + PATH_FIELD_NUMBER;
-        hash = (53 * hash) + getPath().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.ServerResponseMessage.ContentMessage.VoiceMessage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code ContentMessage.VoiceMessage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:ContentMessage.VoiceMessage)
-          com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_VoiceMessage_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_VoiceMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  com.ServerResponseMessage.ContentMessage.VoiceMessage.class, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder.class);
-        }
-
-        // Construct using com.ServerResponseMessage.ContentMessage.VoiceMessage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        public Builder clear() {
-          super.clear();
-          voiceBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          path_ = "";
-
-          return this;
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return com.ServerResponseMessage.internal_static_ContentMessage_VoiceMessage_descriptor;
-        }
-
-        public com.ServerResponseMessage.ContentMessage.VoiceMessage getDefaultInstanceForType() {
-          return com.ServerResponseMessage.ContentMessage.VoiceMessage.getDefaultInstance();
-        }
-
-        public com.ServerResponseMessage.ContentMessage.VoiceMessage build() {
-          com.ServerResponseMessage.ContentMessage.VoiceMessage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public com.ServerResponseMessage.ContentMessage.VoiceMessage buildPartial() {
-          com.ServerResponseMessage.ContentMessage.VoiceMessage result = new com.ServerResponseMessage.ContentMessage.VoiceMessage(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            voiceBinary_ = java.util.Collections.unmodifiableList(voiceBinary_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.voiceBinary_ = voiceBinary_;
-          result.path_ = path_;
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.ServerResponseMessage.ContentMessage.VoiceMessage) {
-            return mergeFrom((com.ServerResponseMessage.ContentMessage.VoiceMessage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(com.ServerResponseMessage.ContentMessage.VoiceMessage other) {
-          if (other == com.ServerResponseMessage.ContentMessage.VoiceMessage.getDefaultInstance()) return this;
-          if (!other.voiceBinary_.isEmpty()) {
-            if (voiceBinary_.isEmpty()) {
-              voiceBinary_ = other.voiceBinary_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureVoiceBinaryIsMutable();
-              voiceBinary_.addAll(other.voiceBinary_);
-            }
-            onChanged();
-          }
-          if (!other.getPath().isEmpty()) {
-            path_ = other.path_;
-            onChanged();
-          }
-          onChanged();
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.ServerResponseMessage.ContentMessage.VoiceMessage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.ServerResponseMessage.ContentMessage.VoiceMessage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-        private int bitField0_;
-
-        private java.util.List<java.lang.Long> voiceBinary_ = java.util.Collections.emptyList();
-        private void ensureVoiceBinaryIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-            voiceBinary_ = new java.util.ArrayList<java.lang.Long>(voiceBinary_);
-            bitField0_ |= 0x00000001;
-           }
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public java.util.List<java.lang.Long>
-            getVoiceBinaryList() {
-          return java.util.Collections.unmodifiableList(voiceBinary_);
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public int getVoiceBinaryCount() {
-          return voiceBinary_.size();
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public long getVoiceBinary(int index) {
-          return voiceBinary_.get(index);
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder setVoiceBinary(
-            int index, long value) {
-          ensureVoiceBinaryIsMutable();
-          voiceBinary_.set(index, value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder addVoiceBinary(long value) {
-          ensureVoiceBinaryIsMutable();
-          voiceBinary_.add(value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder addAllVoiceBinary(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-          ensureVoiceBinaryIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, voiceBinary_);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder clearVoiceBinary() {
-          voiceBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-          return this;
-        }
-
-        private java.lang.Object path_ = "";
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public java.lang.String getPath() {
-          java.lang.Object ref = path_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            path_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public com.google.protobuf.ByteString
-            getPathBytes() {
-          java.lang.Object ref = path_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b = 
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            path_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public Builder setPath(
-            java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
-          path_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public Builder clearPath() {
-          
-          path_ = getDefaultInstance().getPath();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string path = 2;</code>
-         */
-        public Builder setPathBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
-          path_ = value;
-          onChanged();
-          return this;
-        }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:ContentMessage.VoiceMessage)
-      }
-
-      // @@protoc_insertion_point(class_scope:ContentMessage.VoiceMessage)
-      private static final com.ServerResponseMessage.ContentMessage.VoiceMessage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new com.ServerResponseMessage.ContentMessage.VoiceMessage();
-      }
-
-      public static com.ServerResponseMessage.ContentMessage.VoiceMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<VoiceMessage>
-          PARSER = new com.google.protobuf.AbstractParser<VoiceMessage>() {
-        public VoiceMessage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new VoiceMessage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<VoiceMessage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<VoiceMessage> getParserForType() {
-        return PARSER;
-      }
-
-      public com.ServerResponseMessage.ContentMessage.VoiceMessage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    private int bitField0_;
-    public static final int SEND_TYPE_FIELD_NUMBER = 1;
-    private int sendType_;
-    /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
-     */
-    public int getSendTypeValue() {
-      return sendType_;
-    }
-    /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
-     */
-    public com.ServerResponseMessage.CONTENT_TYPE getSendType() {
-      com.ServerResponseMessage.CONTENT_TYPE result = com.ServerResponseMessage.CONTENT_TYPE.valueOf(sendType_);
-      return result == null ? com.ServerResponseMessage.CONTENT_TYPE.UNRECOGNIZED : result;
-    }
-
-    public static final int PICTURE_TYPE_FIELD_NUMBER = 2;
-    private int pictureType_;
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    public int getPictureTypeValue() {
-      return pictureType_;
-    }
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    public com.ServerResponseMessage.PICTURETYPE getPictureType() {
-      com.ServerResponseMessage.PICTURETYPE result = com.ServerResponseMessage.PICTURETYPE.valueOf(pictureType_);
-      return result == null ? com.ServerResponseMessage.PICTURETYPE.UNRECOGNIZED : result;
-    }
-
-    public static final int VOICE_TYPE_FIELD_NUMBER = 3;
-    private int voiceType_;
-    /**
-     * <code>optional .VOICETYPE voice_type = 3;</code>
-     */
-    public int getVoiceTypeValue() {
-      return voiceType_;
-    }
-    /**
-     * <code>optional .VOICETYPE voice_type = 3;</code>
-     */
-    public com.ServerResponseMessage.VOICETYPE getVoiceType() {
-      com.ServerResponseMessage.VOICETYPE result = com.ServerResponseMessage.VOICETYPE.valueOf(voiceType_);
-      return result == null ? com.ServerResponseMessage.VOICETYPE.UNRECOGNIZED : result;
-    }
-
-    public static final int TEXTMESSAGE_FIELD_NUMBER = 4;
-    private com.ServerResponseMessage.ContentMessage.TextMessage textMessage_;
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-     */
-    public boolean hasTextMessage() {
-      return textMessage_ != null;
-    }
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage.TextMessage getTextMessage() {
-      return textMessage_ == null ? com.ServerResponseMessage.ContentMessage.TextMessage.getDefaultInstance() : textMessage_;
-    }
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder getTextMessageOrBuilder() {
-      return getTextMessage();
-    }
-
-    public static final int PICTUREMESSAGE_FIELD_NUMBER = 5;
-    private java.util.List<com.ServerResponseMessage.ContentMessage.PictureMessage> pictureMessage_;
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    public java.util.List<com.ServerResponseMessage.ContentMessage.PictureMessage> getPictureMessageList() {
-      return pictureMessage_;
-    }
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    public java.util.List<? extends com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder> 
-        getPictureMessageOrBuilderList() {
-      return pictureMessage_;
-    }
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    public int getPictureMessageCount() {
-      return pictureMessage_.size();
-    }
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage.PictureMessage getPictureMessage(int index) {
-      return pictureMessage_.get(index);
-    }
-    /**
-     * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder getPictureMessageOrBuilder(
-        int index) {
-      return pictureMessage_.get(index);
-    }
-
-    public static final int VOICEMESSAGE_FIELD_NUMBER = 6;
-    private java.util.List<com.ServerResponseMessage.ContentMessage.VoiceMessage> voiceMessage_;
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    public java.util.List<com.ServerResponseMessage.ContentMessage.VoiceMessage> getVoiceMessageList() {
-      return voiceMessage_;
-    }
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    public java.util.List<? extends com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder> 
-        getVoiceMessageOrBuilderList() {
-      return voiceMessage_;
-    }
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    public int getVoiceMessageCount() {
-      return voiceMessage_.size();
-    }
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage.VoiceMessage getVoiceMessage(int index) {
-      return voiceMessage_.get(index);
-    }
-    /**
-     * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder getVoiceMessageOrBuilder(
-        int index) {
-      return voiceMessage_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3032,23 +820,8 @@ public final class ServerResponseMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (sendType_ != com.ServerResponseMessage.CONTENT_TYPE.TEXT_MESSAGE.getNumber()) {
-        output.writeEnum(1, sendType_);
-      }
-      if (pictureType_ != com.ServerResponseMessage.PICTURETYPE.JPEG.getNumber()) {
-        output.writeEnum(2, pictureType_);
-      }
-      if (voiceType_ != com.ServerResponseMessage.VOICETYPE.MP4.getNumber()) {
-        output.writeEnum(3, voiceType_);
-      }
-      if (textMessage_ != null) {
-        output.writeMessage(4, getTextMessage());
-      }
-      for (int i = 0; i < pictureMessage_.size(); i++) {
-        output.writeMessage(5, pictureMessage_.get(i));
-      }
-      for (int i = 0; i < voiceMessage_.size(); i++) {
-        output.writeMessage(6, voiceMessage_.get(i));
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, content_);
       }
     }
 
@@ -3057,29 +830,8 @@ public final class ServerResponseMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (sendType_ != com.ServerResponseMessage.CONTENT_TYPE.TEXT_MESSAGE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, sendType_);
-      }
-      if (pictureType_ != com.ServerResponseMessage.PICTURETYPE.JPEG.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, pictureType_);
-      }
-      if (voiceType_ != com.ServerResponseMessage.VOICETYPE.MP4.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, voiceType_);
-      }
-      if (textMessage_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getTextMessage());
-      }
-      for (int i = 0; i < pictureMessage_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, pictureMessage_.get(i));
-      }
-      for (int i = 0; i < voiceMessage_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, voiceMessage_.get(i));
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, content_);
       }
       memoizedSize = size;
       return size;
@@ -3097,18 +849,8 @@ public final class ServerResponseMessage {
       com.ServerResponseMessage.ContentMessage other = (com.ServerResponseMessage.ContentMessage) obj;
 
       boolean result = true;
-      result = result && sendType_ == other.sendType_;
-      result = result && pictureType_ == other.pictureType_;
-      result = result && voiceType_ == other.voiceType_;
-      result = result && (hasTextMessage() == other.hasTextMessage());
-      if (hasTextMessage()) {
-        result = result && getTextMessage()
-            .equals(other.getTextMessage());
-      }
-      result = result && getPictureMessageList()
-          .equals(other.getPictureMessageList());
-      result = result && getVoiceMessageList()
-          .equals(other.getVoiceMessageList());
+      result = result && getContent()
+          .equals(other.getContent());
       return result;
     }
 
@@ -3119,24 +861,8 @@ public final class ServerResponseMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SEND_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + sendType_;
-      hash = (37 * hash) + PICTURE_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + pictureType_;
-      hash = (37 * hash) + VOICE_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + voiceType_;
-      if (hasTextMessage()) {
-        hash = (37 * hash) + TEXTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getTextMessage().hashCode();
-      }
-      if (getPictureMessageCount() > 0) {
-        hash = (37 * hash) + PICTUREMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getPictureMessageList().hashCode();
-      }
-      if (getVoiceMessageCount() > 0) {
-        hash = (37 * hash) + VOICEMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getVoiceMessageList().hashCode();
-      }
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3255,36 +981,12 @@ public final class ServerResponseMessage {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getPictureMessageFieldBuilder();
-          getVoiceMessageFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        sendType_ = 0;
+        content_ = "";
 
-        pictureType_ = 0;
-
-        voiceType_ = 0;
-
-        if (textMessageBuilder_ == null) {
-          textMessage_ = null;
-        } else {
-          textMessage_ = null;
-          textMessageBuilder_ = null;
-        }
-        if (pictureMessageBuilder_ == null) {
-          pictureMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
-        } else {
-          pictureMessageBuilder_.clear();
-        }
-        if (voiceMessageBuilder_ == null) {
-          voiceMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
-        } else {
-          voiceMessageBuilder_.clear();
-        }
         return this;
       }
 
@@ -3307,35 +1009,7 @@ public final class ServerResponseMessage {
 
       public com.ServerResponseMessage.ContentMessage buildPartial() {
         com.ServerResponseMessage.ContentMessage result = new com.ServerResponseMessage.ContentMessage(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        result.sendType_ = sendType_;
-        result.pictureType_ = pictureType_;
-        result.voiceType_ = voiceType_;
-        if (textMessageBuilder_ == null) {
-          result.textMessage_ = textMessage_;
-        } else {
-          result.textMessage_ = textMessageBuilder_.build();
-        }
-        if (pictureMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010)) {
-            pictureMessage_ = java.util.Collections.unmodifiableList(pictureMessage_);
-            bitField0_ = (bitField0_ & ~0x00000010);
-          }
-          result.pictureMessage_ = pictureMessage_;
-        } else {
-          result.pictureMessage_ = pictureMessageBuilder_.build();
-        }
-        if (voiceMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020)) {
-            voiceMessage_ = java.util.Collections.unmodifiableList(voiceMessage_);
-            bitField0_ = (bitField0_ & ~0x00000020);
-          }
-          result.voiceMessage_ = voiceMessage_;
-        } else {
-          result.voiceMessage_ = voiceMessageBuilder_.build();
-        }
-        result.bitField0_ = to_bitField0_;
+        result.content_ = content_;
         onBuilt();
         return result;
       }
@@ -3377,69 +1051,9 @@ public final class ServerResponseMessage {
 
       public Builder mergeFrom(com.ServerResponseMessage.ContentMessage other) {
         if (other == com.ServerResponseMessage.ContentMessage.getDefaultInstance()) return this;
-        if (other.sendType_ != 0) {
-          setSendTypeValue(other.getSendTypeValue());
-        }
-        if (other.pictureType_ != 0) {
-          setPictureTypeValue(other.getPictureTypeValue());
-        }
-        if (other.voiceType_ != 0) {
-          setVoiceTypeValue(other.getVoiceTypeValue());
-        }
-        if (other.hasTextMessage()) {
-          mergeTextMessage(other.getTextMessage());
-        }
-        if (pictureMessageBuilder_ == null) {
-          if (!other.pictureMessage_.isEmpty()) {
-            if (pictureMessage_.isEmpty()) {
-              pictureMessage_ = other.pictureMessage_;
-              bitField0_ = (bitField0_ & ~0x00000010);
-            } else {
-              ensurePictureMessageIsMutable();
-              pictureMessage_.addAll(other.pictureMessage_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.pictureMessage_.isEmpty()) {
-            if (pictureMessageBuilder_.isEmpty()) {
-              pictureMessageBuilder_.dispose();
-              pictureMessageBuilder_ = null;
-              pictureMessage_ = other.pictureMessage_;
-              bitField0_ = (bitField0_ & ~0x00000010);
-              pictureMessageBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getPictureMessageFieldBuilder() : null;
-            } else {
-              pictureMessageBuilder_.addAllMessages(other.pictureMessage_);
-            }
-          }
-        }
-        if (voiceMessageBuilder_ == null) {
-          if (!other.voiceMessage_.isEmpty()) {
-            if (voiceMessage_.isEmpty()) {
-              voiceMessage_ = other.voiceMessage_;
-              bitField0_ = (bitField0_ & ~0x00000020);
-            } else {
-              ensureVoiceMessageIsMutable();
-              voiceMessage_.addAll(other.voiceMessage_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.voiceMessage_.isEmpty()) {
-            if (voiceMessageBuilder_.isEmpty()) {
-              voiceMessageBuilder_.dispose();
-              voiceMessageBuilder_ = null;
-              voiceMessage_ = other.voiceMessage_;
-              bitField0_ = (bitField0_ & ~0x00000020);
-              voiceMessageBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getVoiceMessageFieldBuilder() : null;
-            } else {
-              voiceMessageBuilder_.addAllMessages(other.voiceMessage_);
-            }
-          }
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -3466,735 +1080,74 @@ public final class ServerResponseMessage {
         }
         return this;
       }
-      private int bitField0_;
 
-      private int sendType_ = 0;
+      private java.lang.Object content_ = "";
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public int getSendTypeValue() {
-        return sendType_;
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public Builder setSendTypeValue(int value) {
-        sendType_ = value;
-        onChanged();
-        return this;
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public com.ServerResponseMessage.CONTENT_TYPE getSendType() {
-        com.ServerResponseMessage.CONTENT_TYPE result = com.ServerResponseMessage.CONTENT_TYPE.valueOf(sendType_);
-        return result == null ? com.ServerResponseMessage.CONTENT_TYPE.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
-       */
-      public Builder setSendType(com.ServerResponseMessage.CONTENT_TYPE value) {
+      public Builder setContent(
+          java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string content = 1;</code>
+       */
+      public Builder clearContent() {
         
-        sendType_ = value.getNumber();
+        content_ = getDefaultInstance().getContent();
         onChanged();
         return this;
       }
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public Builder clearSendType() {
-        
-        sendType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int pictureType_ = 0;
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public int getPictureTypeValue() {
-        return pictureType_;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public Builder setPictureTypeValue(int value) {
-        pictureType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public com.ServerResponseMessage.PICTURETYPE getPictureType() {
-        com.ServerResponseMessage.PICTURETYPE result = com.ServerResponseMessage.PICTURETYPE.valueOf(pictureType_);
-        return result == null ? com.ServerResponseMessage.PICTURETYPE.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public Builder setPictureType(com.ServerResponseMessage.PICTURETYPE value) {
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
-        pictureType_ = value.getNumber();
+        content_ = value;
         onChanged();
         return this;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public Builder clearPictureType() {
-        
-        pictureType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int voiceType_ = 0;
-      /**
-       * <code>optional .VOICETYPE voice_type = 3;</code>
-       */
-      public int getVoiceTypeValue() {
-        return voiceType_;
-      }
-      /**
-       * <code>optional .VOICETYPE voice_type = 3;</code>
-       */
-      public Builder setVoiceTypeValue(int value) {
-        voiceType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .VOICETYPE voice_type = 3;</code>
-       */
-      public com.ServerResponseMessage.VOICETYPE getVoiceType() {
-        com.ServerResponseMessage.VOICETYPE result = com.ServerResponseMessage.VOICETYPE.valueOf(voiceType_);
-        return result == null ? com.ServerResponseMessage.VOICETYPE.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .VOICETYPE voice_type = 3;</code>
-       */
-      public Builder setVoiceType(com.ServerResponseMessage.VOICETYPE value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        voiceType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .VOICETYPE voice_type = 3;</code>
-       */
-      public Builder clearVoiceType() {
-        
-        voiceType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private com.ServerResponseMessage.ContentMessage.TextMessage textMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage.TextMessage, com.ServerResponseMessage.ContentMessage.TextMessage.Builder, com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder> textMessageBuilder_;
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public boolean hasTextMessage() {
-        return textMessageBuilder_ != null || textMessage_ != null;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.TextMessage getTextMessage() {
-        if (textMessageBuilder_ == null) {
-          return textMessage_ == null ? com.ServerResponseMessage.ContentMessage.TextMessage.getDefaultInstance() : textMessage_;
-        } else {
-          return textMessageBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public Builder setTextMessage(com.ServerResponseMessage.ContentMessage.TextMessage value) {
-        if (textMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          textMessage_ = value;
-          onChanged();
-        } else {
-          textMessageBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public Builder setTextMessage(
-          com.ServerResponseMessage.ContentMessage.TextMessage.Builder builderForValue) {
-        if (textMessageBuilder_ == null) {
-          textMessage_ = builderForValue.build();
-          onChanged();
-        } else {
-          textMessageBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public Builder mergeTextMessage(com.ServerResponseMessage.ContentMessage.TextMessage value) {
-        if (textMessageBuilder_ == null) {
-          if (textMessage_ != null) {
-            textMessage_ =
-              com.ServerResponseMessage.ContentMessage.TextMessage.newBuilder(textMessage_).mergeFrom(value).buildPartial();
-          } else {
-            textMessage_ = value;
-          }
-          onChanged();
-        } else {
-          textMessageBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public Builder clearTextMessage() {
-        if (textMessageBuilder_ == null) {
-          textMessage_ = null;
-          onChanged();
-        } else {
-          textMessage_ = null;
-          textMessageBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.TextMessage.Builder getTextMessageBuilder() {
-        
-        onChanged();
-        return getTextMessageFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder getTextMessageOrBuilder() {
-        if (textMessageBuilder_ != null) {
-          return textMessageBuilder_.getMessageOrBuilder();
-        } else {
-          return textMessage_ == null ?
-              com.ServerResponseMessage.ContentMessage.TextMessage.getDefaultInstance() : textMessage_;
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage.TextMessage, com.ServerResponseMessage.ContentMessage.TextMessage.Builder, com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder> 
-          getTextMessageFieldBuilder() {
-        if (textMessageBuilder_ == null) {
-          textMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ServerResponseMessage.ContentMessage.TextMessage, com.ServerResponseMessage.ContentMessage.TextMessage.Builder, com.ServerResponseMessage.ContentMessage.TextMessageOrBuilder>(
-                  getTextMessage(),
-                  getParentForChildren(),
-                  isClean());
-          textMessage_ = null;
-        }
-        return textMessageBuilder_;
-      }
-
-      private java.util.List<com.ServerResponseMessage.ContentMessage.PictureMessage> pictureMessage_ =
-        java.util.Collections.emptyList();
-      private void ensurePictureMessageIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
-          pictureMessage_ = new java.util.ArrayList<com.ServerResponseMessage.ContentMessage.PictureMessage>(pictureMessage_);
-          bitField0_ |= 0x00000010;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage.PictureMessage, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder, com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder> pictureMessageBuilder_;
-
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public java.util.List<com.ServerResponseMessage.ContentMessage.PictureMessage> getPictureMessageList() {
-        if (pictureMessageBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(pictureMessage_);
-        } else {
-          return pictureMessageBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public int getPictureMessageCount() {
-        if (pictureMessageBuilder_ == null) {
-          return pictureMessage_.size();
-        } else {
-          return pictureMessageBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.PictureMessage getPictureMessage(int index) {
-        if (pictureMessageBuilder_ == null) {
-          return pictureMessage_.get(index);
-        } else {
-          return pictureMessageBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder setPictureMessage(
-          int index, com.ServerResponseMessage.ContentMessage.PictureMessage value) {
-        if (pictureMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensurePictureMessageIsMutable();
-          pictureMessage_.set(index, value);
-          onChanged();
-        } else {
-          pictureMessageBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder setPictureMessage(
-          int index, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder builderForValue) {
-        if (pictureMessageBuilder_ == null) {
-          ensurePictureMessageIsMutable();
-          pictureMessage_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          pictureMessageBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder addPictureMessage(com.ServerResponseMessage.ContentMessage.PictureMessage value) {
-        if (pictureMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensurePictureMessageIsMutable();
-          pictureMessage_.add(value);
-          onChanged();
-        } else {
-          pictureMessageBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder addPictureMessage(
-          int index, com.ServerResponseMessage.ContentMessage.PictureMessage value) {
-        if (pictureMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensurePictureMessageIsMutable();
-          pictureMessage_.add(index, value);
-          onChanged();
-        } else {
-          pictureMessageBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder addPictureMessage(
-          com.ServerResponseMessage.ContentMessage.PictureMessage.Builder builderForValue) {
-        if (pictureMessageBuilder_ == null) {
-          ensurePictureMessageIsMutable();
-          pictureMessage_.add(builderForValue.build());
-          onChanged();
-        } else {
-          pictureMessageBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder addPictureMessage(
-          int index, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder builderForValue) {
-        if (pictureMessageBuilder_ == null) {
-          ensurePictureMessageIsMutable();
-          pictureMessage_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          pictureMessageBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder addAllPictureMessage(
-          java.lang.Iterable<? extends com.ServerResponseMessage.ContentMessage.PictureMessage> values) {
-        if (pictureMessageBuilder_ == null) {
-          ensurePictureMessageIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, pictureMessage_);
-          onChanged();
-        } else {
-          pictureMessageBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder clearPictureMessage() {
-        if (pictureMessageBuilder_ == null) {
-          pictureMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
-          onChanged();
-        } else {
-          pictureMessageBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public Builder removePictureMessage(int index) {
-        if (pictureMessageBuilder_ == null) {
-          ensurePictureMessageIsMutable();
-          pictureMessage_.remove(index);
-          onChanged();
-        } else {
-          pictureMessageBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.PictureMessage.Builder getPictureMessageBuilder(
-          int index) {
-        return getPictureMessageFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder getPictureMessageOrBuilder(
-          int index) {
-        if (pictureMessageBuilder_ == null) {
-          return pictureMessage_.get(index);  } else {
-          return pictureMessageBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public java.util.List<? extends com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder> 
-           getPictureMessageOrBuilderList() {
-        if (pictureMessageBuilder_ != null) {
-          return pictureMessageBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(pictureMessage_);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.PictureMessage.Builder addPictureMessageBuilder() {
-        return getPictureMessageFieldBuilder().addBuilder(
-            com.ServerResponseMessage.ContentMessage.PictureMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.PictureMessage.Builder addPictureMessageBuilder(
-          int index) {
-        return getPictureMessageFieldBuilder().addBuilder(
-            index, com.ServerResponseMessage.ContentMessage.PictureMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage.PictureMessage pictureMessage = 5;</code>
-       */
-      public java.util.List<com.ServerResponseMessage.ContentMessage.PictureMessage.Builder> 
-           getPictureMessageBuilderList() {
-        return getPictureMessageFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage.PictureMessage, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder, com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder> 
-          getPictureMessageFieldBuilder() {
-        if (pictureMessageBuilder_ == null) {
-          pictureMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.ServerResponseMessage.ContentMessage.PictureMessage, com.ServerResponseMessage.ContentMessage.PictureMessage.Builder, com.ServerResponseMessage.ContentMessage.PictureMessageOrBuilder>(
-                  pictureMessage_,
-                  ((bitField0_ & 0x00000010) == 0x00000010),
-                  getParentForChildren(),
-                  isClean());
-          pictureMessage_ = null;
-        }
-        return pictureMessageBuilder_;
-      }
-
-      private java.util.List<com.ServerResponseMessage.ContentMessage.VoiceMessage> voiceMessage_ =
-        java.util.Collections.emptyList();
-      private void ensureVoiceMessageIsMutable() {
-        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
-          voiceMessage_ = new java.util.ArrayList<com.ServerResponseMessage.ContentMessage.VoiceMessage>(voiceMessage_);
-          bitField0_ |= 0x00000020;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage.VoiceMessage, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder, com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder> voiceMessageBuilder_;
-
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public java.util.List<com.ServerResponseMessage.ContentMessage.VoiceMessage> getVoiceMessageList() {
-        if (voiceMessageBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(voiceMessage_);
-        } else {
-          return voiceMessageBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public int getVoiceMessageCount() {
-        if (voiceMessageBuilder_ == null) {
-          return voiceMessage_.size();
-        } else {
-          return voiceMessageBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.VoiceMessage getVoiceMessage(int index) {
-        if (voiceMessageBuilder_ == null) {
-          return voiceMessage_.get(index);
-        } else {
-          return voiceMessageBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder setVoiceMessage(
-          int index, com.ServerResponseMessage.ContentMessage.VoiceMessage value) {
-        if (voiceMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.set(index, value);
-          onChanged();
-        } else {
-          voiceMessageBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder setVoiceMessage(
-          int index, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder builderForValue) {
-        if (voiceMessageBuilder_ == null) {
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          voiceMessageBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder addVoiceMessage(com.ServerResponseMessage.ContentMessage.VoiceMessage value) {
-        if (voiceMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.add(value);
-          onChanged();
-        } else {
-          voiceMessageBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder addVoiceMessage(
-          int index, com.ServerResponseMessage.ContentMessage.VoiceMessage value) {
-        if (voiceMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.add(index, value);
-          onChanged();
-        } else {
-          voiceMessageBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder addVoiceMessage(
-          com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder builderForValue) {
-        if (voiceMessageBuilder_ == null) {
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.add(builderForValue.build());
-          onChanged();
-        } else {
-          voiceMessageBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder addVoiceMessage(
-          int index, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder builderForValue) {
-        if (voiceMessageBuilder_ == null) {
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          voiceMessageBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder addAllVoiceMessage(
-          java.lang.Iterable<? extends com.ServerResponseMessage.ContentMessage.VoiceMessage> values) {
-        if (voiceMessageBuilder_ == null) {
-          ensureVoiceMessageIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, voiceMessage_);
-          onChanged();
-        } else {
-          voiceMessageBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder clearVoiceMessage() {
-        if (voiceMessageBuilder_ == null) {
-          voiceMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000020);
-          onChanged();
-        } else {
-          voiceMessageBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public Builder removeVoiceMessage(int index) {
-        if (voiceMessageBuilder_ == null) {
-          ensureVoiceMessageIsMutable();
-          voiceMessage_.remove(index);
-          onChanged();
-        } else {
-          voiceMessageBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder getVoiceMessageBuilder(
-          int index) {
-        return getVoiceMessageFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder getVoiceMessageOrBuilder(
-          int index) {
-        if (voiceMessageBuilder_ == null) {
-          return voiceMessage_.get(index);  } else {
-          return voiceMessageBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public java.util.List<? extends com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder> 
-           getVoiceMessageOrBuilderList() {
-        if (voiceMessageBuilder_ != null) {
-          return voiceMessageBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(voiceMessage_);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder addVoiceMessageBuilder() {
-        return getVoiceMessageFieldBuilder().addBuilder(
-            com.ServerResponseMessage.ContentMessage.VoiceMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder addVoiceMessageBuilder(
-          int index) {
-        return getVoiceMessageFieldBuilder().addBuilder(
-            index, com.ServerResponseMessage.ContentMessage.VoiceMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage.VoiceMessage voiceMessage = 6;</code>
-       */
-      public java.util.List<com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder> 
-           getVoiceMessageBuilderList() {
-        return getVoiceMessageFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage.VoiceMessage, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder, com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder> 
-          getVoiceMessageFieldBuilder() {
-        if (voiceMessageBuilder_ == null) {
-          voiceMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.ServerResponseMessage.ContentMessage.VoiceMessage, com.ServerResponseMessage.ContentMessage.VoiceMessage.Builder, com.ServerResponseMessage.ContentMessage.VoiceMessageOrBuilder>(
-                  voiceMessage_,
-                  ((bitField0_ & 0x00000020) == 0x00000020),
-                  getParentForChildren(),
-                  isClean());
-          voiceMessage_ = null;
-        }
-        return voiceMessageBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4250,17 +1203,14 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .ContentMessage contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
-    boolean hasContentMessage();
+    java.lang.String getContentMessage();
     /**
-     * <code>optional .ContentMessage contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
-    com.ServerResponseMessage.ContentMessage getContentMessage();
-    /**
-     * <code>optional .ContentMessage contentMessage = 1;</code>
-     */
-    com.ServerResponseMessage.ContentMessageOrBuilder getContentMessageOrBuilder();
+    com.google.protobuf.ByteString
+        getContentMessageBytes();
 
     /**
      * <code>optional string time = 2;</code>
@@ -4308,6 +1258,7 @@ public final class ServerResponseMessage {
       super(builder);
     }
     private Record() {
+      contentMessage_ = "";
       time_ = "";
       date_ = "";
       user_ = "";
@@ -4339,16 +1290,9 @@ public final class ServerResponseMessage {
               break;
             }
             case 10: {
-              com.ServerResponseMessage.ContentMessage.Builder subBuilder = null;
-              if (contentMessage_ != null) {
-                subBuilder = contentMessage_.toBuilder();
-              }
-              contentMessage_ = input.readMessage(com.ServerResponseMessage.ContentMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(contentMessage_);
-                contentMessage_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              contentMessage_ = s;
               break;
             }
             case 18: {
@@ -4393,24 +1337,37 @@ public final class ServerResponseMessage {
     }
 
     public static final int CONTENTMESSAGE_FIELD_NUMBER = 1;
-    private com.ServerResponseMessage.ContentMessage contentMessage_;
+    private volatile java.lang.Object contentMessage_;
     /**
-     * <code>optional .ContentMessage contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
-    public boolean hasContentMessage() {
-      return contentMessage_ != null;
+    public java.lang.String getContentMessage() {
+      java.lang.Object ref = contentMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        contentMessage_ = s;
+        return s;
+      }
     }
     /**
-     * <code>optional .ContentMessage contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
-    public com.ServerResponseMessage.ContentMessage getContentMessage() {
-      return contentMessage_ == null ? com.ServerResponseMessage.ContentMessage.getDefaultInstance() : contentMessage_;
-    }
-    /**
-     * <code>optional .ContentMessage contentMessage = 1;</code>
-     */
-    public com.ServerResponseMessage.ContentMessageOrBuilder getContentMessageOrBuilder() {
-      return getContentMessage();
+    public com.google.protobuf.ByteString
+        getContentMessageBytes() {
+      java.lang.Object ref = contentMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        contentMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int TIME_FIELD_NUMBER = 2;
@@ -4527,8 +1484,8 @@ public final class ServerResponseMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (contentMessage_ != null) {
-        output.writeMessage(1, getContentMessage());
+      if (!getContentMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, contentMessage_);
       }
       if (!getTimeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, time_);
@@ -4546,9 +1503,8 @@ public final class ServerResponseMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (contentMessage_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getContentMessage());
+      if (!getContentMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, contentMessage_);
       }
       if (!getTimeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, time_);
@@ -4575,11 +1531,8 @@ public final class ServerResponseMessage {
       com.ServerResponseMessage.Record other = (com.ServerResponseMessage.Record) obj;
 
       boolean result = true;
-      result = result && (hasContentMessage() == other.hasContentMessage());
-      if (hasContentMessage()) {
-        result = result && getContentMessage()
-            .equals(other.getContentMessage());
-      }
+      result = result && getContentMessage()
+          .equals(other.getContentMessage());
       result = result && getTime()
           .equals(other.getTime());
       result = result && getDate()
@@ -4596,10 +1549,8 @@ public final class ServerResponseMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasContentMessage()) {
-        hash = (37 * hash) + CONTENTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getContentMessage().hashCode();
-      }
+      hash = (37 * hash) + CONTENTMESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getContentMessage().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + DATE_FIELD_NUMBER;
@@ -4728,12 +1679,8 @@ public final class ServerResponseMessage {
       }
       public Builder clear() {
         super.clear();
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = null;
-        } else {
-          contentMessage_ = null;
-          contentMessageBuilder_ = null;
-        }
+        contentMessage_ = "";
+
         time_ = "";
 
         date_ = "";
@@ -4762,11 +1709,7 @@ public final class ServerResponseMessage {
 
       public com.ServerResponseMessage.Record buildPartial() {
         com.ServerResponseMessage.Record result = new com.ServerResponseMessage.Record(this);
-        if (contentMessageBuilder_ == null) {
-          result.contentMessage_ = contentMessage_;
-        } else {
-          result.contentMessage_ = contentMessageBuilder_.build();
-        }
+        result.contentMessage_ = contentMessage_;
         result.time_ = time_;
         result.date_ = date_;
         result.user_ = user_;
@@ -4811,8 +1754,9 @@ public final class ServerResponseMessage {
 
       public Builder mergeFrom(com.ServerResponseMessage.Record other) {
         if (other == com.ServerResponseMessage.Record.getDefaultInstance()) return this;
-        if (other.hasContentMessage()) {
-          mergeContentMessage(other.getContentMessage());
+        if (!other.getContentMessage().isEmpty()) {
+          contentMessage_ = other.contentMessage_;
+          onChanged();
         }
         if (!other.getTime().isEmpty()) {
           time_ = other.time_;
@@ -4852,121 +1796,73 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private com.ServerResponseMessage.ContentMessage contentMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage, com.ServerResponseMessage.ContentMessage.Builder, com.ServerResponseMessage.ContentMessageOrBuilder> contentMessageBuilder_;
+      private java.lang.Object contentMessage_ = "";
       /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
-      public boolean hasContentMessage() {
-        return contentMessageBuilder_ != null || contentMessage_ != null;
-      }
-      /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage getContentMessage() {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_ == null ? com.ServerResponseMessage.ContentMessage.getDefaultInstance() : contentMessage_;
+      public java.lang.String getContentMessage() {
+        java.lang.Object ref = contentMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          contentMessage_ = s;
+          return s;
         } else {
-          return contentMessageBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
-      public Builder setContentMessage(com.ServerResponseMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          contentMessage_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getContentMessageBytes() {
+        java.lang.Object ref = contentMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          contentMessage_ = b;
+          return b;
         } else {
-          contentMessageBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public Builder setContentMessage(
-          com.ServerResponseMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = builderForValue.build();
-          onChanged();
-        } else {
-          contentMessageBuilder_.setMessage(builderForValue.build());
-        }
-
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        contentMessage_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
-       */
-      public Builder mergeContentMessage(com.ServerResponseMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (contentMessage_ != null) {
-            contentMessage_ =
-              com.ServerResponseMessage.ContentMessage.newBuilder(contentMessage_).mergeFrom(value).buildPartial();
-          } else {
-            contentMessage_ = value;
-          }
-          onChanged();
-        } else {
-          contentMessageBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public Builder clearContentMessage() {
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = null;
-          onChanged();
-        } else {
-          contentMessage_ = null;
-          contentMessageBuilder_ = null;
-        }
-
+        
+        contentMessage_ = getDefaultInstance().getContentMessage();
+        onChanged();
         return this;
       }
       /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
-      public com.ServerResponseMessage.ContentMessage.Builder getContentMessageBuilder() {
+      public Builder setContentMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
+        contentMessage_ = value;
         onChanged();
-        return getContentMessageFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
-       */
-      public com.ServerResponseMessage.ContentMessageOrBuilder getContentMessageOrBuilder() {
-        if (contentMessageBuilder_ != null) {
-          return contentMessageBuilder_.getMessageOrBuilder();
-        } else {
-          return contentMessage_ == null ?
-              com.ServerResponseMessage.ContentMessage.getDefaultInstance() : contentMessage_;
-        }
-      }
-      /**
-       * <code>optional .ContentMessage contentMessage = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage, com.ServerResponseMessage.ContentMessage.Builder, com.ServerResponseMessage.ContentMessageOrBuilder> 
-          getContentMessageFieldBuilder() {
-        if (contentMessageBuilder_ == null) {
-          contentMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ServerResponseMessage.ContentMessage, com.ServerResponseMessage.ContentMessage.Builder, com.ServerResponseMessage.ContentMessageOrBuilder>(
-                  getContentMessage(),
-                  getParentForChildren(),
-                  isClean());
-          contentMessage_ = null;
-        }
-        return contentMessageBuilder_;
+        return this;
       }
 
       private java.lang.Object time_ = "";
@@ -5249,11 +2145,6 @@ public final class ServerResponseMessage {
     int getGood();
 
     /**
-     * <code>optional int32 bad = 4;</code>
-     */
-    int getBad();
-
-    /**
      * <code>optional int32 userNum = 5;</code>
      */
     int getUserNum();
@@ -5307,7 +2198,6 @@ public final class ServerResponseMessage {
       questionID_ = 0L;
       questionDescription_ = "";
       good_ = 0;
-      bad_ = 0;
       userNum_ = 0;
       time_ = "";
       date_ = "";
@@ -5353,11 +2243,6 @@ public final class ServerResponseMessage {
             case 24: {
 
               good_ = input.readInt32();
-              break;
-            }
-            case 32: {
-
-              bad_ = input.readInt32();
               break;
             }
             case 40: {
@@ -5456,15 +2341,6 @@ public final class ServerResponseMessage {
      */
     public int getGood() {
       return good_;
-    }
-
-    public static final int BAD_FIELD_NUMBER = 4;
-    private int bad_;
-    /**
-     * <code>optional int32 bad = 4;</code>
-     */
-    public int getBad() {
-      return bad_;
     }
 
     public static final int USERNUM_FIELD_NUMBER = 5;
@@ -5599,9 +2475,6 @@ public final class ServerResponseMessage {
       if (good_ != 0) {
         output.writeInt32(3, good_);
       }
-      if (bad_ != 0) {
-        output.writeInt32(4, bad_);
-      }
       if (userNum_ != 0) {
         output.writeInt32(5, userNum_);
       }
@@ -5631,10 +2504,6 @@ public final class ServerResponseMessage {
       if (good_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, good_);
-      }
-      if (bad_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, bad_);
       }
       if (userNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -5671,8 +2540,6 @@ public final class ServerResponseMessage {
           .equals(other.getQuestionDescription());
       result = result && (getGood()
           == other.getGood());
-      result = result && (getBad()
-          == other.getBad());
       result = result && (getUserNum()
           == other.getUserNum());
       result = result && getTime()
@@ -5698,8 +2565,6 @@ public final class ServerResponseMessage {
       hash = (53 * hash) + getQuestionDescription().hashCode();
       hash = (37 * hash) + GOOD_FIELD_NUMBER;
       hash = (53 * hash) + getGood();
-      hash = (37 * hash) + BAD_FIELD_NUMBER;
-      hash = (53 * hash) + getBad();
       hash = (37 * hash) + USERNUM_FIELD_NUMBER;
       hash = (53 * hash) + getUserNum();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
@@ -5836,8 +2701,6 @@ public final class ServerResponseMessage {
 
         good_ = 0;
 
-        bad_ = 0;
-
         userNum_ = 0;
 
         time_ = "";
@@ -5871,7 +2734,6 @@ public final class ServerResponseMessage {
         result.questionID_ = questionID_;
         result.questionDescription_ = questionDescription_;
         result.good_ = good_;
-        result.bad_ = bad_;
         result.userNum_ = userNum_;
         result.time_ = time_;
         result.date_ = date_;
@@ -5926,9 +2788,6 @@ public final class ServerResponseMessage {
         }
         if (other.getGood() != 0) {
           setGood(other.getGood());
-        }
-        if (other.getBad() != 0) {
-          setBad(other.getBad());
         }
         if (other.getUserNum() != 0) {
           setUserNum(other.getUserNum());
@@ -6088,32 +2947,6 @@ public final class ServerResponseMessage {
       public Builder clearGood() {
         
         good_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int bad_ ;
-      /**
-       * <code>optional int32 bad = 4;</code>
-       */
-      public int getBad() {
-        return bad_;
-      }
-      /**
-       * <code>optional int32 bad = 4;</code>
-       */
-      public Builder setBad(int value) {
-        
-        bad_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 bad = 4;</code>
-       */
-      public Builder clearBad() {
-        
-        bad_ = 0;
         onChanged();
         return this;
       }
@@ -6476,6 +3309,16 @@ public final class ServerResponseMessage {
      */
     com.ServerResponseMessage.RecordOrBuilder getRecordOrBuilder(
         int index);
+
+    /**
+     * <code>optional bool solved = 7;</code>
+     */
+    boolean getSolved();
+
+    /**
+     * <code>optional int32 good = 8;</code>
+     */
+    int getGood();
   }
   /**
    * <pre>
@@ -6499,6 +3342,8 @@ public final class ServerResponseMessage {
       date_ = "";
       owner_ = "";
       record_ = java.util.Collections.emptyList();
+      solved_ = false;
+      good_ = 0;
     }
 
     @java.lang.Override
@@ -6563,6 +3408,16 @@ public final class ServerResponseMessage {
               }
               record_.add(
                   input.readMessage(com.ServerResponseMessage.Record.parser(), extensionRegistry));
+              break;
+            }
+            case 56: {
+
+              solved_ = input.readBool();
+              break;
+            }
+            case 64: {
+
+              good_ = input.readInt32();
               break;
             }
           }
@@ -6797,6 +3652,24 @@ public final class ServerResponseMessage {
       return record_.get(index);
     }
 
+    public static final int SOLVED_FIELD_NUMBER = 7;
+    private boolean solved_;
+    /**
+     * <code>optional bool solved = 7;</code>
+     */
+    public boolean getSolved() {
+      return solved_;
+    }
+
+    public static final int GOOD_FIELD_NUMBER = 8;
+    private int good_;
+    /**
+     * <code>optional int32 good = 8;</code>
+     */
+    public int getGood() {
+      return good_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6827,6 +3700,12 @@ public final class ServerResponseMessage {
       for (int i = 0; i < record_.size(); i++) {
         output.writeMessage(6, record_.get(i));
       }
+      if (solved_ != false) {
+        output.writeBool(7, solved_);
+      }
+      if (good_ != 0) {
+        output.writeInt32(8, good_);
+      }
     }
 
     public int getSerializedSize() {
@@ -6852,6 +3731,14 @@ public final class ServerResponseMessage {
       for (int i = 0; i < record_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, record_.get(i));
+      }
+      if (solved_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, solved_);
+      }
+      if (good_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, good_);
       }
       memoizedSize = size;
       return size;
@@ -6881,6 +3768,10 @@ public final class ServerResponseMessage {
           .equals(other.getOwner());
       result = result && getRecordList()
           .equals(other.getRecordList());
+      result = result && (getSolved()
+          == other.getSolved());
+      result = result && (getGood()
+          == other.getGood());
       return result;
     }
 
@@ -6905,6 +3796,11 @@ public final class ServerResponseMessage {
         hash = (37 * hash) + RECORD_FIELD_NUMBER;
         hash = (53 * hash) + getRecordList().hashCode();
       }
+      hash = (37 * hash) + SOLVED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSolved());
+      hash = (37 * hash) + GOOD_FIELD_NUMBER;
+      hash = (53 * hash) + getGood();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7044,6 +3940,10 @@ public final class ServerResponseMessage {
         } else {
           recordBuilder_.clear();
         }
+        solved_ = false;
+
+        good_ = 0;
+
         return this;
       }
 
@@ -7082,6 +3982,8 @@ public final class ServerResponseMessage {
         } else {
           result.record_ = recordBuilder_.build();
         }
+        result.solved_ = solved_;
+        result.good_ = good_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -7169,6 +4071,12 @@ public final class ServerResponseMessage {
               recordBuilder_.addAllMessages(other.record_);
             }
           }
+        }
+        if (other.getSolved() != false) {
+          setSolved(other.getSolved());
+        }
+        if (other.getGood() != 0) {
+          setGood(other.getGood());
         }
         onChanged();
         return this;
@@ -7781,6 +4689,58 @@ public final class ServerResponseMessage {
         }
         return recordBuilder_;
       }
+
+      private boolean solved_ ;
+      /**
+       * <code>optional bool solved = 7;</code>
+       */
+      public boolean getSolved() {
+        return solved_;
+      }
+      /**
+       * <code>optional bool solved = 7;</code>
+       */
+      public Builder setSolved(boolean value) {
+        
+        solved_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool solved = 7;</code>
+       */
+      public Builder clearSolved() {
+        
+        solved_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int good_ ;
+      /**
+       * <code>optional int32 good = 8;</code>
+       */
+      public int getGood() {
+        return good_;
+      }
+      /**
+       * <code>optional int32 good = 8;</code>
+       */
+      public Builder setGood(int value) {
+        
+        good_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 good = 8;</code>
+       */
+      public Builder clearGood() {
+        
+        good_ = 0;
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -7850,11 +4810,6 @@ public final class ServerResponseMessage {
     int getGood();
 
     /**
-     * <code>optional int32 bad = 3;</code>
-     */
-    int getBad();
-
-    /**
      * <code>optional int32 questionNum = 4;</code>
      */
     int getQuestionNum();
@@ -7863,6 +4818,31 @@ public final class ServerResponseMessage {
      * <code>optional int32 solvedQuestionNum = 5;</code>
      */
     int getSolvedQuestionNum();
+
+    /**
+     * <code>optional int32 bonus = 6;</code>
+     */
+    int getBonus();
+
+    /**
+     * <code>optional string signature = 7;</code>
+     */
+    java.lang.String getSignature();
+    /**
+     * <code>optional string signature = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getSignatureBytes();
+
+    /**
+     * <code>optional string mail_address = 8;</code>
+     */
+    java.lang.String getMailAddress();
+    /**
+     * <code>optional string mail_address = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getMailAddressBytes();
   }
   /**
    * <pre>
@@ -7882,9 +4862,11 @@ public final class ServerResponseMessage {
     private UserMessage() {
       username_ = "";
       good_ = 0;
-      bad_ = 0;
       questionNum_ = 0;
       solvedQuestionNum_ = 0;
+      bonus_ = 0;
+      signature_ = "";
+      mailAddress_ = "";
     }
 
     @java.lang.Override
@@ -7923,11 +4905,6 @@ public final class ServerResponseMessage {
               good_ = input.readInt32();
               break;
             }
-            case 24: {
-
-              bad_ = input.readInt32();
-              break;
-            }
             case 32: {
 
               questionNum_ = input.readInt32();
@@ -7936,6 +4913,23 @@ public final class ServerResponseMessage {
             case 40: {
 
               solvedQuestionNum_ = input.readInt32();
+              break;
+            }
+            case 48: {
+
+              bonus_ = input.readInt32();
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              signature_ = s;
+              break;
+            }
+            case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              mailAddress_ = s;
               break;
             }
           }
@@ -8004,15 +4998,6 @@ public final class ServerResponseMessage {
       return good_;
     }
 
-    public static final int BAD_FIELD_NUMBER = 3;
-    private int bad_;
-    /**
-     * <code>optional int32 bad = 3;</code>
-     */
-    public int getBad() {
-      return bad_;
-    }
-
     public static final int QUESTIONNUM_FIELD_NUMBER = 4;
     private int questionNum_;
     /**
@@ -8029,6 +5014,83 @@ public final class ServerResponseMessage {
      */
     public int getSolvedQuestionNum() {
       return solvedQuestionNum_;
+    }
+
+    public static final int BONUS_FIELD_NUMBER = 6;
+    private int bonus_;
+    /**
+     * <code>optional int32 bonus = 6;</code>
+     */
+    public int getBonus() {
+      return bonus_;
+    }
+
+    public static final int SIGNATURE_FIELD_NUMBER = 7;
+    private volatile java.lang.Object signature_;
+    /**
+     * <code>optional string signature = 7;</code>
+     */
+    public java.lang.String getSignature() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        signature_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string signature = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSignatureBytes() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        signature_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MAIL_ADDRESS_FIELD_NUMBER = 8;
+    private volatile java.lang.Object mailAddress_;
+    /**
+     * <code>optional string mail_address = 8;</code>
+     */
+    public java.lang.String getMailAddress() {
+      java.lang.Object ref = mailAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mailAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string mail_address = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMailAddressBytes() {
+      java.lang.Object ref = mailAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mailAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -8049,14 +5111,20 @@ public final class ServerResponseMessage {
       if (good_ != 0) {
         output.writeInt32(2, good_);
       }
-      if (bad_ != 0) {
-        output.writeInt32(3, bad_);
-      }
       if (questionNum_ != 0) {
         output.writeInt32(4, questionNum_);
       }
       if (solvedQuestionNum_ != 0) {
         output.writeInt32(5, solvedQuestionNum_);
+      }
+      if (bonus_ != 0) {
+        output.writeInt32(6, bonus_);
+      }
+      if (!getSignatureBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, signature_);
+      }
+      if (!getMailAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, mailAddress_);
       }
     }
 
@@ -8072,10 +5140,6 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, good_);
       }
-      if (bad_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, bad_);
-      }
       if (questionNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, questionNum_);
@@ -8083,6 +5147,16 @@ public final class ServerResponseMessage {
       if (solvedQuestionNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, solvedQuestionNum_);
+      }
+      if (bonus_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, bonus_);
+      }
+      if (!getSignatureBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, signature_);
+      }
+      if (!getMailAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, mailAddress_);
       }
       memoizedSize = size;
       return size;
@@ -8104,12 +5178,16 @@ public final class ServerResponseMessage {
           .equals(other.getUsername());
       result = result && (getGood()
           == other.getGood());
-      result = result && (getBad()
-          == other.getBad());
       result = result && (getQuestionNum()
           == other.getQuestionNum());
       result = result && (getSolvedQuestionNum()
           == other.getSolvedQuestionNum());
+      result = result && (getBonus()
+          == other.getBonus());
+      result = result && getSignature()
+          .equals(other.getSignature());
+      result = result && getMailAddress()
+          .equals(other.getMailAddress());
       return result;
     }
 
@@ -8124,12 +5202,16 @@ public final class ServerResponseMessage {
       hash = (53 * hash) + getUsername().hashCode();
       hash = (37 * hash) + GOOD_FIELD_NUMBER;
       hash = (53 * hash) + getGood();
-      hash = (37 * hash) + BAD_FIELD_NUMBER;
-      hash = (53 * hash) + getBad();
       hash = (37 * hash) + QUESTIONNUM_FIELD_NUMBER;
       hash = (53 * hash) + getQuestionNum();
       hash = (37 * hash) + SOLVEDQUESTIONNUM_FIELD_NUMBER;
       hash = (53 * hash) + getSolvedQuestionNum();
+      hash = (37 * hash) + BONUS_FIELD_NUMBER;
+      hash = (53 * hash) + getBonus();
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
+      hash = (37 * hash) + MAIL_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getMailAddress().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8256,11 +5338,15 @@ public final class ServerResponseMessage {
 
         good_ = 0;
 
-        bad_ = 0;
-
         questionNum_ = 0;
 
         solvedQuestionNum_ = 0;
+
+        bonus_ = 0;
+
+        signature_ = "";
+
+        mailAddress_ = "";
 
         return this;
       }
@@ -8286,9 +5372,11 @@ public final class ServerResponseMessage {
         com.ServerResponseMessage.UserMessage result = new com.ServerResponseMessage.UserMessage(this);
         result.username_ = username_;
         result.good_ = good_;
-        result.bad_ = bad_;
         result.questionNum_ = questionNum_;
         result.solvedQuestionNum_ = solvedQuestionNum_;
+        result.bonus_ = bonus_;
+        result.signature_ = signature_;
+        result.mailAddress_ = mailAddress_;
         onBuilt();
         return result;
       }
@@ -8337,14 +5425,22 @@ public final class ServerResponseMessage {
         if (other.getGood() != 0) {
           setGood(other.getGood());
         }
-        if (other.getBad() != 0) {
-          setBad(other.getBad());
-        }
         if (other.getQuestionNum() != 0) {
           setQuestionNum(other.getQuestionNum());
         }
         if (other.getSolvedQuestionNum() != 0) {
           setSolvedQuestionNum(other.getSolvedQuestionNum());
+        }
+        if (other.getBonus() != 0) {
+          setBonus(other.getBonus());
+        }
+        if (!other.getSignature().isEmpty()) {
+          signature_ = other.signature_;
+          onChanged();
+        }
+        if (!other.getMailAddress().isEmpty()) {
+          mailAddress_ = other.mailAddress_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -8467,32 +5563,6 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private int bad_ ;
-      /**
-       * <code>optional int32 bad = 3;</code>
-       */
-      public int getBad() {
-        return bad_;
-      }
-      /**
-       * <code>optional int32 bad = 3;</code>
-       */
-      public Builder setBad(int value) {
-        
-        bad_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 bad = 3;</code>
-       */
-      public Builder clearBad() {
-        
-        bad_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int questionNum_ ;
       /**
        * <code>optional int32 questionNum = 4;</code>
@@ -8541,6 +5611,170 @@ public final class ServerResponseMessage {
       public Builder clearSolvedQuestionNum() {
         
         solvedQuestionNum_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int bonus_ ;
+      /**
+       * <code>optional int32 bonus = 6;</code>
+       */
+      public int getBonus() {
+        return bonus_;
+      }
+      /**
+       * <code>optional int32 bonus = 6;</code>
+       */
+      public Builder setBonus(int value) {
+        
+        bonus_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 bonus = 6;</code>
+       */
+      public Builder clearBonus() {
+        
+        bonus_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object signature_ = "";
+      /**
+       * <code>optional string signature = 7;</code>
+       */
+      public java.lang.String getSignature() {
+        java.lang.Object ref = signature_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          signature_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string signature = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSignatureBytes() {
+        java.lang.Object ref = signature_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          signature_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string signature = 7;</code>
+       */
+      public Builder setSignature(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        signature_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string signature = 7;</code>
+       */
+      public Builder clearSignature() {
+        
+        signature_ = getDefaultInstance().getSignature();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string signature = 7;</code>
+       */
+      public Builder setSignatureBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        signature_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object mailAddress_ = "";
+      /**
+       * <code>optional string mail_address = 8;</code>
+       */
+      public java.lang.String getMailAddress() {
+        java.lang.Object ref = mailAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mailAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string mail_address = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMailAddressBytes() {
+        java.lang.Object ref = mailAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mailAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string mail_address = 8;</code>
+       */
+      public Builder setMailAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mailAddress_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mail_address = 8;</code>
+       */
+      public Builder clearMailAddress() {
+        
+        mailAddress_ = getDefaultInstance().getMailAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mail_address = 8;</code>
+       */
+      public Builder setMailAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mailAddress_ = value;
         onChanged();
         return this;
       }
@@ -8598,13 +5832,9 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .LOGIN_STATUS status = 1;</code>
+     * <code>optional bool status = 1;</code>
      */
-    int getStatusValue();
-    /**
-     * <code>optional .LOGIN_STATUS status = 1;</code>
-     */
-    com.ServerResponseMessage.LOGIN_STATUS getStatus();
+    boolean getStatus();
 
     /**
      * <code>optional string information = 2;</code>
@@ -8615,6 +5845,19 @@ public final class ServerResponseMessage {
      */
     com.google.protobuf.ByteString
         getInformationBytes();
+
+    /**
+     * <code>optional .UserMessage userMessage = 3;</code>
+     */
+    boolean hasUserMessage();
+    /**
+     * <code>optional .UserMessage userMessage = 3;</code>
+     */
+    com.ServerResponseMessage.UserMessage getUserMessage();
+    /**
+     * <code>optional .UserMessage userMessage = 3;</code>
+     */
+    com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder();
   }
   /**
    * <pre>
@@ -8632,7 +5875,7 @@ public final class ServerResponseMessage {
       super(builder);
     }
     private LaunchResponse() {
-      status_ = 0;
+      status_ = false;
       information_ = "";
     }
 
@@ -8662,15 +5905,27 @@ public final class ServerResponseMessage {
               break;
             }
             case 8: {
-              int rawValue = input.readEnum();
 
-              status_ = rawValue;
+              status_ = input.readBool();
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               information_ = s;
+              break;
+            }
+            case 26: {
+              com.ServerResponseMessage.UserMessage.Builder subBuilder = null;
+              if (userMessage_ != null) {
+                subBuilder = userMessage_.toBuilder();
+              }
+              userMessage_ = input.readMessage(com.ServerResponseMessage.UserMessage.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(userMessage_);
+                userMessage_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           }
@@ -8697,19 +5952,12 @@ public final class ServerResponseMessage {
     }
 
     public static final int STATUS_FIELD_NUMBER = 1;
-    private int status_;
+    private boolean status_;
     /**
-     * <code>optional .LOGIN_STATUS status = 1;</code>
+     * <code>optional bool status = 1;</code>
      */
-    public int getStatusValue() {
+    public boolean getStatus() {
       return status_;
-    }
-    /**
-     * <code>optional .LOGIN_STATUS status = 1;</code>
-     */
-    public com.ServerResponseMessage.LOGIN_STATUS getStatus() {
-      com.ServerResponseMessage.LOGIN_STATUS result = com.ServerResponseMessage.LOGIN_STATUS.valueOf(status_);
-      return result == null ? com.ServerResponseMessage.LOGIN_STATUS.UNRECOGNIZED : result;
     }
 
     public static final int INFORMATION_FIELD_NUMBER = 2;
@@ -8746,6 +5994,27 @@ public final class ServerResponseMessage {
       }
     }
 
+    public static final int USERMESSAGE_FIELD_NUMBER = 3;
+    private com.ServerResponseMessage.UserMessage userMessage_;
+    /**
+     * <code>optional .UserMessage userMessage = 3;</code>
+     */
+    public boolean hasUserMessage() {
+      return userMessage_ != null;
+    }
+    /**
+     * <code>optional .UserMessage userMessage = 3;</code>
+     */
+    public com.ServerResponseMessage.UserMessage getUserMessage() {
+      return userMessage_ == null ? com.ServerResponseMessage.UserMessage.getDefaultInstance() : userMessage_;
+    }
+    /**
+     * <code>optional .UserMessage userMessage = 3;</code>
+     */
+    public com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder() {
+      return getUserMessage();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -8758,11 +6027,14 @@ public final class ServerResponseMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (status_ != com.ServerResponseMessage.LOGIN_STATUS.ONLINE.getNumber()) {
-        output.writeEnum(1, status_);
+      if (status_ != false) {
+        output.writeBool(1, status_);
       }
       if (!getInformationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, information_);
+      }
+      if (userMessage_ != null) {
+        output.writeMessage(3, getUserMessage());
       }
     }
 
@@ -8771,12 +6043,16 @@ public final class ServerResponseMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (status_ != com.ServerResponseMessage.LOGIN_STATUS.ONLINE.getNumber()) {
+      if (status_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, status_);
+          .computeBoolSize(1, status_);
       }
       if (!getInformationBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, information_);
+      }
+      if (userMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getUserMessage());
       }
       memoizedSize = size;
       return size;
@@ -8794,9 +6070,15 @@ public final class ServerResponseMessage {
       com.ServerResponseMessage.LaunchResponse other = (com.ServerResponseMessage.LaunchResponse) obj;
 
       boolean result = true;
-      result = result && status_ == other.status_;
+      result = result && (getStatus()
+          == other.getStatus());
       result = result && getInformation()
           .equals(other.getInformation());
+      result = result && (hasUserMessage() == other.hasUserMessage());
+      if (hasUserMessage()) {
+        result = result && getUserMessage()
+            .equals(other.getUserMessage());
+      }
       return result;
     }
 
@@ -8808,9 +6090,14 @@ public final class ServerResponseMessage {
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + status_;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getStatus());
       hash = (37 * hash) + INFORMATION_FIELD_NUMBER;
       hash = (53 * hash) + getInformation().hashCode();
+      if (hasUserMessage()) {
+        hash = (37 * hash) + USERMESSAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getUserMessage().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8933,10 +6220,16 @@ public final class ServerResponseMessage {
       }
       public Builder clear() {
         super.clear();
-        status_ = 0;
+        status_ = false;
 
         information_ = "";
 
+        if (userMessageBuilder_ == null) {
+          userMessage_ = null;
+        } else {
+          userMessage_ = null;
+          userMessageBuilder_ = null;
+        }
         return this;
       }
 
@@ -8961,6 +6254,11 @@ public final class ServerResponseMessage {
         com.ServerResponseMessage.LaunchResponse result = new com.ServerResponseMessage.LaunchResponse(this);
         result.status_ = status_;
         result.information_ = information_;
+        if (userMessageBuilder_ == null) {
+          result.userMessage_ = userMessage_;
+        } else {
+          result.userMessage_ = userMessageBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -9002,12 +6300,15 @@ public final class ServerResponseMessage {
 
       public Builder mergeFrom(com.ServerResponseMessage.LaunchResponse other) {
         if (other == com.ServerResponseMessage.LaunchResponse.getDefaultInstance()) return this;
-        if (other.status_ != 0) {
-          setStatusValue(other.getStatusValue());
+        if (other.getStatus() != false) {
+          setStatus(other.getStatus());
         }
         if (!other.getInformation().isEmpty()) {
           information_ = other.information_;
           onChanged();
+        }
+        if (other.hasUserMessage()) {
+          mergeUserMessage(other.getUserMessage());
         }
         onChanged();
         return this;
@@ -9035,46 +6336,28 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private int status_ = 0;
+      private boolean status_ ;
       /**
-       * <code>optional .LOGIN_STATUS status = 1;</code>
+       * <code>optional bool status = 1;</code>
        */
-      public int getStatusValue() {
+      public boolean getStatus() {
         return status_;
       }
       /**
-       * <code>optional .LOGIN_STATUS status = 1;</code>
+       * <code>optional bool status = 1;</code>
        */
-      public Builder setStatusValue(int value) {
+      public Builder setStatus(boolean value) {
+        
         status_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .LOGIN_STATUS status = 1;</code>
-       */
-      public com.ServerResponseMessage.LOGIN_STATUS getStatus() {
-        com.ServerResponseMessage.LOGIN_STATUS result = com.ServerResponseMessage.LOGIN_STATUS.valueOf(status_);
-        return result == null ? com.ServerResponseMessage.LOGIN_STATUS.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .LOGIN_STATUS status = 1;</code>
-       */
-      public Builder setStatus(com.ServerResponseMessage.LOGIN_STATUS value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        status_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .LOGIN_STATUS status = 1;</code>
+       * <code>optional bool status = 1;</code>
        */
       public Builder clearStatus() {
         
-        status_ = 0;
+        status_ = false;
         onChanged();
         return this;
       }
@@ -9147,6 +6430,123 @@ public final class ServerResponseMessage {
         onChanged();
         return this;
       }
+
+      private com.ServerResponseMessage.UserMessage userMessage_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> userMessageBuilder_;
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public boolean hasUserMessage() {
+        return userMessageBuilder_ != null || userMessage_ != null;
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.UserMessage getUserMessage() {
+        if (userMessageBuilder_ == null) {
+          return userMessage_ == null ? com.ServerResponseMessage.UserMessage.getDefaultInstance() : userMessage_;
+        } else {
+          return userMessageBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public Builder setUserMessage(com.ServerResponseMessage.UserMessage value) {
+        if (userMessageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          userMessage_ = value;
+          onChanged();
+        } else {
+          userMessageBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public Builder setUserMessage(
+          com.ServerResponseMessage.UserMessage.Builder builderForValue) {
+        if (userMessageBuilder_ == null) {
+          userMessage_ = builderForValue.build();
+          onChanged();
+        } else {
+          userMessageBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public Builder mergeUserMessage(com.ServerResponseMessage.UserMessage value) {
+        if (userMessageBuilder_ == null) {
+          if (userMessage_ != null) {
+            userMessage_ =
+              com.ServerResponseMessage.UserMessage.newBuilder(userMessage_).mergeFrom(value).buildPartial();
+          } else {
+            userMessage_ = value;
+          }
+          onChanged();
+        } else {
+          userMessageBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public Builder clearUserMessage() {
+        if (userMessageBuilder_ == null) {
+          userMessage_ = null;
+          onChanged();
+        } else {
+          userMessage_ = null;
+          userMessageBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.UserMessage.Builder getUserMessageBuilder() {
+        
+        onChanged();
+        return getUserMessageFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder() {
+        if (userMessageBuilder_ != null) {
+          return userMessageBuilder_.getMessageOrBuilder();
+        } else {
+          return userMessage_ == null ?
+              com.ServerResponseMessage.UserMessage.getDefaultInstance() : userMessage_;
+        }
+      }
+      /**
+       * <code>optional .UserMessage userMessage = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> 
+          getUserMessageFieldBuilder() {
+        if (userMessageBuilder_ == null) {
+          userMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder>(
+                  getUserMessage(),
+                  getParentForChildren(),
+                  isClean());
+          userMessage_ = null;
+        }
+        return userMessageBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -9206,28 +6606,14 @@ public final class ServerResponseMessage {
     long getQuestionID();
 
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    java.util.List<com.ServerResponseMessage.ContentMessage> 
-        getContentMessageList();
+    java.lang.String getContent();
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    com.ServerResponseMessage.ContentMessage getContentMessage(int index);
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    int getContentMessageCount();
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    java.util.List<? extends com.ServerResponseMessage.ContentMessageOrBuilder> 
-        getContentMessageOrBuilderList();
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    com.ServerResponseMessage.ContentMessageOrBuilder getContentMessageOrBuilder(
-        int index);
+    com.google.protobuf.ByteString
+        getContentBytes();
 
     /**
      * <code>optional string time = 3;</code>
@@ -9248,16 +6634,6 @@ public final class ServerResponseMessage {
      */
     com.google.protobuf.ByteString
         getDateBytes();
-
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    java.lang.String getRecord();
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getRecordBytes();
   }
   /**
    * Protobuf type {@code SendContent}
@@ -9272,10 +6648,9 @@ public final class ServerResponseMessage {
     }
     private SendContent() {
       questionID_ = 0L;
-      contentMessage_ = java.util.Collections.emptyList();
+      content_ = "";
       time_ = "";
       date_ = "";
-      record_ = "";
     }
 
     @java.lang.Override
@@ -9309,12 +6684,9 @@ public final class ServerResponseMessage {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                contentMessage_ = new java.util.ArrayList<com.ServerResponseMessage.ContentMessage>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              contentMessage_.add(
-                  input.readMessage(com.ServerResponseMessage.ContentMessage.parser(), extensionRegistry));
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
               break;
             }
             case 26: {
@@ -9329,12 +6701,6 @@ public final class ServerResponseMessage {
               date_ = s;
               break;
             }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              record_ = s;
-              break;
-            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -9343,9 +6709,6 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          contentMessage_ = java.util.Collections.unmodifiableList(contentMessage_);
-        }
         makeExtensionsImmutable();
       }
     }
@@ -9361,7 +6724,6 @@ public final class ServerResponseMessage {
               com.ServerResponseMessage.SendContent.class, com.ServerResponseMessage.SendContent.Builder.class);
     }
 
-    private int bitField0_;
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
@@ -9371,39 +6733,38 @@ public final class ServerResponseMessage {
       return questionID_;
     }
 
-    public static final int CONTENTMESSAGE_FIELD_NUMBER = 2;
-    private java.util.List<com.ServerResponseMessage.ContentMessage> contentMessage_;
+    public static final int CONTENT_FIELD_NUMBER = 2;
+    private volatile java.lang.Object content_;
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    public java.util.List<com.ServerResponseMessage.ContentMessage> getContentMessageList() {
-      return contentMessage_;
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
     }
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    public java.util.List<? extends com.ServerResponseMessage.ContentMessageOrBuilder> 
-        getContentMessageOrBuilderList() {
-      return contentMessage_;
-    }
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    public int getContentMessageCount() {
-      return contentMessage_.size();
-    }
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    public com.ServerResponseMessage.ContentMessage getContentMessage(int index) {
-      return contentMessage_.get(index);
-    }
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    public com.ServerResponseMessage.ContentMessageOrBuilder getContentMessageOrBuilder(
-        int index) {
-      return contentMessage_.get(index);
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int TIME_FIELD_NUMBER = 3;
@@ -9474,40 +6835,6 @@ public final class ServerResponseMessage {
       }
     }
 
-    public static final int RECORD_FIELD_NUMBER = 5;
-    private volatile java.lang.Object record_;
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    public java.lang.String getRecord() {
-      java.lang.Object ref = record_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        record_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRecordBytes() {
-      java.lang.Object ref = record_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        record_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -9523,17 +6850,14 @@ public final class ServerResponseMessage {
       if (questionID_ != 0L) {
         output.writeInt64(1, questionID_);
       }
-      for (int i = 0; i < contentMessage_.size(); i++) {
-        output.writeMessage(2, contentMessage_.get(i));
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
       }
       if (!getDateBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, date_);
-      }
-      if (!getRecordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, record_);
       }
     }
 
@@ -9546,18 +6870,14 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, questionID_);
       }
-      for (int i = 0; i < contentMessage_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, contentMessage_.get(i));
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
       }
       if (!getDateBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, date_);
-      }
-      if (!getRecordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, record_);
       }
       memoizedSize = size;
       return size;
@@ -9577,14 +6897,12 @@ public final class ServerResponseMessage {
       boolean result = true;
       result = result && (getQuestionID()
           == other.getQuestionID());
-      result = result && getContentMessageList()
-          .equals(other.getContentMessageList());
+      result = result && getContent()
+          .equals(other.getContent());
       result = result && getTime()
           .equals(other.getTime());
       result = result && getDate()
           .equals(other.getDate());
-      result = result && getRecord()
-          .equals(other.getRecord());
       return result;
     }
 
@@ -9598,16 +6916,12 @@ public final class ServerResponseMessage {
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
-      if (getContentMessageCount() > 0) {
-        hash = (37 * hash) + CONTENTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getContentMessageList().hashCode();
-      }
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + DATE_FIELD_NUMBER;
       hash = (53 * hash) + getDate().hashCode();
-      hash = (37 * hash) + RECORD_FIELD_NUMBER;
-      hash = (53 * hash) + getRecord().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9722,24 +7036,17 @@ public final class ServerResponseMessage {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getContentMessageFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
         questionID_ = 0L;
 
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          contentMessageBuilder_.clear();
-        }
+        content_ = "";
+
         time_ = "";
 
         date_ = "";
-
-        record_ = "";
 
         return this;
       }
@@ -9763,22 +7070,10 @@ public final class ServerResponseMessage {
 
       public com.ServerResponseMessage.SendContent buildPartial() {
         com.ServerResponseMessage.SendContent result = new com.ServerResponseMessage.SendContent(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.questionID_ = questionID_;
-        if (contentMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            contentMessage_ = java.util.Collections.unmodifiableList(contentMessage_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.contentMessage_ = contentMessage_;
-        } else {
-          result.contentMessage_ = contentMessageBuilder_.build();
-        }
+        result.content_ = content_;
         result.time_ = time_;
         result.date_ = date_;
-        result.record_ = record_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -9823,31 +7118,9 @@ public final class ServerResponseMessage {
         if (other.getQuestionID() != 0L) {
           setQuestionID(other.getQuestionID());
         }
-        if (contentMessageBuilder_ == null) {
-          if (!other.contentMessage_.isEmpty()) {
-            if (contentMessage_.isEmpty()) {
-              contentMessage_ = other.contentMessage_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureContentMessageIsMutable();
-              contentMessage_.addAll(other.contentMessage_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.contentMessage_.isEmpty()) {
-            if (contentMessageBuilder_.isEmpty()) {
-              contentMessageBuilder_.dispose();
-              contentMessageBuilder_ = null;
-              contentMessage_ = other.contentMessage_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              contentMessageBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getContentMessageFieldBuilder() : null;
-            } else {
-              contentMessageBuilder_.addAllMessages(other.contentMessage_);
-            }
-          }
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
         }
         if (!other.getTime().isEmpty()) {
           time_ = other.time_;
@@ -9855,10 +7128,6 @@ public final class ServerResponseMessage {
         }
         if (!other.getDate().isEmpty()) {
           date_ = other.date_;
-          onChanged();
-        }
-        if (!other.getRecord().isEmpty()) {
-          record_ = other.record_;
           onChanged();
         }
         onChanged();
@@ -9886,7 +7155,6 @@ public final class ServerResponseMessage {
         }
         return this;
       }
-      private int bitField0_;
 
       private long questionID_ ;
       /**
@@ -9914,244 +7182,73 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private java.util.List<com.ServerResponseMessage.ContentMessage> contentMessage_ =
-        java.util.Collections.emptyList();
-      private void ensureContentMessageIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          contentMessage_ = new java.util.ArrayList<com.ServerResponseMessage.ContentMessage>(contentMessage_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage, com.ServerResponseMessage.ContentMessage.Builder, com.ServerResponseMessage.ContentMessageOrBuilder> contentMessageBuilder_;
-
+      private java.lang.Object content_ = "";
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public java.util.List<com.ServerResponseMessage.ContentMessage> getContentMessageList() {
-        if (contentMessageBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(contentMessage_);
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
         } else {
-          return contentMessageBuilder_.getMessageList();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public int getContentMessageCount() {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_.size();
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
         } else {
-          return contentMessageBuilder_.getCount();
+          return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public com.ServerResponseMessage.ContentMessage getContentMessage(int index) {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_.get(index);
-        } else {
-          return contentMessageBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder setContentMessage(
-          int index, com.ServerResponseMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContentMessageIsMutable();
-          contentMessage_.set(index, value);
-          onChanged();
-        } else {
-          contentMessageBuilder_.setMessage(index, value);
-        }
+      public Builder setContent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public Builder setContentMessage(
-          int index, com.ServerResponseMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          contentMessageBuilder_.setMessage(index, builderForValue.build());
-        }
+      public Builder clearContent() {
+        
+        content_ = getDefaultInstance().getContent();
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public Builder addContentMessage(com.ServerResponseMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContentMessageIsMutable();
-          contentMessage_.add(value);
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(value);
-        }
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        content_ = value;
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addContentMessage(
-          int index, com.ServerResponseMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContentMessageIsMutable();
-          contentMessage_.add(index, value);
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addContentMessage(
-          com.ServerResponseMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.add(builderForValue.build());
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addContentMessage(
-          int index, com.ServerResponseMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addAllContentMessage(
-          java.lang.Iterable<? extends com.ServerResponseMessage.ContentMessage> values) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, contentMessage_);
-          onChanged();
-        } else {
-          contentMessageBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder clearContentMessage() {
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          contentMessageBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder removeContentMessage(int index) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.remove(index);
-          onChanged();
-        } else {
-          contentMessageBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.Builder getContentMessageBuilder(
-          int index) {
-        return getContentMessageFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ServerResponseMessage.ContentMessageOrBuilder getContentMessageOrBuilder(
-          int index) {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_.get(index);  } else {
-          return contentMessageBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public java.util.List<? extends com.ServerResponseMessage.ContentMessageOrBuilder> 
-           getContentMessageOrBuilderList() {
-        if (contentMessageBuilder_ != null) {
-          return contentMessageBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(contentMessage_);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.Builder addContentMessageBuilder() {
-        return getContentMessageFieldBuilder().addBuilder(
-            com.ServerResponseMessage.ContentMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ServerResponseMessage.ContentMessage.Builder addContentMessageBuilder(
-          int index) {
-        return getContentMessageFieldBuilder().addBuilder(
-            index, com.ServerResponseMessage.ContentMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public java.util.List<com.ServerResponseMessage.ContentMessage.Builder> 
-           getContentMessageBuilderList() {
-        return getContentMessageFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ServerResponseMessage.ContentMessage, com.ServerResponseMessage.ContentMessage.Builder, com.ServerResponseMessage.ContentMessageOrBuilder> 
-          getContentMessageFieldBuilder() {
-        if (contentMessageBuilder_ == null) {
-          contentMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.ServerResponseMessage.ContentMessage, com.ServerResponseMessage.ContentMessage.Builder, com.ServerResponseMessage.ContentMessageOrBuilder>(
-                  contentMessage_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
-                  getParentForChildren(),
-                  isClean());
-          contentMessage_ = null;
-        }
-        return contentMessageBuilder_;
       }
 
       private java.lang.Object time_ = "";
@@ -10288,75 +7385,6 @@ public final class ServerResponseMessage {
   checkByteStringIsUtf8(value);
         
         date_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object record_ = "";
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public java.lang.String getRecord() {
-        java.lang.Object ref = record_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          record_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRecordBytes() {
-        java.lang.Object ref = record_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          record_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder setRecord(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        record_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder clearRecord() {
-        
-        record_ = getDefaultInstance().getRecord();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder setRecordBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        record_ = value;
         onChanged();
         return this;
       }
@@ -12127,444 +9155,6 @@ public final class ServerResponseMessage {
 
   }
 
-  public interface BadQuestionResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:BadQuestionResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bool success = 1;</code>
-     */
-    boolean getSuccess();
-  }
-  /**
-   * <pre>
-   *踩问题回复
-   * </pre>
-   *
-   * Protobuf type {@code BadQuestionResponse}
-   */
-  public  static final class BadQuestionResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:BadQuestionResponse)
-      BadQuestionResponseOrBuilder {
-    // Use BadQuestionResponse.newBuilder() to construct.
-    private BadQuestionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private BadQuestionResponse() {
-      success_ = false;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private BadQuestionResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              success_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.ServerResponseMessage.internal_static_BadQuestionResponse_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.ServerResponseMessage.internal_static_BadQuestionResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.ServerResponseMessage.BadQuestionResponse.class, com.ServerResponseMessage.BadQuestionResponse.Builder.class);
-    }
-
-    public static final int SUCCESS_FIELD_NUMBER = 1;
-    private boolean success_;
-    /**
-     * <code>optional bool success = 1;</code>
-     */
-    public boolean getSuccess() {
-      return success_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (success_ != false) {
-        output.writeBool(1, success_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (success_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, success_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.BadQuestionResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.BadQuestionResponse other = (com.ServerResponseMessage.BadQuestionResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ServerResponseMessage.BadQuestionResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.ServerResponseMessage.BadQuestionResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *踩问题回复
-     * </pre>
-     *
-     * Protobuf type {@code BadQuestionResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:BadQuestionResponse)
-        com.ServerResponseMessage.BadQuestionResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ServerResponseMessage.internal_static_BadQuestionResponse_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ServerResponseMessage.internal_static_BadQuestionResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ServerResponseMessage.BadQuestionResponse.class, com.ServerResponseMessage.BadQuestionResponse.Builder.class);
-      }
-
-      // Construct using com.ServerResponseMessage.BadQuestionResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        success_ = false;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.ServerResponseMessage.internal_static_BadQuestionResponse_descriptor;
-      }
-
-      public com.ServerResponseMessage.BadQuestionResponse getDefaultInstanceForType() {
-        return com.ServerResponseMessage.BadQuestionResponse.getDefaultInstance();
-      }
-
-      public com.ServerResponseMessage.BadQuestionResponse build() {
-        com.ServerResponseMessage.BadQuestionResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.ServerResponseMessage.BadQuestionResponse buildPartial() {
-        com.ServerResponseMessage.BadQuestionResponse result = new com.ServerResponseMessage.BadQuestionResponse(this);
-        result.success_ = success_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ServerResponseMessage.BadQuestionResponse) {
-          return mergeFrom((com.ServerResponseMessage.BadQuestionResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.ServerResponseMessage.BadQuestionResponse other) {
-        if (other == com.ServerResponseMessage.BadQuestionResponse.getDefaultInstance()) return this;
-        if (other.getSuccess() != false) {
-          setSuccess(other.getSuccess());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.ServerResponseMessage.BadQuestionResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ServerResponseMessage.BadQuestionResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private boolean success_ ;
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public boolean getSuccess() {
-        return success_;
-      }
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public Builder setSuccess(boolean value) {
-        
-        success_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public Builder clearSuccess() {
-        
-        success_ = false;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:BadQuestionResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:BadQuestionResponse)
-    private static final com.ServerResponseMessage.BadQuestionResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.ServerResponseMessage.BadQuestionResponse();
-    }
-
-    public static com.ServerResponseMessage.BadQuestionResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<BadQuestionResponse>
-        PARSER = new com.google.protobuf.AbstractParser<BadQuestionResponse>() {
-      public BadQuestionResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new BadQuestionResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<BadQuestionResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BadQuestionResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public com.ServerResponseMessage.BadQuestionResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface GoodUserResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:GoodUserResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -12998,444 +9588,6 @@ public final class ServerResponseMessage {
     }
 
     public com.ServerResponseMessage.GoodUserResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BadUserResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:BadUserResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bool success = 1;</code>
-     */
-    boolean getSuccess();
-  }
-  /**
-   * <pre>
-   *踩用户回复
-   * </pre>
-   *
-   * Protobuf type {@code BadUserResponse}
-   */
-  public  static final class BadUserResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:BadUserResponse)
-      BadUserResponseOrBuilder {
-    // Use BadUserResponse.newBuilder() to construct.
-    private BadUserResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private BadUserResponse() {
-      success_ = false;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private BadUserResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              success_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.ServerResponseMessage.internal_static_BadUserResponse_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.ServerResponseMessage.internal_static_BadUserResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.ServerResponseMessage.BadUserResponse.class, com.ServerResponseMessage.BadUserResponse.Builder.class);
-    }
-
-    public static final int SUCCESS_FIELD_NUMBER = 1;
-    private boolean success_;
-    /**
-     * <code>optional bool success = 1;</code>
-     */
-    public boolean getSuccess() {
-      return success_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (success_ != false) {
-        output.writeBool(1, success_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (success_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, success_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.BadUserResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.BadUserResponse other = (com.ServerResponseMessage.BadUserResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ServerResponseMessage.BadUserResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.ServerResponseMessage.BadUserResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *踩用户回复
-     * </pre>
-     *
-     * Protobuf type {@code BadUserResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:BadUserResponse)
-        com.ServerResponseMessage.BadUserResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ServerResponseMessage.internal_static_BadUserResponse_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ServerResponseMessage.internal_static_BadUserResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ServerResponseMessage.BadUserResponse.class, com.ServerResponseMessage.BadUserResponse.Builder.class);
-      }
-
-      // Construct using com.ServerResponseMessage.BadUserResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        success_ = false;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.ServerResponseMessage.internal_static_BadUserResponse_descriptor;
-      }
-
-      public com.ServerResponseMessage.BadUserResponse getDefaultInstanceForType() {
-        return com.ServerResponseMessage.BadUserResponse.getDefaultInstance();
-      }
-
-      public com.ServerResponseMessage.BadUserResponse build() {
-        com.ServerResponseMessage.BadUserResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.ServerResponseMessage.BadUserResponse buildPartial() {
-        com.ServerResponseMessage.BadUserResponse result = new com.ServerResponseMessage.BadUserResponse(this);
-        result.success_ = success_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ServerResponseMessage.BadUserResponse) {
-          return mergeFrom((com.ServerResponseMessage.BadUserResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.ServerResponseMessage.BadUserResponse other) {
-        if (other == com.ServerResponseMessage.BadUserResponse.getDefaultInstance()) return this;
-        if (other.getSuccess() != false) {
-          setSuccess(other.getSuccess());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.ServerResponseMessage.BadUserResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ServerResponseMessage.BadUserResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private boolean success_ ;
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public boolean getSuccess() {
-        return success_;
-      }
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public Builder setSuccess(boolean value) {
-        
-        success_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public Builder clearSuccess() {
-        
-        success_ = false;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:BadUserResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:BadUserResponse)
-    private static final com.ServerResponseMessage.BadUserResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.ServerResponseMessage.BadUserResponse();
-    }
-
-    public static com.ServerResponseMessage.BadUserResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<BadUserResponse>
-        PARSER = new com.google.protobuf.AbstractParser<BadUserResponse>() {
-      public BadUserResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new BadUserResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<BadUserResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BadUserResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public com.ServerResponseMessage.BadUserResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -15829,9 +11981,9 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
-    long getQuestionID();
+    boolean getSuccess();
   }
   /**
    * <pre>
@@ -15849,7 +12001,7 @@ public final class ServerResponseMessage {
       super(builder);
     }
     private AbandonQuestionResponse() {
-      questionID_ = 0L;
+      success_ = false;
     }
 
     @java.lang.Override
@@ -15879,7 +12031,7 @@ public final class ServerResponseMessage {
             }
             case 8: {
 
-              questionID_ = input.readInt64();
+              success_ = input.readBool();
               break;
             }
           }
@@ -15905,13 +12057,13 @@ public final class ServerResponseMessage {
               com.ServerResponseMessage.AbandonQuestionResponse.class, com.ServerResponseMessage.AbandonQuestionResponse.Builder.class);
     }
 
-    public static final int QUESTIONID_FIELD_NUMBER = 1;
-    private long questionID_;
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_;
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
-    public long getQuestionID() {
-      return questionID_;
+    public boolean getSuccess() {
+      return success_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -15926,8 +12078,8 @@ public final class ServerResponseMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (questionID_ != 0L) {
-        output.writeInt64(1, questionID_);
+      if (success_ != false) {
+        output.writeBool(1, success_);
       }
     }
 
@@ -15936,9 +12088,9 @@ public final class ServerResponseMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (questionID_ != 0L) {
+      if (success_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, questionID_);
+          .computeBoolSize(1, success_);
       }
       memoizedSize = size;
       return size;
@@ -15956,8 +12108,8 @@ public final class ServerResponseMessage {
       com.ServerResponseMessage.AbandonQuestionResponse other = (com.ServerResponseMessage.AbandonQuestionResponse) obj;
 
       boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
+      result = result && (getSuccess()
+          == other.getSuccess());
       return result;
     }
 
@@ -15968,9 +12120,9 @@ public final class ServerResponseMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
+      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSuccess());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -16093,7 +12245,7 @@ public final class ServerResponseMessage {
       }
       public Builder clear() {
         super.clear();
-        questionID_ = 0L;
+        success_ = false;
 
         return this;
       }
@@ -16117,7 +12269,7 @@ public final class ServerResponseMessage {
 
       public com.ServerResponseMessage.AbandonQuestionResponse buildPartial() {
         com.ServerResponseMessage.AbandonQuestionResponse result = new com.ServerResponseMessage.AbandonQuestionResponse(this);
-        result.questionID_ = questionID_;
+        result.success_ = success_;
         onBuilt();
         return result;
       }
@@ -16159,8 +12311,8 @@ public final class ServerResponseMessage {
 
       public Builder mergeFrom(com.ServerResponseMessage.AbandonQuestionResponse other) {
         if (other == com.ServerResponseMessage.AbandonQuestionResponse.getDefaultInstance()) return this;
-        if (other.getQuestionID() != 0L) {
-          setQuestionID(other.getQuestionID());
+        if (other.getSuccess() != false) {
+          setSuccess(other.getSuccess());
         }
         onChanged();
         return this;
@@ -16188,28 +12340,28 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private long questionID_ ;
+      private boolean success_ ;
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
-      public long getQuestionID() {
-        return questionID_;
+      public boolean getSuccess() {
+        return success_;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
-      public Builder setQuestionID(long value) {
+      public Builder setSuccess(boolean value) {
         
-        questionID_ = value;
+        success_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
-      public Builder clearQuestionID() {
+      public Builder clearSuccess() {
         
-        questionID_ = 0L;
+        success_ = false;
         onChanged();
         return this;
       }
@@ -16922,6 +13074,581 @@ public final class ServerResponseMessage {
 
   }
 
+  public interface GetCosSignResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetCosSignResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional bool success = 1;</code>
+     */
+    boolean getSuccess();
+
+    /**
+     * <code>optional string sign = 2;</code>
+     */
+    java.lang.String getSign();
+    /**
+     * <code>optional string sign = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSignBytes();
+  }
+  /**
+   * <pre>
+   *获取Sign
+   * </pre>
+   *
+   * Protobuf type {@code GetCosSignResponse}
+   */
+  public  static final class GetCosSignResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetCosSignResponse)
+      GetCosSignResponseOrBuilder {
+    // Use GetCosSignResponse.newBuilder() to construct.
+    private GetCosSignResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetCosSignResponse() {
+      success_ = false;
+      sign_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private GetCosSignResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              success_ = input.readBool();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              sign_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ServerResponseMessage.internal_static_GetCosSignResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ServerResponseMessage.internal_static_GetCosSignResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ServerResponseMessage.GetCosSignResponse.class, com.ServerResponseMessage.GetCosSignResponse.Builder.class);
+    }
+
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_;
+    /**
+     * <code>optional bool success = 1;</code>
+     */
+    public boolean getSuccess() {
+      return success_;
+    }
+
+    public static final int SIGN_FIELD_NUMBER = 2;
+    private volatile java.lang.Object sign_;
+    /**
+     * <code>optional string sign = 2;</code>
+     */
+    public java.lang.String getSign() {
+      java.lang.Object ref = sign_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sign_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string sign = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSignBytes() {
+      java.lang.Object ref = sign_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sign_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (success_ != false) {
+        output.writeBool(1, success_);
+      }
+      if (!getSignBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sign_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, success_);
+      }
+      if (!getSignBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sign_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ServerResponseMessage.GetCosSignResponse)) {
+        return super.equals(obj);
+      }
+      com.ServerResponseMessage.GetCosSignResponse other = (com.ServerResponseMessage.GetCosSignResponse) obj;
+
+      boolean result = true;
+      result = result && (getSuccess()
+          == other.getSuccess());
+      result = result && getSign()
+          .equals(other.getSign());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSuccess());
+      hash = (37 * hash) + SIGN_FIELD_NUMBER;
+      hash = (53 * hash) + getSign().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.GetCosSignResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ServerResponseMessage.GetCosSignResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *获取Sign
+     * </pre>
+     *
+     * Protobuf type {@code GetCosSignResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetCosSignResponse)
+        com.ServerResponseMessage.GetCosSignResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.internal_static_GetCosSignResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ServerResponseMessage.internal_static_GetCosSignResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ServerResponseMessage.GetCosSignResponse.class, com.ServerResponseMessage.GetCosSignResponse.Builder.class);
+      }
+
+      // Construct using com.ServerResponseMessage.GetCosSignResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        success_ = false;
+
+        sign_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ServerResponseMessage.internal_static_GetCosSignResponse_descriptor;
+      }
+
+      public com.ServerResponseMessage.GetCosSignResponse getDefaultInstanceForType() {
+        return com.ServerResponseMessage.GetCosSignResponse.getDefaultInstance();
+      }
+
+      public com.ServerResponseMessage.GetCosSignResponse build() {
+        com.ServerResponseMessage.GetCosSignResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ServerResponseMessage.GetCosSignResponse buildPartial() {
+        com.ServerResponseMessage.GetCosSignResponse result = new com.ServerResponseMessage.GetCosSignResponse(this);
+        result.success_ = success_;
+        result.sign_ = sign_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ServerResponseMessage.GetCosSignResponse) {
+          return mergeFrom((com.ServerResponseMessage.GetCosSignResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ServerResponseMessage.GetCosSignResponse other) {
+        if (other == com.ServerResponseMessage.GetCosSignResponse.getDefaultInstance()) return this;
+        if (other.getSuccess() != false) {
+          setSuccess(other.getSuccess());
+        }
+        if (!other.getSign().isEmpty()) {
+          sign_ = other.sign_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ServerResponseMessage.GetCosSignResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ServerResponseMessage.GetCosSignResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean success_ ;
+      /**
+       * <code>optional bool success = 1;</code>
+       */
+      public boolean getSuccess() {
+        return success_;
+      }
+      /**
+       * <code>optional bool success = 1;</code>
+       */
+      public Builder setSuccess(boolean value) {
+        
+        success_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool success = 1;</code>
+       */
+      public Builder clearSuccess() {
+        
+        success_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sign_ = "";
+      /**
+       * <code>optional string sign = 2;</code>
+       */
+      public java.lang.String getSign() {
+        java.lang.Object ref = sign_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sign_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string sign = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSignBytes() {
+        java.lang.Object ref = sign_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sign_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string sign = 2;</code>
+       */
+      public Builder setSign(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sign_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string sign = 2;</code>
+       */
+      public Builder clearSign() {
+        
+        sign_ = getDefaultInstance().getSign();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string sign = 2;</code>
+       */
+      public Builder setSignBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        sign_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetCosSignResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetCosSignResponse)
+    private static final com.ServerResponseMessage.GetCosSignResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ServerResponseMessage.GetCosSignResponse();
+    }
+
+    public static com.ServerResponseMessage.GetCosSignResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetCosSignResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetCosSignResponse>() {
+      public GetCosSignResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new GetCosSignResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetCosSignResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetCosSignResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ServerResponseMessage.GetCosSignResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface MessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Message)
       com.google.protobuf.MessageOrBuilder {
@@ -17011,19 +13738,6 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.GoodQuestionResponseOrBuilder getGoodQuestionResponseOrBuilder();
 
     /**
-     * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-     */
-    boolean hasBadQuestionResponse();
-    /**
-     * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-     */
-    com.ServerResponseMessage.BadQuestionResponse getBadQuestionResponse();
-    /**
-     * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-     */
-    com.ServerResponseMessage.BadQuestionResponseOrBuilder getBadQuestionResponseOrBuilder();
-
-    /**
      * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     boolean hasGoodUserResponse();
@@ -17037,17 +13751,17 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.GoodUserResponseOrBuilder getGoodUserResponseOrBuilder();
 
     /**
-     * <code>optional .BadUserResponse badUserResponse = 11;</code>
+     * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
      */
-    boolean hasBadUserResponse();
+    boolean hasGetCosSignResponse();
     /**
-     * <code>optional .BadUserResponse badUserResponse = 11;</code>
+     * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
      */
-    com.ServerResponseMessage.BadUserResponse getBadUserResponse();
+    com.ServerResponseMessage.GetCosSignResponse getGetCosSignResponse();
     /**
-     * <code>optional .BadUserResponse badUserResponse = 11;</code>
+     * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
      */
-    com.ServerResponseMessage.BadUserResponseOrBuilder getBadUserResponseOrBuilder();
+    com.ServerResponseMessage.GetCosSignResponseOrBuilder getGetCosSignResponseOrBuilder();
 
     /**
      * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
@@ -17250,14 +13964,14 @@ public final class ServerResponseMessage {
               break;
             }
             case 74: {
-              com.ServerResponseMessage.BadQuestionResponse.Builder subBuilder = null;
-              if (badQuestionResponse_ != null) {
-                subBuilder = badQuestionResponse_.toBuilder();
+              com.ServerResponseMessage.GetCosSignResponse.Builder subBuilder = null;
+              if (getCosSignResponse_ != null) {
+                subBuilder = getCosSignResponse_.toBuilder();
               }
-              badQuestionResponse_ = input.readMessage(com.ServerResponseMessage.BadQuestionResponse.parser(), extensionRegistry);
+              getCosSignResponse_ = input.readMessage(com.ServerResponseMessage.GetCosSignResponse.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(badQuestionResponse_);
-                badQuestionResponse_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(getCosSignResponse_);
+                getCosSignResponse_ = subBuilder.buildPartial();
               }
 
               break;
@@ -17271,19 +13985,6 @@ public final class ServerResponseMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(goodUserResponse_);
                 goodUserResponse_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 90: {
-              com.ServerResponseMessage.BadUserResponse.Builder subBuilder = null;
-              if (badUserResponse_ != null) {
-                subBuilder = badUserResponse_.toBuilder();
-              }
-              badUserResponse_ = input.readMessage(com.ServerResponseMessage.BadUserResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(badUserResponse_);
-                badUserResponse_ = subBuilder.buildPartial();
               }
 
               break;
@@ -17544,27 +14245,6 @@ public final class ServerResponseMessage {
       return getGoodQuestionResponse();
     }
 
-    public static final int BADQUESTIONRESPONSE_FIELD_NUMBER = 9;
-    private com.ServerResponseMessage.BadQuestionResponse badQuestionResponse_;
-    /**
-     * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-     */
-    public boolean hasBadQuestionResponse() {
-      return badQuestionResponse_ != null;
-    }
-    /**
-     * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-     */
-    public com.ServerResponseMessage.BadQuestionResponse getBadQuestionResponse() {
-      return badQuestionResponse_ == null ? com.ServerResponseMessage.BadQuestionResponse.getDefaultInstance() : badQuestionResponse_;
-    }
-    /**
-     * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-     */
-    public com.ServerResponseMessage.BadQuestionResponseOrBuilder getBadQuestionResponseOrBuilder() {
-      return getBadQuestionResponse();
-    }
-
     public static final int GOODUSERRESPONSE_FIELD_NUMBER = 10;
     private com.ServerResponseMessage.GoodUserResponse goodUserResponse_;
     /**
@@ -17586,25 +14266,25 @@ public final class ServerResponseMessage {
       return getGoodUserResponse();
     }
 
-    public static final int BADUSERRESPONSE_FIELD_NUMBER = 11;
-    private com.ServerResponseMessage.BadUserResponse badUserResponse_;
+    public static final int GETCOSSIGNRESPONSE_FIELD_NUMBER = 9;
+    private com.ServerResponseMessage.GetCosSignResponse getCosSignResponse_;
     /**
-     * <code>optional .BadUserResponse badUserResponse = 11;</code>
+     * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
      */
-    public boolean hasBadUserResponse() {
-      return badUserResponse_ != null;
+    public boolean hasGetCosSignResponse() {
+      return getCosSignResponse_ != null;
     }
     /**
-     * <code>optional .BadUserResponse badUserResponse = 11;</code>
+     * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
      */
-    public com.ServerResponseMessage.BadUserResponse getBadUserResponse() {
-      return badUserResponse_ == null ? com.ServerResponseMessage.BadUserResponse.getDefaultInstance() : badUserResponse_;
+    public com.ServerResponseMessage.GetCosSignResponse getGetCosSignResponse() {
+      return getCosSignResponse_ == null ? com.ServerResponseMessage.GetCosSignResponse.getDefaultInstance() : getCosSignResponse_;
     }
     /**
-     * <code>optional .BadUserResponse badUserResponse = 11;</code>
+     * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
      */
-    public com.ServerResponseMessage.BadUserResponseOrBuilder getBadUserResponseOrBuilder() {
-      return getBadUserResponse();
+    public com.ServerResponseMessage.GetCosSignResponseOrBuilder getGetCosSignResponseOrBuilder() {
+      return getGetCosSignResponse();
     }
 
     public static final int QUESTIONINFORMATIONRESPONSE_FIELD_NUMBER = 13;
@@ -17766,14 +14446,11 @@ public final class ServerResponseMessage {
       if (goodQuestionResponse_ != null) {
         output.writeMessage(8, getGoodQuestionResponse());
       }
-      if (badQuestionResponse_ != null) {
-        output.writeMessage(9, getBadQuestionResponse());
+      if (getCosSignResponse_ != null) {
+        output.writeMessage(9, getGetCosSignResponse());
       }
       if (goodUserResponse_ != null) {
         output.writeMessage(10, getGoodUserResponse());
-      }
-      if (badUserResponse_ != null) {
-        output.writeMessage(11, getBadUserResponse());
       }
       if (questionInformationResponse_ != null) {
         output.writeMessage(13, getQuestionInformationResponse());
@@ -17827,17 +14504,13 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, getGoodQuestionResponse());
       }
-      if (badQuestionResponse_ != null) {
+      if (getCosSignResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getBadQuestionResponse());
+          .computeMessageSize(9, getGetCosSignResponse());
       }
       if (goodUserResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getGoodUserResponse());
-      }
-      if (badUserResponse_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getBadUserResponse());
       }
       if (questionInformationResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -17907,20 +14580,15 @@ public final class ServerResponseMessage {
         result = result && getGoodQuestionResponse()
             .equals(other.getGoodQuestionResponse());
       }
-      result = result && (hasBadQuestionResponse() == other.hasBadQuestionResponse());
-      if (hasBadQuestionResponse()) {
-        result = result && getBadQuestionResponse()
-            .equals(other.getBadQuestionResponse());
-      }
       result = result && (hasGoodUserResponse() == other.hasGoodUserResponse());
       if (hasGoodUserResponse()) {
         result = result && getGoodUserResponse()
             .equals(other.getGoodUserResponse());
       }
-      result = result && (hasBadUserResponse() == other.hasBadUserResponse());
-      if (hasBadUserResponse()) {
-        result = result && getBadUserResponse()
-            .equals(other.getBadUserResponse());
+      result = result && (hasGetCosSignResponse() == other.hasGetCosSignResponse());
+      if (hasGetCosSignResponse()) {
+        result = result && getGetCosSignResponse()
+            .equals(other.getGetCosSignResponse());
       }
       result = result && (hasQuestionInformationResponse() == other.hasQuestionInformationResponse());
       if (hasQuestionInformationResponse()) {
@@ -17986,17 +14654,13 @@ public final class ServerResponseMessage {
         hash = (37 * hash) + GOODQUESTIONRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getGoodQuestionResponse().hashCode();
       }
-      if (hasBadQuestionResponse()) {
-        hash = (37 * hash) + BADQUESTIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getBadQuestionResponse().hashCode();
-      }
       if (hasGoodUserResponse()) {
         hash = (37 * hash) + GOODUSERRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getGoodUserResponse().hashCode();
       }
-      if (hasBadUserResponse()) {
-        hash = (37 * hash) + BADUSERRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getBadUserResponse().hashCode();
+      if (hasGetCosSignResponse()) {
+        hash = (37 * hash) + GETCOSSIGNRESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getGetCosSignResponse().hashCode();
       }
       if (hasQuestionInformationResponse()) {
         hash = (37 * hash) + QUESTIONINFORMATIONRESPONSE_FIELD_NUMBER;
@@ -18178,23 +14842,17 @@ public final class ServerResponseMessage {
           goodQuestionResponse_ = null;
           goodQuestionResponseBuilder_ = null;
         }
-        if (badQuestionResponseBuilder_ == null) {
-          badQuestionResponse_ = null;
-        } else {
-          badQuestionResponse_ = null;
-          badQuestionResponseBuilder_ = null;
-        }
         if (goodUserResponseBuilder_ == null) {
           goodUserResponse_ = null;
         } else {
           goodUserResponse_ = null;
           goodUserResponseBuilder_ = null;
         }
-        if (badUserResponseBuilder_ == null) {
-          badUserResponse_ = null;
+        if (getCosSignResponseBuilder_ == null) {
+          getCosSignResponse_ = null;
         } else {
-          badUserResponse_ = null;
-          badUserResponseBuilder_ = null;
+          getCosSignResponse_ = null;
+          getCosSignResponseBuilder_ = null;
         }
         if (questionInformationResponseBuilder_ == null) {
           questionInformationResponse_ = null;
@@ -18281,20 +14939,15 @@ public final class ServerResponseMessage {
         } else {
           result.goodQuestionResponse_ = goodQuestionResponseBuilder_.build();
         }
-        if (badQuestionResponseBuilder_ == null) {
-          result.badQuestionResponse_ = badQuestionResponse_;
-        } else {
-          result.badQuestionResponse_ = badQuestionResponseBuilder_.build();
-        }
         if (goodUserResponseBuilder_ == null) {
           result.goodUserResponse_ = goodUserResponse_;
         } else {
           result.goodUserResponse_ = goodUserResponseBuilder_.build();
         }
-        if (badUserResponseBuilder_ == null) {
-          result.badUserResponse_ = badUserResponse_;
+        if (getCosSignResponseBuilder_ == null) {
+          result.getCosSignResponse_ = getCosSignResponse_;
         } else {
-          result.badUserResponse_ = badUserResponseBuilder_.build();
+          result.getCosSignResponse_ = getCosSignResponseBuilder_.build();
         }
         if (questionInformationResponseBuilder_ == null) {
           result.questionInformationResponse_ = questionInformationResponse_;
@@ -18389,14 +15042,11 @@ public final class ServerResponseMessage {
         if (other.hasGoodQuestionResponse()) {
           mergeGoodQuestionResponse(other.getGoodQuestionResponse());
         }
-        if (other.hasBadQuestionResponse()) {
-          mergeBadQuestionResponse(other.getBadQuestionResponse());
-        }
         if (other.hasGoodUserResponse()) {
           mergeGoodUserResponse(other.getGoodUserResponse());
         }
-        if (other.hasBadUserResponse()) {
-          mergeBadUserResponse(other.getBadUserResponse());
+        if (other.hasGetCosSignResponse()) {
+          mergeGetCosSignResponse(other.getGetCosSignResponse());
         }
         if (other.hasQuestionInformationResponse()) {
           mergeQuestionInformationResponse(other.getQuestionInformationResponse());
@@ -19140,123 +15790,6 @@ public final class ServerResponseMessage {
         return goodQuestionResponseBuilder_;
       }
 
-      private com.ServerResponseMessage.BadQuestionResponse badQuestionResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.BadQuestionResponse, com.ServerResponseMessage.BadQuestionResponse.Builder, com.ServerResponseMessage.BadQuestionResponseOrBuilder> badQuestionResponseBuilder_;
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public boolean hasBadQuestionResponse() {
-        return badQuestionResponseBuilder_ != null || badQuestionResponse_ != null;
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public com.ServerResponseMessage.BadQuestionResponse getBadQuestionResponse() {
-        if (badQuestionResponseBuilder_ == null) {
-          return badQuestionResponse_ == null ? com.ServerResponseMessage.BadQuestionResponse.getDefaultInstance() : badQuestionResponse_;
-        } else {
-          return badQuestionResponseBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public Builder setBadQuestionResponse(com.ServerResponseMessage.BadQuestionResponse value) {
-        if (badQuestionResponseBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          badQuestionResponse_ = value;
-          onChanged();
-        } else {
-          badQuestionResponseBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public Builder setBadQuestionResponse(
-          com.ServerResponseMessage.BadQuestionResponse.Builder builderForValue) {
-        if (badQuestionResponseBuilder_ == null) {
-          badQuestionResponse_ = builderForValue.build();
-          onChanged();
-        } else {
-          badQuestionResponseBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public Builder mergeBadQuestionResponse(com.ServerResponseMessage.BadQuestionResponse value) {
-        if (badQuestionResponseBuilder_ == null) {
-          if (badQuestionResponse_ != null) {
-            badQuestionResponse_ =
-              com.ServerResponseMessage.BadQuestionResponse.newBuilder(badQuestionResponse_).mergeFrom(value).buildPartial();
-          } else {
-            badQuestionResponse_ = value;
-          }
-          onChanged();
-        } else {
-          badQuestionResponseBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public Builder clearBadQuestionResponse() {
-        if (badQuestionResponseBuilder_ == null) {
-          badQuestionResponse_ = null;
-          onChanged();
-        } else {
-          badQuestionResponse_ = null;
-          badQuestionResponseBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public com.ServerResponseMessage.BadQuestionResponse.Builder getBadQuestionResponseBuilder() {
-        
-        onChanged();
-        return getBadQuestionResponseFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      public com.ServerResponseMessage.BadQuestionResponseOrBuilder getBadQuestionResponseOrBuilder() {
-        if (badQuestionResponseBuilder_ != null) {
-          return badQuestionResponseBuilder_.getMessageOrBuilder();
-        } else {
-          return badQuestionResponse_ == null ?
-              com.ServerResponseMessage.BadQuestionResponse.getDefaultInstance() : badQuestionResponse_;
-        }
-      }
-      /**
-       * <code>optional .BadQuestionResponse badQuestionResponse = 9;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.BadQuestionResponse, com.ServerResponseMessage.BadQuestionResponse.Builder, com.ServerResponseMessage.BadQuestionResponseOrBuilder> 
-          getBadQuestionResponseFieldBuilder() {
-        if (badQuestionResponseBuilder_ == null) {
-          badQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ServerResponseMessage.BadQuestionResponse, com.ServerResponseMessage.BadQuestionResponse.Builder, com.ServerResponseMessage.BadQuestionResponseOrBuilder>(
-                  getBadQuestionResponse(),
-                  getParentForChildren(),
-                  isClean());
-          badQuestionResponse_ = null;
-        }
-        return badQuestionResponseBuilder_;
-      }
-
       private com.ServerResponseMessage.GoodUserResponse goodUserResponse_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GoodUserResponse, com.ServerResponseMessage.GoodUserResponse.Builder, com.ServerResponseMessage.GoodUserResponseOrBuilder> goodUserResponseBuilder_;
@@ -19374,121 +15907,121 @@ public final class ServerResponseMessage {
         return goodUserResponseBuilder_;
       }
 
-      private com.ServerResponseMessage.BadUserResponse badUserResponse_ = null;
+      private com.ServerResponseMessage.GetCosSignResponse getCosSignResponse_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.BadUserResponse, com.ServerResponseMessage.BadUserResponse.Builder, com.ServerResponseMessage.BadUserResponseOrBuilder> badUserResponseBuilder_;
+          com.ServerResponseMessage.GetCosSignResponse, com.ServerResponseMessage.GetCosSignResponse.Builder, com.ServerResponseMessage.GetCosSignResponseOrBuilder> getCosSignResponseBuilder_;
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public boolean hasBadUserResponse() {
-        return badUserResponseBuilder_ != null || badUserResponse_ != null;
+      public boolean hasGetCosSignResponse() {
+        return getCosSignResponseBuilder_ != null || getCosSignResponse_ != null;
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public com.ServerResponseMessage.BadUserResponse getBadUserResponse() {
-        if (badUserResponseBuilder_ == null) {
-          return badUserResponse_ == null ? com.ServerResponseMessage.BadUserResponse.getDefaultInstance() : badUserResponse_;
+      public com.ServerResponseMessage.GetCosSignResponse getGetCosSignResponse() {
+        if (getCosSignResponseBuilder_ == null) {
+          return getCosSignResponse_ == null ? com.ServerResponseMessage.GetCosSignResponse.getDefaultInstance() : getCosSignResponse_;
         } else {
-          return badUserResponseBuilder_.getMessage();
+          return getCosSignResponseBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public Builder setBadUserResponse(com.ServerResponseMessage.BadUserResponse value) {
-        if (badUserResponseBuilder_ == null) {
+      public Builder setGetCosSignResponse(com.ServerResponseMessage.GetCosSignResponse value) {
+        if (getCosSignResponseBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          badUserResponse_ = value;
+          getCosSignResponse_ = value;
           onChanged();
         } else {
-          badUserResponseBuilder_.setMessage(value);
+          getCosSignResponseBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public Builder setBadUserResponse(
-          com.ServerResponseMessage.BadUserResponse.Builder builderForValue) {
-        if (badUserResponseBuilder_ == null) {
-          badUserResponse_ = builderForValue.build();
+      public Builder setGetCosSignResponse(
+          com.ServerResponseMessage.GetCosSignResponse.Builder builderForValue) {
+        if (getCosSignResponseBuilder_ == null) {
+          getCosSignResponse_ = builderForValue.build();
           onChanged();
         } else {
-          badUserResponseBuilder_.setMessage(builderForValue.build());
+          getCosSignResponseBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public Builder mergeBadUserResponse(com.ServerResponseMessage.BadUserResponse value) {
-        if (badUserResponseBuilder_ == null) {
-          if (badUserResponse_ != null) {
-            badUserResponse_ =
-              com.ServerResponseMessage.BadUserResponse.newBuilder(badUserResponse_).mergeFrom(value).buildPartial();
+      public Builder mergeGetCosSignResponse(com.ServerResponseMessage.GetCosSignResponse value) {
+        if (getCosSignResponseBuilder_ == null) {
+          if (getCosSignResponse_ != null) {
+            getCosSignResponse_ =
+              com.ServerResponseMessage.GetCosSignResponse.newBuilder(getCosSignResponse_).mergeFrom(value).buildPartial();
           } else {
-            badUserResponse_ = value;
+            getCosSignResponse_ = value;
           }
           onChanged();
         } else {
-          badUserResponseBuilder_.mergeFrom(value);
+          getCosSignResponseBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public Builder clearBadUserResponse() {
-        if (badUserResponseBuilder_ == null) {
-          badUserResponse_ = null;
+      public Builder clearGetCosSignResponse() {
+        if (getCosSignResponseBuilder_ == null) {
+          getCosSignResponse_ = null;
           onChanged();
         } else {
-          badUserResponse_ = null;
-          badUserResponseBuilder_ = null;
+          getCosSignResponse_ = null;
+          getCosSignResponseBuilder_ = null;
         }
 
         return this;
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public com.ServerResponseMessage.BadUserResponse.Builder getBadUserResponseBuilder() {
+      public com.ServerResponseMessage.GetCosSignResponse.Builder getGetCosSignResponseBuilder() {
         
         onChanged();
-        return getBadUserResponseFieldBuilder().getBuilder();
+        return getGetCosSignResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
-      public com.ServerResponseMessage.BadUserResponseOrBuilder getBadUserResponseOrBuilder() {
-        if (badUserResponseBuilder_ != null) {
-          return badUserResponseBuilder_.getMessageOrBuilder();
+      public com.ServerResponseMessage.GetCosSignResponseOrBuilder getGetCosSignResponseOrBuilder() {
+        if (getCosSignResponseBuilder_ != null) {
+          return getCosSignResponseBuilder_.getMessageOrBuilder();
         } else {
-          return badUserResponse_ == null ?
-              com.ServerResponseMessage.BadUserResponse.getDefaultInstance() : badUserResponse_;
+          return getCosSignResponse_ == null ?
+              com.ServerResponseMessage.GetCosSignResponse.getDefaultInstance() : getCosSignResponse_;
         }
       }
       /**
-       * <code>optional .BadUserResponse badUserResponse = 11;</code>
+       * <code>optional .GetCosSignResponse getCosSignResponse = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.BadUserResponse, com.ServerResponseMessage.BadUserResponse.Builder, com.ServerResponseMessage.BadUserResponseOrBuilder> 
-          getBadUserResponseFieldBuilder() {
-        if (badUserResponseBuilder_ == null) {
-          badUserResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ServerResponseMessage.BadUserResponse, com.ServerResponseMessage.BadUserResponse.Builder, com.ServerResponseMessage.BadUserResponseOrBuilder>(
-                  getBadUserResponse(),
+          com.ServerResponseMessage.GetCosSignResponse, com.ServerResponseMessage.GetCosSignResponse.Builder, com.ServerResponseMessage.GetCosSignResponseOrBuilder> 
+          getGetCosSignResponseFieldBuilder() {
+        if (getCosSignResponseBuilder_ == null) {
+          getCosSignResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.GetCosSignResponse, com.ServerResponseMessage.GetCosSignResponse.Builder, com.ServerResponseMessage.GetCosSignResponseOrBuilder>(
+                  getGetCosSignResponse(),
                   getParentForChildren(),
                   isClean());
-          badUserResponse_ = null;
+          getCosSignResponse_ = null;
         }
-        return badUserResponseBuilder_;
+        return getCosSignResponseBuilder_;
       }
 
       private com.ServerResponseMessage.QuestionInformationResponse questionInformationResponse_ = null;
@@ -20247,21 +16780,6 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ContentMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ContentMessage_TextMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ContentMessage_TextMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ContentMessage_PictureMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ContentMessage_PictureMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ContentMessage_VoiceMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ContentMessage_VoiceMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Record_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -20307,20 +16825,10 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GoodQuestionResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_BadQuestionResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_BadQuestionResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_GoodUserResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GoodUserResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_BadUserResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_BadUserResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionInformationResponse_descriptor;
   private static final 
@@ -20352,6 +16860,11 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_SearchInformationResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetCosSignResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetCosSignResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -20365,88 +16878,75 @@ public final class ServerResponseMessage {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024ServerResponse.proto\"\233\003\n\016ContentMessag" +
-      "e\022 \n\tsend_type\030\001 \001(\0162\r.CONTENT_TYPE\022\"\n\014p" +
-      "icture_type\030\002 \001(\0162\014.PICTURETYPE\022\036\n\nvoice" +
-      "_type\030\003 \001(\0162\n.VOICETYPE\0220\n\013textMessage\030\004" +
-      " \001(\0132\033.ContentMessage.TextMessage\0226\n\016pic" +
-      "tureMessage\030\005 \003(\0132\036.ContentMessage.Pictu" +
-      "reMessage\0222\n\014voiceMessage\030\006 \003(\0132\034.Conten" +
-      "tMessage.VoiceMessage\032\033\n\013TextMessage\022\014\n\004" +
-      "text\030\001 \001(\t\0325\n\016PictureMessage\022\025\n\rpictureB" +
-      "inary\030\001 \003(\003\022\014\n\004path\030\002 \001(\t\0321\n\014VoiceMessag",
-      "e\022\023\n\013voiceBinary\030\001 \003(\003\022\014\n\004path\030\002 \001(\t\"[\n\006" +
-      "Record\022\'\n\016contentMessage\030\001 \001(\0132\017.Content" +
-      "Message\022\014\n\004time\030\002 \001(\t\022\014\n\004date\030\003 \001(\t\022\014\n\004u" +
-      "ser\030\004 \001(\t\"\235\001\n\023QuestionListMessage\022\022\n\nque" +
-      "stionID\030\001 \001(\003\022\033\n\023questionDescription\030\002 \001" +
-      "(\t\022\014\n\004good\030\003 \001(\005\022\013\n\003bad\030\004 \001(\005\022\017\n\007userNum" +
-      "\030\005 \001(\005\022\014\n\004time\030\006 \001(\t\022\014\n\004date\030\007 \001(\t\022\r\n\005ow" +
-      "ner\030\010 \001(\t\"u\n\017QuestionMessage\022\014\n\004stem\030\001 \001" +
-      "(\t\022\020\n\010addition\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\014\n\004da" +
-      "te\030\004 \001(\t\022\r\n\005owner\030\005 \001(\t\022\027\n\006record\030\006 \003(\0132",
-      "\007.Record\"j\n\013UserMessage\022\020\n\010username\030\001 \001(" +
-      "\t\022\014\n\004good\030\002 \001(\005\022\013\n\003bad\030\003 \001(\005\022\023\n\013question" +
-      "Num\030\004 \001(\005\022\031\n\021solvedQuestionNum\030\005 \001(\005\"D\n\016" +
-      "LaunchResponse\022\035\n\006status\030\001 \001(\0162\r.LOGIN_S" +
-      "TATUS\022\023\n\013information\030\002 \001(\t\"v\n\013SendConten" +
-      "t\022\022\n\nquestionID\030\001 \001(\003\022\'\n\016contentMessage\030" +
-      "\002 \003(\0132\017.ContentMessage\022\014\n\004time\030\003 \001(\t\022\014\n\004" +
-      "date\030\004 \001(\t\022\016\n\006record\030\005 \001(\t\"1\n\023Announceme" +
-      "ntMessage\022\014\n\004time\030\001 \001(\t\022\014\n\004text\030\002 \001(\t\"Q\n" +
-      "\025QuestionEnterResponse\022\r\n\005allow\030\001 \001(\010\022)\n",
-      "\017questionMessage\030\002 \001(\0132\020.QuestionMessage" +
-      "\"\'\n\024GoodQuestionResponse\022\017\n\007success\030\001 \001(" +
-      "\010\"&\n\023BadQuestionResponse\022\017\n\007success\030\001 \001(" +
-      "\010\"#\n\020GoodUserResponse\022\017\n\007success\030\001 \001(\010\"\"" +
-      "\n\017BadUserResponse\022\017\n\007success\030\001 \001(\010\"H\n\033Qu" +
-      "estionInformationResponse\022)\n\017questionMes" +
-      "sage\030\001 \001(\0132\020.QuestionMessage\"<\n\027UserInfo" +
-      "rmationResponse\022!\n\013userMessage\030\001 \001(\0132\014.U" +
-      "serMessage\"Y\n\027GetQuestionListResponse\022\013\n" +
-      "\003num\030\001 \001(\005\0221\n\023questionListMessage\030\002 \003(\0132",
-      "\024.QuestionListMessage\")\n\026CreateQuestionR" +
-      "esponse\022\017\n\007success\030\001 \001(\010\"-\n\027AbandonQuest" +
-      "ionResponse\022\022\n\nquestionID\030\001 \001(\003\"g\n\031Searc" +
-      "hInformationResponse\022\037\n\nsearchType\030\001 \001(\016" +
-      "2\013.SEARCHTYPE\022)\n\017questionMessage\030\003 \001(\0132\020" +
-      ".QuestionMessage\"\224\006\n\007Message\022\026\n\010msg_type" +
-      "\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\rlauchR" +
-      "esponse\030\003 \001(\0132\017.LaunchResponse\022!\n\013sendCo" +
-      "ntent\030\005 \001(\0132\014.SendContent\0221\n\023announcemen" +
-      "tMessage\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025",
-      "questionEnterResponse\030\007 \001(\0132\026.QuestionEn" +
-      "terResponse\0223\n\024goodQuestionResponse\030\010 \001(" +
-      "\0132\025.GoodQuestionResponse\0221\n\023badQuestionR" +
-      "esponse\030\t \001(\0132\024.BadQuestionResponse\022+\n\020g" +
-      "oodUserResponse\030\n \001(\0132\021.GoodUserResponse" +
-      "\022)\n\017badUserResponse\030\013 \001(\0132\020.BadUserRespo" +
-      "nse\022A\n\033questionInformationResponse\030\r \001(\013" +
-      "2\034.QuestionInformationResponse\0229\n\027userIn" +
-      "formationResponse\030\016 \001(\0132\030.UserInformatio" +
-      "nResponse\0229\n\027getQuestionListResponse\030\017 \001",
-      "(\0132\030.GetQuestionListResponse\0227\n\026createQu" +
-      "estionResponse\030\022 \001(\0132\027.CreateQuestionRes" +
-      "ponse\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030" +
-      ".AbandonQuestionResponse\022=\n\031searchInform" +
-      "ationResponse\030\024 \001(\0132\032.SearchInformationR" +
-      "esponse*\211\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\020\n\014" +
-      "SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003" +
-      "\022\033\n\027QUESTION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QU" +
-      "ESTION_RESPONSE\020\005\022\031\n\025BAD_QUESTION_RESPON" +
-      "SE\020\006\022\026\n\022GOOD_USER_RESPONSE\020\007\022\025\n\021BAD_USER",
-      "_RESPONSE\020\010\022!\n\035QUESTION_INFORMATION_RESP" +
-      "ONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n" +
-      "\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CREATE_" +
-      "QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_" +
-      "RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RESPONS" +
-      "E\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n" +
-      "\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n" +
-      "\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002" +
-      "*\024\n\tVOICETYPE\022\007\n\003MP4\020\000*\032\n\nSEARCHTYPE\022\014\n\010" +
-      "QUESTION\020\000*3\n\014LOGIN_STATUS\022\n\n\006ONLINE\020\000\022\013",
-      "\n\007OFFLINE\020\001\022\n\n\006SECRET\020\002B\034\n\003comB\025ServerRe" +
-      "sponseMessageb\006proto3"
+      "\n\024ServerResponse.proto\"!\n\016ContentMessage" +
+      "\022\017\n\007content\030\001 \001(\t\"J\n\006Record\022\026\n\016contentMe" +
+      "ssage\030\001 \001(\t\022\014\n\004time\030\002 \001(\t\022\014\n\004date\030\003 \001(\t\022" +
+      "\014\n\004user\030\004 \001(\t\"\220\001\n\023QuestionListMessage\022\022\n" +
+      "\nquestionID\030\001 \001(\003\022\033\n\023questionDescription" +
+      "\030\002 \001(\t\022\014\n\004good\030\003 \001(\005\022\017\n\007userNum\030\005 \001(\005\022\014\n" +
+      "\004time\030\006 \001(\t\022\014\n\004date\030\007 \001(\t\022\r\n\005owner\030\010 \001(\t" +
+      "\"\223\001\n\017QuestionMessage\022\014\n\004stem\030\001 \001(\t\022\020\n\010ad" +
+      "dition\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\014\n\004date\030\004 \001(\t" +
+      "\022\r\n\005owner\030\005 \001(\t\022\027\n\006record\030\006 \003(\0132\007.Record",
+      "\022\016\n\006solved\030\007 \001(\010\022\014\n\004good\030\010 \001(\005\"\225\001\n\013UserM" +
+      "essage\022\020\n\010username\030\001 \001(\t\022\014\n\004good\030\002 \001(\005\022\023" +
+      "\n\013questionNum\030\004 \001(\005\022\031\n\021solvedQuestionNum" +
+      "\030\005 \001(\005\022\r\n\005bonus\030\006 \001(\005\022\021\n\tsignature\030\007 \001(\t" +
+      "\022\024\n\014mail_address\030\010 \001(\t\"X\n\016LaunchResponse" +
+      "\022\016\n\006status\030\001 \001(\010\022\023\n\013information\030\002 \001(\t\022!\n" +
+      "\013userMessage\030\003 \001(\0132\014.UserMessage\"N\n\013Send" +
+      "Content\022\022\n\nquestionID\030\001 \001(\003\022\017\n\007content\030\002" +
+      " \001(\t\022\014\n\004time\030\003 \001(\t\022\014\n\004date\030\004 \001(\t\"1\n\023Anno" +
+      "uncementMessage\022\014\n\004time\030\001 \001(\t\022\014\n\004text\030\002 ",
+      "\001(\t\"Q\n\025QuestionEnterResponse\022\r\n\005allow\030\001 " +
+      "\001(\010\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionM" +
+      "essage\"\'\n\024GoodQuestionResponse\022\017\n\007succes" +
+      "s\030\001 \001(\010\"#\n\020GoodUserResponse\022\017\n\007success\030\001" +
+      " \001(\010\"H\n\033QuestionInformationResponse\022)\n\017q" +
+      "uestionMessage\030\001 \001(\0132\020.QuestionMessage\"<" +
+      "\n\027UserInformationResponse\022!\n\013userMessage" +
+      "\030\001 \001(\0132\014.UserMessage\"Y\n\027GetQuestionListR" +
+      "esponse\022\013\n\003num\030\001 \001(\005\0221\n\023questionListMess" +
+      "age\030\002 \003(\0132\024.QuestionListMessage\")\n\026Creat",
+      "eQuestionResponse\022\017\n\007success\030\001 \001(\010\"*\n\027Ab" +
+      "andonQuestionResponse\022\017\n\007success\030\001 \001(\010\"g" +
+      "\n\031SearchInformationResponse\022\037\n\nsearchTyp" +
+      "e\030\001 \001(\0162\013.SEARCHTYPE\022)\n\017questionMessage\030" +
+      "\003 \001(\0132\020.QuestionMessage\"3\n\022GetCosSignRes" +
+      "ponse\022\017\n\007success\030\001 \001(\010\022\014\n\004sign\030\002 \001(\t\"\347\005\n" +
+      "\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010user" +
+      "name\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.Laun" +
+      "chResponse\022!\n\013sendContent\030\005 \001(\0132\014.SendCo" +
+      "ntent\0221\n\023announcementMessage\030\006 \001(\0132\024.Ann",
+      "ouncementMessage\0225\n\025questionEnterRespons" +
+      "e\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024goodQ" +
+      "uestionResponse\030\010 \001(\0132\025.GoodQuestionResp" +
+      "onse\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUse" +
+      "rResponse\022/\n\022getCosSignResponse\030\t \001(\0132\023." +
+      "GetCosSignResponse\022A\n\033questionInformatio" +
+      "nResponse\030\r \001(\0132\034.QuestionInformationRes" +
+      "ponse\0229\n\027userInformationResponse\030\016 \001(\0132\030" +
+      ".UserInformationResponse\0229\n\027getQuestionL" +
+      "istResponse\030\017 \001(\0132\030.GetQuestionListRespo",
+      "nse\0227\n\026createQuestionResponse\030\022 \001(\0132\027.Cr" +
+      "eateQuestionResponse\0229\n\027abandonQuestionR" +
+      "esponse\030\023 \001(\0132\030.AbandonQuestionResponse\022" +
+      "=\n\031searchInformationResponse\030\024 \001(\0132\032.Sea" +
+      "rchInformationResponse*\362\002\n\003MSG\022\023\n\017LAUNCH" +
+      "_RESPONSE\020\000\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNC" +
+      "EMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPON" +
+      "SE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD" +
+      "_USER_RESPONSE\020\007\022\031\n\025GET_COS_SIGN_RESPONS" +
+      "E\020\t\022!\n\035QUESTION_INFORMATION_RESPONSE\020\n\022\035",
+      "\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n\032GET_QUE" +
+      "STION_LIST_RESPONSE\020\014\022\034\n\030CREATE_QUESTION" +
+      "_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_RESPONSE" +
+      "\020\020\022\037\n\033SEARCH_INFORMATION_RESPONSE\020\021*H\n\014C" +
+      "ONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE" +
+      "_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURE" +
+      "TYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOIC" +
+      "ETYPE\022\007\n\003MP4\020\000*\032\n\nSEARCHTYPE\022\014\n\010QUESTION" +
+      "\020\000B\034\n\003comB\025ServerResponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -20465,25 +16965,7 @@ public final class ServerResponseMessage {
     internal_static_ContentMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ContentMessage_descriptor,
-        new java.lang.String[] { "SendType", "PictureType", "VoiceType", "TextMessage", "PictureMessage", "VoiceMessage", });
-    internal_static_ContentMessage_TextMessage_descriptor =
-      internal_static_ContentMessage_descriptor.getNestedTypes().get(0);
-    internal_static_ContentMessage_TextMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ContentMessage_TextMessage_descriptor,
-        new java.lang.String[] { "Text", });
-    internal_static_ContentMessage_PictureMessage_descriptor =
-      internal_static_ContentMessage_descriptor.getNestedTypes().get(1);
-    internal_static_ContentMessage_PictureMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ContentMessage_PictureMessage_descriptor,
-        new java.lang.String[] { "PictureBinary", "Path", });
-    internal_static_ContentMessage_VoiceMessage_descriptor =
-      internal_static_ContentMessage_descriptor.getNestedTypes().get(2);
-    internal_static_ContentMessage_VoiceMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ContentMessage_VoiceMessage_descriptor,
-        new java.lang.String[] { "VoiceBinary", "Path", });
+        new java.lang.String[] { "Content", });
     internal_static_Record_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Record_fieldAccessorTable = new
@@ -20495,31 +16977,31 @@ public final class ServerResponseMessage {
     internal_static_QuestionListMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionListMessage_descriptor,
-        new java.lang.String[] { "QuestionID", "QuestionDescription", "Good", "Bad", "UserNum", "Time", "Date", "Owner", });
+        new java.lang.String[] { "QuestionID", "QuestionDescription", "Good", "UserNum", "Time", "Date", "Owner", });
     internal_static_QuestionMessage_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_QuestionMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionMessage_descriptor,
-        new java.lang.String[] { "Stem", "Addition", "Time", "Date", "Owner", "Record", });
+        new java.lang.String[] { "Stem", "Addition", "Time", "Date", "Owner", "Record", "Solved", "Good", });
     internal_static_UserMessage_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_UserMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserMessage_descriptor,
-        new java.lang.String[] { "Username", "Good", "Bad", "QuestionNum", "SolvedQuestionNum", });
+        new java.lang.String[] { "Username", "Good", "QuestionNum", "SolvedQuestionNum", "Bonus", "Signature", "MailAddress", });
     internal_static_LaunchResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_LaunchResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LaunchResponse_descriptor,
-        new java.lang.String[] { "Status", "Information", });
+        new java.lang.String[] { "Status", "Information", "UserMessage", });
     internal_static_SendContent_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_SendContent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_descriptor,
-        new java.lang.String[] { "QuestionID", "ContentMessage", "Time", "Date", "Record", });
+        new java.lang.String[] { "QuestionID", "Content", "Time", "Date", });
     internal_static_AnnouncementMessage_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_AnnouncementMessage_fieldAccessorTable = new
@@ -20538,66 +17020,60 @@ public final class ServerResponseMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GoodQuestionResponse_descriptor,
         new java.lang.String[] { "Success", });
-    internal_static_BadQuestionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_BadQuestionResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_BadQuestionResponse_descriptor,
-        new java.lang.String[] { "Success", });
     internal_static_GoodUserResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_GoodUserResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GoodUserResponse_descriptor,
         new java.lang.String[] { "Success", });
-    internal_static_BadUserResponse_descriptor =
-      getDescriptor().getMessageTypes().get(12);
-    internal_static_BadUserResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_BadUserResponse_descriptor,
-        new java.lang.String[] { "Success", });
     internal_static_QuestionInformationResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_QuestionInformationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionInformationResponse_descriptor,
         new java.lang.String[] { "QuestionMessage", });
     internal_static_UserInformationResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_UserInformationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserInformationResponse_descriptor,
         new java.lang.String[] { "UserMessage", });
     internal_static_GetQuestionListResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_GetQuestionListResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetQuestionListResponse_descriptor,
         new java.lang.String[] { "Num", "QuestionListMessage", });
     internal_static_CreateQuestionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_CreateQuestionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateQuestionResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_AbandonQuestionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_AbandonQuestionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AbandonQuestionResponse_descriptor,
-        new java.lang.String[] { "QuestionID", });
+        new java.lang.String[] { "Success", });
     internal_static_SearchInformationResponse_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_SearchInformationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchInformationResponse_descriptor,
         new java.lang.String[] { "SearchType", "QuestionMessage", });
+    internal_static_GetCosSignResponse_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_GetCosSignResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetCosSignResponse_descriptor,
+        new java.lang.String[] { "Success", "Sign", });
     internal_static_Message_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "BadQuestionResponse", "GoodUserResponse", "BadUserResponse", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", });
+        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "GetCosSignResponse", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

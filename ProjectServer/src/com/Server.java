@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,11 +21,14 @@ public class Server {
 	static final String hostName = "localHost";
 	static final String ip = "127.0.0.1";
 	static final int maxThread = 1000;
+	public static List<Map<String, Socket>> question_user_list;
 
 	public static void main(String[] args) throws IOException {
 		//server init
 		ServerSocket serverSocket = new ServerSocket(6666);
 		System.out.println("Started: "+serverSocket);
+
+		question_user_list = new ArrayList<>();
 
 		//创建线程池
 		ExecutorService pool = Executors.newFixedThreadPool(maxThread);

@@ -24,44 +24,38 @@ public class ServerThread implements Runnable {
 	public void run() {
 		ClientSendMessage.Message recvMessage = null;
 		ServerResponseMessage.Message respMessage = null;
-		ServerItem serverItem = new ServerItem(clientSocket, recvMessage);
-		do {
+		ServerItem serverItem = new ServerItem(clientSocket, recvMessage, dbconn);
+		while (clientSocket.isConnected()) {
 			try {
-				byte[] len = new byte[1024];
-				int count = clientSocket.getInputStream().read(len);
-				byte[] messageByte = new byte[count];
-				for(int i=0;i<count;i++)
-					messageByte[i]=len[i];
-
-				recvMessage = ClientSendMessage.Message.parseFrom(messageByte);
+				recvMessage = ClientSendMessage.Message.parseDelimitedFrom(is);
 				respMessage = serverItem.handleMessage(recvMessage);
 				//若为登出消息则退出
-				if(respMessage==null)
+				if (respMessage == null || recvMessage==null)
+					continue;
+
+				respMessage.writeDelimitedTo(os);
+				os.flush();
+
+				if (!serverItem.isLaunched())
 					break;
-
-				respMessage.writeTo(os);
-
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				break;
 			}
-		}while(true);
+
+		}
 
 		//将用户设置为未登录状态
 		try {
-			PreparedStatement pstmt = dbconn.connection.prepareStatement(
-					  "DELETE FROM online_user WHERE username=\"?\"");
-			pstmt.setString(1,recvMessage.getUsername());
+			String sql ="DELETE FROM online_user WHERE username='?';".replace("?", recvMessage.getUsername());
+			PreparedStatement pstmt = dbconn.connection.prepareStatement(sql);
+			pstmt.setString(1, recvMessage.getUsername());
 			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		//关闭输入输出流和数据库链接
-		try {
+			//关闭输入输出流和数据库链接
 			is.close();
 			os.close();
 			dbconn.closeConnection();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

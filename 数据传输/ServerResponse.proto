@@ -13,9 +13,9 @@ enum MSG {
    QUESTION_ENTER_RESPONSE = 4;
    //评价信息
    GOOD_QUESTION_RESPONSE = 5;
-   BAD_QUESTION_RESPONSE = 6;
    GOOD_USER_RESPONSE = 7;
-   BAD_USER_RESPONSE = 8;
+   //获取COS Sign回复
+   GET_COS_SIGN_RESPONSE = 9;
    //消息显示信息
    QUESTION_INFORMATION_RESPONSE = 10;
    USER_INFORMATION_RESPONSE = 11;
@@ -49,40 +49,17 @@ enum VOICETYPE {
 enum SEARCHTYPE {
     QUESTION = 0;
 }
-//登录状态
-enum LOGIN_STATUS {
-    ONLINE = 0;
-    OFFLINE = 1;
-    SECRET = 2;
-}
-
 
 //-----------底层消息--------------//
 
 //发送信息
 message ContentMessage {
-    CONTENT_TYPE send_type = 1;
-    message TextMessage {
-        string text = 1;
-    }
-    message PictureMessage {
-        repeated int64 pictureBinary = 1;
-        string path = 2;
-    }
-    message VoiceMessage {
-        repeated int64 voiceBinary = 1;
-        string path = 2;
-    }
-    PICTURETYPE picture_type = 2;
-    VOICETYPE voice_type = 3;
-    TextMessage textMessage = 4;
-    repeated PictureMessage pictureMessage = 5;
-    repeated VoiceMessage voiceMessage = 6;
+    string content = 1;
 }
 
 //记录消息体
 message Record {
-    ContentMessage contentMessage = 1;
+    string contentMessage = 1;
     string time = 2;
     string date = 3;
     string user = 4;
@@ -93,7 +70,6 @@ message QuestionListMessage {
     int64 questionID = 1;
     string questionDescription = 2;
     int32 good = 3;
-    int32 bad = 4;
     int32 userNum = 5;
     string time = 6;
     string date = 7;
@@ -107,32 +83,36 @@ message QuestionMessage {
     string time = 3;
     string date = 4;
     string owner = 5;
-    repeated Record record = 6;    
+    repeated Record record = 6;
+    bool solved = 7;
+    int32 good = 8;
 }
 
 //用户信息消息体
 message UserMessage {
     string username = 1;
     int32 good = 2;
-    int32 bad = 3;
     int32 questionNum = 4;
     int32 solvedQuestionNum = 5;
+    int32 bonus = 6;
+    string signature = 7;
+    string mail_address = 8;
 }
 
 //-------------具体消息-------------//
 
 //登入回复
 message LaunchResponse {
-    LOGIN_STATUS status = 1;
+    bool status = 1;
     string information = 2;
+    UserMessage userMessage = 3;
 }
 
 message SendContent {
     int64 questionID = 1;
-    repeated ContentMessage contentMessage = 2;
+    string content = 2;
     string time = 3;
     string date = 4;
-    string record = 5;
 }
 
 //通告信息
@@ -152,18 +132,8 @@ message GoodQuestionResponse {
     bool success = 1;
 }
 
-//踩问题回复
-message BadQuestionResponse {
-    bool success = 1;
-}
-
 //赞用户回复
 message GoodUserResponse {
-    bool success = 1;
-}
-
-//踩用户回复
-message BadUserResponse {
     bool success = 1;
 }
 
@@ -190,13 +160,19 @@ message CreateQuestionResponse {
 
 //取消问题回复
 message AbandonQuestionResponse {
-    int64 questionID = 1;
+    bool success = 1;
 }
 
 //搜索内容回复
 message SearchInformationResponse {
     SEARCHTYPE searchType = 1;
     QuestionMessage questionMessage = 3;
+}
+
+//获取Sign
+message GetCosSignResponse {
+    bool success = 1;
+    string sign = 2;
 }
 
 //----------------顶层消息----------------------
@@ -208,9 +184,8 @@ message Message {
     AnnouncementMessage announcementMessage = 6;
     QuestionEnterResponse questionEnterResponse = 7;
     GoodQuestionResponse goodQuestionResponse = 8;
-    BadQuestionResponse badQuestionResponse =9;
     GoodUserResponse goodUserResponse = 10;
-    BadUserResponse badUserResponse = 11;
+    GetCosSignResponse getCosSignResponse = 9;
     QuestionInformationResponse questionInformationResponse = 13;
     UserInformationResponse userInformationResponse = 14;
     GetQuestionListResponse getQuestionListResponse = 15;

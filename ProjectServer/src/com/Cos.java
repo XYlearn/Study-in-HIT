@@ -1,5 +1,6 @@
 package com;
 import java.nio.charset.Charset;
+import java.util.Random;
 
 import com.qcloud.cos.*;
 import com.qcloud.cos.common_utils.CommonFileUtils;
@@ -17,21 +18,31 @@ import com.qcloud.cos.request.UpdateFileRequest;
 import com.qcloud.cos.request.UpdateFolderRequest;
 import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
+import com.qcloud.cos.sign.Sign;
 
 
 /**
  * @author chengwu cos Demo代码
  */
 public class Cos {
-	private long appId = 1252826460;
-	private String secretId = "AKIDdAWpO0Ur57yhKqAYDhz8BapyymQtPrbC";
-	private String secretKey = "hEbnuxupcDcpvqkWKBrKfw66vkNoHPZa";
-	private String bucketName = "sihdatabase";
-	private String region = "tj";
+	private static long appId = 1252826460;
+	private static String secretId = "AKIDdAWpO0Ur57yhKqAYDhz8BapyymQtPrbC";
+	private static String secretKey = "hEbnuxupcDcpvqkWKBrKfw66vkNoHPZa";
+	private static String bucketName = "sihdatabase";
+	private static String region = "tj";
 
 	private ClientConfig clientConfig;
 	private Credentials cred;
 	private COSClient cosClient;
+
+	String getSign(String path) {
+		try {
+			return Sign.getPeriodEffectiveSign(bucketName, path, cred, 21600);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public Cos() {
 		clientConfig = new ClientConfig();

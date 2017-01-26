@@ -64,17 +64,17 @@ public final class ClientSendMessage {
      */
     GOOD_QUESTION_REQUEST(5),
     /**
-     * <code>BAD_QUESTION_REQUEST = 6;</code>
-     */
-    BAD_QUESTION_REQUEST(6),
-    /**
      * <code>GOOD_USER_REQUEST = 7;</code>
      */
     GOOD_USER_REQUEST(7),
     /**
-     * <code>BAD_USER_REQUEST = 8;</code>
+     * <pre>
+     *获取Cos签名
+     * </pre>
+     *
+     * <code>GET_COS_SIGN_REQUEST = 9;</code>
      */
-    BAD_USER_REQUEST(8),
+    GET_COS_SIGN_REQUEST(9),
     /**
      * <pre>
      *消息显示信息
@@ -155,17 +155,17 @@ public final class ClientSendMessage {
      */
     public static final int GOOD_QUESTION_REQUEST_VALUE = 5;
     /**
-     * <code>BAD_QUESTION_REQUEST = 6;</code>
-     */
-    public static final int BAD_QUESTION_REQUEST_VALUE = 6;
-    /**
      * <code>GOOD_USER_REQUEST = 7;</code>
      */
     public static final int GOOD_USER_REQUEST_VALUE = 7;
     /**
-     * <code>BAD_USER_REQUEST = 8;</code>
+     * <pre>
+     *获取Cos签名
+     * </pre>
+     *
+     * <code>GET_COS_SIGN_REQUEST = 9;</code>
      */
-    public static final int BAD_USER_REQUEST_VALUE = 8;
+    public static final int GET_COS_SIGN_REQUEST_VALUE = 9;
     /**
      * <pre>
      *消息显示信息
@@ -228,9 +228,8 @@ public final class ClientSendMessage {
         case 3: return ANNOUNCEMENT_MESSAGE;
         case 4: return QUESTION_ENTER_REQUEST;
         case 5: return GOOD_QUESTION_REQUEST;
-        case 6: return BAD_QUESTION_REQUEST;
         case 7: return GOOD_USER_REQUEST;
-        case 8: return BAD_USER_REQUEST;
+        case 9: return GET_COS_SIGN_REQUEST;
         case 10: return QUESTION_INFORMATION_REQUEST;
         case 11: return USER_INFORMATION_REQUEST;
         case 12: return GET_QUESTION_LIST_REQUEST;
@@ -840,61 +839,14 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
+     * <code>optional string content = 1;</code>
      */
-    int getSendTypeValue();
+    java.lang.String getContent();
     /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
+     * <code>optional string content = 1;</code>
      */
-    com.ClientSendMessage.CONTENT_TYPE getSendType();
-
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    int getPictureTypeValue();
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    com.ClientSendMessage.PICTURETYPE getPictureType();
-
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-     */
-    boolean hasTextMessage();
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-     */
-    com.ClientSendMessage.ContentMessage.TextMessage getTextMessage();
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-     */
-    com.ClientSendMessage.ContentMessage.TextMessageOrBuilder getTextMessageOrBuilder();
-
-    /**
-     * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-     */
-    boolean hasPictureMessage();
-    /**
-     * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-     */
-    com.ClientSendMessage.ContentMessage.PictureMessage getPictureMessage();
-    /**
-     * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-     */
-    com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder getPictureMessageOrBuilder();
-
-    /**
-     * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-     */
-    boolean hasVoiceMessage();
-    /**
-     * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-     */
-    com.ClientSendMessage.ContentMessage.VoiceMessage getVoiceMessage();
-    /**
-     * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-     */
-    com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder getVoiceMessageOrBuilder();
+    com.google.protobuf.ByteString
+        getContentBytes();
   }
   /**
    * <pre>
@@ -912,8 +864,7 @@ public final class ClientSendMessage {
       super(builder);
     }
     private ContentMessage() {
-      sendType_ = 0;
-      pictureType_ = 0;
+      content_ = "";
     }
 
     @java.lang.Override
@@ -941,55 +892,10 @@ public final class ClientSendMessage {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              sendType_ = rawValue;
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-
-              pictureType_ = rawValue;
-              break;
-            }
-            case 26: {
-              com.ClientSendMessage.ContentMessage.TextMessage.Builder subBuilder = null;
-              if (textMessage_ != null) {
-                subBuilder = textMessage_.toBuilder();
-              }
-              textMessage_ = input.readMessage(com.ClientSendMessage.ContentMessage.TextMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(textMessage_);
-                textMessage_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 34: {
-              com.ClientSendMessage.ContentMessage.PictureMessage.Builder subBuilder = null;
-              if (pictureMessage_ != null) {
-                subBuilder = pictureMessage_.toBuilder();
-              }
-              pictureMessage_ = input.readMessage(com.ClientSendMessage.ContentMessage.PictureMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pictureMessage_);
-                pictureMessage_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 42: {
-              com.ClientSendMessage.ContentMessage.VoiceMessage.Builder subBuilder = null;
-              if (voiceMessage_ != null) {
-                subBuilder = voiceMessage_.toBuilder();
-              }
-              voiceMessage_ = input.readMessage(com.ClientSendMessage.ContentMessage.VoiceMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(voiceMessage_);
-                voiceMessage_ = subBuilder.buildPartial();
-              }
-
+              content_ = s;
               break;
             }
           }
@@ -1015,1682 +921,38 @@ public final class ClientSendMessage {
               com.ClientSendMessage.ContentMessage.class, com.ClientSendMessage.ContentMessage.Builder.class);
     }
 
-    public interface TextMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:ContentMessage.TextMessage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      java.lang.String getText();
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      com.google.protobuf.ByteString
-          getTextBytes();
+    public static final int CONTENT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object content_;
+    /**
+     * <code>optional string content = 1;</code>
+     */
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
     }
     /**
-     * Protobuf type {@code ContentMessage.TextMessage}
+     * <code>optional string content = 1;</code>
      */
-    public  static final class TextMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:ContentMessage.TextMessage)
-        TextMessageOrBuilder {
-      // Use TextMessage.newBuilder() to construct.
-      private TextMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
       }
-      private TextMessage() {
-        text_ = "";
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-      }
-      private TextMessage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        int mutable_bitField0_ = 0;
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!input.skipField(tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 10: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                text_ = s;
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ClientSendMessage.internal_static_ContentMessage_TextMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ClientSendMessage.internal_static_ContentMessage_TextMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ClientSendMessage.ContentMessage.TextMessage.class, com.ClientSendMessage.ContentMessage.TextMessage.Builder.class);
-      }
-
-      public static final int TEXT_FIELD_NUMBER = 1;
-      private volatile java.lang.Object text_;
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      public java.lang.String getText() {
-        java.lang.Object ref = text_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          text_ = s;
-          return s;
-        }
-      }
-      /**
-       * <code>optional string text = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTextBytes() {
-        java.lang.Object ref = text_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          text_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        if (!getTextBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_);
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (!getTextBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, text_);
-        }
-        memoizedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ClientSendMessage.ContentMessage.TextMessage)) {
-          return super.equals(obj);
-        }
-        com.ClientSendMessage.ContentMessage.TextMessage other = (com.ClientSendMessage.ContentMessage.TextMessage) obj;
-
-        boolean result = true;
-        result = result && getText()
-            .equals(other.getText());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        hash = (37 * hash) + TEXT_FIELD_NUMBER;
-        hash = (53 * hash) + getText().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.TextMessage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.ClientSendMessage.ContentMessage.TextMessage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code ContentMessage.TextMessage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:ContentMessage.TextMessage)
-          com.ClientSendMessage.ContentMessage.TextMessageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return com.ClientSendMessage.internal_static_ContentMessage_TextMessage_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return com.ClientSendMessage.internal_static_ContentMessage_TextMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  com.ClientSendMessage.ContentMessage.TextMessage.class, com.ClientSendMessage.ContentMessage.TextMessage.Builder.class);
-        }
-
-        // Construct using com.ClientSendMessage.ContentMessage.TextMessage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        public Builder clear() {
-          super.clear();
-          text_ = "";
-
-          return this;
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return com.ClientSendMessage.internal_static_ContentMessage_TextMessage_descriptor;
-        }
-
-        public com.ClientSendMessage.ContentMessage.TextMessage getDefaultInstanceForType() {
-          return com.ClientSendMessage.ContentMessage.TextMessage.getDefaultInstance();
-        }
-
-        public com.ClientSendMessage.ContentMessage.TextMessage build() {
-          com.ClientSendMessage.ContentMessage.TextMessage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public com.ClientSendMessage.ContentMessage.TextMessage buildPartial() {
-          com.ClientSendMessage.ContentMessage.TextMessage result = new com.ClientSendMessage.ContentMessage.TextMessage(this);
-          result.text_ = text_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.ClientSendMessage.ContentMessage.TextMessage) {
-            return mergeFrom((com.ClientSendMessage.ContentMessage.TextMessage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(com.ClientSendMessage.ContentMessage.TextMessage other) {
-          if (other == com.ClientSendMessage.ContentMessage.TextMessage.getDefaultInstance()) return this;
-          if (!other.getText().isEmpty()) {
-            text_ = other.text_;
-            onChanged();
-          }
-          onChanged();
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.ClientSendMessage.ContentMessage.TextMessage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.ClientSendMessage.ContentMessage.TextMessage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-
-        private java.lang.Object text_ = "";
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public java.lang.String getText() {
-          java.lang.Object ref = text_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            text_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public com.google.protobuf.ByteString
-            getTextBytes() {
-          java.lang.Object ref = text_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b = 
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            text_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public Builder setText(
-            java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
-          text_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public Builder clearText() {
-          
-          text_ = getDefaultInstance().getText();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional string text = 1;</code>
-         */
-        public Builder setTextBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
-          text_ = value;
-          onChanged();
-          return this;
-        }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:ContentMessage.TextMessage)
-      }
-
-      // @@protoc_insertion_point(class_scope:ContentMessage.TextMessage)
-      private static final com.ClientSendMessage.ContentMessage.TextMessage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new com.ClientSendMessage.ContentMessage.TextMessage();
-      }
-
-      public static com.ClientSendMessage.ContentMessage.TextMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<TextMessage>
-          PARSER = new com.google.protobuf.AbstractParser<TextMessage>() {
-        public TextMessage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new TextMessage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<TextMessage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<TextMessage> getParserForType() {
-        return PARSER;
-      }
-
-      public com.ClientSendMessage.ContentMessage.TextMessage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    public interface PictureMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:ContentMessage.PictureMessage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>repeated int64 pictureBinary = 2;</code>
-       */
-      java.util.List<java.lang.Long> getPictureBinaryList();
-      /**
-       * <code>repeated int64 pictureBinary = 2;</code>
-       */
-      int getPictureBinaryCount();
-      /**
-       * <code>repeated int64 pictureBinary = 2;</code>
-       */
-      long getPictureBinary(int index);
-    }
-    /**
-     * Protobuf type {@code ContentMessage.PictureMessage}
-     */
-    public  static final class PictureMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:ContentMessage.PictureMessage)
-        PictureMessageOrBuilder {
-      // Use PictureMessage.newBuilder() to construct.
-      private PictureMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-      private PictureMessage() {
-        pictureBinary_ = java.util.Collections.emptyList();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-      }
-      private PictureMessage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        int mutable_bitField0_ = 0;
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!input.skipField(tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 16: {
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                  pictureBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                pictureBinary_.add(input.readInt64());
-                break;
-              }
-              case 18: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-                  pictureBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                while (input.getBytesUntilLimit() > 0) {
-                  pictureBinary_.add(input.readInt64());
-                }
-                input.popLimit(limit);
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-            pictureBinary_ = java.util.Collections.unmodifiableList(pictureBinary_);
-          }
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ClientSendMessage.internal_static_ContentMessage_PictureMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ClientSendMessage.internal_static_ContentMessage_PictureMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ClientSendMessage.ContentMessage.PictureMessage.class, com.ClientSendMessage.ContentMessage.PictureMessage.Builder.class);
-      }
-
-      public static final int PICTUREBINARY_FIELD_NUMBER = 2;
-      private java.util.List<java.lang.Long> pictureBinary_;
-      /**
-       * <code>repeated int64 pictureBinary = 2;</code>
-       */
-      public java.util.List<java.lang.Long>
-          getPictureBinaryList() {
-        return pictureBinary_;
-      }
-      /**
-       * <code>repeated int64 pictureBinary = 2;</code>
-       */
-      public int getPictureBinaryCount() {
-        return pictureBinary_.size();
-      }
-      /**
-       * <code>repeated int64 pictureBinary = 2;</code>
-       */
-      public long getPictureBinary(int index) {
-        return pictureBinary_.get(index);
-      }
-      private int pictureBinaryMemoizedSerializedSize = -1;
-
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (getPictureBinaryList().size() > 0) {
-          output.writeUInt32NoTag(18);
-          output.writeUInt32NoTag(pictureBinaryMemoizedSerializedSize);
-        }
-        for (int i = 0; i < pictureBinary_.size(); i++) {
-          output.writeInt64NoTag(pictureBinary_.get(i));
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        {
-          int dataSize = 0;
-          for (int i = 0; i < pictureBinary_.size(); i++) {
-            dataSize += com.google.protobuf.CodedOutputStream
-              .computeInt64SizeNoTag(pictureBinary_.get(i));
-          }
-          size += dataSize;
-          if (!getPictureBinaryList().isEmpty()) {
-            size += 1;
-            size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
-          }
-          pictureBinaryMemoizedSerializedSize = dataSize;
-        }
-        memoizedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ClientSendMessage.ContentMessage.PictureMessage)) {
-          return super.equals(obj);
-        }
-        com.ClientSendMessage.ContentMessage.PictureMessage other = (com.ClientSendMessage.ContentMessage.PictureMessage) obj;
-
-        boolean result = true;
-        result = result && getPictureBinaryList()
-            .equals(other.getPictureBinaryList());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (getPictureBinaryCount() > 0) {
-          hash = (37 * hash) + PICTUREBINARY_FIELD_NUMBER;
-          hash = (53 * hash) + getPictureBinaryList().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.PictureMessage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.ClientSendMessage.ContentMessage.PictureMessage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code ContentMessage.PictureMessage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:ContentMessage.PictureMessage)
-          com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return com.ClientSendMessage.internal_static_ContentMessage_PictureMessage_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return com.ClientSendMessage.internal_static_ContentMessage_PictureMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  com.ClientSendMessage.ContentMessage.PictureMessage.class, com.ClientSendMessage.ContentMessage.PictureMessage.Builder.class);
-        }
-
-        // Construct using com.ClientSendMessage.ContentMessage.PictureMessage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        public Builder clear() {
-          super.clear();
-          pictureBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          return this;
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return com.ClientSendMessage.internal_static_ContentMessage_PictureMessage_descriptor;
-        }
-
-        public com.ClientSendMessage.ContentMessage.PictureMessage getDefaultInstanceForType() {
-          return com.ClientSendMessage.ContentMessage.PictureMessage.getDefaultInstance();
-        }
-
-        public com.ClientSendMessage.ContentMessage.PictureMessage build() {
-          com.ClientSendMessage.ContentMessage.PictureMessage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public com.ClientSendMessage.ContentMessage.PictureMessage buildPartial() {
-          com.ClientSendMessage.ContentMessage.PictureMessage result = new com.ClientSendMessage.ContentMessage.PictureMessage(this);
-          int from_bitField0_ = bitField0_;
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            pictureBinary_ = java.util.Collections.unmodifiableList(pictureBinary_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.pictureBinary_ = pictureBinary_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.ClientSendMessage.ContentMessage.PictureMessage) {
-            return mergeFrom((com.ClientSendMessage.ContentMessage.PictureMessage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(com.ClientSendMessage.ContentMessage.PictureMessage other) {
-          if (other == com.ClientSendMessage.ContentMessage.PictureMessage.getDefaultInstance()) return this;
-          if (!other.pictureBinary_.isEmpty()) {
-            if (pictureBinary_.isEmpty()) {
-              pictureBinary_ = other.pictureBinary_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensurePictureBinaryIsMutable();
-              pictureBinary_.addAll(other.pictureBinary_);
-            }
-            onChanged();
-          }
-          onChanged();
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.ClientSendMessage.ContentMessage.PictureMessage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.ClientSendMessage.ContentMessage.PictureMessage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-        private int bitField0_;
-
-        private java.util.List<java.lang.Long> pictureBinary_ = java.util.Collections.emptyList();
-        private void ensurePictureBinaryIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-            pictureBinary_ = new java.util.ArrayList<java.lang.Long>(pictureBinary_);
-            bitField0_ |= 0x00000001;
-           }
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public java.util.List<java.lang.Long>
-            getPictureBinaryList() {
-          return java.util.Collections.unmodifiableList(pictureBinary_);
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public int getPictureBinaryCount() {
-          return pictureBinary_.size();
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public long getPictureBinary(int index) {
-          return pictureBinary_.get(index);
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public Builder setPictureBinary(
-            int index, long value) {
-          ensurePictureBinaryIsMutable();
-          pictureBinary_.set(index, value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public Builder addPictureBinary(long value) {
-          ensurePictureBinaryIsMutable();
-          pictureBinary_.add(value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public Builder addAllPictureBinary(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-          ensurePictureBinaryIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, pictureBinary_);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 pictureBinary = 2;</code>
-         */
-        public Builder clearPictureBinary() {
-          pictureBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-          return this;
-        }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:ContentMessage.PictureMessage)
-      }
-
-      // @@protoc_insertion_point(class_scope:ContentMessage.PictureMessage)
-      private static final com.ClientSendMessage.ContentMessage.PictureMessage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new com.ClientSendMessage.ContentMessage.PictureMessage();
-      }
-
-      public static com.ClientSendMessage.ContentMessage.PictureMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<PictureMessage>
-          PARSER = new com.google.protobuf.AbstractParser<PictureMessage>() {
-        public PictureMessage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new PictureMessage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<PictureMessage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<PictureMessage> getParserForType() {
-        return PARSER;
-      }
-
-      public com.ClientSendMessage.ContentMessage.PictureMessage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    public interface VoiceMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:ContentMessage.VoiceMessage)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      java.util.List<java.lang.Long> getVoiceBinaryList();
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      int getVoiceBinaryCount();
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      long getVoiceBinary(int index);
-    }
-    /**
-     * Protobuf type {@code ContentMessage.VoiceMessage}
-     */
-    public  static final class VoiceMessage extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:ContentMessage.VoiceMessage)
-        VoiceMessageOrBuilder {
-      // Use VoiceMessage.newBuilder() to construct.
-      private VoiceMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-      private VoiceMessage() {
-        voiceBinary_ = java.util.Collections.emptyList();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-      }
-      private VoiceMessage(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        int mutable_bitField0_ = 0;
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              default: {
-                if (!input.skipField(tag)) {
-                  done = true;
-                }
-                break;
-              }
-              case 8: {
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                  voiceBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                voiceBinary_.add(input.readInt64());
-                break;
-              }
-              case 10: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-                  voiceBinary_ = new java.util.ArrayList<java.lang.Long>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                while (input.getBytesUntilLimit() > 0) {
-                  voiceBinary_.add(input.readInt64());
-                }
-                input.popLimit(limit);
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-            voiceBinary_ = java.util.Collections.unmodifiableList(voiceBinary_);
-          }
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ClientSendMessage.internal_static_ContentMessage_VoiceMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ClientSendMessage.internal_static_ContentMessage_VoiceMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ClientSendMessage.ContentMessage.VoiceMessage.class, com.ClientSendMessage.ContentMessage.VoiceMessage.Builder.class);
-      }
-
-      public static final int VOICEBINARY_FIELD_NUMBER = 1;
-      private java.util.List<java.lang.Long> voiceBinary_;
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      public java.util.List<java.lang.Long>
-          getVoiceBinaryList() {
-        return voiceBinary_;
-      }
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      public int getVoiceBinaryCount() {
-        return voiceBinary_.size();
-      }
-      /**
-       * <code>repeated int64 voiceBinary = 1;</code>
-       */
-      public long getVoiceBinary(int index) {
-        return voiceBinary_.get(index);
-      }
-      private int voiceBinaryMemoizedSerializedSize = -1;
-
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (getVoiceBinaryList().size() > 0) {
-          output.writeUInt32NoTag(10);
-          output.writeUInt32NoTag(voiceBinaryMemoizedSerializedSize);
-        }
-        for (int i = 0; i < voiceBinary_.size(); i++) {
-          output.writeInt64NoTag(voiceBinary_.get(i));
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        {
-          int dataSize = 0;
-          for (int i = 0; i < voiceBinary_.size(); i++) {
-            dataSize += com.google.protobuf.CodedOutputStream
-              .computeInt64SizeNoTag(voiceBinary_.get(i));
-          }
-          size += dataSize;
-          if (!getVoiceBinaryList().isEmpty()) {
-            size += 1;
-            size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
-          }
-          voiceBinaryMemoizedSerializedSize = dataSize;
-        }
-        memoizedSize = size;
-        return size;
-      }
-
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ClientSendMessage.ContentMessage.VoiceMessage)) {
-          return super.equals(obj);
-        }
-        com.ClientSendMessage.ContentMessage.VoiceMessage other = (com.ClientSendMessage.ContentMessage.VoiceMessage) obj;
-
-        boolean result = true;
-        result = result && getVoiceBinaryList()
-            .equals(other.getVoiceBinaryList());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (getVoiceBinaryCount() > 0) {
-          hash = (37 * hash) + VOICEBINARY_FIELD_NUMBER;
-          hash = (53 * hash) + getVoiceBinaryList().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.ClientSendMessage.ContentMessage.VoiceMessage prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code ContentMessage.VoiceMessage}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:ContentMessage.VoiceMessage)
-          com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return com.ClientSendMessage.internal_static_ContentMessage_VoiceMessage_descriptor;
-        }
-
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return com.ClientSendMessage.internal_static_ContentMessage_VoiceMessage_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  com.ClientSendMessage.ContentMessage.VoiceMessage.class, com.ClientSendMessage.ContentMessage.VoiceMessage.Builder.class);
-        }
-
-        // Construct using com.ClientSendMessage.ContentMessage.VoiceMessage.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        public Builder clear() {
-          super.clear();
-          voiceBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          return this;
-        }
-
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return com.ClientSendMessage.internal_static_ContentMessage_VoiceMessage_descriptor;
-        }
-
-        public com.ClientSendMessage.ContentMessage.VoiceMessage getDefaultInstanceForType() {
-          return com.ClientSendMessage.ContentMessage.VoiceMessage.getDefaultInstance();
-        }
-
-        public com.ClientSendMessage.ContentMessage.VoiceMessage build() {
-          com.ClientSendMessage.ContentMessage.VoiceMessage result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        public com.ClientSendMessage.ContentMessage.VoiceMessage buildPartial() {
-          com.ClientSendMessage.ContentMessage.VoiceMessage result = new com.ClientSendMessage.ContentMessage.VoiceMessage(this);
-          int from_bitField0_ = bitField0_;
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            voiceBinary_ = java.util.Collections.unmodifiableList(voiceBinary_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.voiceBinary_ = voiceBinary_;
-          onBuilt();
-          return result;
-        }
-
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.ClientSendMessage.ContentMessage.VoiceMessage) {
-            return mergeFrom((com.ClientSendMessage.ContentMessage.VoiceMessage)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(com.ClientSendMessage.ContentMessage.VoiceMessage other) {
-          if (other == com.ClientSendMessage.ContentMessage.VoiceMessage.getDefaultInstance()) return this;
-          if (!other.voiceBinary_.isEmpty()) {
-            if (voiceBinary_.isEmpty()) {
-              voiceBinary_ = other.voiceBinary_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureVoiceBinaryIsMutable();
-              voiceBinary_.addAll(other.voiceBinary_);
-            }
-            onChanged();
-          }
-          onChanged();
-          return this;
-        }
-
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.ClientSendMessage.ContentMessage.VoiceMessage parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.ClientSendMessage.ContentMessage.VoiceMessage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-        private int bitField0_;
-
-        private java.util.List<java.lang.Long> voiceBinary_ = java.util.Collections.emptyList();
-        private void ensureVoiceBinaryIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-            voiceBinary_ = new java.util.ArrayList<java.lang.Long>(voiceBinary_);
-            bitField0_ |= 0x00000001;
-           }
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public java.util.List<java.lang.Long>
-            getVoiceBinaryList() {
-          return java.util.Collections.unmodifiableList(voiceBinary_);
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public int getVoiceBinaryCount() {
-          return voiceBinary_.size();
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public long getVoiceBinary(int index) {
-          return voiceBinary_.get(index);
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder setVoiceBinary(
-            int index, long value) {
-          ensureVoiceBinaryIsMutable();
-          voiceBinary_.set(index, value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder addVoiceBinary(long value) {
-          ensureVoiceBinaryIsMutable();
-          voiceBinary_.add(value);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder addAllVoiceBinary(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-          ensureVoiceBinaryIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, voiceBinary_);
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>repeated int64 voiceBinary = 1;</code>
-         */
-        public Builder clearVoiceBinary() {
-          voiceBinary_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-          return this;
-        }
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return this;
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:ContentMessage.VoiceMessage)
-      }
-
-      // @@protoc_insertion_point(class_scope:ContentMessage.VoiceMessage)
-      private static final com.ClientSendMessage.ContentMessage.VoiceMessage DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new com.ClientSendMessage.ContentMessage.VoiceMessage();
-      }
-
-      public static com.ClientSendMessage.ContentMessage.VoiceMessage getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<VoiceMessage>
-          PARSER = new com.google.protobuf.AbstractParser<VoiceMessage>() {
-        public VoiceMessage parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-            return new VoiceMessage(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<VoiceMessage> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<VoiceMessage> getParserForType() {
-        return PARSER;
-      }
-
-      public com.ClientSendMessage.ContentMessage.VoiceMessage getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    public static final int SEND_TYPE_FIELD_NUMBER = 1;
-    private int sendType_;
-    /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
-     */
-    public int getSendTypeValue() {
-      return sendType_;
-    }
-    /**
-     * <code>optional .CONTENT_TYPE send_type = 1;</code>
-     */
-    public com.ClientSendMessage.CONTENT_TYPE getSendType() {
-      com.ClientSendMessage.CONTENT_TYPE result = com.ClientSendMessage.CONTENT_TYPE.valueOf(sendType_);
-      return result == null ? com.ClientSendMessage.CONTENT_TYPE.UNRECOGNIZED : result;
-    }
-
-    public static final int PICTURE_TYPE_FIELD_NUMBER = 2;
-    private int pictureType_;
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    public int getPictureTypeValue() {
-      return pictureType_;
-    }
-    /**
-     * <code>optional .PICTURETYPE picture_type = 2;</code>
-     */
-    public com.ClientSendMessage.PICTURETYPE getPictureType() {
-      com.ClientSendMessage.PICTURETYPE result = com.ClientSendMessage.PICTURETYPE.valueOf(pictureType_);
-      return result == null ? com.ClientSendMessage.PICTURETYPE.UNRECOGNIZED : result;
-    }
-
-    public static final int TEXTMESSAGE_FIELD_NUMBER = 3;
-    private com.ClientSendMessage.ContentMessage.TextMessage textMessage_;
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-     */
-    public boolean hasTextMessage() {
-      return textMessage_ != null;
-    }
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-     */
-    public com.ClientSendMessage.ContentMessage.TextMessage getTextMessage() {
-      return textMessage_ == null ? com.ClientSendMessage.ContentMessage.TextMessage.getDefaultInstance() : textMessage_;
-    }
-    /**
-     * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-     */
-    public com.ClientSendMessage.ContentMessage.TextMessageOrBuilder getTextMessageOrBuilder() {
-      return getTextMessage();
-    }
-
-    public static final int PICTUREMESSAGE_FIELD_NUMBER = 4;
-    private com.ClientSendMessage.ContentMessage.PictureMessage pictureMessage_;
-    /**
-     * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-     */
-    public boolean hasPictureMessage() {
-      return pictureMessage_ != null;
-    }
-    /**
-     * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-     */
-    public com.ClientSendMessage.ContentMessage.PictureMessage getPictureMessage() {
-      return pictureMessage_ == null ? com.ClientSendMessage.ContentMessage.PictureMessage.getDefaultInstance() : pictureMessage_;
-    }
-    /**
-     * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-     */
-    public com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder getPictureMessageOrBuilder() {
-      return getPictureMessage();
-    }
-
-    public static final int VOICEMESSAGE_FIELD_NUMBER = 5;
-    private com.ClientSendMessage.ContentMessage.VoiceMessage voiceMessage_;
-    /**
-     * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-     */
-    public boolean hasVoiceMessage() {
-      return voiceMessage_ != null;
-    }
-    /**
-     * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-     */
-    public com.ClientSendMessage.ContentMessage.VoiceMessage getVoiceMessage() {
-      return voiceMessage_ == null ? com.ClientSendMessage.ContentMessage.VoiceMessage.getDefaultInstance() : voiceMessage_;
-    }
-    /**
-     * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-     */
-    public com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder getVoiceMessageOrBuilder() {
-      return getVoiceMessage();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2705,20 +967,8 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (sendType_ != com.ClientSendMessage.CONTENT_TYPE.TEXT_MESSAGE.getNumber()) {
-        output.writeEnum(1, sendType_);
-      }
-      if (pictureType_ != com.ClientSendMessage.PICTURETYPE.JPEG.getNumber()) {
-        output.writeEnum(2, pictureType_);
-      }
-      if (textMessage_ != null) {
-        output.writeMessage(3, getTextMessage());
-      }
-      if (pictureMessage_ != null) {
-        output.writeMessage(4, getPictureMessage());
-      }
-      if (voiceMessage_ != null) {
-        output.writeMessage(5, getVoiceMessage());
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, content_);
       }
     }
 
@@ -2727,25 +977,8 @@ public final class ClientSendMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (sendType_ != com.ClientSendMessage.CONTENT_TYPE.TEXT_MESSAGE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, sendType_);
-      }
-      if (pictureType_ != com.ClientSendMessage.PICTURETYPE.JPEG.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, pictureType_);
-      }
-      if (textMessage_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getTextMessage());
-      }
-      if (pictureMessage_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getPictureMessage());
-      }
-      if (voiceMessage_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getVoiceMessage());
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, content_);
       }
       memoizedSize = size;
       return size;
@@ -2763,23 +996,8 @@ public final class ClientSendMessage {
       com.ClientSendMessage.ContentMessage other = (com.ClientSendMessage.ContentMessage) obj;
 
       boolean result = true;
-      result = result && sendType_ == other.sendType_;
-      result = result && pictureType_ == other.pictureType_;
-      result = result && (hasTextMessage() == other.hasTextMessage());
-      if (hasTextMessage()) {
-        result = result && getTextMessage()
-            .equals(other.getTextMessage());
-      }
-      result = result && (hasPictureMessage() == other.hasPictureMessage());
-      if (hasPictureMessage()) {
-        result = result && getPictureMessage()
-            .equals(other.getPictureMessage());
-      }
-      result = result && (hasVoiceMessage() == other.hasVoiceMessage());
-      if (hasVoiceMessage()) {
-        result = result && getVoiceMessage()
-            .equals(other.getVoiceMessage());
-      }
+      result = result && getContent()
+          .equals(other.getContent());
       return result;
     }
 
@@ -2790,22 +1008,8 @@ public final class ClientSendMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SEND_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + sendType_;
-      hash = (37 * hash) + PICTURE_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + pictureType_;
-      if (hasTextMessage()) {
-        hash = (37 * hash) + TEXTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getTextMessage().hashCode();
-      }
-      if (hasPictureMessage()) {
-        hash = (37 * hash) + PICTUREMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getPictureMessage().hashCode();
-      }
-      if (hasVoiceMessage()) {
-        hash = (37 * hash) + VOICEMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getVoiceMessage().hashCode();
-      }
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2928,28 +1132,8 @@ public final class ClientSendMessage {
       }
       public Builder clear() {
         super.clear();
-        sendType_ = 0;
+        content_ = "";
 
-        pictureType_ = 0;
-
-        if (textMessageBuilder_ == null) {
-          textMessage_ = null;
-        } else {
-          textMessage_ = null;
-          textMessageBuilder_ = null;
-        }
-        if (pictureMessageBuilder_ == null) {
-          pictureMessage_ = null;
-        } else {
-          pictureMessage_ = null;
-          pictureMessageBuilder_ = null;
-        }
-        if (voiceMessageBuilder_ == null) {
-          voiceMessage_ = null;
-        } else {
-          voiceMessage_ = null;
-          voiceMessageBuilder_ = null;
-        }
         return this;
       }
 
@@ -2972,23 +1156,7 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.ContentMessage buildPartial() {
         com.ClientSendMessage.ContentMessage result = new com.ClientSendMessage.ContentMessage(this);
-        result.sendType_ = sendType_;
-        result.pictureType_ = pictureType_;
-        if (textMessageBuilder_ == null) {
-          result.textMessage_ = textMessage_;
-        } else {
-          result.textMessage_ = textMessageBuilder_.build();
-        }
-        if (pictureMessageBuilder_ == null) {
-          result.pictureMessage_ = pictureMessage_;
-        } else {
-          result.pictureMessage_ = pictureMessageBuilder_.build();
-        }
-        if (voiceMessageBuilder_ == null) {
-          result.voiceMessage_ = voiceMessage_;
-        } else {
-          result.voiceMessage_ = voiceMessageBuilder_.build();
-        }
+        result.content_ = content_;
         onBuilt();
         return result;
       }
@@ -3030,20 +1198,9 @@ public final class ClientSendMessage {
 
       public Builder mergeFrom(com.ClientSendMessage.ContentMessage other) {
         if (other == com.ClientSendMessage.ContentMessage.getDefaultInstance()) return this;
-        if (other.sendType_ != 0) {
-          setSendTypeValue(other.getSendTypeValue());
-        }
-        if (other.pictureType_ != 0) {
-          setPictureTypeValue(other.getPictureTypeValue());
-        }
-        if (other.hasTextMessage()) {
-          mergeTextMessage(other.getTextMessage());
-        }
-        if (other.hasPictureMessage()) {
-          mergePictureMessage(other.getPictureMessage());
-        }
-        if (other.hasVoiceMessage()) {
-          mergeVoiceMessage(other.getVoiceMessage());
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -3071,443 +1228,73 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private int sendType_ = 0;
+      private java.lang.Object content_ = "";
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public int getSendTypeValue() {
-        return sendType_;
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public Builder setSendTypeValue(int value) {
-        sendType_ = value;
-        onChanged();
-        return this;
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public com.ClientSendMessage.CONTENT_TYPE getSendType() {
-        com.ClientSendMessage.CONTENT_TYPE result = com.ClientSendMessage.CONTENT_TYPE.valueOf(sendType_);
-        return result == null ? com.ClientSendMessage.CONTENT_TYPE.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
-       */
-      public Builder setSendType(com.ClientSendMessage.CONTENT_TYPE value) {
+      public Builder setContent(
+          java.lang.String value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string content = 1;</code>
+       */
+      public Builder clearContent() {
         
-        sendType_ = value.getNumber();
+        content_ = getDefaultInstance().getContent();
         onChanged();
         return this;
       }
       /**
-       * <code>optional .CONTENT_TYPE send_type = 1;</code>
+       * <code>optional string content = 1;</code>
        */
-      public Builder clearSendType() {
-        
-        sendType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int pictureType_ = 0;
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public int getPictureTypeValue() {
-        return pictureType_;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public Builder setPictureTypeValue(int value) {
-        pictureType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public com.ClientSendMessage.PICTURETYPE getPictureType() {
-        com.ClientSendMessage.PICTURETYPE result = com.ClientSendMessage.PICTURETYPE.valueOf(pictureType_);
-        return result == null ? com.ClientSendMessage.PICTURETYPE.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public Builder setPictureType(com.ClientSendMessage.PICTURETYPE value) {
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
         if (value == null) {
-          throw new NullPointerException();
-        }
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
-        pictureType_ = value.getNumber();
+        content_ = value;
         onChanged();
         return this;
-      }
-      /**
-       * <code>optional .PICTURETYPE picture_type = 2;</code>
-       */
-      public Builder clearPictureType() {
-        
-        pictureType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private com.ClientSendMessage.ContentMessage.TextMessage textMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage.TextMessage, com.ClientSendMessage.ContentMessage.TextMessage.Builder, com.ClientSendMessage.ContentMessage.TextMessageOrBuilder> textMessageBuilder_;
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public boolean hasTextMessage() {
-        return textMessageBuilder_ != null || textMessage_ != null;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.TextMessage getTextMessage() {
-        if (textMessageBuilder_ == null) {
-          return textMessage_ == null ? com.ClientSendMessage.ContentMessage.TextMessage.getDefaultInstance() : textMessage_;
-        } else {
-          return textMessageBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public Builder setTextMessage(com.ClientSendMessage.ContentMessage.TextMessage value) {
-        if (textMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          textMessage_ = value;
-          onChanged();
-        } else {
-          textMessageBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public Builder setTextMessage(
-          com.ClientSendMessage.ContentMessage.TextMessage.Builder builderForValue) {
-        if (textMessageBuilder_ == null) {
-          textMessage_ = builderForValue.build();
-          onChanged();
-        } else {
-          textMessageBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public Builder mergeTextMessage(com.ClientSendMessage.ContentMessage.TextMessage value) {
-        if (textMessageBuilder_ == null) {
-          if (textMessage_ != null) {
-            textMessage_ =
-              com.ClientSendMessage.ContentMessage.TextMessage.newBuilder(textMessage_).mergeFrom(value).buildPartial();
-          } else {
-            textMessage_ = value;
-          }
-          onChanged();
-        } else {
-          textMessageBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public Builder clearTextMessage() {
-        if (textMessageBuilder_ == null) {
-          textMessage_ = null;
-          onChanged();
-        } else {
-          textMessage_ = null;
-          textMessageBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.TextMessage.Builder getTextMessageBuilder() {
-        
-        onChanged();
-        return getTextMessageFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.TextMessageOrBuilder getTextMessageOrBuilder() {
-        if (textMessageBuilder_ != null) {
-          return textMessageBuilder_.getMessageOrBuilder();
-        } else {
-          return textMessage_ == null ?
-              com.ClientSendMessage.ContentMessage.TextMessage.getDefaultInstance() : textMessage_;
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.TextMessage textMessage = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage.TextMessage, com.ClientSendMessage.ContentMessage.TextMessage.Builder, com.ClientSendMessage.ContentMessage.TextMessageOrBuilder> 
-          getTextMessageFieldBuilder() {
-        if (textMessageBuilder_ == null) {
-          textMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ClientSendMessage.ContentMessage.TextMessage, com.ClientSendMessage.ContentMessage.TextMessage.Builder, com.ClientSendMessage.ContentMessage.TextMessageOrBuilder>(
-                  getTextMessage(),
-                  getParentForChildren(),
-                  isClean());
-          textMessage_ = null;
-        }
-        return textMessageBuilder_;
-      }
-
-      private com.ClientSendMessage.ContentMessage.PictureMessage pictureMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage.PictureMessage, com.ClientSendMessage.ContentMessage.PictureMessage.Builder, com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder> pictureMessageBuilder_;
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public boolean hasPictureMessage() {
-        return pictureMessageBuilder_ != null || pictureMessage_ != null;
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.PictureMessage getPictureMessage() {
-        if (pictureMessageBuilder_ == null) {
-          return pictureMessage_ == null ? com.ClientSendMessage.ContentMessage.PictureMessage.getDefaultInstance() : pictureMessage_;
-        } else {
-          return pictureMessageBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public Builder setPictureMessage(com.ClientSendMessage.ContentMessage.PictureMessage value) {
-        if (pictureMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          pictureMessage_ = value;
-          onChanged();
-        } else {
-          pictureMessageBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public Builder setPictureMessage(
-          com.ClientSendMessage.ContentMessage.PictureMessage.Builder builderForValue) {
-        if (pictureMessageBuilder_ == null) {
-          pictureMessage_ = builderForValue.build();
-          onChanged();
-        } else {
-          pictureMessageBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public Builder mergePictureMessage(com.ClientSendMessage.ContentMessage.PictureMessage value) {
-        if (pictureMessageBuilder_ == null) {
-          if (pictureMessage_ != null) {
-            pictureMessage_ =
-              com.ClientSendMessage.ContentMessage.PictureMessage.newBuilder(pictureMessage_).mergeFrom(value).buildPartial();
-          } else {
-            pictureMessage_ = value;
-          }
-          onChanged();
-        } else {
-          pictureMessageBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public Builder clearPictureMessage() {
-        if (pictureMessageBuilder_ == null) {
-          pictureMessage_ = null;
-          onChanged();
-        } else {
-          pictureMessage_ = null;
-          pictureMessageBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.PictureMessage.Builder getPictureMessageBuilder() {
-        
-        onChanged();
-        return getPictureMessageFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder getPictureMessageOrBuilder() {
-        if (pictureMessageBuilder_ != null) {
-          return pictureMessageBuilder_.getMessageOrBuilder();
-        } else {
-          return pictureMessage_ == null ?
-              com.ClientSendMessage.ContentMessage.PictureMessage.getDefaultInstance() : pictureMessage_;
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.PictureMessage pictureMessage = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage.PictureMessage, com.ClientSendMessage.ContentMessage.PictureMessage.Builder, com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder> 
-          getPictureMessageFieldBuilder() {
-        if (pictureMessageBuilder_ == null) {
-          pictureMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ClientSendMessage.ContentMessage.PictureMessage, com.ClientSendMessage.ContentMessage.PictureMessage.Builder, com.ClientSendMessage.ContentMessage.PictureMessageOrBuilder>(
-                  getPictureMessage(),
-                  getParentForChildren(),
-                  isClean());
-          pictureMessage_ = null;
-        }
-        return pictureMessageBuilder_;
-      }
-
-      private com.ClientSendMessage.ContentMessage.VoiceMessage voiceMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage.VoiceMessage, com.ClientSendMessage.ContentMessage.VoiceMessage.Builder, com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder> voiceMessageBuilder_;
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public boolean hasVoiceMessage() {
-        return voiceMessageBuilder_ != null || voiceMessage_ != null;
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.VoiceMessage getVoiceMessage() {
-        if (voiceMessageBuilder_ == null) {
-          return voiceMessage_ == null ? com.ClientSendMessage.ContentMessage.VoiceMessage.getDefaultInstance() : voiceMessage_;
-        } else {
-          return voiceMessageBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public Builder setVoiceMessage(com.ClientSendMessage.ContentMessage.VoiceMessage value) {
-        if (voiceMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          voiceMessage_ = value;
-          onChanged();
-        } else {
-          voiceMessageBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public Builder setVoiceMessage(
-          com.ClientSendMessage.ContentMessage.VoiceMessage.Builder builderForValue) {
-        if (voiceMessageBuilder_ == null) {
-          voiceMessage_ = builderForValue.build();
-          onChanged();
-        } else {
-          voiceMessageBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public Builder mergeVoiceMessage(com.ClientSendMessage.ContentMessage.VoiceMessage value) {
-        if (voiceMessageBuilder_ == null) {
-          if (voiceMessage_ != null) {
-            voiceMessage_ =
-              com.ClientSendMessage.ContentMessage.VoiceMessage.newBuilder(voiceMessage_).mergeFrom(value).buildPartial();
-          } else {
-            voiceMessage_ = value;
-          }
-          onChanged();
-        } else {
-          voiceMessageBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public Builder clearVoiceMessage() {
-        if (voiceMessageBuilder_ == null) {
-          voiceMessage_ = null;
-          onChanged();
-        } else {
-          voiceMessage_ = null;
-          voiceMessageBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.VoiceMessage.Builder getVoiceMessageBuilder() {
-        
-        onChanged();
-        return getVoiceMessageFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder getVoiceMessageOrBuilder() {
-        if (voiceMessageBuilder_ != null) {
-          return voiceMessageBuilder_.getMessageOrBuilder();
-        } else {
-          return voiceMessage_ == null ?
-              com.ClientSendMessage.ContentMessage.VoiceMessage.getDefaultInstance() : voiceMessage_;
-        }
-      }
-      /**
-       * <code>optional .ContentMessage.VoiceMessage voiceMessage = 5;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage.VoiceMessage, com.ClientSendMessage.ContentMessage.VoiceMessage.Builder, com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder> 
-          getVoiceMessageFieldBuilder() {
-        if (voiceMessageBuilder_ == null) {
-          voiceMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ClientSendMessage.ContentMessage.VoiceMessage, com.ClientSendMessage.ContentMessage.VoiceMessage.Builder, com.ClientSendMessage.ContentMessage.VoiceMessageOrBuilder>(
-                  getVoiceMessage(),
-                  getParentForChildren(),
-                  isClean());
-          voiceMessage_ = null;
-        }
-        return voiceMessageBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4452,28 +2239,14 @@ public final class ClientSendMessage {
     long getQuestionID();
 
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    java.util.List<com.ClientSendMessage.ContentMessage> 
-        getContentMessageList();
+    java.lang.String getContent();
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    com.ClientSendMessage.ContentMessage getContentMessage(int index);
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    int getContentMessageCount();
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    java.util.List<? extends com.ClientSendMessage.ContentMessageOrBuilder> 
-        getContentMessageOrBuilderList();
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    com.ClientSendMessage.ContentMessageOrBuilder getContentMessageOrBuilder(
-        int index);
+    com.google.protobuf.ByteString
+        getContentBytes();
 
     /**
      * <code>optional string time = 3;</code>
@@ -4494,16 +2267,6 @@ public final class ClientSendMessage {
      */
     com.google.protobuf.ByteString
         getDateBytes();
-
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    java.lang.String getRecord();
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getRecordBytes();
   }
   /**
    * <pre>
@@ -4522,10 +2285,9 @@ public final class ClientSendMessage {
     }
     private SendContent() {
       questionID_ = 0L;
-      contentMessage_ = java.util.Collections.emptyList();
+      content_ = "";
       time_ = "";
       date_ = "";
-      record_ = "";
     }
 
     @java.lang.Override
@@ -4559,12 +2321,9 @@ public final class ClientSendMessage {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                contentMessage_ = new java.util.ArrayList<com.ClientSendMessage.ContentMessage>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              contentMessage_.add(
-                  input.readMessage(com.ClientSendMessage.ContentMessage.parser(), extensionRegistry));
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
               break;
             }
             case 26: {
@@ -4579,12 +2338,6 @@ public final class ClientSendMessage {
               date_ = s;
               break;
             }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              record_ = s;
-              break;
-            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4593,9 +2346,6 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          contentMessage_ = java.util.Collections.unmodifiableList(contentMessage_);
-        }
         makeExtensionsImmutable();
       }
     }
@@ -4611,7 +2361,6 @@ public final class ClientSendMessage {
               com.ClientSendMessage.SendContent.class, com.ClientSendMessage.SendContent.Builder.class);
     }
 
-    private int bitField0_;
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
@@ -4621,39 +2370,38 @@ public final class ClientSendMessage {
       return questionID_;
     }
 
-    public static final int CONTENTMESSAGE_FIELD_NUMBER = 2;
-    private java.util.List<com.ClientSendMessage.ContentMessage> contentMessage_;
+    public static final int CONTENT_FIELD_NUMBER = 2;
+    private volatile java.lang.Object content_;
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    public java.util.List<com.ClientSendMessage.ContentMessage> getContentMessageList() {
-      return contentMessage_;
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
     }
     /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
+     * <code>optional string content = 2;</code>
      */
-    public java.util.List<? extends com.ClientSendMessage.ContentMessageOrBuilder> 
-        getContentMessageOrBuilderList() {
-      return contentMessage_;
-    }
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    public int getContentMessageCount() {
-      return contentMessage_.size();
-    }
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    public com.ClientSendMessage.ContentMessage getContentMessage(int index) {
-      return contentMessage_.get(index);
-    }
-    /**
-     * <code>repeated .ContentMessage contentMessage = 2;</code>
-     */
-    public com.ClientSendMessage.ContentMessageOrBuilder getContentMessageOrBuilder(
-        int index) {
-      return contentMessage_.get(index);
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int TIME_FIELD_NUMBER = 3;
@@ -4724,40 +2472,6 @@ public final class ClientSendMessage {
       }
     }
 
-    public static final int RECORD_FIELD_NUMBER = 5;
-    private volatile java.lang.Object record_;
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    public java.lang.String getRecord() {
-      java.lang.Object ref = record_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        record_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRecordBytes() {
-      java.lang.Object ref = record_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        record_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4773,17 +2487,14 @@ public final class ClientSendMessage {
       if (questionID_ != 0L) {
         output.writeInt64(1, questionID_);
       }
-      for (int i = 0; i < contentMessage_.size(); i++) {
-        output.writeMessage(2, contentMessage_.get(i));
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
       }
       if (!getDateBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, date_);
-      }
-      if (!getRecordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, record_);
       }
     }
 
@@ -4796,18 +2507,14 @@ public final class ClientSendMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, questionID_);
       }
-      for (int i = 0; i < contentMessage_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, contentMessage_.get(i));
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
       }
       if (!getDateBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, date_);
-      }
-      if (!getRecordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, record_);
       }
       memoizedSize = size;
       return size;
@@ -4827,14 +2534,12 @@ public final class ClientSendMessage {
       boolean result = true;
       result = result && (getQuestionID()
           == other.getQuestionID());
-      result = result && getContentMessageList()
-          .equals(other.getContentMessageList());
+      result = result && getContent()
+          .equals(other.getContent());
       result = result && getTime()
           .equals(other.getTime());
       result = result && getDate()
           .equals(other.getDate());
-      result = result && getRecord()
-          .equals(other.getRecord());
       return result;
     }
 
@@ -4848,16 +2553,12 @@ public final class ClientSendMessage {
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
-      if (getContentMessageCount() > 0) {
-        hash = (37 * hash) + CONTENTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getContentMessageList().hashCode();
-      }
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + DATE_FIELD_NUMBER;
       hash = (53 * hash) + getDate().hashCode();
-      hash = (37 * hash) + RECORD_FIELD_NUMBER;
-      hash = (53 * hash) + getRecord().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4976,24 +2677,17 @@ public final class ClientSendMessage {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getContentMessageFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
         questionID_ = 0L;
 
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          contentMessageBuilder_.clear();
-        }
+        content_ = "";
+
         time_ = "";
 
         date_ = "";
-
-        record_ = "";
 
         return this;
       }
@@ -5017,22 +2711,10 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.SendContent buildPartial() {
         com.ClientSendMessage.SendContent result = new com.ClientSendMessage.SendContent(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.questionID_ = questionID_;
-        if (contentMessageBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            contentMessage_ = java.util.Collections.unmodifiableList(contentMessage_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.contentMessage_ = contentMessage_;
-        } else {
-          result.contentMessage_ = contentMessageBuilder_.build();
-        }
+        result.content_ = content_;
         result.time_ = time_;
         result.date_ = date_;
-        result.record_ = record_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -5077,31 +2759,9 @@ public final class ClientSendMessage {
         if (other.getQuestionID() != 0L) {
           setQuestionID(other.getQuestionID());
         }
-        if (contentMessageBuilder_ == null) {
-          if (!other.contentMessage_.isEmpty()) {
-            if (contentMessage_.isEmpty()) {
-              contentMessage_ = other.contentMessage_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureContentMessageIsMutable();
-              contentMessage_.addAll(other.contentMessage_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.contentMessage_.isEmpty()) {
-            if (contentMessageBuilder_.isEmpty()) {
-              contentMessageBuilder_.dispose();
-              contentMessageBuilder_ = null;
-              contentMessage_ = other.contentMessage_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              contentMessageBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getContentMessageFieldBuilder() : null;
-            } else {
-              contentMessageBuilder_.addAllMessages(other.contentMessage_);
-            }
-          }
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
         }
         if (!other.getTime().isEmpty()) {
           time_ = other.time_;
@@ -5109,10 +2769,6 @@ public final class ClientSendMessage {
         }
         if (!other.getDate().isEmpty()) {
           date_ = other.date_;
-          onChanged();
-        }
-        if (!other.getRecord().isEmpty()) {
-          record_ = other.record_;
           onChanged();
         }
         onChanged();
@@ -5140,7 +2796,6 @@ public final class ClientSendMessage {
         }
         return this;
       }
-      private int bitField0_;
 
       private long questionID_ ;
       /**
@@ -5168,244 +2823,73 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private java.util.List<com.ClientSendMessage.ContentMessage> contentMessage_ =
-        java.util.Collections.emptyList();
-      private void ensureContentMessageIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          contentMessage_ = new java.util.ArrayList<com.ClientSendMessage.ContentMessage>(contentMessage_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage, com.ClientSendMessage.ContentMessage.Builder, com.ClientSendMessage.ContentMessageOrBuilder> contentMessageBuilder_;
-
+      private java.lang.Object content_ = "";
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public java.util.List<com.ClientSendMessage.ContentMessage> getContentMessageList() {
-        if (contentMessageBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(contentMessage_);
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
         } else {
-          return contentMessageBuilder_.getMessageList();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public int getContentMessageCount() {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_.size();
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
         } else {
-          return contentMessageBuilder_.getCount();
+          return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public com.ClientSendMessage.ContentMessage getContentMessage(int index) {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_.get(index);
-        } else {
-          return contentMessageBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder setContentMessage(
-          int index, com.ClientSendMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContentMessageIsMutable();
-          contentMessage_.set(index, value);
-          onChanged();
-        } else {
-          contentMessageBuilder_.setMessage(index, value);
-        }
+      public Builder setContent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public Builder setContentMessage(
-          int index, com.ClientSendMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          contentMessageBuilder_.setMessage(index, builderForValue.build());
-        }
+      public Builder clearContent() {
+        
+        content_ = getDefaultInstance().getContent();
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
+       * <code>optional string content = 2;</code>
        */
-      public Builder addContentMessage(com.ClientSendMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContentMessageIsMutable();
-          contentMessage_.add(value);
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(value);
-        }
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        content_ = value;
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addContentMessage(
-          int index, com.ClientSendMessage.ContentMessage value) {
-        if (contentMessageBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContentMessageIsMutable();
-          contentMessage_.add(index, value);
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addContentMessage(
-          com.ClientSendMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.add(builderForValue.build());
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addContentMessage(
-          int index, com.ClientSendMessage.ContentMessage.Builder builderForValue) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          contentMessageBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder addAllContentMessage(
-          java.lang.Iterable<? extends com.ClientSendMessage.ContentMessage> values) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, contentMessage_);
-          onChanged();
-        } else {
-          contentMessageBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder clearContentMessage() {
-        if (contentMessageBuilder_ == null) {
-          contentMessage_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          contentMessageBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public Builder removeContentMessage(int index) {
-        if (contentMessageBuilder_ == null) {
-          ensureContentMessageIsMutable();
-          contentMessage_.remove(index);
-          onChanged();
-        } else {
-          contentMessageBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.Builder getContentMessageBuilder(
-          int index) {
-        return getContentMessageFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessageOrBuilder getContentMessageOrBuilder(
-          int index) {
-        if (contentMessageBuilder_ == null) {
-          return contentMessage_.get(index);  } else {
-          return contentMessageBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public java.util.List<? extends com.ClientSendMessage.ContentMessageOrBuilder> 
-           getContentMessageOrBuilderList() {
-        if (contentMessageBuilder_ != null) {
-          return contentMessageBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(contentMessage_);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.Builder addContentMessageBuilder() {
-        return getContentMessageFieldBuilder().addBuilder(
-            com.ClientSendMessage.ContentMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.Builder addContentMessageBuilder(
-          int index) {
-        return getContentMessageFieldBuilder().addBuilder(
-            index, com.ClientSendMessage.ContentMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage contentMessage = 2;</code>
-       */
-      public java.util.List<com.ClientSendMessage.ContentMessage.Builder> 
-           getContentMessageBuilderList() {
-        return getContentMessageFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage, com.ClientSendMessage.ContentMessage.Builder, com.ClientSendMessage.ContentMessageOrBuilder> 
-          getContentMessageFieldBuilder() {
-        if (contentMessageBuilder_ == null) {
-          contentMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.ClientSendMessage.ContentMessage, com.ClientSendMessage.ContentMessage.Builder, com.ClientSendMessage.ContentMessageOrBuilder>(
-                  contentMessage_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
-                  getParentForChildren(),
-                  isClean());
-          contentMessage_ = null;
-        }
-        return contentMessageBuilder_;
       }
 
       private java.lang.Object time_ = "";
@@ -5542,75 +3026,6 @@ public final class ClientSendMessage {
   checkByteStringIsUtf8(value);
         
         date_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object record_ = "";
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public java.lang.String getRecord() {
-        java.lang.Object ref = record_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          record_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRecordBytes() {
-        java.lang.Object ref = record_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          record_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder setRecord(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        record_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder clearRecord() {
-        
-        record_ = getDefaultInstance().getRecord();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder setRecordBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        record_ = value;
         onChanged();
         return this;
       }
@@ -6620,16 +4035,6 @@ public final class ClientSendMessage {
      * <code>optional int64 questionID = 1;</code>
      */
     long getQuestionID();
-
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    java.lang.String getReason();
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getReasonBytes();
   }
   /**
    * <pre>
@@ -6648,7 +4053,6 @@ public final class ClientSendMessage {
     }
     private GoodQuestionRequest() {
       questionID_ = 0L;
-      reason_ = "";
     }
 
     @java.lang.Override
@@ -6679,12 +4083,6 @@ public final class ClientSendMessage {
             case 8: {
 
               questionID_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              reason_ = s;
               break;
             }
           }
@@ -6719,40 +4117,6 @@ public final class ClientSendMessage {
       return questionID_;
     }
 
-    public static final int REASON_FIELD_NUMBER = 2;
-    private volatile java.lang.Object reason_;
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public java.lang.String getReason() {
-      java.lang.Object ref = reason_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        reason_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReasonBytes() {
-      java.lang.Object ref = reason_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        reason_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6768,9 +4132,6 @@ public final class ClientSendMessage {
       if (questionID_ != 0L) {
         output.writeInt64(1, questionID_);
       }
-      if (!getReasonBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, reason_);
-      }
     }
 
     public int getSerializedSize() {
@@ -6781,9 +4142,6 @@ public final class ClientSendMessage {
       if (questionID_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, questionID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reason_);
       }
       memoizedSize = size;
       return size;
@@ -6803,8 +4161,6 @@ public final class ClientSendMessage {
       boolean result = true;
       result = result && (getQuestionID()
           == other.getQuestionID());
-      result = result && getReason()
-          .equals(other.getReason());
       return result;
     }
 
@@ -6818,8 +4174,6 @@ public final class ClientSendMessage {
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
-      hash = (37 * hash) + REASON_FIELD_NUMBER;
-      hash = (53 * hash) + getReason().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6944,8 +4298,6 @@ public final class ClientSendMessage {
         super.clear();
         questionID_ = 0L;
 
-        reason_ = "";
-
         return this;
       }
 
@@ -6969,7 +4321,6 @@ public final class ClientSendMessage {
       public com.ClientSendMessage.GoodQuestionRequest buildPartial() {
         com.ClientSendMessage.GoodQuestionRequest result = new com.ClientSendMessage.GoodQuestionRequest(this);
         result.questionID_ = questionID_;
-        result.reason_ = reason_;
         onBuilt();
         return result;
       }
@@ -7013,10 +4364,6 @@ public final class ClientSendMessage {
         if (other == com.ClientSendMessage.GoodQuestionRequest.getDefaultInstance()) return this;
         if (other.getQuestionID() != 0L) {
           setQuestionID(other.getQuestionID());
-        }
-        if (!other.getReason().isEmpty()) {
-          reason_ = other.reason_;
-          onChanged();
         }
         onChanged();
         return this;
@@ -7069,75 +4416,6 @@ public final class ClientSendMessage {
         onChanged();
         return this;
       }
-
-      private java.lang.Object reason_ = "";
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public java.lang.String getReason() {
-        java.lang.Object ref = reason_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          reason_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReasonBytes() {
-        java.lang.Object ref = reason_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          reason_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder setReason(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        reason_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder clearReason() {
-        
-        reason_ = getDefaultInstance().getReason();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder setReasonBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        reason_ = value;
-        onChanged();
-        return this;
-      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -7187,599 +4465,19 @@ public final class ClientSendMessage {
 
   }
 
-  public interface BadQuestionRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:BadQuestionRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional int64 questionID = 1;</code>
-     */
-    long getQuestionID();
-
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    java.lang.String getReason();
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getReasonBytes();
-  }
-  /**
-   * <pre>
-   *踩问题
-   * </pre>
-   *
-   * Protobuf type {@code BadQuestionRequest}
-   */
-  public  static final class BadQuestionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:BadQuestionRequest)
-      BadQuestionRequestOrBuilder {
-    // Use BadQuestionRequest.newBuilder() to construct.
-    private BadQuestionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private BadQuestionRequest() {
-      questionID_ = 0L;
-      reason_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private BadQuestionRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              questionID_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              reason_ = s;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.ClientSendMessage.internal_static_BadQuestionRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.ClientSendMessage.internal_static_BadQuestionRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.ClientSendMessage.BadQuestionRequest.class, com.ClientSendMessage.BadQuestionRequest.Builder.class);
-    }
-
-    public static final int QUESTIONID_FIELD_NUMBER = 1;
-    private long questionID_;
-    /**
-     * <code>optional int64 questionID = 1;</code>
-     */
-    public long getQuestionID() {
-      return questionID_;
-    }
-
-    public static final int REASON_FIELD_NUMBER = 2;
-    private volatile java.lang.Object reason_;
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public java.lang.String getReason() {
-      java.lang.Object ref = reason_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        reason_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReasonBytes() {
-      java.lang.Object ref = reason_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        reason_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (questionID_ != 0L) {
-        output.writeInt64(1, questionID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, reason_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (questionID_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, questionID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reason_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.BadQuestionRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.BadQuestionRequest other = (com.ClientSendMessage.BadQuestionRequest) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      result = result && getReason()
-          .equals(other.getReason());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (37 * hash) + REASON_FIELD_NUMBER;
-      hash = (53 * hash) + getReason().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ClientSendMessage.BadQuestionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.ClientSendMessage.BadQuestionRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *踩问题
-     * </pre>
-     *
-     * Protobuf type {@code BadQuestionRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:BadQuestionRequest)
-        com.ClientSendMessage.BadQuestionRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ClientSendMessage.internal_static_BadQuestionRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ClientSendMessage.internal_static_BadQuestionRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ClientSendMessage.BadQuestionRequest.class, com.ClientSendMessage.BadQuestionRequest.Builder.class);
-      }
-
-      // Construct using com.ClientSendMessage.BadQuestionRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        questionID_ = 0L;
-
-        reason_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.ClientSendMessage.internal_static_BadQuestionRequest_descriptor;
-      }
-
-      public com.ClientSendMessage.BadQuestionRequest getDefaultInstanceForType() {
-        return com.ClientSendMessage.BadQuestionRequest.getDefaultInstance();
-      }
-
-      public com.ClientSendMessage.BadQuestionRequest build() {
-        com.ClientSendMessage.BadQuestionRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.ClientSendMessage.BadQuestionRequest buildPartial() {
-        com.ClientSendMessage.BadQuestionRequest result = new com.ClientSendMessage.BadQuestionRequest(this);
-        result.questionID_ = questionID_;
-        result.reason_ = reason_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ClientSendMessage.BadQuestionRequest) {
-          return mergeFrom((com.ClientSendMessage.BadQuestionRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.ClientSendMessage.BadQuestionRequest other) {
-        if (other == com.ClientSendMessage.BadQuestionRequest.getDefaultInstance()) return this;
-        if (other.getQuestionID() != 0L) {
-          setQuestionID(other.getQuestionID());
-        }
-        if (!other.getReason().isEmpty()) {
-          reason_ = other.reason_;
-          onChanged();
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.ClientSendMessage.BadQuestionRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ClientSendMessage.BadQuestionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private long questionID_ ;
-      /**
-       * <code>optional int64 questionID = 1;</code>
-       */
-      public long getQuestionID() {
-        return questionID_;
-      }
-      /**
-       * <code>optional int64 questionID = 1;</code>
-       */
-      public Builder setQuestionID(long value) {
-        
-        questionID_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 questionID = 1;</code>
-       */
-      public Builder clearQuestionID() {
-        
-        questionID_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object reason_ = "";
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public java.lang.String getReason() {
-        java.lang.Object ref = reason_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          reason_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReasonBytes() {
-        java.lang.Object ref = reason_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          reason_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder setReason(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        reason_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder clearReason() {
-        
-        reason_ = getDefaultInstance().getReason();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder setReasonBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        reason_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:BadQuestionRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:BadQuestionRequest)
-    private static final com.ClientSendMessage.BadQuestionRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.ClientSendMessage.BadQuestionRequest();
-    }
-
-    public static com.ClientSendMessage.BadQuestionRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<BadQuestionRequest>
-        PARSER = new com.google.protobuf.AbstractParser<BadQuestionRequest>() {
-      public BadQuestionRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new BadQuestionRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<BadQuestionRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BadQuestionRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public com.ClientSendMessage.BadQuestionRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface GoodUserRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:GoodUserRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 userID = 1;</code>
+     * <code>optional string user = 1;</code>
      */
-    long getUserID();
-
+    java.lang.String getUser();
     /**
-     * <code>optional string reason = 2;</code>
-     */
-    java.lang.String getReason();
-    /**
-     * <code>optional string reason = 2;</code>
+     * <code>optional string user = 1;</code>
      */
     com.google.protobuf.ByteString
-        getReasonBytes();
+        getUserBytes();
   }
   /**
    * <pre>
@@ -7797,8 +4495,7 @@ public final class ClientSendMessage {
       super(builder);
     }
     private GoodUserRequest() {
-      userID_ = 0L;
-      reason_ = "";
+      user_ = "";
     }
 
     @java.lang.Override
@@ -7826,15 +4523,10 @@ public final class ClientSendMessage {
               }
               break;
             }
-            case 8: {
-
-              userID_ = input.readInt64();
-              break;
-            }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              reason_ = s;
+              user_ = s;
               break;
             }
           }
@@ -7860,43 +4552,34 @@ public final class ClientSendMessage {
               com.ClientSendMessage.GoodUserRequest.class, com.ClientSendMessage.GoodUserRequest.Builder.class);
     }
 
-    public static final int USERID_FIELD_NUMBER = 1;
-    private long userID_;
+    public static final int USER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object user_;
     /**
-     * <code>optional int64 userID = 1;</code>
+     * <code>optional string user = 1;</code>
      */
-    public long getUserID() {
-      return userID_;
-    }
-
-    public static final int REASON_FIELD_NUMBER = 2;
-    private volatile java.lang.Object reason_;
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public java.lang.String getReason() {
-      java.lang.Object ref = reason_;
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        reason_ = s;
+        user_ = s;
         return s;
       }
     }
     /**
-     * <code>optional string reason = 2;</code>
+     * <code>optional string user = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getReasonBytes() {
-      java.lang.Object ref = reason_;
+        getUserBytes() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        reason_ = b;
+        user_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -7915,11 +4598,8 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (userID_ != 0L) {
-        output.writeInt64(1, userID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, reason_);
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
       }
     }
 
@@ -7928,12 +4608,8 @@ public final class ClientSendMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (userID_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, userID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reason_);
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
       }
       memoizedSize = size;
       return size;
@@ -7951,10 +4627,8 @@ public final class ClientSendMessage {
       com.ClientSendMessage.GoodUserRequest other = (com.ClientSendMessage.GoodUserRequest) obj;
 
       boolean result = true;
-      result = result && (getUserID()
-          == other.getUserID());
-      result = result && getReason()
-          .equals(other.getReason());
+      result = result && getUser()
+          .equals(other.getUser());
       return result;
     }
 
@@ -7965,11 +4639,8 @@ public final class ClientSendMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + USERID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getUserID());
-      hash = (37 * hash) + REASON_FIELD_NUMBER;
-      hash = (53 * hash) + getReason().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8092,9 +4763,7 @@ public final class ClientSendMessage {
       }
       public Builder clear() {
         super.clear();
-        userID_ = 0L;
-
-        reason_ = "";
+        user_ = "";
 
         return this;
       }
@@ -8118,8 +4787,7 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.GoodUserRequest buildPartial() {
         com.ClientSendMessage.GoodUserRequest result = new com.ClientSendMessage.GoodUserRequest(this);
-        result.userID_ = userID_;
-        result.reason_ = reason_;
+        result.user_ = user_;
         onBuilt();
         return result;
       }
@@ -8161,11 +4829,8 @@ public final class ClientSendMessage {
 
       public Builder mergeFrom(com.ClientSendMessage.GoodUserRequest other) {
         if (other == com.ClientSendMessage.GoodUserRequest.getDefaultInstance()) return this;
-        if (other.getUserID() != 0L) {
-          setUserID(other.getUserID());
-        }
-        if (!other.getReason().isEmpty()) {
-          reason_ = other.reason_;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
           onChanged();
         }
         onChanged();
@@ -8194,97 +4859,71 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private long userID_ ;
+      private java.lang.Object user_ = "";
       /**
-       * <code>optional int64 userID = 1;</code>
+       * <code>optional string user = 1;</code>
        */
-      public long getUserID() {
-        return userID_;
-      }
-      /**
-       * <code>optional int64 userID = 1;</code>
-       */
-      public Builder setUserID(long value) {
-        
-        userID_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 userID = 1;</code>
-       */
-      public Builder clearUserID() {
-        
-        userID_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object reason_ = "";
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public java.lang.String getReason() {
-        java.lang.Object ref = reason_;
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          reason_ = s;
+          user_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string reason = 2;</code>
+       * <code>optional string user = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getReasonBytes() {
-        java.lang.Object ref = reason_;
+          getUserBytes() {
+        java.lang.Object ref = user_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          reason_ = b;
+          user_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string reason = 2;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder setReason(
+      public Builder setUser(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        reason_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string reason = 2;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder clearReason() {
+      public Builder clearUser() {
         
-        reason_ = getDefaultInstance().getReason();
+        user_ = getDefaultInstance().getUser();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string reason = 2;</code>
+       * <code>optional string user = 1;</code>
        */
-      public Builder setReasonBytes(
+      public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        reason_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
@@ -8332,581 +4971,6 @@ public final class ClientSendMessage {
     }
 
     public com.ClientSendMessage.GoodUserRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BadUserRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:BadUserRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional int64 userID = 1;</code>
-     */
-    long getUserID();
-
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    java.lang.String getReason();
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getReasonBytes();
-  }
-  /**
-   * <pre>
-   *踩用户
-   * </pre>
-   *
-   * Protobuf type {@code BadUserRequest}
-   */
-  public  static final class BadUserRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:BadUserRequest)
-      BadUserRequestOrBuilder {
-    // Use BadUserRequest.newBuilder() to construct.
-    private BadUserRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private BadUserRequest() {
-      userID_ = 0L;
-      reason_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private BadUserRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              userID_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              reason_ = s;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.ClientSendMessage.internal_static_BadUserRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.ClientSendMessage.internal_static_BadUserRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.ClientSendMessage.BadUserRequest.class, com.ClientSendMessage.BadUserRequest.Builder.class);
-    }
-
-    public static final int USERID_FIELD_NUMBER = 1;
-    private long userID_;
-    /**
-     * <code>optional int64 userID = 1;</code>
-     */
-    public long getUserID() {
-      return userID_;
-    }
-
-    public static final int REASON_FIELD_NUMBER = 2;
-    private volatile java.lang.Object reason_;
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public java.lang.String getReason() {
-      java.lang.Object ref = reason_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        reason_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string reason = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReasonBytes() {
-      java.lang.Object ref = reason_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        reason_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (userID_ != 0L) {
-        output.writeInt64(1, userID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, reason_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (userID_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, userID_);
-      }
-      if (!getReasonBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reason_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.BadUserRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.BadUserRequest other = (com.ClientSendMessage.BadUserRequest) obj;
-
-      boolean result = true;
-      result = result && (getUserID()
-          == other.getUserID());
-      result = result && getReason()
-          .equals(other.getReason());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + USERID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getUserID());
-      hash = (37 * hash) + REASON_FIELD_NUMBER;
-      hash = (53 * hash) + getReason().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.ClientSendMessage.BadUserRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.ClientSendMessage.BadUserRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.ClientSendMessage.BadUserRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *踩用户
-     * </pre>
-     *
-     * Protobuf type {@code BadUserRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:BadUserRequest)
-        com.ClientSendMessage.BadUserRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.ClientSendMessage.internal_static_BadUserRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.ClientSendMessage.internal_static_BadUserRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.ClientSendMessage.BadUserRequest.class, com.ClientSendMessage.BadUserRequest.Builder.class);
-      }
-
-      // Construct using com.ClientSendMessage.BadUserRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        userID_ = 0L;
-
-        reason_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.ClientSendMessage.internal_static_BadUserRequest_descriptor;
-      }
-
-      public com.ClientSendMessage.BadUserRequest getDefaultInstanceForType() {
-        return com.ClientSendMessage.BadUserRequest.getDefaultInstance();
-      }
-
-      public com.ClientSendMessage.BadUserRequest build() {
-        com.ClientSendMessage.BadUserRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.ClientSendMessage.BadUserRequest buildPartial() {
-        com.ClientSendMessage.BadUserRequest result = new com.ClientSendMessage.BadUserRequest(this);
-        result.userID_ = userID_;
-        result.reason_ = reason_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ClientSendMessage.BadUserRequest) {
-          return mergeFrom((com.ClientSendMessage.BadUserRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.ClientSendMessage.BadUserRequest other) {
-        if (other == com.ClientSendMessage.BadUserRequest.getDefaultInstance()) return this;
-        if (other.getUserID() != 0L) {
-          setUserID(other.getUserID());
-        }
-        if (!other.getReason().isEmpty()) {
-          reason_ = other.reason_;
-          onChanged();
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.ClientSendMessage.BadUserRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ClientSendMessage.BadUserRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private long userID_ ;
-      /**
-       * <code>optional int64 userID = 1;</code>
-       */
-      public long getUserID() {
-        return userID_;
-      }
-      /**
-       * <code>optional int64 userID = 1;</code>
-       */
-      public Builder setUserID(long value) {
-        
-        userID_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 userID = 1;</code>
-       */
-      public Builder clearUserID() {
-        
-        userID_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object reason_ = "";
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public java.lang.String getReason() {
-        java.lang.Object ref = reason_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          reason_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReasonBytes() {
-        java.lang.Object ref = reason_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          reason_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder setReason(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        reason_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder clearReason() {
-        
-        reason_ = getDefaultInstance().getReason();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string reason = 2;</code>
-       */
-      public Builder setReasonBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        reason_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:BadUserRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:BadUserRequest)
-    private static final com.ClientSendMessage.BadUserRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.ClientSendMessage.BadUserRequest();
-    }
-
-    public static com.ClientSendMessage.BadUserRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<BadUserRequest>
-        PARSER = new com.google.protobuf.AbstractParser<BadUserRequest>() {
-      public BadUserRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new BadUserRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<BadUserRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<BadUserRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public com.ClientSendMessage.BadUserRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9355,9 +5419,14 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 username = 1;</code>
+     * <code>optional string username = 1;</code>
      */
-    long getUsername();
+    java.lang.String getUsername();
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
   }
   /**
    * <pre>
@@ -9375,7 +5444,7 @@ public final class ClientSendMessage {
       super(builder);
     }
     private UserInformationRequest() {
-      username_ = 0L;
+      username_ = "";
     }
 
     @java.lang.Override
@@ -9403,9 +5472,10 @@ public final class ClientSendMessage {
               }
               break;
             }
-            case 8: {
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              username_ = input.readInt64();
+              username_ = s;
               break;
             }
           }
@@ -9432,12 +5502,37 @@ public final class ClientSendMessage {
     }
 
     public static final int USERNAME_FIELD_NUMBER = 1;
-    private long username_;
+    private volatile java.lang.Object username_;
     /**
-     * <code>optional int64 username = 1;</code>
+     * <code>optional string username = 1;</code>
      */
-    public long getUsername() {
-      return username_;
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        username_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -9452,8 +5547,8 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (username_ != 0L) {
-        output.writeInt64(1, username_);
+      if (!getUsernameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
     }
 
@@ -9462,9 +5557,8 @@ public final class ClientSendMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (username_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, username_);
+      if (!getUsernameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
       memoizedSize = size;
       return size;
@@ -9482,8 +5576,8 @@ public final class ClientSendMessage {
       com.ClientSendMessage.UserInformationRequest other = (com.ClientSendMessage.UserInformationRequest) obj;
 
       boolean result = true;
-      result = result && (getUsername()
-          == other.getUsername());
+      result = result && getUsername()
+          .equals(other.getUsername());
       return result;
     }
 
@@ -9495,8 +5589,7 @@ public final class ClientSendMessage {
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getUsername());
+      hash = (53 * hash) + getUsername().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9619,7 +5712,7 @@ public final class ClientSendMessage {
       }
       public Builder clear() {
         super.clear();
-        username_ = 0L;
+        username_ = "";
 
         return this;
       }
@@ -9685,8 +5778,9 @@ public final class ClientSendMessage {
 
       public Builder mergeFrom(com.ClientSendMessage.UserInformationRequest other) {
         if (other == com.ClientSendMessage.UserInformationRequest.getDefaultInstance()) return this;
-        if (other.getUsername() != 0L) {
-          setUsername(other.getUsername());
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -9714,28 +5808,71 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private long username_ ;
+      private java.lang.Object username_ = "";
       /**
-       * <code>optional int64 username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
-      public long getUsername() {
-        return username_;
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional int64 username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
-      public Builder setUsername(long value) {
-        
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         username_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public Builder clearUsername() {
         
-        username_ = 0L;
+        username_ = getDefaultInstance().getUsername();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        username_ = value;
         onChanged();
         return this;
       }
@@ -12744,6 +8881,517 @@ public final class ClientSendMessage {
 
   }
 
+  public interface GetCosSignRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetCosSignRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string filename = 1;</code>
+     */
+    java.lang.String getFilename();
+    /**
+     * <code>optional string filename = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFilenameBytes();
+  }
+  /**
+   * <pre>
+   *获取Sign
+   * </pre>
+   *
+   * Protobuf type {@code GetCosSignRequest}
+   */
+  public  static final class GetCosSignRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetCosSignRequest)
+      GetCosSignRequestOrBuilder {
+    // Use GetCosSignRequest.newBuilder() to construct.
+    private GetCosSignRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetCosSignRequest() {
+      filename_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private GetCosSignRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              filename_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ClientSendMessage.internal_static_GetCosSignRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ClientSendMessage.internal_static_GetCosSignRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ClientSendMessage.GetCosSignRequest.class, com.ClientSendMessage.GetCosSignRequest.Builder.class);
+    }
+
+    public static final int FILENAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object filename_;
+    /**
+     * <code>optional string filename = 1;</code>
+     */
+    public java.lang.String getFilename() {
+      java.lang.Object ref = filename_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        filename_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string filename = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFilenameBytes() {
+      java.lang.Object ref = filename_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        filename_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getFilenameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, filename_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getFilenameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, filename_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ClientSendMessage.GetCosSignRequest)) {
+        return super.equals(obj);
+      }
+      com.ClientSendMessage.GetCosSignRequest other = (com.ClientSendMessage.GetCosSignRequest) obj;
+
+      boolean result = true;
+      result = result && getFilename()
+          .equals(other.getFilename());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFilename().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.GetCosSignRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ClientSendMessage.GetCosSignRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *获取Sign
+     * </pre>
+     *
+     * Protobuf type {@code GetCosSignRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetCosSignRequest)
+        com.ClientSendMessage.GetCosSignRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ClientSendMessage.internal_static_GetCosSignRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ClientSendMessage.internal_static_GetCosSignRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ClientSendMessage.GetCosSignRequest.class, com.ClientSendMessage.GetCosSignRequest.Builder.class);
+      }
+
+      // Construct using com.ClientSendMessage.GetCosSignRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        filename_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ClientSendMessage.internal_static_GetCosSignRequest_descriptor;
+      }
+
+      public com.ClientSendMessage.GetCosSignRequest getDefaultInstanceForType() {
+        return com.ClientSendMessage.GetCosSignRequest.getDefaultInstance();
+      }
+
+      public com.ClientSendMessage.GetCosSignRequest build() {
+        com.ClientSendMessage.GetCosSignRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ClientSendMessage.GetCosSignRequest buildPartial() {
+        com.ClientSendMessage.GetCosSignRequest result = new com.ClientSendMessage.GetCosSignRequest(this);
+        result.filename_ = filename_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ClientSendMessage.GetCosSignRequest) {
+          return mergeFrom((com.ClientSendMessage.GetCosSignRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ClientSendMessage.GetCosSignRequest other) {
+        if (other == com.ClientSendMessage.GetCosSignRequest.getDefaultInstance()) return this;
+        if (!other.getFilename().isEmpty()) {
+          filename_ = other.filename_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ClientSendMessage.GetCosSignRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ClientSendMessage.GetCosSignRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object filename_ = "";
+      /**
+       * <code>optional string filename = 1;</code>
+       */
+      public java.lang.String getFilename() {
+        java.lang.Object ref = filename_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          filename_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string filename = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFilenameBytes() {
+        java.lang.Object ref = filename_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          filename_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string filename = 1;</code>
+       */
+      public Builder setFilename(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        filename_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string filename = 1;</code>
+       */
+      public Builder clearFilename() {
+        
+        filename_ = getDefaultInstance().getFilename();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string filename = 1;</code>
+       */
+      public Builder setFilenameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        filename_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetCosSignRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetCosSignRequest)
+    private static final com.ClientSendMessage.GetCosSignRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ClientSendMessage.GetCosSignRequest();
+    }
+
+    public static com.ClientSendMessage.GetCosSignRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetCosSignRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetCosSignRequest>() {
+      public GetCosSignRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new GetCosSignRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetCosSignRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetCosSignRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ClientSendMessage.GetCosSignRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface MessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Message)
       com.google.protobuf.MessageOrBuilder {
@@ -12846,17 +9494,17 @@ public final class ClientSendMessage {
     com.ClientSendMessage.GoodQuestionRequestOrBuilder getGoodQuestionRequestOrBuilder();
 
     /**
-     * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
      */
-    boolean hasBadQuestionRequest();
+    boolean hasGetCosSignRequest();
     /**
-     * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
      */
-    com.ClientSendMessage.BadQuestionRequest getBadQuestionRequest();
+    com.ClientSendMessage.GetCosSignRequest getGetCosSignRequest();
     /**
-     * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
      */
-    com.ClientSendMessage.BadQuestionRequestOrBuilder getBadQuestionRequestOrBuilder();
+    com.ClientSendMessage.GetCosSignRequestOrBuilder getGetCosSignRequestOrBuilder();
 
     /**
      * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
@@ -12870,19 +9518,6 @@ public final class ClientSendMessage {
      * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
      */
     com.ClientSendMessage.GoodUserRequestOrBuilder getGoodUserRequestOrBuilder();
-
-    /**
-     * <code>optional .BadUserRequest badUserRequest = 11;</code>
-     */
-    boolean hasBadUserRequest();
-    /**
-     * <code>optional .BadUserRequest badUserRequest = 11;</code>
-     */
-    com.ClientSendMessage.BadUserRequest getBadUserRequest();
-    /**
-     * <code>optional .BadUserRequest badUserRequest = 11;</code>
-     */
-    com.ClientSendMessage.BadUserRequestOrBuilder getBadUserRequestOrBuilder();
 
     /**
      * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
@@ -13098,14 +9733,14 @@ public final class ClientSendMessage {
               break;
             }
             case 74: {
-              com.ClientSendMessage.BadQuestionRequest.Builder subBuilder = null;
-              if (badQuestionRequest_ != null) {
-                subBuilder = badQuestionRequest_.toBuilder();
+              com.ClientSendMessage.GetCosSignRequest.Builder subBuilder = null;
+              if (getCosSignRequest_ != null) {
+                subBuilder = getCosSignRequest_.toBuilder();
               }
-              badQuestionRequest_ = input.readMessage(com.ClientSendMessage.BadQuestionRequest.parser(), extensionRegistry);
+              getCosSignRequest_ = input.readMessage(com.ClientSendMessage.GetCosSignRequest.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(badQuestionRequest_);
-                badQuestionRequest_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(getCosSignRequest_);
+                getCosSignRequest_ = subBuilder.buildPartial();
               }
 
               break;
@@ -13119,19 +9754,6 @@ public final class ClientSendMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(goodUserRequest_);
                 goodUserRequest_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 90: {
-              com.ClientSendMessage.BadUserRequest.Builder subBuilder = null;
-              if (badUserRequest_ != null) {
-                subBuilder = badUserRequest_.toBuilder();
-              }
-              badUserRequest_ = input.readMessage(com.ClientSendMessage.BadUserRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(badUserRequest_);
-                badUserRequest_ = subBuilder.buildPartial();
               }
 
               break;
@@ -13413,25 +10035,25 @@ public final class ClientSendMessage {
       return getGoodQuestionRequest();
     }
 
-    public static final int BADQUESTIONREQUEST_FIELD_NUMBER = 9;
-    private com.ClientSendMessage.BadQuestionRequest badQuestionRequest_;
+    public static final int GETCOSSIGNREQUEST_FIELD_NUMBER = 9;
+    private com.ClientSendMessage.GetCosSignRequest getCosSignRequest_;
     /**
-     * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
      */
-    public boolean hasBadQuestionRequest() {
-      return badQuestionRequest_ != null;
+    public boolean hasGetCosSignRequest() {
+      return getCosSignRequest_ != null;
     }
     /**
-     * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
      */
-    public com.ClientSendMessage.BadQuestionRequest getBadQuestionRequest() {
-      return badQuestionRequest_ == null ? com.ClientSendMessage.BadQuestionRequest.getDefaultInstance() : badQuestionRequest_;
+    public com.ClientSendMessage.GetCosSignRequest getGetCosSignRequest() {
+      return getCosSignRequest_ == null ? com.ClientSendMessage.GetCosSignRequest.getDefaultInstance() : getCosSignRequest_;
     }
     /**
-     * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
      */
-    public com.ClientSendMessage.BadQuestionRequestOrBuilder getBadQuestionRequestOrBuilder() {
-      return getBadQuestionRequest();
+    public com.ClientSendMessage.GetCosSignRequestOrBuilder getGetCosSignRequestOrBuilder() {
+      return getGetCosSignRequest();
     }
 
     public static final int GOODUSERREQUEST_FIELD_NUMBER = 10;
@@ -13453,27 +10075,6 @@ public final class ClientSendMessage {
      */
     public com.ClientSendMessage.GoodUserRequestOrBuilder getGoodUserRequestOrBuilder() {
       return getGoodUserRequest();
-    }
-
-    public static final int BADUSERREQUEST_FIELD_NUMBER = 11;
-    private com.ClientSendMessage.BadUserRequest badUserRequest_;
-    /**
-     * <code>optional .BadUserRequest badUserRequest = 11;</code>
-     */
-    public boolean hasBadUserRequest() {
-      return badUserRequest_ != null;
-    }
-    /**
-     * <code>optional .BadUserRequest badUserRequest = 11;</code>
-     */
-    public com.ClientSendMessage.BadUserRequest getBadUserRequest() {
-      return badUserRequest_ == null ? com.ClientSendMessage.BadUserRequest.getDefaultInstance() : badUserRequest_;
-    }
-    /**
-     * <code>optional .BadUserRequest badUserRequest = 11;</code>
-     */
-    public com.ClientSendMessage.BadUserRequestOrBuilder getBadUserRequestOrBuilder() {
-      return getBadUserRequest();
     }
 
     public static final int QUESTIONINFORMATIONREQUEST_FIELD_NUMBER = 13;
@@ -13638,14 +10239,11 @@ public final class ClientSendMessage {
       if (goodQuestionRequest_ != null) {
         output.writeMessage(8, getGoodQuestionRequest());
       }
-      if (badQuestionRequest_ != null) {
-        output.writeMessage(9, getBadQuestionRequest());
+      if (getCosSignRequest_ != null) {
+        output.writeMessage(9, getGetCosSignRequest());
       }
       if (goodUserRequest_ != null) {
         output.writeMessage(10, getGoodUserRequest());
-      }
-      if (badUserRequest_ != null) {
-        output.writeMessage(11, getBadUserRequest());
       }
       if (questionInformationRequest_ != null) {
         output.writeMessage(13, getQuestionInformationRequest());
@@ -13703,17 +10301,13 @@ public final class ClientSendMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, getGoodQuestionRequest());
       }
-      if (badQuestionRequest_ != null) {
+      if (getCosSignRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getBadQuestionRequest());
+          .computeMessageSize(9, getGetCosSignRequest());
       }
       if (goodUserRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getGoodUserRequest());
-      }
-      if (badUserRequest_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getBadUserRequest());
       }
       if (questionInformationRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -13788,20 +10382,15 @@ public final class ClientSendMessage {
         result = result && getGoodQuestionRequest()
             .equals(other.getGoodQuestionRequest());
       }
-      result = result && (hasBadQuestionRequest() == other.hasBadQuestionRequest());
-      if (hasBadQuestionRequest()) {
-        result = result && getBadQuestionRequest()
-            .equals(other.getBadQuestionRequest());
+      result = result && (hasGetCosSignRequest() == other.hasGetCosSignRequest());
+      if (hasGetCosSignRequest()) {
+        result = result && getGetCosSignRequest()
+            .equals(other.getGetCosSignRequest());
       }
       result = result && (hasGoodUserRequest() == other.hasGoodUserRequest());
       if (hasGoodUserRequest()) {
         result = result && getGoodUserRequest()
             .equals(other.getGoodUserRequest());
-      }
-      result = result && (hasBadUserRequest() == other.hasBadUserRequest());
-      if (hasBadUserRequest()) {
-        result = result && getBadUserRequest()
-            .equals(other.getBadUserRequest());
       }
       result = result && (hasQuestionInformationRequest() == other.hasQuestionInformationRequest());
       if (hasQuestionInformationRequest()) {
@@ -13871,17 +10460,13 @@ public final class ClientSendMessage {
         hash = (37 * hash) + GOODQUESTIONREQUEST_FIELD_NUMBER;
         hash = (53 * hash) + getGoodQuestionRequest().hashCode();
       }
-      if (hasBadQuestionRequest()) {
-        hash = (37 * hash) + BADQUESTIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getBadQuestionRequest().hashCode();
+      if (hasGetCosSignRequest()) {
+        hash = (37 * hash) + GETCOSSIGNREQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getGetCosSignRequest().hashCode();
       }
       if (hasGoodUserRequest()) {
         hash = (37 * hash) + GOODUSERREQUEST_FIELD_NUMBER;
         hash = (53 * hash) + getGoodUserRequest().hashCode();
-      }
-      if (hasBadUserRequest()) {
-        hash = (37 * hash) + BADUSERREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getBadUserRequest().hashCode();
       }
       if (hasQuestionInformationRequest()) {
         hash = (37 * hash) + QUESTIONINFORMATIONREQUEST_FIELD_NUMBER;
@@ -14069,23 +10654,17 @@ public final class ClientSendMessage {
           goodQuestionRequest_ = null;
           goodQuestionRequestBuilder_ = null;
         }
-        if (badQuestionRequestBuilder_ == null) {
-          badQuestionRequest_ = null;
+        if (getCosSignRequestBuilder_ == null) {
+          getCosSignRequest_ = null;
         } else {
-          badQuestionRequest_ = null;
-          badQuestionRequestBuilder_ = null;
+          getCosSignRequest_ = null;
+          getCosSignRequestBuilder_ = null;
         }
         if (goodUserRequestBuilder_ == null) {
           goodUserRequest_ = null;
         } else {
           goodUserRequest_ = null;
           goodUserRequestBuilder_ = null;
-        }
-        if (badUserRequestBuilder_ == null) {
-          badUserRequest_ = null;
-        } else {
-          badUserRequest_ = null;
-          badUserRequestBuilder_ = null;
         }
         if (questionInformationRequestBuilder_ == null) {
           questionInformationRequest_ = null;
@@ -14177,20 +10756,15 @@ public final class ClientSendMessage {
         } else {
           result.goodQuestionRequest_ = goodQuestionRequestBuilder_.build();
         }
-        if (badQuestionRequestBuilder_ == null) {
-          result.badQuestionRequest_ = badQuestionRequest_;
+        if (getCosSignRequestBuilder_ == null) {
+          result.getCosSignRequest_ = getCosSignRequest_;
         } else {
-          result.badQuestionRequest_ = badQuestionRequestBuilder_.build();
+          result.getCosSignRequest_ = getCosSignRequestBuilder_.build();
         }
         if (goodUserRequestBuilder_ == null) {
           result.goodUserRequest_ = goodUserRequest_;
         } else {
           result.goodUserRequest_ = goodUserRequestBuilder_.build();
-        }
-        if (badUserRequestBuilder_ == null) {
-          result.badUserRequest_ = badUserRequest_;
-        } else {
-          result.badUserRequest_ = badUserRequestBuilder_.build();
         }
         if (questionInformationRequestBuilder_ == null) {
           result.questionInformationRequest_ = questionInformationRequest_;
@@ -14288,14 +10862,11 @@ public final class ClientSendMessage {
         if (other.hasGoodQuestionRequest()) {
           mergeGoodQuestionRequest(other.getGoodQuestionRequest());
         }
-        if (other.hasBadQuestionRequest()) {
-          mergeBadQuestionRequest(other.getBadQuestionRequest());
+        if (other.hasGetCosSignRequest()) {
+          mergeGetCosSignRequest(other.getGetCosSignRequest());
         }
         if (other.hasGoodUserRequest()) {
           mergeGoodUserRequest(other.getGoodUserRequest());
-        }
-        if (other.hasBadUserRequest()) {
-          mergeBadUserRequest(other.getBadUserRequest());
         }
         if (other.hasQuestionInformationRequest()) {
           mergeQuestionInformationRequest(other.getQuestionInformationRequest());
@@ -15156,121 +11727,121 @@ public final class ClientSendMessage {
         return goodQuestionRequestBuilder_;
       }
 
-      private com.ClientSendMessage.BadQuestionRequest badQuestionRequest_ = null;
+      private com.ClientSendMessage.GetCosSignRequest getCosSignRequest_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.BadQuestionRequest, com.ClientSendMessage.BadQuestionRequest.Builder, com.ClientSendMessage.BadQuestionRequestOrBuilder> badQuestionRequestBuilder_;
+          com.ClientSendMessage.GetCosSignRequest, com.ClientSendMessage.GetCosSignRequest.Builder, com.ClientSendMessage.GetCosSignRequestOrBuilder> getCosSignRequestBuilder_;
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public boolean hasBadQuestionRequest() {
-        return badQuestionRequestBuilder_ != null || badQuestionRequest_ != null;
+      public boolean hasGetCosSignRequest() {
+        return getCosSignRequestBuilder_ != null || getCosSignRequest_ != null;
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public com.ClientSendMessage.BadQuestionRequest getBadQuestionRequest() {
-        if (badQuestionRequestBuilder_ == null) {
-          return badQuestionRequest_ == null ? com.ClientSendMessage.BadQuestionRequest.getDefaultInstance() : badQuestionRequest_;
+      public com.ClientSendMessage.GetCosSignRequest getGetCosSignRequest() {
+        if (getCosSignRequestBuilder_ == null) {
+          return getCosSignRequest_ == null ? com.ClientSendMessage.GetCosSignRequest.getDefaultInstance() : getCosSignRequest_;
         } else {
-          return badQuestionRequestBuilder_.getMessage();
+          return getCosSignRequestBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public Builder setBadQuestionRequest(com.ClientSendMessage.BadQuestionRequest value) {
-        if (badQuestionRequestBuilder_ == null) {
+      public Builder setGetCosSignRequest(com.ClientSendMessage.GetCosSignRequest value) {
+        if (getCosSignRequestBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          badQuestionRequest_ = value;
+          getCosSignRequest_ = value;
           onChanged();
         } else {
-          badQuestionRequestBuilder_.setMessage(value);
+          getCosSignRequestBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public Builder setBadQuestionRequest(
-          com.ClientSendMessage.BadQuestionRequest.Builder builderForValue) {
-        if (badQuestionRequestBuilder_ == null) {
-          badQuestionRequest_ = builderForValue.build();
+      public Builder setGetCosSignRequest(
+          com.ClientSendMessage.GetCosSignRequest.Builder builderForValue) {
+        if (getCosSignRequestBuilder_ == null) {
+          getCosSignRequest_ = builderForValue.build();
           onChanged();
         } else {
-          badQuestionRequestBuilder_.setMessage(builderForValue.build());
+          getCosSignRequestBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public Builder mergeBadQuestionRequest(com.ClientSendMessage.BadQuestionRequest value) {
-        if (badQuestionRequestBuilder_ == null) {
-          if (badQuestionRequest_ != null) {
-            badQuestionRequest_ =
-              com.ClientSendMessage.BadQuestionRequest.newBuilder(badQuestionRequest_).mergeFrom(value).buildPartial();
+      public Builder mergeGetCosSignRequest(com.ClientSendMessage.GetCosSignRequest value) {
+        if (getCosSignRequestBuilder_ == null) {
+          if (getCosSignRequest_ != null) {
+            getCosSignRequest_ =
+              com.ClientSendMessage.GetCosSignRequest.newBuilder(getCosSignRequest_).mergeFrom(value).buildPartial();
           } else {
-            badQuestionRequest_ = value;
+            getCosSignRequest_ = value;
           }
           onChanged();
         } else {
-          badQuestionRequestBuilder_.mergeFrom(value);
+          getCosSignRequestBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public Builder clearBadQuestionRequest() {
-        if (badQuestionRequestBuilder_ == null) {
-          badQuestionRequest_ = null;
+      public Builder clearGetCosSignRequest() {
+        if (getCosSignRequestBuilder_ == null) {
+          getCosSignRequest_ = null;
           onChanged();
         } else {
-          badQuestionRequest_ = null;
-          badQuestionRequestBuilder_ = null;
+          getCosSignRequest_ = null;
+          getCosSignRequestBuilder_ = null;
         }
 
         return this;
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public com.ClientSendMessage.BadQuestionRequest.Builder getBadQuestionRequestBuilder() {
+      public com.ClientSendMessage.GetCosSignRequest.Builder getGetCosSignRequestBuilder() {
         
         onChanged();
-        return getBadQuestionRequestFieldBuilder().getBuilder();
+        return getGetCosSignRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
-      public com.ClientSendMessage.BadQuestionRequestOrBuilder getBadQuestionRequestOrBuilder() {
-        if (badQuestionRequestBuilder_ != null) {
-          return badQuestionRequestBuilder_.getMessageOrBuilder();
+      public com.ClientSendMessage.GetCosSignRequestOrBuilder getGetCosSignRequestOrBuilder() {
+        if (getCosSignRequestBuilder_ != null) {
+          return getCosSignRequestBuilder_.getMessageOrBuilder();
         } else {
-          return badQuestionRequest_ == null ?
-              com.ClientSendMessage.BadQuestionRequest.getDefaultInstance() : badQuestionRequest_;
+          return getCosSignRequest_ == null ?
+              com.ClientSendMessage.GetCosSignRequest.getDefaultInstance() : getCosSignRequest_;
         }
       }
       /**
-       * <code>optional .BadQuestionRequest badQuestionRequest = 9;</code>
+       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.BadQuestionRequest, com.ClientSendMessage.BadQuestionRequest.Builder, com.ClientSendMessage.BadQuestionRequestOrBuilder> 
-          getBadQuestionRequestFieldBuilder() {
-        if (badQuestionRequestBuilder_ == null) {
-          badQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ClientSendMessage.BadQuestionRequest, com.ClientSendMessage.BadQuestionRequest.Builder, com.ClientSendMessage.BadQuestionRequestOrBuilder>(
-                  getBadQuestionRequest(),
+          com.ClientSendMessage.GetCosSignRequest, com.ClientSendMessage.GetCosSignRequest.Builder, com.ClientSendMessage.GetCosSignRequestOrBuilder> 
+          getGetCosSignRequestFieldBuilder() {
+        if (getCosSignRequestBuilder_ == null) {
+          getCosSignRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ClientSendMessage.GetCosSignRequest, com.ClientSendMessage.GetCosSignRequest.Builder, com.ClientSendMessage.GetCosSignRequestOrBuilder>(
+                  getGetCosSignRequest(),
                   getParentForChildren(),
                   isClean());
-          badQuestionRequest_ = null;
+          getCosSignRequest_ = null;
         }
-        return badQuestionRequestBuilder_;
+        return getCosSignRequestBuilder_;
       }
 
       private com.ClientSendMessage.GoodUserRequest goodUserRequest_ = null;
@@ -15388,123 +11959,6 @@ public final class ClientSendMessage {
           goodUserRequest_ = null;
         }
         return goodUserRequestBuilder_;
-      }
-
-      private com.ClientSendMessage.BadUserRequest badUserRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.BadUserRequest, com.ClientSendMessage.BadUserRequest.Builder, com.ClientSendMessage.BadUserRequestOrBuilder> badUserRequestBuilder_;
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public boolean hasBadUserRequest() {
-        return badUserRequestBuilder_ != null || badUserRequest_ != null;
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public com.ClientSendMessage.BadUserRequest getBadUserRequest() {
-        if (badUserRequestBuilder_ == null) {
-          return badUserRequest_ == null ? com.ClientSendMessage.BadUserRequest.getDefaultInstance() : badUserRequest_;
-        } else {
-          return badUserRequestBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public Builder setBadUserRequest(com.ClientSendMessage.BadUserRequest value) {
-        if (badUserRequestBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          badUserRequest_ = value;
-          onChanged();
-        } else {
-          badUserRequestBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public Builder setBadUserRequest(
-          com.ClientSendMessage.BadUserRequest.Builder builderForValue) {
-        if (badUserRequestBuilder_ == null) {
-          badUserRequest_ = builderForValue.build();
-          onChanged();
-        } else {
-          badUserRequestBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public Builder mergeBadUserRequest(com.ClientSendMessage.BadUserRequest value) {
-        if (badUserRequestBuilder_ == null) {
-          if (badUserRequest_ != null) {
-            badUserRequest_ =
-              com.ClientSendMessage.BadUserRequest.newBuilder(badUserRequest_).mergeFrom(value).buildPartial();
-          } else {
-            badUserRequest_ = value;
-          }
-          onChanged();
-        } else {
-          badUserRequestBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public Builder clearBadUserRequest() {
-        if (badUserRequestBuilder_ == null) {
-          badUserRequest_ = null;
-          onChanged();
-        } else {
-          badUserRequest_ = null;
-          badUserRequestBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public com.ClientSendMessage.BadUserRequest.Builder getBadUserRequestBuilder() {
-        
-        onChanged();
-        return getBadUserRequestFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      public com.ClientSendMessage.BadUserRequestOrBuilder getBadUserRequestOrBuilder() {
-        if (badUserRequestBuilder_ != null) {
-          return badUserRequestBuilder_.getMessageOrBuilder();
-        } else {
-          return badUserRequest_ == null ?
-              com.ClientSendMessage.BadUserRequest.getDefaultInstance() : badUserRequest_;
-        }
-      }
-      /**
-       * <code>optional .BadUserRequest badUserRequest = 11;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ClientSendMessage.BadUserRequest, com.ClientSendMessage.BadUserRequest.Builder, com.ClientSendMessage.BadUserRequestOrBuilder> 
-          getBadUserRequestFieldBuilder() {
-        if (badUserRequestBuilder_ == null) {
-          badUserRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ClientSendMessage.BadUserRequest, com.ClientSendMessage.BadUserRequest.Builder, com.ClientSendMessage.BadUserRequestOrBuilder>(
-                  getBadUserRequest(),
-                  getParentForChildren(),
-                  isClean());
-          badUserRequest_ = null;
-        }
-        return badUserRequestBuilder_;
       }
 
       private com.ClientSendMessage.QuestionInformationRequest questionInformationRequest_ = null;
@@ -16263,21 +12717,6 @@ public final class ClientSendMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ContentMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ContentMessage_TextMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ContentMessage_TextMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ContentMessage_PictureMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ContentMessage_PictureMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ContentMessage_VoiceMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ContentMessage_VoiceMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_LaunchRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -16308,20 +12747,10 @@ public final class ClientSendMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GoodQuestionRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_BadQuestionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_BadQuestionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_GoodUserRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GoodUserRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_BadUserRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_BadUserRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionInformationRequest_descriptor;
   private static final 
@@ -16353,6 +12782,11 @@ public final class ClientSendMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_SearchInformationRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetCosSignRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetCosSignRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -16366,77 +12800,64 @@ public final class ClientSendMessage {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020ClientSend.proto\"\337\002\n\016ContentMessage\022 \n" +
-      "\tsend_type\030\001 \001(\0162\r.CONTENT_TYPE\022\"\n\014pictu" +
-      "re_type\030\002 \001(\0162\014.PICTURETYPE\0220\n\013textMessa" +
-      "ge\030\003 \001(\0132\033.ContentMessage.TextMessage\0226\n" +
-      "\016pictureMessage\030\004 \001(\0132\036.ContentMessage.P" +
-      "ictureMessage\0222\n\014voiceMessage\030\005 \001(\0132\034.Co" +
-      "ntentMessage.VoiceMessage\032\033\n\013TextMessage" +
-      "\022\014\n\004text\030\001 \001(\t\032\'\n\016PictureMessage\022\025\n\rpict" +
-      "ureBinary\030\002 \003(\003\032#\n\014VoiceMessage\022\023\n\013voice" +
-      "Binary\030\001 \003(\003\"!\n\rLaunchRequest\022\020\n\010passwor",
-      "d\030\002 \001(\t\"\017\n\rLogoutMessage\"v\n\013SendContent\022" +
-      "\022\n\nquestionID\030\001 \001(\003\022\'\n\016contentMessage\030\002 " +
-      "\003(\0132\017.ContentMessage\022\014\n\004time\030\003 \001(\t\022\014\n\004da" +
-      "te\030\004 \001(\t\022\016\n\006record\030\005 \001(\t\"#\n\023Announcement" +
-      "Message\022\014\n\004text\030\001 \001(\t\"*\n\024QuestionEnterRe" +
-      "quest\022\022\n\nquestionID\030\001 \001(\003\"9\n\023GoodQuestio" +
-      "nRequest\022\022\n\nquestionID\030\001 \001(\003\022\016\n\006reason\030\002" +
-      " \001(\t\"8\n\022BadQuestionRequest\022\022\n\nquestionID" +
-      "\030\001 \001(\003\022\016\n\006reason\030\002 \001(\t\"1\n\017GoodUserReques" +
-      "t\022\016\n\006userID\030\001 \001(\003\022\016\n\006reason\030\002 \001(\t\"0\n\016Bad",
-      "UserRequest\022\016\n\006userID\030\001 \001(\003\022\016\n\006reason\030\002 " +
-      "\001(\t\"0\n\032QuestionInformationRequest\022\022\n\nque" +
-      "stionID\030\001 \001(\003\"*\n\026UserInformationRequest\022" +
-      "\020\n\010username\030\001 \001(\003\"s\n\026GetQuestionListRequ" +
-      "est\022\"\n\treference\030\001 \001(\0162\017.LIST_REFERENCE\022" +
-      "\035\n\trankorder\030\002 \001(\0162\n.RANKORDER\022\026\n\016questi" +
-      "onNumber\030\003 \001(\005\"s\n\025CreateQuestionRequest\022" +
-      "\014\n\004stem\030\001 \001(\t\022 \n\007additon\030\002 \003(\0132\017.Content" +
-      "Message\022\014\n\004date\030\003 \001(\t\022\014\n\004time\030\004 \001(\t\022\016\n\006r" +
-      "ecord\030\005 \001(\t\",\n\026AbandonQuestionRequest\022\022\n",
-      "\nquestionID\030\001 \001(\003\"L\n\030SearchInformationRe" +
-      "quest\022\037\n\nsearchType\030\001 \001(\0162\013.SEARCHTYPE\022\017" +
-      "\n\007keyword\030\002 \001(\t\"\243\006\n\007Message\022\026\n\010msg_type\030" +
-      "\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauchRe" +
-      "quest\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutMes" +
-      "sage\030\004 \001(\0132\016.LogoutMessage\022!\n\013sendConten" +
-      "t\030\005 \001(\0132\014.SendContent\0221\n\023announcementMes" +
-      "sage\030\006 \001(\0132\024.AnnouncementMessage\0223\n\024ques" +
-      "tionEnterRequest\030\007 \001(\0132\025.QuestionEnterRe" +
-      "quest\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.Goo",
-      "dQuestionRequest\022/\n\022badQuestionRequest\030\t" +
-      " \001(\0132\023.BadQuestionRequest\022)\n\017goodUserReq" +
-      "uest\030\n \001(\0132\020.GoodUserRequest\022\'\n\016badUserR" +
-      "equest\030\013 \001(\0132\017.BadUserRequest\022?\n\032questio" +
-      "nInformationRequest\030\r \001(\0132\033.QuestionInfo" +
-      "rmationRequest\0227\n\026userInformationRequest" +
-      "\030\016 \001(\0132\027.UserInformationRequest\0227\n\026getQu" +
-      "estionListRequest\030\017 \001(\0132\027.GetQuestionLis" +
-      "tRequest\0225\n\025createQuestionRequest\030\022 \001(\0132" +
-      "\026.CreateQuestionRequest\0227\n\026abandonQuesti",
-      "onRequest\030\023 \001(\0132\027.AbandonQuestionRequest" +
-      "\022;\n\030searchInformationRequest\030\024 \001(\0132\031.Sea" +
-      "rchInformationRequest*\221\003\n\003MSG\022\022\n\016LAUNCH_" +
-      "REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\020\n\014SEND_CO" +
-      "NTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUE" +
-      "STION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_R" +
-      "EQUEST\020\005\022\030\n\024BAD_QUESTION_REQUEST\020\006\022\025\n\021GO" +
-      "OD_USER_REQUEST\020\007\022\024\n\020BAD_USER_REQUEST\020\010\022" +
-      " \n\034QUESTION_INFORMATION_REQUEST\020\n\022\034\n\030USE" +
-      "R_INFORMATION_REQUEST\020\013\022\035\n\031GET_QUESTION_",
-      "LIST_REQUEST\020\014\022\033\n\027CREATE_QUESTION_REQUES" +
-      "T\020\017\022\034\n\030ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SEA" +
-      "RCH_INFORMATION_REQUEST\020\021*H\n\014CONTENT_TYP" +
-      "E\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001" +
-      "\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JP" +
-      "EG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010" +
-      "QUESTION\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016" +
-      "\n\nDESCENDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUES" +
-      "TION_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USER" +
-      "S_OF_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME",
-      "\020\004B\030\n\003comB\021ClientSendMessageb\006proto3"
+      "\n\020ClientSend.proto\"!\n\016ContentMessage\022\017\n\007" +
+      "content\030\001 \001(\t\"!\n\rLaunchRequest\022\020\n\010passwo" +
+      "rd\030\002 \001(\t\"\017\n\rLogoutMessage\"N\n\013SendContent" +
+      "\022\022\n\nquestionID\030\001 \001(\003\022\017\n\007content\030\002 \001(\t\022\014\n" +
+      "\004time\030\003 \001(\t\022\014\n\004date\030\004 \001(\t\"#\n\023Announcemen" +
+      "tMessage\022\014\n\004text\030\001 \001(\t\"*\n\024QuestionEnterR" +
+      "equest\022\022\n\nquestionID\030\001 \001(\003\")\n\023GoodQuesti" +
+      "onRequest\022\022\n\nquestionID\030\001 \001(\003\"\037\n\017GoodUse" +
+      "rRequest\022\014\n\004user\030\001 \001(\t\"0\n\032QuestionInform" +
+      "ationRequest\022\022\n\nquestionID\030\001 \001(\003\"*\n\026User",
+      "InformationRequest\022\020\n\010username\030\001 \001(\t\"s\n\026" +
+      "GetQuestionListRequest\022\"\n\treference\030\001 \001(" +
+      "\0162\017.LIST_REFERENCE\022\035\n\trankorder\030\002 \001(\0162\n." +
+      "RANKORDER\022\026\n\016questionNumber\030\003 \001(\005\"s\n\025Cre" +
+      "ateQuestionRequest\022\014\n\004stem\030\001 \001(\t\022 \n\007addi" +
+      "ton\030\002 \003(\0132\017.ContentMessage\022\014\n\004date\030\003 \001(\t" +
+      "\022\014\n\004time\030\004 \001(\t\022\016\n\006record\030\005 \001(\t\",\n\026Abando" +
+      "nQuestionRequest\022\022\n\nquestionID\030\001 \001(\003\"L\n\030" +
+      "SearchInformationRequest\022\037\n\nsearchType\030\001" +
+      " \001(\0162\013.SEARCHTYPE\022\017\n\007keyword\030\002 \001(\t\"%\n\021Ge",
+      "tCosSignRequest\022\020\n\010filename\030\001 \001(\t\"\370\005\n\007Me" +
+      "ssage\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010usernam" +
+      "e\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRe" +
+      "quest\022%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMes" +
+      "sage\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\022" +
+      "1\n\023announcementMessage\030\006 \001(\0132\024.Announcem" +
+      "entMessage\0223\n\024questionEnterRequest\030\007 \001(\013" +
+      "2\025.QuestionEnterRequest\0221\n\023goodQuestionR" +
+      "equest\030\010 \001(\0132\024.GoodQuestionRequest\022-\n\021ge" +
+      "tCosSignRequest\030\t \001(\0132\022.GetCosSignReques",
+      "t\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReq" +
+      "uest\022?\n\032questionInformationRequest\030\r \001(\013" +
+      "2\033.QuestionInformationRequest\0227\n\026userInf" +
+      "ormationRequest\030\016 \001(\0132\027.UserInformationR" +
+      "equest\0227\n\026getQuestionListRequest\030\017 \001(\0132\027" +
+      ".GetQuestionListRequest\0225\n\025createQuestio" +
+      "nRequest\030\022 \001(\0132\026.CreateQuestionRequest\0227" +
+      "\n\026abandonQuestionRequest\030\023 \001(\0132\027.Abandon" +
+      "QuestionRequest\022;\n\030searchInformationRequ" +
+      "est\030\024 \001(\0132\031.SearchInformationRequest*\373\002\n",
+      "\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSA" +
+      "GE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_M" +
+      "ESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025" +
+      "GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_USER_REQ" +
+      "UEST\020\007\022\030\n\024GET_COS_SIGN_REQUEST\020\t\022 \n\034QUES" +
+      "TION_INFORMATION_REQUEST\020\n\022\034\n\030USER_INFOR" +
+      "MATION_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_RE" +
+      "QUEST\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030" +
+      "ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INF" +
+      "ORMATION_REQUEST\020\021*H\n\014CONTENT_TYPE\022\020\n\014TE",
+      "XT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOI" +
+      "CE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n" +
+      "\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTIO" +
+      "N\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCE" +
+      "NDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NU" +
+      "MBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QU" +
+      "ESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003c" +
+      "omB\021ClientSendMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -16455,25 +12876,7 @@ public final class ClientSendMessage {
     internal_static_ContentMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ContentMessage_descriptor,
-        new java.lang.String[] { "SendType", "PictureType", "TextMessage", "PictureMessage", "VoiceMessage", });
-    internal_static_ContentMessage_TextMessage_descriptor =
-      internal_static_ContentMessage_descriptor.getNestedTypes().get(0);
-    internal_static_ContentMessage_TextMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ContentMessage_TextMessage_descriptor,
-        new java.lang.String[] { "Text", });
-    internal_static_ContentMessage_PictureMessage_descriptor =
-      internal_static_ContentMessage_descriptor.getNestedTypes().get(1);
-    internal_static_ContentMessage_PictureMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ContentMessage_PictureMessage_descriptor,
-        new java.lang.String[] { "PictureBinary", });
-    internal_static_ContentMessage_VoiceMessage_descriptor =
-      internal_static_ContentMessage_descriptor.getNestedTypes().get(2);
-    internal_static_ContentMessage_VoiceMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ContentMessage_VoiceMessage_descriptor,
-        new java.lang.String[] { "VoiceBinary", });
+        new java.lang.String[] { "Content", });
     internal_static_LaunchRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_LaunchRequest_fieldAccessorTable = new
@@ -16491,7 +12894,7 @@ public final class ClientSendMessage {
     internal_static_SendContent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_descriptor,
-        new java.lang.String[] { "QuestionID", "ContentMessage", "Time", "Date", "Record", });
+        new java.lang.String[] { "QuestionID", "Content", "Time", "Date", });
     internal_static_AnnouncementMessage_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_AnnouncementMessage_fieldAccessorTable = new
@@ -16509,67 +12912,61 @@ public final class ClientSendMessage {
     internal_static_GoodQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GoodQuestionRequest_descriptor,
-        new java.lang.String[] { "QuestionID", "Reason", });
-    internal_static_BadQuestionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_BadQuestionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_BadQuestionRequest_descriptor,
-        new java.lang.String[] { "QuestionID", "Reason", });
+        new java.lang.String[] { "QuestionID", });
     internal_static_GoodUserRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_GoodUserRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GoodUserRequest_descriptor,
-        new java.lang.String[] { "UserID", "Reason", });
-    internal_static_BadUserRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_BadUserRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_BadUserRequest_descriptor,
-        new java.lang.String[] { "UserID", "Reason", });
+        new java.lang.String[] { "User", });
     internal_static_QuestionInformationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_QuestionInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionInformationRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_UserInformationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_UserInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserInformationRequest_descriptor,
         new java.lang.String[] { "Username", });
     internal_static_GetQuestionListRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_GetQuestionListRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetQuestionListRequest_descriptor,
         new java.lang.String[] { "Reference", "Rankorder", "QuestionNumber", });
     internal_static_CreateQuestionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_CreateQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateQuestionRequest_descriptor,
         new java.lang.String[] { "Stem", "Additon", "Date", "Time", "Record", });
     internal_static_AbandonQuestionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_AbandonQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AbandonQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_SearchInformationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_SearchInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchInformationRequest_descriptor,
         new java.lang.String[] { "SearchType", "Keyword", });
+    internal_static_GetCosSignRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_GetCosSignRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetCosSignRequest_descriptor,
+        new java.lang.String[] { "Filename", });
     internal_static_Message_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "BadQuestionRequest", "GoodUserRequest", "BadUserRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", });
+        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "GetCosSignRequest", "GoodUserRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
