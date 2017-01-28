@@ -5,21 +5,26 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.io.File;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-//import javax.swing.text.html.HTMLEditorKit;
-//import javax.swing.text.html.HTMLDocument;
-//import javax.swing.text.html.HTML.Tag;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ChattingBox extends JPanel
 {
+	private ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
+	private ChattingBoxHyperlinkListener hyperlinkAction=new ChattingBoxHyperlinkListener();
+	private boolean onHyperlink=false;
+	private String mouseHyperlink;
+	private String currentHyperlink;
+
 	public JTextPane myPane=new JTextPane();
 	private JScrollPane myScroll=new JScrollPane(myPane);
-	//private HTMLEditorKit he=new HTMLEditorKit();
-	//private HTMLDocument hd=(HTMLDocument) he.createDefaultDocument();
 	private StringBuilder html=new StringBuilder("");
 
 	private JPopupMenu textMenu=new JPopupMenu();
@@ -59,13 +64,18 @@ public class ChattingBox extends JPanel
 		myPane.setPreferredSize(new Dimension(500,550));
 		myPane.setContentType("text/html");
 		myPane.setEditable(false);
+
 		myPane.addMouseListener(new ChattingBoxMouseListener());
+		myPane.addHyperlinkListener(hyperlinkAction);
 		textMenu.add(copy);
+		copy.addActionListener(rightAction);
 		textMenu.add(reset);
+		reset.addActionListener(rightAction);
+		userMenu.add(getInfo);
+		getInfo.addActionListener(rightAction);
 		myPane.add(textMenu);
 		myPane.add(userMenu);
-		//myScroll.setVisible(true);
-		//myPane.setVisible(true);
+
 		this.add(myScroll);
 	}
 
@@ -85,7 +95,7 @@ public class ChattingBox extends JPanel
 			"-moz-user-select:none;"+
 			"-ms-user-select:none;user-select:none;\">"+
 			"<tr><td rowspan=\"3\">"+
-			(ismyself?"":"<a href=\"用户名\">"+
+			(ismyself?"":"<a href=\"user:用户名A\">"+
 			"<img src=\""+PATH+"ask.jpg\"></a>")+
 			"</td>"+
 			"<td><img src=\""+PATH+"bubble_lu.jpg\"></td>"+
@@ -93,7 +103,7 @@ public class ChattingBox extends JPanel
 			"background-repeat:repeat-x;\">&nbsp;</td>"+
 			"<td><img src=\""+PATH+"bubble_ru.jpg\"></td>"+
 			"<td rowspan=\"3\">"+
-			(ismyself?"<a href=\"用户名\">"+
+			(ismyself?"<a href=\"user:用户名B\">"+
 			"<img src=\""+PATH+"ask.jpg\"></a>":"")+
 			"</td></tr>"+
 			"<tr><td style=\"background-image:url("+PATH+"bubble_le.jpg)\">&nbsp;</td>"+
@@ -112,17 +122,67 @@ public class ChattingBox extends JPanel
 		ChattingBoxMouseListener(){}
 		public void mousePressed(MouseEvent e)
 		{
+			if(onHyperlink) currentHyperlink=mouseHyperlink;
 			if(e.getButton()==MouseEvent.BUTTON3)
 			{
 				//判断用户身份
-				//判断点击对象
-				copy.setEnabled(true);
-				textMenu.show(ChattingBox.this,e.getX(),e.getY());
+				if(onHyperlink)
+				{
+					//user.add(abspeak)
+					//abspeak.setEnabled(true);
+					getInfo.setEnabled(true);
+					reset.setEnabled(true);
+					userMenu.show(ChattingBox.this,e.getX(),e.getY());
+				}
+				else
+				{
+					copy.setEnabled(true);
+					reset.setEnabled(true);
+					textMenu.show(ChattingBox.this,e.getX(),e.getY());
+				}
 			}
 		}
 		public void mouseReleased(MouseEvent e){}
 		public void mouseClicked(MouseEvent e){}
 		public void mouseEntered(MouseEvent e){}
 		public void mouseExited(MouseEvent e){}
+	}
+
+	private class ChattingBoxRightAction implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getActionCommand().equals("复制"))
+			{
+				if(myPane.getSelectionStart()!=myPane.getSelectionEnd())
+					myPane.copy();
+			}
+			else if(e.getActionCommand().equals("清屏"))
+			{
+				html.delete(0,html.length());
+				myPane.setText("");
+			}
+		}
+	}
+
+	private class ChattingBoxHyperlinkListener implements HyperlinkListener
+	{
+		public void hyperlinkUpdate(HyperlinkEvent e)
+		{
+			if(e.getEventType()==HyperlinkEvent.EventType.ENTERED)
+			{
+				onHyperlink=true;
+				mouseHyperlink=e.getDescription();
+			}
+			else if(e.getEventType()==HyperlinkEvent.EventType.EXITED)
+				onHyperlink=false;
+			else
+			{
+				if(currentHyperlink.substring(0,4).equals("user"))
+				{
+					//利用currentHyperlink.substring(5)打开个人资料
+				}
+			}
+		}
 	}
 }
