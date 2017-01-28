@@ -5,23 +5,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.ByteArrayOutputStream;
 
-public class MD5Tools
+class MD5Tools
 {
-	private static MessageDigest md=MessageDigest.getInstance("MD5");
+	private static MessageDigest md;
 	MD5Tools(){}
 
 	public static String FileToMD5(File f)
 	{
-		md.reset();
+		byte[] byteArray;
 		try
 		{
-			byte[] byteArray;
+			md=MessageDigest.getInstance("MD5");
 			FileInputStream fis=new FileInputStream(f);
 			ByteArrayOutputStream baos=new ByteArrayOutputStream(1000);
 			byte[] tmp=new byte[1000];
 			int tmpn;
-			while((n=fis.read(tmp))!=-1)
-				baos.write(b,0,n);
+			while((tmpn=fis.read(tmp))!=-1)
+				baos.write(tmp,0,tmpn);
 			fis.close();
 			baos.close();
 			byteArray=baos.toByteArray();
@@ -41,7 +41,13 @@ public class MD5Tools
 
 	public static String StringToMD5(String str)
 	{
-		md.reset();
+		try{
+			md=MessageDigest.getInstance("MD5");
+		}
+		catch(Exception e)
+		{
+			str="";
+		}
 		md.update(str.getBytes());
 		return byteArrayToHex(md.digest());
 	}
@@ -52,10 +58,10 @@ public class MD5Tools
 		{'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 		char[] result=new char[byteArray.length*2];
 		int i=0;
-		for(b:byteArray)
+		for(byte b:byteArray)
 		{
-			result[i++]=hexDights[b>>4];
-			result[i++]=hexDights[b];
+			result[i++]=hexDigits[0xf&(b>>4)];
+			result[i++]=hexDigits[b&0xf];
 		}
 		return new String(result);
 	}

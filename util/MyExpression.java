@@ -18,6 +18,7 @@ class MyExpression
 	private int inity=-1,height=-1,width=-1;
 	private static final Font[] fonts={new Font("Arial",0,30),new Font("Arial",0,15),new Font("Arial",0,10)};
 	private static final int BORDER=5,HEIGHT=30;
+	private static final String CLASSPATH=MyExpression.class.getResource("").getPath();
 	// ********根号还不能画出
 	//需要处理的符号：
 	//替换：root
@@ -33,7 +34,7 @@ class MyExpression
 			System.out.println("格式有误");
 			return;
 		}
-		abc.toImage("test");
+		abc.toImage();
 	}*/
 
 	public boolean read(String e)
@@ -301,7 +302,7 @@ class MyExpression
 		return a;
 	}
 
-	public BufferedImage toImage(String filename)
+	public BufferedImage toImage()
 	{
 		int w=getWidth(1)+BORDER*4,h=getHeight(1);
 		int i,inity=0;
@@ -312,14 +313,17 @@ class MyExpression
 		g.setBackground(new Color(255,255,255));
 		g.clearRect(0,0,w,h);
 		draw(g,2,getinity(1),1);
+		File imageFile=new File(CLASSPATH+"tmp.jpg");
 		try
 		{
-			ImageIO.write(b, "jpg", new File("D:\\"+filename+".jpg"));
+			ImageIO.write(b, "jpg", imageFile);
 		}
 		catch(IOException e)
 		{
 			System.out.println("写入图片出错！");//写入图片出错
 		}
+		imageFile.renameTo(new File(CLASSPATH+MD5Tools.FileToMD5(imageFile)+".jpg"));
+		if(imageFile.exists()) imageFile.delete();
 		return b;
 	}
 
