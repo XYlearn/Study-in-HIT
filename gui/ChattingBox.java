@@ -8,11 +8,13 @@ import javax.swing.JMenuItem;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.io.File;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 //import javax.swing.text.html.HTMLEditorKit;
 //import javax.swing.text.html.HTMLDocument;
 //import javax.swing.text.html.HTML.Tag;
 
-public class ChattingBox extends JPanel// implements MouseListener
+public class ChattingBox extends JPanel
 {
 	public JTextPane myPane=new JTextPane();
 	private JScrollPane myScroll=new JScrollPane(myPane);
@@ -24,6 +26,7 @@ public class ChattingBox extends JPanel// implements MouseListener
 	private JPopupMenu userMenu=new JPopupMenu();
 	private JMenuItem copy=new JMenuItem("复制");
 	private JMenuItem paste=new JMenuItem("粘贴");
+	private JMenuItem reset=new JMenuItem("清屏");
 	private JMenuItem abspeak=new JMenuItem("禁言");
 	private JMenuItem getInfo=new JMenuItem("个人资料");
 
@@ -55,6 +58,12 @@ public class ChattingBox extends JPanel// implements MouseListener
 	{
 		myPane.setPreferredSize(new Dimension(500,550));
 		myPane.setContentType("text/html");
+		myPane.setEditable(false);
+		myPane.addMouseListener(new ChattingBoxMouseListener());
+		textMenu.add(copy);
+		textMenu.add(reset);
+		myPane.add(textMenu);
+		myPane.add(userMenu);
 		//myScroll.setVisible(true);
 		//myPane.setVisible(true);
 		this.add(myScroll);
@@ -96,5 +105,24 @@ public class ChattingBox extends JPanel// implements MouseListener
 			"<td style=\"background-image:url("+PATH+"bubble_do.jpg)\">&nbsp;</td>"+
 			"<td><img src=\""+PATH+"bubble_rd.jpg\"></td></tr></table><br>");
 		myPane.setText(html.toString());
+	}
+
+	private class ChattingBoxMouseListener implements MouseListener
+	{
+		ChattingBoxMouseListener(){}
+		public void mousePressed(MouseEvent e)
+		{
+			if(e.getButton()==MouseEvent.BUTTON3)
+			{
+				//判断用户身份
+				//判断点击对象
+				copy.setEnabled(true);
+				textMenu.show(ChattingBox.this,e.getX(),e.getY());
+			}
+		}
+		public void mouseReleased(MouseEvent e){}
+		public void mouseClicked(MouseEvent e){}
+		public void mouseEntered(MouseEvent e){}
+		public void mouseExited(MouseEvent e){}
 	}
 }
