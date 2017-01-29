@@ -1,4 +1,4 @@
-package util;
+//package util;
 
 import java.lang.Thread;
 import java.lang.Runnable;
@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.awt.event.ActionListener;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.TargetDataLine;
+import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioFileFormat;
@@ -24,13 +25,18 @@ class AudioTools
 	private static ByteArrayInputStream bais;
 	private static AudioInputStream ais;
 	private enum Status{STOPPED,CAPTURING,PLAYING};
-	private static Status status=STOPPED;
+	private static Status status=Status.STOPPED;
 	private static final String CLASSPATH=AudioTools.class.getResource("").getPath();
 	AudioTools(){}
 
 	public static boolean startCapture()
 	{
-		if(status==CAPTURING) return true;
+		if(status==Status.CAPTURING) return true;
+		if(status==Status.PLAYING)
+		{
+			//stop();
+		}
+		status=Status.CAPTURING;
 		try
 		{
 			DataLine.Info info=new DataLine.Info(TargetDataLine.class,getAudioFormat());
@@ -43,16 +49,18 @@ class AudioTools
 		{
 			return false;
 		}
+		return true;
 	}
 
 	public static String stopAndSaveCapture()
 	{
-		status=STOPPED;
+		String filename;
+		status=Status.STOPPED;
 		byte[] byteArray=baos.toByteArray();
 		bais=new ByteArrayInputStream(byteArray);
 		ais=new AudioInputStream(bais,getAudioFormat(),
 			byteArray.length/getAudioFormat().getFrameSize());
-		File audioFile=new File(CLASSPATH+"tmpCapture.mp3");
+		File audioFile=new File(CLASSPATH+"tmpCapture.wav");
 		try
 		{
 			AudioSystem.write(ais,AudioFileFormat.Type.WAVE,audioFile);
@@ -67,16 +75,36 @@ class AudioTools
 			}
 			catch(Exception e){}
 		}
-		audioFile.renameTo(new File(CLASSPATH+MD5Tools.FileToMD5(audioFile)+".mp3"));
+		filename=MD5Tools.FileToMD5(audioFile);
+		audioFile.renameTo(new File(CLASSPATH+filename+".wav"));
 		if(audioFile.exists()) audioFile.delete();
+		return filename;
 	}
 
-	public static boolean cancelCapture()
+	public static void cancelCapture()
 	{
-		status=STOPPED;
+		status=Status.STOPPED;
 	}
 
-	private static getAudioFormat()
+	public static void playAudio(String filepath)
+	{
+		playAudio(new File(filepath));
+	}
+
+	public static void playAudio(File audioFile)
+	{
+		//if(status==Status.PLAYING)
+			//stop();
+		//new
+	}
+
+	public static void stopAudio()
+	{
+		if(status==Status.STOPPED) return;
+			//stop();
+	}
+
+	private static AudioFormat getAudioFormat()
 	{
 		if(af==null) af=new AudioFormat(
 			AudioFormat.Encoding.PCM_SIGNED, //encoding
@@ -95,11 +123,11 @@ class AudioTools
 		public void run()
 		{
 			int cnt;
-			baos=new ByteArrayOutputSystem();
-			status=CAPTURING;
+			baos=new ByteArrayOutputStream();
+			status=Status.CAPTURING;
 			try
 			{
-				while(status==CAPTURING)
+				while(status==Status.CAPTURING)
 					if((cnt=td.read(byteArray,0,byteArray.length))>0)
 						baos.write(byteArray,0,cnt);
 			}
