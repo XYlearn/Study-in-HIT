@@ -1,0 +1,4 @@
+interface stopListener
+{
+	void stop();
+}

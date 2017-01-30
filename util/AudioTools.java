@@ -19,8 +19,10 @@ import javax.sound.sampled.LineUnavailableException;
 
 class AudioTools
 {
+	private static stopListener sl;
 	private static AudioFormat af;
 	private static TargetDataLine td;
+	private static SourceDataLine sd;
 	private static ByteArrayOutputStream baos;
 	private static ByteArrayInputStream bais;
 	private static AudioInputStream ais;
@@ -29,13 +31,47 @@ class AudioTools
 	private static final String CLASSPATH=AudioTools.class.getResource("").getPath();
 	AudioTools(){}
 
+	/*public static void main(String[] args)
+	{
+		Thread a=new Thread(){
+			public void run()
+			{
+				AudioTools.startCapture();
+				try
+				{
+					sleep(20000);//test time of capture
+				}
+				catch(Exception e)
+				{
+					System.out.println("error!");
+				}
+				String name=AudioTools.stopAndSaveCapture();
+				AudioTools.playAudio(CLASSPATH+name+".wav");
+			}
+		};
+		try
+		{
+			a.start();
+			a.join();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error!");
+		}
+	}*/
+
+	/*public static void main(String[] args)
+	{
+		AudioTools.playAudio(CLASSPATH+"test.mp3");
+	}*/
+
+	//To test this class,run one of the main() above,using(firstly cd to the folder)
+	//javac -cp ".;jl1.0.1.jar;mp3spi1.9.5.jar;tritonus_share.jar" AudioTools.java
+	//java -cp ".;jl1.0.1.jar;mp3spi1.9.5.jar;tritonus_share.jar" AudioTools
+
 	public static boolean startCapture()
 	{
 		if(status==Status.CAPTURING) return true;
-		if(status==Status.PLAYING)
-		{
-			//stop();
-		}
 		status=Status.CAPTURING;
 		try
 		{
@@ -81,27 +117,56 @@ class AudioTools
 		return filename;
 	}
 
-	public static void cancelCapture()
+	public static void playAudio(String filepath,stopListener mysl)
+	{
+		playAudio(new File(filepath),sl);
+	}
+
+	public static void playAudio(File audioFile,stopListener mysl)
+	{
+		stopAudio();
+		sl.stop();
+		try{Thread.sleep(10);}catch(Exception e){}
+		sl=mysl;
+		status=Status.PLAYING;
+		try
+		{
+			ais=AudioSystem.getAudioInputStream(audioFile);
+		}
+		catch(Exception e)
+		{
+			System.out.println("errorrrrrrrrr!");
+			return;
+		}
+		af=ais.getFormat();
+		//转换MP3文件编码
+		if(af.getEncoding()!=AudioFormat.Encoding.PCM_SIGNED)
+		{
+			af=new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
+				af.getSampleRate(),16,
+				af.getChannels(),af.getChannels()*2,
+				af.getSampleRate(),false);
+			ais=AudioSystem.getAudioInputStream(af,ais);
+		}
+		DataLine.Info info=new DataLine.Info(
+			SourceDataLine.class,af,AudioSystem.NOT_SPECIFIED);
+		try
+		{
+			sd=(SourceDataLine)AudioSystem.getLine(info);
+			sd.open(af);
+			sd.start();
+		}
+		catch(Exception e)
+		{
+			System.out.println("error!!");
+			return;
+		}
+		new Thread(new MyPlay()).start();
+	}
+
+	public static void stopAudio() //stop playing or capture
 	{
 		status=Status.STOPPED;
-	}
-
-	public static void playAudio(String filepath)
-	{
-		playAudio(new File(filepath));
-	}
-
-	public static void playAudio(File audioFile)
-	{
-		//if(status==Status.PLAYING)
-			//stop();
-		//new
-	}
-
-	public static void stopAudio()
-	{
-		if(status==Status.STOPPED) return;
-			//stop();
 	}
 
 	private static AudioFormat getAudioFormat()
@@ -144,6 +209,29 @@ class AudioTools
 					td.drain();
 					td.close();
 				}
+			}
+		}
+	}
+
+	private static class MyPlay implements Runnable
+	{
+		byte[] byteArray=new byte[320];
+
+		public void run()
+		{
+			int tmpn;
+			try
+			{
+				while(status==Status.PLAYING&&
+					(tmpn=ais.read(byteArray,0,byteArray.length))!=-1)
+					if(tmpn>0) sd.write(byteArray,0,tmpn);
+			}
+			catch(Exception e){}
+			finally
+			{
+				sl.stop();
+				sd.drain();
+				sd.close();
 			}
 		}
 	}
