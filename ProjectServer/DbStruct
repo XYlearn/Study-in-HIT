@@ -24,23 +24,21 @@ owner VARCHAR(20) NOT NULL,
 id BIGINT AUTO_INCREMENT,
 stem VARCHAR(300) NOT NULL,
 addition VARCHAR(300),
-date DATE NOT NULL,
-time TIME NOT NULL,
+create_time DATETIME DEFAULT now(),
 solved TINYINT(1) DEFAULT 0,
-good INT DEFAULT 0,
+praise_num INT DEFAULT 0,
 PRIMARY KEY(id)
 );
 //id为?的问题答疑记录
-CREATE TABLE question_id=?(
-record VARCHAR NOT NULL,
+CREATE TABLE question_id1(
+record VARCHAR(800) NOT NULL,
 username VARCHAR(20) NOT NULL,
-date DATE NOT NULL,
-time TIME NOT NULL,
+time DATETIME DEFAULT now()
 );
 
 CREATE TABLE picture_lib (
-md5 VARCHAR(32) NOT NULL,
-)
+md5 VARCHAR(32) NOT NULL
+);
 
 //日期格式 2017-01-19
 //时间格式 10：55：34

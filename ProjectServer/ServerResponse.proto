@@ -61,8 +61,7 @@ message ContentMessage {
 message Record {
     string contentMessage = 1;
     string time = 2;
-    string date = 3;
-    string user = 4;
+    string user = 3;
 }
 
 //问题列表项消息体
@@ -72,7 +71,6 @@ message QuestionListMessage {
     int32 good = 3;
     int32 userNum = 5;
     string time = 6;
-    string date = 7;
     string owner = 8;
 }
 
@@ -81,7 +79,6 @@ message QuestionMessage {
     string stem = 1;
     string addition = 2;
     string time = 3;
-    string date = 4;
     string owner = 5;
     repeated Record record = 6;
     bool solved = 7;
@@ -97,6 +94,7 @@ message UserMessage {
     int32 bonus = 6;
     string signature = 7;
     string mail_address = 8;
+    string pic_url = 9;
 }
 
 //-------------具体消息-------------//
@@ -112,7 +110,7 @@ message SendContent {
     int64 questionID = 1;
     string content = 2;
     string time = 3;
-    string date = 4;
+    string user = 4;
 }
 
 //通告信息
@@ -140,6 +138,7 @@ message GoodUserResponse {
 //问题信息回复
 message QuestionInformationResponse {
     QuestionMessage questionMessage = 1;
+    bool exist = 2;
 }
 
 //用户信息回复

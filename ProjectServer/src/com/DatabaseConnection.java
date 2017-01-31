@@ -12,10 +12,11 @@ import java.util.Properties;
  */
 public class DatabaseConnection {
 	//mariadb
-	String driver = "org.mariadb.jdbc.Driver";
-	String url = "jdbc:mariadb://localhost:3306/sih";
-	String user = "root";
-	String password = "aa199877";
+	private String driver = "org.mariadb.jdbc.Driver";
+	private String url = "jdbc:mariadb://localhost:3306/sih";
+	private String user = "root";
+	private String password = "aa199877";
+	static private boolean closed = false;
 
 	Connection connection = null;
 
@@ -36,9 +37,12 @@ public class DatabaseConnection {
 	public void closeConnection() {
 		try {
 			connection.close();
+			this.closed = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+	public boolean isClosed() { return closed; }
 
 }

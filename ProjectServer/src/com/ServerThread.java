@@ -1,6 +1,7 @@
 package com;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -12,6 +13,7 @@ public class ServerThread implements Runnable {
 	private InputStream is;
 	private OutputStream os;
 	private DatabaseConnection dbconn;
+	String username = null;
 
 	public ServerThread(Socket socket) throws IOException {
 		clientSocket = socket;
@@ -24,20 +26,24 @@ public class ServerThread implements Runnable {
 	public void run() {
 		ClientSendMessage.Message recvMessage = null;
 		ServerResponseMessage.Message respMessage = null;
-		ServerItem serverItem = new ServerItem(clientSocket, recvMessage, dbconn);
-		while (clientSocket.isConnected()) {
+		ServerItem serverItem = new ServerItem(clientSocket, dbconn);
+
+		ByteBuffer sbuffer = null;
+		ByteBuffer rbuffer = null;
+		byte[] b = new byte[1024];
+
+		while (!clientSocket.isClosed()) {
 			try {
-				recvMessage = ClientSendMessage.Message.parseDelimitedFrom(is);
+				recvMessage = ClientSendMessage.Message.parseFrom(is);
+
+				if(null == username)
+					username = recvMessage.getUsername();
 				respMessage = serverItem.handleMessage(recvMessage);
 				//若为登出消息则退出
 				if (respMessage == null || recvMessage==null)
-					continue;
-
-				respMessage.writeDelimitedTo(os);
-				os.flush();
-
-				if (!serverItem.isLaunched())
 					break;
+
+				respMessage.writeTo(os);
 			} catch (Exception e) {
 				e.printStackTrace();
 				break;
@@ -47,17 +53,19 @@ public class ServerThread implements Runnable {
 
 		//将用户设置为未登录状态
 		try {
-			String sql ="DELETE FROM online_user WHERE username='?';".replace("?", recvMessage.getUsername());
-			PreparedStatement pstmt = dbconn.connection.prepareStatement(sql);
-			pstmt.setString(1, recvMessage.getUsername());
-			pstmt.execute();
+			if(!dbconn.isClosed()) {
+				String sql = "DELETE FROM online_user WHERE username='?';".replace("?", username);
+				PreparedStatement pstmt = dbconn.connection.prepareStatement(sql);
+				pstmt.execute();
+				dbconn.closeConnection();
+			}
 			//关闭输入输出流和数据库链接
 			is.close();
 			os.close();
-			dbconn.closeConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			System.out.println("Terminated:"+clientSocket);
 		}
-
 	}
 }

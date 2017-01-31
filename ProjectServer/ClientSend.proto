@@ -85,7 +85,8 @@ message SendContent {
     int64 questionID = 1;
     string content = 2;
     string time = 3;
-    string date = 4;
+    string user = 4;
+    string pic_url = 5;
 }
 
 //通告信息
@@ -128,10 +129,8 @@ message GetQuestionListRequest {
 //提出问题
 message CreateQuestionRequest {
     string stem = 1;
-    repeated ContentMessage additon = 2;
-    string date = 3;
-    string time = 4;
-    string record = 5;
+    string addition = 2;
+    string time = 3;
 }
 
 //取消问题
@@ -141,8 +140,7 @@ message AbandonQuestionRequest {
 
 //搜索内容
 message SearchInformationRequest {
-    SEARCHTYPE searchType = 1;
-    string keyword = 2;
+    string keyword = 1;
 }
 
 //获取Sign

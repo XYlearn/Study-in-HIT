@@ -21,14 +21,16 @@ public class Server {
 	static final String hostName = "localHost";
 	static final String ip = "127.0.0.1";
 	static final int maxThread = 1000;
-	public static List<Map<String, Socket>> question_user_list;
+	public static Map<String, ArrayList<Socket>> question_socket_list;
+	public static Map<String, Socket> user_socket_list;
 
 	public static void main(String[] args) throws IOException {
 		//server init
 		ServerSocket serverSocket = new ServerSocket(6666);
 		System.out.println("Started: "+serverSocket);
 
-		question_user_list = new ArrayList<>();
+		question_socket_list = new HashMap<>();
+		user_socket_list = new HashMap<>();
 
 		//创建线程池
 		ExecutorService pool = Executors.newFixedThreadPool(maxThread);

@@ -2259,14 +2259,14 @@ public final class ClientSendMessage {
         getTimeBytes();
 
     /**
-     * <code>optional string date = 4;</code>
+     * <code>optional string user = 4;</code>
      */
-    java.lang.String getDate();
+    java.lang.String getUser();
     /**
-     * <code>optional string date = 4;</code>
+     * <code>optional string user = 4;</code>
      */
     com.google.protobuf.ByteString
-        getDateBytes();
+        getUserBytes();
   }
   /**
    * <pre>
@@ -2287,7 +2287,7 @@ public final class ClientSendMessage {
       questionID_ = 0L;
       content_ = "";
       time_ = "";
-      date_ = "";
+      user_ = "";
     }
 
     @java.lang.Override
@@ -2335,7 +2335,7 @@ public final class ClientSendMessage {
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              date_ = s;
+              user_ = s;
               break;
             }
           }
@@ -2438,34 +2438,34 @@ public final class ClientSendMessage {
       }
     }
 
-    public static final int DATE_FIELD_NUMBER = 4;
-    private volatile java.lang.Object date_;
+    public static final int USER_FIELD_NUMBER = 4;
+    private volatile java.lang.Object user_;
     /**
-     * <code>optional string date = 4;</code>
+     * <code>optional string user = 4;</code>
      */
-    public java.lang.String getDate() {
-      java.lang.Object ref = date_;
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        date_ = s;
+        user_ = s;
         return s;
       }
     }
     /**
-     * <code>optional string date = 4;</code>
+     * <code>optional string user = 4;</code>
      */
     public com.google.protobuf.ByteString
-        getDateBytes() {
-      java.lang.Object ref = date_;
+        getUserBytes() {
+      java.lang.Object ref = user_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        date_ = b;
+        user_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -2493,8 +2493,8 @@ public final class ClientSendMessage {
       if (!getTimeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
       }
-      if (!getDateBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, date_);
+      if (!getUserBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, user_);
       }
     }
 
@@ -2513,8 +2513,8 @@ public final class ClientSendMessage {
       if (!getTimeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
       }
-      if (!getDateBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, date_);
+      if (!getUserBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, user_);
       }
       memoizedSize = size;
       return size;
@@ -2538,8 +2538,8 @@ public final class ClientSendMessage {
           .equals(other.getContent());
       result = result && getTime()
           .equals(other.getTime());
-      result = result && getDate()
-          .equals(other.getDate());
+      result = result && getUser()
+          .equals(other.getUser());
       return result;
     }
 
@@ -2557,8 +2557,8 @@ public final class ClientSendMessage {
       hash = (53 * hash) + getContent().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + DATE_FIELD_NUMBER;
-      hash = (53 * hash) + getDate().hashCode();
+      hash = (37 * hash) + USER_FIELD_NUMBER;
+      hash = (53 * hash) + getUser().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2687,7 +2687,7 @@ public final class ClientSendMessage {
 
         time_ = "";
 
-        date_ = "";
+        user_ = "";
 
         return this;
       }
@@ -2714,7 +2714,7 @@ public final class ClientSendMessage {
         result.questionID_ = questionID_;
         result.content_ = content_;
         result.time_ = time_;
-        result.date_ = date_;
+        result.user_ = user_;
         onBuilt();
         return result;
       }
@@ -2767,8 +2767,8 @@ public final class ClientSendMessage {
           time_ = other.time_;
           onChanged();
         }
-        if (!other.getDate().isEmpty()) {
-          date_ = other.date_;
+        if (!other.getUser().isEmpty()) {
+          user_ = other.user_;
           onChanged();
         }
         onChanged();
@@ -2961,71 +2961,71 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private java.lang.Object date_ = "";
+      private java.lang.Object user_ = "";
       /**
-       * <code>optional string date = 4;</code>
+       * <code>optional string user = 4;</code>
        */
-      public java.lang.String getDate() {
-        java.lang.Object ref = date_;
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          date_ = s;
+          user_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string date = 4;</code>
+       * <code>optional string user = 4;</code>
        */
       public com.google.protobuf.ByteString
-          getDateBytes() {
-        java.lang.Object ref = date_;
+          getUserBytes() {
+        java.lang.Object ref = user_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          date_ = b;
+          user_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string date = 4;</code>
+       * <code>optional string user = 4;</code>
        */
-      public Builder setDate(
+      public Builder setUser(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        date_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string date = 4;</code>
+       * <code>optional string user = 4;</code>
        */
-      public Builder clearDate() {
+      public Builder clearUser() {
         
-        date_ = getDefaultInstance().getDate();
+        user_ = getDefaultInstance().getUser();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string date = 4;</code>
+       * <code>optional string user = 4;</code>
        */
-      public Builder setDateBytes(
+      public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        date_ = value;
+        user_ = value;
         onChanged();
         return this;
       }
@@ -6561,58 +6561,24 @@ public final class ClientSendMessage {
         getStemBytes();
 
     /**
-     * <code>repeated .ContentMessage additon = 2;</code>
+     * <code>optional string addition = 2;</code>
      */
-    java.util.List<com.ClientSendMessage.ContentMessage> 
-        getAdditonList();
+    java.lang.String getAddition();
     /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    com.ClientSendMessage.ContentMessage getAdditon(int index);
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    int getAdditonCount();
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    java.util.List<? extends com.ClientSendMessage.ContentMessageOrBuilder> 
-        getAdditonOrBuilderList();
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    com.ClientSendMessage.ContentMessageOrBuilder getAdditonOrBuilder(
-        int index);
-
-    /**
-     * <code>optional string date = 3;</code>
-     */
-    java.lang.String getDate();
-    /**
-     * <code>optional string date = 3;</code>
+     * <code>optional string addition = 2;</code>
      */
     com.google.protobuf.ByteString
-        getDateBytes();
+        getAdditionBytes();
 
     /**
-     * <code>optional string time = 4;</code>
+     * <code>optional string time = 3;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>optional string time = 4;</code>
+     * <code>optional string time = 3;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
-
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    java.lang.String getRecord();
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getRecordBytes();
   }
   /**
    * <pre>
@@ -6631,10 +6597,8 @@ public final class ClientSendMessage {
     }
     private CreateQuestionRequest() {
       stem_ = "";
-      additon_ = java.util.Collections.emptyList();
-      date_ = "";
+      addition_ = "";
       time_ = "";
-      record_ = "";
     }
 
     @java.lang.Override
@@ -6669,30 +6633,15 @@ public final class ClientSendMessage {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                additon_ = new java.util.ArrayList<com.ClientSendMessage.ContentMessage>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              additon_.add(
-                  input.readMessage(com.ClientSendMessage.ContentMessage.parser(), extensionRegistry));
+              java.lang.String s = input.readStringRequireUtf8();
+
+              addition_ = s;
               break;
             }
             case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              date_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
               time_ = s;
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              record_ = s;
               break;
             }
           }
@@ -6703,9 +6652,6 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          additon_ = java.util.Collections.unmodifiableList(additon_);
-        }
         makeExtensionsImmutable();
       }
     }
@@ -6721,7 +6667,6 @@ public final class ClientSendMessage {
               com.ClientSendMessage.CreateQuestionRequest.class, com.ClientSendMessage.CreateQuestionRequest.Builder.class);
     }
 
-    private int bitField0_;
     public static final int STEM_FIELD_NUMBER = 1;
     private volatile java.lang.Object stem_;
     /**
@@ -6756,79 +6701,44 @@ public final class ClientSendMessage {
       }
     }
 
-    public static final int ADDITON_FIELD_NUMBER = 2;
-    private java.util.List<com.ClientSendMessage.ContentMessage> additon_;
+    public static final int ADDITION_FIELD_NUMBER = 2;
+    private volatile java.lang.Object addition_;
     /**
-     * <code>repeated .ContentMessage additon = 2;</code>
+     * <code>optional string addition = 2;</code>
      */
-    public java.util.List<com.ClientSendMessage.ContentMessage> getAdditonList() {
-      return additon_;
-    }
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    public java.util.List<? extends com.ClientSendMessage.ContentMessageOrBuilder> 
-        getAdditonOrBuilderList() {
-      return additon_;
-    }
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    public int getAdditonCount() {
-      return additon_.size();
-    }
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    public com.ClientSendMessage.ContentMessage getAdditon(int index) {
-      return additon_.get(index);
-    }
-    /**
-     * <code>repeated .ContentMessage additon = 2;</code>
-     */
-    public com.ClientSendMessage.ContentMessageOrBuilder getAdditonOrBuilder(
-        int index) {
-      return additon_.get(index);
-    }
-
-    public static final int DATE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object date_;
-    /**
-     * <code>optional string date = 3;</code>
-     */
-    public java.lang.String getDate() {
-      java.lang.Object ref = date_;
+    public java.lang.String getAddition() {
+      java.lang.Object ref = addition_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        date_ = s;
+        addition_ = s;
         return s;
       }
     }
     /**
-     * <code>optional string date = 3;</code>
+     * <code>optional string addition = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getDateBytes() {
-      java.lang.Object ref = date_;
+        getAdditionBytes() {
+      java.lang.Object ref = addition_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        date_ = b;
+        addition_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int TIME_FIELD_NUMBER = 4;
+    public static final int TIME_FIELD_NUMBER = 3;
     private volatile java.lang.Object time_;
     /**
-     * <code>optional string time = 4;</code>
+     * <code>optional string time = 3;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -6843,7 +6753,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string time = 4;</code>
+     * <code>optional string time = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -6853,40 +6763,6 @@ public final class ClientSendMessage {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         time_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int RECORD_FIELD_NUMBER = 5;
-    private volatile java.lang.Object record_;
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    public java.lang.String getRecord() {
-      java.lang.Object ref = record_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        record_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string record = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getRecordBytes() {
-      java.lang.Object ref = record_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        record_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -6908,17 +6784,11 @@ public final class ClientSendMessage {
       if (!getStemBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stem_);
       }
-      for (int i = 0; i < additon_.size(); i++) {
-        output.writeMessage(2, additon_.get(i));
-      }
-      if (!getDateBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, date_);
+      if (!getAdditionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, addition_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, time_);
-      }
-      if (!getRecordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, record_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
       }
     }
 
@@ -6930,18 +6800,11 @@ public final class ClientSendMessage {
       if (!getStemBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stem_);
       }
-      for (int i = 0; i < additon_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, additon_.get(i));
-      }
-      if (!getDateBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, date_);
+      if (!getAdditionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, addition_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, time_);
-      }
-      if (!getRecordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, record_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
       }
       memoizedSize = size;
       return size;
@@ -6961,14 +6824,10 @@ public final class ClientSendMessage {
       boolean result = true;
       result = result && getStem()
           .equals(other.getStem());
-      result = result && getAdditonList()
-          .equals(other.getAdditonList());
-      result = result && getDate()
-          .equals(other.getDate());
+      result = result && getAddition()
+          .equals(other.getAddition());
       result = result && getTime()
           .equals(other.getTime());
-      result = result && getRecord()
-          .equals(other.getRecord());
       return result;
     }
 
@@ -6981,16 +6840,10 @@ public final class ClientSendMessage {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + STEM_FIELD_NUMBER;
       hash = (53 * hash) + getStem().hashCode();
-      if (getAdditonCount() > 0) {
-        hash = (37 * hash) + ADDITON_FIELD_NUMBER;
-        hash = (53 * hash) + getAdditonList().hashCode();
-      }
-      hash = (37 * hash) + DATE_FIELD_NUMBER;
-      hash = (53 * hash) + getDate().hashCode();
+      hash = (37 * hash) + ADDITION_FIELD_NUMBER;
+      hash = (53 * hash) + getAddition().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + RECORD_FIELD_NUMBER;
-      hash = (53 * hash) + getRecord().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7109,24 +6962,15 @@ public final class ClientSendMessage {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getAdditonFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
         stem_ = "";
 
-        if (additonBuilder_ == null) {
-          additon_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          additonBuilder_.clear();
-        }
-        date_ = "";
+        addition_ = "";
 
         time_ = "";
-
-        record_ = "";
 
         return this;
       }
@@ -7150,22 +6994,9 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.CreateQuestionRequest buildPartial() {
         com.ClientSendMessage.CreateQuestionRequest result = new com.ClientSendMessage.CreateQuestionRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.stem_ = stem_;
-        if (additonBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            additon_ = java.util.Collections.unmodifiableList(additon_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.additon_ = additon_;
-        } else {
-          result.additon_ = additonBuilder_.build();
-        }
-        result.date_ = date_;
+        result.addition_ = addition_;
         result.time_ = time_;
-        result.record_ = record_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -7211,42 +7042,12 @@ public final class ClientSendMessage {
           stem_ = other.stem_;
           onChanged();
         }
-        if (additonBuilder_ == null) {
-          if (!other.additon_.isEmpty()) {
-            if (additon_.isEmpty()) {
-              additon_ = other.additon_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureAdditonIsMutable();
-              additon_.addAll(other.additon_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.additon_.isEmpty()) {
-            if (additonBuilder_.isEmpty()) {
-              additonBuilder_.dispose();
-              additonBuilder_ = null;
-              additon_ = other.additon_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              additonBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getAdditonFieldBuilder() : null;
-            } else {
-              additonBuilder_.addAllMessages(other.additon_);
-            }
-          }
-        }
-        if (!other.getDate().isEmpty()) {
-          date_ = other.date_;
+        if (!other.getAddition().isEmpty()) {
+          addition_ = other.addition_;
           onChanged();
         }
         if (!other.getTime().isEmpty()) {
           time_ = other.time_;
-          onChanged();
-        }
-        if (!other.getRecord().isEmpty()) {
-          record_ = other.record_;
           onChanged();
         }
         onChanged();
@@ -7274,7 +7075,6 @@ public final class ClientSendMessage {
         }
         return this;
       }
-      private int bitField0_;
 
       private java.lang.Object stem_ = "";
       /**
@@ -7345,318 +7145,78 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private java.util.List<com.ClientSendMessage.ContentMessage> additon_ =
-        java.util.Collections.emptyList();
-      private void ensureAdditonIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          additon_ = new java.util.ArrayList<com.ClientSendMessage.ContentMessage>(additon_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage, com.ClientSendMessage.ContentMessage.Builder, com.ClientSendMessage.ContentMessageOrBuilder> additonBuilder_;
-
+      private java.lang.Object addition_ = "";
       /**
-       * <code>repeated .ContentMessage additon = 2;</code>
+       * <code>optional string addition = 2;</code>
        */
-      public java.util.List<com.ClientSendMessage.ContentMessage> getAdditonList() {
-        if (additonBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(additon_);
-        } else {
-          return additonBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public int getAdditonCount() {
-        if (additonBuilder_ == null) {
-          return additon_.size();
-        } else {
-          return additonBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage getAdditon(int index) {
-        if (additonBuilder_ == null) {
-          return additon_.get(index);
-        } else {
-          return additonBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder setAdditon(
-          int index, com.ClientSendMessage.ContentMessage value) {
-        if (additonBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAdditonIsMutable();
-          additon_.set(index, value);
-          onChanged();
-        } else {
-          additonBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder setAdditon(
-          int index, com.ClientSendMessage.ContentMessage.Builder builderForValue) {
-        if (additonBuilder_ == null) {
-          ensureAdditonIsMutable();
-          additon_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          additonBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder addAdditon(com.ClientSendMessage.ContentMessage value) {
-        if (additonBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAdditonIsMutable();
-          additon_.add(value);
-          onChanged();
-        } else {
-          additonBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder addAdditon(
-          int index, com.ClientSendMessage.ContentMessage value) {
-        if (additonBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAdditonIsMutable();
-          additon_.add(index, value);
-          onChanged();
-        } else {
-          additonBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder addAdditon(
-          com.ClientSendMessage.ContentMessage.Builder builderForValue) {
-        if (additonBuilder_ == null) {
-          ensureAdditonIsMutable();
-          additon_.add(builderForValue.build());
-          onChanged();
-        } else {
-          additonBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder addAdditon(
-          int index, com.ClientSendMessage.ContentMessage.Builder builderForValue) {
-        if (additonBuilder_ == null) {
-          ensureAdditonIsMutable();
-          additon_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          additonBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder addAllAdditon(
-          java.lang.Iterable<? extends com.ClientSendMessage.ContentMessage> values) {
-        if (additonBuilder_ == null) {
-          ensureAdditonIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, additon_);
-          onChanged();
-        } else {
-          additonBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder clearAdditon() {
-        if (additonBuilder_ == null) {
-          additon_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          additonBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public Builder removeAdditon(int index) {
-        if (additonBuilder_ == null) {
-          ensureAdditonIsMutable();
-          additon_.remove(index);
-          onChanged();
-        } else {
-          additonBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.Builder getAdditonBuilder(
-          int index) {
-        return getAdditonFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessageOrBuilder getAdditonOrBuilder(
-          int index) {
-        if (additonBuilder_ == null) {
-          return additon_.get(index);  } else {
-          return additonBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public java.util.List<? extends com.ClientSendMessage.ContentMessageOrBuilder> 
-           getAdditonOrBuilderList() {
-        if (additonBuilder_ != null) {
-          return additonBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(additon_);
-        }
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.Builder addAdditonBuilder() {
-        return getAdditonFieldBuilder().addBuilder(
-            com.ClientSendMessage.ContentMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public com.ClientSendMessage.ContentMessage.Builder addAdditonBuilder(
-          int index) {
-        return getAdditonFieldBuilder().addBuilder(
-            index, com.ClientSendMessage.ContentMessage.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .ContentMessage additon = 2;</code>
-       */
-      public java.util.List<com.ClientSendMessage.ContentMessage.Builder> 
-           getAdditonBuilderList() {
-        return getAdditonFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ClientSendMessage.ContentMessage, com.ClientSendMessage.ContentMessage.Builder, com.ClientSendMessage.ContentMessageOrBuilder> 
-          getAdditonFieldBuilder() {
-        if (additonBuilder_ == null) {
-          additonBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.ClientSendMessage.ContentMessage, com.ClientSendMessage.ContentMessage.Builder, com.ClientSendMessage.ContentMessageOrBuilder>(
-                  additon_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
-                  getParentForChildren(),
-                  isClean());
-          additon_ = null;
-        }
-        return additonBuilder_;
-      }
-
-      private java.lang.Object date_ = "";
-      /**
-       * <code>optional string date = 3;</code>
-       */
-      public java.lang.String getDate() {
-        java.lang.Object ref = date_;
+      public java.lang.String getAddition() {
+        java.lang.Object ref = addition_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          date_ = s;
+          addition_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string date = 3;</code>
+       * <code>optional string addition = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getDateBytes() {
-        java.lang.Object ref = date_;
+          getAdditionBytes() {
+        java.lang.Object ref = addition_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          date_ = b;
+          addition_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string date = 3;</code>
+       * <code>optional string addition = 2;</code>
        */
-      public Builder setDate(
+      public Builder setAddition(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        date_ = value;
+        addition_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string date = 3;</code>
+       * <code>optional string addition = 2;</code>
        */
-      public Builder clearDate() {
+      public Builder clearAddition() {
         
-        date_ = getDefaultInstance().getDate();
+        addition_ = getDefaultInstance().getAddition();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string date = 3;</code>
+       * <code>optional string addition = 2;</code>
        */
-      public Builder setDateBytes(
+      public Builder setAdditionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        date_ = value;
+        addition_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object time_ = "";
       /**
-       * <code>optional string time = 4;</code>
+       * <code>optional string time = 3;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -7671,7 +7231,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string time = 4;</code>
+       * <code>optional string time = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -7687,7 +7247,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string time = 4;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -7700,7 +7260,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string time = 4;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder clearTime() {
         
@@ -7709,7 +7269,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string time = 4;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -7719,75 +7279,6 @@ public final class ClientSendMessage {
   checkByteStringIsUtf8(value);
         
         time_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object record_ = "";
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public java.lang.String getRecord() {
-        java.lang.Object ref = record_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          record_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getRecordBytes() {
-        java.lang.Object ref = record_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          record_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder setRecord(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        record_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder clearRecord() {
-        
-        record_ = getDefaultInstance().getRecord();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string record = 5;</code>
-       */
-      public Builder setRecordBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        record_ = value;
         onChanged();
         return this;
       }
@@ -12804,7 +12295,7 @@ public final class ClientSendMessage {
       "content\030\001 \001(\t\"!\n\rLaunchRequest\022\020\n\010passwo" +
       "rd\030\002 \001(\t\"\017\n\rLogoutMessage\"N\n\013SendContent" +
       "\022\022\n\nquestionID\030\001 \001(\003\022\017\n\007content\030\002 \001(\t\022\014\n" +
-      "\004time\030\003 \001(\t\022\014\n\004date\030\004 \001(\t\"#\n\023Announcemen" +
+      "\004time\030\003 \001(\t\022\014\n\004user\030\004 \001(\t\"#\n\023Announcemen" +
       "tMessage\022\014\n\004text\030\001 \001(\t\"*\n\024QuestionEnterR" +
       "equest\022\022\n\nquestionID\030\001 \001(\003\")\n\023GoodQuesti" +
       "onRequest\022\022\n\nquestionID\030\001 \001(\003\"\037\n\017GoodUse" +
@@ -12813,51 +12304,50 @@ public final class ClientSendMessage {
       "InformationRequest\022\020\n\010username\030\001 \001(\t\"s\n\026" +
       "GetQuestionListRequest\022\"\n\treference\030\001 \001(" +
       "\0162\017.LIST_REFERENCE\022\035\n\trankorder\030\002 \001(\0162\n." +
-      "RANKORDER\022\026\n\016questionNumber\030\003 \001(\005\"s\n\025Cre" +
-      "ateQuestionRequest\022\014\n\004stem\030\001 \001(\t\022 \n\007addi" +
-      "ton\030\002 \003(\0132\017.ContentMessage\022\014\n\004date\030\003 \001(\t" +
-      "\022\014\n\004time\030\004 \001(\t\022\016\n\006record\030\005 \001(\t\",\n\026Abando" +
-      "nQuestionRequest\022\022\n\nquestionID\030\001 \001(\003\"L\n\030" +
-      "SearchInformationRequest\022\037\n\nsearchType\030\001" +
-      " \001(\0162\013.SEARCHTYPE\022\017\n\007keyword\030\002 \001(\t\"%\n\021Ge",
-      "tCosSignRequest\022\020\n\010filename\030\001 \001(\t\"\370\005\n\007Me" +
-      "ssage\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010usernam" +
-      "e\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRe" +
-      "quest\022%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMes" +
-      "sage\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\022" +
-      "1\n\023announcementMessage\030\006 \001(\0132\024.Announcem" +
-      "entMessage\0223\n\024questionEnterRequest\030\007 \001(\013" +
-      "2\025.QuestionEnterRequest\0221\n\023goodQuestionR" +
-      "equest\030\010 \001(\0132\024.GoodQuestionRequest\022-\n\021ge" +
-      "tCosSignRequest\030\t \001(\0132\022.GetCosSignReques",
-      "t\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReq" +
-      "uest\022?\n\032questionInformationRequest\030\r \001(\013" +
-      "2\033.QuestionInformationRequest\0227\n\026userInf" +
-      "ormationRequest\030\016 \001(\0132\027.UserInformationR" +
-      "equest\0227\n\026getQuestionListRequest\030\017 \001(\0132\027" +
-      ".GetQuestionListRequest\0225\n\025createQuestio" +
-      "nRequest\030\022 \001(\0132\026.CreateQuestionRequest\0227" +
-      "\n\026abandonQuestionRequest\030\023 \001(\0132\027.Abandon" +
-      "QuestionRequest\022;\n\030searchInformationRequ" +
-      "est\030\024 \001(\0132\031.SearchInformationRequest*\373\002\n",
-      "\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSA" +
-      "GE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_M" +
-      "ESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025" +
-      "GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_USER_REQ" +
-      "UEST\020\007\022\030\n\024GET_COS_SIGN_REQUEST\020\t\022 \n\034QUES" +
-      "TION_INFORMATION_REQUEST\020\n\022\034\n\030USER_INFOR" +
-      "MATION_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_RE" +
-      "QUEST\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030" +
-      "ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INF" +
-      "ORMATION_REQUEST\020\021*H\n\014CONTENT_TYPE\022\020\n\014TE",
-      "XT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOI" +
-      "CE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n" +
-      "\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTIO" +
-      "N\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCE" +
-      "NDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NU" +
-      "MBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QU" +
-      "ESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003c" +
-      "omB\021ClientSendMessageb\006proto3"
+      "RANKORDER\022\026\n\016questionNumber\030\003 \001(\005\"E\n\025Cre" +
+      "ateQuestionRequest\022\014\n\004stem\030\001 \001(\t\022\020\n\010addi" +
+      "tion\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\",\n\026AbandonQuest" +
+      "ionRequest\022\022\n\nquestionID\030\001 \001(\003\"L\n\030Search" +
+      "InformationRequest\022\037\n\nsearchType\030\001 \001(\0162\013" +
+      ".SEARCHTYPE\022\017\n\007keyword\030\002 \001(\t\"%\n\021GetCosSi" +
+      "gnRequest\022\020\n\010filename\030\001 \001(\t\"\370\005\n\007Message\022",
+      "\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(" +
+      "\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRequest\022" +
+      "%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMessage\022!" +
+      "\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023ann" +
+      "ouncementMessage\030\006 \001(\0132\024.AnnouncementMes" +
+      "sage\0223\n\024questionEnterRequest\030\007 \001(\0132\025.Que" +
+      "stionEnterRequest\0221\n\023goodQuestionRequest" +
+      "\030\010 \001(\0132\024.GoodQuestionRequest\022-\n\021getCosSi" +
+      "gnRequest\030\t \001(\0132\022.GetCosSignRequest\022)\n\017g" +
+      "oodUserRequest\030\n \001(\0132\020.GoodUserRequest\022?",
+      "\n\032questionInformationRequest\030\r \001(\0132\033.Que" +
+      "stionInformationRequest\0227\n\026userInformati" +
+      "onRequest\030\016 \001(\0132\027.UserInformationRequest" +
+      "\0227\n\026getQuestionListRequest\030\017 \001(\0132\027.GetQu" +
+      "estionListRequest\0225\n\025createQuestionReque" +
+      "st\030\022 \001(\0132\026.CreateQuestionRequest\0227\n\026aban" +
+      "donQuestionRequest\030\023 \001(\0132\027.AbandonQuesti" +
+      "onRequest\022;\n\030searchInformationRequest\030\024 " +
+      "\001(\0132\031.SearchInformationRequest*\373\002\n\003MSG\022\022" +
+      "\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\020",
+      "\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE" +
+      "\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025GOOD_Q" +
+      "UESTION_REQUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007" +
+      "\022\030\n\024GET_COS_SIGN_REQUEST\020\t\022 \n\034QUESTION_I" +
+      "NFORMATION_REQUEST\020\n\022\034\n\030USER_INFORMATION" +
+      "_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_REQUEST\020" +
+      "\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030ABANDO" +
+      "N_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INFORMATI" +
+      "ON_REQUEST\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MES" +
+      "SAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MES",
+      "SAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001" +
+      "\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n" +
+      "\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020" +
+      "\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NUMBERS\020" +
+      "\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION" +
+      "\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021Cl" +
+      "ientSendMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -12894,7 +12384,7 @@ public final class ClientSendMessage {
     internal_static_SendContent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_descriptor,
-        new java.lang.String[] { "QuestionID", "Content", "Time", "Date", });
+        new java.lang.String[] { "QuestionID", "Content", "Time", "User", });
     internal_static_AnnouncementMessage_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_AnnouncementMessage_fieldAccessorTable = new
@@ -12942,7 +12432,7 @@ public final class ClientSendMessage {
     internal_static_CreateQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateQuestionRequest_descriptor,
-        new java.lang.String[] { "Stem", "Additon", "Date", "Time", "Record", });
+        new java.lang.String[] { "Stem", "Addition", "Time", });
     internal_static_AbandonQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(12);
     internal_static_AbandonQuestionRequest_fieldAccessorTable = new

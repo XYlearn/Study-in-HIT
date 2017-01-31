@@ -1,6 +1,7 @@
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.exception.AbstractCosException;
 import com.qcloud.cos.http.*;
+import org.apache.http.client.methods.HttpPost;
 
 import java.io.InputStream;
 
@@ -16,6 +17,7 @@ public class CosClient extends AbstractCosHttpClient {
 	}
 
 	protected String sendPostRequest(HttpRequest httpRequest) throws AbstractCosException {
+
 		return null;
 	}
 
