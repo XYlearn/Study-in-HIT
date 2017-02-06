@@ -1,4 +1,4 @@
-//package util;
+package util;
 
 import java.lang.Thread;
 import java.lang.Runnable;
@@ -16,9 +16,13 @@ import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
+import it.sauronsoftware.jave.AudioAttributes;
+import it.sauronsoftware.jave.Encoder;
+import it.sauronsoftware.jave.EncodingAttributes;
 
-class AudioTools
+public class AudioTools
 {
+	private static String currentPlayingAudio;
 	private static stopListener sl;
 	private static AudioFormat af;
 	private static TargetDataLine td;
@@ -28,7 +32,7 @@ class AudioTools
 	private static AudioInputStream ais;
 	private enum Status{STOPPED,CAPTURING,PLAYING};
 	private static Status status=Status.STOPPED;
-	private static final String CLASSPATH=AudioTools.class.getResource("").getPath();
+	public static final String CLASSPATH=AudioTools.class.getResource("").getPath();
 	AudioTools(){}
 
 	/*public static void main(String[] args)
@@ -73,6 +77,7 @@ class AudioTools
 	{
 		if(status==Status.CAPTURING) return true;
 		status=Status.CAPTURING;
+		currentPlayingAudio=null;
 		try
 		{
 			DataLine.Info info=new DataLine.Info(TargetDataLine.class,getAudioFormat());
@@ -90,8 +95,10 @@ class AudioTools
 
 	public static String stopAndSaveCapture()
 	{
+		if(status!=Status.CAPTURING) return null;
 		String filename;
 		status=Status.STOPPED;
+		currentPlayingAudio=null;
 		byte[] byteArray=baos.toByteArray();
 		bais=new ByteArrayInputStream(byteArray);
 		ais=new AudioInputStream(bais,getAudioFormat(),
@@ -111,22 +118,25 @@ class AudioTools
 			}
 			catch(Exception e){}
 		}
-		filename=MD5Tools.FileToMD5(audioFile);
-		audioFile.renameTo(new File(CLASSPATH+filename+".wav"));
+		audioFile=convert(audioFile);
+		filename=MD5Tools.FileToMD5(audioFile)+".mp3";
+		audioFile.renameTo(new File(CLASSPATH+filename));
 		if(audioFile.exists()) audioFile.delete();
 		return filename;
 	}
 
 	public static void playAudio(String filepath,stopListener mysl)
 	{
-		playAudio(new File(filepath),sl);
+		playAudio(new File(filepath),mysl);
 	}
 
 	public static void playAudio(File audioFile,stopListener mysl)
 	{
+		AudioFormat af;
 		stopAudio();
-		sl.stop();
+		if(sl!=null) sl.stop();
 		try{Thread.sleep(10);}catch(Exception e){}
+		currentPlayingAudio=audioFile.getName();
 		sl=mysl;
 		status=Status.PLAYING;
 		try
@@ -135,7 +145,8 @@ class AudioTools
 		}
 		catch(Exception e)
 		{
-			System.out.println("errorrrrrrrrr!");
+			System.out.println("获取InputStream失败！");
+			System.out.println(e);
 			return;
 		}
 		af=ais.getFormat();
@@ -167,6 +178,17 @@ class AudioTools
 	public static void stopAudio() //stop playing or capture
 	{
 		status=Status.STOPPED;
+		currentPlayingAudio=null;
+	}
+
+	public static String getCurrentPlayingAudio()
+	{
+		return currentPlayingAudio;
+	}
+
+	public static boolean isPlaying()
+	{
+		return status==Status.PLAYING;
 	}
 
 	private static AudioFormat getAudioFormat()
@@ -182,11 +204,36 @@ class AudioTools
 		return af;
 	}
 
+	private static File convert(File wav)
+	{
+		File answer=new File(wav.getAbsolutePath()
+			.substring(0,wav.getAbsolutePath().length()-4)+".mp3");
+		AudioAttributes audio=new AudioAttributes();
+        audio.setCodec("libmp3lame");
+        audio.setBitRate(new Integer(36000));
+        audio.setChannels(new Integer(1));
+        audio.setSamplingRate(new Integer(8000));
+        EncodingAttributes attrs=new EncodingAttributes();
+        attrs.setFormat("mp3");
+        attrs.setAudioAttributes(audio);
+        Encoder encoder=new Encoder();
+        try
+        {
+        	encoder.encode(wav,answer,attrs);
+        }
+        catch(Exception e)
+        {
+        	System.out.println("转码失败");
+        }
+        return answer;
+	}
+
 	private static class MyRecord implements Runnable
 	{
-		byte[] byteArray=new byte[10000];
+		byte[] byteArray;
 		public void run()
 		{
+			byteArray=new byte[10000];
 			int cnt;
 			baos=new ByteArrayOutputStream();
 			status=Status.CAPTURING;
@@ -195,20 +242,14 @@ class AudioTools
 				while(status==Status.CAPTURING)
 					if((cnt=td.read(byteArray,0,byteArray.length))>0)
 						baos.write(byteArray,0,cnt);
+				if((cnt=td.read(byteArray,0,byteArray.length))>0)
+					baos.write(byteArray,0,cnt);
+				if(baos!=null) baos.close();
 			}
 			catch(Exception e){}
 			finally
 			{
-				try
-				{
-					if(baos!=null) baos.close();
-				}
-				catch(IOException e){}
-				finally
-				{
-					td.drain();
-					td.close();
-				}
+				td.close();
 			}
 		}
 	}
