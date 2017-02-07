@@ -313,7 +313,7 @@ class MyExpression
 		g.setBackground(new Color(255,255,255));
 		g.clearRect(0,0,w,h);
 		draw(g,2,getinity(1),1);
-		File imageFile=new File(CLASSPATH+"tmp.jpg");
+		File imageFile=new File(test.PICTPATH+"tmp.jpg");
 		try
 		{
 			ImageIO.write(b, "jpg", imageFile);
@@ -322,7 +322,8 @@ class MyExpression
 		{
 			System.out.println("写入图片出错！");//写入图片出错
 		}
-		imageFile.renameTo(new File(CLASSPATH+MD5Tools.FileToMD5(imageFile)+".jpg"));
+		imageFile.renameTo(new File(test.PICTPATH+
+			MD5Tools.FileToMD5(imageFile)+".jpg"));
 		if(imageFile.exists()) imageFile.delete();
 		return b;
 	}

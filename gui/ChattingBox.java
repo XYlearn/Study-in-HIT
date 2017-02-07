@@ -20,6 +20,7 @@ import java.awt.Dimension;
 import util.MyMessage;
 import util.AudioTools;
 import util.stopListener;
+import bin.test;
 
 public class ChattingBox extends JPanel
 {
@@ -42,7 +43,9 @@ public class ChattingBox extends JPanel
 	private JMenuItem getInfo=new JMenuItem("个人资料");
 
 	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
-	private static final String PATH="file:"+CLASSPATH;
+	private static final String PROPATH="file:"+CLASSPATH;
+	private static final String PROPICTPATH="file:"+test.PICTPATH;
+	private static final String PROFILEPATH="file:"+test.FILEPATH;
 
 	public ChattingBox()
 	{
@@ -75,11 +78,11 @@ public class ChattingBox extends JPanel
 		if(msg.pictures!=null)
 			for(int i=0;i<msg.pictures.size();i++)
 			{
-				if(!(new File(CLASSPATH+msg.pictures.get(i)).exists()))
+				if(!(new File(test.PICTPATH+msg.pictures.get(i)).exists()))
 					{}//调用网络接口下载图片，下载完成时刷新
 				msg.message=msg.message.replaceAll("[^%]%"+i,
-					"<a href=\"pict:"+PATH+msg.pictures.get(i)+"\">"+
-					"<img border=\"0\" src=\""+PATH+msg.pictures.get(i)+"\" "+
+					"<a href=\"pict:"+PROPICTPATH+msg.pictures.get(i)+"\">"+
+					"<img border=\"0\" src=\""+PROPICTPATH+msg.pictures.get(i)+"\" "+
 					"alt=\"正在加载图片\"></a>");
 				msg.message=msg.message.replaceAll("%%","%");
 			}
@@ -93,28 +96,29 @@ public class ChattingBox extends JPanel
 			"<tr><td rowspan=\"3\">"+
 			(ismyself?"":getUserHead(msg.userName))+
 			"</td>"+
-			"<td><img src=\""+PATH+"bubble_lu.jpg\"></td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_up.jpg);"+
+			"<td><img src=\""+PROPATH+"bubble_lu.jpg\"></td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_up.jpg);"+
 			"background-repeat:repeat-x;\">&nbsp;</td>"+
-			"<td><img src=\""+PATH+"bubble_ru.jpg\"></td>"+
+			"<td><img src=\""+PROPATH+"bubble_ru.jpg\"></td>"+
 			"<td rowspan=\"3\">"+
 			(ismyself?getUserHead(msg.userName):"")+
 			"</td></tr>"+
-			"<tr><td style=\"background-image:url("+PATH+"bubble_le.jpg)\">&nbsp;</td>"+
+			"<tr><td style=\"background-image:url("+PROPATH+"bubble_le.jpg)\">&nbsp;</td>"+
 			"<td style=\"-webkit-user-select:text;"+
 			"-moz-user-select:text;-ms-user-select:text;"+
 			"user-select:text;font-size:12px;\">"+msg.message+"</td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
-			"<tr><td><img src=\""+PATH+"bubble_ld.jpg\"></td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_do.jpg)\">&nbsp;</td>"+
-			"<td><img src=\""+PATH+"bubble_rd.jpg\"></td></tr></table><br>");
+			"<td style=\"background-image:url("+PROPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
+			"<tr><td><img src=\""+PROPATH+"bubble_ld.jpg\"></td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_do.jpg)\">&nbsp;</td>"+
+			"<td><img src=\""+PROPATH+"bubble_rd.jpg\"></td></tr></table><br>");
 		myPane.setText(html.toString());
+		myPane.setSelectionStart(myPane.getText().length());
 	}
 
 	public void pushAudio(MyMessage msg)
 	{
 		msg.message="<a href=\"audi:"+msg.message+"\">"+
-			"<img border=\"0\" src=\""+PATH+"button_play.gif\"></a>";
+			"<img border=\"0\" src=\""+PROPATH+"button_play.gif\"></a>";
 		pushMessage(msg);
 	}
 
@@ -127,7 +131,7 @@ public class ChattingBox extends JPanel
 	private static String getUserHead(String userName)
 	{
 		return "<a href=\"user:"+userName+"\">"+
-			"<img border=\"0\" src=\""+PATH+userName+".jpg\"></a>";
+			"<img border=\"0\" src=\""+PROPICTPATH+userName+".jpg\"></a>";
 	}
 
 	private class ChattingBoxMouseListener implements MouseListener
@@ -227,19 +231,19 @@ public class ChattingBox extends JPanel
 				}
 				else if(cmd.equals("audi"))
 				{
-					System.out.println("激活超链接："+currentHyperlink);
+					//System.out.println("激活超链接："+currentHyperlink);
 					String tmpstr;
 					if(AudioTools.isPlaying())
 					{
 						tmpstr="<a href=\"audi:"+
 							AudioTools.getCurrentPlayingAudio()+"\">"+
-							"<img src=\""+PATH+"button_stop.gif";
+							"<img src=\""+PROPATH+"button_stop.gif";
 						int tmpindex=html.lastIndexOf(tmpstr);
 						tmpindex+=tmpstr.length()-8;
 						html.replace(tmpindex,tmpindex+4,"play");
 					}
 					tmpstr="<a href=\""+currentHyperlink+"\">"+
-						"<img src=\""+PATH+"button_play.gif";
+						"<img src=\""+PROPATH+"button_play.gif";
 					int tmpindex=html.lastIndexOf(tmpstr);
 					tmpindex+=tmpstr.length()-8;
 					html.replace(tmpindex,tmpindex+4,"stop");
@@ -252,7 +256,7 @@ public class ChattingBox extends JPanel
 							{
 								String tmpstr="<a href=\"audi:"+
 									AudioTools.getCurrentPlayingAudio()+"\">"+
-									"<img src=\""+PATH+"button_stop.gif";
+									"<img src=\""+PROPATH+"button_stop.gif";
 								int tmpindex=html.lastIndexOf(tmpstr);
 								tmpindex+=tmpstr.length()-8;
 								html.replace(tmpindex,tmpindex+4,"play");

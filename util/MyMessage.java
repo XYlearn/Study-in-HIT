@@ -2,7 +2,7 @@ package util;
 
 import java.util.ArrayList;
 
- public class MyMessage
+public class MyMessage
 {
 	public String userName;//用户名
 	//public String userHead;//用户头像MD5

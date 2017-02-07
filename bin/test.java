@@ -1,3 +1,5 @@
+package bin;
+
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import util.MyMessage;
@@ -7,9 +9,14 @@ import util.AudioTools;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 
-class test
+public class test
 {
-	public static final void main(String[] args)
+	public static final String MAINPATH=test.class.getResource("").getPath()
+		.substring(0,test.class.getResource("").getPath().length()-4);
+	public static final String PICTPATH=MAINPATH+"pictures/";
+	public static final String FILEPATH=MAINPATH+"files/";
+	
+	public static final void main()
 	{
 		JFrame f=new JFrame("myApplication");
 		ChattingBox c=new ChattingBox();
