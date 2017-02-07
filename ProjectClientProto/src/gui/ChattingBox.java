@@ -1,4 +1,4 @@
-//package gui;
+package gui;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JFrame;
@@ -7,13 +7,20 @@ import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.io.File;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import util.MyMessage;
+import util.AudioTools;
+import util.stopListener;
+import bin.test;
 
 public class ChattingBox extends JPanel
 {
@@ -36,32 +43,12 @@ public class ChattingBox extends JPanel
 	private JMenuItem getInfo=new JMenuItem("个人资料");
 
 	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
-	private static final String PATH="file:"+CLASSPATH;
+	private static final String PROPATH="file:"+CLASSPATH;
+	private static final String PROPICTPATH="file:"+test.PICTPATH;
+	private static final String PROFILEPATH="file:"+test.FILEPATH;
 
-	public static final void main(String[] args)
+	public ChattingBox()
 	{
-		JFrame f=new JFrame("myApplication");
-		ChattingBox c=new ChattingBox();
-		f.getContentPane().add(c);
-		f.pack();
-		f.setVisible(true);
-		f.setLocationRelativeTo(null);
-		c.pushMessage(true,"第一题会做么？",new ArrayList<String>());
-		c.pushMessage(true,"我看不懂答案",new ArrayList<String>());
-		c.pushMessage(false,"啊？",new ArrayList<String>());
-		c.pushMessage(false,"不会啊",new ArrayList<String>());
-		c.pushMessage(false,"要不你去问问肖浩宇",new ArrayList<String>());
-		c.pushMessage(false,"他绝对会",new ArrayList<String>());
-		c.pushMessage(true,"。。。行吧谢谢",new ArrayList<String>());
-		c.pushMessage(false,"没事，对了你那个什么，\n就是昨天说的那个不是这个是那个就是我你的它的那个什么的什么的什么的之类的是啥的啊",new ArrayList<String>());
-		c.pushMessage(true,"我去问问他",new ArrayList<String>());
-		c.pushMessage(false,"替我膜一下",new ArrayList<String>());
-		System.out.println(c.myPane.getText());
-	}
-
-	ChattingBox()
-	{
-		myPane.setPreferredSize(new Dimension(500,550));
 		myPane.setContentType("text/html");
 		myPane.setEditable(false);
 
@@ -76,45 +63,75 @@ public class ChattingBox extends JPanel
 		myPane.add(textMenu);
 		myPane.add(userMenu);
 
-		this.add(myScroll);
+		this.add(myScroll,BorderLayout.CENTER);
 	}
 
-	public void pushMessage(boolean ismyself,String message,ArrayList<String> pictures)
+	public void setSize(int width,int height)
 	{
-		message=message.replaceAll("\n","<br>");
-		for(int i=0;i<pictures.size();i++)
-		{
-			if(!(new File(CLASSPATH+pictures.get(i)).exists()))
-				//调用网络接口下载图片，下载完成时刷新
-			message=message.replaceAll("[^%]%"+i,"<img src=\""+PATH+pictures.get(i)+"\">");
-		}
-		html.append("<table border=\"0\" white-space=\"0\" "+
+		myPane.setPreferredSize(new Dimension(width,height));
+	}
+
+	public void pushMessage(MyMessage msg)
+	{
+		boolean ismyself=msg.userName=="a";//Personal.username;
+		msg.message=msg.message.replaceAll("\n","<br>");
+		if(msg.pictures!=null)
+			for(int i=0;i<msg.pictures.size();i++)
+			{
+				if(!(new File(test.PICTPATH+msg.pictures.get(i)).exists()))
+					{}//调用网络接口下载图片，下载完成时刷新
+				msg.message=msg.message.replaceAll("[^%]%"+i,
+					"<a href=\"pict:"+PROPICTPATH+msg.pictures.get(i)+"\">"+
+					"<img border=\"0\" src=\""+PROPICTPATH+msg.pictures.get(i)+"\" "+
+					"alt=\"正在加载图片\"></a>");
+				msg.message=msg.message.replaceAll("%%","%");
+			}
+		html.append("<p align=\"center\">"+msg.messageTime+"</p>"+
+			"<table border=\"0\" white-space=\"0\" "+
 			"align=\""+(ismyself?"right":"left")+"\" "+
 			"cellspacing=\"0\" cellpadding=\"0\" "+
 			"style=\"font-size:0;-webkit-user-select:none;"+
 			"-moz-user-select:none;"+
 			"-ms-user-select:none;user-select:none;\">"+
 			"<tr><td rowspan=\"3\">"+
-			(ismyself?"":"<a href=\"user:用户名A\">"+
-			"<img src=\""+PATH+"ask.jpg\"></a>")+
+			(ismyself?"":getUserHead(msg.userName))+
 			"</td>"+
-			"<td><img src=\""+PATH+"bubble_lu.jpg\"></td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_up.jpg);"+
+			"<td><img src=\""+PROPATH+"bubble_lu.jpg\"></td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_up.jpg);"+
 			"background-repeat:repeat-x;\">&nbsp;</td>"+
-			"<td><img src=\""+PATH+"bubble_ru.jpg\"></td>"+
+			"<td><img src=\""+PROPATH+"bubble_ru.jpg\"></td>"+
 			"<td rowspan=\"3\">"+
-			(ismyself?"<a href=\"user:用户名B\">"+
-			"<img src=\""+PATH+"ask.jpg\"></a>":"")+
+			(ismyself?getUserHead(msg.userName):"")+
 			"</td></tr>"+
-			"<tr><td style=\"background-image:url("+PATH+"bubble_le.jpg)\">&nbsp;</td>"+
+			"<tr><td style=\"background-image:url("+PROPATH+"bubble_le.jpg)\">&nbsp;</td>"+
 			"<td style=\"-webkit-user-select:text;"+
 			"-moz-user-select:text;-ms-user-select:text;"+
-			"user-select:text;font-size:12px;\">"+message+"</td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
-			"<tr><td><img src=\""+PATH+"bubble_ld.jpg\"></td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_do.jpg)\">&nbsp;</td>"+
-			"<td><img src=\""+PATH+"bubble_rd.jpg\"></td></tr></table><br>");
+			"user-select:text;font-size:12px;\">"+msg.message+"</td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
+			"<tr><td><img src=\""+PROPATH+"bubble_ld.jpg\"></td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_do.jpg)\">&nbsp;</td>"+
+			"<td><img src=\""+PROPATH+"bubble_rd.jpg\"></td></tr></table><br>");
 		myPane.setText(html.toString());
+		myPane.setSelectionStart(myPane.getText().length());
+	}
+
+	public void pushAudio(MyMessage msg)
+	{
+		msg.message="<a href=\"audi:"+msg.message+"\">"+
+			"<img border=\"0\" src=\""+PROPATH+"button_play.gif\"></a>";
+		pushMessage(msg);
+	}
+
+	public void pushFile(MyMessage msg)
+	{
+		msg.message="<a href=\"file:"+msg.message+"\">"+
+			"[文件]"+msg.message+"</a>";
+	}
+
+	private static String getUserHead(String userName)
+	{
+		return "<a href=\"user:"+userName+"\">"+
+			"<img border=\"0\" src=\""+PROPICTPATH+userName+".jpg\"></a>";
 	}
 
 	private class ChattingBoxMouseListener implements MouseListener
@@ -122,17 +139,34 @@ public class ChattingBox extends JPanel
 		ChattingBoxMouseListener(){}
 		public void mousePressed(MouseEvent e)
 		{
+			//System.out.println("pressed!!");
 			if(onHyperlink) currentHyperlink=mouseHyperlink;
 			if(e.getButton()==MouseEvent.BUTTON3)
 			{
 				//判断用户身份
 				if(onHyperlink)
 				{
-					//user.add(abspeak)
-					//abspeak.setEnabled(true);
-					getInfo.setEnabled(true);
-					reset.setEnabled(true);
-					userMenu.show(ChattingBox.this,e.getX(),e.getY());
+					String cmd=currentHyperlink.substring(0,4);
+					if(cmd.equals("user"))
+					{
+						//user.add(abspeak)
+						//abspeak.setEnabled(true);
+						getInfo.setEnabled(true);
+						reset.setEnabled(true);
+						userMenu.show(ChattingBox.this,e.getX(),e.getY());
+					}
+					else if(cmd.equals("pict"))
+					{
+
+					}
+					else if(cmd.equals("audi"))
+					{
+
+					}
+					else if(cmd.equals("file"))
+					{
+
+					}
 				}
 				else
 				{
@@ -143,7 +177,10 @@ public class ChattingBox extends JPanel
 			}
 		}
 		public void mouseReleased(MouseEvent e){}
-		public void mouseClicked(MouseEvent e){}
+		public void mouseClicked(MouseEvent e)
+		{
+			//System.out.println("Clicked!!");
+		}
 		public void mouseEntered(MouseEvent e){}
 		public void mouseExited(MouseEvent e){}
 	}
@@ -171,16 +208,70 @@ public class ChattingBox extends JPanel
 		{
 			if(e.getEventType()==HyperlinkEvent.EventType.ENTERED)
 			{
+				//System.out.println("HyperlinkEntered!!");
 				onHyperlink=true;
 				mouseHyperlink=e.getDescription();
 			}
 			else if(e.getEventType()==HyperlinkEvent.EventType.EXITED)
+			{
+				//System.out.println("HyperlinkExited!!");
 				onHyperlink=false;
+			}
 			else
 			{
-				if(currentHyperlink.substring(0,4).equals("user"))
+				//System.out.println("HyperlinkActivated!!");
+				String cmd=currentHyperlink.substring(0,4);
+				if(cmd.equals("user"))
 				{
 					//利用currentHyperlink.substring(5)打开个人资料
+				}
+				else if(cmd.equals("pict"))
+				{
+					//利用图片框打开大图
+				}
+				else if(cmd.equals("audi"))
+				{
+					//System.out.println("激活超链接："+currentHyperlink);
+					String tmpstr;
+					if(AudioTools.isPlaying())
+					{
+						tmpstr="<a href=\"audi:"+
+							AudioTools.getCurrentPlayingAudio()+"\">"+
+							"<img src=\""+PROPATH+"button_stop.gif";
+						int tmpindex=html.lastIndexOf(tmpstr);
+						tmpindex+=tmpstr.length()-8;
+						html.replace(tmpindex,tmpindex+4,"play");
+					}
+					tmpstr="<a href=\""+currentHyperlink+"\">"+
+						"<img src=\""+PROPATH+"button_play.gif";
+					int tmpindex=html.lastIndexOf(tmpstr);
+					tmpindex+=tmpstr.length()-8;
+					html.replace(tmpindex,tmpindex+4,"stop");
+					myPane.setText(html.toString());
+					AudioTools.playAudio(
+						AudioTools.CLASSPATH+currentHyperlink.substring(5),
+						new stopListener()
+						{
+							public void stop()
+							{
+								String tmpstr="<a href=\"audi:"+
+									AudioTools.getCurrentPlayingAudio()+"\">"+
+									"<img src=\""+PROPATH+"button_stop.gif";
+								int tmpindex=html.lastIndexOf(tmpstr);
+								tmpindex+=tmpstr.length()-8;
+								html.replace(tmpindex,tmpindex+4,"play");
+								myPane.setText(html.toString());
+							}
+						});
+				}
+				else if(cmd.equals("file"))
+				{
+					if(new File(CLASSPATH+currentHyperlink.substring(5)).exists())
+					{
+						//提示文件已存在
+						return;
+					}
+					//下载文件
 				}
 			}
 		}
