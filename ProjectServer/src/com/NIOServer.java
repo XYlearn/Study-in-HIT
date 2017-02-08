@@ -19,16 +19,17 @@ public class NIOServer {
 
 	private static ByteBuffer rbuffer = ByteBuffer.allocate(1024);
 
-	private Map<Socket, ServerItem> clientsMap = new HashMap<>();
+	private Map<SocketChannel, ServerItem> clientsMap = new HashMap<>();
 
 	private static Selector selector;
 
 	private DatabaseConnection dbconn;
-	public static Map<String, ArrayList<Socket>> question_socket_list;
-	public static Map<String, Socket> user_socket_list;
+	boolean isOver;
+
+	public static Map<String, ArrayList<SocketChannel>> question_socket_list = new HashMap<>();
+	public static Map<String, SocketChannel> user_socket_list = new HashMap<>();
+
 	public static void main(String[] args) {
-		Server.question_socket_list = new HashMap<>();
-		Server.user_socket_list = new HashMap<>();
 		new NIOServer().listen();
 	}
 
@@ -53,7 +54,7 @@ public class NIOServer {
 	}
 
 	private void listen() {
-		boolean isOver = false;
+		isOver = false;
 		while (! isOver) {
 			try {
 				selector.select();
@@ -77,14 +78,16 @@ public class NIOServer {
 
 		if (selectionKey.isAcceptable()) {
 			//接受客户端连接
+			System.out.println("Accept:");
 			server = (ServerSocketChannel)selectionKey.channel();
 			client = server.accept();
 			client.configureBlocking(false);
 			client.register(selector, SelectionKey.OP_READ);
 
-			ServerItem serverItem = new ServerItem(client.socket(), dbconn);
-			clientsMap.put(client.socket(), serverItem);
+			ServerItem serverItem = new ServerItem(client, dbconn);
+			clientsMap.put(client, serverItem);
 
+			System.out.println("Accept:"+client.socket());
 		} else if (selectionKey.isReadable()) {
 			client = (SocketChannel) selectionKey.channel();
 			ServerResponseMessage.Message response;
@@ -99,8 +102,12 @@ public class NIOServer {
 					readByte[i] = bytes[i];
 				}
 				message = ClientSendMessage.Message.parseFrom(ByteBuffer.wrap(readByte).array());
-				ServerItem serverItem = clientsMap.get(client.socket());
+				ServerItem serverItem = clientsMap.get(client);
 				response = serverItem.handleMessage(message);
+			} else if(count==-1){
+				System.out.println("Terminated:"+client.socket());
+				client.close();
+				return;
 			} else {
 				response = ServerResponseMessage.Message.newBuilder().build();
 			}

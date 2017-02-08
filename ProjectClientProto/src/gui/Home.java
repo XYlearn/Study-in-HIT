@@ -5,6 +5,8 @@
  */
 package gui;
 
+import NetEvent.Client;
+
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -596,8 +598,11 @@ public class Home extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
+
+        client = new Client();
     }
 
+    static private Client client;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Launcher;
     private javax.swing.JTextPane announcementEdit;

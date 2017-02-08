@@ -12,6 +12,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/ProjectServer$nioserver.coverage" NAME="nioserver Coverage Results" MODIFIED="1486448792781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -21,23 +24,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ServerThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ServerThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ServerItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+            <state relative-caret-position="4752">
+              <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+                <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+                <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
@@ -47,32 +43,7 @@
                 <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cos.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="40" column="29" lean-forward="false" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2323#2324#0" expanded="false" />
-                <element signature="e#2350#2351#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/DatabaseConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1107">
-              <caret line="45" column="9" lean-forward="false" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -81,8 +52,28 @@
       <file leaf-file-name="ClientSendMessage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ClientSendMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="9124" column="0" lean-forward="false" selection-start-line="9124" selection-start-column="0" selection-end-line="9124" selection-end-column="0" />
+            <state relative-caret-position="272889">
+              <caret line="10720" column="0" lean-forward="false" selection-start-line="10720" selection-start-column="0" selection-end-line="10720" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cos.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="556">
+              <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NIOServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -91,30 +82,20 @@
       <file leaf-file-name="ServerResponseMessage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ServerResponseMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="7842" column="29" lean-forward="false" selection-start-line="7842" selection-start-column="29" selection-end-line="7842" selection-end-column="29" />
+            <state relative-caret-position="108">
+              <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Server.java">
+      <file leaf-file-name="MD5.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/MD5.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="32" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NIOServer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+            <state relative-caret-position="702">
+              <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -154,15 +135,18 @@
         <option value="$PROJECT_DIR$/ClientSend.proto" />
         <option value="$PROJECT_DIR$/src/com/ClientSendMessage.java" />
         <option value="$PROJECT_DIR$/src/com/ServerResponseMessage.java" />
-        <option value="$PROJECT_DIR$/src/com/MD5.java" />
         <option value="$PROJECT_DIR$/src/com/TencentUtils.java" />
-        <option value="$PROJECT_DIR$/src/com/Cos.java" />
         <option value="$PROJECT_DIR$/src/com/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/com/OnlineUser.java" />
         <option value="$PROJECT_DIR$/src/com/Server.java" />
         <option value="$PROJECT_DIR$/src/com/ServerThread.java" />
+        <option value="$PROJECT_DIR$/src/util/MD5Tools.java" />
+        <option value="$PROJECT_DIR$/src/old/Server.java" />
         <option value="$PROJECT_DIR$/src/com/ServerItem.java" />
+        <option value="$PROJECT_DIR$/src/test.java" />
+        <option value="$PROJECT_DIR$/src/com/MD5.java" />
         <option value="$PROJECT_DIR$/src/com/NIOServer.java" />
+        <option value="$PROJECT_DIR$/src/com/Cos.java" />
       </list>
     </option>
   </component>
@@ -193,18 +177,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ProjectServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="ProjectServer" />
@@ -229,7 +204,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -243,15 +218,18 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,7 +455,7 @@
     </configuration>
     <configuration default="false" name="server" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="com.Server" />
+      <option name="MAIN_CLASS_NAME" value="old.Server" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -557,7 +535,6 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -580,6 +557,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -606,30 +584,48 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/ServerItem.java</url>
-          <line>344</line>
-          <properties />
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/ServerItem.java</url>
-          <line>375</line>
+          <line>474</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/ServerThread.java</url>
-          <line>36</line>
+          <url>file://$PROJECT_DIR$/src/old/ServerThread.java</url>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/NIOServer.java</url>
-          <line>100</line>
+          <url>file://$PROJECT_DIR$/src/com/ServerItem.java</url>
+          <line>298</line>
           <properties />
-          <option name="timeStamp" value="61" />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/NIOServer.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/NIOServer.java</url>
+          <line>105</line>
+          <properties />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/NIOServer.java</url>
+          <line>80</line>
+          <properties />
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/ServerItem.java</url>
+          <line>189</line>
+          <properties />
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="62" />
+      <option name="time" value="74" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -638,198 +634,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ClientSendMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/Server.java" />
-    <entry file="file://$PROJECT_DIR$/src/CommitData.java" />
-    <entry file="file://$PROJECT_DIR$/src/ClientSendMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/Server.java" />
-    <entry file="file://$PROJECT_DIR$/src/CommitData.java" />
-    <entry file="file://$PROJECT_DIR$/src/ClientSendMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/Server.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerThread.java" />
-    <entry file="file://$PROJECT_DIR$/../ProtoTest/out/production/ProtoTest/ProjectData.proto" />
-    <entry file="file://$PROJECT_DIR$/src/ProjectData.proto" />
-    <entry file="file://$PROJECT_DIR$/src/GeneratedMessageV3.java" />
-    <entry file="file://$PROJECT_DIR$/out/production/ProjectServer/Server.class" />
-    <entry file="file://$PROJECT_DIR$/src/Server.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/ClientSendMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/CommitData.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/CommitData.java" />
-    <entry file="file://$PROJECT_DIR$/ProjectData.proto" />
-    <entry file="jar:///usr/java/jdk1.8.0_111/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.8.0_111/src.zip!/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="356" column="0" lean-forward="false" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.8.0_111/src.zip!/java/net/URLClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="380" column="0" lean-forward="false" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ClientSendMessage.java" />
-    <entry file="jar://$PROJECT_DIR$/lib/mariadb-java-client-1.5.6.jar!/org/mariadb/jdbc/MySQLDataSource.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/mariadb-java-client-1.5.6.jar!/org/mariadb/jdbc/MariaDbConnection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1107">
-          <caret line="59" column="50" lean-forward="false" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.8.0_111/src.zip!/java/sql/Statement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2408">
-          <caret line="78" column="43" lean-forward="false" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.8.0_111/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/mariadb-java-client-1.5.6.jar!/org/mariadb/jdbc/internal/packet/read/ReadPacketFetcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ClientSend.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1917">
-          <caret line="71" column="24" lean-forward="false" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ServerResponse.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3294">
-          <caret line="122" column="1" lean-forward="false" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/mariadb-java-client-1.5.6.jar!/org/mariadb/jdbc/internal/util/ExceptionMapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2349">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/protobuf-java-3.1.0-sources.jar!/com/google/protobuf/AbstractParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4266">
-          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/mariadb-java-client-1.5.6.jar!/org/mariadb/jdbc/MariaDbClientPreparedStatement.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="261" column="0" lean-forward="false" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/mariadb-java-client-1.5.6.jar!/org/mariadb/jdbc/AbstractPrepareStatement.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13311">
-          <caret line="536" column="0" lean-forward="false" selection-start-line="536" selection-start-column="0" selection-end-line="536" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/TencentUtils.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/MD5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="40" column="29" lean-forward="false" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2323#2324#0" expanded="false" />
-            <element signature="e#2350#2351#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/DatabaseConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
-          <caret line="45" column="9" lean-forward="false" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerIO/SendThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerIO/RecvThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/OnlineUser.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/ServerResponseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="7842" column="29" lean-forward="false" selection-start-line="7842" selection-start-column="29" selection-end-line="7842" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ClientSendMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="9124" column="0" lean-forward="false" selection-start-line="9124" selection-start-column="0" selection-end-line="9124" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ServerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+        <state relative-caret-position="4752">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
@@ -839,25 +652,388 @@
             <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/com/ClientSendMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="32" selection-end-column="41" />
+        <state relative-caret-position="289440">
+          <caret line="10720" column="0" lean-forward="false" selection-start-line="10720" selection-start-column="0" selection-end-line="10720" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/MD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5049">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ClientSendMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289440">
+          <caret line="10720" column="0" lean-forward="false" selection-start-line="10720" selection-start-column="0" selection-end-line="10720" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/MD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8451">
+          <caret line="355" column="29" lean-forward="false" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1512">
+          <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/MD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9585">
+          <caret line="355" column="29" lean-forward="true" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="28" column="52" lean-forward="false" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20601">
+          <caret line="763" column="4" lean-forward="true" selection-start-line="763" selection-start-column="4" selection-end-line="763" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="28" column="52" lean-forward="false" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="28" column="52" lean-forward="false" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/old/Server.java" />
+    <entry file="file://$PROJECT_DIR$/src/old/ServerThread.java" />
+    <entry file="file://$PROJECT_DIR$/src/test.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/ServerResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/MD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ClientSendMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272889">
+          <caret line="10720" column="0" lean-forward="false" selection-start-line="10720" selection-start-column="0" selection-end-line="10720" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ServerItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4752">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetCosCredRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/NIOServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

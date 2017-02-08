@@ -37,6 +37,14 @@ public final class ClientSendMessage {
     LOGOUT_MESSAGE(1),
     /**
      * <pre>
+     *注册请求
+     * </pre>
+     *
+     * <code>REGISTER_REQUEST = 6;</code>
+     */
+    REGISTER_REQUEST(6),
+    /**
+     * <pre>
      *发送对话消息
      * </pre>
      *
@@ -126,6 +134,14 @@ public final class ClientSendMessage {
      * <code>LOGOUT_MESSAGE = 1;</code>
      */
     public static final int LOGOUT_MESSAGE_VALUE = 1;
+    /**
+     * <pre>
+     *注册请求
+     * </pre>
+     *
+     * <code>REGISTER_REQUEST = 6;</code>
+     */
+    public static final int REGISTER_REQUEST_VALUE = 6;
     /**
      * <pre>
      *发送对话消息
@@ -224,6 +240,7 @@ public final class ClientSendMessage {
       switch (value) {
         case 0: return LAUNCH_REQUEST;
         case 1: return LOGOUT_MESSAGE;
+        case 6: return REGISTER_REQUEST;
         case 2: return SEND_CONTENT;
         case 3: return ANNOUNCEMENT_MESSAGE;
         case 4: return QUESTION_ENTER_REQUEST;
@@ -2229,6 +2246,920 @@ public final class ClientSendMessage {
 
   }
 
+  public interface RegisterRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:RegisterRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+
+    /**
+     * <code>optional string mail_address = 3;</code>
+     */
+    java.lang.String getMailAddress();
+    /**
+     * <code>optional string mail_address = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getMailAddressBytes();
+
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    java.lang.String getSignature();
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSignatureBytes();
+  }
+  /**
+   * Protobuf type {@code RegisterRequest}
+   */
+  public  static final class RegisterRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:RegisterRequest)
+      RegisterRequestOrBuilder {
+    // Use RegisterRequest.newBuilder() to construct.
+    private RegisterRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RegisterRequest() {
+      username_ = "";
+      password_ = "";
+      mailAddress_ = "";
+      signature_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private RegisterRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              username_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              password_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              mailAddress_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              signature_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ClientSendMessage.internal_static_RegisterRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ClientSendMessage.internal_static_RegisterRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ClientSendMessage.RegisterRequest.class, com.ClientSendMessage.RegisterRequest.Builder.class);
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object username_;
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        username_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 2;
+    private volatile java.lang.Object password_;
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        password_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string password = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MAIL_ADDRESS_FIELD_NUMBER = 3;
+    private volatile java.lang.Object mailAddress_;
+    /**
+     * <code>optional string mail_address = 3;</code>
+     */
+    public java.lang.String getMailAddress() {
+      java.lang.Object ref = mailAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        mailAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string mail_address = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMailAddressBytes() {
+      java.lang.Object ref = mailAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        mailAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SIGNATURE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object signature_;
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    public java.lang.String getSignature() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        signature_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSignatureBytes() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        signature_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getUsernameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+      }
+      if (!getPasswordBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      }
+      if (!getMailAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, mailAddress_);
+      }
+      if (!getSignatureBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, signature_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getUsernameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+      }
+      if (!getPasswordBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      }
+      if (!getMailAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, mailAddress_);
+      }
+      if (!getSignatureBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, signature_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ClientSendMessage.RegisterRequest)) {
+        return super.equals(obj);
+      }
+      com.ClientSendMessage.RegisterRequest other = (com.ClientSendMessage.RegisterRequest) obj;
+
+      boolean result = true;
+      result = result && getUsername()
+          .equals(other.getUsername());
+      result = result && getPassword()
+          .equals(other.getPassword());
+      result = result && getMailAddress()
+          .equals(other.getMailAddress());
+      result = result && getSignature()
+          .equals(other.getSignature());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + MAIL_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getMailAddress().hashCode();
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ClientSendMessage.RegisterRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.RegisterRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ClientSendMessage.RegisterRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code RegisterRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:RegisterRequest)
+        com.ClientSendMessage.RegisterRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ClientSendMessage.internal_static_RegisterRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ClientSendMessage.internal_static_RegisterRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ClientSendMessage.RegisterRequest.class, com.ClientSendMessage.RegisterRequest.Builder.class);
+      }
+
+      // Construct using com.ClientSendMessage.RegisterRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        username_ = "";
+
+        password_ = "";
+
+        mailAddress_ = "";
+
+        signature_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ClientSendMessage.internal_static_RegisterRequest_descriptor;
+      }
+
+      public com.ClientSendMessage.RegisterRequest getDefaultInstanceForType() {
+        return com.ClientSendMessage.RegisterRequest.getDefaultInstance();
+      }
+
+      public com.ClientSendMessage.RegisterRequest build() {
+        com.ClientSendMessage.RegisterRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ClientSendMessage.RegisterRequest buildPartial() {
+        com.ClientSendMessage.RegisterRequest result = new com.ClientSendMessage.RegisterRequest(this);
+        result.username_ = username_;
+        result.password_ = password_;
+        result.mailAddress_ = mailAddress_;
+        result.signature_ = signature_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ClientSendMessage.RegisterRequest) {
+          return mergeFrom((com.ClientSendMessage.RegisterRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ClientSendMessage.RegisterRequest other) {
+        if (other == com.ClientSendMessage.RegisterRequest.getDefaultInstance()) return this;
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
+          onChanged();
+        }
+        if (!other.getPassword().isEmpty()) {
+          password_ = other.password_;
+          onChanged();
+        }
+        if (!other.getMailAddress().isEmpty()) {
+          mailAddress_ = other.mailAddress_;
+          onChanged();
+        }
+        if (!other.getSignature().isEmpty()) {
+          signature_ = other.signature_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ClientSendMessage.RegisterRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ClientSendMessage.RegisterRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object username_ = "";
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        username_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder clearUsername() {
+        
+        username_ = getDefaultInstance().getUsername();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        username_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object password_ = "";
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public Builder clearPassword() {
+        
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string password = 2;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        password_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object mailAddress_ = "";
+      /**
+       * <code>optional string mail_address = 3;</code>
+       */
+      public java.lang.String getMailAddress() {
+        java.lang.Object ref = mailAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          mailAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string mail_address = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMailAddressBytes() {
+        java.lang.Object ref = mailAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          mailAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string mail_address = 3;</code>
+       */
+      public Builder setMailAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mailAddress_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mail_address = 3;</code>
+       */
+      public Builder clearMailAddress() {
+        
+        mailAddress_ = getDefaultInstance().getMailAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string mail_address = 3;</code>
+       */
+      public Builder setMailAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mailAddress_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object signature_ = "";
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public java.lang.String getSignature() {
+        java.lang.Object ref = signature_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          signature_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSignatureBytes() {
+        java.lang.Object ref = signature_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          signature_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public Builder setSignature(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        signature_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public Builder clearSignature() {
+        
+        signature_ = getDefaultInstance().getSignature();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public Builder setSignatureBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        signature_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:RegisterRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:RegisterRequest)
+    private static final com.ClientSendMessage.RegisterRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ClientSendMessage.RegisterRequest();
+    }
+
+    public static com.ClientSendMessage.RegisterRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RegisterRequest>
+        PARSER = new com.google.protobuf.AbstractParser<RegisterRequest>() {
+      public RegisterRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new RegisterRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RegisterRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RegisterRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ClientSendMessage.RegisterRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface SendContentOrBuilder extends
       // @@protoc_insertion_point(interface_extends:SendContent)
       com.google.protobuf.MessageOrBuilder {
@@ -2247,6 +3178,25 @@ public final class ClientSendMessage {
      */
     com.google.protobuf.ByteString
         getContentBytes();
+
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    java.util.List<java.lang.String>
+        getPicturesList();
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    int getPicturesCount();
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    java.lang.String getPictures(int index);
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getPicturesBytes(int index);
 
     /**
      * <code>optional string time = 3;</code>
@@ -2286,6 +3236,7 @@ public final class ClientSendMessage {
     private SendContent() {
       questionID_ = 0L;
       content_ = "";
+      pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       time_ = "";
       user_ = "";
     }
@@ -2338,6 +3289,15 @@ public final class ClientSendMessage {
               user_ = s;
               break;
             }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                pictures_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              pictures_.add(s);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2346,6 +3306,9 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          pictures_ = pictures_.getUnmodifiableView();
+        }
         makeExtensionsImmutable();
       }
     }
@@ -2361,6 +3324,7 @@ public final class ClientSendMessage {
               com.ClientSendMessage.SendContent.class, com.ClientSendMessage.SendContent.Builder.class);
     }
 
+    private int bitField0_;
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
@@ -2402,6 +3366,35 @@ public final class ClientSendMessage {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int PICTURES_FIELD_NUMBER = 5;
+    private com.google.protobuf.LazyStringList pictures_;
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getPicturesList() {
+      return pictures_;
+    }
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    public int getPicturesCount() {
+      return pictures_.size();
+    }
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    public java.lang.String getPictures(int index) {
+      return pictures_.get(index);
+    }
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPicturesBytes(int index) {
+      return pictures_.getByteString(index);
     }
 
     public static final int TIME_FIELD_NUMBER = 3;
@@ -2496,6 +3489,9 @@ public final class ClientSendMessage {
       if (!getUserBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, user_);
       }
+      for (int i = 0; i < pictures_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, pictures_.getRaw(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -2515,6 +3511,14 @@ public final class ClientSendMessage {
       }
       if (!getUserBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, user_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < pictures_.size(); i++) {
+          dataSize += computeStringSizeNoTag(pictures_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getPicturesList().size();
       }
       memoizedSize = size;
       return size;
@@ -2536,6 +3540,8 @@ public final class ClientSendMessage {
           == other.getQuestionID());
       result = result && getContent()
           .equals(other.getContent());
+      result = result && getPicturesList()
+          .equals(other.getPicturesList());
       result = result && getTime()
           .equals(other.getTime());
       result = result && getUser()
@@ -2555,6 +3561,10 @@ public final class ClientSendMessage {
           getQuestionID());
       hash = (37 * hash) + CONTENT_FIELD_NUMBER;
       hash = (53 * hash) + getContent().hashCode();
+      if (getPicturesCount() > 0) {
+        hash = (37 * hash) + PICTURES_FIELD_NUMBER;
+        hash = (53 * hash) + getPicturesList().hashCode();
+      }
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + USER_FIELD_NUMBER;
@@ -2685,6 +3695,8 @@ public final class ClientSendMessage {
 
         content_ = "";
 
+        pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
         time_ = "";
 
         user_ = "";
@@ -2711,10 +3723,18 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.SendContent buildPartial() {
         com.ClientSendMessage.SendContent result = new com.ClientSendMessage.SendContent(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.questionID_ = questionID_;
         result.content_ = content_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          pictures_ = pictures_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.pictures_ = pictures_;
         result.time_ = time_;
         result.user_ = user_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -2763,6 +3783,16 @@ public final class ClientSendMessage {
           content_ = other.content_;
           onChanged();
         }
+        if (!other.pictures_.isEmpty()) {
+          if (pictures_.isEmpty()) {
+            pictures_ = other.pictures_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensurePicturesIsMutable();
+            pictures_.addAll(other.pictures_);
+          }
+          onChanged();
+        }
         if (!other.getTime().isEmpty()) {
           time_ = other.time_;
           onChanged();
@@ -2796,6 +3826,7 @@ public final class ClientSendMessage {
         }
         return this;
       }
+      private int bitField0_;
 
       private long questionID_ ;
       /**
@@ -2888,6 +3919,100 @@ public final class ClientSendMessage {
   checkByteStringIsUtf8(value);
         
         content_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensurePicturesIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          pictures_ = new com.google.protobuf.LazyStringArrayList(pictures_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getPicturesList() {
+        return pictures_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public int getPicturesCount() {
+        return pictures_.size();
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public java.lang.String getPictures(int index) {
+        return pictures_.get(index);
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPicturesBytes(int index) {
+        return pictures_.getByteString(index);
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder setPictures(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePicturesIsMutable();
+        pictures_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder addPictures(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePicturesIsMutable();
+        pictures_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder addAllPictures(
+          java.lang.Iterable<java.lang.String> values) {
+        ensurePicturesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, pictures_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder clearPictures() {
+        pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder addPicturesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensurePicturesIsMutable();
+        pictures_.add(value);
         onChanged();
         return this;
       }
@@ -7774,20 +8899,11 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .SEARCHTYPE searchType = 1;</code>
-     */
-    int getSearchTypeValue();
-    /**
-     * <code>optional .SEARCHTYPE searchType = 1;</code>
-     */
-    com.ClientSendMessage.SEARCHTYPE getSearchType();
-
-    /**
-     * <code>optional string keyword = 2;</code>
+     * <code>optional string keyword = 1;</code>
      */
     java.lang.String getKeyword();
     /**
-     * <code>optional string keyword = 2;</code>
+     * <code>optional string keyword = 1;</code>
      */
     com.google.protobuf.ByteString
         getKeywordBytes();
@@ -7808,7 +8924,6 @@ public final class ClientSendMessage {
       super(builder);
     }
     private SearchInformationRequest() {
-      searchType_ = 0;
       keyword_ = "";
     }
 
@@ -7837,13 +8952,7 @@ public final class ClientSendMessage {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
-
-              searchType_ = rawValue;
-              break;
-            }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
               keyword_ = s;
@@ -7872,26 +8981,10 @@ public final class ClientSendMessage {
               com.ClientSendMessage.SearchInformationRequest.class, com.ClientSendMessage.SearchInformationRequest.Builder.class);
     }
 
-    public static final int SEARCHTYPE_FIELD_NUMBER = 1;
-    private int searchType_;
-    /**
-     * <code>optional .SEARCHTYPE searchType = 1;</code>
-     */
-    public int getSearchTypeValue() {
-      return searchType_;
-    }
-    /**
-     * <code>optional .SEARCHTYPE searchType = 1;</code>
-     */
-    public com.ClientSendMessage.SEARCHTYPE getSearchType() {
-      com.ClientSendMessage.SEARCHTYPE result = com.ClientSendMessage.SEARCHTYPE.valueOf(searchType_);
-      return result == null ? com.ClientSendMessage.SEARCHTYPE.UNRECOGNIZED : result;
-    }
-
-    public static final int KEYWORD_FIELD_NUMBER = 2;
+    public static final int KEYWORD_FIELD_NUMBER = 1;
     private volatile java.lang.Object keyword_;
     /**
-     * <code>optional string keyword = 2;</code>
+     * <code>optional string keyword = 1;</code>
      */
     public java.lang.String getKeyword() {
       java.lang.Object ref = keyword_;
@@ -7906,7 +8999,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string keyword = 2;</code>
+     * <code>optional string keyword = 1;</code>
      */
     public com.google.protobuf.ByteString
         getKeywordBytes() {
@@ -7934,11 +9027,8 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (searchType_ != com.ClientSendMessage.SEARCHTYPE.QUESTION.getNumber()) {
-        output.writeEnum(1, searchType_);
-      }
       if (!getKeywordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, keyword_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, keyword_);
       }
     }
 
@@ -7947,12 +9037,8 @@ public final class ClientSendMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (searchType_ != com.ClientSendMessage.SEARCHTYPE.QUESTION.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, searchType_);
-      }
       if (!getKeywordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, keyword_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, keyword_);
       }
       memoizedSize = size;
       return size;
@@ -7970,7 +9056,6 @@ public final class ClientSendMessage {
       com.ClientSendMessage.SearchInformationRequest other = (com.ClientSendMessage.SearchInformationRequest) obj;
 
       boolean result = true;
-      result = result && searchType_ == other.searchType_;
       result = result && getKeyword()
           .equals(other.getKeyword());
       return result;
@@ -7983,8 +9068,6 @@ public final class ClientSendMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SEARCHTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + searchType_;
       hash = (37 * hash) + KEYWORD_FIELD_NUMBER;
       hash = (53 * hash) + getKeyword().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -8109,8 +9192,6 @@ public final class ClientSendMessage {
       }
       public Builder clear() {
         super.clear();
-        searchType_ = 0;
-
         keyword_ = "";
 
         return this;
@@ -8135,7 +9216,6 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.SearchInformationRequest buildPartial() {
         com.ClientSendMessage.SearchInformationRequest result = new com.ClientSendMessage.SearchInformationRequest(this);
-        result.searchType_ = searchType_;
         result.keyword_ = keyword_;
         onBuilt();
         return result;
@@ -8178,9 +9258,6 @@ public final class ClientSendMessage {
 
       public Builder mergeFrom(com.ClientSendMessage.SearchInformationRequest other) {
         if (other == com.ClientSendMessage.SearchInformationRequest.getDefaultInstance()) return this;
-        if (other.searchType_ != 0) {
-          setSearchTypeValue(other.getSearchTypeValue());
-        }
         if (!other.getKeyword().isEmpty()) {
           keyword_ = other.keyword_;
           onChanged();
@@ -8211,53 +9288,9 @@ public final class ClientSendMessage {
         return this;
       }
 
-      private int searchType_ = 0;
-      /**
-       * <code>optional .SEARCHTYPE searchType = 1;</code>
-       */
-      public int getSearchTypeValue() {
-        return searchType_;
-      }
-      /**
-       * <code>optional .SEARCHTYPE searchType = 1;</code>
-       */
-      public Builder setSearchTypeValue(int value) {
-        searchType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .SEARCHTYPE searchType = 1;</code>
-       */
-      public com.ClientSendMessage.SEARCHTYPE getSearchType() {
-        com.ClientSendMessage.SEARCHTYPE result = com.ClientSendMessage.SEARCHTYPE.valueOf(searchType_);
-        return result == null ? com.ClientSendMessage.SEARCHTYPE.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .SEARCHTYPE searchType = 1;</code>
-       */
-      public Builder setSearchType(com.ClientSendMessage.SEARCHTYPE value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        searchType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .SEARCHTYPE searchType = 1;</code>
-       */
-      public Builder clearSearchType() {
-        
-        searchType_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object keyword_ = "";
       /**
-       * <code>optional string keyword = 2;</code>
+       * <code>optional string keyword = 1;</code>
        */
       public java.lang.String getKeyword() {
         java.lang.Object ref = keyword_;
@@ -8272,7 +9305,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string keyword = 2;</code>
+       * <code>optional string keyword = 1;</code>
        */
       public com.google.protobuf.ByteString
           getKeywordBytes() {
@@ -8288,7 +9321,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string keyword = 2;</code>
+       * <code>optional string keyword = 1;</code>
        */
       public Builder setKeyword(
           java.lang.String value) {
@@ -8301,7 +9334,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string keyword = 2;</code>
+       * <code>optional string keyword = 1;</code>
        */
       public Builder clearKeyword() {
         
@@ -8310,7 +9343,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string keyword = 2;</code>
+       * <code>optional string keyword = 1;</code>
        */
       public Builder setKeywordBytes(
           com.google.protobuf.ByteString value) {
@@ -8377,14 +9410,32 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string filename = 1;</code>
+     * <code>repeated string filename = 1;</code>
      */
-    java.lang.String getFilename();
+    java.util.List<java.lang.String>
+        getFilenameList();
     /**
-     * <code>optional string filename = 1;</code>
+     * <code>repeated string filename = 1;</code>
+     */
+    int getFilenameCount();
+    /**
+     * <code>repeated string filename = 1;</code>
+     */
+    java.lang.String getFilename(int index);
+    /**
+     * <code>repeated string filename = 1;</code>
      */
     com.google.protobuf.ByteString
-        getFilenameBytes();
+        getFilenameBytes(int index);
+
+    /**
+     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     */
+    int getSignTypeValue();
+    /**
+     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     */
+    com.ClientSendMessage.GetCosSignRequest.SIGNTYPE getSignType();
   }
   /**
    * <pre>
@@ -8402,7 +9453,8 @@ public final class ClientSendMessage {
       super(builder);
     }
     private GetCosSignRequest() {
-      filename_ = "";
+      filename_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      signType_ = 0;
     }
 
     @java.lang.Override
@@ -8432,8 +9484,17 @@ public final class ClientSendMessage {
             }
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                filename_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              filename_.add(s);
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
 
-              filename_ = s;
+              signType_ = rawValue;
               break;
             }
           }
@@ -8444,6 +9505,9 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          filename_ = filename_.getUnmodifiableView();
+        }
         makeExtensionsImmutable();
       }
     }
@@ -8459,38 +9523,148 @@ public final class ClientSendMessage {
               com.ClientSendMessage.GetCosSignRequest.class, com.ClientSendMessage.GetCosSignRequest.Builder.class);
     }
 
-    public static final int FILENAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object filename_;
     /**
-     * <code>optional string filename = 1;</code>
+     * Protobuf enum {@code GetCosSignRequest.SIGNTYPE}
      */
-    public java.lang.String getFilename() {
-      java.lang.Object ref = filename_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        filename_ = s;
-        return s;
+    public enum SIGNTYPE
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>DOWNLOAD = 0;</code>
+       */
+      DOWNLOAD(0),
+      /**
+       * <code>UPLOAD = 1;</code>
+       */
+      UPLOAD(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>DOWNLOAD = 0;</code>
+       */
+      public static final int DOWNLOAD_VALUE = 0;
+      /**
+       * <code>UPLOAD = 1;</code>
+       */
+      public static final int UPLOAD_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
       }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static SIGNTYPE valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static SIGNTYPE forNumber(int value) {
+        switch (value) {
+          case 0: return DOWNLOAD;
+          case 1: return UPLOAD;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<SIGNTYPE>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          SIGNTYPE> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<SIGNTYPE>() {
+              public SIGNTYPE findValueByNumber(int number) {
+                return SIGNTYPE.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.ClientSendMessage.GetCosSignRequest.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final SIGNTYPE[] VALUES = values();
+
+      public static SIGNTYPE valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private SIGNTYPE(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:GetCosSignRequest.SIGNTYPE)
+    }
+
+    private int bitField0_;
+    public static final int FILENAME_FIELD_NUMBER = 1;
+    private com.google.protobuf.LazyStringList filename_;
+    /**
+     * <code>repeated string filename = 1;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getFilenameList() {
+      return filename_;
     }
     /**
-     * <code>optional string filename = 1;</code>
+     * <code>repeated string filename = 1;</code>
+     */
+    public int getFilenameCount() {
+      return filename_.size();
+    }
+    /**
+     * <code>repeated string filename = 1;</code>
+     */
+    public java.lang.String getFilename(int index) {
+      return filename_.get(index);
+    }
+    /**
+     * <code>repeated string filename = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getFilenameBytes() {
-      java.lang.Object ref = filename_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        filename_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+        getFilenameBytes(int index) {
+      return filename_.getByteString(index);
+    }
+
+    public static final int SIGNTYPE_FIELD_NUMBER = 2;
+    private int signType_;
+    /**
+     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     */
+    public int getSignTypeValue() {
+      return signType_;
+    }
+    /**
+     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     */
+    public com.ClientSendMessage.GetCosSignRequest.SIGNTYPE getSignType() {
+      com.ClientSendMessage.GetCosSignRequest.SIGNTYPE result = com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.valueOf(signType_);
+      return result == null ? com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -8505,8 +9679,11 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFilenameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, filename_);
+      for (int i = 0; i < filename_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, filename_.getRaw(i));
+      }
+      if (signType_ != com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.DOWNLOAD.getNumber()) {
+        output.writeEnum(2, signType_);
       }
     }
 
@@ -8515,8 +9692,17 @@ public final class ClientSendMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFilenameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, filename_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < filename_.size(); i++) {
+          dataSize += computeStringSizeNoTag(filename_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getFilenameList().size();
+      }
+      if (signType_ != com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.DOWNLOAD.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, signType_);
       }
       memoizedSize = size;
       return size;
@@ -8534,8 +9720,9 @@ public final class ClientSendMessage {
       com.ClientSendMessage.GetCosSignRequest other = (com.ClientSendMessage.GetCosSignRequest) obj;
 
       boolean result = true;
-      result = result && getFilename()
-          .equals(other.getFilename());
+      result = result && getFilenameList()
+          .equals(other.getFilenameList());
+      result = result && signType_ == other.signType_;
       return result;
     }
 
@@ -8546,8 +9733,12 @@ public final class ClientSendMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
-      hash = (53 * hash) + getFilename().hashCode();
+      if (getFilenameCount() > 0) {
+        hash = (37 * hash) + FILENAME_FIELD_NUMBER;
+        hash = (53 * hash) + getFilenameList().hashCode();
+      }
+      hash = (37 * hash) + SIGNTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + signType_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8670,7 +9861,9 @@ public final class ClientSendMessage {
       }
       public Builder clear() {
         super.clear();
-        filename_ = "";
+        filename_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        signType_ = 0;
 
         return this;
       }
@@ -8694,7 +9887,15 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.GetCosSignRequest buildPartial() {
         com.ClientSendMessage.GetCosSignRequest result = new com.ClientSendMessage.GetCosSignRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          filename_ = filename_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
         result.filename_ = filename_;
+        result.signType_ = signType_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -8736,9 +9937,18 @@ public final class ClientSendMessage {
 
       public Builder mergeFrom(com.ClientSendMessage.GetCosSignRequest other) {
         if (other == com.ClientSendMessage.GetCosSignRequest.getDefaultInstance()) return this;
-        if (!other.getFilename().isEmpty()) {
-          filename_ = other.filename_;
+        if (!other.filename_.isEmpty()) {
+          if (filename_.isEmpty()) {
+            filename_ = other.filename_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFilenameIsMutable();
+            filename_.addAll(other.filename_);
+          }
           onChanged();
+        }
+        if (other.signType_ != 0) {
+          setSignTypeValue(other.getSignTypeValue());
         }
         onChanged();
         return this;
@@ -8765,72 +9975,142 @@ public final class ClientSendMessage {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object filename_ = "";
-      /**
-       * <code>optional string filename = 1;</code>
-       */
-      public java.lang.String getFilename() {
-        java.lang.Object ref = filename_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          filename_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      private com.google.protobuf.LazyStringList filename_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureFilenameIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          filename_ = new com.google.protobuf.LazyStringArrayList(filename_);
+          bitField0_ |= 0x00000001;
+         }
       }
       /**
-       * <code>optional string filename = 1;</code>
+       * <code>repeated string filename = 1;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getFilenameList() {
+        return filename_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string filename = 1;</code>
+       */
+      public int getFilenameCount() {
+        return filename_.size();
+      }
+      /**
+       * <code>repeated string filename = 1;</code>
+       */
+      public java.lang.String getFilename(int index) {
+        return filename_.get(index);
+      }
+      /**
+       * <code>repeated string filename = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getFilenameBytes() {
-        java.lang.Object ref = filename_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          filename_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+          getFilenameBytes(int index) {
+        return filename_.getByteString(index);
       }
       /**
-       * <code>optional string filename = 1;</code>
+       * <code>repeated string filename = 1;</code>
        */
       public Builder setFilename(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFilenameIsMutable();
+        filename_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string filename = 1;</code>
+       */
+      public Builder addFilename(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
-        filename_ = value;
+  ensureFilenameIsMutable();
+        filename_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional string filename = 1;</code>
+       * <code>repeated string filename = 1;</code>
+       */
+      public Builder addAllFilename(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureFilenameIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, filename_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string filename = 1;</code>
        */
       public Builder clearFilename() {
-        
-        filename_ = getDefaultInstance().getFilename();
+        filename_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
-       * <code>optional string filename = 1;</code>
+       * <code>repeated string filename = 1;</code>
        */
-      public Builder setFilenameBytes(
+      public Builder addFilenameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
+        ensureFilenameIsMutable();
+        filename_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private int signType_ = 0;
+      /**
+       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       */
+      public int getSignTypeValue() {
+        return signType_;
+      }
+      /**
+       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       */
+      public Builder setSignTypeValue(int value) {
+        signType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       */
+      public com.ClientSendMessage.GetCosSignRequest.SIGNTYPE getSignType() {
+        com.ClientSendMessage.GetCosSignRequest.SIGNTYPE result = com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.valueOf(signType_);
+        return result == null ? com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       */
+      public Builder setSignType(com.ClientSendMessage.GetCosSignRequest.SIGNTYPE value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
         
-        filename_ = value;
+        signType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       */
+      public Builder clearSignType() {
+        
+        signType_ = 0;
         onChanged();
         return this;
       }
@@ -9009,6 +10289,19 @@ public final class ClientSendMessage {
      * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
      */
     com.ClientSendMessage.GoodUserRequestOrBuilder getGoodUserRequestOrBuilder();
+
+    /**
+     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     */
+    boolean hasRegisterRequest();
+    /**
+     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     */
+    com.ClientSendMessage.RegisterRequest getRegisterRequest();
+    /**
+     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     */
+    com.ClientSendMessage.RegisterRequestOrBuilder getRegisterRequestOrBuilder();
 
     /**
      * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
@@ -9245,6 +10538,19 @@ public final class ClientSendMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(goodUserRequest_);
                 goodUserRequest_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 90: {
+              com.ClientSendMessage.RegisterRequest.Builder subBuilder = null;
+              if (registerRequest_ != null) {
+                subBuilder = registerRequest_.toBuilder();
+              }
+              registerRequest_ = input.readMessage(com.ClientSendMessage.RegisterRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(registerRequest_);
+                registerRequest_ = subBuilder.buildPartial();
               }
 
               break;
@@ -9568,6 +10874,27 @@ public final class ClientSendMessage {
       return getGoodUserRequest();
     }
 
+    public static final int REGISTERREQUEST_FIELD_NUMBER = 11;
+    private com.ClientSendMessage.RegisterRequest registerRequest_;
+    /**
+     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     */
+    public boolean hasRegisterRequest() {
+      return registerRequest_ != null;
+    }
+    /**
+     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     */
+    public com.ClientSendMessage.RegisterRequest getRegisterRequest() {
+      return registerRequest_ == null ? com.ClientSendMessage.RegisterRequest.getDefaultInstance() : registerRequest_;
+    }
+    /**
+     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     */
+    public com.ClientSendMessage.RegisterRequestOrBuilder getRegisterRequestOrBuilder() {
+      return getRegisterRequest();
+    }
+
     public static final int QUESTIONINFORMATIONREQUEST_FIELD_NUMBER = 13;
     private com.ClientSendMessage.QuestionInformationRequest questionInformationRequest_;
     /**
@@ -9736,6 +11063,9 @@ public final class ClientSendMessage {
       if (goodUserRequest_ != null) {
         output.writeMessage(10, getGoodUserRequest());
       }
+      if (registerRequest_ != null) {
+        output.writeMessage(11, getRegisterRequest());
+      }
       if (questionInformationRequest_ != null) {
         output.writeMessage(13, getQuestionInformationRequest());
       }
@@ -9799,6 +11129,10 @@ public final class ClientSendMessage {
       if (goodUserRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getGoodUserRequest());
+      }
+      if (registerRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getRegisterRequest());
       }
       if (questionInformationRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -9883,6 +11217,11 @@ public final class ClientSendMessage {
         result = result && getGoodUserRequest()
             .equals(other.getGoodUserRequest());
       }
+      result = result && (hasRegisterRequest() == other.hasRegisterRequest());
+      if (hasRegisterRequest()) {
+        result = result && getRegisterRequest()
+            .equals(other.getRegisterRequest());
+      }
       result = result && (hasQuestionInformationRequest() == other.hasQuestionInformationRequest());
       if (hasQuestionInformationRequest()) {
         result = result && getQuestionInformationRequest()
@@ -9958,6 +11297,10 @@ public final class ClientSendMessage {
       if (hasGoodUserRequest()) {
         hash = (37 * hash) + GOODUSERREQUEST_FIELD_NUMBER;
         hash = (53 * hash) + getGoodUserRequest().hashCode();
+      }
+      if (hasRegisterRequest()) {
+        hash = (37 * hash) + REGISTERREQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getRegisterRequest().hashCode();
       }
       if (hasQuestionInformationRequest()) {
         hash = (37 * hash) + QUESTIONINFORMATIONREQUEST_FIELD_NUMBER;
@@ -10157,6 +11500,12 @@ public final class ClientSendMessage {
           goodUserRequest_ = null;
           goodUserRequestBuilder_ = null;
         }
+        if (registerRequestBuilder_ == null) {
+          registerRequest_ = null;
+        } else {
+          registerRequest_ = null;
+          registerRequestBuilder_ = null;
+        }
         if (questionInformationRequestBuilder_ == null) {
           questionInformationRequest_ = null;
         } else {
@@ -10256,6 +11605,11 @@ public final class ClientSendMessage {
           result.goodUserRequest_ = goodUserRequest_;
         } else {
           result.goodUserRequest_ = goodUserRequestBuilder_.build();
+        }
+        if (registerRequestBuilder_ == null) {
+          result.registerRequest_ = registerRequest_;
+        } else {
+          result.registerRequest_ = registerRequestBuilder_.build();
         }
         if (questionInformationRequestBuilder_ == null) {
           result.questionInformationRequest_ = questionInformationRequest_;
@@ -10358,6 +11712,9 @@ public final class ClientSendMessage {
         }
         if (other.hasGoodUserRequest()) {
           mergeGoodUserRequest(other.getGoodUserRequest());
+        }
+        if (other.hasRegisterRequest()) {
+          mergeRegisterRequest(other.getRegisterRequest());
         }
         if (other.hasQuestionInformationRequest()) {
           mergeQuestionInformationRequest(other.getQuestionInformationRequest());
@@ -11452,6 +12809,123 @@ public final class ClientSendMessage {
         return goodUserRequestBuilder_;
       }
 
+      private com.ClientSendMessage.RegisterRequest registerRequest_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder> registerRequestBuilder_;
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public boolean hasRegisterRequest() {
+        return registerRequestBuilder_ != null || registerRequest_ != null;
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public com.ClientSendMessage.RegisterRequest getRegisterRequest() {
+        if (registerRequestBuilder_ == null) {
+          return registerRequest_ == null ? com.ClientSendMessage.RegisterRequest.getDefaultInstance() : registerRequest_;
+        } else {
+          return registerRequestBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public Builder setRegisterRequest(com.ClientSendMessage.RegisterRequest value) {
+        if (registerRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          registerRequest_ = value;
+          onChanged();
+        } else {
+          registerRequestBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public Builder setRegisterRequest(
+          com.ClientSendMessage.RegisterRequest.Builder builderForValue) {
+        if (registerRequestBuilder_ == null) {
+          registerRequest_ = builderForValue.build();
+          onChanged();
+        } else {
+          registerRequestBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public Builder mergeRegisterRequest(com.ClientSendMessage.RegisterRequest value) {
+        if (registerRequestBuilder_ == null) {
+          if (registerRequest_ != null) {
+            registerRequest_ =
+              com.ClientSendMessage.RegisterRequest.newBuilder(registerRequest_).mergeFrom(value).buildPartial();
+          } else {
+            registerRequest_ = value;
+          }
+          onChanged();
+        } else {
+          registerRequestBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public Builder clearRegisterRequest() {
+        if (registerRequestBuilder_ == null) {
+          registerRequest_ = null;
+          onChanged();
+        } else {
+          registerRequest_ = null;
+          registerRequestBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public com.ClientSendMessage.RegisterRequest.Builder getRegisterRequestBuilder() {
+        
+        onChanged();
+        return getRegisterRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      public com.ClientSendMessage.RegisterRequestOrBuilder getRegisterRequestOrBuilder() {
+        if (registerRequestBuilder_ != null) {
+          return registerRequestBuilder_.getMessageOrBuilder();
+        } else {
+          return registerRequest_ == null ?
+              com.ClientSendMessage.RegisterRequest.getDefaultInstance() : registerRequest_;
+        }
+      }
+      /**
+       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder> 
+          getRegisterRequestFieldBuilder() {
+        if (registerRequestBuilder_ == null) {
+          registerRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder>(
+                  getRegisterRequest(),
+                  getParentForChildren(),
+                  isClean());
+          registerRequest_ = null;
+        }
+        return registerRequestBuilder_;
+      }
+
       private com.ClientSendMessage.QuestionInformationRequest questionInformationRequest_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.QuestionInformationRequest, com.ClientSendMessage.QuestionInformationRequest.Builder, com.ClientSendMessage.QuestionInformationRequestOrBuilder> questionInformationRequestBuilder_;
@@ -12218,6 +13692,11 @@ public final class ClientSendMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_LogoutMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RegisterRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RegisterRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_SendContent_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -12293,61 +13772,67 @@ public final class ClientSendMessage {
     java.lang.String[] descriptorData = {
       "\n\020ClientSend.proto\"!\n\016ContentMessage\022\017\n\007" +
       "content\030\001 \001(\t\"!\n\rLaunchRequest\022\020\n\010passwo" +
-      "rd\030\002 \001(\t\"\017\n\rLogoutMessage\"N\n\013SendContent" +
-      "\022\022\n\nquestionID\030\001 \001(\003\022\017\n\007content\030\002 \001(\t\022\014\n" +
-      "\004time\030\003 \001(\t\022\014\n\004user\030\004 \001(\t\"#\n\023Announcemen" +
-      "tMessage\022\014\n\004text\030\001 \001(\t\"*\n\024QuestionEnterR" +
-      "equest\022\022\n\nquestionID\030\001 \001(\003\")\n\023GoodQuesti" +
-      "onRequest\022\022\n\nquestionID\030\001 \001(\003\"\037\n\017GoodUse" +
-      "rRequest\022\014\n\004user\030\001 \001(\t\"0\n\032QuestionInform" +
-      "ationRequest\022\022\n\nquestionID\030\001 \001(\003\"*\n\026User",
-      "InformationRequest\022\020\n\010username\030\001 \001(\t\"s\n\026" +
-      "GetQuestionListRequest\022\"\n\treference\030\001 \001(" +
-      "\0162\017.LIST_REFERENCE\022\035\n\trankorder\030\002 \001(\0162\n." +
-      "RANKORDER\022\026\n\016questionNumber\030\003 \001(\005\"E\n\025Cre" +
-      "ateQuestionRequest\022\014\n\004stem\030\001 \001(\t\022\020\n\010addi" +
-      "tion\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\",\n\026AbandonQuest" +
-      "ionRequest\022\022\n\nquestionID\030\001 \001(\003\"L\n\030Search" +
-      "InformationRequest\022\037\n\nsearchType\030\001 \001(\0162\013" +
-      ".SEARCHTYPE\022\017\n\007keyword\030\002 \001(\t\"%\n\021GetCosSi" +
-      "gnRequest\022\020\n\010filename\030\001 \001(\t\"\370\005\n\007Message\022",
-      "\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(" +
-      "\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRequest\022" +
-      "%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMessage\022!" +
-      "\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023ann" +
-      "ouncementMessage\030\006 \001(\0132\024.AnnouncementMes" +
-      "sage\0223\n\024questionEnterRequest\030\007 \001(\0132\025.Que" +
-      "stionEnterRequest\0221\n\023goodQuestionRequest" +
-      "\030\010 \001(\0132\024.GoodQuestionRequest\022-\n\021getCosSi" +
-      "gnRequest\030\t \001(\0132\022.GetCosSignRequest\022)\n\017g" +
-      "oodUserRequest\030\n \001(\0132\020.GoodUserRequest\022?",
-      "\n\032questionInformationRequest\030\r \001(\0132\033.Que" +
-      "stionInformationRequest\0227\n\026userInformati" +
-      "onRequest\030\016 \001(\0132\027.UserInformationRequest" +
-      "\0227\n\026getQuestionListRequest\030\017 \001(\0132\027.GetQu" +
-      "estionListRequest\0225\n\025createQuestionReque" +
-      "st\030\022 \001(\0132\026.CreateQuestionRequest\0227\n\026aban" +
-      "donQuestionRequest\030\023 \001(\0132\027.AbandonQuesti" +
-      "onRequest\022;\n\030searchInformationRequest\030\024 " +
-      "\001(\0132\031.SearchInformationRequest*\373\002\n\003MSG\022\022" +
-      "\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\020",
-      "\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE" +
-      "\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025GOOD_Q" +
-      "UESTION_REQUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007" +
-      "\022\030\n\024GET_COS_SIGN_REQUEST\020\t\022 \n\034QUESTION_I" +
-      "NFORMATION_REQUEST\020\n\022\034\n\030USER_INFORMATION" +
-      "_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_REQUEST\020" +
-      "\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030ABANDO" +
-      "N_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INFORMATI" +
-      "ON_REQUEST\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MES" +
-      "SAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MES",
-      "SAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001" +
-      "\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n" +
-      "\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020" +
-      "\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NUMBERS\020" +
-      "\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION" +
-      "\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021Cl" +
-      "ientSendMessageb\006proto3"
+      "rd\030\002 \001(\t\"\017\n\rLogoutMessage\"^\n\017RegisterReq" +
+      "uest\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
+      "\022\024\n\014mail_address\030\003 \001(\t\022\021\n\tsignature\030\004 \001(" +
+      "\t\"`\n\013SendContent\022\022\n\nquestionID\030\001 \001(\003\022\017\n\007" +
+      "content\030\002 \001(\t\022\020\n\010pictures\030\005 \003(\t\022\014\n\004time\030" +
+      "\003 \001(\t\022\014\n\004user\030\004 \001(\t\"#\n\023AnnouncementMessa" +
+      "ge\022\014\n\004text\030\001 \001(\t\"*\n\024QuestionEnterRequest" +
+      "\022\022\n\nquestionID\030\001 \001(\003\")\n\023GoodQuestionRequ",
+      "est\022\022\n\nquestionID\030\001 \001(\003\"\037\n\017GoodUserReque" +
+      "st\022\014\n\004user\030\001 \001(\t\"0\n\032QuestionInformationR" +
+      "equest\022\022\n\nquestionID\030\001 \001(\003\"*\n\026UserInform" +
+      "ationRequest\022\020\n\010username\030\001 \001(\t\"s\n\026GetQue" +
+      "stionListRequest\022\"\n\treference\030\001 \001(\0162\017.LI" +
+      "ST_REFERENCE\022\035\n\trankorder\030\002 \001(\0162\n.RANKOR" +
+      "DER\022\026\n\016questionNumber\030\003 \001(\005\"E\n\025CreateQue" +
+      "stionRequest\022\014\n\004stem\030\001 \001(\t\022\020\n\010addition\030\002" +
+      " \001(\t\022\014\n\004time\030\003 \001(\t\",\n\026AbandonQuestionReq" +
+      "uest\022\022\n\nquestionID\030\001 \001(\003\"+\n\030SearchInform",
+      "ationRequest\022\017\n\007keyword\030\001 \001(\t\"z\n\021GetCosS" +
+      "ignRequest\022\020\n\010filename\030\001 \003(\t\022-\n\010signType" +
+      "\030\002 \001(\0162\033.GetCosSignRequest.SIGNTYPE\"$\n\010S" +
+      "IGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"\243\006\n\007Me" +
+      "ssage\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010usernam" +
+      "e\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRe" +
+      "quest\022%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMes" +
+      "sage\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\022" +
+      "1\n\023announcementMessage\030\006 \001(\0132\024.Announcem" +
+      "entMessage\0223\n\024questionEnterRequest\030\007 \001(\013",
+      "2\025.QuestionEnterRequest\0221\n\023goodQuestionR" +
+      "equest\030\010 \001(\0132\024.GoodQuestionRequest\022-\n\021ge" +
+      "tCosSignRequest\030\t \001(\0132\022.GetCosSignReques" +
+      "t\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReq" +
+      "uest\022)\n\017registerRequest\030\013 \001(\0132\020.Register" +
+      "Request\022?\n\032questionInformationRequest\030\r " +
+      "\001(\0132\033.QuestionInformationRequest\0227\n\026user" +
+      "InformationRequest\030\016 \001(\0132\027.UserInformati" +
+      "onRequest\0227\n\026getQuestionListRequest\030\017 \001(" +
+      "\0132\027.GetQuestionListRequest\0225\n\025createQues",
+      "tionRequest\030\022 \001(\0132\026.CreateQuestionReques" +
+      "t\0227\n\026abandonQuestionRequest\030\023 \001(\0132\027.Aban" +
+      "donQuestionRequest\022;\n\030searchInformationR" +
+      "equest\030\024 \001(\0132\031.SearchInformationRequest*" +
+      "\221\003\n\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_ME" +
+      "SSAGE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CO" +
+      "NTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUE" +
+      "STION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_R" +
+      "EQUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\030\n\024GET_C" +
+      "OS_SIGN_REQUEST\020\t\022 \n\034QUESTION_INFORMATIO",
+      "N_REQUEST\020\n\022\034\n\030USER_INFORMATION_REQUEST\020" +
+      "\013\022\035\n\031GET_QUESTION_LIST_REQUEST\020\014\022\033\n\027CREA" +
+      "TE_QUESTION_REQUEST\020\017\022\034\n\030ABANDON_QUESTIO" +
+      "N_REQUEST\020\020\022\036\n\032SEARCH_INFORMATION_REQUES" +
+      "T\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n" +
+      "\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n" +
+      "\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002" +
+      "*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n\tRANKORDE" +
+      "R\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIST" +
+      "_REFERENCE\022\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRAI",
+      "SE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013CLI" +
+      "CK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021ClientSendM" +
+      "essageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -12379,84 +13864,90 @@ public final class ClientSendMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LogoutMessage_descriptor,
         new java.lang.String[] { });
-    internal_static_SendContent_descriptor =
+    internal_static_RegisterRequest_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_RegisterRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RegisterRequest_descriptor,
+        new java.lang.String[] { "Username", "Password", "MailAddress", "Signature", });
+    internal_static_SendContent_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_SendContent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_descriptor,
-        new java.lang.String[] { "QuestionID", "Content", "Time", "User", });
+        new java.lang.String[] { "QuestionID", "Content", "Pictures", "Time", "User", });
     internal_static_AnnouncementMessage_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_AnnouncementMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AnnouncementMessage_descriptor,
         new java.lang.String[] { "Text", });
     internal_static_QuestionEnterRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_QuestionEnterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionEnterRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_GoodQuestionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_GoodQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GoodQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_GoodUserRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_GoodUserRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GoodUserRequest_descriptor,
         new java.lang.String[] { "User", });
     internal_static_QuestionInformationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_QuestionInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionInformationRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_UserInformationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_UserInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserInformationRequest_descriptor,
         new java.lang.String[] { "Username", });
     internal_static_GetQuestionListRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_GetQuestionListRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetQuestionListRequest_descriptor,
         new java.lang.String[] { "Reference", "Rankorder", "QuestionNumber", });
     internal_static_CreateQuestionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_CreateQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateQuestionRequest_descriptor,
         new java.lang.String[] { "Stem", "Addition", "Time", });
     internal_static_AbandonQuestionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_AbandonQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_AbandonQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_SearchInformationRequest_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_SearchInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchInformationRequest_descriptor,
-        new java.lang.String[] { "SearchType", "Keyword", });
+        new java.lang.String[] { "Keyword", });
     internal_static_GetCosSignRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_GetCosSignRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetCosSignRequest_descriptor,
-        new java.lang.String[] { "Filename", });
+        new java.lang.String[] { "Filename", "SignType", });
     internal_static_Message_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "GetCosSignRequest", "GoodUserRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", });
+        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "GetCosSignRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

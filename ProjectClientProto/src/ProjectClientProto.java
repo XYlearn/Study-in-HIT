@@ -1,7 +1,7 @@
 
 import com.ClientSendMessage;
-import com.MD5;
 import com.ServerResponseMessage;
+import util.MD5Tools;
 
 import java.io.*;
 import java.net.Socket;
@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
  * Created by xy16 on 17-1-20.
  */
 public class ProjectClientProto {
-	static final String token = "([\\\\S\\\\s]*\uD834\uDE19)([\\\\S\\\\s]*\uD834\uDE19)";
 	static final int port = 6666;
 	static final String ip = "127.0.0.1";
 	private Socket socket;
@@ -119,7 +118,7 @@ public class ProjectClientProto {
 					  .setUsername(username)
 					  .setLauchRequest(
 								 ClientSendMessage.LaunchRequest.newBuilder()
-											.setPassword(MD5.getMd5(password))
+											.setPassword(MD5Tools.StringToMD5(password))
 					  ).build();
 			sendMessage.writeDelimitedTo(os);
 			recvMessage = ServerResponseMessage.Message.parseDelimitedFrom(is);
@@ -272,7 +271,7 @@ public class ProjectClientProto {
 	public ArrayList<Content> parseContents(String contents) {
 		ArrayList<Content> contentList = new ArrayList<Content>();
 
-		Pattern pattern = Pattern.compile(token);
+		Pattern pattern = Pattern.compile("\uD834\uDE19");
 		Matcher matcher = pattern.matcher(contents);
 		if(matcher.matches()) {
 			while (matcher.find()) {

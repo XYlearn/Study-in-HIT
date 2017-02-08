@@ -6,7 +6,8 @@ signature VARCHAR(100) DEFAULT "",
 mail_address VARCHAR(100) DEFAULT "",
 bonus INT DEFAULT 10,
 praise_num INT DEFAULT 0,
-praise_time TIMESTAMP NOT NULL,
+praise_question_time TIMESTAMP NOT NULL,
+praise_user_time TIMESTAMP NOT NULL,
 question_num INT DEFAULT 0,
 solved_question_num INT DEFAULT 0,
 register_time DATETIME DEFAULT now(),
@@ -27,6 +28,7 @@ addition VARCHAR(300),
 create_time DATETIME DEFAULT now(),
 solved TINYINT(1) DEFAULT 0,
 praise_num INT DEFAULT 0,
+last_send_time TIMESTAMP,
 PRIMARY KEY(id)
 );
 //id为?的问题答疑记录
