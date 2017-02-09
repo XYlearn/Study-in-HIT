@@ -1,11 +1,15 @@
 package NetEvent;
 
+import Cos.CosHttpClient;
+import Cos.FileOP;
 import com.ClientSendMessage;
-import com.MD5;
 import com.ServerResponseMessage;
-import org.apache.commons.lang.text.StrBuilder;
-import org.apache.http.client.fluent.Content;
+import com.qcloud.cos.request.GetFileLocalRequest;
+import com.qcloud.cos.request.UploadFileRequest;
+import gui.ChattingBox;
+import util.MD5Tools;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,13 +21,16 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by xy16 on 17-1-31.
  */
 public class Client implements Runnable {
 
-	private static ByteBuffer sbuffer = ByteBuffer.allocate(1024);
+	private static String host = "localhost";
+	private static int port = 6666;
 	private static ByteBuffer rbuffer = ByteBuffer.allocate(1024);
 
 	private SocketChannel channel = null;
@@ -35,17 +42,20 @@ public class Client implements Runnable {
 
 	private String username = null;
 
+	boolean isOver;
 	private boolean connected = false;
+	public boolean isConnected() {return connected;}
 
-	public static void main(String[] args) {
-		Client client = new Client();
-		new Thread(client).start();
-		try {
-			client.launchRequest("xy16", "123456");
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	//顶级包文件路径
+	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
+	private static final String PATH="file:"+CLASSPATH;
+
+	//COS 文件操作
+	FileOP fileOP = new FileOP(
+			  CosHttpClient.getDefaultConfig(),
+			  "",
+			  new CosHttpClient(CosHttpClient.getDefaultConfig())
+	);
 
 	public void run() {
 		try {
@@ -53,10 +63,10 @@ public class Client implements Runnable {
 			channel.configureBlocking(false);
 			selector = Selector.open();
 			//请求连接
-			channel.connect(new InetSocketAddress("127.0.0.1", 6666));
+			channel.connect(new InetSocketAddress(host, port));
 			channel.register(selector, SelectionKey.OP_CONNECT);
 
-			boolean isOver = false;
+			isOver = false;
 
 			while (! isOver) {
 				selector.select();
@@ -104,15 +114,48 @@ public class Client implements Runnable {
 									String signature = um.getSignature();
 									String mail_address = um.getMailAddress();
 									String pic_url = um.getPicUrl();
-
+									System.out.println(information);
 									if(status) {
 										this.username = recvMessage.getUsername();
 									}
 									break;
 								case SEND_CONTENT:
-									//pushMessage(info, String text, Arraylist<String> pic)
+									ServerResponseMessage.SendContent sendContent =
+											  recvMessage.getSendContent();
+
+									boolean isMyself = sendContent.getIsmyself();
+									String content = sendContent.getContent();
+									ArrayList<String> pictures = new ArrayList<>();
+
+									//若为他人发送的消息
+									if(!isMyself) {
+										//对每一个图片进行处理
+										for (Map.Entry<String, String> entry : sendContent.getPicturesMap().entrySet()) {
+											//若文件在本地不存在则下载
+											if (!(new File(CLASSPATH + entry.getKey()).exists())) {
+												fileOP.changeSign(entry.getValue());
+												try {
+													fileOP.getFileLocal(
+															  new GetFileLocalRequest(
+																		 fileOP.getBucktName(),
+																		 "/" + entry.getKey(),
+																		 CLASSPATH + entry.getKey())
+													);
+												} catch (Exception e) {
+													e.printStackTrace();
+												}
+											}
+											pictures.add(entry.getKey());
+										}
+										ChattingBox.c.pushMessage(isMyself, content, pictures);
+									}
+									break;
 								case ANNOUNCEMENT_MESSAGE:
 								case QUESTION_ENTER_RESPONSE:
+									ServerResponseMessage.QuestionEnterResponse questionEnterResponse =
+											  recvMessage.getQuestionEnterResponse();
+									System.out.println(questionEnterResponse.getAllow());
+									break;
 								case GOOD_QUESTION_RESPONSE:
 								case GOOD_USER_RESPONSE:
 								case QUESTION_INFORMATION_RESPONSE:
@@ -122,6 +165,47 @@ public class Client implements Runnable {
 								case ABANDON_QUESTION_RESPONSE:
 								case SEARCH_INFORMATION_RESPONSE:
 								case GET_COS_SIGN_RESPONSE:
+									ServerResponseMessage.GetCosSignResponse getCosSignResponse =
+											  recvMessage.getGetCosSignResponse();
+
+									if(getCosSignResponse.getSuccess()) {
+										Set<Map.Entry<String, String>> file_sig = getCosSignResponse.getSignMap().entrySet();
+										switch(getCosSignResponse.getSignType()) {
+											case UPLOAD:
+												for(Map.Entry<String, String> entry : file_sig) {
+													try {
+														fileOP.changeSign(entry.getValue());
+														fileOP.uploadFile(new UploadFileRequest(
+																  fileOP.getBucktName(),
+																  "/" + entry.getKey(),
+																  CLASSPATH + entry.getKey()
+														)
+														);
+													} catch (Exception e) {
+														e.printStackTrace();
+													}
+												}
+												break;
+											case DOWNLOAD:
+												for(Map.Entry<String, String> entry : file_sig) {
+													try {
+														fileOP.changeSign(entry.getValue());
+														fileOP.getFileLocal(new GetFileLocalRequest(
+																  fileOP.getBucktName(),
+																  "/"+entry.getKey(),
+																  CLASSPATH+entry.getValue()
+														));
+													} catch (Exception e) {
+														e.printStackTrace();
+													}
+												}
+												break;
+											case UNRECOGNIZED:
+										}
+									}
+
+
+									break;
 								default:
 							}
 						} else break;
@@ -133,6 +217,8 @@ public class Client implements Runnable {
 		}
 	}
 
+	public void close() { isOver = true; }
+
 	//发送请求
 
 	public void launchRequest(String username, String password) throws IOException {
@@ -141,8 +227,9 @@ public class Client implements Runnable {
 				  .setUsername(username)
 				  .setLauchRequest(
 							 ClientSendMessage.LaunchRequest.newBuilder()
-										.setPassword(MD5.getMd5(password))
+										.setPassword(MD5Tools.StringToMD5(password))
 				  ).build();
+		this.username = username;
 		if(connected) {
 			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		}
@@ -155,21 +242,29 @@ public class Client implements Runnable {
 				  .setUsername(username)
 				  .build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
-	public void sendContent(String contents, String questionID) throws IOException {
+	public void sendContent(String contents,ArrayList<String> pictures,String questionID) throws IOException {
+		ClientSendMessage.Message send = null;
+		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
+				  .setContent(contents)
+				  .setQuestionID(Long.valueOf(questionID));
+
+		for(String picture : pictures) {
+			contentBuider.addPictures(picture);
+		}
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.SEND_CONTENT)
 				  .setUsername(username)
-				  .setSendContent(
-							 ClientSendMessage.SendContent.newBuilder()
-										.setQuestionID(Long.valueOf(questionID))
-										.setContent(contents)
-				  ).build();
-		if(connected)
-			sendMessage.writeDelimitedTo(os);
+				  .setSendContent(contentBuider)
+				  .build();
+
+		if(connected) {
+			ChattingBox.c.pushMessage(true, contents, pictures);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
+		}
 		else throw new IOException("尚未连接");
 	}
 
@@ -182,7 +277,7 @@ public class Client implements Runnable {
 												 .setUser(user)
 							 ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -191,7 +286,7 @@ public class Client implements Runnable {
 				  .setGoodQuestionRequest(ClientSendMessage.GoodQuestionRequest.newBuilder()
 							 .setQuestionID(Long.valueOf(questionID)).build()).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -204,7 +299,7 @@ public class Client implements Runnable {
 										.setQuestionID(Long.valueOf(questionID))
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -217,7 +312,7 @@ public class Client implements Runnable {
 										.setQuestionID(Long.valueOf(questionID))
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -234,7 +329,7 @@ public class Client implements Runnable {
 							 .setQuestionNumber(questionNum)
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -247,7 +342,7 @@ public class Client implements Runnable {
 										.setUsername(user)
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -261,11 +356,11 @@ public class Client implements Runnable {
 										.setAddition(addition)
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
-	public void abandonQuestion(Long questionID) throws IOException {
+	public void abandonQuestion(long questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.ABANDON_QUESTION_REQUEST)
 				  .setUsername(username)
@@ -274,7 +369,7 @@ public class Client implements Runnable {
 							 .setQuestionID(questionID)
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
 
@@ -287,7 +382,8 @@ public class Client implements Runnable {
 							 .setKeyword(keyword)
 				  ).build();
 		if(connected)
-			sendMessage.writeDelimitedTo(os);
+			channel.write(ByteBuffer.wrap(sendMessage.toByteArray()));
 		else throw new IOException("尚未连接");
 	}
+
 }

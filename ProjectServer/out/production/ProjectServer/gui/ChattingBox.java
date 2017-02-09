@@ -1,4 +1,6 @@
 package gui;
+import NetEvent.Client;
+
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -6,10 +8,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.io.File;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
@@ -43,12 +44,33 @@ public class ChattingBox extends JPanel
 	private JMenuItem getInfo=new JMenuItem("个人资料");
 
 	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
-	private static final String PROPATH="file:"+CLASSPATH;
-	private static final String PROPICTPATH="file:"+test.PICTPATH;
-	private static final String PROFILEPATH="file:"+test.FILEPATH;
+	private static final String PATH="file:"+CLASSPATH;
 
-	public ChattingBox()
+	public static ChattingBox c;
+	public static final void main(String[] args)
 	{
+		JFrame f=new JFrame("myApplication");
+		c=new ChattingBox();
+		f.getContentPane().add(c);
+		f.pack();
+		f.setVisible(true);
+		f.setLocationRelativeTo(null);
+		Client client = new Client();
+		Thread netThread = new Thread(client);
+		netThread.start();
+		try {
+			client.launchRequest("xy16", "123456");
+			client.enterQuestion("1");
+			client.sendContent("hello", new ArrayList<String>(),"1");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(c.myPane.getText());
+	}
+
+	ChattingBox()
+	{
+		myPane.setPreferredSize(new Dimension(500,550));
 		myPane.setContentType("text/html");
 		myPane.setEditable(false);
 
@@ -63,15 +85,10 @@ public class ChattingBox extends JPanel
 		myPane.add(textMenu);
 		myPane.add(userMenu);
 
-		this.add(myScroll,BorderLayout.CENTER);
+		this.add(myScroll);
 	}
 
-	public void setSize(int width,int height)
-	{
-		myPane.setPreferredSize(new Dimension(width,height));
-	}
-
-	public void pushMessage(MyMessage msg)
+	public void pushMessage(boolean ismyself,String message,ArrayList<String> pictures)
 	{
 		boolean ismyself=msg.userName=="a";//Personal.username;
 		msg.message=msg.message.replaceAll("\n","<br>");
@@ -94,44 +111,26 @@ public class ChattingBox extends JPanel
 			"-moz-user-select:none;"+
 			"-ms-user-select:none;user-select:none;\">"+
 			"<tr><td rowspan=\"3\">"+
-			(ismyself?"":getUserHead(msg.userName))+
+			(ismyself?"":"<a href=\"user:用户名A\">"+
+			"<img src=\""+PATH+"ask.jpg\"></a>")+
 			"</td>"+
-			"<td><img src=\""+PROPATH+"bubble_lu.jpg\"></td>"+
-			"<td style=\"background-image:url("+PROPATH+"bubble_up.jpg);"+
+			"<td><img src=\""+PATH+"bubble_lu.jpg\"></td>"+
+			"<td style=\"background-image:url("+PATH+"bubble_up.jpg);"+
 			"background-repeat:repeat-x;\">&nbsp;</td>"+
-			"<td><img src=\""+PROPATH+"bubble_ru.jpg\"></td>"+
+			"<td><img src=\""+PATH+"bubble_ru.jpg\"></td>"+
 			"<td rowspan=\"3\">"+
-			(ismyself?getUserHead(msg.userName):"")+
+			(ismyself?"<a href=\"user:用户名B\">"+
+			"<img src=\""+PATH+"ask.jpg\"></a>":"")+
 			"</td></tr>"+
-			"<tr><td style=\"background-image:url("+PROPATH+"bubble_le.jpg)\">&nbsp;</td>"+
+			"<tr><td style=\"background-image:url("+PATH+"bubble_le.jpg)\">&nbsp;</td>"+
 			"<td style=\"-webkit-user-select:text;"+
 			"-moz-user-select:text;-ms-user-select:text;"+
-			"user-select:text;font-size:12px;\">"+msg.message+"</td>"+
-			"<td style=\"background-image:url("+PROPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
-			"<tr><td><img src=\""+PROPATH+"bubble_ld.jpg\"></td>"+
-			"<td style=\"background-image:url("+PROPATH+"bubble_do.jpg)\">&nbsp;</td>"+
-			"<td><img src=\""+PROPATH+"bubble_rd.jpg\"></td></tr></table><br>");
+			"user-select:text;font-size:12px;\">"+message+"</td>"+
+			"<td style=\"background-image:url("+PATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
+			"<tr><td><img src=\""+PATH+"bubble_ld.jpg\"></td>"+
+			"<td style=\"background-image:url("+PATH+"bubble_do.jpg)\">&nbsp;</td>"+
+			"<td><img src=\""+PATH+"bubble_rd.jpg\"></td></tr></table><br>");
 		myPane.setText(html.toString());
-		myPane.setSelectionStart(myPane.getText().length());
-	}
-
-	public void pushAudio(MyMessage msg)
-	{
-		msg.message="<a href=\"audi:"+msg.message+"\">"+
-			"<img border=\"0\" src=\""+PROPATH+"button_play.gif\"></a>";
-		pushMessage(msg);
-	}
-
-	public void pushFile(MyMessage msg)
-	{
-		msg.message="<a href=\"file:"+msg.message+"\">"+
-			"[文件]"+msg.message+"</a>";
-	}
-
-	private static String getUserHead(String userName)
-	{
-		return "<a href=\"user:"+userName+"\">"+
-			"<img border=\"0\" src=\""+PROPICTPATH+userName+".jpg\"></a>";
 	}
 
 	private class ChattingBoxMouseListener implements MouseListener
@@ -139,34 +138,17 @@ public class ChattingBox extends JPanel
 		ChattingBoxMouseListener(){}
 		public void mousePressed(MouseEvent e)
 		{
-			//System.out.println("pressed!!");
 			if(onHyperlink) currentHyperlink=mouseHyperlink;
 			if(e.getButton()==MouseEvent.BUTTON3)
 			{
 				//判断用户身份
 				if(onHyperlink)
 				{
-					String cmd=currentHyperlink.substring(0,4);
-					if(cmd.equals("user"))
-					{
-						//user.add(abspeak)
-						//abspeak.setEnabled(true);
-						getInfo.setEnabled(true);
-						reset.setEnabled(true);
-						userMenu.show(ChattingBox.this,e.getX(),e.getY());
-					}
-					else if(cmd.equals("pict"))
-					{
-
-					}
-					else if(cmd.equals("audi"))
-					{
-
-					}
-					else if(cmd.equals("file"))
-					{
-
-					}
+					//user.add(abspeak)
+					//abspeak.setEnabled(true);
+					getInfo.setEnabled(true);
+					reset.setEnabled(true);
+					userMenu.show(ChattingBox.this,e.getX(),e.getY());
 				}
 				else
 				{
@@ -177,10 +159,7 @@ public class ChattingBox extends JPanel
 			}
 		}
 		public void mouseReleased(MouseEvent e){}
-		public void mouseClicked(MouseEvent e)
-		{
-			//System.out.println("Clicked!!");
-		}
+		public void mouseClicked(MouseEvent e){}
 		public void mouseEntered(MouseEvent e){}
 		public void mouseExited(MouseEvent e){}
 	}
@@ -208,20 +187,14 @@ public class ChattingBox extends JPanel
 		{
 			if(e.getEventType()==HyperlinkEvent.EventType.ENTERED)
 			{
-				//System.out.println("HyperlinkEntered!!");
 				onHyperlink=true;
 				mouseHyperlink=e.getDescription();
 			}
 			else if(e.getEventType()==HyperlinkEvent.EventType.EXITED)
-			{
-				//System.out.println("HyperlinkExited!!");
 				onHyperlink=false;
-			}
 			else
 			{
-				//System.out.println("HyperlinkActivated!!");
-				String cmd=currentHyperlink.substring(0,4);
-				if(cmd.equals("user"))
+				if(currentHyperlink.substring(0,4).equals("user"))
 				{
 					//利用currentHyperlink.substring(5)打开个人资料
 				}

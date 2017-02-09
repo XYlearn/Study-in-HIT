@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.ByteArrayOutputStream;
 
-class MD5Tools
+public class MD5Tools
 {
 	private static MessageDigest md;
 	MD5Tools(){}

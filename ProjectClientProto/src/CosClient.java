@@ -17,7 +17,6 @@ public class CosClient extends AbstractCosHttpClient {
 	}
 
 	protected String sendPostRequest(HttpRequest httpRequest) throws AbstractCosException {
-
 		return null;
 	}
 

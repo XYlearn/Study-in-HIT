@@ -1,3 +1,5 @@
+import gui.ChattingBox;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -159,3 +161,4 @@ public class Test {
 		}
 	}
 }
+

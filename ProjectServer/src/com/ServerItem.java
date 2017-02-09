@@ -1,33 +1,41 @@
 package com;
 
+import com.google.protobuf.ProtocolStringList;
+
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ServerItem {
-	private Socket client;
-	private String username;
-	private boolean launched;
+	private SocketChannel client;
+	private String username = null;
 	private DatabaseConnection dbconn;
 	private String sql;
 	Cos cos;
 
-	public ServerItem(Socket client, DatabaseConnection dbconn) {
-		this.client = client;
+	public ServerItem(SocketChannel socketChannel, DatabaseConnection dbconn) {
+		this.client = socketChannel;
 		this.dbconn = dbconn;
 		this.cos = new Cos();
 	}
-	public boolean isLaunched(){return launched;}
+	public boolean isLaunched(){
+		return NIOServer.user_socket_list.get(username).equals(client);
+	}
+
+	public String getUsername() {return this.username;}
 
 	public ServerResponseMessage.Message
 	handleMessage(ClientSendMessage.Message message) {
 		//获取消息种类
-		if(message==null) return null;
+		if(message==null)
+			return ServerResponseMessage.Message.newBuilder().build();
 		ClientSendMessage.MSG msgType = message.getMsgType();
 		//获取用户名
 		this.username = message.getUsername();
@@ -48,6 +56,13 @@ public class ServerItem {
 				case LOGOUT_MESSAGE:	//登出消息
 					handleLogout();
 					return null;
+				case REGISTER_REQUEST: //注册
+					if(message.hasRegisterRequest()) {
+						return ServerResponseMessage.Message.newBuilder()
+								  .setMsgType(ServerResponseMessage.MSG.REGISTER_RESPONSE)
+								  .setRegisterResponse(handleRegisterRequest(message.getRegisterRequest()))
+								  .build();
+					}
 				case SEND_CONTENT:	//发送对话消息
 					if(message.hasSendContent()) {
 						return ServerResponseMessage.Message.newBuilder()
@@ -132,11 +147,16 @@ public class ServerItem {
 				case SEARCH_INFORMATION_REQUEST:	//搜索信息
 				case GET_COS_SIGN_REQUEST:	//获取签名请求
 					if(message.hasGetCosSignRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
+						try {
+							return ServerResponseMessage.Message.newBuilder()
 								  .setMsgType(ServerResponseMessage.MSG.GET_COS_SIGN_RESPONSE)
 								  .setUsername(username)
 								  .setGetCosSignResponse(handleGetCosCredRequest(message.getGetCosSignRequest()))
 								  .build();
+						} catch (Exception e) {
+							e.printStackTrace();
+							return ServerResponseMessage.Message.newBuilder().build();
+						}
 					}
 
 				default:
@@ -150,7 +170,7 @@ public class ServerItem {
 
 	private ServerResponseMessage.LaunchResponse
 	handleLaunch(ClientSendMessage.LaunchRequest launchRequest)
-	throws SQLException{
+			  throws SQLException{
 		ServerResponseMessage.LaunchResponse responseLaunch = null;
 		ServerResponseMessage.UserMessage userMessage = null;
 		String key = launchRequest.getPassword();
@@ -171,7 +191,6 @@ public class ServerItem {
 			responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
 					  .setStatus(false)
 					  .setInformation("帐号不存在").build();
-			this.launched = false;
 		} else {
 			//比较密码
 			if (key.equals(realkey)) {
@@ -183,7 +202,7 @@ public class ServerItem {
 				//判断用户是否处于登录状态
 				if (rs.next()) {
 					inOnlineUser = true;
-					Server.user_socket_list.replace(username, client);
+					NIOServer.user_socket_list.replace(username, client);
 				}
 				rs.close();
 				pstmt.close();
@@ -210,14 +229,12 @@ public class ServerItem {
 						  .setInformation("成功登录")
 						  .setUserMessage(userMessage)
 						  .build();
-				this.launched = true;
-				Server.user_socket_list.put(username, client);
+				NIOServer.user_socket_list.put(username, client);
 				return responseLaunch;
 			} else {
 				responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
 						  .setStatus(false)
 						  .setInformation("帐号或密码错误").build();
-				this.launched = false;
 				return responseLaunch;
 			}
 		}
@@ -236,6 +253,44 @@ public class ServerItem {
 		);
 		pstmt.execute();
 		pstmt.close();
+		NIOServer.user_socket_list.remove(username);
+	}
+
+	private ServerResponseMessage.RegisterResponse
+	handleRegisterRequest(ClientSendMessage.RegisterRequest request)
+				throws SQLException{
+		ServerResponseMessage.RegisterResponse response = null;
+		String username = request.getUsername();
+		String password = request.getPassword();
+		String mail_address = request.getMailAddress();
+		String signature = request.getSignature();
+
+		sql = "SELECT * FROM user WHERE username = "+username;
+		PreparedStatement pstmt = dbconn.connection.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		//用户已存在
+		if(!rs.next()) {
+			response = ServerResponseMessage.RegisterResponse.newBuilder()
+					  .setSuccess(false)
+					  .setInformation("用户已存在")
+					  .build();
+			return response;
+		}
+		rs.close();
+		pstmt.close();
+		//邮箱已被注册
+
+		//注册成功
+		sql = sql = "INSERT INTO user (username, userkey, signature, mail_address)"
+				  + "VALUES('" + username + "','" + password + "','" + signature + "','" + mail_address + "');";
+		pstmt = dbconn.connection.prepareStatement(sql);
+		pstmt.execute();
+
+		response = ServerResponseMessage.RegisterResponse.newBuilder()
+				  .setSuccess(true)
+				  .setInformation("注册成功")
+				  .build();
+		return response;
 	}
 
 	private ServerResponseMessage.SendContent
@@ -248,30 +303,56 @@ public class ServerItem {
 		String time = sendMessage.getTime();
 		String record = sendMessage.getContent();
 
-
-		//在数据库中记录
-		sql = "INSERT INTO record (questionID, time, username, strRecord) " +
-				  "VALUES ("+questionID+","+"now()"+",'"+username+"','"+record+"');";
+		sql = "UPDATE quesiton SET last_send_time=now() WHERE id = "+questionID;
 		PreparedStatement pstmt = dbconn.connection.prepareStatement(sql);
-		pstmt.setLong(1, questionID);
-		pstmt.setString(3, time);
-		pstmt.setString(4, username);
-		pstmt.setString(5, record);
 		pstmt.execute();
 		pstmt.close();
+
+		//在数据库中记录
+		sql = "INSERT INTO question_id"+questionID+" (record, time, username) "
+				  + "VALUES ('"+record+"',"+"now()"+",'"+username+"');";
+		pstmt = dbconn.connection.prepareStatement(sql);
+		pstmt.execute();
+		pstmt.close();
+
 		//返回服务器回复
 		sendBuider.setQuestionID(questionID);
 		sendBuider.setTime(time);
 		sendBuider.setContent(record);
 		sendBuider.setUser(username);
-		ArrayList<Socket> sockets = Server.question_socket_list.get(questionID);
+		Map<String , String> picturesMap = sendBuider.getPicturesMap();
+
+		//对每一图片附加腾讯云cos下载签名处理
+		for(String pic : sendMessage.getPicturesList()) {
+			sendBuider.putPictures(pic,cos.getDownloadSign(pic));
+		}
+		sendBuider.setSuccess(true);
+		sendBuider.setIsmyself(false);
+		responseSend  = sendBuider.build();
+		ArrayList<SocketChannel> clients = NIOServer.question_socket_list.get(questionID);
+		//给每一个处于房间中的用户发送信息（自己除外）
 		try {
-			for (Socket s : sockets) {
-				responseSend.writeTo(s.getOutputStream());
+			for (SocketChannel sc : clients) {
+				if(!sc.equals(client)) {
+					sc.write(ByteBuffer.wrap(
+							  ServerResponseMessage.Message.newBuilder()
+										 .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
+										 .setSendContent(responseSend)
+										 .build().toByteArray()
+					));
+				}
 			}
 		} catch (IOException e) {
+			sendBuider.setSuccess(false);
 			e.printStackTrace();
 		} finally {
+			//对于用户本身返回上传签名
+			sendBuider.clearPictures();
+			for(String pic : sendMessage.getPicturesList()) {
+				sendBuider.putPictures(pic, cos.getUploadSign(pic));
+			}
+			sendBuider.setIsmyself(true);
+			responseSend = sendBuider.build();
 			return responseSend;
 		}
 	}
@@ -323,7 +404,7 @@ public class ServerItem {
 		while (rs.next()) {
 			contentMessage = rs.getString("record");
 			user = rs.getString("username");
-			time =  rs.getString("create_time");
+			time =  rs.getString("time");
 			questionMessageBuider.addRecord(
 					  ServerResponseMessage.Record.newBuilder()
 					  .setTime(time)
@@ -360,12 +441,30 @@ public class ServerItem {
 					  .setAllow(true)
 					  .build();
 			//将用户socket添加进问题socket列表中
-			ArrayList<Socket> socketList = Server.question_socket_list.get(questionID.toString());
-			if(null==socketList) {
-				socketList = new ArrayList<>();
-				Server.question_socket_list.put(questionID.toString(), socketList);
+			ArrayList<SocketChannel> socketChannels = NIOServer.question_socket_list.get(questionID.toString());
+			if(null==socketChannels) {
+				socketChannels = new ArrayList<>();
+				NIOServer.question_socket_list.put(questionID.toString(), socketChannels);
 			}
-			socketList.add(client);
+			socketChannels.add(client);
+			for(SocketChannel sc : socketChannels) {
+				try {
+					sc.write(ByteBuffer.wrap(
+							  ServerResponseMessage.Message.newBuilder()
+										 .setMsgType(ServerResponseMessage.MSG.UPDATE_MESSAGE)
+										 .setUpdateMessage(
+													ServerResponseMessage.UpdateMessage.newBuilder()
+															  .setUserEnter(
+																		 ServerResponseMessage.UpdateMessage.UserEnter.newBuilder()
+																					.setQuestionID(questionID)
+																					.setUsername(username).build()
+															  ).build()
+										 ).build().toByteArray()
+					));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return response;
 	}
@@ -581,16 +680,35 @@ public class ServerItem {
 
 	private ServerResponseMessage.GetCosSignResponse
 	handleGetCosCredRequest(ClientSendMessage.GetCosSignRequest getCosCredRequest)
-				throws SQLException {
+			  throws Exception
+	{
 		ServerResponseMessage.GetCosSignResponse getCosCredResponse = null;
+		String sign = null;
+		ProtocolStringList files = getCosCredRequest.getFilenameList();
 
-		sql = "SELECT user FROM online_user WHERE username=?".replace("?", username);
-		PreparedStatement pstmt = dbconn.connection.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		if(rs.next()) {
-			getCosCredResponse = ServerResponseMessage.GetCosSignResponse.newBuilder()
-					  .setSuccess(true).setSign(cos.getSign("/"+username+"/"+getCosCredRequest.getFilename()))
-					  .build();
+		ServerResponseMessage.GetCosSignResponse.Builder builder =
+				  ServerResponseMessage.GetCosSignResponse.newBuilder()
+				  .setSuccess(true);
+
+		if(isLaunched()) {
+			switch (getCosCredRequest.getSignType()) {
+				case DOWNLOAD:
+					for(String filename : files) {
+						sign = cos.getDownloadSign(filename);
+						builder.putSign(filename, sign);
+					}
+					break;
+				case UPLOAD:
+					for(String filename : files) {
+						sign = cos.getUploadSign(filename);
+						builder.putSign(filename, sign);
+					}
+					break;
+				default:
+					throw new Exception("MSG is invalid");
+			}
+			return builder.build();
+
 		} else {
 			getCosCredResponse = ServerResponseMessage.GetCosSignResponse.newBuilder()
 					  .setSuccess(false).build();
@@ -609,7 +727,6 @@ public class ServerItem {
 		ClientSendMessage.RANKORDER rankorder = request.getRankorder();
 		ClientSendMessage.LIST_REFERENCE reference = request.getReference();
 		String ref,order;
-		int user_num;
 		switch (rankorder) {
 			case ASCENDING:
 				order = "ASC";
@@ -635,6 +752,11 @@ public class ServerItem {
 		ResultSet rs = pstmt.executeQuery();
 		int i;
 		for(i=0;i<questionNum && rs.next();i++) {
+			int userNum = 0;
+			Iterator<SocketChannel> ite = NIOServer.question_socket_list.get(rs.getLong("id")).iterator();
+			while (ite.next()!=null) {
+				userNum++;
+			}
 			builder.addQuestionListMessage(
 					  ServerResponseMessage.QuestionListMessage.newBuilder()
 					  .setQuestionID(rs.getLong("id"))
@@ -642,6 +764,7 @@ public class ServerItem {
 					  .setOwner(rs.getString("owner"))
 					  .setQuestionDescription(rs.getString("stem"))
 					  .setTime(rs.getString("create_time"))
+					  .setUserNum(userNum)
 			);
 		}
 		rs.close();

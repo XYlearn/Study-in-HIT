@@ -73,6 +73,8 @@ public class test
 				box.sendMessage();
 			else if(cmd.equals("reset"))
 				tmp=box.myPane.getText();
+			else if(cmd.equals("insert"))
+				box.insertImage(PICTPATH+"ask.jpg");
 			else
 			{
 				tmp=tmp.replaceAll(cmd,"");

@@ -65,7 +65,7 @@ public class InputBox extends JPanel
 
 	public void insertImage(int pos,File f)
 	{
-		//Document doc=Jsoup.parse();
+		myPane.replaceSelection("<img src=\"\">");
 	}
 
 	public void sendMessage()
