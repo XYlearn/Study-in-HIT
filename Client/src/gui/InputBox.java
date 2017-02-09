@@ -4,6 +4,7 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
+import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
 import util.MyMessage;
 import java.io.File;
@@ -15,13 +16,10 @@ import java.awt.event.MouseListener;
 import java.util.regex.*;
 import util.MyMessage;
 import bin.test;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 public class InputBox extends JPanel
 {
 	//private ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
-	//private ChattingBoxHyperlinkListener hyperlinkAction=new ChattingBoxHyperlinkListener();
 
 	public JTextPane myPane=new JTextPane();
 	private JScrollPane myScroll=new JScrollPane(myPane);
@@ -30,6 +28,8 @@ public class InputBox extends JPanel
 	private JMenuItem copy=new JMenuItem("复制");
 	private JMenuItem cut=new JMenuItem("剪切");
 	private JMenuItem paste=new JMenuItem("粘贴");
+
+	private String questionID="";
 
 	private static final String CLASSPATH=InputBox.class.getResource("").getPath();
 	private static final String PATH="file:"+CLASSPATH;
@@ -48,24 +48,38 @@ public class InputBox extends JPanel
 		myPane.setPreferredSize(new Dimension(width,height));
 	}
 
-	public void insertImage(String filepath)
+	public void setQuestionID(String qID)
 	{
-		insertImage(new File(filepath));
+		questionID=qID;
+	}
+
+	public String getQuestionID()
+	{
+		return questionID;
 	}
 
 	public void insertImage(File f)
 	{
-		insertImage(myPane.getCaretPosition(),f);
+		insertImage(f.getPath());
 	}
 
-	public void insertImage(int pos,String filepath)
+	public void insertImage(String filepath)
 	{
-		insertImage(pos,new File(filepath));
-	}
-
-	public void insertImage(int pos,File f)
-	{
-		myPane.replaceSelection("<img src=\"\">");
+		try
+		{
+			((HTMLDocument)myPane.getStyledDocument())
+				.insertAfterEnd(myPane.getStyledDocument()
+				.getCharacterElement(myPane.getCaretPosition()),
+				"<br>");
+			int tmppos=myPane.getCaretPosition();
+			myPane.setText(myPane.getText().replaceAll("<br>",
+				"</p><p style=\"margin-top: 0\"><img src=\"file:"+filepath+"\">"));
+			myPane.setCaretPosition(tmppos+2);
+		}
+		catch(Exception e)
+		{
+			System.out.println("bad position");
+		}
 	}
 
 	public void sendMessage()
@@ -81,7 +95,7 @@ public class InputBox extends JPanel
 		//replace the % that user inputted
 			.replaceAll("%","%%");
 		//get the path of the images
-		Pattern pat=Pattern.compile("<img[^>]*? src=\"(.*?)\".*?>");
+		Pattern pat=Pattern.compile("<img[^>]*? src=\".*?([^/]*?)\".*?>");
 		Matcher mat=pat.matcher(str);
 		while(mat.find())
 			pictures.add(mat.group(1));
@@ -100,8 +114,6 @@ public class InputBox extends JPanel
 			message.setLength(message.length()-1);
 		//System.out.println(message.toString());
 		//send the message
-		MyMessage msg=
-			new MyMessage("ask","19:18:32",message.toString(),pictures);
-		//test.client.sendContent(msg);
+		test.client.sendContent(message.toString(),pictures,questionID);
 	}
 }

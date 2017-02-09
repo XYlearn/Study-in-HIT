@@ -1,5 +1,4 @@
 package gui;
-import NetEvent.Client;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -44,7 +43,9 @@ public class ChattingBox extends JPanel
 	private JMenuItem getInfo=new JMenuItem("个人资料");
 
 	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
-	private static final String PATH="file:"+CLASSPATH;
+	private static final String PROPATH="file:"+CLASSPATH;
+	private static final String PROPICTPATH="file:"+test.PICTPATH;
+	private static final String PROFILEPATH="file:"+test.FILEPATH;
 
 	public static ChattingBox c;
 	public static final void main(String[] args)
@@ -112,25 +113,26 @@ public class ChattingBox extends JPanel
 			"-ms-user-select:none;user-select:none;\">"+
 			"<tr><td rowspan=\"3\">"+
 			(ismyself?"":"<a href=\"user:用户名A\">"+
-			"<img src=\""+PATH+"ask.jpg\"></a>")+
+			"<img src=\""+PROPATH+"ask.jpg\"></a>")+
 			"</td>"+
-			"<td><img src=\""+PATH+"bubble_lu.jpg\"></td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_up.jpg);"+
+			"<td><img src=\""+PROPATH+"bubble_lu.jpg\"></td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_up.jpg);"+
 			"background-repeat:repeat-x;\">&nbsp;</td>"+
-			"<td><img src=\""+PATH+"bubble_ru.jpg\"></td>"+
+			"<td><img src=\""+PROPATH+"bubble_ru.jpg\"></td>"+
 			"<td rowspan=\"3\">"+
 			(ismyself?"<a href=\"user:用户名B\">"+
-			"<img src=\""+PATH+"ask.jpg\"></a>":"")+
+			"<img src=\""+PROPATH+"ask.jpg\"></a>":"")+
 			"</td></tr>"+
-			"<tr><td style=\"background-image:url("+PATH+"bubble_le.jpg)\">&nbsp;</td>"+
+			"<tr><td style=\"background-image:url("+PROPATH+"bubble_le.jpg)\">&nbsp;</td>"+
 			"<td style=\"-webkit-user-select:text;"+
 			"-moz-user-select:text;-ms-user-select:text;"+
 			"user-select:text;font-size:12px;\">"+message+"</td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
-			"<tr><td><img src=\""+PATH+"bubble_ld.jpg\"></td>"+
-			"<td style=\"background-image:url("+PATH+"bubble_do.jpg)\">&nbsp;</td>"+
-			"<td><img src=\""+PATH+"bubble_rd.jpg\"></td></tr></table><br>");
+			"<td style=\"background-image:url("+PROPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"+
+			"<tr><td><img src=\""+PROPATH+"bubble_ld.jpg\"></td>"+
+			"<td style=\"background-image:url("+PROPATH+"bubble_do.jpg)\">&nbsp;</td>"+
+			"<td><img src=\""+PROPATH+"bubble_rd.jpg\"></td></tr></table><br>");
 		myPane.setText(html.toString());
+		myPane.setSelectionStart(myPane.getText().length());
 	}
 
 	private class ChattingBoxMouseListener implements MouseListener
