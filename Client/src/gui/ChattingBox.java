@@ -3,7 +3,6 @@ import NetEvent.Client;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
@@ -16,6 +15,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import util.MyMessage;
+import util.AudioTools;
+import util.stopListener;
+import NetEvent.Client;
+import bin.test;
 
 public class ChattingBox extends JPanel
 {
@@ -84,14 +90,21 @@ public class ChattingBox extends JPanel
 
 	public void pushMessage(boolean ismyself,String message,ArrayList<String> pictures)
 	{
-		message=message.replaceAll("\n","<br>");
-		for(int i=0;i<pictures.size();i++)
-		{
-			if(!(new File(CLASSPATH+pictures.get(i)).exists()))
-				//调用网络接口下载图片，下载完成时刷新
-			message=message.replaceAll("[^%]%"+i,"<img src=\""+PATH+pictures.get(i)+"\">");
-		}
-		html.append("<table border=\"0\" white-space=\"0\" "+
+		boolean ismyself=msg.userName=="a";//Personal.username;
+		msg.message=msg.message.replaceAll("\n","<br>");
+		if(msg.pictures!=null)
+			for(int i=0;i<msg.pictures.size();i++)
+			{
+				if(!(new File(test.PICTPATH+msg.pictures.get(i)).exists()))
+					{}//调用网络接口下载图片，下载完成时刷新
+				msg.message=msg.message.replaceAll("[^%]%"+i+" ",
+					"<a href=\"pict:"+PROPICTPATH+msg.pictures.get(i)+"\">"+
+					"<img border=\"0\" src=\""+PROPICTPATH+msg.pictures.get(i)+"\" "+
+					"alt=\"正在加载图片\"></a>");
+				msg.message=msg.message.replaceAll("%%","%");
+			}
+		html.append("<p align=\"center\">"+msg.messageTime+"</p>"+
+			"<table border=\"0\" white-space=\"0\" "+
 			"align=\""+(ismyself?"right":"left")+"\" "+
 			"cellspacing=\"0\" cellpadding=\"0\" "+
 			"style=\"font-size:0;-webkit-user-select:none;"+
@@ -184,6 +197,55 @@ public class ChattingBox extends JPanel
 				if(currentHyperlink.substring(0,4).equals("user"))
 				{
 					//利用currentHyperlink.substring(5)打开个人资料
+				}
+				else if(cmd.equals("pict"))
+				{
+					//利用图片框打开大图
+				}
+				else if(cmd.equals("audi"))
+				{
+					//System.out.println("激活超链接："+currentHyperlink);
+					String tmpstr;
+					if(AudioTools.isPlaying())
+					{
+						tmpstr="<a href=\"audi:"+
+							AudioTools.getCurrentPlayingAudio()+"\">"+
+							"<img src=\""+PROPATH+"button_stop.gif";
+						int tmpindex=html.lastIndexOf(tmpstr);
+						tmpindex+=tmpstr.length()-8;
+						html.replace(tmpindex,tmpindex+4,"play");
+					}
+					tmpstr="<a href=\""+currentHyperlink+"\">"+
+						"<img src=\""+PROPATH+"button_play.gif";
+					int tmpindex=html.lastIndexOf(tmpstr);
+					tmpindex+=tmpstr.length()-8;
+					html.replace(tmpindex,tmpindex+4,"stop");
+					myPane.setText(html.toString());
+					AudioTools.playAudio(
+						AudioTools.CLASSPATH+currentHyperlink.substring(5),
+						new stopListener()
+						{
+							public void stop()
+							{
+								String tmpstr="<a href=\"audi:"+
+									AudioTools.getCurrentPlayingAudio()+"\">"+
+									"<img src=\""+PROPATH+"button_stop.gif";
+								int tmpindex=html.lastIndexOf(tmpstr);
+								tmpindex+=tmpstr.length()-8;
+								html.replace(tmpindex,tmpindex+4,"play");
+								myPane.setText(html.toString());
+							}
+						});
+				}
+				else if(cmd.equals("file"))
+				{
+					File f;
+					if((f=new File(test.FILEPATH+currentHyperlink.substring(5))).exists())
+					{
+						java.awt.Desktop.getDesktop().open(f);
+						return;
+					}
+					//下载文件
 				}
 			}
 		}
