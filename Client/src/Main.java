@@ -1,6 +1,5 @@
 import bin.test;
 import gui.InputBox;
-import util.SegmentAPI;
 
 public class Main
 {
@@ -9,4 +8,6 @@ public class Main
 		test.main();
 		return;
 	}
+	//javac -cp ".;..\ProjectClientProto.jar" Main.java
+	//java -cp ".;..\ProjectClientProto.jar" Main
 }

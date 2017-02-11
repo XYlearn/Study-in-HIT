@@ -7,7 +7,7 @@ import util.MyMessage;
 import gui.InputBox;
 import java.util.Scanner;
 import util.AudioTools;
-//import NetEvent.Client;
+import NetEvent.Client;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import org.jsoup.Jsoup;
@@ -18,13 +18,14 @@ public class test
 		.substring(0,test.class.getResource("").getPath().length()-4);
 	public static final String PICTPATH=MAINPATH+"pictures/";
 	public static final String FILEPATH=MAINPATH+"files/";
-	//public static final Client client=new Client();
+	public static final Client client=new Client();
 	
 	public static final void main()
 	{
 		JFrame f=new JFrame("Hello, world!");
 		//ChattingBox c=new ChattingBox();
 		InputBox box=new InputBox();
+		box.setQuestionID("10000");
 		f.getContentPane().add(box,BorderLayout.CENTER);
 		f.setVisible(true);
 		//c.setSize(500,550);

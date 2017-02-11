@@ -87,8 +87,6 @@ public class InputBox extends JPanel
 		ArrayList<String> pictures=new ArrayList<String>();
 		int count=0;
 		String str=myPane.getText();
-		//clear the textpane
-		myPane.setText("");
 		//protect the newlines ('\n')
 		str=str.replaceAll("\\n *","")
 			.replaceAll("</p>","\n")
@@ -114,6 +112,16 @@ public class InputBox extends JPanel
 			message.setLength(message.length()-1);
 		//System.out.println(message.toString());
 		//send the message
-		test.client.sendContent(message.toString(),pictures,questionID);
+		try
+		{
+			test.client.sendContent(message.toString(),pictures,questionID);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return;
+		}
+		//clear the textpane
+		myPane.setText("");
 	}
 }
