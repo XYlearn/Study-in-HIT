@@ -174,7 +174,7 @@ public void requestUserInfo(String user) throws IOException
 -----
 
 ##### 原型：
-public void createQuestion(String stem, String addition) throws IOException
+public void createQuestion(String stem, String addition, ArrayList<String> keywords) throws IOException
 
 ##### 介绍:
 创建问题（每次扣除3点数）
@@ -184,6 +184,7 @@ public void createQuestion(String stem, String addition) throws IOException
 |:-------:|:-----:|:-----:|
 |stem|String|问题题干|
 |addition|String|补充问题|
+|keywords|ArrayList< String >|题干和补充的关键分词|
 
 ##### 返回值：无
 
@@ -205,7 +206,7 @@ public void abandonQuestion(long questionID) throws IOException
 -----
 
 ##### 原型：
-public void searchInformation(String keyword) throws IOException
+public void searchInformation(ArrayList< String > keywords) throws IOException
 
 ##### 介绍:
 搜索问题
@@ -213,9 +214,8 @@ public void searchInformation(String keyword) throws IOException
 ##### 参数：
 |参数名  |参数类型|参数介绍|
 |:-------:|:-----:|:-----:|
-|keyword|String|问题（题干？）关键字|
+|keywords|ArrayList< String >|问题题干和补充的关键分词|
 
 ##### 返回值：无
 
 -----
- 
