@@ -23,5 +23,6 @@ public class MyMessage
 		userName=un;
 		messageTime=mt;
 		message=m;
+		pictures=null;
 	}
 }

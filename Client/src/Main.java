@@ -1,5 +1,6 @@
 import bin.test;
 import gui.InputBox;
+import NetEvent.Client;
 
 public class Main
 {
@@ -8,6 +9,6 @@ public class Main
 		test.main();
 		return;
 	}
-	//javac -cp ".;..\ProjectClientProto.jar" Main.java
+	//javac -encoding UTF-8 -cp ".;..\ProjectClientProto.jar" Main.java
 	//java -cp ".;..\ProjectClientProto.jar" Main
 }

@@ -319,9 +319,10 @@ public class Client implements Runnable {
 				  .setContent(contents)
 				  .setQuestionID(Long.valueOf(questionID));
 
-		for(String picture : pictures) {
-			contentBuider.addPictures(picture);
-		}
+		if(pictures!=null)
+			for(String picture : pictures) {
+				contentBuider.addPictures(picture);
+			}
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.SEND_CONTENT)
 				  .setUsername(username)
