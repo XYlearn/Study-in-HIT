@@ -13254,17 +13254,28 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.SEARCHTYPE getSearchType();
 
     /**
-     * <code>optional .QuestionMessage questionMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
      */
-    boolean hasQuestionMessage();
+    java.util.List<com.ServerResponseMessage.QuestionListMessage> 
+        getQuestionListMessageList();
     /**
-     * <code>optional .QuestionMessage questionMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
      */
-    com.ServerResponseMessage.QuestionMessage getQuestionMessage();
+    com.ServerResponseMessage.QuestionListMessage getQuestionListMessage(int index);
     /**
-     * <code>optional .QuestionMessage questionMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
      */
-    com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
+    int getQuestionListMessageCount();
+    /**
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     */
+    java.util.List<? extends com.ServerResponseMessage.QuestionListMessageOrBuilder> 
+        getQuestionListMessageOrBuilderList();
+    /**
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     */
+    com.ServerResponseMessage.QuestionListMessageOrBuilder getQuestionListMessageOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -13283,6 +13294,7 @@ public final class ServerResponseMessage {
     }
     private SearchInformationResponse() {
       searchType_ = 0;
+      questionListMessage_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -13317,16 +13329,12 @@ public final class ServerResponseMessage {
               break;
             }
             case 26: {
-              com.ServerResponseMessage.QuestionMessage.Builder subBuilder = null;
-              if (questionMessage_ != null) {
-                subBuilder = questionMessage_.toBuilder();
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                questionListMessage_ = new java.util.ArrayList<com.ServerResponseMessage.QuestionListMessage>();
+                mutable_bitField0_ |= 0x00000002;
               }
-              questionMessage_ = input.readMessage(com.ServerResponseMessage.QuestionMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(questionMessage_);
-                questionMessage_ = subBuilder.buildPartial();
-              }
-
+              questionListMessage_.add(
+                  input.readMessage(com.ServerResponseMessage.QuestionListMessage.parser(), extensionRegistry));
               break;
             }
           }
@@ -13337,6 +13345,9 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          questionListMessage_ = java.util.Collections.unmodifiableList(questionListMessage_);
+        }
         makeExtensionsImmutable();
       }
     }
@@ -13352,6 +13363,7 @@ public final class ServerResponseMessage {
               com.ServerResponseMessage.SearchInformationResponse.class, com.ServerResponseMessage.SearchInformationResponse.Builder.class);
     }
 
+    private int bitField0_;
     public static final int SEARCHTYPE_FIELD_NUMBER = 1;
     private int searchType_;
     /**
@@ -13368,25 +13380,39 @@ public final class ServerResponseMessage {
       return result == null ? com.ServerResponseMessage.SEARCHTYPE.UNRECOGNIZED : result;
     }
 
-    public static final int QUESTIONMESSAGE_FIELD_NUMBER = 3;
-    private com.ServerResponseMessage.QuestionMessage questionMessage_;
+    public static final int QUESTIONLISTMESSAGE_FIELD_NUMBER = 3;
+    private java.util.List<com.ServerResponseMessage.QuestionListMessage> questionListMessage_;
     /**
-     * <code>optional .QuestionMessage questionMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
      */
-    public boolean hasQuestionMessage() {
-      return questionMessage_ != null;
+    public java.util.List<com.ServerResponseMessage.QuestionListMessage> getQuestionListMessageList() {
+      return questionListMessage_;
     }
     /**
-     * <code>optional .QuestionMessage questionMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
      */
-    public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
-      return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
+    public java.util.List<? extends com.ServerResponseMessage.QuestionListMessageOrBuilder> 
+        getQuestionListMessageOrBuilderList() {
+      return questionListMessage_;
     }
     /**
-     * <code>optional .QuestionMessage questionMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
      */
-    public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
-      return getQuestionMessage();
+    public int getQuestionListMessageCount() {
+      return questionListMessage_.size();
+    }
+    /**
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     */
+    public com.ServerResponseMessage.QuestionListMessage getQuestionListMessage(int index) {
+      return questionListMessage_.get(index);
+    }
+    /**
+     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     */
+    public com.ServerResponseMessage.QuestionListMessageOrBuilder getQuestionListMessageOrBuilder(
+        int index) {
+      return questionListMessage_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -13404,8 +13430,8 @@ public final class ServerResponseMessage {
       if (searchType_ != com.ServerResponseMessage.SEARCHTYPE.QUESTION.getNumber()) {
         output.writeEnum(1, searchType_);
       }
-      if (questionMessage_ != null) {
-        output.writeMessage(3, getQuestionMessage());
+      for (int i = 0; i < questionListMessage_.size(); i++) {
+        output.writeMessage(3, questionListMessage_.get(i));
       }
     }
 
@@ -13418,9 +13444,9 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, searchType_);
       }
-      if (questionMessage_ != null) {
+      for (int i = 0; i < questionListMessage_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getQuestionMessage());
+          .computeMessageSize(3, questionListMessage_.get(i));
       }
       memoizedSize = size;
       return size;
@@ -13439,11 +13465,8 @@ public final class ServerResponseMessage {
 
       boolean result = true;
       result = result && searchType_ == other.searchType_;
-      result = result && (hasQuestionMessage() == other.hasQuestionMessage());
-      if (hasQuestionMessage()) {
-        result = result && getQuestionMessage()
-            .equals(other.getQuestionMessage());
-      }
+      result = result && getQuestionListMessageList()
+          .equals(other.getQuestionListMessageList());
       return result;
     }
 
@@ -13456,9 +13479,9 @@ public final class ServerResponseMessage {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SEARCHTYPE_FIELD_NUMBER;
       hash = (53 * hash) + searchType_;
-      if (hasQuestionMessage()) {
-        hash = (37 * hash) + QUESTIONMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionMessage().hashCode();
+      if (getQuestionListMessageCount() > 0) {
+        hash = (37 * hash) + QUESTIONLISTMESSAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getQuestionListMessageList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -13578,17 +13601,18 @@ public final class ServerResponseMessage {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getQuestionListMessageFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
         searchType_ = 0;
 
-        if (questionMessageBuilder_ == null) {
-          questionMessage_ = null;
+        if (questionListMessageBuilder_ == null) {
+          questionListMessage_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
-          questionMessage_ = null;
-          questionMessageBuilder_ = null;
+          questionListMessageBuilder_.clear();
         }
         return this;
       }
@@ -13612,12 +13636,19 @@ public final class ServerResponseMessage {
 
       public com.ServerResponseMessage.SearchInformationResponse buildPartial() {
         com.ServerResponseMessage.SearchInformationResponse result = new com.ServerResponseMessage.SearchInformationResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.searchType_ = searchType_;
-        if (questionMessageBuilder_ == null) {
-          result.questionMessage_ = questionMessage_;
+        if (questionListMessageBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            questionListMessage_ = java.util.Collections.unmodifiableList(questionListMessage_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.questionListMessage_ = questionListMessage_;
         } else {
-          result.questionMessage_ = questionMessageBuilder_.build();
+          result.questionListMessage_ = questionListMessageBuilder_.build();
         }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -13662,8 +13693,31 @@ public final class ServerResponseMessage {
         if (other.searchType_ != 0) {
           setSearchTypeValue(other.getSearchTypeValue());
         }
-        if (other.hasQuestionMessage()) {
-          mergeQuestionMessage(other.getQuestionMessage());
+        if (questionListMessageBuilder_ == null) {
+          if (!other.questionListMessage_.isEmpty()) {
+            if (questionListMessage_.isEmpty()) {
+              questionListMessage_ = other.questionListMessage_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureQuestionListMessageIsMutable();
+              questionListMessage_.addAll(other.questionListMessage_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.questionListMessage_.isEmpty()) {
+            if (questionListMessageBuilder_.isEmpty()) {
+              questionListMessageBuilder_.dispose();
+              questionListMessageBuilder_ = null;
+              questionListMessage_ = other.questionListMessage_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              questionListMessageBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getQuestionListMessageFieldBuilder() : null;
+            } else {
+              questionListMessageBuilder_.addAllMessages(other.questionListMessage_);
+            }
+          }
         }
         onChanged();
         return this;
@@ -13690,6 +13744,7 @@ public final class ServerResponseMessage {
         }
         return this;
       }
+      private int bitField0_;
 
       private int searchType_ = 0;
       /**
@@ -13735,121 +13790,244 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private com.ServerResponseMessage.QuestionMessage questionMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
-      /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
-       */
-      public boolean hasQuestionMessage() {
-        return questionMessageBuilder_ != null || questionMessage_ != null;
+      private java.util.List<com.ServerResponseMessage.QuestionListMessage> questionListMessage_ =
+        java.util.Collections.emptyList();
+      private void ensureQuestionListMessageIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          questionListMessage_ = new java.util.ArrayList<com.ServerResponseMessage.QuestionListMessage>(questionListMessage_);
+          bitField0_ |= 0x00000002;
+         }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> questionListMessageBuilder_;
+
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
-        if (questionMessageBuilder_ == null) {
-          return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
+      public java.util.List<com.ServerResponseMessage.QuestionListMessage> getQuestionListMessageList() {
+        if (questionListMessageBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(questionListMessage_);
         } else {
-          return questionMessageBuilder_.getMessage();
+          return questionListMessageBuilder_.getMessageList();
         }
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public Builder setQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
-        if (questionMessageBuilder_ == null) {
+      public int getQuestionListMessageCount() {
+        if (questionListMessageBuilder_ == null) {
+          return questionListMessage_.size();
+        } else {
+          return questionListMessageBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.QuestionListMessage getQuestionListMessage(int index) {
+        if (questionListMessageBuilder_ == null) {
+          return questionListMessage_.get(index);
+        } else {
+          return questionListMessageBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public Builder setQuestionListMessage(
+          int index, com.ServerResponseMessage.QuestionListMessage value) {
+        if (questionListMessageBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          questionMessage_ = value;
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.set(index, value);
           onChanged();
         } else {
-          questionMessageBuilder_.setMessage(value);
+          questionListMessageBuilder_.setMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public Builder setQuestionMessage(
-          com.ServerResponseMessage.QuestionMessage.Builder builderForValue) {
-        if (questionMessageBuilder_ == null) {
-          questionMessage_ = builderForValue.build();
+      public Builder setQuestionListMessage(
+          int index, com.ServerResponseMessage.QuestionListMessage.Builder builderForValue) {
+        if (questionListMessageBuilder_ == null) {
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.set(index, builderForValue.build());
           onChanged();
         } else {
-          questionMessageBuilder_.setMessage(builderForValue.build());
+          questionListMessageBuilder_.setMessage(index, builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public Builder mergeQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
-        if (questionMessageBuilder_ == null) {
-          if (questionMessage_ != null) {
-            questionMessage_ =
-              com.ServerResponseMessage.QuestionMessage.newBuilder(questionMessage_).mergeFrom(value).buildPartial();
-          } else {
-            questionMessage_ = value;
+      public Builder addQuestionListMessage(com.ServerResponseMessage.QuestionListMessage value) {
+        if (questionListMessageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
           }
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.add(value);
           onChanged();
         } else {
-          questionMessageBuilder_.mergeFrom(value);
+          questionListMessageBuilder_.addMessage(value);
         }
-
         return this;
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public Builder clearQuestionMessage() {
-        if (questionMessageBuilder_ == null) {
-          questionMessage_ = null;
+      public Builder addQuestionListMessage(
+          int index, com.ServerResponseMessage.QuestionListMessage value) {
+        if (questionListMessageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.add(index, value);
           onChanged();
         } else {
-          questionMessage_ = null;
-          questionMessageBuilder_ = null;
+          questionListMessageBuilder_.addMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public com.ServerResponseMessage.QuestionMessage.Builder getQuestionMessageBuilder() {
-        
-        onChanged();
-        return getQuestionMessageFieldBuilder().getBuilder();
+      public Builder addQuestionListMessage(
+          com.ServerResponseMessage.QuestionListMessage.Builder builderForValue) {
+        if (questionListMessageBuilder_ == null) {
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.add(builderForValue.build());
+          onChanged();
+        } else {
+          questionListMessageBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
-        if (questionMessageBuilder_ != null) {
-          return questionMessageBuilder_.getMessageOrBuilder();
+      public Builder addQuestionListMessage(
+          int index, com.ServerResponseMessage.QuestionListMessage.Builder builderForValue) {
+        if (questionListMessageBuilder_ == null) {
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.add(index, builderForValue.build());
+          onChanged();
         } else {
-          return questionMessage_ == null ?
-              com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
+          questionListMessageBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public Builder addAllQuestionListMessage(
+          java.lang.Iterable<? extends com.ServerResponseMessage.QuestionListMessage> values) {
+        if (questionListMessageBuilder_ == null) {
+          ensureQuestionListMessageIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, questionListMessage_);
+          onChanged();
+        } else {
+          questionListMessageBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public Builder clearQuestionListMessage() {
+        if (questionListMessageBuilder_ == null) {
+          questionListMessage_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          questionListMessageBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public Builder removeQuestionListMessage(int index) {
+        if (questionListMessageBuilder_ == null) {
+          ensureQuestionListMessageIsMutable();
+          questionListMessage_.remove(index);
+          onChanged();
+        } else {
+          questionListMessageBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.QuestionListMessage.Builder getQuestionListMessageBuilder(
+          int index) {
+        return getQuestionListMessageFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.QuestionListMessageOrBuilder getQuestionListMessageOrBuilder(
+          int index) {
+        if (questionListMessageBuilder_ == null) {
+          return questionListMessage_.get(index);  } else {
+          return questionListMessageBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>optional .QuestionMessage questionMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
-          getQuestionMessageFieldBuilder() {
-        if (questionMessageBuilder_ == null) {
-          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder>(
-                  getQuestionMessage(),
+      public java.util.List<? extends com.ServerResponseMessage.QuestionListMessageOrBuilder> 
+           getQuestionListMessageOrBuilderList() {
+        if (questionListMessageBuilder_ != null) {
+          return questionListMessageBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(questionListMessage_);
+        }
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.QuestionListMessage.Builder addQuestionListMessageBuilder() {
+        return getQuestionListMessageFieldBuilder().addBuilder(
+            com.ServerResponseMessage.QuestionListMessage.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public com.ServerResponseMessage.QuestionListMessage.Builder addQuestionListMessageBuilder(
+          int index) {
+        return getQuestionListMessageFieldBuilder().addBuilder(
+            index, com.ServerResponseMessage.QuestionListMessage.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       */
+      public java.util.List<com.ServerResponseMessage.QuestionListMessage.Builder> 
+           getQuestionListMessageBuilderList() {
+        return getQuestionListMessageFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> 
+          getQuestionListMessageFieldBuilder() {
+        if (questionListMessageBuilder_ == null) {
+          questionListMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder>(
+                  questionListMessage_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
                   isClean());
-          questionMessage_ = null;
+          questionListMessage_ = null;
         }
-        return questionMessageBuilder_;
+        return questionListMessageBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -19640,54 +19818,54 @@ public final class ServerResponseMessage {
       "1\n\023questionListMessage\030\002 \003(\0132\024.QuestionL" +
       "istMessage\")\n\026CreateQuestionResponse\022\017\n\007" +
       "success\030\001 \001(\010\"*\n\027AbandonQuestionResponse" +
-      "\022\017\n\007success\030\001 \001(\010\"g\n\031SearchInformationRe" +
+      "\022\017\n\007success\030\001 \001(\010\"o\n\031SearchInformationRe" +
       "sponse\022\037\n\nsearchType\030\001 \001(\0162\013.SEARCHTYPE\022" +
-      ")\n\017questionMessage\030\003 \001(\0132\020.QuestionMessa" +
-      "ge\"\325\001\n\022GetCosSignResponse\022\017\n\007success\030\001 \001",
-      "(\010\022+\n\004sign\030\002 \003(\0132\035.GetCosSignResponse.Si" +
-      "gnEntry\022.\n\010signType\030\003 \001(\0162\034.GetCosSignRe" +
-      "sponse.SIGNTYPE\032+\n\tSignEntry\022\013\n\003key\030\001 \001(" +
-      "\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWN" +
-      "LOAD\020\000\022\n\n\006UPLOAD\020\001\"o\n\rUpdateMessage\022+\n\tu" +
-      "serEnter\030\001 \001(\0132\030.UpdateMessage.UserEnter" +
-      "\0321\n\tUserEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquest" +
-      "ionID\030\002 \001(\003\"\273\006\n\007Message\022\026\n\010msg_type\030\001 \001(" +
-      "\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\rlauchRespon" +
-      "se\030\003 \001(\0132\017.LaunchResponse\022+\n\020registerRes",
-      "ponse\030\004 \001(\0132\021.RegisterResponse\022!\n\013sendCo" +
-      "ntent\030\005 \001(\0132\014.SendContent\0221\n\023announcemen" +
-      "tMessage\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025" +
-      "questionEnterResponse\030\007 \001(\0132\026.QuestionEn" +
-      "terResponse\0223\n\024goodQuestionResponse\030\010 \001(" +
-      "\0132\025.GoodQuestionResponse\022+\n\020goodUserResp" +
-      "onse\030\n \001(\0132\021.GoodUserResponse\022/\n\022getCosS" +
-      "ignResponse\030\t \001(\0132\023.GetCosSignResponse\022%" +
-      "\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n" +
-      "\033questionInformationResponse\030\r \001(\0132\034.Que",
-      "stionInformationResponse\0229\n\027userInformat" +
-      "ionResponse\030\016 \001(\0132\030.UserInformationRespo" +
-      "nse\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.G" +
-      "etQuestionListResponse\0227\n\026createQuestion" +
-      "Response\030\022 \001(\0132\027.CreateQuestionResponse\022" +
-      "9\n\027abandonQuestionResponse\030\023 \001(\0132\030.Aband" +
-      "onQuestionResponse\022=\n\031searchInformationR" +
-      "esponse\030\024 \001(\0132\032.SearchInformationRespons" +
-      "e*\235\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGIST" +
-      "ER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOU",
-      "NCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESP" +
-      "ONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GO" +
-      "OD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\031" +
-      "\n\025GET_COS_SIGN_RESPONSE\020\t\022!\n\035QUESTION_IN" +
-      "FORMATION_RESPONSE\020\n\022\035\n\031USER_INFORMATION" +
-      "_RESPONSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPONS" +
-      "E\020\014\022\034\n\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031ABA" +
-      "NDON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFOR" +
-      "MATION_RESPONSE\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEX" +
-      "T_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOIC",
-      "E_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003" +
-      "PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000*\032\n\n" +
-      "SEARCHTYPE\022\014\n\010QUESTION\020\000B\034\n\003comB\025ServerR" +
-      "esponseMessageb\006proto3"
+      "1\n\023questionListMessage\030\003 \003(\0132\024.QuestionL" +
+      "istMessage\"\325\001\n\022GetCosSignResponse\022\017\n\007suc",
+      "cess\030\001 \001(\010\022+\n\004sign\030\002 \003(\0132\035.GetCosSignRes" +
+      "ponse.SignEntry\022.\n\010signType\030\003 \001(\0162\034.GetC" +
+      "osSignResponse.SIGNTYPE\032+\n\tSignEntry\022\013\n\003" +
+      "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE" +
+      "\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"o\n\rUpdateMess" +
+      "age\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateMessage.U" +
+      "serEnter\0321\n\tUserEnter\022\020\n\010username\030\001 \001(\t\022" +
+      "\022\n\nquestionID\030\002 \001(\003\"\273\006\n\007Message\022\026\n\010msg_t" +
+      "ype\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\rlau" +
+      "chResponse\030\003 \001(\0132\017.LaunchResponse\022+\n\020reg",
+      "isterResponse\030\004 \001(\0132\021.RegisterResponse\022!" +
+      "\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023ann" +
+      "ouncementMessage\030\006 \001(\0132\024.AnnouncementMes" +
+      "sage\0225\n\025questionEnterResponse\030\007 \001(\0132\026.Qu" +
+      "estionEnterResponse\0223\n\024goodQuestionRespo" +
+      "nse\030\010 \001(\0132\025.GoodQuestionResponse\022+\n\020good" +
+      "UserResponse\030\n \001(\0132\021.GoodUserResponse\022/\n" +
+      "\022getCosSignResponse\030\t \001(\0132\023.GetCosSignRe" +
+      "sponse\022%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMe" +
+      "ssage\022A\n\033questionInformationResponse\030\r \001",
+      "(\0132\034.QuestionInformationResponse\0229\n\027user" +
+      "InformationResponse\030\016 \001(\0132\030.UserInformat" +
+      "ionResponse\0229\n\027getQuestionListResponse\030\017" +
+      " \001(\0132\030.GetQuestionListResponse\0227\n\026create" +
+      "QuestionResponse\030\022 \001(\0132\027.CreateQuestionR" +
+      "esponse\0229\n\027abandonQuestionResponse\030\023 \001(\013" +
+      "2\030.AbandonQuestionResponse\022=\n\031searchInfo" +
+      "rmationResponse\030\024 \001(\0132\032.SearchInformatio" +
+      "nResponse*\235\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025" +
+      "\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022",
+      "\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_EN" +
+      "TER_RESPONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE" +
+      "\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MES" +
+      "SAGE\020\010\022\031\n\025GET_COS_SIGN_RESPONSE\020\t\022!\n\035QUE" +
+      "STION_INFORMATION_RESPONSE\020\n\022\035\n\031USER_INF" +
+      "ORMATION_RESPONSE\020\013\022\036\n\032GET_QUESTION_LIST" +
+      "_RESPONSE\020\014\022\034\n\030CREATE_QUESTION_RESPONSE\020" +
+      "\017\022\035\n\031ABANDON_QUESTION_RESPONSE\020\020\022\037\n\033SEAR" +
+      "CH_INFORMATION_RESPONSE\020\021*H\n\014CONTENT_TYP" +
+      "E\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001",
+      "\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JP" +
+      "EG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003M" +
+      "P4\020\000*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000B\034\n\003comB" +
+      "\025ServerResponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -19814,7 +19992,7 @@ public final class ServerResponseMessage {
     internal_static_SearchInformationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchInformationResponse_descriptor,
-        new java.lang.String[] { "SearchType", "QuestionMessage", });
+        new java.lang.String[] { "SearchType", "QuestionListMessage", });
     internal_static_GetCosSignResponse_descriptor =
       getDescriptor().getMessageTypes().get(18);
     internal_static_GetCosSignResponse_fieldAccessorTable = new

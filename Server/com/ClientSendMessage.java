@@ -7704,6 +7704,25 @@ public final class ClientSendMessage {
      */
     com.google.protobuf.ByteString
         getTimeBytes();
+
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    java.util.List<java.lang.String>
+        getKeywordsList();
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    int getKeywordsCount();
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    java.lang.String getKeywords(int index);
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getKeywordsBytes(int index);
   }
   /**
    * <pre>
@@ -7724,6 +7743,7 @@ public final class ClientSendMessage {
       stem_ = "";
       addition_ = "";
       time_ = "";
+      keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -7769,6 +7789,15 @@ public final class ClientSendMessage {
               time_ = s;
               break;
             }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                keywords_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              keywords_.add(s);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -7777,6 +7806,9 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          keywords_ = keywords_.getUnmodifiableView();
+        }
         makeExtensionsImmutable();
       }
     }
@@ -7792,6 +7824,7 @@ public final class ClientSendMessage {
               com.ClientSendMessage.CreateQuestionRequest.class, com.ClientSendMessage.CreateQuestionRequest.Builder.class);
     }
 
+    private int bitField0_;
     public static final int STEM_FIELD_NUMBER = 1;
     private volatile java.lang.Object stem_;
     /**
@@ -7894,6 +7927,35 @@ public final class ClientSendMessage {
       }
     }
 
+    public static final int KEYWORDS_FIELD_NUMBER = 4;
+    private com.google.protobuf.LazyStringList keywords_;
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getKeywordsList() {
+      return keywords_;
+    }
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    public int getKeywordsCount() {
+      return keywords_.size();
+    }
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    public java.lang.String getKeywords(int index) {
+      return keywords_.get(index);
+    }
+    /**
+     * <code>repeated string keywords = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getKeywordsBytes(int index) {
+      return keywords_.getByteString(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -7915,6 +7977,9 @@ public final class ClientSendMessage {
       if (!getTimeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
       }
+      for (int i = 0; i < keywords_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, keywords_.getRaw(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -7930,6 +7995,14 @@ public final class ClientSendMessage {
       }
       if (!getTimeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < keywords_.size(); i++) {
+          dataSize += computeStringSizeNoTag(keywords_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getKeywordsList().size();
       }
       memoizedSize = size;
       return size;
@@ -7953,6 +8026,8 @@ public final class ClientSendMessage {
           .equals(other.getAddition());
       result = result && getTime()
           .equals(other.getTime());
+      result = result && getKeywordsList()
+          .equals(other.getKeywordsList());
       return result;
     }
 
@@ -7969,6 +8044,10 @@ public final class ClientSendMessage {
       hash = (53 * hash) + getAddition().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
+      if (getKeywordsCount() > 0) {
+        hash = (37 * hash) + KEYWORDS_FIELD_NUMBER;
+        hash = (53 * hash) + getKeywordsList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8097,6 +8176,8 @@ public final class ClientSendMessage {
 
         time_ = "";
 
+        keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -8119,9 +8200,17 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.CreateQuestionRequest buildPartial() {
         com.ClientSendMessage.CreateQuestionRequest result = new com.ClientSendMessage.CreateQuestionRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.stem_ = stem_;
         result.addition_ = addition_;
         result.time_ = time_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          keywords_ = keywords_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.keywords_ = keywords_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -8175,6 +8264,16 @@ public final class ClientSendMessage {
           time_ = other.time_;
           onChanged();
         }
+        if (!other.keywords_.isEmpty()) {
+          if (keywords_.isEmpty()) {
+            keywords_ = other.keywords_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureKeywordsIsMutable();
+            keywords_.addAll(other.keywords_);
+          }
+          onChanged();
+        }
         onChanged();
         return this;
       }
@@ -8200,6 +8299,7 @@ public final class ClientSendMessage {
         }
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object stem_ = "";
       /**
@@ -8404,6 +8504,100 @@ public final class ClientSendMessage {
   checkByteStringIsUtf8(value);
         
         time_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureKeywordsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          keywords_ = new com.google.protobuf.LazyStringArrayList(keywords_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getKeywordsList() {
+        return keywords_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public int getKeywordsCount() {
+        return keywords_.size();
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public java.lang.String getKeywords(int index) {
+        return keywords_.get(index);
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getKeywordsBytes(int index) {
+        return keywords_.getByteString(index);
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public Builder setKeywords(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureKeywordsIsMutable();
+        keywords_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public Builder addKeywords(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureKeywordsIsMutable();
+        keywords_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public Builder addAllKeywords(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureKeywordsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, keywords_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public Builder clearKeywords() {
+        keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 4;</code>
+       */
+      public Builder addKeywordsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureKeywordsIsMutable();
+        keywords_.add(value);
         onChanged();
         return this;
       }
@@ -8899,14 +9093,23 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string keyword = 1;</code>
+     * <code>repeated string keywords = 1;</code>
      */
-    java.lang.String getKeyword();
+    java.util.List<java.lang.String>
+        getKeywordsList();
     /**
-     * <code>optional string keyword = 1;</code>
+     * <code>repeated string keywords = 1;</code>
+     */
+    int getKeywordsCount();
+    /**
+     * <code>repeated string keywords = 1;</code>
+     */
+    java.lang.String getKeywords(int index);
+    /**
+     * <code>repeated string keywords = 1;</code>
      */
     com.google.protobuf.ByteString
-        getKeywordBytes();
+        getKeywordsBytes(int index);
   }
   /**
    * <pre>
@@ -8924,7 +9127,7 @@ public final class ClientSendMessage {
       super(builder);
     }
     private SearchInformationRequest() {
-      keyword_ = "";
+      keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -8954,8 +9157,11 @@ public final class ClientSendMessage {
             }
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
-
-              keyword_ = s;
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                keywords_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              keywords_.add(s);
               break;
             }
           }
@@ -8966,6 +9172,9 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          keywords_ = keywords_.getUnmodifiableView();
+        }
         makeExtensionsImmutable();
       }
     }
@@ -8981,38 +9190,33 @@ public final class ClientSendMessage {
               com.ClientSendMessage.SearchInformationRequest.class, com.ClientSendMessage.SearchInformationRequest.Builder.class);
     }
 
-    public static final int KEYWORD_FIELD_NUMBER = 1;
-    private volatile java.lang.Object keyword_;
+    public static final int KEYWORDS_FIELD_NUMBER = 1;
+    private com.google.protobuf.LazyStringList keywords_;
     /**
-     * <code>optional string keyword = 1;</code>
+     * <code>repeated string keywords = 1;</code>
      */
-    public java.lang.String getKeyword() {
-      java.lang.Object ref = keyword_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        keyword_ = s;
-        return s;
-      }
+    public com.google.protobuf.ProtocolStringList
+        getKeywordsList() {
+      return keywords_;
     }
     /**
-     * <code>optional string keyword = 1;</code>
+     * <code>repeated string keywords = 1;</code>
+     */
+    public int getKeywordsCount() {
+      return keywords_.size();
+    }
+    /**
+     * <code>repeated string keywords = 1;</code>
+     */
+    public java.lang.String getKeywords(int index) {
+      return keywords_.get(index);
+    }
+    /**
+     * <code>repeated string keywords = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getKeywordBytes() {
-      java.lang.Object ref = keyword_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        keyword_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+        getKeywordsBytes(int index) {
+      return keywords_.getByteString(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -9027,8 +9231,8 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getKeywordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, keyword_);
+      for (int i = 0; i < keywords_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, keywords_.getRaw(i));
       }
     }
 
@@ -9037,8 +9241,13 @@ public final class ClientSendMessage {
       if (size != -1) return size;
 
       size = 0;
-      if (!getKeywordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, keyword_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < keywords_.size(); i++) {
+          dataSize += computeStringSizeNoTag(keywords_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getKeywordsList().size();
       }
       memoizedSize = size;
       return size;
@@ -9056,8 +9265,8 @@ public final class ClientSendMessage {
       com.ClientSendMessage.SearchInformationRequest other = (com.ClientSendMessage.SearchInformationRequest) obj;
 
       boolean result = true;
-      result = result && getKeyword()
-          .equals(other.getKeyword());
+      result = result && getKeywordsList()
+          .equals(other.getKeywordsList());
       return result;
     }
 
@@ -9068,8 +9277,10 @@ public final class ClientSendMessage {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + KEYWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getKeyword().hashCode();
+      if (getKeywordsCount() > 0) {
+        hash = (37 * hash) + KEYWORDS_FIELD_NUMBER;
+        hash = (53 * hash) + getKeywordsList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9192,8 +9403,8 @@ public final class ClientSendMessage {
       }
       public Builder clear() {
         super.clear();
-        keyword_ = "";
-
+        keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -9216,7 +9427,12 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.SearchInformationRequest buildPartial() {
         com.ClientSendMessage.SearchInformationRequest result = new com.ClientSendMessage.SearchInformationRequest(this);
-        result.keyword_ = keyword_;
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          keywords_ = keywords_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.keywords_ = keywords_;
         onBuilt();
         return result;
       }
@@ -9258,8 +9474,14 @@ public final class ClientSendMessage {
 
       public Builder mergeFrom(com.ClientSendMessage.SearchInformationRequest other) {
         if (other == com.ClientSendMessage.SearchInformationRequest.getDefaultInstance()) return this;
-        if (!other.getKeyword().isEmpty()) {
-          keyword_ = other.keyword_;
+        if (!other.keywords_.isEmpty()) {
+          if (keywords_.isEmpty()) {
+            keywords_ = other.keywords_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureKeywordsIsMutable();
+            keywords_.addAll(other.keywords_);
+          }
           onChanged();
         }
         onChanged();
@@ -9287,72 +9509,98 @@ public final class ClientSendMessage {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object keyword_ = "";
-      /**
-       * <code>optional string keyword = 1;</code>
-       */
-      public java.lang.String getKeyword() {
-        java.lang.Object ref = keyword_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          keyword_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      private com.google.protobuf.LazyStringList keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureKeywordsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          keywords_ = new com.google.protobuf.LazyStringArrayList(keywords_);
+          bitField0_ |= 0x00000001;
+         }
       }
       /**
-       * <code>optional string keyword = 1;</code>
+       * <code>repeated string keywords = 1;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getKeywordsList() {
+        return keywords_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string keywords = 1;</code>
+       */
+      public int getKeywordsCount() {
+        return keywords_.size();
+      }
+      /**
+       * <code>repeated string keywords = 1;</code>
+       */
+      public java.lang.String getKeywords(int index) {
+        return keywords_.get(index);
+      }
+      /**
+       * <code>repeated string keywords = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getKeywordBytes() {
-        java.lang.Object ref = keyword_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          keyword_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+          getKeywordsBytes(int index) {
+        return keywords_.getByteString(index);
       }
       /**
-       * <code>optional string keyword = 1;</code>
+       * <code>repeated string keywords = 1;</code>
        */
-      public Builder setKeyword(
+      public Builder setKeywords(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureKeywordsIsMutable();
+        keywords_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 1;</code>
+       */
+      public Builder addKeywords(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
-        keyword_ = value;
+  ensureKeywordsIsMutable();
+        keywords_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional string keyword = 1;</code>
+       * <code>repeated string keywords = 1;</code>
        */
-      public Builder clearKeyword() {
-        
-        keyword_ = getDefaultInstance().getKeyword();
+      public Builder addAllKeywords(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureKeywordsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, keywords_);
         onChanged();
         return this;
       }
       /**
-       * <code>optional string keyword = 1;</code>
+       * <code>repeated string keywords = 1;</code>
        */
-      public Builder setKeywordBytes(
+      public Builder clearKeywords() {
+        keywords_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string keywords = 1;</code>
+       */
+      public Builder addKeywordsBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
-        keyword_ = value;
+        ensureKeywordsIsMutable();
+        keywords_.add(value);
         onChanged();
         return this;
       }
@@ -13786,53 +14034,53 @@ public final class ClientSendMessage {
       "ationRequest\022\020\n\010username\030\001 \001(\t\"s\n\026GetQue" +
       "stionListRequest\022\"\n\treference\030\001 \001(\0162\017.LI" +
       "ST_REFERENCE\022\035\n\trankorder\030\002 \001(\0162\n.RANKOR" +
-      "DER\022\026\n\016questionNumber\030\003 \001(\005\"E\n\025CreateQue" +
+      "DER\022\026\n\016questionNumber\030\003 \001(\005\"W\n\025CreateQue" +
       "stionRequest\022\014\n\004stem\030\001 \001(\t\022\020\n\010addition\030\002" +
-      " \001(\t\022\014\n\004time\030\003 \001(\t\",\n\026AbandonQuestionReq" +
-      "uest\022\022\n\nquestionID\030\001 \001(\003\"+\n\030SearchInform",
-      "ationRequest\022\017\n\007keyword\030\001 \001(\t\"z\n\021GetCosS" +
-      "ignRequest\022\020\n\010filename\030\001 \003(\t\022-\n\010signType" +
-      "\030\002 \001(\0162\033.GetCosSignRequest.SIGNTYPE\"$\n\010S" +
-      "IGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"\243\006\n\007Me" +
-      "ssage\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010usernam" +
-      "e\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRe" +
-      "quest\022%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMes" +
-      "sage\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\022" +
-      "1\n\023announcementMessage\030\006 \001(\0132\024.Announcem" +
-      "entMessage\0223\n\024questionEnterRequest\030\007 \001(\013",
-      "2\025.QuestionEnterRequest\0221\n\023goodQuestionR" +
-      "equest\030\010 \001(\0132\024.GoodQuestionRequest\022-\n\021ge" +
-      "tCosSignRequest\030\t \001(\0132\022.GetCosSignReques" +
-      "t\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReq" +
-      "uest\022)\n\017registerRequest\030\013 \001(\0132\020.Register" +
-      "Request\022?\n\032questionInformationRequest\030\r " +
-      "\001(\0132\033.QuestionInformationRequest\0227\n\026user" +
-      "InformationRequest\030\016 \001(\0132\027.UserInformati" +
-      "onRequest\0227\n\026getQuestionListRequest\030\017 \001(" +
-      "\0132\027.GetQuestionListRequest\0225\n\025createQues",
-      "tionRequest\030\022 \001(\0132\026.CreateQuestionReques" +
-      "t\0227\n\026abandonQuestionRequest\030\023 \001(\0132\027.Aban" +
-      "donQuestionRequest\022;\n\030searchInformationR" +
-      "equest\030\024 \001(\0132\031.SearchInformationRequest*" +
-      "\221\003\n\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_ME" +
-      "SSAGE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CO" +
-      "NTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUE" +
-      "STION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_R" +
-      "EQUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\030\n\024GET_C" +
-      "OS_SIGN_REQUEST\020\t\022 \n\034QUESTION_INFORMATIO",
-      "N_REQUEST\020\n\022\034\n\030USER_INFORMATION_REQUEST\020" +
-      "\013\022\035\n\031GET_QUESTION_LIST_REQUEST\020\014\022\033\n\027CREA" +
-      "TE_QUESTION_REQUEST\020\017\022\034\n\030ABANDON_QUESTIO" +
-      "N_REQUEST\020\020\022\036\n\032SEARCH_INFORMATION_REQUES" +
-      "T\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n" +
-      "\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n" +
-      "\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002" +
-      "*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n\tRANKORDE" +
-      "R\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIST" +
-      "_REFERENCE\022\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRAI",
-      "SE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013CLI" +
-      "CK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021ClientSendM" +
-      "essageb\006proto3"
+      " \001(\t\022\014\n\004time\030\003 \001(\t\022\020\n\010keywords\030\004 \003(\t\",\n\026" +
+      "AbandonQuestionRequest\022\022\n\nquestionID\030\001 \001",
+      "(\003\",\n\030SearchInformationRequest\022\020\n\010keywor" +
+      "ds\030\001 \003(\t\"z\n\021GetCosSignRequest\022\020\n\010filenam" +
+      "e\030\001 \003(\t\022-\n\010signType\030\002 \001(\0162\033.GetCosSignRe" +
+      "quest.SIGNTYPE\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000" +
+      "\022\n\n\006UPLOAD\020\001\"\243\006\n\007Message\022\026\n\010msg_type\030\001 \001" +
+      "(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauchReque" +
+      "st\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutMessag" +
+      "e\030\004 \001(\0132\016.LogoutMessage\022!\n\013sendContent\030\005" +
+      " \001(\0132\014.SendContent\0221\n\023announcementMessag" +
+      "e\030\006 \001(\0132\024.AnnouncementMessage\0223\n\024questio",
+      "nEnterRequest\030\007 \001(\0132\025.QuestionEnterReque" +
+      "st\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.GoodQu" +
+      "estionRequest\022-\n\021getCosSignRequest\030\t \001(\013" +
+      "2\022.GetCosSignRequest\022)\n\017goodUserRequest\030" +
+      "\n \001(\0132\020.GoodUserRequest\022)\n\017registerReque" +
+      "st\030\013 \001(\0132\020.RegisterRequest\022?\n\032questionIn" +
+      "formationRequest\030\r \001(\0132\033.QuestionInforma" +
+      "tionRequest\0227\n\026userInformationRequest\030\016 " +
+      "\001(\0132\027.UserInformationRequest\0227\n\026getQuest" +
+      "ionListRequest\030\017 \001(\0132\027.GetQuestionListRe",
+      "quest\0225\n\025createQuestionRequest\030\022 \001(\0132\026.C" +
+      "reateQuestionRequest\0227\n\026abandonQuestionR" +
+      "equest\030\023 \001(\0132\027.AbandonQuestionRequest\022;\n" +
+      "\030searchInformationRequest\030\024 \001(\0132\031.Search" +
+      "InformationRequest*\221\003\n\003MSG\022\022\n\016LAUNCH_REQ" +
+      "UEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024\n\020REGISTER_R" +
+      "EQUEST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEME" +
+      "NT_MESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004" +
+      "\022\031\n\025GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_USER" +
+      "_REQUEST\020\007\022\030\n\024GET_COS_SIGN_REQUEST\020\t\022 \n\034",
+      "QUESTION_INFORMATION_REQUEST\020\n\022\034\n\030USER_I" +
+      "NFORMATION_REQUEST\020\013\022\035\n\031GET_QUESTION_LIS" +
+      "T_REQUEST\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017" +
+      "\022\034\n\030ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH" +
+      "_INFORMATION_REQUEST\020\021*H\n\014CONTENT_TYPE\022\020" +
+      "\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n" +
+      "\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020" +
+      "\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUE" +
+      "STION\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nD" +
+      "ESCENDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTIO",
+      "N_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_O" +
+      "F_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B" +
+      "\030\n\003comB\021ClientSendMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -13923,7 +14171,7 @@ public final class ClientSendMessage {
     internal_static_CreateQuestionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateQuestionRequest_descriptor,
-        new java.lang.String[] { "Stem", "Addition", "Time", });
+        new java.lang.String[] { "Stem", "Addition", "Time", "Keywords", });
     internal_static_AbandonQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_AbandonQuestionRequest_fieldAccessorTable = new
@@ -13935,7 +14183,7 @@ public final class ClientSendMessage {
     internal_static_SearchInformationRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchInformationRequest_descriptor,
-        new java.lang.String[] { "Keyword", });
+        new java.lang.String[] { "Keywords", });
     internal_static_GetCosSignRequest_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_GetCosSignRequest_fieldAccessorTable = new
