@@ -3,7 +3,7 @@ package bin;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import util.MyMessage;
-//import gui.ChattingBox;
+import gui.ChattingBox;
 import gui.InputBox;
 import java.util.Scanner;
 import util.AudioTools;
@@ -76,6 +76,15 @@ public class test
 				tmp=box.myPane.getText();
 			else if(cmd.equals("insert"))
 				box.insertImage(PICTPATH+"ask.jpg");
+			else if(cmd.equals("launch"))
+				try
+				{
+					client.launchRequest("XYlearn","123456");
+				}
+				catch(Exception e)
+				{
+					System.out.println("登录失败："+e);
+				}
 			else
 			{
 				tmp=tmp.replaceAll(cmd,"");

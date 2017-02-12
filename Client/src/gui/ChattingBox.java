@@ -269,7 +269,14 @@ public class ChattingBox extends JPanel
 					File f;
 					if((f=new File(test.FILEPATH+currentHyperlink.substring(5))).exists())
 					{
-						java.awt.Desktop.getDesktop().open(f);
+						try
+						{
+							java.awt.Desktop.getDesktop().open(f);
+						}
+						catch(Exception ex)
+						{
+							System.out.println("无法打开文件："+ex);
+						}
 						return;
 					}
 					//下载文件
