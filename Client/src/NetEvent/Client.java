@@ -319,7 +319,7 @@ public class Client implements Runnable {
 				  .setContent(contents)
 				  .setQuestionID(Long.valueOf(questionID));
 
-		if(pictures!=null)
+		if(!(null==pictures))
 			for(String picture : pictures) {
 				contentBuider.addPictures(picture);
 			}
