@@ -6,6 +6,7 @@ option java_package = "com";
 enum MSG {
    //登录登出回复
    LAUNCH_RESPONSE = 0;
+   REGISTER_RESPONSE = 1;
    //发送对话消息及公告消息
    SEND_CONTENT = 2;
    ANNOUNCEMENT_MESSAGE = 3;
@@ -14,6 +15,8 @@ enum MSG {
    //评价信息
    GOOD_QUESTION_RESPONSE = 5;
    GOOD_USER_RESPONSE = 7;
+   //更新消息
+   UPDATE_MESSAGE = 8;
    //获取COS Sign回复
    GET_COS_SIGN_RESPONSE = 9;
    //消息显示信息
@@ -61,8 +64,7 @@ message ContentMessage {
 message Record {
     string contentMessage = 1;
     string time = 2;
-    string date = 3;
-    string user = 4;
+    string user = 3;
 }
 
 //问题列表项消息体
@@ -72,7 +74,6 @@ message QuestionListMessage {
     int32 good = 3;
     int32 userNum = 5;
     string time = 6;
-    string date = 7;
     string owner = 8;
 }
 
@@ -81,11 +82,11 @@ message QuestionMessage {
     string stem = 1;
     string addition = 2;
     string time = 3;
-    string date = 4;
     string owner = 5;
     repeated Record record = 6;
     bool solved = 7;
     int32 good = 8;
+    int64 id = 9;
 }
 
 //用户信息消息体
@@ -97,6 +98,7 @@ message UserMessage {
     int32 bonus = 6;
     string signature = 7;
     string mail_address = 8;
+    string pic_url = 9;
 }
 
 //-------------具体消息-------------//
@@ -108,11 +110,20 @@ message LaunchResponse {
     UserMessage userMessage = 3;
 }
 
+//注册回复
+message RegisterResponse {
+    bool success = 1;
+    string information = 2;
+}
+
 message SendContent {
     int64 questionID = 1;
     string content = 2;
     string time = 3;
-    string date = 4;
+    string user = 4;
+    map<string,string> pictures = 5;
+    bool success = 6;
+    bool ismyself = 7;
 }
 
 //通告信息
@@ -140,6 +151,7 @@ message GoodUserResponse {
 //问题信息回复
 message QuestionInformationResponse {
     QuestionMessage questionMessage = 1;
+    bool exist = 2;
 }
 
 //用户信息回复
@@ -166,13 +178,26 @@ message AbandonQuestionResponse {
 //搜索内容回复
 message SearchInformationResponse {
     SEARCHTYPE searchType = 1;
-    QuestionMessage questionMessage = 3;
+    repeated QuestionListMessage questionListMessage = 3;
 }
 
 //获取Sign
 message GetCosSignResponse {
     bool success = 1;
-    string sign = 2;
+    map<string,string> sign = 2;
+    enum SIGNTYPE {
+        DOWNLOAD = 0;
+        UPLOAD = 1;
+    }
+    SIGNTYPE signType = 3;
+}
+
+message UpdateMessage {
+    message UserEnter {
+        string username = 1;
+        int64 questionID = 2;
+    }
+    UserEnter userEnter = 1;
 }
 
 //----------------顶层消息----------------------
@@ -180,12 +205,14 @@ message Message {
     MSG msg_type = 1;
     string username = 2;
     LaunchResponse lauchResponse = 3;
+    RegisterResponse registerResponse = 4;
     SendContent sendContent = 5;
     AnnouncementMessage announcementMessage = 6;
     QuestionEnterResponse questionEnterResponse = 7;
     GoodQuestionResponse goodQuestionResponse = 8;
     GoodUserResponse goodUserResponse = 10;
     GetCosSignResponse getCosSignResponse = 9;
+    UpdateMessage updateMessage = 11;
     QuestionInformationResponse questionInformationResponse = 13;
     UserInformationResponse userInformationResponse = 14;
     GetQuestionListResponse getQuestionListResponse = 15;

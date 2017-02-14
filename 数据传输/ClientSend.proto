@@ -7,6 +7,8 @@ enum MSG {
    //登录登出信息
    LAUNCH_REQUEST = 0;
    LOGOUT_MESSAGE = 1;
+   //注册请求
+   REGISTER_REQUEST = 6;
    //发送对话消息
    SEND_CONTENT = 2;
    ANNOUNCEMENT_MESSAGE = 3;
@@ -80,12 +82,20 @@ message LaunchRequest {
 message LogoutMessage {
 }
 
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+    string mail_address = 3;
+    string signature = 4;
+}
+
 //发送对话消息
 message SendContent {
     int64 questionID = 1;
     string content = 2;
+    repeated string pictures = 5;
     string time = 3;
-    string date = 4;
+    string user = 4;
 }
 
 //通告信息
@@ -128,10 +138,9 @@ message GetQuestionListRequest {
 //提出问题
 message CreateQuestionRequest {
     string stem = 1;
-    repeated ContentMessage additon = 2;
-    string date = 3;
-    string time = 4;
-    string record = 5;
+    string addition = 2;
+    string time = 3;
+    repeated string keywords = 4;
 }
 
 //取消问题
@@ -141,13 +150,17 @@ message AbandonQuestionRequest {
 
 //搜索内容
 message SearchInformationRequest {
-    SEARCHTYPE searchType = 1;
-    string keyword = 2;
+    repeated string keywords = 1;
 }
 
 //获取Sign
 message GetCosSignRequest {
-    string filename = 1;
+    repeated string filename = 1;
+    enum SIGNTYPE {
+        DOWNLOAD = 0;
+        UPLOAD = 1;
+    }
+    SIGNTYPE signType = 2;
 }
 
 //----------------顶层消息----------------------
@@ -162,6 +175,7 @@ message Message {
     GoodQuestionRequest goodQuestionRequest = 8;
     GetCosSignRequest getCosSignRequest = 9;
     GoodUserRequest goodUserRequest = 10;
+    RegisterRequest registerRequest = 11;
     QuestionInformationRequest questionInformationRequest = 13;
     UserInformationRequest userInformationRequest = 14;
     GetQuestionListRequest getQuestionListRequest = 15;
