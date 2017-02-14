@@ -75,7 +75,7 @@ public class test {
                 box.insertImage(PICTPATH + "ask.jpg");
             } else if (cmd.equals("launch")) {
                 try {
-                    client.launchRequest("XYlearn", "123456");
+                    client.launchRequest("Test", "123456");
                 } catch (Exception e) {
                     System.out.println("登录失败：" + e);
                 }
