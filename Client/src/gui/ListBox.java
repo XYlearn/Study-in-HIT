@@ -132,4 +132,14 @@ public class ListBox extends JPanel
 	{
 		return mymodel.getElementAt(index);
 	}
+	
+	public void addElement(ListElementData element)
+	{
+		mymodel.addElement(element);
+	}
+	
+	public void removeElementAt(int index)
+	{
+		mymodel.removeElementAt(index);
+	}
 }
