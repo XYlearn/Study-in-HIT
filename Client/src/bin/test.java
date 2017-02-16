@@ -8,6 +8,8 @@ import gui.InputBox;
 import java.util.Scanner;
 import util.AudioTools;
 import NetEvent.Client;
+import gui.ListBox;
+import gui.ListElementData;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.io.IOException;
@@ -26,7 +28,18 @@ public class test
 
 	public static final void main()
 	{
-		new Thread(client).start();
+		/*new Thread(client).start();
+		synchronized(client)
+		{
+			try
+			{
+				client.wait();
+			}catch(Exception e)
+			{
+				System.out.println("网络连接错误");
+				System.exit(0);
+			}
+		}
 		JFrame f=new JFrame("Hello, world!");
 		//ChattingBox c=new ChattingBox();
 		InputBox box=new InputBox();
@@ -61,7 +74,7 @@ public class test
 		//c.pushMessage(new MyMessage("ask","22:11:15","en"));
 		//c.pushMessage(new MyMessage("a","22:11:15","en"));
 		//System.out.println(c.myPane.getText());
-		Scanner s=new Scanner(System.in);
+		/*Scanner s=new Scanner(System.in);
 		String cmd, tmp=null;
 		while (s.hasNext())
 		{
@@ -69,7 +82,8 @@ public class test
 			switch (cmd)
 			{
 				case "exit":
-					return;
+					System.exit(0);
+					break;
 				case "show":
 					System.out.println(box.myPane.getText());
 					tmp=box.myPane.getText();
@@ -118,6 +132,30 @@ public class test
 					System.out.println(tmp);
 					break;
 			}
-		}
+		}*/
+		JFrame f=new JFrame("My Application");
+		ListBox listbox=new ListBox();
+		f.add(listbox);
+		listbox.setSize(300,600);
+		f.pack();
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","","kqwyf","这是无图问题","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","bigpic.jpg","说正事专用问题","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","widepic.jpg","宽屏专用问题","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
 	}
 }
