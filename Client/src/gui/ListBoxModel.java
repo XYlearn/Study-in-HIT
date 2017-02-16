@@ -23,15 +23,15 @@ public class ListBoxModel extends AbstractListModel<ListElementData>
 	}
 	
 	@Override
-	public int getSize()
-	{
-		return dataList.size();
-	}
-	
-	@Override
 	public ListElementData getElementAt(int index)
 	{
 		return dataList.get(index);
+	}
+	
+	@Override
+	public int getSize()
+	{
+		return dataList.size();
 	}
 	
 	/**

@@ -21,7 +21,7 @@ class ListBoxCellRenderer extends DefaultListCellRenderer
 			ImageIcon ii=new ImageIcon(test.PICTPATH+((ListElementData)value).pictname);
 			Image image=ii.getImage();
 			int tmpheight=image.getHeight(this);
-			int tmpwidth=image.getWidth(this)
+			int tmpwidth=image.getWidth(this);
 			if(tmpheight>100) ii.setImage(image.getScaledInstance(
 					tmpwidth*100/tmpheight,100,
 					Image.SCALE_DEFAULT));

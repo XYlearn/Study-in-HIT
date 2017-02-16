@@ -1,20 +1,28 @@
 package gui;
 
+import java.awt.Cursor;
 import gui.ListBoxModel.SORT;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.AbstractListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 public class ListBox extends JPanel
 {
-	JList<ListElementData> mylist;
-	ListBoxModel mymodel;
-	JScrollPane myscroll;
+	private final JList<ListElementData> mylist;
+	private final ListBoxModel mymodel;
+	private final JScrollPane myscroll;
+	private Consumer<MouseEvent> mouseListener=(MouseEvent e)->{};//调用打开房间接口
+	
 	public ListBox()
 	{
 		mylist=new JList<>();
@@ -23,6 +31,39 @@ public class ListBox extends JPanel
 		mylist.setCellRenderer(new ListBoxCellRenderer());
 		mylist.setLayoutOrientation(JList.VERTICAL);
 		mylist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		mylist.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		mylist.setSelectionBackground(Color.LIGHT_GRAY);
+		
+		//添加高亮效果
+		MouseAdapter ma=new MouseAdapter()
+		{
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				mylist.setSelectedIndex(mylist.locationToIndex(e.getPoint()));
+			}
+			@Override
+			public void mouseMoved(MouseEvent e)
+			{
+				mylist.setSelectedIndex(mylist.locationToIndex(e.getPoint()));
+			}
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				mylist.setSelectedIndices(new int[]{-1});
+			}
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				mylist.setSelectedIndices(new int[]{-1});
+			}
+			public void mouseClicked(MouseEvent e)
+			{
+				mouseListener.accept(e);
+			}
+		};
+		mylist.addMouseListener(ma);
+		mylist.addMouseMotionListener(ma);
 		
 		myscroll=new JScrollPane(mylist);
 		add(myscroll,BorderLayout.CENTER);
@@ -75,5 +116,20 @@ public class ListBox extends JPanel
 	public void setSize(int width,int height)
 	{
 		myscroll.setPreferredSize(new Dimension(width,height));
+	}
+	
+	public void setClickListener(Consumer<MouseEvent> listener)
+	{
+		mouseListener=listener;
+	}
+	
+	public int locationToIndex(Point location)
+	{
+		return mylist.locationToIndex(location);
+	}
+	
+	public ListElementData getElementAt(int index)
+	{
+		return mymodel.getElementAt(index);
 	}
 }
