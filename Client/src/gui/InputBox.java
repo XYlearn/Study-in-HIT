@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -16,18 +17,19 @@ import java.awt.event.MouseListener;
 import java.util.regex.*;
 import util.MyMessage;
 import bin.test;
+import java.io.IOException;
 
 public class InputBox extends JPanel
 {
 	//private ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 
 	public JTextPane myPane=new JTextPane();
-	private JScrollPane myScroll=new JScrollPane(myPane);
+	private final JScrollPane myScroll=new JScrollPane(myPane);
 
-	private JPopupMenu textMenu=new JPopupMenu();
-	private JMenuItem copy=new JMenuItem("复制");
-	private JMenuItem cut=new JMenuItem("剪切");
-	private JMenuItem paste=new JMenuItem("粘贴");
+	private final JPopupMenu textMenu=new JPopupMenu();
+	private final JMenuItem copy=new JMenuItem("复制");
+	private final JMenuItem cut=new JMenuItem("剪切");
+	private final JMenuItem paste=new JMenuItem("粘贴");
 
 	private String questionID="";
 
@@ -40,12 +42,13 @@ public class InputBox extends JPanel
 		myPane.setEditable(true);
 		myPane.setCursor(new Cursor(Cursor.TEXT_CURSOR));
 
-		this.add(myScroll,BorderLayout.CENTER);
+		this.add(myScroll, BorderLayout.CENTER);
 	}
 
-	public void setSize(int width,int height)
+	@Override
+	public void setSize(int width, int height)
 	{
-		myPane.setPreferredSize(new Dimension(width,height));
+		myPane.setPreferredSize(new Dimension(width, height));
 	}
 
 	public void setQuestionID(String qID)
@@ -68,15 +71,14 @@ public class InputBox extends JPanel
 		try
 		{
 			((HTMLDocument)myPane.getStyledDocument())
-				.insertAfterEnd(myPane.getStyledDocument()
-				.getCharacterElement(myPane.getCaretPosition()),
-				"<br>");
+					.insertAfterEnd(myPane.getStyledDocument()
+							.getCharacterElement(myPane.getCaretPosition()),
+							"<br>");
 			int tmppos=myPane.getCaretPosition();
 			myPane.setText(myPane.getText().replaceAll("<br>",
-				"</p><p style=\"margin-top: 0\"><img src=\"file:"+filepath+"\">"));
+					"</p><p style=\"margin-top: 0\"><img src=\"file:"+filepath+"\">"));
 			myPane.setCaretPosition(tmppos+2);
-		}
-		catch(Exception e)
+		} catch (Exception e)
 		{
 			System.out.println("bad position");
 		}
@@ -84,44 +86,44 @@ public class InputBox extends JPanel
 
 	public void sendMessage()
 	{
-		ArrayList<String> pictures=new ArrayList<String>();
+		ArrayList<String> pictures=new ArrayList<>();
 		int count=0;
 		String str=myPane.getText();
 		//protect the newlines ('\n')
-		str=str.replaceAll("\\n *","")
-			.replaceAll("</p>","\n")
-		//replace the % that user inputted
-			.replaceAll("%","%%");
+		str=str.replaceAll("\\n *", "")
+				.replaceAll("</p>", "\n")
+				//replace the % that user inputted
+				.replaceAll("%", "%%");
 		//get the path of the images
 		Pattern pat=Pattern.compile("<img[^>]*? src=\".*?([^/]*?)\".*?>");
 		Matcher mat=pat.matcher(str);
-		while(mat.find())
+		while (mat.find())
 			pictures.add(mat.group(1));
-		if(pictures.size()==0) pictures=null;
+		if (pictures.isEmpty())
+			pictures=null;
 		//replace the images with "%>"
-		str=str.replaceAll("<img.*?>","%>")
-		//clear the HTML format
-			.replaceAll("<.*?>","");
+		str=str.replaceAll("<img.*?>", "%>")
+				//clear the HTML format
+				.replaceAll("<.*?>", "");
 		//figure out the problem about %
 		StringBuilder message=new StringBuilder(str);
-		for(int i=0;i+1<message.length();i++)
-			if(message.charAt(i)=='%'&&message.charAt(i+1)=='>')
-				message=message.replace(i,i+2,"%"+(count++)+" \n");
+		for (int i=0; i+1<message.length(); i++)
+			if (message.charAt(i)=='%'&&message.charAt(i+1)=='>')
+				message=message.replace(i, i+2, "%"+(count++)+" \n");
 		//remove the last "</p>"(newline)
-		if(message.charAt(message.length()-1)=='\n')
+		if (message.charAt(message.length()-1)=='\n')
 			message.setLength(message.length()-1);
 		//System.out.println(message.toString());
+		//clear the textpane
+		myPane.setText("");
 		//send the message
 		try
 		{
-			test.client.sendContent(message.toString(),pictures,questionID);
-		}
-		catch(Exception e)
+			test.client.sendContent(message.toString(), pictures, questionID);
+		} catch (IOException e)
 		{
-			e.printStackTrace();
+			System.out.println("网络异常");
 			return;
 		}
-		//clear the textpane
-		myPane.setText("");
 	}
 }
