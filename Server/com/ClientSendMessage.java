@@ -856,11 +856,11 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     java.lang.String getContent();
     /**
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     com.google.protobuf.ByteString
         getContentBytes();
@@ -941,7 +941,7 @@ public final class ClientSendMessage {
     public static final int CONTENT_FIELD_NUMBER = 1;
     private volatile java.lang.Object content_;
     /**
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
@@ -956,7 +956,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string content = 1;</code>
+     * <code>string content = 1;</code>
      */
     public com.google.protobuf.ByteString
         getContentBytes() {
@@ -1024,7 +1024,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CONTENT_FIELD_NUMBER;
       hash = (53 * hash) + getContent().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1247,7 +1247,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object content_ = "";
       /**
-       * <code>optional string content = 1;</code>
+       * <code>string content = 1;</code>
        */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
@@ -1262,7 +1262,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string content = 1;</code>
+       * <code>string content = 1;</code>
        */
       public com.google.protobuf.ByteString
           getContentBytes() {
@@ -1278,7 +1278,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string content = 1;</code>
+       * <code>string content = 1;</code>
        */
       public Builder setContent(
           java.lang.String value) {
@@ -1291,7 +1291,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string content = 1;</code>
+       * <code>string content = 1;</code>
        */
       public Builder clearContent() {
         
@@ -1300,7 +1300,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string content = 1;</code>
+       * <code>string content = 1;</code>
        */
       public Builder setContentBytes(
           com.google.protobuf.ByteString value) {
@@ -1367,11 +1367,11 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     java.lang.String getPassword();
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     com.google.protobuf.ByteString
         getPasswordBytes();
@@ -1452,7 +1452,7 @@ public final class ClientSendMessage {
     public static final int PASSWORD_FIELD_NUMBER = 2;
     private volatile java.lang.Object password_;
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     public java.lang.String getPassword() {
       java.lang.Object ref = password_;
@@ -1467,7 +1467,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     public com.google.protobuf.ByteString
         getPasswordBytes() {
@@ -1535,7 +1535,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
       hash = (53 * hash) + getPassword().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -1758,7 +1758,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object password_ = "";
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public java.lang.String getPassword() {
         java.lang.Object ref = password_;
@@ -1773,7 +1773,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public com.google.protobuf.ByteString
           getPasswordBytes() {
@@ -1789,7 +1789,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public Builder setPassword(
           java.lang.String value) {
@@ -1802,7 +1802,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public Builder clearPassword() {
         
@@ -1811,7 +1811,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public Builder setPasswordBytes(
           com.google.protobuf.ByteString value) {
@@ -1986,7 +1986,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2251,41 +2251,41 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     java.lang.String getUsername();
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     com.google.protobuf.ByteString
         getUsernameBytes();
 
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     java.lang.String getPassword();
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     com.google.protobuf.ByteString
         getPasswordBytes();
 
     /**
-     * <code>optional string mail_address = 3;</code>
+     * <code>string mail_address = 3;</code>
      */
     java.lang.String getMailAddress();
     /**
-     * <code>optional string mail_address = 3;</code>
+     * <code>string mail_address = 3;</code>
      */
     com.google.protobuf.ByteString
         getMailAddressBytes();
 
     /**
-     * <code>optional string signature = 4;</code>
+     * <code>string signature = 4;</code>
      */
     java.lang.String getSignature();
     /**
-     * <code>optional string signature = 4;</code>
+     * <code>string signature = 4;</code>
      */
     com.google.protobuf.ByteString
         getSignatureBytes();
@@ -2383,7 +2383,7 @@ public final class ClientSendMessage {
     public static final int USERNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object username_;
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
@@ -2398,7 +2398,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
@@ -2417,7 +2417,7 @@ public final class ClientSendMessage {
     public static final int PASSWORD_FIELD_NUMBER = 2;
     private volatile java.lang.Object password_;
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     public java.lang.String getPassword() {
       java.lang.Object ref = password_;
@@ -2432,7 +2432,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string password = 2;</code>
+     * <code>string password = 2;</code>
      */
     public com.google.protobuf.ByteString
         getPasswordBytes() {
@@ -2451,7 +2451,7 @@ public final class ClientSendMessage {
     public static final int MAIL_ADDRESS_FIELD_NUMBER = 3;
     private volatile java.lang.Object mailAddress_;
     /**
-     * <code>optional string mail_address = 3;</code>
+     * <code>string mail_address = 3;</code>
      */
     public java.lang.String getMailAddress() {
       java.lang.Object ref = mailAddress_;
@@ -2466,7 +2466,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string mail_address = 3;</code>
+     * <code>string mail_address = 3;</code>
      */
     public com.google.protobuf.ByteString
         getMailAddressBytes() {
@@ -2485,7 +2485,7 @@ public final class ClientSendMessage {
     public static final int SIGNATURE_FIELD_NUMBER = 4;
     private volatile java.lang.Object signature_;
     /**
-     * <code>optional string signature = 4;</code>
+     * <code>string signature = 4;</code>
      */
     public java.lang.String getSignature() {
       java.lang.Object ref = signature_;
@@ -2500,7 +2500,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string signature = 4;</code>
+     * <code>string signature = 4;</code>
      */
     public com.google.protobuf.ByteString
         getSignatureBytes() {
@@ -2592,7 +2592,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
       hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
@@ -2838,7 +2838,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object username_ = "";
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public java.lang.String getUsername() {
         java.lang.Object ref = username_;
@@ -2853,7 +2853,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
@@ -2869,7 +2869,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
@@ -2882,7 +2882,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public Builder clearUsername() {
         
@@ -2891,7 +2891,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
@@ -2907,7 +2907,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object password_ = "";
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public java.lang.String getPassword() {
         java.lang.Object ref = password_;
@@ -2922,7 +2922,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public com.google.protobuf.ByteString
           getPasswordBytes() {
@@ -2938,7 +2938,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public Builder setPassword(
           java.lang.String value) {
@@ -2951,7 +2951,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public Builder clearPassword() {
         
@@ -2960,7 +2960,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string password = 2;</code>
+       * <code>string password = 2;</code>
        */
       public Builder setPasswordBytes(
           com.google.protobuf.ByteString value) {
@@ -2976,7 +2976,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object mailAddress_ = "";
       /**
-       * <code>optional string mail_address = 3;</code>
+       * <code>string mail_address = 3;</code>
        */
       public java.lang.String getMailAddress() {
         java.lang.Object ref = mailAddress_;
@@ -2991,7 +2991,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string mail_address = 3;</code>
+       * <code>string mail_address = 3;</code>
        */
       public com.google.protobuf.ByteString
           getMailAddressBytes() {
@@ -3007,7 +3007,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string mail_address = 3;</code>
+       * <code>string mail_address = 3;</code>
        */
       public Builder setMailAddress(
           java.lang.String value) {
@@ -3020,7 +3020,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string mail_address = 3;</code>
+       * <code>string mail_address = 3;</code>
        */
       public Builder clearMailAddress() {
         
@@ -3029,7 +3029,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string mail_address = 3;</code>
+       * <code>string mail_address = 3;</code>
        */
       public Builder setMailAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -3045,7 +3045,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object signature_ = "";
       /**
-       * <code>optional string signature = 4;</code>
+       * <code>string signature = 4;</code>
        */
       public java.lang.String getSignature() {
         java.lang.Object ref = signature_;
@@ -3060,7 +3060,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string signature = 4;</code>
+       * <code>string signature = 4;</code>
        */
       public com.google.protobuf.ByteString
           getSignatureBytes() {
@@ -3076,7 +3076,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string signature = 4;</code>
+       * <code>string signature = 4;</code>
        */
       public Builder setSignature(
           java.lang.String value) {
@@ -3089,7 +3089,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string signature = 4;</code>
+       * <code>string signature = 4;</code>
        */
       public Builder clearSignature() {
         
@@ -3098,7 +3098,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string signature = 4;</code>
+       * <code>string signature = 4;</code>
        */
       public Builder setSignatureBytes(
           com.google.protobuf.ByteString value) {
@@ -3165,16 +3165,16 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     long getQuestionID();
 
     /**
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     java.lang.String getContent();
     /**
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     com.google.protobuf.ByteString
         getContentBytes();
@@ -3199,21 +3199,21 @@ public final class ClientSendMessage {
         getPicturesBytes(int index);
 
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
 
     /**
-     * <code>optional string user = 4;</code>
+     * <code>string user = 4;</code>
      */
     java.lang.String getUser();
     /**
-     * <code>optional string user = 4;</code>
+     * <code>string user = 4;</code>
      */
     com.google.protobuf.ByteString
         getUserBytes();
@@ -3328,7 +3328,7 @@ public final class ClientSendMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -3337,7 +3337,7 @@ public final class ClientSendMessage {
     public static final int CONTENT_FIELD_NUMBER = 2;
     private volatile java.lang.Object content_;
     /**
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
@@ -3352,7 +3352,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string content = 2;</code>
+     * <code>string content = 2;</code>
      */
     public com.google.protobuf.ByteString
         getContentBytes() {
@@ -3400,7 +3400,7 @@ public final class ClientSendMessage {
     public static final int TIME_FIELD_NUMBER = 3;
     private volatile java.lang.Object time_;
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -3415,7 +3415,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -3434,7 +3434,7 @@ public final class ClientSendMessage {
     public static final int USER_FIELD_NUMBER = 4;
     private volatile java.lang.Object user_;
     /**
-     * <code>optional string user = 4;</code>
+     * <code>string user = 4;</code>
      */
     public java.lang.String getUser() {
       java.lang.Object ref = user_;
@@ -3449,7 +3449,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string user = 4;</code>
+     * <code>string user = 4;</code>
      */
     public com.google.protobuf.ByteString
         getUserBytes() {
@@ -3555,7 +3555,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -3830,13 +3830,13 @@ public final class ClientSendMessage {
 
       private long questionID_ ;
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -3845,7 +3845,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -3856,7 +3856,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object content_ = "";
       /**
-       * <code>optional string content = 2;</code>
+       * <code>string content = 2;</code>
        */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
@@ -3871,7 +3871,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string content = 2;</code>
+       * <code>string content = 2;</code>
        */
       public com.google.protobuf.ByteString
           getContentBytes() {
@@ -3887,7 +3887,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string content = 2;</code>
+       * <code>string content = 2;</code>
        */
       public Builder setContent(
           java.lang.String value) {
@@ -3900,7 +3900,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string content = 2;</code>
+       * <code>string content = 2;</code>
        */
       public Builder clearContent() {
         
@@ -3909,7 +3909,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string content = 2;</code>
+       * <code>string content = 2;</code>
        */
       public Builder setContentBytes(
           com.google.protobuf.ByteString value) {
@@ -4019,7 +4019,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -4034,7 +4034,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -4050,7 +4050,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -4063,7 +4063,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public Builder clearTime() {
         
@@ -4072,7 +4072,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -4088,7 +4088,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object user_ = "";
       /**
-       * <code>optional string user = 4;</code>
+       * <code>string user = 4;</code>
        */
       public java.lang.String getUser() {
         java.lang.Object ref = user_;
@@ -4103,7 +4103,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string user = 4;</code>
+       * <code>string user = 4;</code>
        */
       public com.google.protobuf.ByteString
           getUserBytes() {
@@ -4119,7 +4119,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string user = 4;</code>
+       * <code>string user = 4;</code>
        */
       public Builder setUser(
           java.lang.String value) {
@@ -4132,7 +4132,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string user = 4;</code>
+       * <code>string user = 4;</code>
        */
       public Builder clearUser() {
         
@@ -4141,7 +4141,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string user = 4;</code>
+       * <code>string user = 4;</code>
        */
       public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
@@ -4208,11 +4208,11 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string text = 1;</code>
+     * <code>string text = 1;</code>
      */
     java.lang.String getText();
     /**
-     * <code>optional string text = 1;</code>
+     * <code>string text = 1;</code>
      */
     com.google.protobuf.ByteString
         getTextBytes();
@@ -4293,7 +4293,7 @@ public final class ClientSendMessage {
     public static final int TEXT_FIELD_NUMBER = 1;
     private volatile java.lang.Object text_;
     /**
-     * <code>optional string text = 1;</code>
+     * <code>string text = 1;</code>
      */
     public java.lang.String getText() {
       java.lang.Object ref = text_;
@@ -4308,7 +4308,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string text = 1;</code>
+     * <code>string text = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTextBytes() {
@@ -4376,7 +4376,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
       hash = (53 * hash) + getText().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -4599,7 +4599,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object text_ = "";
       /**
-       * <code>optional string text = 1;</code>
+       * <code>string text = 1;</code>
        */
       public java.lang.String getText() {
         java.lang.Object ref = text_;
@@ -4614,7 +4614,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>string text = 1;</code>
        */
       public com.google.protobuf.ByteString
           getTextBytes() {
@@ -4630,7 +4630,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>string text = 1;</code>
        */
       public Builder setText(
           java.lang.String value) {
@@ -4643,7 +4643,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>string text = 1;</code>
        */
       public Builder clearText() {
         
@@ -4652,7 +4652,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string text = 1;</code>
+       * <code>string text = 1;</code>
        */
       public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
@@ -4719,7 +4719,7 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     long getQuestionID();
   }
@@ -4798,7 +4798,7 @@ public final class ClientSendMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -4857,7 +4857,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -5080,13 +5080,13 @@ public final class ClientSendMessage {
 
       private long questionID_ ;
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -5095,7 +5095,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -5157,7 +5157,7 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     long getQuestionID();
   }
@@ -5236,7 +5236,7 @@ public final class ClientSendMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -5295,7 +5295,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -5518,13 +5518,13 @@ public final class ClientSendMessage {
 
       private long questionID_ ;
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -5533,7 +5533,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -5595,11 +5595,11 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string user = 1;</code>
+     * <code>string user = 1;</code>
      */
     java.lang.String getUser();
     /**
-     * <code>optional string user = 1;</code>
+     * <code>string user = 1;</code>
      */
     com.google.protobuf.ByteString
         getUserBytes();
@@ -5680,7 +5680,7 @@ public final class ClientSendMessage {
     public static final int USER_FIELD_NUMBER = 1;
     private volatile java.lang.Object user_;
     /**
-     * <code>optional string user = 1;</code>
+     * <code>string user = 1;</code>
      */
     public java.lang.String getUser() {
       java.lang.Object ref = user_;
@@ -5695,7 +5695,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string user = 1;</code>
+     * <code>string user = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUserBytes() {
@@ -5763,7 +5763,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USER_FIELD_NUMBER;
       hash = (53 * hash) + getUser().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -5986,7 +5986,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object user_ = "";
       /**
-       * <code>optional string user = 1;</code>
+       * <code>string user = 1;</code>
        */
       public java.lang.String getUser() {
         java.lang.Object ref = user_;
@@ -6001,7 +6001,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string user = 1;</code>
+       * <code>string user = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUserBytes() {
@@ -6017,7 +6017,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string user = 1;</code>
+       * <code>string user = 1;</code>
        */
       public Builder setUser(
           java.lang.String value) {
@@ -6030,7 +6030,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string user = 1;</code>
+       * <code>string user = 1;</code>
        */
       public Builder clearUser() {
         
@@ -6039,7 +6039,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string user = 1;</code>
+       * <code>string user = 1;</code>
        */
       public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
@@ -6106,7 +6106,7 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     long getQuestionID();
   }
@@ -6185,7 +6185,7 @@ public final class ClientSendMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -6244,7 +6244,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -6467,13 +6467,13 @@ public final class ClientSendMessage {
 
       private long questionID_ ;
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -6482,7 +6482,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -6544,11 +6544,11 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     java.lang.String getUsername();
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     com.google.protobuf.ByteString
         getUsernameBytes();
@@ -6629,7 +6629,7 @@ public final class ClientSendMessage {
     public static final int USERNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object username_;
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
@@ -6644,7 +6644,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string username = 1;</code>
+     * <code>string username = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
@@ -6712,7 +6712,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -6935,7 +6935,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object username_ = "";
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public java.lang.String getUsername() {
         java.lang.Object ref = username_;
@@ -6950,7 +6950,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
@@ -6966,7 +6966,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
@@ -6979,7 +6979,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public Builder clearUsername() {
         
@@ -6988,7 +6988,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string username = 1;</code>
+       * <code>string username = 1;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
@@ -7055,25 +7055,25 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .LIST_REFERENCE reference = 1;</code>
+     * <code>.LIST_REFERENCE reference = 1;</code>
      */
     int getReferenceValue();
     /**
-     * <code>optional .LIST_REFERENCE reference = 1;</code>
+     * <code>.LIST_REFERENCE reference = 1;</code>
      */
     com.ClientSendMessage.LIST_REFERENCE getReference();
 
     /**
-     * <code>optional .RANKORDER rankorder = 2;</code>
+     * <code>.RANKORDER rankorder = 2;</code>
      */
     int getRankorderValue();
     /**
-     * <code>optional .RANKORDER rankorder = 2;</code>
+     * <code>.RANKORDER rankorder = 2;</code>
      */
     com.ClientSendMessage.RANKORDER getRankorder();
 
     /**
-     * <code>optional int32 questionNumber = 3;</code>
+     * <code>int32 questionNumber = 3;</code>
      */
     int getQuestionNumber();
   }
@@ -7166,13 +7166,13 @@ public final class ClientSendMessage {
     public static final int REFERENCE_FIELD_NUMBER = 1;
     private int reference_;
     /**
-     * <code>optional .LIST_REFERENCE reference = 1;</code>
+     * <code>.LIST_REFERENCE reference = 1;</code>
      */
     public int getReferenceValue() {
       return reference_;
     }
     /**
-     * <code>optional .LIST_REFERENCE reference = 1;</code>
+     * <code>.LIST_REFERENCE reference = 1;</code>
      */
     public com.ClientSendMessage.LIST_REFERENCE getReference() {
       com.ClientSendMessage.LIST_REFERENCE result = com.ClientSendMessage.LIST_REFERENCE.valueOf(reference_);
@@ -7182,13 +7182,13 @@ public final class ClientSendMessage {
     public static final int RANKORDER_FIELD_NUMBER = 2;
     private int rankorder_;
     /**
-     * <code>optional .RANKORDER rankorder = 2;</code>
+     * <code>.RANKORDER rankorder = 2;</code>
      */
     public int getRankorderValue() {
       return rankorder_;
     }
     /**
-     * <code>optional .RANKORDER rankorder = 2;</code>
+     * <code>.RANKORDER rankorder = 2;</code>
      */
     public com.ClientSendMessage.RANKORDER getRankorder() {
       com.ClientSendMessage.RANKORDER result = com.ClientSendMessage.RANKORDER.valueOf(rankorder_);
@@ -7198,7 +7198,7 @@ public final class ClientSendMessage {
     public static final int QUESTIONNUMBER_FIELD_NUMBER = 3;
     private int questionNumber_;
     /**
-     * <code>optional int32 questionNumber = 3;</code>
+     * <code>int32 questionNumber = 3;</code>
      */
     public int getQuestionNumber() {
       return questionNumber_;
@@ -7273,7 +7273,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + REFERENCE_FIELD_NUMBER;
       hash = (53 * hash) + reference_;
       hash = (37 * hash) + RANKORDER_FIELD_NUMBER;
@@ -7511,13 +7511,13 @@ public final class ClientSendMessage {
 
       private int reference_ = 0;
       /**
-       * <code>optional .LIST_REFERENCE reference = 1;</code>
+       * <code>.LIST_REFERENCE reference = 1;</code>
        */
       public int getReferenceValue() {
         return reference_;
       }
       /**
-       * <code>optional .LIST_REFERENCE reference = 1;</code>
+       * <code>.LIST_REFERENCE reference = 1;</code>
        */
       public Builder setReferenceValue(int value) {
         reference_ = value;
@@ -7525,14 +7525,14 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LIST_REFERENCE reference = 1;</code>
+       * <code>.LIST_REFERENCE reference = 1;</code>
        */
       public com.ClientSendMessage.LIST_REFERENCE getReference() {
         com.ClientSendMessage.LIST_REFERENCE result = com.ClientSendMessage.LIST_REFERENCE.valueOf(reference_);
         return result == null ? com.ClientSendMessage.LIST_REFERENCE.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .LIST_REFERENCE reference = 1;</code>
+       * <code>.LIST_REFERENCE reference = 1;</code>
        */
       public Builder setReference(com.ClientSendMessage.LIST_REFERENCE value) {
         if (value == null) {
@@ -7544,7 +7544,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LIST_REFERENCE reference = 1;</code>
+       * <code>.LIST_REFERENCE reference = 1;</code>
        */
       public Builder clearReference() {
         
@@ -7555,13 +7555,13 @@ public final class ClientSendMessage {
 
       private int rankorder_ = 0;
       /**
-       * <code>optional .RANKORDER rankorder = 2;</code>
+       * <code>.RANKORDER rankorder = 2;</code>
        */
       public int getRankorderValue() {
         return rankorder_;
       }
       /**
-       * <code>optional .RANKORDER rankorder = 2;</code>
+       * <code>.RANKORDER rankorder = 2;</code>
        */
       public Builder setRankorderValue(int value) {
         rankorder_ = value;
@@ -7569,14 +7569,14 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .RANKORDER rankorder = 2;</code>
+       * <code>.RANKORDER rankorder = 2;</code>
        */
       public com.ClientSendMessage.RANKORDER getRankorder() {
         com.ClientSendMessage.RANKORDER result = com.ClientSendMessage.RANKORDER.valueOf(rankorder_);
         return result == null ? com.ClientSendMessage.RANKORDER.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .RANKORDER rankorder = 2;</code>
+       * <code>.RANKORDER rankorder = 2;</code>
        */
       public Builder setRankorder(com.ClientSendMessage.RANKORDER value) {
         if (value == null) {
@@ -7588,7 +7588,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .RANKORDER rankorder = 2;</code>
+       * <code>.RANKORDER rankorder = 2;</code>
        */
       public Builder clearRankorder() {
         
@@ -7599,13 +7599,13 @@ public final class ClientSendMessage {
 
       private int questionNumber_ ;
       /**
-       * <code>optional int32 questionNumber = 3;</code>
+       * <code>int32 questionNumber = 3;</code>
        */
       public int getQuestionNumber() {
         return questionNumber_;
       }
       /**
-       * <code>optional int32 questionNumber = 3;</code>
+       * <code>int32 questionNumber = 3;</code>
        */
       public Builder setQuestionNumber(int value) {
         
@@ -7614,7 +7614,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional int32 questionNumber = 3;</code>
+       * <code>int32 questionNumber = 3;</code>
        */
       public Builder clearQuestionNumber() {
         
@@ -7676,31 +7676,31 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string stem = 1;</code>
+     * <code>string stem = 1;</code>
      */
     java.lang.String getStem();
     /**
-     * <code>optional string stem = 1;</code>
+     * <code>string stem = 1;</code>
      */
     com.google.protobuf.ByteString
         getStemBytes();
 
     /**
-     * <code>optional string addition = 2;</code>
+     * <code>string addition = 2;</code>
      */
     java.lang.String getAddition();
     /**
-     * <code>optional string addition = 2;</code>
+     * <code>string addition = 2;</code>
      */
     com.google.protobuf.ByteString
         getAdditionBytes();
 
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
@@ -7828,7 +7828,7 @@ public final class ClientSendMessage {
     public static final int STEM_FIELD_NUMBER = 1;
     private volatile java.lang.Object stem_;
     /**
-     * <code>optional string stem = 1;</code>
+     * <code>string stem = 1;</code>
      */
     public java.lang.String getStem() {
       java.lang.Object ref = stem_;
@@ -7843,7 +7843,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string stem = 1;</code>
+     * <code>string stem = 1;</code>
      */
     public com.google.protobuf.ByteString
         getStemBytes() {
@@ -7862,7 +7862,7 @@ public final class ClientSendMessage {
     public static final int ADDITION_FIELD_NUMBER = 2;
     private volatile java.lang.Object addition_;
     /**
-     * <code>optional string addition = 2;</code>
+     * <code>string addition = 2;</code>
      */
     public java.lang.String getAddition() {
       java.lang.Object ref = addition_;
@@ -7877,7 +7877,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string addition = 2;</code>
+     * <code>string addition = 2;</code>
      */
     public com.google.protobuf.ByteString
         getAdditionBytes() {
@@ -7896,7 +7896,7 @@ public final class ClientSendMessage {
     public static final int TIME_FIELD_NUMBER = 3;
     private volatile java.lang.Object time_;
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -7911,7 +7911,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string time = 3;</code>
+     * <code>string time = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -8037,7 +8037,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + STEM_FIELD_NUMBER;
       hash = (53 * hash) + getStem().hashCode();
       hash = (37 * hash) + ADDITION_FIELD_NUMBER;
@@ -8303,7 +8303,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object stem_ = "";
       /**
-       * <code>optional string stem = 1;</code>
+       * <code>string stem = 1;</code>
        */
       public java.lang.String getStem() {
         java.lang.Object ref = stem_;
@@ -8318,7 +8318,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string stem = 1;</code>
+       * <code>string stem = 1;</code>
        */
       public com.google.protobuf.ByteString
           getStemBytes() {
@@ -8334,7 +8334,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string stem = 1;</code>
+       * <code>string stem = 1;</code>
        */
       public Builder setStem(
           java.lang.String value) {
@@ -8347,7 +8347,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string stem = 1;</code>
+       * <code>string stem = 1;</code>
        */
       public Builder clearStem() {
         
@@ -8356,7 +8356,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string stem = 1;</code>
+       * <code>string stem = 1;</code>
        */
       public Builder setStemBytes(
           com.google.protobuf.ByteString value) {
@@ -8372,7 +8372,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object addition_ = "";
       /**
-       * <code>optional string addition = 2;</code>
+       * <code>string addition = 2;</code>
        */
       public java.lang.String getAddition() {
         java.lang.Object ref = addition_;
@@ -8387,7 +8387,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string addition = 2;</code>
+       * <code>string addition = 2;</code>
        */
       public com.google.protobuf.ByteString
           getAdditionBytes() {
@@ -8403,7 +8403,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string addition = 2;</code>
+       * <code>string addition = 2;</code>
        */
       public Builder setAddition(
           java.lang.String value) {
@@ -8416,7 +8416,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string addition = 2;</code>
+       * <code>string addition = 2;</code>
        */
       public Builder clearAddition() {
         
@@ -8425,7 +8425,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string addition = 2;</code>
+       * <code>string addition = 2;</code>
        */
       public Builder setAdditionBytes(
           com.google.protobuf.ByteString value) {
@@ -8441,7 +8441,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -8456,7 +8456,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -8472,7 +8472,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -8485,7 +8485,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public Builder clearTime() {
         
@@ -8494,7 +8494,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string time = 3;</code>
+       * <code>string time = 3;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -8655,7 +8655,7 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     long getQuestionID();
   }
@@ -8734,7 +8734,7 @@ public final class ClientSendMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>optional int64 questionID = 1;</code>
+     * <code>int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -8793,7 +8793,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -9016,13 +9016,13 @@ public final class ClientSendMessage {
 
       private long questionID_ ;
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -9031,7 +9031,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional int64 questionID = 1;</code>
+       * <code>int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -9276,7 +9276,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (getKeywordsCount() > 0) {
         hash = (37 * hash) + KEYWORDS_FIELD_NUMBER;
         hash = (53 * hash) + getKeywordsList().hashCode();
@@ -9677,11 +9677,11 @@ public final class ClientSendMessage {
         getFilenameBytes(int index);
 
     /**
-     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
      */
     int getSignTypeValue();
     /**
-     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
      */
     com.ClientSendMessage.GetCosSignRequest.SIGNTYPE getSignType();
   }
@@ -9902,13 +9902,13 @@ public final class ClientSendMessage {
     public static final int SIGNTYPE_FIELD_NUMBER = 2;
     private int signType_;
     /**
-     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
      */
     public int getSignTypeValue() {
       return signType_;
     }
     /**
-     * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+     * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
      */
     public com.ClientSendMessage.GetCosSignRequest.SIGNTYPE getSignType() {
       com.ClientSendMessage.GetCosSignRequest.SIGNTYPE result = com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.valueOf(signType_);
@@ -9980,7 +9980,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       if (getFilenameCount() > 0) {
         hash = (37 * hash) + FILENAME_FIELD_NUMBER;
         hash = (53 * hash) + getFilenameList().hashCode();
@@ -10321,13 +10321,13 @@ public final class ClientSendMessage {
 
       private int signType_ = 0;
       /**
-       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
        */
       public int getSignTypeValue() {
         return signType_;
       }
       /**
-       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
        */
       public Builder setSignTypeValue(int value) {
         signType_ = value;
@@ -10335,14 +10335,14 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
        */
       public com.ClientSendMessage.GetCosSignRequest.SIGNTYPE getSignType() {
         com.ClientSendMessage.GetCosSignRequest.SIGNTYPE result = com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.valueOf(signType_);
         return result == null ? com.ClientSendMessage.GetCosSignRequest.SIGNTYPE.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
        */
       public Builder setSignType(com.ClientSendMessage.GetCosSignRequest.SIGNTYPE value) {
         if (value == null) {
@@ -10354,7 +10354,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetCosSignRequest.SIGNTYPE signType = 2;</code>
+       * <code>.GetCosSignRequest.SIGNTYPE signType = 2;</code>
        */
       public Builder clearSignType() {
         
@@ -10416,216 +10416,216 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .MSG msg_type = 1;</code>
+     * <code>.MSG msg_type = 1;</code>
      */
     int getMsgTypeValue();
     /**
-     * <code>optional .MSG msg_type = 1;</code>
+     * <code>.MSG msg_type = 1;</code>
      */
     com.ClientSendMessage.MSG getMsgType();
 
     /**
-     * <code>optional string username = 2;</code>
+     * <code>string username = 2;</code>
      */
     java.lang.String getUsername();
     /**
-     * <code>optional string username = 2;</code>
+     * <code>string username = 2;</code>
      */
     com.google.protobuf.ByteString
         getUsernameBytes();
 
     /**
-     * <code>optional .LaunchRequest lauchRequest = 3;</code>
+     * <code>.LaunchRequest lauchRequest = 3;</code>
      */
     boolean hasLauchRequest();
     /**
-     * <code>optional .LaunchRequest lauchRequest = 3;</code>
+     * <code>.LaunchRequest lauchRequest = 3;</code>
      */
     com.ClientSendMessage.LaunchRequest getLauchRequest();
     /**
-     * <code>optional .LaunchRequest lauchRequest = 3;</code>
+     * <code>.LaunchRequest lauchRequest = 3;</code>
      */
     com.ClientSendMessage.LaunchRequestOrBuilder getLauchRequestOrBuilder();
 
     /**
-     * <code>optional .LogoutMessage logoutMessage = 4;</code>
+     * <code>.LogoutMessage logoutMessage = 4;</code>
      */
     boolean hasLogoutMessage();
     /**
-     * <code>optional .LogoutMessage logoutMessage = 4;</code>
+     * <code>.LogoutMessage logoutMessage = 4;</code>
      */
     com.ClientSendMessage.LogoutMessage getLogoutMessage();
     /**
-     * <code>optional .LogoutMessage logoutMessage = 4;</code>
+     * <code>.LogoutMessage logoutMessage = 4;</code>
      */
     com.ClientSendMessage.LogoutMessageOrBuilder getLogoutMessageOrBuilder();
 
     /**
-     * <code>optional .SendContent sendContent = 5;</code>
+     * <code>.SendContent sendContent = 5;</code>
      */
     boolean hasSendContent();
     /**
-     * <code>optional .SendContent sendContent = 5;</code>
+     * <code>.SendContent sendContent = 5;</code>
      */
     com.ClientSendMessage.SendContent getSendContent();
     /**
-     * <code>optional .SendContent sendContent = 5;</code>
+     * <code>.SendContent sendContent = 5;</code>
      */
     com.ClientSendMessage.SendContentOrBuilder getSendContentOrBuilder();
 
     /**
-     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+     * <code>.AnnouncementMessage announcementMessage = 6;</code>
      */
     boolean hasAnnouncementMessage();
     /**
-     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+     * <code>.AnnouncementMessage announcementMessage = 6;</code>
      */
     com.ClientSendMessage.AnnouncementMessage getAnnouncementMessage();
     /**
-     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+     * <code>.AnnouncementMessage announcementMessage = 6;</code>
      */
     com.ClientSendMessage.AnnouncementMessageOrBuilder getAnnouncementMessageOrBuilder();
 
     /**
-     * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+     * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
      */
     boolean hasQuestionEnterRequest();
     /**
-     * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+     * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
      */
     com.ClientSendMessage.QuestionEnterRequest getQuestionEnterRequest();
     /**
-     * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+     * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
      */
     com.ClientSendMessage.QuestionEnterRequestOrBuilder getQuestionEnterRequestOrBuilder();
 
     /**
-     * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+     * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
      */
     boolean hasGoodQuestionRequest();
     /**
-     * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+     * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
      */
     com.ClientSendMessage.GoodQuestionRequest getGoodQuestionRequest();
     /**
-     * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+     * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
      */
     com.ClientSendMessage.GoodQuestionRequestOrBuilder getGoodQuestionRequestOrBuilder();
 
     /**
-     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+     * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
      */
     boolean hasGetCosSignRequest();
     /**
-     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+     * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
      */
     com.ClientSendMessage.GetCosSignRequest getGetCosSignRequest();
     /**
-     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+     * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
      */
     com.ClientSendMessage.GetCosSignRequestOrBuilder getGetCosSignRequestOrBuilder();
 
     /**
-     * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+     * <code>.GoodUserRequest goodUserRequest = 10;</code>
      */
     boolean hasGoodUserRequest();
     /**
-     * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+     * <code>.GoodUserRequest goodUserRequest = 10;</code>
      */
     com.ClientSendMessage.GoodUserRequest getGoodUserRequest();
     /**
-     * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+     * <code>.GoodUserRequest goodUserRequest = 10;</code>
      */
     com.ClientSendMessage.GoodUserRequestOrBuilder getGoodUserRequestOrBuilder();
 
     /**
-     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     * <code>.RegisterRequest registerRequest = 11;</code>
      */
     boolean hasRegisterRequest();
     /**
-     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     * <code>.RegisterRequest registerRequest = 11;</code>
      */
     com.ClientSendMessage.RegisterRequest getRegisterRequest();
     /**
-     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     * <code>.RegisterRequest registerRequest = 11;</code>
      */
     com.ClientSendMessage.RegisterRequestOrBuilder getRegisterRequestOrBuilder();
 
     /**
-     * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+     * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
      */
     boolean hasQuestionInformationRequest();
     /**
-     * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+     * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
      */
     com.ClientSendMessage.QuestionInformationRequest getQuestionInformationRequest();
     /**
-     * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+     * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
      */
     com.ClientSendMessage.QuestionInformationRequestOrBuilder getQuestionInformationRequestOrBuilder();
 
     /**
-     * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+     * <code>.UserInformationRequest userInformationRequest = 14;</code>
      */
     boolean hasUserInformationRequest();
     /**
-     * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+     * <code>.UserInformationRequest userInformationRequest = 14;</code>
      */
     com.ClientSendMessage.UserInformationRequest getUserInformationRequest();
     /**
-     * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+     * <code>.UserInformationRequest userInformationRequest = 14;</code>
      */
     com.ClientSendMessage.UserInformationRequestOrBuilder getUserInformationRequestOrBuilder();
 
     /**
-     * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+     * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
      */
     boolean hasGetQuestionListRequest();
     /**
-     * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+     * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
      */
     com.ClientSendMessage.GetQuestionListRequest getGetQuestionListRequest();
     /**
-     * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+     * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
      */
     com.ClientSendMessage.GetQuestionListRequestOrBuilder getGetQuestionListRequestOrBuilder();
 
     /**
-     * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+     * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
      */
     boolean hasCreateQuestionRequest();
     /**
-     * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+     * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
      */
     com.ClientSendMessage.CreateQuestionRequest getCreateQuestionRequest();
     /**
-     * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+     * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
      */
     com.ClientSendMessage.CreateQuestionRequestOrBuilder getCreateQuestionRequestOrBuilder();
 
     /**
-     * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+     * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
      */
     boolean hasAbandonQuestionRequest();
     /**
-     * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+     * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
      */
     com.ClientSendMessage.AbandonQuestionRequest getAbandonQuestionRequest();
     /**
-     * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+     * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
      */
     com.ClientSendMessage.AbandonQuestionRequestOrBuilder getAbandonQuestionRequestOrBuilder();
 
     /**
-     * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+     * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     boolean hasSearchInformationRequest();
     /**
-     * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+     * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     com.ClientSendMessage.SearchInformationRequest getSearchInformationRequest();
     /**
-     * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+     * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     com.ClientSendMessage.SearchInformationRequestOrBuilder getSearchInformationRequestOrBuilder();
   }
@@ -10907,13 +10907,13 @@ public final class ClientSendMessage {
     public static final int MSG_TYPE_FIELD_NUMBER = 1;
     private int msgType_;
     /**
-     * <code>optional .MSG msg_type = 1;</code>
+     * <code>.MSG msg_type = 1;</code>
      */
     public int getMsgTypeValue() {
       return msgType_;
     }
     /**
-     * <code>optional .MSG msg_type = 1;</code>
+     * <code>.MSG msg_type = 1;</code>
      */
     public com.ClientSendMessage.MSG getMsgType() {
       com.ClientSendMessage.MSG result = com.ClientSendMessage.MSG.valueOf(msgType_);
@@ -10923,7 +10923,7 @@ public final class ClientSendMessage {
     public static final int USERNAME_FIELD_NUMBER = 2;
     private volatile java.lang.Object username_;
     /**
-     * <code>optional string username = 2;</code>
+     * <code>string username = 2;</code>
      */
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
@@ -10938,7 +10938,7 @@ public final class ClientSendMessage {
       }
     }
     /**
-     * <code>optional string username = 2;</code>
+     * <code>string username = 2;</code>
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
@@ -10957,19 +10957,19 @@ public final class ClientSendMessage {
     public static final int LAUCHREQUEST_FIELD_NUMBER = 3;
     private com.ClientSendMessage.LaunchRequest lauchRequest_;
     /**
-     * <code>optional .LaunchRequest lauchRequest = 3;</code>
+     * <code>.LaunchRequest lauchRequest = 3;</code>
      */
     public boolean hasLauchRequest() {
       return lauchRequest_ != null;
     }
     /**
-     * <code>optional .LaunchRequest lauchRequest = 3;</code>
+     * <code>.LaunchRequest lauchRequest = 3;</code>
      */
     public com.ClientSendMessage.LaunchRequest getLauchRequest() {
       return lauchRequest_ == null ? com.ClientSendMessage.LaunchRequest.getDefaultInstance() : lauchRequest_;
     }
     /**
-     * <code>optional .LaunchRequest lauchRequest = 3;</code>
+     * <code>.LaunchRequest lauchRequest = 3;</code>
      */
     public com.ClientSendMessage.LaunchRequestOrBuilder getLauchRequestOrBuilder() {
       return getLauchRequest();
@@ -10978,19 +10978,19 @@ public final class ClientSendMessage {
     public static final int LOGOUTMESSAGE_FIELD_NUMBER = 4;
     private com.ClientSendMessage.LogoutMessage logoutMessage_;
     /**
-     * <code>optional .LogoutMessage logoutMessage = 4;</code>
+     * <code>.LogoutMessage logoutMessage = 4;</code>
      */
     public boolean hasLogoutMessage() {
       return logoutMessage_ != null;
     }
     /**
-     * <code>optional .LogoutMessage logoutMessage = 4;</code>
+     * <code>.LogoutMessage logoutMessage = 4;</code>
      */
     public com.ClientSendMessage.LogoutMessage getLogoutMessage() {
       return logoutMessage_ == null ? com.ClientSendMessage.LogoutMessage.getDefaultInstance() : logoutMessage_;
     }
     /**
-     * <code>optional .LogoutMessage logoutMessage = 4;</code>
+     * <code>.LogoutMessage logoutMessage = 4;</code>
      */
     public com.ClientSendMessage.LogoutMessageOrBuilder getLogoutMessageOrBuilder() {
       return getLogoutMessage();
@@ -10999,19 +10999,19 @@ public final class ClientSendMessage {
     public static final int SENDCONTENT_FIELD_NUMBER = 5;
     private com.ClientSendMessage.SendContent sendContent_;
     /**
-     * <code>optional .SendContent sendContent = 5;</code>
+     * <code>.SendContent sendContent = 5;</code>
      */
     public boolean hasSendContent() {
       return sendContent_ != null;
     }
     /**
-     * <code>optional .SendContent sendContent = 5;</code>
+     * <code>.SendContent sendContent = 5;</code>
      */
     public com.ClientSendMessage.SendContent getSendContent() {
       return sendContent_ == null ? com.ClientSendMessage.SendContent.getDefaultInstance() : sendContent_;
     }
     /**
-     * <code>optional .SendContent sendContent = 5;</code>
+     * <code>.SendContent sendContent = 5;</code>
      */
     public com.ClientSendMessage.SendContentOrBuilder getSendContentOrBuilder() {
       return getSendContent();
@@ -11020,19 +11020,19 @@ public final class ClientSendMessage {
     public static final int ANNOUNCEMENTMESSAGE_FIELD_NUMBER = 6;
     private com.ClientSendMessage.AnnouncementMessage announcementMessage_;
     /**
-     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+     * <code>.AnnouncementMessage announcementMessage = 6;</code>
      */
     public boolean hasAnnouncementMessage() {
       return announcementMessage_ != null;
     }
     /**
-     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+     * <code>.AnnouncementMessage announcementMessage = 6;</code>
      */
     public com.ClientSendMessage.AnnouncementMessage getAnnouncementMessage() {
       return announcementMessage_ == null ? com.ClientSendMessage.AnnouncementMessage.getDefaultInstance() : announcementMessage_;
     }
     /**
-     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+     * <code>.AnnouncementMessage announcementMessage = 6;</code>
      */
     public com.ClientSendMessage.AnnouncementMessageOrBuilder getAnnouncementMessageOrBuilder() {
       return getAnnouncementMessage();
@@ -11041,19 +11041,19 @@ public final class ClientSendMessage {
     public static final int QUESTIONENTERREQUEST_FIELD_NUMBER = 7;
     private com.ClientSendMessage.QuestionEnterRequest questionEnterRequest_;
     /**
-     * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+     * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
      */
     public boolean hasQuestionEnterRequest() {
       return questionEnterRequest_ != null;
     }
     /**
-     * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+     * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
      */
     public com.ClientSendMessage.QuestionEnterRequest getQuestionEnterRequest() {
       return questionEnterRequest_ == null ? com.ClientSendMessage.QuestionEnterRequest.getDefaultInstance() : questionEnterRequest_;
     }
     /**
-     * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+     * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
      */
     public com.ClientSendMessage.QuestionEnterRequestOrBuilder getQuestionEnterRequestOrBuilder() {
       return getQuestionEnterRequest();
@@ -11062,19 +11062,19 @@ public final class ClientSendMessage {
     public static final int GOODQUESTIONREQUEST_FIELD_NUMBER = 8;
     private com.ClientSendMessage.GoodQuestionRequest goodQuestionRequest_;
     /**
-     * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+     * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
      */
     public boolean hasGoodQuestionRequest() {
       return goodQuestionRequest_ != null;
     }
     /**
-     * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+     * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
      */
     public com.ClientSendMessage.GoodQuestionRequest getGoodQuestionRequest() {
       return goodQuestionRequest_ == null ? com.ClientSendMessage.GoodQuestionRequest.getDefaultInstance() : goodQuestionRequest_;
     }
     /**
-     * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+     * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
      */
     public com.ClientSendMessage.GoodQuestionRequestOrBuilder getGoodQuestionRequestOrBuilder() {
       return getGoodQuestionRequest();
@@ -11083,19 +11083,19 @@ public final class ClientSendMessage {
     public static final int GETCOSSIGNREQUEST_FIELD_NUMBER = 9;
     private com.ClientSendMessage.GetCosSignRequest getCosSignRequest_;
     /**
-     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+     * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
      */
     public boolean hasGetCosSignRequest() {
       return getCosSignRequest_ != null;
     }
     /**
-     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+     * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
      */
     public com.ClientSendMessage.GetCosSignRequest getGetCosSignRequest() {
       return getCosSignRequest_ == null ? com.ClientSendMessage.GetCosSignRequest.getDefaultInstance() : getCosSignRequest_;
     }
     /**
-     * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+     * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
      */
     public com.ClientSendMessage.GetCosSignRequestOrBuilder getGetCosSignRequestOrBuilder() {
       return getGetCosSignRequest();
@@ -11104,19 +11104,19 @@ public final class ClientSendMessage {
     public static final int GOODUSERREQUEST_FIELD_NUMBER = 10;
     private com.ClientSendMessage.GoodUserRequest goodUserRequest_;
     /**
-     * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+     * <code>.GoodUserRequest goodUserRequest = 10;</code>
      */
     public boolean hasGoodUserRequest() {
       return goodUserRequest_ != null;
     }
     /**
-     * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+     * <code>.GoodUserRequest goodUserRequest = 10;</code>
      */
     public com.ClientSendMessage.GoodUserRequest getGoodUserRequest() {
       return goodUserRequest_ == null ? com.ClientSendMessage.GoodUserRequest.getDefaultInstance() : goodUserRequest_;
     }
     /**
-     * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+     * <code>.GoodUserRequest goodUserRequest = 10;</code>
      */
     public com.ClientSendMessage.GoodUserRequestOrBuilder getGoodUserRequestOrBuilder() {
       return getGoodUserRequest();
@@ -11125,19 +11125,19 @@ public final class ClientSendMessage {
     public static final int REGISTERREQUEST_FIELD_NUMBER = 11;
     private com.ClientSendMessage.RegisterRequest registerRequest_;
     /**
-     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     * <code>.RegisterRequest registerRequest = 11;</code>
      */
     public boolean hasRegisterRequest() {
       return registerRequest_ != null;
     }
     /**
-     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     * <code>.RegisterRequest registerRequest = 11;</code>
      */
     public com.ClientSendMessage.RegisterRequest getRegisterRequest() {
       return registerRequest_ == null ? com.ClientSendMessage.RegisterRequest.getDefaultInstance() : registerRequest_;
     }
     /**
-     * <code>optional .RegisterRequest registerRequest = 11;</code>
+     * <code>.RegisterRequest registerRequest = 11;</code>
      */
     public com.ClientSendMessage.RegisterRequestOrBuilder getRegisterRequestOrBuilder() {
       return getRegisterRequest();
@@ -11146,19 +11146,19 @@ public final class ClientSendMessage {
     public static final int QUESTIONINFORMATIONREQUEST_FIELD_NUMBER = 13;
     private com.ClientSendMessage.QuestionInformationRequest questionInformationRequest_;
     /**
-     * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+     * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
      */
     public boolean hasQuestionInformationRequest() {
       return questionInformationRequest_ != null;
     }
     /**
-     * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+     * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
      */
     public com.ClientSendMessage.QuestionInformationRequest getQuestionInformationRequest() {
       return questionInformationRequest_ == null ? com.ClientSendMessage.QuestionInformationRequest.getDefaultInstance() : questionInformationRequest_;
     }
     /**
-     * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+     * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
      */
     public com.ClientSendMessage.QuestionInformationRequestOrBuilder getQuestionInformationRequestOrBuilder() {
       return getQuestionInformationRequest();
@@ -11167,19 +11167,19 @@ public final class ClientSendMessage {
     public static final int USERINFORMATIONREQUEST_FIELD_NUMBER = 14;
     private com.ClientSendMessage.UserInformationRequest userInformationRequest_;
     /**
-     * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+     * <code>.UserInformationRequest userInformationRequest = 14;</code>
      */
     public boolean hasUserInformationRequest() {
       return userInformationRequest_ != null;
     }
     /**
-     * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+     * <code>.UserInformationRequest userInformationRequest = 14;</code>
      */
     public com.ClientSendMessage.UserInformationRequest getUserInformationRequest() {
       return userInformationRequest_ == null ? com.ClientSendMessage.UserInformationRequest.getDefaultInstance() : userInformationRequest_;
     }
     /**
-     * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+     * <code>.UserInformationRequest userInformationRequest = 14;</code>
      */
     public com.ClientSendMessage.UserInformationRequestOrBuilder getUserInformationRequestOrBuilder() {
       return getUserInformationRequest();
@@ -11188,19 +11188,19 @@ public final class ClientSendMessage {
     public static final int GETQUESTIONLISTREQUEST_FIELD_NUMBER = 15;
     private com.ClientSendMessage.GetQuestionListRequest getQuestionListRequest_;
     /**
-     * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+     * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
      */
     public boolean hasGetQuestionListRequest() {
       return getQuestionListRequest_ != null;
     }
     /**
-     * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+     * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
      */
     public com.ClientSendMessage.GetQuestionListRequest getGetQuestionListRequest() {
       return getQuestionListRequest_ == null ? com.ClientSendMessage.GetQuestionListRequest.getDefaultInstance() : getQuestionListRequest_;
     }
     /**
-     * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+     * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
      */
     public com.ClientSendMessage.GetQuestionListRequestOrBuilder getGetQuestionListRequestOrBuilder() {
       return getGetQuestionListRequest();
@@ -11209,19 +11209,19 @@ public final class ClientSendMessage {
     public static final int CREATEQUESTIONREQUEST_FIELD_NUMBER = 18;
     private com.ClientSendMessage.CreateQuestionRequest createQuestionRequest_;
     /**
-     * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+     * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
      */
     public boolean hasCreateQuestionRequest() {
       return createQuestionRequest_ != null;
     }
     /**
-     * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+     * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
      */
     public com.ClientSendMessage.CreateQuestionRequest getCreateQuestionRequest() {
       return createQuestionRequest_ == null ? com.ClientSendMessage.CreateQuestionRequest.getDefaultInstance() : createQuestionRequest_;
     }
     /**
-     * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+     * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
      */
     public com.ClientSendMessage.CreateQuestionRequestOrBuilder getCreateQuestionRequestOrBuilder() {
       return getCreateQuestionRequest();
@@ -11230,19 +11230,19 @@ public final class ClientSendMessage {
     public static final int ABANDONQUESTIONREQUEST_FIELD_NUMBER = 19;
     private com.ClientSendMessage.AbandonQuestionRequest abandonQuestionRequest_;
     /**
-     * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+     * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
      */
     public boolean hasAbandonQuestionRequest() {
       return abandonQuestionRequest_ != null;
     }
     /**
-     * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+     * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
      */
     public com.ClientSendMessage.AbandonQuestionRequest getAbandonQuestionRequest() {
       return abandonQuestionRequest_ == null ? com.ClientSendMessage.AbandonQuestionRequest.getDefaultInstance() : abandonQuestionRequest_;
     }
     /**
-     * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+     * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
      */
     public com.ClientSendMessage.AbandonQuestionRequestOrBuilder getAbandonQuestionRequestOrBuilder() {
       return getAbandonQuestionRequest();
@@ -11251,19 +11251,19 @@ public final class ClientSendMessage {
     public static final int SEARCHINFORMATIONREQUEST_FIELD_NUMBER = 20;
     private com.ClientSendMessage.SearchInformationRequest searchInformationRequest_;
     /**
-     * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+     * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     public boolean hasSearchInformationRequest() {
       return searchInformationRequest_ != null;
     }
     /**
-     * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+     * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     public com.ClientSendMessage.SearchInformationRequest getSearchInformationRequest() {
       return searchInformationRequest_ == null ? com.ClientSendMessage.SearchInformationRequest.getDefaultInstance() : searchInformationRequest_;
     }
     /**
-     * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+     * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     public com.ClientSendMessage.SearchInformationRequestOrBuilder getSearchInformationRequestOrBuilder() {
       return getSearchInformationRequest();
@@ -11509,7 +11509,7 @@ public final class ClientSendMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + MSG_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + msgType_;
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
@@ -12010,13 +12010,13 @@ public final class ClientSendMessage {
 
       private int msgType_ = 0;
       /**
-       * <code>optional .MSG msg_type = 1;</code>
+       * <code>.MSG msg_type = 1;</code>
        */
       public int getMsgTypeValue() {
         return msgType_;
       }
       /**
-       * <code>optional .MSG msg_type = 1;</code>
+       * <code>.MSG msg_type = 1;</code>
        */
       public Builder setMsgTypeValue(int value) {
         msgType_ = value;
@@ -12024,14 +12024,14 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .MSG msg_type = 1;</code>
+       * <code>.MSG msg_type = 1;</code>
        */
       public com.ClientSendMessage.MSG getMsgType() {
         com.ClientSendMessage.MSG result = com.ClientSendMessage.MSG.valueOf(msgType_);
         return result == null ? com.ClientSendMessage.MSG.UNRECOGNIZED : result;
       }
       /**
-       * <code>optional .MSG msg_type = 1;</code>
+       * <code>.MSG msg_type = 1;</code>
        */
       public Builder setMsgType(com.ClientSendMessage.MSG value) {
         if (value == null) {
@@ -12043,7 +12043,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .MSG msg_type = 1;</code>
+       * <code>.MSG msg_type = 1;</code>
        */
       public Builder clearMsgType() {
         
@@ -12054,7 +12054,7 @@ public final class ClientSendMessage {
 
       private java.lang.Object username_ = "";
       /**
-       * <code>optional string username = 2;</code>
+       * <code>string username = 2;</code>
        */
       public java.lang.String getUsername() {
         java.lang.Object ref = username_;
@@ -12069,7 +12069,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string username = 2;</code>
+       * <code>string username = 2;</code>
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
@@ -12085,7 +12085,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional string username = 2;</code>
+       * <code>string username = 2;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
@@ -12098,7 +12098,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string username = 2;</code>
+       * <code>string username = 2;</code>
        */
       public Builder clearUsername() {
         
@@ -12107,7 +12107,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional string username = 2;</code>
+       * <code>string username = 2;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
@@ -12125,13 +12125,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.LaunchRequest, com.ClientSendMessage.LaunchRequest.Builder, com.ClientSendMessage.LaunchRequestOrBuilder> lauchRequestBuilder_;
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public boolean hasLauchRequest() {
         return lauchRequestBuilder_ != null || lauchRequest_ != null;
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public com.ClientSendMessage.LaunchRequest getLauchRequest() {
         if (lauchRequestBuilder_ == null) {
@@ -12141,7 +12141,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public Builder setLauchRequest(com.ClientSendMessage.LaunchRequest value) {
         if (lauchRequestBuilder_ == null) {
@@ -12157,7 +12157,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public Builder setLauchRequest(
           com.ClientSendMessage.LaunchRequest.Builder builderForValue) {
@@ -12171,7 +12171,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public Builder mergeLauchRequest(com.ClientSendMessage.LaunchRequest value) {
         if (lauchRequestBuilder_ == null) {
@@ -12189,7 +12189,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public Builder clearLauchRequest() {
         if (lauchRequestBuilder_ == null) {
@@ -12203,7 +12203,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public com.ClientSendMessage.LaunchRequest.Builder getLauchRequestBuilder() {
         
@@ -12211,7 +12211,7 @@ public final class ClientSendMessage {
         return getLauchRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       public com.ClientSendMessage.LaunchRequestOrBuilder getLauchRequestOrBuilder() {
         if (lauchRequestBuilder_ != null) {
@@ -12222,7 +12222,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .LaunchRequest lauchRequest = 3;</code>
+       * <code>.LaunchRequest lauchRequest = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.LaunchRequest, com.ClientSendMessage.LaunchRequest.Builder, com.ClientSendMessage.LaunchRequestOrBuilder> 
@@ -12242,13 +12242,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.LogoutMessage, com.ClientSendMessage.LogoutMessage.Builder, com.ClientSendMessage.LogoutMessageOrBuilder> logoutMessageBuilder_;
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public boolean hasLogoutMessage() {
         return logoutMessageBuilder_ != null || logoutMessage_ != null;
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public com.ClientSendMessage.LogoutMessage getLogoutMessage() {
         if (logoutMessageBuilder_ == null) {
@@ -12258,7 +12258,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public Builder setLogoutMessage(com.ClientSendMessage.LogoutMessage value) {
         if (logoutMessageBuilder_ == null) {
@@ -12274,7 +12274,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public Builder setLogoutMessage(
           com.ClientSendMessage.LogoutMessage.Builder builderForValue) {
@@ -12288,7 +12288,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public Builder mergeLogoutMessage(com.ClientSendMessage.LogoutMessage value) {
         if (logoutMessageBuilder_ == null) {
@@ -12306,7 +12306,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public Builder clearLogoutMessage() {
         if (logoutMessageBuilder_ == null) {
@@ -12320,7 +12320,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public com.ClientSendMessage.LogoutMessage.Builder getLogoutMessageBuilder() {
         
@@ -12328,7 +12328,7 @@ public final class ClientSendMessage {
         return getLogoutMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       public com.ClientSendMessage.LogoutMessageOrBuilder getLogoutMessageOrBuilder() {
         if (logoutMessageBuilder_ != null) {
@@ -12339,7 +12339,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .LogoutMessage logoutMessage = 4;</code>
+       * <code>.LogoutMessage logoutMessage = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.LogoutMessage, com.ClientSendMessage.LogoutMessage.Builder, com.ClientSendMessage.LogoutMessageOrBuilder> 
@@ -12359,13 +12359,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.SendContent, com.ClientSendMessage.SendContent.Builder, com.ClientSendMessage.SendContentOrBuilder> sendContentBuilder_;
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public boolean hasSendContent() {
         return sendContentBuilder_ != null || sendContent_ != null;
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public com.ClientSendMessage.SendContent getSendContent() {
         if (sendContentBuilder_ == null) {
@@ -12375,7 +12375,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public Builder setSendContent(com.ClientSendMessage.SendContent value) {
         if (sendContentBuilder_ == null) {
@@ -12391,7 +12391,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public Builder setSendContent(
           com.ClientSendMessage.SendContent.Builder builderForValue) {
@@ -12405,7 +12405,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public Builder mergeSendContent(com.ClientSendMessage.SendContent value) {
         if (sendContentBuilder_ == null) {
@@ -12423,7 +12423,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public Builder clearSendContent() {
         if (sendContentBuilder_ == null) {
@@ -12437,7 +12437,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public com.ClientSendMessage.SendContent.Builder getSendContentBuilder() {
         
@@ -12445,7 +12445,7 @@ public final class ClientSendMessage {
         return getSendContentFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       public com.ClientSendMessage.SendContentOrBuilder getSendContentOrBuilder() {
         if (sendContentBuilder_ != null) {
@@ -12456,7 +12456,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .SendContent sendContent = 5;</code>
+       * <code>.SendContent sendContent = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.SendContent, com.ClientSendMessage.SendContent.Builder, com.ClientSendMessage.SendContentOrBuilder> 
@@ -12476,13 +12476,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.AnnouncementMessage, com.ClientSendMessage.AnnouncementMessage.Builder, com.ClientSendMessage.AnnouncementMessageOrBuilder> announcementMessageBuilder_;
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public boolean hasAnnouncementMessage() {
         return announcementMessageBuilder_ != null || announcementMessage_ != null;
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public com.ClientSendMessage.AnnouncementMessage getAnnouncementMessage() {
         if (announcementMessageBuilder_ == null) {
@@ -12492,7 +12492,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder setAnnouncementMessage(com.ClientSendMessage.AnnouncementMessage value) {
         if (announcementMessageBuilder_ == null) {
@@ -12508,7 +12508,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder setAnnouncementMessage(
           com.ClientSendMessage.AnnouncementMessage.Builder builderForValue) {
@@ -12522,7 +12522,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder mergeAnnouncementMessage(com.ClientSendMessage.AnnouncementMessage value) {
         if (announcementMessageBuilder_ == null) {
@@ -12540,7 +12540,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder clearAnnouncementMessage() {
         if (announcementMessageBuilder_ == null) {
@@ -12554,7 +12554,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public com.ClientSendMessage.AnnouncementMessage.Builder getAnnouncementMessageBuilder() {
         
@@ -12562,7 +12562,7 @@ public final class ClientSendMessage {
         return getAnnouncementMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       public com.ClientSendMessage.AnnouncementMessageOrBuilder getAnnouncementMessageOrBuilder() {
         if (announcementMessageBuilder_ != null) {
@@ -12573,7 +12573,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
+       * <code>.AnnouncementMessage announcementMessage = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.AnnouncementMessage, com.ClientSendMessage.AnnouncementMessage.Builder, com.ClientSendMessage.AnnouncementMessageOrBuilder> 
@@ -12593,13 +12593,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.QuestionEnterRequest, com.ClientSendMessage.QuestionEnterRequest.Builder, com.ClientSendMessage.QuestionEnterRequestOrBuilder> questionEnterRequestBuilder_;
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public boolean hasQuestionEnterRequest() {
         return questionEnterRequestBuilder_ != null || questionEnterRequest_ != null;
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public com.ClientSendMessage.QuestionEnterRequest getQuestionEnterRequest() {
         if (questionEnterRequestBuilder_ == null) {
@@ -12609,7 +12609,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public Builder setQuestionEnterRequest(com.ClientSendMessage.QuestionEnterRequest value) {
         if (questionEnterRequestBuilder_ == null) {
@@ -12625,7 +12625,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public Builder setQuestionEnterRequest(
           com.ClientSendMessage.QuestionEnterRequest.Builder builderForValue) {
@@ -12639,7 +12639,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public Builder mergeQuestionEnterRequest(com.ClientSendMessage.QuestionEnterRequest value) {
         if (questionEnterRequestBuilder_ == null) {
@@ -12657,7 +12657,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public Builder clearQuestionEnterRequest() {
         if (questionEnterRequestBuilder_ == null) {
@@ -12671,7 +12671,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public com.ClientSendMessage.QuestionEnterRequest.Builder getQuestionEnterRequestBuilder() {
         
@@ -12679,7 +12679,7 @@ public final class ClientSendMessage {
         return getQuestionEnterRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       public com.ClientSendMessage.QuestionEnterRequestOrBuilder getQuestionEnterRequestOrBuilder() {
         if (questionEnterRequestBuilder_ != null) {
@@ -12690,7 +12690,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
+       * <code>.QuestionEnterRequest questionEnterRequest = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.QuestionEnterRequest, com.ClientSendMessage.QuestionEnterRequest.Builder, com.ClientSendMessage.QuestionEnterRequestOrBuilder> 
@@ -12710,13 +12710,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GoodQuestionRequest, com.ClientSendMessage.GoodQuestionRequest.Builder, com.ClientSendMessage.GoodQuestionRequestOrBuilder> goodQuestionRequestBuilder_;
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public boolean hasGoodQuestionRequest() {
         return goodQuestionRequestBuilder_ != null || goodQuestionRequest_ != null;
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public com.ClientSendMessage.GoodQuestionRequest getGoodQuestionRequest() {
         if (goodQuestionRequestBuilder_ == null) {
@@ -12726,7 +12726,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public Builder setGoodQuestionRequest(com.ClientSendMessage.GoodQuestionRequest value) {
         if (goodQuestionRequestBuilder_ == null) {
@@ -12742,7 +12742,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public Builder setGoodQuestionRequest(
           com.ClientSendMessage.GoodQuestionRequest.Builder builderForValue) {
@@ -12756,7 +12756,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public Builder mergeGoodQuestionRequest(com.ClientSendMessage.GoodQuestionRequest value) {
         if (goodQuestionRequestBuilder_ == null) {
@@ -12774,7 +12774,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public Builder clearGoodQuestionRequest() {
         if (goodQuestionRequestBuilder_ == null) {
@@ -12788,7 +12788,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public com.ClientSendMessage.GoodQuestionRequest.Builder getGoodQuestionRequestBuilder() {
         
@@ -12796,7 +12796,7 @@ public final class ClientSendMessage {
         return getGoodQuestionRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       public com.ClientSendMessage.GoodQuestionRequestOrBuilder getGoodQuestionRequestOrBuilder() {
         if (goodQuestionRequestBuilder_ != null) {
@@ -12807,7 +12807,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
+       * <code>.GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GoodQuestionRequest, com.ClientSendMessage.GoodQuestionRequest.Builder, com.ClientSendMessage.GoodQuestionRequestOrBuilder> 
@@ -12827,13 +12827,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GetCosSignRequest, com.ClientSendMessage.GetCosSignRequest.Builder, com.ClientSendMessage.GetCosSignRequestOrBuilder> getCosSignRequestBuilder_;
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public boolean hasGetCosSignRequest() {
         return getCosSignRequestBuilder_ != null || getCosSignRequest_ != null;
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public com.ClientSendMessage.GetCosSignRequest getGetCosSignRequest() {
         if (getCosSignRequestBuilder_ == null) {
@@ -12843,7 +12843,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public Builder setGetCosSignRequest(com.ClientSendMessage.GetCosSignRequest value) {
         if (getCosSignRequestBuilder_ == null) {
@@ -12859,7 +12859,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public Builder setGetCosSignRequest(
           com.ClientSendMessage.GetCosSignRequest.Builder builderForValue) {
@@ -12873,7 +12873,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public Builder mergeGetCosSignRequest(com.ClientSendMessage.GetCosSignRequest value) {
         if (getCosSignRequestBuilder_ == null) {
@@ -12891,7 +12891,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public Builder clearGetCosSignRequest() {
         if (getCosSignRequestBuilder_ == null) {
@@ -12905,7 +12905,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public com.ClientSendMessage.GetCosSignRequest.Builder getGetCosSignRequestBuilder() {
         
@@ -12913,7 +12913,7 @@ public final class ClientSendMessage {
         return getGetCosSignRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       public com.ClientSendMessage.GetCosSignRequestOrBuilder getGetCosSignRequestOrBuilder() {
         if (getCosSignRequestBuilder_ != null) {
@@ -12924,7 +12924,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GetCosSignRequest getCosSignRequest = 9;</code>
+       * <code>.GetCosSignRequest getCosSignRequest = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GetCosSignRequest, com.ClientSendMessage.GetCosSignRequest.Builder, com.ClientSendMessage.GetCosSignRequestOrBuilder> 
@@ -12944,13 +12944,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GoodUserRequest, com.ClientSendMessage.GoodUserRequest.Builder, com.ClientSendMessage.GoodUserRequestOrBuilder> goodUserRequestBuilder_;
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public boolean hasGoodUserRequest() {
         return goodUserRequestBuilder_ != null || goodUserRequest_ != null;
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public com.ClientSendMessage.GoodUserRequest getGoodUserRequest() {
         if (goodUserRequestBuilder_ == null) {
@@ -12960,7 +12960,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public Builder setGoodUserRequest(com.ClientSendMessage.GoodUserRequest value) {
         if (goodUserRequestBuilder_ == null) {
@@ -12976,7 +12976,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public Builder setGoodUserRequest(
           com.ClientSendMessage.GoodUserRequest.Builder builderForValue) {
@@ -12990,7 +12990,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public Builder mergeGoodUserRequest(com.ClientSendMessage.GoodUserRequest value) {
         if (goodUserRequestBuilder_ == null) {
@@ -13008,7 +13008,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public Builder clearGoodUserRequest() {
         if (goodUserRequestBuilder_ == null) {
@@ -13022,7 +13022,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public com.ClientSendMessage.GoodUserRequest.Builder getGoodUserRequestBuilder() {
         
@@ -13030,7 +13030,7 @@ public final class ClientSendMessage {
         return getGoodUserRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       public com.ClientSendMessage.GoodUserRequestOrBuilder getGoodUserRequestOrBuilder() {
         if (goodUserRequestBuilder_ != null) {
@@ -13041,7 +13041,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
+       * <code>.GoodUserRequest goodUserRequest = 10;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GoodUserRequest, com.ClientSendMessage.GoodUserRequest.Builder, com.ClientSendMessage.GoodUserRequestOrBuilder> 
@@ -13061,13 +13061,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder> registerRequestBuilder_;
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public boolean hasRegisterRequest() {
         return registerRequestBuilder_ != null || registerRequest_ != null;
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public com.ClientSendMessage.RegisterRequest getRegisterRequest() {
         if (registerRequestBuilder_ == null) {
@@ -13077,7 +13077,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public Builder setRegisterRequest(com.ClientSendMessage.RegisterRequest value) {
         if (registerRequestBuilder_ == null) {
@@ -13093,7 +13093,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public Builder setRegisterRequest(
           com.ClientSendMessage.RegisterRequest.Builder builderForValue) {
@@ -13107,7 +13107,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public Builder mergeRegisterRequest(com.ClientSendMessage.RegisterRequest value) {
         if (registerRequestBuilder_ == null) {
@@ -13125,7 +13125,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public Builder clearRegisterRequest() {
         if (registerRequestBuilder_ == null) {
@@ -13139,7 +13139,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public com.ClientSendMessage.RegisterRequest.Builder getRegisterRequestBuilder() {
         
@@ -13147,7 +13147,7 @@ public final class ClientSendMessage {
         return getRegisterRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       public com.ClientSendMessage.RegisterRequestOrBuilder getRegisterRequestOrBuilder() {
         if (registerRequestBuilder_ != null) {
@@ -13158,7 +13158,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .RegisterRequest registerRequest = 11;</code>
+       * <code>.RegisterRequest registerRequest = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder> 
@@ -13178,13 +13178,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.QuestionInformationRequest, com.ClientSendMessage.QuestionInformationRequest.Builder, com.ClientSendMessage.QuestionInformationRequestOrBuilder> questionInformationRequestBuilder_;
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public boolean hasQuestionInformationRequest() {
         return questionInformationRequestBuilder_ != null || questionInformationRequest_ != null;
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public com.ClientSendMessage.QuestionInformationRequest getQuestionInformationRequest() {
         if (questionInformationRequestBuilder_ == null) {
@@ -13194,7 +13194,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public Builder setQuestionInformationRequest(com.ClientSendMessage.QuestionInformationRequest value) {
         if (questionInformationRequestBuilder_ == null) {
@@ -13210,7 +13210,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public Builder setQuestionInformationRequest(
           com.ClientSendMessage.QuestionInformationRequest.Builder builderForValue) {
@@ -13224,7 +13224,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public Builder mergeQuestionInformationRequest(com.ClientSendMessage.QuestionInformationRequest value) {
         if (questionInformationRequestBuilder_ == null) {
@@ -13242,7 +13242,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public Builder clearQuestionInformationRequest() {
         if (questionInformationRequestBuilder_ == null) {
@@ -13256,7 +13256,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public com.ClientSendMessage.QuestionInformationRequest.Builder getQuestionInformationRequestBuilder() {
         
@@ -13264,7 +13264,7 @@ public final class ClientSendMessage {
         return getQuestionInformationRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       public com.ClientSendMessage.QuestionInformationRequestOrBuilder getQuestionInformationRequestOrBuilder() {
         if (questionInformationRequestBuilder_ != null) {
@@ -13275,7 +13275,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
+       * <code>.QuestionInformationRequest questionInformationRequest = 13;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.QuestionInformationRequest, com.ClientSendMessage.QuestionInformationRequest.Builder, com.ClientSendMessage.QuestionInformationRequestOrBuilder> 
@@ -13295,13 +13295,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.UserInformationRequest, com.ClientSendMessage.UserInformationRequest.Builder, com.ClientSendMessage.UserInformationRequestOrBuilder> userInformationRequestBuilder_;
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public boolean hasUserInformationRequest() {
         return userInformationRequestBuilder_ != null || userInformationRequest_ != null;
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public com.ClientSendMessage.UserInformationRequest getUserInformationRequest() {
         if (userInformationRequestBuilder_ == null) {
@@ -13311,7 +13311,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public Builder setUserInformationRequest(com.ClientSendMessage.UserInformationRequest value) {
         if (userInformationRequestBuilder_ == null) {
@@ -13327,7 +13327,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public Builder setUserInformationRequest(
           com.ClientSendMessage.UserInformationRequest.Builder builderForValue) {
@@ -13341,7 +13341,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public Builder mergeUserInformationRequest(com.ClientSendMessage.UserInformationRequest value) {
         if (userInformationRequestBuilder_ == null) {
@@ -13359,7 +13359,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public Builder clearUserInformationRequest() {
         if (userInformationRequestBuilder_ == null) {
@@ -13373,7 +13373,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public com.ClientSendMessage.UserInformationRequest.Builder getUserInformationRequestBuilder() {
         
@@ -13381,7 +13381,7 @@ public final class ClientSendMessage {
         return getUserInformationRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       public com.ClientSendMessage.UserInformationRequestOrBuilder getUserInformationRequestOrBuilder() {
         if (userInformationRequestBuilder_ != null) {
@@ -13392,7 +13392,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
+       * <code>.UserInformationRequest userInformationRequest = 14;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.UserInformationRequest, com.ClientSendMessage.UserInformationRequest.Builder, com.ClientSendMessage.UserInformationRequestOrBuilder> 
@@ -13412,13 +13412,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GetQuestionListRequest, com.ClientSendMessage.GetQuestionListRequest.Builder, com.ClientSendMessage.GetQuestionListRequestOrBuilder> getQuestionListRequestBuilder_;
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public boolean hasGetQuestionListRequest() {
         return getQuestionListRequestBuilder_ != null || getQuestionListRequest_ != null;
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public com.ClientSendMessage.GetQuestionListRequest getGetQuestionListRequest() {
         if (getQuestionListRequestBuilder_ == null) {
@@ -13428,7 +13428,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public Builder setGetQuestionListRequest(com.ClientSendMessage.GetQuestionListRequest value) {
         if (getQuestionListRequestBuilder_ == null) {
@@ -13444,7 +13444,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public Builder setGetQuestionListRequest(
           com.ClientSendMessage.GetQuestionListRequest.Builder builderForValue) {
@@ -13458,7 +13458,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public Builder mergeGetQuestionListRequest(com.ClientSendMessage.GetQuestionListRequest value) {
         if (getQuestionListRequestBuilder_ == null) {
@@ -13476,7 +13476,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public Builder clearGetQuestionListRequest() {
         if (getQuestionListRequestBuilder_ == null) {
@@ -13490,7 +13490,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public com.ClientSendMessage.GetQuestionListRequest.Builder getGetQuestionListRequestBuilder() {
         
@@ -13498,7 +13498,7 @@ public final class ClientSendMessage {
         return getGetQuestionListRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       public com.ClientSendMessage.GetQuestionListRequestOrBuilder getGetQuestionListRequestOrBuilder() {
         if (getQuestionListRequestBuilder_ != null) {
@@ -13509,7 +13509,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
+       * <code>.GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.GetQuestionListRequest, com.ClientSendMessage.GetQuestionListRequest.Builder, com.ClientSendMessage.GetQuestionListRequestOrBuilder> 
@@ -13529,13 +13529,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.CreateQuestionRequest, com.ClientSendMessage.CreateQuestionRequest.Builder, com.ClientSendMessage.CreateQuestionRequestOrBuilder> createQuestionRequestBuilder_;
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public boolean hasCreateQuestionRequest() {
         return createQuestionRequestBuilder_ != null || createQuestionRequest_ != null;
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public com.ClientSendMessage.CreateQuestionRequest getCreateQuestionRequest() {
         if (createQuestionRequestBuilder_ == null) {
@@ -13545,7 +13545,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public Builder setCreateQuestionRequest(com.ClientSendMessage.CreateQuestionRequest value) {
         if (createQuestionRequestBuilder_ == null) {
@@ -13561,7 +13561,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public Builder setCreateQuestionRequest(
           com.ClientSendMessage.CreateQuestionRequest.Builder builderForValue) {
@@ -13575,7 +13575,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public Builder mergeCreateQuestionRequest(com.ClientSendMessage.CreateQuestionRequest value) {
         if (createQuestionRequestBuilder_ == null) {
@@ -13593,7 +13593,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public Builder clearCreateQuestionRequest() {
         if (createQuestionRequestBuilder_ == null) {
@@ -13607,7 +13607,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public com.ClientSendMessage.CreateQuestionRequest.Builder getCreateQuestionRequestBuilder() {
         
@@ -13615,7 +13615,7 @@ public final class ClientSendMessage {
         return getCreateQuestionRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       public com.ClientSendMessage.CreateQuestionRequestOrBuilder getCreateQuestionRequestOrBuilder() {
         if (createQuestionRequestBuilder_ != null) {
@@ -13626,7 +13626,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
+       * <code>.CreateQuestionRequest createQuestionRequest = 18;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.CreateQuestionRequest, com.ClientSendMessage.CreateQuestionRequest.Builder, com.ClientSendMessage.CreateQuestionRequestOrBuilder> 
@@ -13646,13 +13646,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.AbandonQuestionRequest, com.ClientSendMessage.AbandonQuestionRequest.Builder, com.ClientSendMessage.AbandonQuestionRequestOrBuilder> abandonQuestionRequestBuilder_;
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public boolean hasAbandonQuestionRequest() {
         return abandonQuestionRequestBuilder_ != null || abandonQuestionRequest_ != null;
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public com.ClientSendMessage.AbandonQuestionRequest getAbandonQuestionRequest() {
         if (abandonQuestionRequestBuilder_ == null) {
@@ -13662,7 +13662,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public Builder setAbandonQuestionRequest(com.ClientSendMessage.AbandonQuestionRequest value) {
         if (abandonQuestionRequestBuilder_ == null) {
@@ -13678,7 +13678,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public Builder setAbandonQuestionRequest(
           com.ClientSendMessage.AbandonQuestionRequest.Builder builderForValue) {
@@ -13692,7 +13692,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public Builder mergeAbandonQuestionRequest(com.ClientSendMessage.AbandonQuestionRequest value) {
         if (abandonQuestionRequestBuilder_ == null) {
@@ -13710,7 +13710,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public Builder clearAbandonQuestionRequest() {
         if (abandonQuestionRequestBuilder_ == null) {
@@ -13724,7 +13724,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public com.ClientSendMessage.AbandonQuestionRequest.Builder getAbandonQuestionRequestBuilder() {
         
@@ -13732,7 +13732,7 @@ public final class ClientSendMessage {
         return getAbandonQuestionRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       public com.ClientSendMessage.AbandonQuestionRequestOrBuilder getAbandonQuestionRequestOrBuilder() {
         if (abandonQuestionRequestBuilder_ != null) {
@@ -13743,7 +13743,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
+       * <code>.AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.AbandonQuestionRequest, com.ClientSendMessage.AbandonQuestionRequest.Builder, com.ClientSendMessage.AbandonQuestionRequestOrBuilder> 
@@ -13763,13 +13763,13 @@ public final class ClientSendMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.SearchInformationRequest, com.ClientSendMessage.SearchInformationRequest.Builder, com.ClientSendMessage.SearchInformationRequestOrBuilder> searchInformationRequestBuilder_;
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public boolean hasSearchInformationRequest() {
         return searchInformationRequestBuilder_ != null || searchInformationRequest_ != null;
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public com.ClientSendMessage.SearchInformationRequest getSearchInformationRequest() {
         if (searchInformationRequestBuilder_ == null) {
@@ -13779,7 +13779,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public Builder setSearchInformationRequest(com.ClientSendMessage.SearchInformationRequest value) {
         if (searchInformationRequestBuilder_ == null) {
@@ -13795,7 +13795,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public Builder setSearchInformationRequest(
           com.ClientSendMessage.SearchInformationRequest.Builder builderForValue) {
@@ -13809,7 +13809,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public Builder mergeSearchInformationRequest(com.ClientSendMessage.SearchInformationRequest value) {
         if (searchInformationRequestBuilder_ == null) {
@@ -13827,7 +13827,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public Builder clearSearchInformationRequest() {
         if (searchInformationRequestBuilder_ == null) {
@@ -13841,7 +13841,7 @@ public final class ClientSendMessage {
         return this;
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public com.ClientSendMessage.SearchInformationRequest.Builder getSearchInformationRequestBuilder() {
         
@@ -13849,7 +13849,7 @@ public final class ClientSendMessage {
         return getSearchInformationRequestFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       public com.ClientSendMessage.SearchInformationRequestOrBuilder getSearchInformationRequestOrBuilder() {
         if (searchInformationRequestBuilder_ != null) {
@@ -13860,7 +13860,7 @@ public final class ClientSendMessage {
         }
       }
       /**
-       * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
+       * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ClientSendMessage.SearchInformationRequest, com.ClientSendMessage.SearchInformationRequest.Builder, com.ClientSendMessage.SearchInformationRequestOrBuilder> 

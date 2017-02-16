@@ -5,7 +5,6 @@ import com.google.protobuf.ProtocolStringList;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +25,7 @@ public class ServerItem {
 		try {
 			stmt = dbconn.connection.createStatement();
 		} catch (SQLException e) {
+			NIOServer.logger.write(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -158,6 +158,7 @@ public class ServerItem {
 								  .setGetCosSignResponse(handleGetCosCredRequest(message.getGetCosSignRequest()))
 								  .build();
 						} catch (Exception e) {
+							NIOServer.logger.write(e.getMessage());
 							e.printStackTrace();
 							return ServerResponseMessage.Message.newBuilder().build();
 						}
@@ -167,8 +168,10 @@ public class ServerItem {
 					return null;
 			}
 		} catch (SQLException e) {
+			NIOServer.logger.write(e.getMessage());
 			e.printStackTrace();
-			return null;
+			return ServerResponseMessage.Message.newBuilder()
+					  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
 		}
 	}
 
@@ -293,6 +296,12 @@ public class ServerItem {
 		String time = sendMessage.getTime();
 		String record = sendMessage.getContent();
 
+		sql = "SELECT id FROM question WHERE id="+questionID+";";
+		ResultSet rs = stmt.executeQuery(sql);
+		if(!rs.next()) {
+			return ServerResponseMessage.SendContent.newBuilder().setSuccess(false).build();
+		}
+
 		sql = "UPDATE question SET last_send_time=now() WHERE id = "+questionID;
 		stmt.execute(sql);
 
@@ -335,6 +344,7 @@ public class ServerItem {
 		} catch (IOException e) {
 			sendBuider.setSuccess(false);
 			e.printStackTrace();
+			NIOServer.logger.write(e.getMessage());
 		} finally {
 			//对于用户本身返回上传签名
 			sendBuider.clearPictures();
@@ -359,7 +369,7 @@ public class ServerItem {
 		Long questionID = request.getQuestionID();
 
 		//获得问题基本信息
-		sql = "SELECT * FROM question WHERE id = ?".replace("?", questionID.toString());
+		sql = "SELECT * FROM question WHERE id = ?;".replace("?", questionID.toString());
 		ResultSet rs = stmt.executeQuery(sql);
 		String owner,stem,addition,time,user,contentMessage;
 		boolean solved;
@@ -372,6 +382,7 @@ public class ServerItem {
 			solved = rs.getBoolean("solved");
 			good = rs.getInt("praise_num");
 			questionMessageBuider
+					  .setId(questionID)
 					  .setOwner(owner)
 					  .setStem(stem)
 					  .setAddition(addition)
@@ -414,11 +425,13 @@ public class ServerItem {
 		ClientSendMessage.QuestionInformationRequest informationRequest =
 				  ClientSendMessage.QuestionInformationRequest.newBuilder()
 				  .setQuestionID(questionID).build();
+
 		//获得房间信息
 		ServerResponseMessage.QuestionInformationResponse questionInformationResponse =
 				  handleQuestionInformationRequest(informationRequest);
+
 		//若房间不存在则返回失败消息
-		if(questionInformationResponse == null) {
+		if(!questionInformationResponse.getExist()) {
 			response = ServerResponseMessage.QuestionEnterResponse.newBuilder()
 					  .setAllow(false).build();
 		} else {
@@ -470,6 +483,7 @@ public class ServerItem {
 						sc.write(sendBB);
 				} catch (IOException e) {
 					e.printStackTrace();
+					NIOServer.logger.write(e.getMessage());
 				}
 			}
 		}
@@ -592,8 +606,16 @@ public class ServerItem {
 				stmt.execute(sql);
 			}
 
+			ServerResponseMessage.QuestionMessage questionMessage =
+					  handleQuestionInformationRequest(
+								 ClientSendMessage.QuestionInformationRequest.newBuilder()
+								 .setQuestionID(questionID).build()
+					  ).getQuestionMessage();
+
 			//返回成功消息
-			createQuestionResponse = ServerResponseMessage.CreateQuestionResponse.newBuilder().setSuccess(true).build();
+			createQuestionResponse = ServerResponseMessage.CreateQuestionResponse.newBuilder()
+					  .setSuccess(true)
+					  .setQuestionMessage(questionMessage).build();
 		}
 		return createQuestionResponse;
 	}
@@ -660,7 +682,13 @@ public class ServerItem {
 			signature = rs.getString("signature");
 			mail_address = rs.getString("mail_address");
 		} else {
-			return null;
+			return ServerResponseMessage.UserInformationResponse.newBuilder()
+					  .setExist(false)
+					  .setUserMessage(
+								 ServerResponseMessage.UserMessage.newBuilder()
+								 .setUsername(username)
+					  )
+					  .build();
 		}
 		rs.close();
 
@@ -670,6 +698,7 @@ public class ServerItem {
 							 .setGood(good).setQuestionNum(questionNum)
 							 .setSolvedQuestionNum(solvedQuesitonNum).setBonus(bonus)
 							 .setSignature(signature).setMailAddress(mail_address)
+							 .setUsername(username)
 				  ).build();
 
 		return userInformationResponse;

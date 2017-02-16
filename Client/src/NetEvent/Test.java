@@ -20,10 +20,15 @@ public class Test {
 				client.wait();
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("网络连接错误");
+				System.exit(0);
 			}
 		}
 		try {
 			client.launchRequest("Test", "123456");
+			ArrayList<String> s = new ArrayList<>();
+			s.add("2+2=?");
+			client.createQuestion("2+2=?","求解，好难",s);
 			client.enterQuestion("1");
 			client.sendContent("hello", new ArrayList<>(), "1");
 		} catch (Exception e) {

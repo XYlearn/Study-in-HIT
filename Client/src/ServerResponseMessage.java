@@ -11071,6 +11071,11 @@ public final class ServerResponseMessage {
      * <code>.UserMessage userMessage = 1;</code>
      */
     com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder();
+
+    /**
+     * <code>bool exist = 2;</code>
+     */
+    boolean getExist();
   }
   /**
    * <pre>
@@ -11088,6 +11093,7 @@ public final class ServerResponseMessage {
       super(builder);
     }
     private UserInformationResponse() {
+      exist_ = false;
     }
 
     @java.lang.Override
@@ -11126,6 +11132,11 @@ public final class ServerResponseMessage {
                 userMessage_ = subBuilder.buildPartial();
               }
 
+              break;
+            }
+            case 16: {
+
+              exist_ = input.readBool();
               break;
             }
           }
@@ -11172,6 +11183,15 @@ public final class ServerResponseMessage {
       return getUserMessage();
     }
 
+    public static final int EXIST_FIELD_NUMBER = 2;
+    private boolean exist_;
+    /**
+     * <code>bool exist = 2;</code>
+     */
+    public boolean getExist() {
+      return exist_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -11187,6 +11207,9 @@ public final class ServerResponseMessage {
       if (userMessage_ != null) {
         output.writeMessage(1, getUserMessage());
       }
+      if (exist_ != false) {
+        output.writeBool(2, exist_);
+      }
     }
 
     public int getSerializedSize() {
@@ -11197,6 +11220,10 @@ public final class ServerResponseMessage {
       if (userMessage_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getUserMessage());
+      }
+      if (exist_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, exist_);
       }
       memoizedSize = size;
       return size;
@@ -11219,6 +11246,8 @@ public final class ServerResponseMessage {
         result = result && getUserMessage()
             .equals(other.getUserMessage());
       }
+      result = result && (getExist()
+          == other.getExist());
       return result;
     }
 
@@ -11233,6 +11262,9 @@ public final class ServerResponseMessage {
         hash = (37 * hash) + USERMESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getUserMessage().hashCode();
       }
+      hash = (37 * hash) + EXIST_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getExist());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11361,6 +11393,8 @@ public final class ServerResponseMessage {
           userMessage_ = null;
           userMessageBuilder_ = null;
         }
+        exist_ = false;
+
         return this;
       }
 
@@ -11388,6 +11422,7 @@ public final class ServerResponseMessage {
         } else {
           result.userMessage_ = userMessageBuilder_.build();
         }
+        result.exist_ = exist_;
         onBuilt();
         return result;
       }
@@ -11431,6 +11466,9 @@ public final class ServerResponseMessage {
         if (other == com.ServerResponseMessage.UserInformationResponse.getDefaultInstance()) return this;
         if (other.hasUserMessage()) {
           mergeUserMessage(other.getUserMessage());
+        }
+        if (other.getExist() != false) {
+          setExist(other.getExist());
         }
         onChanged();
         return this;
@@ -11573,6 +11611,32 @@ public final class ServerResponseMessage {
           userMessage_ = null;
         }
         return userMessageBuilder_;
+      }
+
+      private boolean exist_ ;
+      /**
+       * <code>bool exist = 2;</code>
+       */
+      public boolean getExist() {
+        return exist_;
+      }
+      /**
+       * <code>bool exist = 2;</code>
+       */
+      public Builder setExist(boolean value) {
+        
+        exist_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool exist = 2;</code>
+       */
+      public Builder clearExist() {
+        
+        exist_ = false;
+        onChanged();
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -12440,6 +12504,19 @@ public final class ServerResponseMessage {
      * <code>bool success = 1;</code>
      */
     boolean getSuccess();
+
+    /**
+     * <code>.QuestionMessage questionMessage = 2;</code>
+     */
+    boolean hasQuestionMessage();
+    /**
+     * <code>.QuestionMessage questionMessage = 2;</code>
+     */
+    com.ServerResponseMessage.QuestionMessage getQuestionMessage();
+    /**
+     * <code>.QuestionMessage questionMessage = 2;</code>
+     */
+    com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
   }
   /**
    * <pre>
@@ -12490,6 +12567,19 @@ public final class ServerResponseMessage {
               success_ = input.readBool();
               break;
             }
+            case 18: {
+              com.ServerResponseMessage.QuestionMessage.Builder subBuilder = null;
+              if (questionMessage_ != null) {
+                subBuilder = questionMessage_.toBuilder();
+              }
+              questionMessage_ = input.readMessage(com.ServerResponseMessage.QuestionMessage.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(questionMessage_);
+                questionMessage_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -12522,6 +12612,27 @@ public final class ServerResponseMessage {
       return success_;
     }
 
+    public static final int QUESTIONMESSAGE_FIELD_NUMBER = 2;
+    private com.ServerResponseMessage.QuestionMessage questionMessage_;
+    /**
+     * <code>.QuestionMessage questionMessage = 2;</code>
+     */
+    public boolean hasQuestionMessage() {
+      return questionMessage_ != null;
+    }
+    /**
+     * <code>.QuestionMessage questionMessage = 2;</code>
+     */
+    public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
+      return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
+    }
+    /**
+     * <code>.QuestionMessage questionMessage = 2;</code>
+     */
+    public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
+      return getQuestionMessage();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -12537,6 +12648,9 @@ public final class ServerResponseMessage {
       if (success_ != false) {
         output.writeBool(1, success_);
       }
+      if (questionMessage_ != null) {
+        output.writeMessage(2, getQuestionMessage());
+      }
     }
 
     public int getSerializedSize() {
@@ -12547,6 +12661,10 @@ public final class ServerResponseMessage {
       if (success_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, success_);
+      }
+      if (questionMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getQuestionMessage());
       }
       memoizedSize = size;
       return size;
@@ -12566,6 +12684,11 @@ public final class ServerResponseMessage {
       boolean result = true;
       result = result && (getSuccess()
           == other.getSuccess());
+      result = result && (hasQuestionMessage() == other.hasQuestionMessage());
+      if (hasQuestionMessage()) {
+        result = result && getQuestionMessage()
+            .equals(other.getQuestionMessage());
+      }
       return result;
     }
 
@@ -12579,6 +12702,10 @@ public final class ServerResponseMessage {
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
+      if (hasQuestionMessage()) {
+        hash = (37 * hash) + QUESTIONMESSAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getQuestionMessage().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12703,6 +12830,12 @@ public final class ServerResponseMessage {
         super.clear();
         success_ = false;
 
+        if (questionMessageBuilder_ == null) {
+          questionMessage_ = null;
+        } else {
+          questionMessage_ = null;
+          questionMessageBuilder_ = null;
+        }
         return this;
       }
 
@@ -12726,6 +12859,11 @@ public final class ServerResponseMessage {
       public com.ServerResponseMessage.CreateQuestionResponse buildPartial() {
         com.ServerResponseMessage.CreateQuestionResponse result = new com.ServerResponseMessage.CreateQuestionResponse(this);
         result.success_ = success_;
+        if (questionMessageBuilder_ == null) {
+          result.questionMessage_ = questionMessage_;
+        } else {
+          result.questionMessage_ = questionMessageBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -12769,6 +12907,9 @@ public final class ServerResponseMessage {
         if (other == com.ServerResponseMessage.CreateQuestionResponse.getDefaultInstance()) return this;
         if (other.getSuccess() != false) {
           setSuccess(other.getSuccess());
+        }
+        if (other.hasQuestionMessage()) {
+          mergeQuestionMessage(other.getQuestionMessage());
         }
         onChanged();
         return this;
@@ -12820,6 +12961,123 @@ public final class ServerResponseMessage {
         success_ = false;
         onChanged();
         return this;
+      }
+
+      private com.ServerResponseMessage.QuestionMessage questionMessage_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public boolean hasQuestionMessage() {
+        return questionMessageBuilder_ != null || questionMessage_ != null;
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
+        if (questionMessageBuilder_ == null) {
+          return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
+        } else {
+          return questionMessageBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public Builder setQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
+        if (questionMessageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          questionMessage_ = value;
+          onChanged();
+        } else {
+          questionMessageBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public Builder setQuestionMessage(
+          com.ServerResponseMessage.QuestionMessage.Builder builderForValue) {
+        if (questionMessageBuilder_ == null) {
+          questionMessage_ = builderForValue.build();
+          onChanged();
+        } else {
+          questionMessageBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public Builder mergeQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
+        if (questionMessageBuilder_ == null) {
+          if (questionMessage_ != null) {
+            questionMessage_ =
+              com.ServerResponseMessage.QuestionMessage.newBuilder(questionMessage_).mergeFrom(value).buildPartial();
+          } else {
+            questionMessage_ = value;
+          }
+          onChanged();
+        } else {
+          questionMessageBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public Builder clearQuestionMessage() {
+        if (questionMessageBuilder_ == null) {
+          questionMessage_ = null;
+          onChanged();
+        } else {
+          questionMessage_ = null;
+          questionMessageBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public com.ServerResponseMessage.QuestionMessage.Builder getQuestionMessageBuilder() {
+        
+        onChanged();
+        return getQuestionMessageFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
+        if (questionMessageBuilder_ != null) {
+          return questionMessageBuilder_.getMessageOrBuilder();
+        } else {
+          return questionMessage_ == null ?
+              com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
+        }
+      }
+      /**
+       * <code>.QuestionMessage questionMessage = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
+          getQuestionMessageFieldBuilder() {
+        if (questionMessageBuilder_ == null) {
+          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder>(
+                  getQuestionMessage(),
+                  getParentForChildren(),
+                  isClean());
+          questionMessage_ = null;
+        }
+        return questionMessageBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -19884,61 +20142,62 @@ public final class ServerResponseMessage {
       "sponse\022\017\n\007success\030\001 \001(\010\"#\n\020GoodUserRespo" +
       "nse\022\017\n\007success\030\001 \001(\010\"W\n\033QuestionInformat" +
       "ionResponse\022)\n\017questionMessage\030\001 \001(\0132\020.Q",
-      "uestionMessage\022\r\n\005exist\030\002 \001(\010\"<\n\027UserInf" +
+      "uestionMessage\022\r\n\005exist\030\002 \001(\010\"K\n\027UserInf" +
       "ormationResponse\022!\n\013userMessage\030\001 \001(\0132\014." +
-      "UserMessage\"Y\n\027GetQuestionListResponse\022\013" +
-      "\n\003num\030\001 \001(\005\0221\n\023questionListMessage\030\002 \003(\013" +
-      "2\024.QuestionListMessage\")\n\026CreateQuestion" +
-      "Response\022\017\n\007success\030\001 \001(\010\"*\n\027AbandonQues" +
-      "tionResponse\022\017\n\007success\030\001 \001(\010\"o\n\031SearchI" +
-      "nformationResponse\022\037\n\nsearchType\030\001 \001(\0162\013" +
-      ".SEARCHTYPE\0221\n\023questionListMessage\030\003 \003(\013" +
-      "2\024.QuestionListMessage\"\325\001\n\022GetCosSignRes",
-      "ponse\022\017\n\007success\030\001 \001(\010\022+\n\004sign\030\002 \003(\0132\035.G" +
-      "etCosSignResponse.SignEntry\022.\n\010signType\030" +
-      "\003 \001(\0162\034.GetCosSignResponse.SIGNTYPE\032+\n\tS" +
-      "ignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001" +
-      "\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"o" +
-      "\n\rUpdateMessage\022+\n\tuserEnter\030\001 \001(\0132\030.Upd" +
-      "ateMessage.UserEnter\0321\n\tUserEnter\022\020\n\010use" +
-      "rname\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\273\006\n\007Mess" +
-      "age\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030" +
-      "\002 \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.LaunchRes",
-      "ponse\022+\n\020registerResponse\030\004 \001(\0132\021.Regist" +
-      "erResponse\022!\n\013sendContent\030\005 \001(\0132\014.SendCo" +
-      "ntent\0221\n\023announcementMessage\030\006 \001(\0132\024.Ann" +
-      "ouncementMessage\0225\n\025questionEnterRespons" +
-      "e\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024goodQ" +
-      "uestionResponse\030\010 \001(\0132\025.GoodQuestionResp" +
-      "onse\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUse" +
-      "rResponse\022/\n\022getCosSignResponse\030\t \001(\0132\023." +
-      "GetCosSignResponse\022%\n\rupdateMessage\030\013 \001(" +
-      "\0132\016.UpdateMessage\022A\n\033questionInformation",
-      "Response\030\r \001(\0132\034.QuestionInformationResp" +
-      "onse\0229\n\027userInformationResponse\030\016 \001(\0132\030." +
-      "UserInformationResponse\0229\n\027getQuestionLi" +
-      "stResponse\030\017 \001(\0132\030.GetQuestionListRespon" +
-      "se\0227\n\026createQuestionResponse\030\022 \001(\0132\027.Cre" +
-      "ateQuestionResponse\0229\n\027abandonQuestionRe" +
-      "sponse\030\023 \001(\0132\030.AbandonQuestionResponse\022=" +
-      "\n\031searchInformationResponse\030\024 \001(\0132\032.Sear" +
-      "chInformationResponse*\235\003\n\003MSG\022\023\n\017LAUNCH_" +
-      "RESPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEN",
-      "D_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n" +
-      "\027QUESTION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QUEST" +
-      "ION_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022" +
-      "\n\016UPDATE_MESSAGE\020\010\022\031\n\025GET_COS_SIGN_RESPO" +
-      "NSE\020\t\022!\n\035QUESTION_INFORMATION_RESPONSE\020\n" +
-      "\022\035\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n\032GET_Q" +
-      "UESTION_LIST_RESPONSE\020\014\022\034\n\030CREATE_QUESTI" +
-      "ON_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_RESPON" +
-      "SE\020\020\022\037\n\033SEARCH_INFORMATION_RESPONSE\020\021*H\n" +
-      "\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTU",
-      "RE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTU" +
-      "RETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVO" +
-      "ICETYPE\022\007\n\003MP4\020\000*\032\n\nSEARCHTYPE\022\014\n\010QUESTI" +
-      "ON\020\000B\034\n\003comB\025ServerResponseMessageb\006prot" +
-      "o3"
+      "UserMessage\022\r\n\005exist\030\002 \001(\010\"Y\n\027GetQuestio" +
+      "nListResponse\022\013\n\003num\030\001 \001(\005\0221\n\023questionLi" +
+      "stMessage\030\002 \003(\0132\024.QuestionListMessage\"T\n" +
+      "\026CreateQuestionResponse\022\017\n\007success\030\001 \001(\010" +
+      "\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionMess" +
+      "age\"*\n\027AbandonQuestionResponse\022\017\n\007succes" +
+      "s\030\001 \001(\010\"o\n\031SearchInformationResponse\022\037\n\n" +
+      "searchType\030\001 \001(\0162\013.SEARCHTYPE\0221\n\023questio",
+      "nListMessage\030\003 \003(\0132\024.QuestionListMessage" +
+      "\"\325\001\n\022GetCosSignResponse\022\017\n\007success\030\001 \001(\010" +
+      "\022+\n\004sign\030\002 \003(\0132\035.GetCosSignResponse.Sign" +
+      "Entry\022.\n\010signType\030\003 \001(\0162\034.GetCosSignResp" +
+      "onse.SIGNTYPE\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022" +
+      "\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLO" +
+      "AD\020\000\022\n\n\006UPLOAD\020\001\"o\n\rUpdateMessage\022+\n\tuse" +
+      "rEnter\030\001 \001(\0132\030.UpdateMessage.UserEnter\0321" +
+      "\n\tUserEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestio" +
+      "nID\030\002 \001(\003\"\273\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162",
+      "\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse" +
+      "\030\003 \001(\0132\017.LaunchResponse\022+\n\020registerRespo" +
+      "nse\030\004 \001(\0132\021.RegisterResponse\022!\n\013sendCont" +
+      "ent\030\005 \001(\0132\014.SendContent\0221\n\023announcementM" +
+      "essage\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025qu" +
+      "estionEnterResponse\030\007 \001(\0132\026.QuestionEnte" +
+      "rResponse\0223\n\024goodQuestionResponse\030\010 \001(\0132" +
+      "\025.GoodQuestionResponse\022+\n\020goodUserRespon" +
+      "se\030\n \001(\0132\021.GoodUserResponse\022/\n\022getCosSig" +
+      "nResponse\030\t \001(\0132\023.GetCosSignResponse\022%\n\r",
+      "updateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n\033q" +
+      "uestionInformationResponse\030\r \001(\0132\034.Quest" +
+      "ionInformationResponse\0229\n\027userInformatio" +
+      "nResponse\030\016 \001(\0132\030.UserInformationRespons" +
+      "e\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.Get" +
+      "QuestionListResponse\0227\n\026createQuestionRe" +
+      "sponse\030\022 \001(\0132\027.CreateQuestionResponse\0229\n" +
+      "\027abandonQuestionResponse\030\023 \001(\0132\030.Abandon" +
+      "QuestionResponse\022=\n\031searchInformationRes" +
+      "ponse\030\024 \001(\0132\032.SearchInformationResponse*",
+      "\235\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER" +
+      "_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNC" +
+      "EMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPON" +
+      "SE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD" +
+      "_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\031\n\025" +
+      "GET_COS_SIGN_RESPONSE\020\t\022!\n\035QUESTION_INFO" +
+      "RMATION_RESPONSE\020\n\022\035\n\031USER_INFORMATION_R" +
+      "ESPONSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020" +
+      "\014\022\034\n\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031ABAND" +
+      "ON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMA",
+      "TION_RESPONSE\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_" +
+      "MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_" +
+      "MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PN" +
+      "G\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000*\032\n\nSE" +
+      "ARCHTYPE\022\014\n\010QUESTION\020\000B\034\n\003comB\025ServerRes" +
+      "ponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -20041,7 +20300,7 @@ public final class ServerResponseMessage {
     internal_static_UserInformationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserInformationResponse_descriptor,
-        new java.lang.String[] { "UserMessage", });
+        new java.lang.String[] { "UserMessage", "Exist", });
     internal_static_GetQuestionListResponse_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_GetQuestionListResponse_fieldAccessorTable = new
@@ -20053,7 +20312,7 @@ public final class ServerResponseMessage {
     internal_static_CreateQuestionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateQuestionResponse_descriptor,
-        new java.lang.String[] { "Success", });
+        new java.lang.String[] { "Success", "QuestionMessage", });
     internal_static_AbandonQuestionResponse_descriptor =
       getDescriptor().getMessageTypes().get(16);
     internal_static_AbandonQuestionResponse_fieldAccessorTable = new
