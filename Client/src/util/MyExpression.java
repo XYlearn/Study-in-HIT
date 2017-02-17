@@ -1,5 +1,6 @@
 package util;
 
+import bin.test;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-class MyExpression
+public class MyExpression
 {
 	private ArrayList<MyExpression> expressions=new ArrayList<MyExpression>();
 	private ArrayList<String> strings=new ArrayList<String>();
@@ -23,7 +24,7 @@ class MyExpression
 	//需要处理的符号：
 	//替换：root
 
-	MyExpression(){}
+	public MyExpression(){}
 
 	/*public static void main(String[] args)
 	{
@@ -322,7 +323,7 @@ class MyExpression
 		{
 			System.out.println("写入图片出错！");//写入图片出错
 		}
-		imageFile.renameTo(new File(CLASSPATH+MD5Tools.FileToMD5(imageFile)+".jpg"));
+		imageFile.renameTo(new File(test.PICTPATH+MD5Tools.FileToMD5(imageFile)+".jpg"));
 		if(imageFile.exists()) imageFile.delete();
 		return b;
 	}

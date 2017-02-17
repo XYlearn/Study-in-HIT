@@ -28,7 +28,7 @@ public class test
 
 	public static final void main()
 	{
-		/*new Thread(client).start();
+		new Thread(client).start();
 		synchronized(client)
 		{
 			try
@@ -74,7 +74,7 @@ public class test
 		//c.pushMessage(new MyMessage("ask","22:11:15","en"));
 		//c.pushMessage(new MyMessage("a","22:11:15","en"));
 		//System.out.println(c.myPane.getText());
-		/*Scanner s=new Scanner(System.in);
+		Scanner s=new Scanner(System.in);
 		String cmd, tmp=null;
 		while (s.hasNext())
 		{
@@ -103,7 +103,9 @@ public class test
 				case "create":
 					try
 					{
-						client.createQuestion("第一个问题", "描述", new ArrayList<>(1));
+						ArrayList<String> tmparray=new ArrayList<>();
+						tmparray.add("这个");
+						client.createQuestion("第一个问题", "描述", tmparray);
 					} catch (IOException ex)
 					{
 						System.out.println("网络异常");
@@ -132,8 +134,8 @@ public class test
 					System.out.println(tmp);
 					break;
 			}
-		}*/
-		JFrame f=new JFrame("My Application");
+		}
+		/*JFrame f=new JFrame("My Application");
 		ListBox listbox=new ListBox();
 		f.add(listbox);
 		listbox.setSize(300,600);
@@ -157,5 +159,6 @@ public class test
 		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
 		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
 		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
+		*/
 	}
 }
