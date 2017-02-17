@@ -8,10 +8,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.AbstractListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import java.util.ArrayList;
 import java.util.function.Consumer;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -71,7 +69,7 @@ public class ListBox extends JPanel
 	
 	/**
 	 *
-	 * @param data
+	 * @param data  The element data to be added
 	 */
 	public void add(ListElementData data)
 	{
@@ -141,5 +139,10 @@ public class ListBox extends JPanel
 	public void removeElementAt(int index)
 	{
 		mymodel.removeElementAt(index);
+	}
+	
+	public void readList(String listData)
+	{
+		//to be finished
 	}
 }
