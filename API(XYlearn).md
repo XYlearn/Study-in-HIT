@@ -17,6 +17,21 @@ public void launchRequest(String username, String password) throws IOException
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* status:成功状态
+* information:说明信息（登录成功，登录失败原因之类）
+* userMessage:用户信息
+
+userMessage结构（以下同）：
+* username:用户名
+* good:得赞数
+* questionNum:提问总数
+* solvedQuestionNum:解决问题的数量
+* bonus:点数
+* signature:签名
+* mail_address:邮箱地址
+* pic_url:头像地址
+
 -----
 
 ##### 原型：
@@ -28,6 +43,9 @@ public void logout() throws IOException
 ##### 参数：无
 
 ##### 返回值：无
+
+#### 服务器反馈消息:
+无
 
 -----
 
@@ -45,6 +63,18 @@ public void sendContent(String contents,ArrayList<String> pictures,String questi
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* sendContent消息体（与发送包相同）
+
+sendContent结构:
+* questionID:发送到的问题号
+* content:发送内容
+* time:发送时间
+* user:发送者
+* pictures:(map结构){发送的图片存储名,cos签名}
+* success:是否成功
+* isMyself:是否为自己
+
 -----
 
 ##### 原型：
@@ -59,6 +89,10 @@ public void goodUser(String user) throws IOException
 |user|String|要赞用户的用户名，不能是自己|
 
 ##### 返回值：无
+
+#### 服务器反馈消息：
+* success:是否成功
+（结构待完善）
 
 -----
 
@@ -75,6 +109,10 @@ public void goodQuestion(String questionID) throws IOException
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* success: 是否成功
+(结构代完善)
+
 -----
 
 ##### 原型：
@@ -89,6 +127,26 @@ public void enterQuestion(String questionID) throws IOException
 |questionID|String|问题号|
 
 ##### 返回值：无
+
+#### 服务器反馈消息：
+* allow:进入是否成功
+* questionMessage:问题信息
+
+questionMessage结构（下同）:
+* id:问题号
+* stem:提干
+* addition:补充
+* time:提问时间
+* owner:提问者
+* record:问答记录
+* solved:解决与否
+* good:赞数
+
+record（问答记录）结构：
+content:内容
+time:发送时间
+user:发送者
+(图片信息待完善)
 
 -----
 
@@ -116,12 +174,14 @@ public void requestQuestionInfo(String questionID) throws IOException
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* exist:问题师傅存在
+* questionMessage:问题信息(见上文)
+
 -----
 
 ##### 原型：
-public void requestQuestionList(ClientSendMessage.LIST_REFERENCE reference,
-      ClientSendMessage.RANKORDER rankorder,
-      int	questionNum) throws  IOException
+public void requestQuestionList(ClientSendMessage.LIST_REFERENCE reference,ClientSendMessage.RANKORDER rankorder,int	questionNum) throws  IOException
 ##### 介绍:
 请求获得问题列表
 列表项中将包含以下信息(可以继续增加)：
@@ -143,6 +203,19 @@ public void requestQuestionList(ClientSendMessage.LIST_REFERENCE reference,
 |questionNum|int|请求获取的问题列表项数目|
 
 ##### 返回值：无
+
+#### 服务器反馈消息：
+* num:返回的问题列表项数（小于等于请求的列表项数）
+* (repeated)questionListMessage:问题列表项信息
+
+questionListMessage结构(下同):
+* questionID:问题号
+* questionDescription:问题描述
+* good:得赞数
+* userNum:在线用户人数
+* time:创建时间
+* owner:拥有者
+（待完善）
 
 -----
 
@@ -171,6 +244,10 @@ public void requestUserInfo(String user) throws IOException
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* exist:用户是否存在
+* userMessage:见上文
+
 -----
 
 ##### 原型：
@@ -188,6 +265,9 @@ public void createQuestion(String stem, String addition, ArrayList<String> keywo
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* questionMessage:见上文
+
 -----
 
 ##### 原型：
@@ -203,6 +283,9 @@ public void abandonQuestion(long questionID) throws IOException
 
 ##### 返回值：无
 
+#### 服务器反馈消息：
+* success:是否成功,不成功说明权限不足
+
 -----
 
 ##### 原型：
@@ -217,5 +300,27 @@ public void searchInformation(ArrayList< String > keywords) throws IOException
 |keywords|ArrayList< String >|问题题干和补充的关键分词|
 
 ##### 返回值：无
+
+#### 服务器反馈消息：
+* (repeated)questionListMessage:见上
+
+-----
+
+##### 原型：
+public void solveQuestion(long questionID) throws IOException
+
+##### 介绍:
+标志问题为已解决状态(仅问题提问者可以执行，管理员也可以删除问题)
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|questionID|long|问题号|
+
+##### 返回值：无
+
+#### 服务器反馈消息:
+1. success:成功与否
+2. questionID:问题题号
 
 -----

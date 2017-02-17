@@ -119,10 +119,7 @@ public class NIOServer {
 			ServerResponseMessage.Message response = null;
 
 			//读取数据
-			tempBuffer.position(tempBuffer.limit());
-			tempBuffer.limit(BUFFERSIZE);
 			count = client.read(tempBuffer);
-			tempBuffer.flip();
 			if(count > rbuffer.remaining()) {
 				fullflag=true;
 			} else {
@@ -131,6 +128,7 @@ public class NIOServer {
 			if (count > 0) {
 				try {
 					if(!fullflag) {
+						tempBuffer.flip();
 						rbuffer.put(tempBuffer.slice());
 						tempBuffer.clear();
 						rbuffer.flip();
