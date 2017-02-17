@@ -28,9 +28,9 @@ public class Test {
 			client.launchRequest("Test", "123456");
 			ArrayList<String> s = new ArrayList<>();
 			s.add("2+2=?");
-			client.createQuestion("2+2=?","求解，好难",s);
 			client.enterQuestion("1");
 			client.sendContent("hello", new ArrayList<>(), "1");
+			client.solveQuestion(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

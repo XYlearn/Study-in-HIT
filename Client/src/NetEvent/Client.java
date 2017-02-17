@@ -29,7 +29,9 @@ public class Client implements Runnable {
 
 	private static String host = "123.207.159.156";
 	private static int port = 6666;
-	private static ByteBuffer rbuffer = ByteBuffer.allocate(102400);
+	private static final int BUFFERSIZE = 102400;
+	private static ByteBuffer rbuffer = ByteBuffer.allocate(BUFFERSIZE);
+	private ByteBuffer tempBuffer = ByteBuffer.allocate(102400);
 
 	private SocketChannel channel = null;
 	private Selector selector = null;
@@ -45,9 +47,11 @@ public class Client implements Runnable {
 	private boolean connected = false;
 	public boolean isConnected() {return connected;}
 
-	//顶级包文件路径
-	private static final String CLASSPATH=Client.class.getResource("").getPath();
-	private static final String PATH="file:"+CLASSPATH;
+	//文件路径
+	public static final String MAINPATH=bin.test.class.getResource("").getPath()
+			  .substring(0, bin.test.class.getResource("").getPath().length()-4);
+	public static final String PICTPATH=MAINPATH+"pictures/";
+	public static final String FILEPATH=MAINPATH+"files/";
 
 	//COS 文件操作
 	FileOP fileOP = new FileOP(
@@ -90,13 +94,20 @@ public class Client implements Runnable {
 					} else if (key.isReadable() && connected) {
 						//读取数据
 						ServerResponseMessage.Message recvMessage = null;
-
-						ByteBuffer tempBuffer = ByteBuffer.allocate(10240*3);
+						boolean fullflag = false;
 						int count = channel.read(tempBuffer);
-						tempBuffer.flip();
+						if(count > rbuffer.remaining()) {
+							fullflag = true;
+						} else {
+							fullflag = false;
+						}
 						if (count > 0) {
-							rbuffer.put(tempBuffer.slice());
-							rbuffer.flip();
+							if(!fullflag) {
+								tempBuffer.flip();
+								rbuffer.put(tempBuffer.slice());
+								tempBuffer.clear();
+								rbuffer.flip();
+							}
 							int remain = rbuffer.remaining();
 							while (remain > 0) {
 								if (bodyLen <= 0) {
@@ -197,6 +208,9 @@ public class Client implements Runnable {
 					break;
 				case UPDATE_MESSAGE:
 					handleUpdateMessage(recvMessage);
+					break;
+				case SOLVED_QUESTION_RESPONSE:
+					handleResponseSolvedQuestion(recvMessage);
 					break;
 				default:
 					throw new Exception("Unknown Message Type");
@@ -314,7 +328,7 @@ public class Client implements Runnable {
 			//对每一个图片进行处理
 			for (Map.Entry<String, String> entry : sendContent.getPicturesMap().entrySet()) {
 				//若文件在本地不存在则下载
-				if (!(new File(CLASSPATH + entry.getKey()).exists())) {
+				if (!(new File(PICTPATH + entry.getKey()).exists())) {
 					fileOP.changeSign(entry.getValue());
 					boolean finish = false;
 					for(int count = 0;count < 10 && !finish;) {
@@ -323,7 +337,7 @@ public class Client implements Runnable {
 									  new GetFileLocalRequest(
 												 fileOP.getBucktName(),
 												 "/" + entry.getKey(),
-												 CLASSPATH + entry.getKey())
+												 PICTPATH + entry.getKey())
 							);
 							finish = true;
 						} catch (Exception e) {
@@ -587,6 +601,16 @@ public class Client implements Runnable {
 		sendIt(sendMessage);
 	}
 
+	public void solveQuestion(long questionID) throws IOException {
+		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.SOLVED_QUESTION_REQUEST)
+				  .setUsername(username)
+				  .setSolvedQuestionRequest(
+							 ClientSendMessage.SolvedQuestionRequest.newBuilder()
+							 .setQuestionID(questionID)
+				  ).build();
+		sendIt(sendMessage);
+	}
 
 	public void handleResponseGetCosSig(ServerResponseMessage.Message recvMessage) {
 		ServerResponseMessage.GetCosSignResponse getCosSignResponse =
@@ -602,7 +626,7 @@ public class Client implements Runnable {
 							fileOP.uploadFile(new UploadFileRequest(
 												 fileOP.getBucktName(),
 												 "/" + entry.getKey(),
-												 CLASSPATH + entry.getKey()
+												 PICTPATH + entry.getKey()
 									  )
 							);
 						} catch (Exception e) {
@@ -617,7 +641,7 @@ public class Client implements Runnable {
 							fileOP.getFileLocal(new GetFileLocalRequest(
 									  fileOP.getBucktName(),
 									  "/" + entry.getKey(),
-									  CLASSPATH + entry.getValue()
+									  PICTPATH + entry.getValue()
 							));
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -637,6 +661,23 @@ public class Client implements Runnable {
 		String user = userEnter.getUsername();
 		long questionID = userEnter.getQuestionID();
 		System.out.println(user+"进入了问题"+questionID);
+		System.out.println();
+	}
+
+	private void handleResponseSolvedQuestion(ServerResponseMessage.Message recvMessage) {
+		ServerResponseMessage.SolvedQuestionResponse solvedQuestionResponse =
+				  recvMessage.getSolvedQuestionResponse();
+		boolean success = solvedQuestionResponse.getSuccess();
+		long questionID = solvedQuestionResponse.getQuestionID();
+		if(success) {
+			System.out.println("成功将问题"+questionID+"标志为解决状态");
+		} else {
+			if(questionID==0) {
+				System.out.println("问题不存在");
+			} else {
+				System.out.println("权限不足，无法将问题"+questionID+"标志为解决状态");
+			}
+		}
 		System.out.println();
 	}
 
