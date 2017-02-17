@@ -149,6 +149,15 @@ public class ServerItem {
 					} else
 						return null;
 				case SEARCH_INFORMATION_REQUEST:	//搜索信息
+					if(message.hasSearchInformationRequest()) {
+						return ServerResponseMessage.Message.newBuilder()
+								  .setMsgType(ServerResponseMessage.MSG.SEARCH_INFORMATION_RESPONSE)
+								  .setUsername(username)
+								  .setSearchInformationResponse(
+								  		  handleSearchInformationRequest(message.getSearchInformationRequest())
+								  ).build();
+					}
+					break;
 				case GET_COS_SIGN_REQUEST:	//获取签名请求
 					if(message.hasGetCosSignRequest()) {
 						try {
@@ -163,9 +172,24 @@ public class ServerItem {
 							return ServerResponseMessage.Message.newBuilder().build();
 						}
 					}
-
+					break;
+				case SOLVED_QUESTION_REQUEST:
+					if(message.hasSolvedQuestionRequest()) {
+						try {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.SOLVED_QUESTION_RESPONSE)
+									  .setUsername(username)
+									  .setSolvedQuestionResponse(
+											handleSolvedQuestionRequest(message.getSolvedQuestionRequest())
+									  ).build();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					break;
 				default:
-					return null;
+					return ServerResponseMessage.Message.newBuilder()
+							  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
 			}
 		} catch (SQLException e) {
 			NIOServer.logger.write(e.getMessage());
@@ -173,6 +197,9 @@ public class ServerItem {
 			return ServerResponseMessage.Message.newBuilder()
 					  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
 		}
+
+		return ServerResponseMessage.Message.newBuilder()
+				  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
 	}
 
 	private ServerResponseMessage.LaunchResponse
@@ -859,5 +886,33 @@ public class ServerItem {
 		response = builder.build();
 		return response;
 
+	}
+
+	private ServerResponseMessage.SolvedQuestionResponse
+	handleSolvedQuestionRequest (ClientSendMessage.SolvedQuestionRequest request)
+				throws SQLException {
+		ServerResponseMessage.SolvedQuestionResponse response = null;
+
+		Long questionID = request.getQuestionID();
+		sql = "SELECT owner FROM question WHERE id="+questionID+";";
+		ResultSet rs = stmt.executeQuery(sql);
+		if(rs.next()) {
+			String owner = rs.getString("owner");
+			rs.close();
+			if(owner.equals(username)) {
+				sql = "UPDATE question SET solved=1 WHERE id="+questionID+";";
+				stmt.execute(sql);
+				return ServerResponseMessage.SolvedQuestionResponse.newBuilder()
+						  .setSuccess(true).setQuestionID(questionID).build();
+			}
+			//权限不足
+			else {
+				return ServerResponseMessage.SolvedQuestionResponse.newBuilder()
+						  .setSuccess(false).setQuestionID(questionID).build();
+			}
+		}
+		//房间不存在
+		return ServerResponseMessage.SolvedQuestionResponse.newBuilder()
+					  .setSuccess(false).setQuestionID(0).build();
 	}
 }

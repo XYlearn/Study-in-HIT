@@ -119,6 +119,14 @@ public final class ClientSendMessage {
      * <code>SEARCH_INFORMATION_REQUEST = 17;</code>
      */
     SEARCH_INFORMATION_REQUEST(17),
+    /**
+     * <pre>
+     *把问题标志为已解决
+     * </pre>
+     *
+     * <code>SOLVED_QUESTION_REQUEST = 18;</code>
+     */
+    SOLVED_QUESTION_REQUEST(18),
     UNRECOGNIZED(-1),
     ;
 
@@ -218,6 +226,14 @@ public final class ClientSendMessage {
      * <code>SEARCH_INFORMATION_REQUEST = 17;</code>
      */
     public static final int SEARCH_INFORMATION_REQUEST_VALUE = 17;
+    /**
+     * <pre>
+     *把问题标志为已解决
+     * </pre>
+     *
+     * <code>SOLVED_QUESTION_REQUEST = 18;</code>
+     */
+    public static final int SOLVED_QUESTION_REQUEST_VALUE = 18;
 
 
     public final int getNumber() {
@@ -253,6 +269,7 @@ public final class ClientSendMessage {
         case 15: return CREATE_QUESTION_REQUEST;
         case 16: return ABANDON_QUESTION_REQUEST;
         case 17: return SEARCH_INFORMATION_REQUEST;
+        case 18: return SOLVED_QUESTION_REQUEST;
         default: return null;
       }
     }
@@ -10411,6 +10428,444 @@ public final class ClientSendMessage {
 
   }
 
+  public interface SolvedQuestionRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SolvedQuestionRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 questionID = 1;</code>
+     */
+    long getQuestionID();
+  }
+  /**
+   * <pre>
+   *标志问题为解决状态
+   * </pre>
+   *
+   * Protobuf type {@code SolvedQuestionRequest}
+   */
+  public  static final class SolvedQuestionRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:SolvedQuestionRequest)
+      SolvedQuestionRequestOrBuilder {
+    // Use SolvedQuestionRequest.newBuilder() to construct.
+    private SolvedQuestionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SolvedQuestionRequest() {
+      questionID_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private SolvedQuestionRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              questionID_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ClientSendMessage.internal_static_SolvedQuestionRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ClientSendMessage.internal_static_SolvedQuestionRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ClientSendMessage.SolvedQuestionRequest.class, com.ClientSendMessage.SolvedQuestionRequest.Builder.class);
+    }
+
+    public static final int QUESTIONID_FIELD_NUMBER = 1;
+    private long questionID_;
+    /**
+     * <code>int64 questionID = 1;</code>
+     */
+    public long getQuestionID() {
+      return questionID_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (questionID_ != 0L) {
+        output.writeInt64(1, questionID_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (questionID_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, questionID_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ClientSendMessage.SolvedQuestionRequest)) {
+        return super.equals(obj);
+      }
+      com.ClientSendMessage.SolvedQuestionRequest other = (com.ClientSendMessage.SolvedQuestionRequest) obj;
+
+      boolean result = true;
+      result = result && (getQuestionID()
+          == other.getQuestionID());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getQuestionID());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ClientSendMessage.SolvedQuestionRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *标志问题为解决状态
+     * </pre>
+     *
+     * Protobuf type {@code SolvedQuestionRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:SolvedQuestionRequest)
+        com.ClientSendMessage.SolvedQuestionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ClientSendMessage.internal_static_SolvedQuestionRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ClientSendMessage.internal_static_SolvedQuestionRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ClientSendMessage.SolvedQuestionRequest.class, com.ClientSendMessage.SolvedQuestionRequest.Builder.class);
+      }
+
+      // Construct using com.ClientSendMessage.SolvedQuestionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        questionID_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ClientSendMessage.internal_static_SolvedQuestionRequest_descriptor;
+      }
+
+      public com.ClientSendMessage.SolvedQuestionRequest getDefaultInstanceForType() {
+        return com.ClientSendMessage.SolvedQuestionRequest.getDefaultInstance();
+      }
+
+      public com.ClientSendMessage.SolvedQuestionRequest build() {
+        com.ClientSendMessage.SolvedQuestionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ClientSendMessage.SolvedQuestionRequest buildPartial() {
+        com.ClientSendMessage.SolvedQuestionRequest result = new com.ClientSendMessage.SolvedQuestionRequest(this);
+        result.questionID_ = questionID_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ClientSendMessage.SolvedQuestionRequest) {
+          return mergeFrom((com.ClientSendMessage.SolvedQuestionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ClientSendMessage.SolvedQuestionRequest other) {
+        if (other == com.ClientSendMessage.SolvedQuestionRequest.getDefaultInstance()) return this;
+        if (other.getQuestionID() != 0L) {
+          setQuestionID(other.getQuestionID());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ClientSendMessage.SolvedQuestionRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ClientSendMessage.SolvedQuestionRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long questionID_ ;
+      /**
+       * <code>int64 questionID = 1;</code>
+       */
+      public long getQuestionID() {
+        return questionID_;
+      }
+      /**
+       * <code>int64 questionID = 1;</code>
+       */
+      public Builder setQuestionID(long value) {
+        
+        questionID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 questionID = 1;</code>
+       */
+      public Builder clearQuestionID() {
+        
+        questionID_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:SolvedQuestionRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:SolvedQuestionRequest)
+    private static final com.ClientSendMessage.SolvedQuestionRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ClientSendMessage.SolvedQuestionRequest();
+    }
+
+    public static com.ClientSendMessage.SolvedQuestionRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SolvedQuestionRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SolvedQuestionRequest>() {
+      public SolvedQuestionRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SolvedQuestionRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SolvedQuestionRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SolvedQuestionRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ClientSendMessage.SolvedQuestionRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface MessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Message)
       com.google.protobuf.MessageOrBuilder {
@@ -10628,6 +11083,19 @@ public final class ClientSendMessage {
      * <code>.SearchInformationRequest searchInformationRequest = 20;</code>
      */
     com.ClientSendMessage.SearchInformationRequestOrBuilder getSearchInformationRequestOrBuilder();
+
+    /**
+     * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+     */
+    boolean hasSolvedQuestionRequest();
+    /**
+     * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+     */
+    com.ClientSendMessage.SolvedQuestionRequest getSolvedQuestionRequest();
+    /**
+     * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+     */
+    com.ClientSendMessage.SolvedQuestionRequestOrBuilder getSolvedQuestionRequestOrBuilder();
   }
   /**
    * <pre>
@@ -10877,6 +11345,19 @@ public final class ClientSendMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(searchInformationRequest_);
                 searchInformationRequest_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 170: {
+              com.ClientSendMessage.SolvedQuestionRequest.Builder subBuilder = null;
+              if (solvedQuestionRequest_ != null) {
+                subBuilder = solvedQuestionRequest_.toBuilder();
+              }
+              solvedQuestionRequest_ = input.readMessage(com.ClientSendMessage.SolvedQuestionRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(solvedQuestionRequest_);
+                solvedQuestionRequest_ = subBuilder.buildPartial();
               }
 
               break;
@@ -11269,6 +11750,27 @@ public final class ClientSendMessage {
       return getSearchInformationRequest();
     }
 
+    public static final int SOLVEDQUESTIONREQUEST_FIELD_NUMBER = 21;
+    private com.ClientSendMessage.SolvedQuestionRequest solvedQuestionRequest_;
+    /**
+     * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+     */
+    public boolean hasSolvedQuestionRequest() {
+      return solvedQuestionRequest_ != null;
+    }
+    /**
+     * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+     */
+    public com.ClientSendMessage.SolvedQuestionRequest getSolvedQuestionRequest() {
+      return solvedQuestionRequest_ == null ? com.ClientSendMessage.SolvedQuestionRequest.getDefaultInstance() : solvedQuestionRequest_;
+    }
+    /**
+     * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+     */
+    public com.ClientSendMessage.SolvedQuestionRequestOrBuilder getSolvedQuestionRequestOrBuilder() {
+      return getSolvedQuestionRequest();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -11331,6 +11833,9 @@ public final class ClientSendMessage {
       }
       if (searchInformationRequest_ != null) {
         output.writeMessage(20, getSearchInformationRequest());
+      }
+      if (solvedQuestionRequest_ != null) {
+        output.writeMessage(21, getSolvedQuestionRequest());
       }
     }
 
@@ -11405,6 +11910,10 @@ public final class ClientSendMessage {
       if (searchInformationRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getSearchInformationRequest());
+      }
+      if (solvedQuestionRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, getSolvedQuestionRequest());
       }
       memoizedSize = size;
       return size;
@@ -11500,6 +12009,11 @@ public final class ClientSendMessage {
         result = result && getSearchInformationRequest()
             .equals(other.getSearchInformationRequest());
       }
+      result = result && (hasSolvedQuestionRequest() == other.hasSolvedQuestionRequest());
+      if (hasSolvedQuestionRequest()) {
+        result = result && getSolvedQuestionRequest()
+            .equals(other.getSolvedQuestionRequest());
+      }
       return result;
     }
 
@@ -11573,6 +12087,10 @@ public final class ClientSendMessage {
       if (hasSearchInformationRequest()) {
         hash = (37 * hash) + SEARCHINFORMATIONREQUEST_FIELD_NUMBER;
         hash = (53 * hash) + getSearchInformationRequest().hashCode();
+      }
+      if (hasSolvedQuestionRequest()) {
+        hash = (37 * hash) + SOLVEDQUESTIONREQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getSolvedQuestionRequest().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -11790,6 +12308,12 @@ public final class ClientSendMessage {
           searchInformationRequest_ = null;
           searchInformationRequestBuilder_ = null;
         }
+        if (solvedQuestionRequestBuilder_ == null) {
+          solvedQuestionRequest_ = null;
+        } else {
+          solvedQuestionRequest_ = null;
+          solvedQuestionRequestBuilder_ = null;
+        }
         return this;
       }
 
@@ -11889,6 +12413,11 @@ public final class ClientSendMessage {
         } else {
           result.searchInformationRequest_ = searchInformationRequestBuilder_.build();
         }
+        if (solvedQuestionRequestBuilder_ == null) {
+          result.solvedQuestionRequest_ = solvedQuestionRequest_;
+        } else {
+          result.solvedQuestionRequest_ = solvedQuestionRequestBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -11981,6 +12510,9 @@ public final class ClientSendMessage {
         }
         if (other.hasSearchInformationRequest()) {
           mergeSearchInformationRequest(other.getSearchInformationRequest());
+        }
+        if (other.hasSolvedQuestionRequest()) {
+          mergeSolvedQuestionRequest(other.getSolvedQuestionRequest());
         }
         onChanged();
         return this;
@@ -13875,6 +14407,123 @@ public final class ClientSendMessage {
         }
         return searchInformationRequestBuilder_;
       }
+
+      private com.ClientSendMessage.SolvedQuestionRequest solvedQuestionRequest_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ClientSendMessage.SolvedQuestionRequest, com.ClientSendMessage.SolvedQuestionRequest.Builder, com.ClientSendMessage.SolvedQuestionRequestOrBuilder> solvedQuestionRequestBuilder_;
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public boolean hasSolvedQuestionRequest() {
+        return solvedQuestionRequestBuilder_ != null || solvedQuestionRequest_ != null;
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public com.ClientSendMessage.SolvedQuestionRequest getSolvedQuestionRequest() {
+        if (solvedQuestionRequestBuilder_ == null) {
+          return solvedQuestionRequest_ == null ? com.ClientSendMessage.SolvedQuestionRequest.getDefaultInstance() : solvedQuestionRequest_;
+        } else {
+          return solvedQuestionRequestBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public Builder setSolvedQuestionRequest(com.ClientSendMessage.SolvedQuestionRequest value) {
+        if (solvedQuestionRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          solvedQuestionRequest_ = value;
+          onChanged();
+        } else {
+          solvedQuestionRequestBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public Builder setSolvedQuestionRequest(
+          com.ClientSendMessage.SolvedQuestionRequest.Builder builderForValue) {
+        if (solvedQuestionRequestBuilder_ == null) {
+          solvedQuestionRequest_ = builderForValue.build();
+          onChanged();
+        } else {
+          solvedQuestionRequestBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public Builder mergeSolvedQuestionRequest(com.ClientSendMessage.SolvedQuestionRequest value) {
+        if (solvedQuestionRequestBuilder_ == null) {
+          if (solvedQuestionRequest_ != null) {
+            solvedQuestionRequest_ =
+              com.ClientSendMessage.SolvedQuestionRequest.newBuilder(solvedQuestionRequest_).mergeFrom(value).buildPartial();
+          } else {
+            solvedQuestionRequest_ = value;
+          }
+          onChanged();
+        } else {
+          solvedQuestionRequestBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public Builder clearSolvedQuestionRequest() {
+        if (solvedQuestionRequestBuilder_ == null) {
+          solvedQuestionRequest_ = null;
+          onChanged();
+        } else {
+          solvedQuestionRequest_ = null;
+          solvedQuestionRequestBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public com.ClientSendMessage.SolvedQuestionRequest.Builder getSolvedQuestionRequestBuilder() {
+        
+        onChanged();
+        return getSolvedQuestionRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      public com.ClientSendMessage.SolvedQuestionRequestOrBuilder getSolvedQuestionRequestOrBuilder() {
+        if (solvedQuestionRequestBuilder_ != null) {
+          return solvedQuestionRequestBuilder_.getMessageOrBuilder();
+        } else {
+          return solvedQuestionRequest_ == null ?
+              com.ClientSendMessage.SolvedQuestionRequest.getDefaultInstance() : solvedQuestionRequest_;
+        }
+      }
+      /**
+       * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ClientSendMessage.SolvedQuestionRequest, com.ClientSendMessage.SolvedQuestionRequest.Builder, com.ClientSendMessage.SolvedQuestionRequestOrBuilder> 
+          getSolvedQuestionRequestFieldBuilder() {
+        if (solvedQuestionRequestBuilder_ == null) {
+          solvedQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ClientSendMessage.SolvedQuestionRequest, com.ClientSendMessage.SolvedQuestionRequest.Builder, com.ClientSendMessage.SolvedQuestionRequestOrBuilder>(
+                  getSolvedQuestionRequest(),
+                  getParentForChildren(),
+                  isClean());
+          solvedQuestionRequest_ = null;
+        }
+        return solvedQuestionRequestBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -14005,6 +14654,11 @@ public final class ClientSendMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GetCosSignRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SolvedQuestionRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SolvedQuestionRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -14042,45 +14696,49 @@ public final class ClientSendMessage {
       "ds\030\001 \003(\t\"z\n\021GetCosSignRequest\022\020\n\010filenam" +
       "e\030\001 \003(\t\022-\n\010signType\030\002 \001(\0162\033.GetCosSignRe" +
       "quest.SIGNTYPE\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000" +
-      "\022\n\n\006UPLOAD\020\001\"\243\006\n\007Message\022\026\n\010msg_type\030\001 \001" +
-      "(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauchReque" +
-      "st\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutMessag" +
-      "e\030\004 \001(\0132\016.LogoutMessage\022!\n\013sendContent\030\005" +
-      " \001(\0132\014.SendContent\0221\n\023announcementMessag" +
-      "e\030\006 \001(\0132\024.AnnouncementMessage\0223\n\024questio",
-      "nEnterRequest\030\007 \001(\0132\025.QuestionEnterReque" +
-      "st\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.GoodQu" +
-      "estionRequest\022-\n\021getCosSignRequest\030\t \001(\013" +
-      "2\022.GetCosSignRequest\022)\n\017goodUserRequest\030" +
-      "\n \001(\0132\020.GoodUserRequest\022)\n\017registerReque" +
-      "st\030\013 \001(\0132\020.RegisterRequest\022?\n\032questionIn" +
-      "formationRequest\030\r \001(\0132\033.QuestionInforma" +
-      "tionRequest\0227\n\026userInformationRequest\030\016 " +
-      "\001(\0132\027.UserInformationRequest\0227\n\026getQuest" +
-      "ionListRequest\030\017 \001(\0132\027.GetQuestionListRe",
-      "quest\0225\n\025createQuestionRequest\030\022 \001(\0132\026.C" +
-      "reateQuestionRequest\0227\n\026abandonQuestionR" +
-      "equest\030\023 \001(\0132\027.AbandonQuestionRequest\022;\n" +
-      "\030searchInformationRequest\030\024 \001(\0132\031.Search" +
-      "InformationRequest*\221\003\n\003MSG\022\022\n\016LAUNCH_REQ" +
-      "UEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024\n\020REGISTER_R" +
-      "EQUEST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEME" +
-      "NT_MESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004" +
-      "\022\031\n\025GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_USER" +
-      "_REQUEST\020\007\022\030\n\024GET_COS_SIGN_REQUEST\020\t\022 \n\034",
-      "QUESTION_INFORMATION_REQUEST\020\n\022\034\n\030USER_I" +
-      "NFORMATION_REQUEST\020\013\022\035\n\031GET_QUESTION_LIS" +
-      "T_REQUEST\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017" +
-      "\022\034\n\030ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH" +
-      "_INFORMATION_REQUEST\020\021*H\n\014CONTENT_TYPE\022\020" +
-      "\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n" +
-      "\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020" +
-      "\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUE" +
-      "STION\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nD" +
-      "ESCENDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTIO",
-      "N_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_O" +
-      "F_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B" +
-      "\030\n\003comB\021ClientSendMessageb\006proto3"
+      "\022\n\n\006UPLOAD\020\001\"+\n\025SolvedQuestionRequest\022\022\n" +
+      "\nquestionID\030\001 \001(\003\"\332\006\n\007Message\022\026\n\010msg_typ" +
+      "e\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauch" +
+      "Request\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutM" +
+      "essage\030\004 \001(\0132\016.LogoutMessage\022!\n\013sendCont" +
+      "ent\030\005 \001(\0132\014.SendContent\0221\n\023announcementM",
+      "essage\030\006 \001(\0132\024.AnnouncementMessage\0223\n\024qu" +
+      "estionEnterRequest\030\007 \001(\0132\025.QuestionEnter" +
+      "Request\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.G" +
+      "oodQuestionRequest\022-\n\021getCosSignRequest\030" +
+      "\t \001(\0132\022.GetCosSignRequest\022)\n\017goodUserReq" +
+      "uest\030\n \001(\0132\020.GoodUserRequest\022)\n\017register" +
+      "Request\030\013 \001(\0132\020.RegisterRequest\022?\n\032quest" +
+      "ionInformationRequest\030\r \001(\0132\033.QuestionIn" +
+      "formationRequest\0227\n\026userInformationReque" +
+      "st\030\016 \001(\0132\027.UserInformationRequest\0227\n\026get",
+      "QuestionListRequest\030\017 \001(\0132\027.GetQuestionL" +
+      "istRequest\0225\n\025createQuestionRequest\030\022 \001(" +
+      "\0132\026.CreateQuestionRequest\0227\n\026abandonQues" +
+      "tionRequest\030\023 \001(\0132\027.AbandonQuestionReque" +
+      "st\022;\n\030searchInformationRequest\030\024 \001(\0132\031.S" +
+      "earchInformationRequest\0225\n\025solvedQuestio" +
+      "nRequest\030\025 \001(\0132\026.SolvedQuestionRequest*\256" +
+      "\003\n\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MES" +
+      "SAGE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CON" +
+      "TENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUES",
+      "TION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_RE" +
+      "QUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\030\n\024GET_CO" +
+      "S_SIGN_REQUEST\020\t\022 \n\034QUESTION_INFORMATION" +
+      "_REQUEST\020\n\022\034\n\030USER_INFORMATION_REQUEST\020\013" +
+      "\022\035\n\031GET_QUESTION_LIST_REQUEST\020\014\022\033\n\027CREAT" +
+      "E_QUESTION_REQUEST\020\017\022\034\n\030ABANDON_QUESTION" +
+      "_REQUEST\020\020\022\036\n\032SEARCH_INFORMATION_REQUEST" +
+      "\020\021\022\033\n\027SOLVED_QUESTION_REQUEST\020\022*H\n\014CONTE" +
+      "NT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MES" +
+      "SAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE",
+      "\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTY" +
+      "PE\022\014\n\010QUESTION\020\000**\n\tRANKORDER\022\r\n\tASCENDI" +
+      "NG\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIST_REFERENCE\022\024" +
+      "\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025" +
+      "\n\021USERS_OF_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010" +
+      "\n\004TIME\020\004B\030\n\003comB\021ClientSendMessageb\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -14190,12 +14848,18 @@ public final class ClientSendMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetCosSignRequest_descriptor,
         new java.lang.String[] { "Filename", "SignType", });
-    internal_static_Message_descriptor =
+    internal_static_SolvedQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(16);
+    internal_static_SolvedQuestionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SolvedQuestionRequest_descriptor,
+        new java.lang.String[] { "QuestionID", });
+    internal_static_Message_descriptor =
+      getDescriptor().getMessageTypes().get(17);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "GetCosSignRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", });
+        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "GetCosSignRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", "SolvedQuestionRequest", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

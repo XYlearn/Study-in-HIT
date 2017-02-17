@@ -119,6 +119,10 @@ public final class ServerResponseMessage {
      * <code>SEARCH_INFORMATION_RESPONSE = 17;</code>
      */
     SEARCH_INFORMATION_RESPONSE(17),
+    /**
+     * <code>SOLVED_QUESTION_RESPONSE = 18;</code>
+     */
+    SOLVED_QUESTION_RESPONSE(18),
     UNRECOGNIZED(-1),
     ;
 
@@ -218,6 +222,10 @@ public final class ServerResponseMessage {
      * <code>SEARCH_INFORMATION_RESPONSE = 17;</code>
      */
     public static final int SEARCH_INFORMATION_RESPONSE_VALUE = 17;
+    /**
+     * <code>SOLVED_QUESTION_RESPONSE = 18;</code>
+     */
+    public static final int SOLVED_QUESTION_RESPONSE_VALUE = 18;
 
 
     public final int getNumber() {
@@ -253,6 +261,7 @@ public final class ServerResponseMessage {
         case 15: return CREATE_QUESTION_RESPONSE;
         case 16: return ABANDON_QUESTION_RESPONSE;
         case 17: return SEARCH_INFORMATION_RESPONSE;
+        case 18: return SOLVED_QUESTION_RESPONSE;
         default: return null;
       }
     }
@@ -15343,6 +15352,508 @@ public final class ServerResponseMessage {
 
   }
 
+  public interface SolvedQuestionResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SolvedQuestionResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 questionID = 2;</code>
+     */
+    long getQuestionID();
+
+    /**
+     * <code>bool success = 1;</code>
+     */
+    boolean getSuccess();
+  }
+  /**
+   * <pre>
+   *标志解决问题的回复
+   * </pre>
+   *
+   * Protobuf type {@code SolvedQuestionResponse}
+   */
+  public  static final class SolvedQuestionResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:SolvedQuestionResponse)
+      SolvedQuestionResponseOrBuilder {
+    // Use SolvedQuestionResponse.newBuilder() to construct.
+    private SolvedQuestionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SolvedQuestionResponse() {
+      questionID_ = 0L;
+      success_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private SolvedQuestionResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              success_ = input.readBool();
+              break;
+            }
+            case 16: {
+
+              questionID_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ServerResponseMessage.SolvedQuestionResponse.class, com.ServerResponseMessage.SolvedQuestionResponse.Builder.class);
+    }
+
+    public static final int QUESTIONID_FIELD_NUMBER = 2;
+    private long questionID_;
+    /**
+     * <code>int64 questionID = 2;</code>
+     */
+    public long getQuestionID() {
+      return questionID_;
+    }
+
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_;
+    /**
+     * <code>bool success = 1;</code>
+     */
+    public boolean getSuccess() {
+      return success_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (success_ != false) {
+        output.writeBool(1, success_);
+      }
+      if (questionID_ != 0L) {
+        output.writeInt64(2, questionID_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, success_);
+      }
+      if (questionID_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, questionID_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ServerResponseMessage.SolvedQuestionResponse)) {
+        return super.equals(obj);
+      }
+      com.ServerResponseMessage.SolvedQuestionResponse other = (com.ServerResponseMessage.SolvedQuestionResponse) obj;
+
+      boolean result = true;
+      result = result && (getQuestionID()
+          == other.getQuestionID());
+      result = result && (getSuccess()
+          == other.getSuccess());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getQuestionID());
+      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSuccess());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ServerResponseMessage.SolvedQuestionResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *标志解决问题的回复
+     * </pre>
+     *
+     * Protobuf type {@code SolvedQuestionResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:SolvedQuestionResponse)
+        com.ServerResponseMessage.SolvedQuestionResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ServerResponseMessage.SolvedQuestionResponse.class, com.ServerResponseMessage.SolvedQuestionResponse.Builder.class);
+      }
+
+      // Construct using com.ServerResponseMessage.SolvedQuestionResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        questionID_ = 0L;
+
+        success_ = false;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_descriptor;
+      }
+
+      public com.ServerResponseMessage.SolvedQuestionResponse getDefaultInstanceForType() {
+        return com.ServerResponseMessage.SolvedQuestionResponse.getDefaultInstance();
+      }
+
+      public com.ServerResponseMessage.SolvedQuestionResponse build() {
+        com.ServerResponseMessage.SolvedQuestionResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ServerResponseMessage.SolvedQuestionResponse buildPartial() {
+        com.ServerResponseMessage.SolvedQuestionResponse result = new com.ServerResponseMessage.SolvedQuestionResponse(this);
+        result.questionID_ = questionID_;
+        result.success_ = success_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ServerResponseMessage.SolvedQuestionResponse) {
+          return mergeFrom((com.ServerResponseMessage.SolvedQuestionResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ServerResponseMessage.SolvedQuestionResponse other) {
+        if (other == com.ServerResponseMessage.SolvedQuestionResponse.getDefaultInstance()) return this;
+        if (other.getQuestionID() != 0L) {
+          setQuestionID(other.getQuestionID());
+        }
+        if (other.getSuccess() != false) {
+          setSuccess(other.getSuccess());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ServerResponseMessage.SolvedQuestionResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ServerResponseMessage.SolvedQuestionResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long questionID_ ;
+      /**
+       * <code>int64 questionID = 2;</code>
+       */
+      public long getQuestionID() {
+        return questionID_;
+      }
+      /**
+       * <code>int64 questionID = 2;</code>
+       */
+      public Builder setQuestionID(long value) {
+        
+        questionID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 questionID = 2;</code>
+       */
+      public Builder clearQuestionID() {
+        
+        questionID_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private boolean success_ ;
+      /**
+       * <code>bool success = 1;</code>
+       */
+      public boolean getSuccess() {
+        return success_;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       */
+      public Builder setSuccess(boolean value) {
+        
+        success_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       */
+      public Builder clearSuccess() {
+        
+        success_ = false;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:SolvedQuestionResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:SolvedQuestionResponse)
+    private static final com.ServerResponseMessage.SolvedQuestionResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ServerResponseMessage.SolvedQuestionResponse();
+    }
+
+    public static com.ServerResponseMessage.SolvedQuestionResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SolvedQuestionResponse>
+        PARSER = new com.google.protobuf.AbstractParser<SolvedQuestionResponse>() {
+      public SolvedQuestionResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SolvedQuestionResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SolvedQuestionResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SolvedQuestionResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ServerResponseMessage.SolvedQuestionResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface UpdateMessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:UpdateMessage)
       com.google.protobuf.MessageOrBuilder {
@@ -16687,6 +17198,19 @@ public final class ServerResponseMessage {
      * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
      */
     com.ServerResponseMessage.SearchInformationResponseOrBuilder getSearchInformationResponseOrBuilder();
+
+    /**
+     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     */
+    boolean hasSolvedQuestionResponse();
+    /**
+     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     */
+    com.ServerResponseMessage.SolvedQuestionResponse getSolvedQuestionResponse();
+    /**
+     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     */
+    com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder();
   }
   /**
    * <pre>
@@ -16936,6 +17460,19 @@ public final class ServerResponseMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(searchInformationResponse_);
                 searchInformationResponse_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 170: {
+              com.ServerResponseMessage.SolvedQuestionResponse.Builder subBuilder = null;
+              if (solvedQuestionResponse_ != null) {
+                subBuilder = solvedQuestionResponse_.toBuilder();
+              }
+              solvedQuestionResponse_ = input.readMessage(com.ServerResponseMessage.SolvedQuestionResponse.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(solvedQuestionResponse_);
+                solvedQuestionResponse_ = subBuilder.buildPartial();
               }
 
               break;
@@ -17328,6 +17865,27 @@ public final class ServerResponseMessage {
       return getSearchInformationResponse();
     }
 
+    public static final int SOLVEDQUESTIONRESPONSE_FIELD_NUMBER = 21;
+    private com.ServerResponseMessage.SolvedQuestionResponse solvedQuestionResponse_;
+    /**
+     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     */
+    public boolean hasSolvedQuestionResponse() {
+      return solvedQuestionResponse_ != null;
+    }
+    /**
+     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     */
+    public com.ServerResponseMessage.SolvedQuestionResponse getSolvedQuestionResponse() {
+      return solvedQuestionResponse_ == null ? com.ServerResponseMessage.SolvedQuestionResponse.getDefaultInstance() : solvedQuestionResponse_;
+    }
+    /**
+     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     */
+    public com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder() {
+      return getSolvedQuestionResponse();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -17390,6 +17948,9 @@ public final class ServerResponseMessage {
       }
       if (searchInformationResponse_ != null) {
         output.writeMessage(20, getSearchInformationResponse());
+      }
+      if (solvedQuestionResponse_ != null) {
+        output.writeMessage(21, getSolvedQuestionResponse());
       }
     }
 
@@ -17464,6 +18025,10 @@ public final class ServerResponseMessage {
       if (searchInformationResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getSearchInformationResponse());
+      }
+      if (solvedQuestionResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, getSolvedQuestionResponse());
       }
       memoizedSize = size;
       return size;
@@ -17559,6 +18124,11 @@ public final class ServerResponseMessage {
         result = result && getSearchInformationResponse()
             .equals(other.getSearchInformationResponse());
       }
+      result = result && (hasSolvedQuestionResponse() == other.hasSolvedQuestionResponse());
+      if (hasSolvedQuestionResponse()) {
+        result = result && getSolvedQuestionResponse()
+            .equals(other.getSolvedQuestionResponse());
+      }
       return result;
     }
 
@@ -17632,6 +18202,10 @@ public final class ServerResponseMessage {
       if (hasSearchInformationResponse()) {
         hash = (37 * hash) + SEARCHINFORMATIONRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getSearchInformationResponse().hashCode();
+      }
+      if (hasSolvedQuestionResponse()) {
+        hash = (37 * hash) + SOLVEDQUESTIONRESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getSolvedQuestionResponse().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -17849,6 +18423,12 @@ public final class ServerResponseMessage {
           searchInformationResponse_ = null;
           searchInformationResponseBuilder_ = null;
         }
+        if (solvedQuestionResponseBuilder_ == null) {
+          solvedQuestionResponse_ = null;
+        } else {
+          solvedQuestionResponse_ = null;
+          solvedQuestionResponseBuilder_ = null;
+        }
         return this;
       }
 
@@ -17948,6 +18528,11 @@ public final class ServerResponseMessage {
         } else {
           result.searchInformationResponse_ = searchInformationResponseBuilder_.build();
         }
+        if (solvedQuestionResponseBuilder_ == null) {
+          result.solvedQuestionResponse_ = solvedQuestionResponse_;
+        } else {
+          result.solvedQuestionResponse_ = solvedQuestionResponseBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -18040,6 +18625,9 @@ public final class ServerResponseMessage {
         }
         if (other.hasSearchInformationResponse()) {
           mergeSearchInformationResponse(other.getSearchInformationResponse());
+        }
+        if (other.hasSolvedQuestionResponse()) {
+          mergeSolvedQuestionResponse(other.getSolvedQuestionResponse());
         }
         onChanged();
         return this;
@@ -19934,6 +20522,123 @@ public final class ServerResponseMessage {
         }
         return searchInformationResponseBuilder_;
       }
+
+      private com.ServerResponseMessage.SolvedQuestionResponse solvedQuestionResponse_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder> solvedQuestionResponseBuilder_;
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public boolean hasSolvedQuestionResponse() {
+        return solvedQuestionResponseBuilder_ != null || solvedQuestionResponse_ != null;
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public com.ServerResponseMessage.SolvedQuestionResponse getSolvedQuestionResponse() {
+        if (solvedQuestionResponseBuilder_ == null) {
+          return solvedQuestionResponse_ == null ? com.ServerResponseMessage.SolvedQuestionResponse.getDefaultInstance() : solvedQuestionResponse_;
+        } else {
+          return solvedQuestionResponseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public Builder setSolvedQuestionResponse(com.ServerResponseMessage.SolvedQuestionResponse value) {
+        if (solvedQuestionResponseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          solvedQuestionResponse_ = value;
+          onChanged();
+        } else {
+          solvedQuestionResponseBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public Builder setSolvedQuestionResponse(
+          com.ServerResponseMessage.SolvedQuestionResponse.Builder builderForValue) {
+        if (solvedQuestionResponseBuilder_ == null) {
+          solvedQuestionResponse_ = builderForValue.build();
+          onChanged();
+        } else {
+          solvedQuestionResponseBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public Builder mergeSolvedQuestionResponse(com.ServerResponseMessage.SolvedQuestionResponse value) {
+        if (solvedQuestionResponseBuilder_ == null) {
+          if (solvedQuestionResponse_ != null) {
+            solvedQuestionResponse_ =
+              com.ServerResponseMessage.SolvedQuestionResponse.newBuilder(solvedQuestionResponse_).mergeFrom(value).buildPartial();
+          } else {
+            solvedQuestionResponse_ = value;
+          }
+          onChanged();
+        } else {
+          solvedQuestionResponseBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public Builder clearSolvedQuestionResponse() {
+        if (solvedQuestionResponseBuilder_ == null) {
+          solvedQuestionResponse_ = null;
+          onChanged();
+        } else {
+          solvedQuestionResponse_ = null;
+          solvedQuestionResponseBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public com.ServerResponseMessage.SolvedQuestionResponse.Builder getSolvedQuestionResponseBuilder() {
+        
+        onChanged();
+        return getSolvedQuestionResponseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      public com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder() {
+        if (solvedQuestionResponseBuilder_ != null) {
+          return solvedQuestionResponseBuilder_.getMessageOrBuilder();
+        } else {
+          return solvedQuestionResponse_ == null ?
+              com.ServerResponseMessage.SolvedQuestionResponse.getDefaultInstance() : solvedQuestionResponse_;
+        }
+      }
+      /**
+       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder> 
+          getSolvedQuestionResponseFieldBuilder() {
+        if (solvedQuestionResponseBuilder_ == null) {
+          solvedQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder>(
+                  getSolvedQuestionResponse(),
+                  getParentForChildren(),
+                  isClean());
+          solvedQuestionResponse_ = null;
+        }
+        return solvedQuestionResponseBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -20089,6 +20794,11 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GetCosSignResponse_SignEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SolvedQuestionResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SolvedQuestionResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_UpdateMessage_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -20158,46 +20868,50 @@ public final class ServerResponseMessage {
       "Entry\022.\n\010signType\030\003 \001(\0162\034.GetCosSignResp" +
       "onse.SIGNTYPE\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022" +
       "\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLO" +
-      "AD\020\000\022\n\n\006UPLOAD\020\001\"o\n\rUpdateMessage\022+\n\tuse" +
-      "rEnter\030\001 \001(\0132\030.UpdateMessage.UserEnter\0321" +
-      "\n\tUserEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestio" +
-      "nID\030\002 \001(\003\"\273\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162",
-      "\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse" +
-      "\030\003 \001(\0132\017.LaunchResponse\022+\n\020registerRespo" +
-      "nse\030\004 \001(\0132\021.RegisterResponse\022!\n\013sendCont" +
-      "ent\030\005 \001(\0132\014.SendContent\0221\n\023announcementM" +
-      "essage\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025qu" +
-      "estionEnterResponse\030\007 \001(\0132\026.QuestionEnte" +
-      "rResponse\0223\n\024goodQuestionResponse\030\010 \001(\0132" +
-      "\025.GoodQuestionResponse\022+\n\020goodUserRespon" +
-      "se\030\n \001(\0132\021.GoodUserResponse\022/\n\022getCosSig" +
-      "nResponse\030\t \001(\0132\023.GetCosSignResponse\022%\n\r",
-      "updateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n\033q" +
-      "uestionInformationResponse\030\r \001(\0132\034.Quest" +
-      "ionInformationResponse\0229\n\027userInformatio" +
-      "nResponse\030\016 \001(\0132\030.UserInformationRespons" +
-      "e\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.Get" +
-      "QuestionListResponse\0227\n\026createQuestionRe" +
-      "sponse\030\022 \001(\0132\027.CreateQuestionResponse\0229\n" +
-      "\027abandonQuestionResponse\030\023 \001(\0132\030.Abandon" +
-      "QuestionResponse\022=\n\031searchInformationRes" +
-      "ponse\030\024 \001(\0132\032.SearchInformationResponse*",
-      "\235\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER" +
+      "AD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026SolvedQuestionRespon" +
+      "se\022\022\n\nquestionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"" +
+      "o\n\rUpdateMessage\022+\n\tuserEnter\030\001 \001(\0132\030.Up" +
+      "dateMessage.UserEnter\0321\n\tUserEnter\022\020\n\010us",
+      "ername\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\364\006\n\007Mes" +
+      "sage\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username" +
+      "\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.LaunchRe" +
+      "sponse\022+\n\020registerResponse\030\004 \001(\0132\021.Regis" +
+      "terResponse\022!\n\013sendContent\030\005 \001(\0132\014.SendC" +
+      "ontent\0221\n\023announcementMessage\030\006 \001(\0132\024.An" +
+      "nouncementMessage\0225\n\025questionEnterRespon" +
+      "se\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024good" +
+      "QuestionResponse\030\010 \001(\0132\025.GoodQuestionRes" +
+      "ponse\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUs",
+      "erResponse\022/\n\022getCosSignResponse\030\t \001(\0132\023" +
+      ".GetCosSignResponse\022%\n\rupdateMessage\030\013 \001" +
+      "(\0132\016.UpdateMessage\022A\n\033questionInformatio" +
+      "nResponse\030\r \001(\0132\034.QuestionInformationRes" +
+      "ponse\0229\n\027userInformationResponse\030\016 \001(\0132\030" +
+      ".UserInformationResponse\0229\n\027getQuestionL" +
+      "istResponse\030\017 \001(\0132\030.GetQuestionListRespo" +
+      "nse\0227\n\026createQuestionResponse\030\022 \001(\0132\027.Cr" +
+      "eateQuestionResponse\0229\n\027abandonQuestionR" +
+      "esponse\030\023 \001(\0132\030.AbandonQuestionResponse\022",
+      "=\n\031searchInformationResponse\030\024 \001(\0132\032.Sea" +
+      "rchInformationResponse\0227\n\026solvedQuestion" +
+      "Response\030\025 \001(\0132\027.SolvedQuestionResponse*" +
+      "\273\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER" +
       "_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNC" +
       "EMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPON" +
       "SE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD" +
       "_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\031\n\025" +
       "GET_COS_SIGN_RESPONSE\020\t\022!\n\035QUESTION_INFO" +
-      "RMATION_RESPONSE\020\n\022\035\n\031USER_INFORMATION_R" +
+      "RMATION_RESPONSE\020\n\022\035\n\031USER_INFORMATION_R",
       "ESPONSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020" +
       "\014\022\034\n\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031ABAND" +
-      "ON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMA",
-      "TION_RESPONSE\020\021*H\n\014CONTENT_TYPE\022\020\n\014TEXT_" +
-      "MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_" +
-      "MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PN" +
-      "G\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000*\032\n\nSE" +
-      "ARCHTYPE\022\014\n\010QUESTION\020\000B\034\n\003comB\025ServerRes" +
-      "ponseMessageb\006proto3"
+      "ON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMA" +
+      "TION_RESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPO" +
+      "NSE\020\022*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022" +
+      "\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*" +
+      ")\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF" +
+      "\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000*\032\n\nSEARCHTYPE\022\014" +
+      "\n\010QUESTION\020\000B\034\n\003comB\025ServerResponseMessa" +
+      "geb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -20337,8 +21051,14 @@ public final class ServerResponseMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetCosSignResponse_SignEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_UpdateMessage_descriptor =
+    internal_static_SolvedQuestionResponse_descriptor =
       getDescriptor().getMessageTypes().get(19);
+    internal_static_SolvedQuestionResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SolvedQuestionResponse_descriptor,
+        new java.lang.String[] { "QuestionID", "Success", });
+    internal_static_UpdateMessage_descriptor =
+      getDescriptor().getMessageTypes().get(20);
     internal_static_UpdateMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateMessage_descriptor,
@@ -20350,11 +21070,11 @@ public final class ServerResponseMessage {
         internal_static_UpdateMessage_UserEnter_descriptor,
         new java.lang.String[] { "Username", "QuestionID", });
     internal_static_Message_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "GetCosSignResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", });
+        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "GetCosSignResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", "SolvedQuestionResponse", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
