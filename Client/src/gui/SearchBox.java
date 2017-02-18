@@ -24,33 +24,41 @@ public class SearchBox extends JPanel
 		mytext.setColumns(column);
 	}
 	
+	@SuppressWarnings("empty-statement")
 	public void search()
 	{
 		if("".equals(mytext.getText())) return;
 		StringBuilder eng=new StringBuilder();
 		StringBuilder chn=new StringBuilder(mytext.getText().replaceAll(" ", ""));
-		int i;
-		for(i=0;i<chn.length()&&!isASCII(chn.charAt(i));i++);
-		if(i<chn.length())
-		{
-			eng.append(chn.charAt(i));
-			chn.replace(i, i+1, "");
-		}
-		for(i++;i<chn.length();i++)
+		boolean last=true;
+		for(int i=0;i<chn.length();i++)
 			if(isASCII(chn.charAt(i)))
 			{
-				if(!isASCII(chn.charAt(i-1))) eng.append('*');
+				if(!last) eng.append('*');
+				last=true;
 				eng.append(chn.charAt(i));
 				chn.replace(i, i+1, "");
+				i--;
 			}
+			else
+				last=false;
+		int i=3;
+		String tmpSegment="";
+		while(i-->0&&"".equals(tmpSegment=SegmentAPI.segment(chn.toString())));
+		if(tmpSegment.equals(""))
+		{
+			System.out.println("分词异常");
+			return;
+		}
 		ArrayList<String> keywords=new ArrayList<>(
-				Arrays.asList(SegmentAPI.segment(chn.toString())
+				Arrays.asList(tmpSegment
 						.replaceAll(" 。", "")
 						.replaceAll(" ，", "")
 						.replaceAll(" ！", "")
 						.replaceAll(" ？", "")
 						.replaceAll(" ：", "")
-						.replaceAll(" …", "").split(" ")));
+						.replaceAll(" …", "")
+						.replaceAll("\n", "").split(" ")));
 		keywords.add(0, eng.toString());
 		try
 		{
