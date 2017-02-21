@@ -212,6 +212,9 @@ public class Client implements Runnable {
 				case SOLVED_QUESTION_RESPONSE:
 					handleResponseSolvedQuestion(recvMessage);
 					break;
+				case UNRECOGNIZED:
+					System.out.println("未知消息");
+					break;
 				default:
 					throw new Exception("Unknown Message Type");
 			}

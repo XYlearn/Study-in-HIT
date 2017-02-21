@@ -175,23 +175,19 @@ public class ServerItem {
 					break;
 				case SOLVED_QUESTION_REQUEST:
 					if(message.hasSolvedQuestionRequest()) {
-						try {
-							return ServerResponseMessage.Message.newBuilder()
-									  .setMsgType(ServerResponseMessage.MSG.SOLVED_QUESTION_RESPONSE)
-									  .setUsername(username)
-									  .setSolvedQuestionResponse(
-											handleSolvedQuestionRequest(message.getSolvedQuestionRequest())
-									  ).build();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+						return ServerResponseMessage.Message.newBuilder()
+								  .setMsgType(ServerResponseMessage.MSG.SOLVED_QUESTION_RESPONSE)
+								  .setUsername(username)
+								  .setSolvedQuestionResponse(
+								  		  handleSolvedQuestionRequest(message.getSolvedQuestionRequest())
+								  ).build();
 					}
 					break;
 				default:
 					return ServerResponseMessage.Message.newBuilder()
 							  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			NIOServer.logger.write(e.getMessage());
 			e.printStackTrace();
 			return ServerResponseMessage.Message.newBuilder()
@@ -621,12 +617,17 @@ public class ServerItem {
 			//插入分词列表
 			ProtocolStringList keywords = createQuestionRequest.getKeywordsList();
 			Iterator<String> ite =keywords.iterator();
-			String keyword = ite.next();
+			String keyword = "";
+			if(ite.hasNext()) {
+				keyword = ite.next();
+			}
+
 			if(keyword.equals("")) {
 			} else {
 				sql = "INSERT INTO words_list1 (word, question) VALUES('"+keyword+"',"+questionID+")";
 				stmt.execute(sql);
 			}
+
 			while (ite.hasNext()){
 				keyword = ite.next();
 				sql = "INSERT INTO words_list2 (word, question) VALUES('"+keyword+"',"+questionID+");";

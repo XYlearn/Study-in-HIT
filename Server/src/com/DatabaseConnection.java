@@ -15,7 +15,7 @@ public class DatabaseConnection {
 	private String driver = "org.mariadb.jdbc.Driver";
 	private String url = "jdbc:mariadb://localhost:3306/sih";
 	private String user = "root";
-	private String password = "SiH@6666";
+	private String password = "aa199877";
 	static private boolean closed = false;
 
 	Connection connection = null;

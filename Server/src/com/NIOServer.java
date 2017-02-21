@@ -85,7 +85,12 @@ public class NIOServer {
 				Set<SelectionKey> selectionKeys = selector.selectedKeys();
 				Iterator<SelectionKey> ite = selectionKeys.iterator();
 				while (ite.hasNext()) {
-					handle(ite.next());
+					SelectionKey selectionKey = ite.next();
+					try {
+						handle(selectionKey);
+					} catch (IOException e) {
+						selectionKey.channel().close();
+					}
 					ite.remove();
 				}
 			} catch (Exception e) {
