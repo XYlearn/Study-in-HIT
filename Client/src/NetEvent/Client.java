@@ -28,7 +28,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Client implements Runnable {
 
 	private static String host = "123.207.159.156";
-	private static int port = 6666;
+	private static int port = 4399;
 	private static final int BUFFERSIZE = 102400;
 	private static ByteBuffer rbuffer = ByteBuffer.allocate(BUFFERSIZE);
 	private ByteBuffer tempBuffer = ByteBuffer.allocate(102400);
