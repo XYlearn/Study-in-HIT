@@ -3,7 +3,11 @@ package bin;
 import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
+import gui.InputBox;
 import gui.SearchBox;
+import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class test
 {
@@ -16,7 +20,7 @@ public class test
 
 	public static final void main()
 	{
-		/*new Thread(client).start();
+		new Thread(client).start();
 		synchronized(client)
 		{
 			try
@@ -62,7 +66,7 @@ public class test
 		//c.pushMessage(new MyMessage("ask","22:11:15","en"));
 		//c.pushMessage(new MyMessage("a","22:11:15","en"));
 		//System.out.println(c.myPane.getText());
-		/*Scanner s=new Scanner(System.in);
+		Scanner s=new Scanner(System.in);
 		String cmd, tmp=null;
 		while (s.hasNext())
 		{
@@ -92,7 +96,11 @@ public class test
 					try
 					{
 						ArrayList<String> tmparray=new ArrayList<>();
-						tmparray.add("这个");
+						tmparray.add("");
+						tmparray.add("第");
+						tmparray.add("一");
+						tmparray.add("个");
+						tmparray.add("问题");
 						client.createQuestion("第一个问题", "描述", tmparray);
 					} catch (IOException ex)
 					{
@@ -148,7 +156,7 @@ public class test
 		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
 		listbox.add(new ListElementData("1","22:03:07","kqwyf","ask.jpg","stem","addition",1,2,"22:03:07"));
 		*/
-		JFrame f=new JFrame("myApplication");
+		/*JFrame f=new JFrame("myApplication");
 		SearchBox sbox=new SearchBox();
 		f.getContentPane().add(sbox);
 		sbox.setColumns(30);
@@ -169,6 +177,6 @@ public class test
 				default:
 					break;
 			}
-		}
+		}*/
 	}
 }
