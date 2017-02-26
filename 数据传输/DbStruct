@@ -23,8 +23,8 @@ PRIMARY KEY (username)
 CREATE TABLE question(
 owner VARCHAR(20) NOT NULL,
 id BIGINT AUTO_INCREMENT,
-stem VARCHAR(300) NOT NULL,
-addition VARCHAR(300),
+stem VARCHAR(255) NOT NULL,
+addition VARCHAR(255),
 create_time DATETIME DEFAULT now(),
 solved TINYINT(1) DEFAULT 0,
 praise_num INT DEFAULT 0,

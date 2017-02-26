@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Client extends Thread{
 
-	private static String host = "localhost";
+	private static String host = "123.207.159.156";
 	private static int port = 8972;
 
 	//connection object

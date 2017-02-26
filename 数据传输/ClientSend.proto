@@ -28,6 +28,8 @@ enum MSG {
    ABANDON_QUESTION_REQUEST = 16;
    //搜索内容
    SEARCH_INFORMATION_REQUEST = 17;
+   //把问题标志为已解决
+   SOLVED_QUESTION_REQUEST = 18;
 }
 
 //-----------枚举定义---------------//
@@ -163,6 +165,11 @@ message GetCosSignRequest {
     SIGNTYPE signType = 2;
 }
 
+//标志问题为解决状态
+message SolvedQuestionRequest {
+    int64 questionID = 1;
+}
+
 //----------------顶层消息----------------------
 message Message {
     MSG msg_type = 1;
@@ -182,4 +189,5 @@ message Message {
     CreateQuestionRequest createQuestionRequest = 18;
     AbandonQuestionRequest abandonQuestionRequest = 19;
     SearchInformationRequest searchInformationRequest = 20;
+    SolvedQuestionRequest solvedQuestionRequest = 21;
 }

@@ -28,6 +28,7 @@ enum MSG {
    ABANDON_QUESTION_RESPONSE = 16;
    //搜索内容
    SEARCH_INFORMATION_RESPONSE = 17;
+   SOLVED_QUESTION_RESPONSE = 18;
 }
 
 //-----------枚举定义---------------//
@@ -86,7 +87,7 @@ message QuestionMessage {
     repeated Record record = 6;
     bool solved = 7;
     int32 good = 8;
-    int64 id = 9;
+    int64 id = 9;   
 }
 
 //用户信息消息体
@@ -157,6 +158,7 @@ message QuestionInformationResponse {
 //用户信息回复
 message UserInformationResponse {
     UserMessage userMessage = 1;
+    bool exist = 2;
 }
 
 //更新问题房间列表回复
@@ -168,6 +170,7 @@ message GetQuestionListResponse {
 //提出问题回复
 message CreateQuestionResponse {
     bool success = 1;
+    QuestionMessage questionMessage = 2;
 }
 
 //取消问题回复
@@ -190,6 +193,12 @@ message GetCosSignResponse {
         UPLOAD = 1;
     }
     SIGNTYPE signType = 3;
+}
+
+//标志解决问题的回复
+message SolvedQuestionResponse {
+    int64 questionID = 2;
+    bool success = 1;
 }
 
 message UpdateMessage {
@@ -219,4 +228,5 @@ message Message {
     CreateQuestionResponse createQuestionResponse = 18;
     AbandonQuestionResponse abandonQuestionResponse = 19;
     SearchInformationResponse searchInformationResponse = 20;
+    SolvedQuestionResponse solvedQuestionResponse = 21;
 }
