@@ -19,11 +19,12 @@ import javax.sound.sampled.LineUnavailableException;
 import it.sauronsoftware.jave.AudioAttributes;
 import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncodingAttributes;
+import java.util.function.Consumer;
 
 public class AudioTools
 {
 	private static String currentPlayingAudio;
-	private static stopListener sl;
+	private static Consumer<String> sl;
 	private static AudioFormat af;
 	private static TargetDataLine td;
 	private static SourceDataLine sd;
@@ -125,16 +126,16 @@ public class AudioTools
 		return filename;
 	}
 
-	public static void playAudio(String filepath,stopListener mysl)
+	public static void playAudio(String filepath,Consumer<String> mysl)
 	{
 		playAudio(new File(filepath),mysl);
 	}
 
-	public static void playAudio(File audioFile,stopListener mysl)
+	public static void playAudio(File audioFile,Consumer<String> mysl)
 	{
 		AudioFormat af;
 		stopAudio();
-		if(sl!=null) sl.stop();
+		if(sl!=null) sl.accept(currentPlayingAudio);
 		try{Thread.sleep(10);}catch(Exception e){}
 		currentPlayingAudio=audioFile.getName();
 		sl=mysl;
@@ -270,7 +271,7 @@ public class AudioTools
 			catch(Exception e){}
 			finally
 			{
-				sl.stop();
+				sl.accept(currentPlayingAudio);
 				sd.drain();
 				sd.close();
 			}

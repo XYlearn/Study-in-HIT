@@ -250,19 +250,17 @@ public class ChattingBox extends JPanel
 					myPane.setText(html.toString());
 					AudioTools.playAudio(
 						AudioTools.CLASSPATH+currentHyperlink.substring(5),
-						new stopListener()
+						(String currentPlayingAudio)->
 						{
-							public void stop()
-							{
-								String tmpstr="<a href=\"audi:"+
-									AudioTools.getCurrentPlayingAudio()+"\">"+
-									"<img src=\""+PROPATH+"button_stop.gif";
-								int tmpindex=html.lastIndexOf(tmpstr);
-								tmpindex+=tmpstr.length()-8;
-								html.replace(tmpindex,tmpindex+4,"play");
-								myPane.setText(html.toString());
-							}
-						});
+							String tmps="<a href=\"audi:"+
+								currentPlayingAudio+"\">"+
+								"<img src=\""+PROPATH+"button_stop.gif";
+							int tmpi=html.lastIndexOf(tmps);
+							tmpi+=tmps.length()-8;
+							html.replace(tmpi,tmpi+4,"play");
+							myPane.setText(html.toString());
+						}
+					);
 				}
 				else if(cmd.equals("file"))
 				{

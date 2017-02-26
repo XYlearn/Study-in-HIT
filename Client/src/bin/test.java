@@ -20,8 +20,8 @@ public class test
 
 	public static final void main()
 	{
-		new Thread(client).start();
-		synchronized(client)
+		client.start();
+		/*synchronized(client)
 		{
 			try
 			{
@@ -31,7 +31,7 @@ public class test
 				System.out.println("网络连接错误");
 				System.exit(0);
 			}
-		}
+		}*/
 		JFrame f=new JFrame("Hello, world!");
 		//ChattingBox c=new ChattingBox();
 		InputBox box=new InputBox();
