@@ -2,10 +2,17 @@ package NetEvent;
 
 import Cos.CosHttpClient;
 import Cos.FileOP;
+import NetEvent.dataPack.NetPackageCodeFacotry;
 import com.ClientSendMessage;
 import com.ServerResponseMessage;
 import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.UploadFileRequest;
+import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
+import org.apache.mina.core.future.ConnectFuture;
+import org.apache.mina.core.session.IdleStatus;
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import util.MD5Tools;
 
 import java.io.File;
@@ -25,19 +32,15 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by xy16 on 17-1-31.
  */
-public class Client implements Runnable {
+public class Client extends Thread{
 
-	private static String host = "123.207.159.156";
-	private static int port = 4399;
-	private static final int BUFFERSIZE = 102400;
-	private static ByteBuffer rbuffer = ByteBuffer.allocate(BUFFERSIZE);
-	private ByteBuffer tempBuffer = ByteBuffer.allocate(102400);
+	private static String host = "localhost";
+	private static int port = 8972;
 
-	private SocketChannel channel = null;
-	private Selector selector = null;
-
-	//与接包有关变量
-	private int bodyLen = -1;
+	//connection object
+	private ConnectFuture connectFuture = null;
+	private NioSocketConnector connector = null;
+	private IoSession session = null;
 
 	//当前用户名
 	private String username = "";
@@ -54,187 +57,47 @@ public class Client implements Runnable {
 	public static final String FILEPATH=MAINPATH+"files/";
 
 	//COS 文件操作
-	FileOP fileOP = new FileOP(
+	public static FileOP fileOP = new FileOP(
 			  CosHttpClient.getDefaultConfig(),
 			  "",
 			  new CosHttpClient(CosHttpClient.getDefaultConfig())
 	);
 
 	public void run() {
-		try {
-			channel = SocketChannel.open();
-			channel.configureBlocking(false);
-			selector = Selector.open();
-			//请求连接
-			channel.connect(new InetSocketAddress(host, port));
-			channel.register(selector, SelectionKey.OP_CONNECT);
+		//create tcp/ip connector
+		connector = new NioSocketConnector();
 
-			isOver = false;
+		//create the filter
+		DefaultIoFilterChainBuilder chain = connector.getFilterChain();
+		chain.addLast("codec", new ProtocolCodecFilter(new NetPackageCodeFacotry(true)));
 
-			while (!isOver) {
-				selector.select();
-				Iterator ite = selector.selectedKeys().iterator();
-				while (ite.hasNext()) {
-					SelectionKey key = (SelectionKey) ite.next();
-					ite.remove();
+		connector.setHandler(new ClientHandler());
 
-					if (key.isConnectable()) {
-						if (channel.isConnectionPending()) {
-							if (channel.finishConnect()) {
-								connected = true;
-								synchronized (this) {
-									this.notifyAll();
-								}
-								//连接后才可读
-								key.interestOps(SelectionKey.OP_READ);
-							} else {
-								key.cancel();
-							}
-						}
-					} else if (key.isReadable() && connected) {
-						//读取数据
-						ServerResponseMessage.Message recvMessage = null;
-						boolean fullflag = false;
-						int count = channel.read(tempBuffer);
-						if(count > rbuffer.remaining()) {
-							fullflag = true;
-						} else {
-							fullflag = false;
-						}
-						if (count > 0) {
-							if(!fullflag) {
-								tempBuffer.flip();
-								rbuffer.put(tempBuffer.slice());
-								tempBuffer.clear();
-								rbuffer.flip();
-							}
-							int remain = rbuffer.remaining();
-							while (remain > 0) {
-								if (bodyLen <= 0) {
-									//包头可读
-									if (Integer.BYTES <= remain) {
-										bodyLen = rbuffer.getInt();
-										remain -= Integer.BYTES;
-										continue;
-									}
-									//包头残缺
-									else {
-										ByteBuffer head = rbuffer.slice();
-										rbuffer.clear();
-										rbuffer.put(head);
-										return;
-									}
-								}
-								//包头已读
-								else if (bodyLen > 0) {
-									//包体完整
-									if (remain >= bodyLen) {
-										byte[] readByte = new byte[bodyLen];
-										for (int i = 0; i < bodyLen; i++) {
-											readByte[i] = rbuffer.get();
-										}
-										recvMessage = ServerResponseMessage.Message.parseFrom(readByte);
-										remain-=bodyLen;
-										bodyLen = -1;
+		connector.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 20);
 
-										//处理数据包
-										handleServerResponse(recvMessage);
+		//set the default buffersize
+		connector.getSessionConfig().setSendBufferSize(10240);
+		connector.getSessionConfig().setReceiveBufferSize(10240);
 
-										if(remain == 0) {
-											rbuffer.clear();
-											break;
-										}
-									}
-									//包体残缺
-									else {
-										ByteBuffer bodyLeft = rbuffer.slice();
-										rbuffer.clear();
-										rbuffer.putInt(bodyLen);
-										rbuffer.put(bodyLeft);
-										return;
-									}
-								}
-							}
-						} else {
-							this.close();
-							return;
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		//connect to the server
+		connectFuture = connector.connect(new InetSocketAddress(host, port));
+
+		//set the flag
+		connected = true;
+
+		//wait for the connection attempt to be finished
+		connectFuture.awaitUninterruptibly();
+
+		connectFuture.getSession().getCloseFuture().awaitUninterruptibly();
+
+		connector.dispose();
+
 	}
-
-	//处理返回消息
-	private boolean handleServerResponse(ServerResponseMessage.Message recvMessage) throws Exception	 {
-		//处理数据
-		if(recvMessage!=null) {
-			switch (recvMessage.getMsgType()) {
-				case LAUNCH_RESPONSE:
-					handleResponseLaunch(recvMessage);
-					break;
-				case SEND_CONTENT:
-					handleResponseSendContent(recvMessage);
-					break;
-				case ANNOUNCEMENT_MESSAGE:
-				case QUESTION_ENTER_RESPONSE:
-					handleResponseEnterQuestion(recvMessage);
-					break;
-				case GOOD_QUESTION_RESPONSE:
-					handleResponseGoodQuestion(recvMessage);
-					break;
-				case GOOD_USER_RESPONSE:
-					handleResponseGoodUser(recvMessage);
-					break;
-				case QUESTION_INFORMATION_RESPONSE:
-					handleResponseQuestionInfo(recvMessage);
-					break;
-				case USER_INFORMATION_RESPONSE:
-
-					break;
-				case GET_QUESTION_LIST_RESPONSE:
-					handleResponseQuestionList(recvMessage);
-					break;
-				case CREATE_QUESTION_RESPONSE:
-					handleResponseCreateQuestion(recvMessage);
-					break;
-				case ABANDON_QUESTION_RESPONSE:
-					break;
-				case SEARCH_INFORMATION_RESPONSE:
-					break;
-				case GET_COS_SIGN_RESPONSE:
-					break;
-				case UPDATE_MESSAGE:
-					handleUpdateMessage(recvMessage);
-					break;
-				case SOLVED_QUESTION_RESPONSE:
-					handleResponseSolvedQuestion(recvMessage);
-					break;
-				case UNRECOGNIZED:
-					System.out.println("未知消息");
-					break;
-				default:
-					throw new Exception("Unknown Message Type");
-			}
-
-			return true;
-		} else return false;
-	}
-
-	public void close() { isOver = true; }
 
 	//发送消息（一般形式
 	private void sendIt(ClientSendMessage.Message sendMessage) throws IOException {
 		if(connected) {
-			byte[] responseByte = sendMessage.toByteArray();
-			ByteBuffer responseBB = ByteBuffer.allocate(responseByte.length+Integer.BYTES);
-			responseBB.putInt(responseByte.length).put(responseByte);
-			responseBB.flip();
-
-			while (responseBB.hasRemaining())
-				channel.write(responseBB);
+			connectFuture.getSession().write(sendMessage);
 		}
 		else throw new IOException("尚未连接");
 	}
@@ -253,32 +116,6 @@ public class Client implements Runnable {
 
 		//发送消息
 		sendIt(sendMessage);
-	}
-
-	private void handleResponseLaunch(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.LaunchResponse lr = recvMessage.getLauchResponse();
-		ServerResponseMessage.UserMessage um = lr.getUserMessage();
-		boolean status = lr.getStatus();
-		String information = lr.getInformation();
-		int good = um.getGood();
-		int questionNum = um.getQuestionNum();
-		int solvedQuestionNum = um.getSolvedQuestionNum();
-		int bonus = um.getBonus();
-		String signature = um.getSignature();
-		String mail_address = um.getMailAddress();
-		String pic_url = um.getPicUrl();
-
-		System.out.println(information);
-		if (status) {
-			System.out.println("你好" + username);
-			System.out.println("签名：\t" + signature);
-			System.out.println("点数：\t" + bonus);
-			System.out.println("赞：\t" + good);
-			System.out.println("问题数：\t" + questionNum);
-			System.out.println("已解决问题数：\t" + solvedQuestionNum);
-			System.out.println("邮箱：\t" + mail_address);
-		}
-		System.out.println();
 	}
 
 
@@ -313,52 +150,6 @@ public class Client implements Runnable {
 		//在自己的页面上显示
 	}
 
-	private void handleResponseSendContent(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.SendContent sendContent =
-				  recvMessage.getSendContent();
-
-		if(!sendContent.getSuccess()) {
-			System.out.println("发送失败");
-			return;
-		}
-
-		boolean isMyself = sendContent.getIsmyself();
-		String content = sendContent.getContent();
-		ArrayList<String> pictures = new ArrayList<>();
-
-		//若为他人发送的消息
-		if(!isMyself) {
-			//对每一个图片进行处理
-			for (Map.Entry<String, String> entry : sendContent.getPicturesMap().entrySet()) {
-				//若文件在本地不存在则下载
-				if (!(new File(PICTPATH + entry.getKey()).exists())) {
-					fileOP.changeSign(entry.getValue());
-					boolean finish = false;
-					for(int count = 0;count < 10 && !finish;) {
-						try {
-							fileOP.getFileLocal(
-									  new GetFileLocalRequest(
-												 fileOP.getBucktName(),
-												 "/" + entry.getKey(),
-												 PICTPATH + entry.getKey())
-							);
-							finish = true;
-						} catch (Exception e) {
-							count++;
-							e.printStackTrace();
-						}
-					}
-				}
-				pictures.add(entry.getKey());
-			}
-			//ChattingBox.c.pushMessage(isMyself, content, pictures);
-		} else {
-			//ChattingBox.c.pushMessage(isMyself, content, pictures);
-		}
-		System.out.println((isMyself?"你":recvMessage.getSendContent().getUser())
-				  +"在问题房"+recvMessage.getSendContent().getQuestionID()+"发送了:"+content);
-	}
-
 
 	public void goodUser(String user) throws IOException {
 		ClientSendMessage.Message sendMessage =
@@ -371,30 +162,11 @@ public class Client implements Runnable {
 		sendIt(sendMessage);
 	}
 
-	private void handleResponseGoodUser(ServerResponseMessage.Message recvMessage) {
-		if (recvMessage.getGoodUserResponse().getSuccess()) {
-			System.out.println("成功");
-		} else {
-			System.out.println("用户不存在");
-		}
-		System.out.println();
-	}
-
-
 	public void goodQuestion(String questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder().setMsgType(ClientSendMessage.MSG.GOOD_QUESTION_REQUEST)
 				  .setGoodQuestionRequest(ClientSendMessage.GoodQuestionRequest.newBuilder()
 							 .setQuestionID(Long.valueOf(questionID)).build()).build();
 		sendIt(sendMessage);
-	}
-
-	private void handleResponseGoodQuestion(ServerResponseMessage.Message recvMessage) {
-		if (recvMessage.getGoodQuestionResponse().getSuccess()) {
-			System.out.println("成功");
-		} else {
-			System.out.println("问题不存在");
-		}
-		System.out.println();
 	}
 
 
@@ -409,26 +181,6 @@ public class Client implements Runnable {
 		sendIt(sendMessage);
 	}
 
-	public void handleResponseEnterQuestion(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.QuestionEnterResponse questionEnterResponse =
-				  recvMessage.getQuestionEnterResponse();
-		ServerResponseMessage.QuestionMessage qm = questionEnterResponse.getQuestionMessage();
-		if (!questionEnterResponse.getAllow()) {
-			System.out.println("房间不存在");
-		} else {
-			System.out.println("成功进入");
-			System.out.println("问题号：" + qm.getId());
-			System.out.println("拥有者：" + qm.getOwner());
-			System.out.println("题干：" + qm.getStem());
-			System.out.println("补充：" + qm.getAddition());
-			System.out.println("已解决：" + (qm.getSolved() ? "是" : "否"));
-			System.out.println("发布时间：" + qm.getTime());
-			System.out.println("赞：" + qm.getGood() + "次");
-		}
-		System.out.println();
-	}
-
-
 	public void requestQuestionInfo(String questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.QUESTION_INFORMATION_REQUEST)
@@ -439,26 +191,6 @@ public class Client implements Runnable {
 				  ).build();
 		sendIt(sendMessage);
 	}
-
-	private void handleResponseQuestionInfo(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.QuestionInformationResponse questionInformationResponse =
-				  recvMessage.getQuestionInformationResponse();
-		ServerResponseMessage.QuestionMessage qm = questionInformationResponse.getQuestionMessage();
-
-		if (!questionInformationResponse.getExist()) {
-			System.out.println("房间不存在");
-		} else {
-			System.out.println("问题号：" + qm.getId());
-			System.out.println("拥有者：" + qm.getOwner());
-			System.out.println("题干：" + qm.getStem());
-			System.out.println("补充：" + qm.getAddition());
-			System.out.println("已解决：" + (qm.getSolved() ? "是" : "否"));
-			System.out.println("发布时间：" + qm.getTime());
-			System.out.println("赞：" + qm.getGood() + "次");
-		}
-		System.out.println();
-	}
-
 
 	public void requestQuestionList(ClientSendMessage.LIST_REFERENCE reference,
 											  ClientSendMessage.RANKORDER rankorder,
@@ -474,32 +206,6 @@ public class Client implements Runnable {
 				  ).build();
 		sendIt(sendMessage);
 	}
-
-	public void handleResponseQuestionList(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.GetQuestionListResponse questionListResponse =
-				  recvMessage.getGetQuestionListResponse();
-		List<ServerResponseMessage.QuestionListMessage> questionList =
-				  questionListResponse.getQuestionListMessageList();
-		if(null==questionList) {
-			System.out.println("无消息返回");
-			return;
-		}
-		for(ServerResponseMessage.QuestionListMessage qlm : questionList) {
-			long questionID = qlm.getQuestionID();
-			String owner = qlm.getOwner();
-			String questionDescription = qlm.getQuestionDescription();
-			int good = qlm.getGood();
-			int userNum = qlm.getUserNum();
-			String time = qlm.getTime();
-			System.out.println("问题号:"+questionID);
-			System.out.println("创建者:"+owner);
-			System.out.println("创建时间:"+time);
-			System.out.println("问题描述:"+questionDescription);
-			System.out.println("用户数量:"+userNum);
-			System.out.println();
-		}
-	}
-
 
 	public void requestUserInfo(String user) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
@@ -557,27 +263,6 @@ public class Client implements Runnable {
 		sendIt(sendMessage);
 	}
 
-	private void handleResponseCreateQuestion(ServerResponseMessage.Message recvMessage) {
-		if(recvMessage.getCreateQuestionResponse().getSuccess()) {
-			System.out.println("成功创建问题");
-			ServerResponseMessage.QuestionMessage qm =
-					  recvMessage.getCreateQuestionResponse().getQuestionMessage();
-
-			System.out.println("问题号：" + qm.getId());
-			System.out.println("拥有者：" + qm.getOwner());
-			System.out.println("题干：" + qm.getStem());
-			System.out.println("补充：" + qm.getAddition());
-			System.out.println("已解决：" + (qm.getSolved() ? "是" : "否"));
-			System.out.println("发布时间：" + qm.getTime());
-			System.out.println("赞：" + qm.getGood() + "次");
-
-		} else {
-			System.out.println("点数不足");
-		}
-		System.out.println();
-	}
-
-
 	public void abandonQuestion(long questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.ABANDON_QUESTION_REQUEST)
@@ -615,73 +300,6 @@ public class Client implements Runnable {
 		sendIt(sendMessage);
 	}
 
-	public void handleResponseGetCosSig(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.GetCosSignResponse getCosSignResponse =
-				  recvMessage.getGetCosSignResponse();
 
-		if(getCosSignResponse.getSuccess()) {
-			Set<Map.Entry<String, String>> file_sig = getCosSignResponse.getSignMap().entrySet();
-			switch (getCosSignResponse.getSignType()) {
-				case UPLOAD:
-					for (Map.Entry<String, String> entry : file_sig) {
-						try {
-							fileOP.changeSign(entry.getValue());
-							fileOP.uploadFile(new UploadFileRequest(
-												 fileOP.getBucktName(),
-												 "/" + entry.getKey(),
-												 PICTPATH + entry.getKey()
-									  )
-							);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					break;
-				case DOWNLOAD:
-					for (Map.Entry<String, String> entry : file_sig) {
-						try {
-							fileOP.changeSign(entry.getValue());
-							fileOP.getFileLocal(new GetFileLocalRequest(
-									  fileOP.getBucktName(),
-									  "/" + entry.getKey(),
-									  PICTPATH + entry.getValue()
-							));
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					break;
-				case UNRECOGNIZED:
-					break;
-				default:
-			}
-		}
-	}
-
-	private void handleUpdateMessage(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.UpdateMessage.UserEnter userEnter =
-				  recvMessage.getUpdateMessage().getUserEnter();
-		String user = userEnter.getUsername();
-		long questionID = userEnter.getQuestionID();
-		System.out.println(user+"进入了问题"+questionID);
-		System.out.println();
-	}
-
-	private void handleResponseSolvedQuestion(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.SolvedQuestionResponse solvedQuestionResponse =
-				  recvMessage.getSolvedQuestionResponse();
-		boolean success = solvedQuestionResponse.getSuccess();
-		long questionID = solvedQuestionResponse.getQuestionID();
-		if(success) {
-			System.out.println("成功将问题"+questionID+"标志为解决状态");
-		} else {
-			if(questionID==0) {
-				System.out.println("问题不存在");
-			} else {
-				System.out.println("权限不足，无法将问题"+questionID+"标志为解决状态");
-			}
-		}
-		System.out.println();
-	}
 
 }

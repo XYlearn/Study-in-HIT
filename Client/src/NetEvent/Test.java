@@ -18,17 +18,7 @@ public class Test {
 		Scanner scanner = new Scanner(System.in);
 
 		Client client = new Client();
-		Thread netThread = new Thread(client);
-		netThread.start();
-		synchronized (client) {
-			try {
-				client.wait();
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("网络连接错误");
-				System.exit(0);
-			}
-		}
+
 		try {
 
 			System.out.println("用户名:");

@@ -1,6 +1,7 @@
 package com;
 
 import com.google.protobuf.ProtocolStringList;
+import org.apache.mina.core.session.IoSession;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -11,26 +12,25 @@ import java.sql.Statement;
 import java.util.*;
 
 public class ServerItem {
-	private SocketChannel client;
+	private IoSession session;
 	private String username = null;
 	private DatabaseConnection dbconn;
 	private String sql;
 	private Statement stmt;
 	Cos cos;
 
-	public ServerItem(SocketChannel socketChannel, DatabaseConnection dbconn) {
-		this.client = socketChannel;
+	public ServerItem(IoSession session, DatabaseConnection dbconn) {
+		this.session = session;
 		this.dbconn = dbconn;
 		this.cos = new Cos();
 		try {
 			stmt = dbconn.connection.createStatement();
 		} catch (SQLException e) {
-			NIOServer.logger.write(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	public boolean isLaunched(){
-		return NIOServer.user_socket_list.get(username).equals(client);
+		return ServerHandler.session_user_map.get(session).equals(this.username);
 	}
 
 	public String getUsername() {return this.username;}
@@ -54,6 +54,7 @@ public class ServerItem {
 						return ServerResponseMessage.Message.newBuilder()
 								  .setMsgType(ServerResponseMessage.MSG.LAUNCH_RESPONSE)
 								  .setLauchResponse(handleLaunch(message.getLauchRequest()))
+								  .setUsername(username)
 								  .build();
 					} else
 						return null;
@@ -167,7 +168,6 @@ public class ServerItem {
 								  .setGetCosSignResponse(handleGetCosCredRequest(message.getGetCosSignRequest()))
 								  .build();
 						} catch (Exception e) {
-							NIOServer.logger.write(e.getMessage());
 							e.printStackTrace();
 							return ServerResponseMessage.Message.newBuilder().build();
 						}
@@ -185,10 +185,9 @@ public class ServerItem {
 					break;
 				default:
 					return ServerResponseMessage.Message.newBuilder()
-							  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
+							  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).setUsername("").build();
 			}
 		} catch (Exception e) {
-			NIOServer.logger.write(e.getMessage());
 			e.printStackTrace();
 			return ServerResponseMessage.Message.newBuilder()
 					  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
@@ -229,7 +228,7 @@ public class ServerItem {
 				//判断用户是否处于登录状态
 				if (rs.next()) {
 					inOnlineUser = true;
-					NIOServer.user_socket_list.replace(username, client);
+					ServerHandler.session_user_map.replace(session, username);
 				}
 				rs.close();
 
@@ -251,7 +250,7 @@ public class ServerItem {
 						  .setInformation("成功登录")
 						  .setUserMessage(userMessage)
 						  .build();
-				NIOServer.user_socket_list.put(username, client);
+				ServerHandler.session_user_map.put(session, username);
 				return responseLaunch;
 			} else {
 				responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
@@ -272,7 +271,6 @@ public class ServerItem {
 			  throws SQLException {
 		sql = "DELETE FROM online_user WHERE username='?';".replace("?",username);
 		stmt.execute(sql);
-		NIOServer.user_socket_list.remove(username);
 	}
 
 	private ServerResponseMessage.RegisterResponse
@@ -347,37 +345,21 @@ public class ServerItem {
 		sendBuider.setSuccess(true);
 		sendBuider.setIsmyself(false);
 		responseSend  = sendBuider.build();
-		ArrayList<SocketChannel> clients = NIOServer.question_socket_list.get(questionID+"");
+		ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID+"");
 		//给每一个处于房间中的用户发送信息（自己除外）
-		try {
-			for (SocketChannel sc : clients) {
-				if(!sc.equals(client) && !sc.socket().isClosed()) {
-					byte[] sendBytes =
-							  ServerResponseMessage.Message.newBuilder()
-										 .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
-										 .setSendContent(responseSend)
-										 .build().toByteArray();
-					ByteBuffer sendBB = ByteBuffer.allocate(Integer.BYTES+sendBytes.length);
-					sendBB.putInt(sendBytes.length).put(sendBytes);
-					sendBB.flip();
-					while (sendBB.hasRemaining())
-						sc.write(sendBB);
-				}
+		for (IoSession is : ioSessions) {
+			if(!is.equals(session) && is.isConnected()) {
+				is.write(responseSend);
 			}
-		} catch (IOException e) {
-			sendBuider.setSuccess(false);
-			e.printStackTrace();
-			NIOServer.logger.write(e.getMessage());
-		} finally {
-			//对于用户本身返回上传签名
-			sendBuider.clearPictures();
-			for(String pic : sendMessage.getPicturesList()) {
-				sendBuider.putPictures(pic, cos.getUploadSign(pic, Cos.TYPE.PICTURE));
-			}
-			sendBuider.setIsmyself(true);
-			responseSend = sendBuider.build();
-			return responseSend;
 		}
+		//对于用户本身返回上传签名
+		sendBuider.clearPictures();
+		for(String pic : sendMessage.getPicturesList()) {
+			sendBuider.putPictures(pic, cos.getUploadSign(pic, Cos.TYPE.PICTURE));
+		}
+		sendBuider.setIsmyself(true);
+		responseSend = sendBuider.build();
+			return responseSend;
 	}
 
 	private ServerResponseMessage.QuestionInformationResponse
@@ -463,51 +445,41 @@ public class ServerItem {
 					  .setAllow(true)
 					  .build();
 			//将用户socket添加进问题socket列表中
-			ArrayList<SocketChannel> socketChannels = NIOServer.question_socket_list.get(questionID.toString());
-			if(null==socketChannels) {
-				socketChannels = new ArrayList<>();
-				socketChannels.add(client);
-				NIOServer.question_socket_list.put(questionID.toString(), socketChannels);
+			ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID.toString());
+			if(null==ioSessions) {
+				ioSessions = new ArrayList<>();
+				ioSessions.add(session);
+				ServerHandler.question_sessions_map.put(questionID.toString(), ioSessions);
 			} else {
-				socketChannels.add(client);
-				NIOServer.question_socket_list.replace(questionID.toString(), socketChannels);
+				ioSessions.add(session);
+				ServerHandler.question_sessions_map.replace(questionID.toString(), ioSessions);
 			}
 
 			//向用户问题表中添加问题
-			ArrayList<String> questions = NIOServer.socket_question_list.get(client);
+			ArrayList<String> questions = ServerHandler.session_questions_map.get(session);
 			if(null == questions) {
 				questions = new ArrayList<>();
 				questions.add(questionID.toString());
-				NIOServer.socket_question_list.replace(client, questions);
+				ServerHandler.session_questions_map.replace(session, questions);
 			}
 
-			for(SocketChannel sc : socketChannels) {
-				try {
-					//若客户端链接中断
-					if(sc.socket().isClosed())
-						break;
+			for(IoSession is : ioSessions) {
+				//若客户端链接中断
+				if(is.isClosing())
+					break;
 
-					ServerResponseMessage.Message sendMessage =
-							  ServerResponseMessage.Message.newBuilder()
-										 .setMsgType(ServerResponseMessage.MSG.UPDATE_MESSAGE)
-										 .setUpdateMessage(
-													ServerResponseMessage.UpdateMessage.newBuilder()
-															  .setUserEnter(
-																		 ServerResponseMessage.UpdateMessage.UserEnter.newBuilder()
-																					.setQuestionID(questionID)
-																					.setUsername(username).build()
-															  ).build()
-										 ).build();
-					byte[] sendByte = sendMessage.toByteArray();
-					ByteBuffer sendBB = ByteBuffer.allocate(sendByte.length+Integer.BYTES);
-					sendBB.putInt(sendByte.length).put(sendByte);
-					sendBB.flip();
-					while (sendBB.hasRemaining())
-						sc.write(sendBB);
-				} catch (IOException e) {
-					e.printStackTrace();
-					NIOServer.logger.write(e.getMessage());
-				}
+				ServerResponseMessage.Message sendMessage =
+						  ServerResponseMessage.Message.newBuilder()
+									 .setMsgType(ServerResponseMessage.MSG.UPDATE_MESSAGE)
+									 .setUpdateMessage(
+												ServerResponseMessage.UpdateMessage.newBuilder()
+														  .setUserEnter(
+																	 ServerResponseMessage.UpdateMessage.UserEnter.newBuilder()
+																				.setQuestionID(questionID)
+																				.setUsername(username).build()
+														  ).build()
+									 ).build();
+				is.write(sendMessage);
 			}
 		}
 		return response;
@@ -806,7 +778,7 @@ public class ServerItem {
 		int i;
 		for(i=0;i<questionNum && rs.next();i++) {
 			int userNum = 0;
-			Iterator<SocketChannel> ite = NIOServer.question_socket_list.get(rs.getLong("id")).iterator();
+			Iterator<IoSession> ite = ServerHandler.question_sessions_map.get(rs.getString("id")).iterator();
 			while (ite.next()!=null) {
 				userNum++;
 			}
@@ -869,7 +841,7 @@ public class ServerItem {
 
 		//获得问题消息
 		for(Long question : set1) {
-			int userNum = NIOServer.question_socket_list.size();
+			int userNum = ServerHandler.question_sessions_map.size();
 			sql = "SELECT * FROM question WHERE id="+question+";";
 			rs = stmt.executeQuery(sql);
 

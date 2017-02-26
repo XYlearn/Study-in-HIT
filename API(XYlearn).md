@@ -3,6 +3,16 @@
 ## 包名：NetEvent
 ## 类名：Client
 
+## 重要通知：
+
+    //使用方法
+    public static Client client = new Client();
+    /*
+     *...
+     */
+    client.start();
+    //其他使用方法不变
+
 ##### 原型：
 public void launchRequest(String username, String password) throws IOException
 
