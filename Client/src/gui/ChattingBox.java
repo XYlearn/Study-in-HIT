@@ -70,6 +70,12 @@ public class ChattingBox extends JPanel
 	{
 		myPane.setPreferredSize(new Dimension(width,height));
 	}
+	
+	public void clear()
+	{
+		html.delete(0,html.length());
+		myPane.setText("");
+	}
 
 	public void pushMessage(MyMessage msg)
 	{
@@ -195,10 +201,7 @@ public class ChattingBox extends JPanel
 					myPane.copy();
 			}
 			else if(e.getActionCommand().equals("清屏"))
-			{
-				html.delete(0,html.length());
-				myPane.setText("");
-			}
+				clear();
 		}
 	}
 
