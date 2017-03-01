@@ -5,6 +5,9 @@ import java.util.Scanner;
 import NetEvent.Client;
 import gui.ChattingBox;
 import java.awt.BorderLayout;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.MyMessage;
 
 public class test

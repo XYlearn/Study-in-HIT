@@ -17,9 +17,10 @@ import java.awt.Dimension;
 import util.MyMessage;
 import util.AudioTools;
 import bin.test;
+import java.awt.Font;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
-//import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.HTMLEditorKit;
 
 public class ChattingBox extends JPanel
 {
@@ -30,7 +31,7 @@ public class ChattingBox extends JPanel
 	private String mouseHyperlink;
 	private String currentHyperlink;
 
-	//private HTMLEditorKit kit=new HTMLEditorKit();
+	private HTMLEditorKit kit=new HTMLEditorKit();
 	private HTMLDocument doc=new HTMLDocument();
 	public JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
@@ -52,10 +53,13 @@ public class ChattingBox extends JPanel
 	public ChattingBox()
 	{
 		myPane.setContentType("text/html");
+		myPane.setEditorKit(kit);
+		kit.install(myPane);
 		myPane.setEditable(false);
+		myPane.setFont(Font.getFont("宋体"));
 		//myPane.setEditorKit(kit);
-		myPane.setContentType("text/html");
-		myPane.setText("<html><p id='0'/></html>");
+		myPane.setContentType("text/html;charset=unicode");
+		myPane.setText("<html><p id='0'></p></html>");
 		doc=(HTMLDocument)myPane.getStyledDocument();
 
 		myPane.addMouseListener(new ChattingBoxMouseListener());
