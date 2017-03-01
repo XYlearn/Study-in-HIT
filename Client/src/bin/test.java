@@ -18,8 +18,8 @@ public class test
 
 	public static final void main()
 	{
-		client.start();
-		/*synchronized(client)
+		/*client.start();
+		synchronized(client)
 		{
 			try
 			{
@@ -31,6 +31,7 @@ public class test
 			}
 		}*/
 		JFrame f=new JFrame("Hello, world!");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ChattingBox c=new ChattingBox();
 		//InputBox box=new InputBox();
 		//box.setQuestionID("1");
