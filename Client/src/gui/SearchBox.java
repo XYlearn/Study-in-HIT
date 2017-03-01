@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Consumer;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import util.SegmentAPI;
@@ -13,7 +12,6 @@ import util.SegmentAPI;
 public class SearchBox extends JPanel
 {
 	private JTextArea mytext=new JTextArea();
-	//private Consumer<String> searchListener;
 	public SearchBox()
 	{
 		add(mytext,BorderLayout.CENTER);

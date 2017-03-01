@@ -3,11 +3,9 @@ package bin;
 import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
-import gui.InputBox;
-import gui.SearchBox;
+import gui.ChattingBox;
 import java.awt.BorderLayout;
-import java.io.IOException;
-import java.util.ArrayList;
+import util.MyMessage;
 
 public class test
 {
@@ -33,13 +31,13 @@ public class test
 			}
 		}*/
 		JFrame f=new JFrame("Hello, world!");
-		//ChattingBox c=new ChattingBox();
-		InputBox box=new InputBox();
-		box.setQuestionID("1");
-		f.getContentPane().add(box, BorderLayout.CENTER);
+		ChattingBox c=new ChattingBox();
+		//InputBox box=new InputBox();
+		//box.setQuestionID("1");
+		f.getContentPane().add(c, BorderLayout.CENTER);
 		f.setVisible(true);
-		//c.setSize(500,550);
-		box.setSize(500, 300);
+		c.setSize(500,550);
+		//box.setSize(500, 300);
 		f.pack();
 		f.setLocationRelativeTo(null);
 		/*ArrayList<String> a=new ArrayList<String>();
@@ -77,10 +75,9 @@ public class test
 					System.exit(0);
 					break;
 				case "show":
-					System.out.println(box.myPane.getText());
-					tmp=box.myPane.getText();
+					System.out.println(c.myPane.getText());
 					break;
-				case "get":
+				/*case "get":
 					System.out.println(box.myPane.getCaretPosition());
 					break;
 				case "send":
@@ -124,10 +121,9 @@ public class test
 					{
 						System.out.println("进入房间失败："+e);
 					}
-					break;
+					break;*/
 				default:
-					tmp=tmp.replaceAll(cmd, "");
-					System.out.println(tmp);
+					c.pushMessage(new MyMessage("a","16:41:05",cmd));
 					break;
 			}
 		}
