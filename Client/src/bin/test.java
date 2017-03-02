@@ -5,9 +5,8 @@ import java.util.Scanner;
 import NetEvent.Client;
 import gui.ChattingBox;
 import java.awt.BorderLayout;
-import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.URLEncoder;
+import org.apache.commons.lang.StringEscapeUtils;
 import util.MyMessage;
 
 public class test
@@ -79,7 +78,14 @@ public class test
 					System.exit(0);
 					break;
 				case "show":
-					System.out.println(c.myPane.getText());
+					try//&#21834;&#22909;
+					{
+						//System.out.println(StringEscapeUtils.escapeHtml("啊好"));
+						System.out.println(c.myPane.getText());
+					} catch (Exception ex)
+					{
+						System.out.println(ex);
+					}
 					break;
 				/*case "get":
 					System.out.println(box.myPane.getCaretPosition());
@@ -127,6 +133,8 @@ public class test
 					}
 					break;*/
 				default:
+					//cmd=StringEscapeUtils.escapeHtml(cmd);
+					//System.out.println(cmd);
 					c.pushMessage(new MyMessage("a","16:41:05",cmd));
 					break;
 			}

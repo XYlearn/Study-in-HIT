@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
+import org.apache.commons.lang.StringEscapeUtils;
 
 public class ChattingBox extends JPanel
 {
