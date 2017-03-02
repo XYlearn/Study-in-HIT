@@ -5,8 +5,6 @@ import Cos.FileOP;
 import NetEvent.dataPack.NetPackageCodeFacotry;
 import com.ClientSendMessage;
 import com.ServerResponseMessage;
-import com.qcloud.cos.request.GetFileLocalRequest;
-import com.qcloud.cos.request.UploadFileRequest;
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.session.IdleStatus;
@@ -17,24 +15,15 @@ import util.MD5Tools;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
 import java.util.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by xy16 on 17-1-31.
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";
+	private static String host = "localhost";
 	private static int port = 8972;
 
 	//connection object
@@ -55,6 +44,26 @@ public class Client extends Thread{
 			  .substring(0, bin.test.class.getResource("").getPath().length()-4);
 	public static final String PICTPATH=MAINPATH+"pictures/";
 	public static final String FILEPATH=MAINPATH+"files/";
+
+	//聊天记录属性
+	private enum CONTENT_MARK {
+		DEFAULT(0),
+		DOUBTED(1),
+		FURTHURASKED(2),
+		DOUBT(4),
+		FURTHERASK(8),
+		ANONIMOUS(16);
+
+		private final int value;
+
+		CONTENT_MARK(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return this.value;
+		}
+	}
 
 	//COS 文件操作
 	public static FileOP fileOP = new FileOP(
@@ -104,6 +113,30 @@ public class Client extends Thread{
 
 	//发送请求
 
+	public boolean registerRequest(String username, String password, String mailAddress, String signature) {
+		if(password.length() < 6) {
+			System.out.println("密码长度过短");
+			return false;
+		}
+		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.REGISTER_REQUEST)
+				  .setUsername("")
+				  .setRegisterRequest(
+				  		  ClientSendMessage.RegisterRequest.newBuilder()
+							 .setUsername(username)
+							 .setPassword(MD5Tools.StringToMD5(password))
+							 .setMailAddress(mailAddress)
+							 .setSignature(signature)
+				  ).build();
+		try {
+			sendIt(sendMessage);
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public void launchRequest(String username, String password) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.LAUNCH_REQUEST)
@@ -150,6 +183,31 @@ public class Client extends Thread{
 		//在自己的页面上显示
 	}
 
+	public void sendContent(String contents, ArrayList<String> pictures, String questionID,
+									Map<Integer, Long> markMap) throws IOException {
+		ClientSendMessage.Message send = null;
+		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
+				  .setContent(contents)
+				  .setQuestionID(Long.valueOf(questionID));
+		if(markMap!=null) {
+			contentBuider.putAllMarkMap(markMap);
+		}
+
+		if(pictures!=null) {
+			for (String picture : pictures) {
+				contentBuider.addPictures(picture);
+			}
+		}
+		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.SEND_CONTENT)
+				  .setUsername(username)
+				  .setSendContent(contentBuider)
+				  .build();
+
+		sendIt(sendMessage);
+
+		//在自己的页面上显示
+	}
 
 	public void goodUser(String user) throws IOException {
 		ClientSendMessage.Message sendMessage =
@@ -300,6 +358,103 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
+	public boolean uploadFile(String filePath) throws IOException {
+		ClientSendMessage.Message request = null;
+		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
+		File file = new File(filePath);
+		if(!file.exists()) {
+			System.out.println("文件不存在");
+			return false;
+		}
+
+		String filename = MD5Tools.FileToMD5(file);
+		ArrayList<String> filenames = new ArrayList<>();
+		filenames.add(filename);
+		ArrayList<String> localFilePaths = new ArrayList<>();
+		localFilePaths.add(filePath);
+
+		builder.addAllFilename(filenames)
+				  .addAllLocalFilePath(localFilePaths)
+				  .setSignType(ClientSendMessage.FileRequest.SIGNTYPE.UPLOAD);
+
+		request = ClientSendMessage.Message.newBuilder()
+				  .setUsername(username)
+				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
+				  .setFileRequest(builder)
+				  .build();
+
+		sendIt(request);
+
+		return true;
+	}
+
+	public boolean uploadFiles(Iterable<String> filePaths) throws IOException {
+		ClientSendMessage.Message request = null;
+		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
+
+		ArrayList<String> localFilePaths = new ArrayList<>();
+		ArrayList<String> filenames = new ArrayList<>();
+
+		for(String filePath : filePaths) {
+			File file = new File(filePath);
+			if (!file.exists()) {
+				System.out.println("文件不存在");
+				return false;
+			} else {
+				String filename = MD5Tools.FileToMD5(file);
+
+				filenames.add(filename);
+				localFilePaths.add(filePath);
+			}
+
+		}
+		builder.addAllFilename(filenames)
+				  .addAllLocalFilePath(localFilePaths)
+				  .setSignType(ClientSendMessage.FileRequest.SIGNTYPE.UPLOAD);
+
+		request = ClientSendMessage.Message.newBuilder()
+				  .setUsername(username)
+				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
+				  .setFileRequest(builder)
+				  .build();
+
+		sendIt(request);
+
+		return true;
+	}
+
+	public void downloadFile(String filename) throws IOException {
+		ClientSendMessage.Message request = null;
+		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
+
+		ArrayList<String> filenames = new ArrayList<>();
+		filenames.add(filename);
+
+		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
+
+		request = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
+				  .setUsername(username)
+				  .setFileRequest(builder)
+				  .build();
+
+		sendIt(request);
+	}
+
+	public void downloadFiles(Iterable<String> filenames) throws IOException {
+		ClientSendMessage.Message request = null;
+		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
+
+		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
+
+		request = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
+				  .setUsername(username)
+				  .setFileRequest(builder)
+				  .build();
+
+		sendIt(request);
+	}
 
 }

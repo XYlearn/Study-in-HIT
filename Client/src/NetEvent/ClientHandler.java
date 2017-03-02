@@ -1,6 +1,7 @@
 package NetEvent;
 
 import com.ServerResponseMessage;
+import com.google.protobuf.ProtocolStringList;
 import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.UploadFileRequest;
 import jdk.nashorn.internal.objects.annotations.Function;
@@ -34,6 +35,9 @@ public class ClientHandler extends IoHandlerAdapter {
 		//处理数据
 		if (recvMessage != null) {
 			switch (recvMessage.getMsgType()) {
+				case REGISTER_RESPONSE:
+					handleRegisterResponse(recvMessage);
+					break;
 				case LAUNCH_RESPONSE:
 					handleResponseLaunch(recvMessage);
 					break;
@@ -66,7 +70,7 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case SEARCH_INFORMATION_RESPONSE:
 					break;
-				case GET_COS_SIGN_RESPONSE:
+				case FILE_RESPONSE:
 					break;
 				case UPDATE_MESSAGE:
 					handleUpdateMessage(recvMessage);
@@ -74,7 +78,7 @@ public class ClientHandler extends IoHandlerAdapter {
 				case SOLVED_QUESTION_RESPONSE:
 					handleResponseSolvedQuestion(recvMessage);
 					break;
-				case UNRECOGNIZED:
+				case BAD_MESSAGE:
 					System.out.println("未知消息");
 					break;
 				default:
@@ -102,6 +106,12 @@ public class ClientHandler extends IoHandlerAdapter {
 	/*handle functions*/
 
 	@Function
+	private void handleRegisterResponse(ServerResponseMessage.Message recvMessage) {
+		ServerResponseMessage.RegisterResponse registerResponse = recvMessage.getRegisterResponse();
+
+		System.out.println(registerResponse.getInformation());
+	}
+
 	private void handleResponseLaunch(ServerResponseMessage.Message recvMessage) {
 		ServerResponseMessage.LaunchResponse lr = recvMessage.getLauchResponse();
 		ServerResponseMessage.UserMessage um = lr.getUserMessage();
@@ -276,15 +286,15 @@ public class ClientHandler extends IoHandlerAdapter {
 		System.out.println();
 	}
 
-	public void handleResponseGetCosSig(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.GetCosSignResponse getCosSignResponse =
-				  recvMessage.getGetCosSignResponse();
+	public void handleFileResponse (ServerResponseMessage.Message recvMessage) {
+		ServerResponseMessage.FileResponse fileResponse =
+				  recvMessage.getFileResponse();
 
-		if(getCosSignResponse.getSuccess()) {
-			Set<Map.Entry<String, String>> file_sig = getCosSignResponse.getSignMap().entrySet();
-			switch (getCosSignResponse.getSignType()) {
+		if(fileResponse.getSuccess()) {
+			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSignMap().entrySet();
+			switch (fileResponse.getSignType()) {
 				case UPLOAD:
-					for (Map.Entry<String, String> entry : file_sig) {
+					for (Map.Entry<String, String> entry: file_sigs) {
 						try {
 							Client.fileOP.changeSign(entry.getValue());
 							Client.fileOP.uploadFile(new UploadFileRequest(
@@ -299,7 +309,7 @@ public class ClientHandler extends IoHandlerAdapter {
 					}
 					break;
 				case DOWNLOAD:
-					for (Map.Entry<String, String> entry : file_sig) {
+					for (Map.Entry<String, String> entry : file_sigs) {
 						try {
 							Client.fileOP.changeSign(entry.getValue());
 							Client.fileOP.getFileLocal(new GetFileLocalRequest(
