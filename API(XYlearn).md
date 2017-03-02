@@ -5,13 +5,46 @@
 
 ## 重要通知：
 
-    //使用方法
+    //Client使用方法
     public static Client client = new Client();
     /*
      *...
      */
     client.start();
     //其他使用方法不变
+
+### 上传下载和匿名追问质疑的API已经放出,但服务器处理程序待完善
+2017-3-2 更新方法：
+* sendContent
+* uploadFile
+* uploadFiles
+* downloadFile
+* downloadFiles
+
+-----
+
+##### 原型：
+public boolean registerRequest(String username, String password, String mailAddress, String signature)
+
+##### 介绍:
+注册
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|username|String|用户名|
+|password|String|密码|
+|mailAddress|String|邮箱|
+|signature|String|个性签名|
+
+##### 返回值：
+* boolean 注册信息是否正确
+
+#### 服务器反馈消息:
+* status : 成功状态
+* information : 字符串消息
+
+-----
 
 ##### 原型：
 public void launchRequest(String username, String password) throws IOException
@@ -23,7 +56,7 @@ public void launchRequest(String username, String password) throws IOException
 |参数名  |参数类型|参数介绍|
 |:-------:|:-----:|:-----:|
 |username|String|用户名|
-|password|String|经过加密的密码|
+|password|String|密码|
 
 ##### 返回值：无
 
@@ -63,13 +96,14 @@ public void logout() throws IOException
 public void sendContent(String contents,ArrayList<String> pictures,String questionID) throws IOException
 
 ##### 介绍:
-发送消息
+发送消息，默认属性为DEFAULT，具体属性定义见下文
 
 ##### 参数：
 |参数名  |参数类型|参数介绍|
 |:-------:|:--------------:|:-----:|
 |contents|String|发送的消息|
 |pictures|ArrayList< String >|发送消息中图片的MD5码|
+|questionID|String|目标房间号|
 
 ##### 返回值：无
 
@@ -84,6 +118,56 @@ sendContent结构:
 * pictures:(map结构){发送的图片存储名,cos签名}
 * success:是否成功
 * isMyself:是否为自己
+
+-----
+
+##### 原型：
+public void sendContent(
+    String contents,
+    ArrayList<String> pictures,
+    String questionID，
+    ClientSendMessage.CONTENT_MARK mark,
+    long markID) throws IOException
+
+##### 介绍:
+发送消息
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:--------------:|:-----:|
+|contents|String|发送的消息|
+|pictures|ArrayList< String >|发送消息中图片的MD5码|
+|questionID|String|目标房间号|
+|markMap|Map <Integer, Long>|聊天记录属性表，key为CONTENT_MARK枚举值（在Client中定义）, value为属性对应的目标房间号|
+
+* (PS : 属性对应房间号表示属性标注的对象房间，比如说属性为FURTHERASK (表示追问) 要追问的大一记录record id为1,则map的键为FURTHERASK、值为1 ) *
+
+#### 枚举CONTENT_MARK:
+
+    enum CONTENT_MARK {
+        DEFAULT,    //默认属性
+        DOUBTED,    //被质疑
+        FURTHURASKED,      //被追问
+        DOUBT,      //质疑
+        FURTHERASK,    //追问
+        ANONIMOUS,      //匿名发送
+    }
+
+##### 返回值：无
+
+#### 服务器反馈消息：
+* sendContent消息体（与发送包相同，但若属性含匿名，则sendContent的user字段为"匿名"）
+
+sendContent结构:
+* questionID:发送到的问题号
+* content:发送内容
+* time:发送时间
+* user:发送者
+* pictures:(map结构){发送的图片存储名,cos签名}
+* success:是否成功
+* isMyself:是否为自己
+* mark:聊天记录属性
+* markID:属性对应房间号
 
 -----
 
@@ -332,5 +416,77 @@ public void solveQuestion(long questionID) throws IOException
 #### 服务器反馈消息:
 1. success:成功与否
 2. questionID:问题题号
+
+-----
+
+##### 原型：
+public boolean uploadFile(String filePath) throws IOException
+
+##### 介绍:
+上传文件
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|filePath|String|文件名|
+
+##### 返回值：无
+
+#### 服务器反馈消息:
+无需关心
+
+-----
+
+##### 原型：
+public boolean uploadFiles(Iterable<String> filePaths) throws IOException
+
+##### 介绍:
+批量上传文件
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|filePaths|Iterable< String >|文件名的序列|
+
+##### 返回值：无
+
+#### 服务器反馈消息:
+无需关心
+
+-----
+
+##### 原型：
+public void downloadFile(String filename) throws IOException
+
+##### 介绍:
+下载文件
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|filename|String|文件名|
+
+##### 返回值：无
+
+#### 服务器反馈消息:
+无需关心
+
+-----
+
+##### 原型：
+public void downloadFiles(Iterable<String> filenames) throws IOException
+
+##### 介绍:
+批量上传文件
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|filenames|Iterable< String >|文件名序列|
+
+##### 返回值：无
+
+#### 服务器反馈消息:
+无需关心
 
 -----
