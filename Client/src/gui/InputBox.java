@@ -7,17 +7,14 @@ import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
-import util.MyMessage;
 import java.io.File;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.regex.*;
-import util.MyMessage;
 import bin.test;
 import java.io.IOException;
+import javax.swing.text.html.HTMLEditorKit;
 
 public class InputBox extends JPanel
 {
@@ -25,6 +22,7 @@ public class InputBox extends JPanel
 
 	public JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
+	private final HTMLEditorKit kit=new HTMLEditorKit();
 
 	private final JPopupMenu textMenu=new JPopupMenu();
 	private final JMenuItem copy=new JMenuItem("复制");
@@ -40,7 +38,10 @@ public class InputBox extends JPanel
 	{
 		myPane.setContentType("text/html");
 		myPane.setEditable(true);
+		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
+		kit.install(myPane);
 		myPane.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+		myPane.setEditorKit(kit);
 
 		this.add(myScroll, BorderLayout.CENTER);
 	}

@@ -3,11 +3,11 @@ package bin;
 import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
-import gui.InputBox;
-import gui.SearchBox;
+import gui.ChattingBox;
 import java.awt.BorderLayout;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.net.URLEncoder;
+import org.apache.commons.lang.StringEscapeUtils;
+import util.MyMessage;
 
 public class test
 {
@@ -20,8 +20,8 @@ public class test
 
 	public static final void main()
 	{
-		client.start();
-		/*synchronized(client)
+		/*client.start();
+		synchronized(client)
 		{
 			try
 			{
@@ -33,13 +33,14 @@ public class test
 			}
 		}*/
 		JFrame f=new JFrame("Hello, world!");
-		//ChattingBox c=new ChattingBox();
-		InputBox box=new InputBox();
-		box.setQuestionID("1");
-		f.getContentPane().add(box, BorderLayout.CENTER);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ChattingBox c=new ChattingBox();
+		//InputBox box=new InputBox();
+		//box.setQuestionID("1");
+		f.getContentPane().add(c, BorderLayout.CENTER);
 		f.setVisible(true);
-		//c.setSize(500,550);
-		box.setSize(500, 300);
+		c.setSize(500,550);
+		//box.setSize(500, 300);
 		f.pack();
 		f.setLocationRelativeTo(null);
 		/*ArrayList<String> a=new ArrayList<String>();
@@ -77,10 +78,16 @@ public class test
 					System.exit(0);
 					break;
 				case "show":
-					System.out.println(box.myPane.getText());
-					tmp=box.myPane.getText();
+					try//&#21834;&#22909;
+					{
+						//System.out.println(StringEscapeUtils.escapeHtml("啊好"));
+						System.out.println(c.myPane.getText());
+					} catch (Exception ex)
+					{
+						System.out.println(ex);
+					}
 					break;
-				case "get":
+				/*case "get":
 					System.out.println(box.myPane.getCaretPosition());
 					break;
 				case "send":
@@ -124,10 +131,11 @@ public class test
 					{
 						System.out.println("进入房间失败："+e);
 					}
-					break;
+					break;*/
 				default:
-					tmp=tmp.replaceAll(cmd, "");
-					System.out.println(tmp);
+					//cmd=StringEscapeUtils.escapeHtml(cmd);
+					//System.out.println(cmd);
+					c.pushMessage(new MyMessage("a","16:41:05",cmd));
 					break;
 			}
 		}

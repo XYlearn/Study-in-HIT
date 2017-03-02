@@ -10,6 +10,13 @@ public class MyMessage
 	public String message;//消息内容，图片以%0，%1，……表示
 	public ArrayList<String> pictures;//图片MD5
 
+	/**
+	 *
+	 * @param un name of the user
+	 * @param mt message time
+	 * @param m message
+	 * @param p pictures array
+	 */
 	public MyMessage(String un,String mt,String m,ArrayList<String> p)
 	{
 		userName=un;

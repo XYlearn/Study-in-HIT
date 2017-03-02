@@ -19,7 +19,7 @@ public class ListBox extends JPanel
 	private final JList<ListElementData> mylist;
 	private final ListBoxModel mymodel;
 	private final JScrollPane myscroll;
-	private Consumer<MouseEvent> mouseListener=(MouseEvent e)->{};//调用打开房间接口
+	private Consumer<MouseEvent> mouseListener;
 	
 	public ListBox()
 	{
@@ -31,6 +31,13 @@ public class ListBox extends JPanel
 		mylist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		mylist.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		mylist.setSelectionBackground(Color.LIGHT_GRAY);
+		
+		//设置鼠标监听
+		mouseListener=(MouseEvent e)->
+		{
+			//打开对应房间 to be finished
+			mymodel.getElementAt(mylist.locationToIndex(e.getPoint()));//.questionID;
+		};
 		
 		//添加高亮效果
 		MouseAdapter ma=new MouseAdapter()
@@ -55,6 +62,7 @@ public class ListBox extends JPanel
 			{
 				mylist.setSelectedIndices(new int[]{-1});
 			}
+			//点击触发进入房间
 			public void mouseClicked(MouseEvent e)
 			{
 				mouseListener.accept(e);
@@ -141,7 +149,7 @@ public class ListBox extends JPanel
 		mymodel.removeElementAt(index);
 	}
 	
-	public void readList(String listData)
+	public void readList(String listData)//ListData listdata,this method is used to read data from the client
 	{
 		//to be finished
 	}
