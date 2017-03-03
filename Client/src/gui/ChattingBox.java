@@ -38,7 +38,7 @@ public class ChattingBox extends JPanel
 	private HTMLDocument doc=new HTMLDocument();
 	public JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
-	private final ArrayList<questionMessage.Record> records=new ArrayList<>();
+	private final ArrayList<Record> records=new ArrayList<>();
 
 	private final JPopupMenu textMenu=new JPopupMenu();
 	private final JPopupMenu userMenu=new JPopupMenu();
