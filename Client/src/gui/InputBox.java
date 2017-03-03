@@ -11,9 +11,10 @@ import java.io.File;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
-import java.util.regex.*;
 import bin.test;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.text.html.HTMLEditorKit;
 
 public class InputBox extends JPanel
@@ -31,16 +32,12 @@ public class InputBox extends JPanel
 
 	private String questionID="";
 
-	private static final String CLASSPATH=InputBox.class.getResource("").getPath();
-	private static final String PATH="file:"+CLASSPATH;
-
 	public InputBox()
 	{
 		myPane.setContentType("text/html");
 		myPane.setEditable(true);
 		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
 		kit.install(myPane);
-		myPane.setCursor(new Cursor(Cursor.TEXT_CURSOR));
 		myPane.setEditorKit(kit);
 
 		this.add(myScroll, BorderLayout.CENTER);
@@ -84,6 +81,39 @@ public class InputBox extends JPanel
 			System.out.println("bad position");
 		}
 	}
+	
+	public String getExpressionAtCaret()
+	{
+		int i,begin=0,end=0;
+		String str=myPane.getText();
+		//protect the newlines ('\n')
+		str=         str.replaceAll("\\n *", "")
+				.replaceAll("</p>", "\n")
+				//keep the image or Chinese character as a character
+				.replaceAll("&#[0-9]*?;", "`")
+				.replaceAll("<img.*?>", "`")
+				//clear the HTML format
+				.replaceAll("<.*?>", "")
+				.replaceAll("&lt;", "<")
+				.replaceAll("&gt;", ">")
+				.replaceAll("\r", "");
+		//System.out.println(str);
+		//System.out.println(str.charAt(myPane.getCaretPosition()));
+		for(i=myPane.getCaretPosition();i<str.length();i++)
+			if(str.charAt(i)<=32||str.charAt(i)>=127||str.charAt(i)=='`')
+			{
+				end=i;
+				break;
+			}
+		for(i=myPane.getCaretPosition()-1;i>=0;i--)
+			if(str.charAt(i)<=32||str.charAt(i)>=127||str.charAt(i)=='`')
+			{
+				begin=i+1;
+				break;
+			}
+		if(begin>=end) return "";
+		else return str.substring(begin,end);
+	}
 
 	public void sendMessage()
 	{
@@ -126,5 +156,29 @@ public class InputBox extends JPanel
 			System.out.println("网络异常");
 			return;
 		}
+	}
+	
+	private static int getHTMLOffsetAtCaret(String html,int caret)
+	{
+		int i;
+		for(i=0;i<html.length();i++)
+		{
+			if(html.charAt(i)=='<')
+			{
+				if((html.charAt(i+1)=='/'&&html.charAt(i+2)=='p'&&html.charAt(i+3)=='>')||
+				    (html.charAt(i+1)=='i'&&html.charAt(i+2)=='m'&&html.charAt(i+3)=='g'))
+					caret--;
+				while(i<html.length()&&html.charAt(i)!='>') i++;
+			}
+			else if(html.charAt(i)=='&'&&html.charAt(i+1)=='#')
+			{
+				caret--;
+				while(i<html.length()&&html.charAt(i)!=';') i++;
+			}
+			else
+				caret--;
+			if(caret==0) break;
+		}
+		return i;
 	}
 }

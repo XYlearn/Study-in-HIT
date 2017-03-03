@@ -4,10 +4,8 @@ import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
 import gui.ChattingBox;
+import gui.InputBox;
 import java.awt.BorderLayout;
-import java.net.URLEncoder;
-import org.apache.commons.lang.StringEscapeUtils;
-import util.MyMessage;
 
 public class test
 {
@@ -34,13 +32,13 @@ public class test
 		}*/
 		JFrame f=new JFrame("Hello, world!");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ChattingBox c=new ChattingBox();
-		//InputBox box=new InputBox();
-		//box.setQuestionID("1");
+		//ChattingBox c=new ChattingBox();
+		InputBox c=new InputBox();
+		c.setQuestionID("1");
 		f.getContentPane().add(c, BorderLayout.CENTER);
 		f.setVisible(true);
-		c.setSize(500,550);
-		//box.setSize(500, 300);
+		//c.setSize(500,550);
+		c.setSize(500, 300);
 		f.pack();
 		f.setLocationRelativeTo(null);
 		/*ArrayList<String> a=new ArrayList<String>();
@@ -87,10 +85,10 @@ public class test
 						System.out.println(ex);
 					}
 					break;
-				/*case "get":
-					System.out.println(box.myPane.getCaretPosition());
+				case "get":
+					System.out.println(c.getExpressionAtCaret());
 					break;
-				case "send":
+				/*case "send":
 					box.sendMessage();
 					break;
 				case "reset":
@@ -135,7 +133,7 @@ public class test
 				default:
 					//cmd=StringEscapeUtils.escapeHtml(cmd);
 					//System.out.println(cmd);
-					c.pushMessage(new MyMessage("a","16:41:05",cmd));
+					//c.pushMessage(new MyMessage("a","16:41:05",cmd));
 					break;
 			}
 		}
