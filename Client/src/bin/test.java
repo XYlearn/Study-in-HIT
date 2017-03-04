@@ -86,7 +86,7 @@ public class test
 					}
 					break;
 				case "get":
-					System.out.println(c.getExpressionAtCaret());
+					System.out.println();
 					break;
 				/*case "send":
 					box.sendMessage();

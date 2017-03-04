@@ -306,7 +306,6 @@ public class MyExpression
 	public BufferedImage toImage()
 	{
 		int w=getWidth(1)+BORDER*4,h=getHeight(1);
-		int i,inity=0;
 		BufferedImage b=new BufferedImage(w,h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g=b.createGraphics();
 		g.setFont(fonts[0]);
@@ -314,18 +313,24 @@ public class MyExpression
 		g.setBackground(new Color(255,255,255));
 		g.clearRect(0,0,w,h);
 		draw(g,2,getinity(1),1);
-		File imageFile=new File(CLASSPATH+"tmp.jpg");
+		return b;
+	}
+	
+	public String toFile()
+	{
+		File imageFile=new File(test.PICTPATH+"tmp.jpg");
 		try
 		{
-			ImageIO.write(b, "jpg", imageFile);
+			ImageIO.write(toImage(), "jpg", imageFile);
 		}
 		catch(IOException e)
 		{
 			System.out.println("写入图片出错！");//写入图片出错
 		}
-		imageFile.renameTo(new File(test.PICTPATH+MD5Tools.FileToMD5(imageFile)+".jpg"));
+		String filename=MD5Tools.FileToMD5(imageFile)+".jpg";
+		imageFile.renameTo(new File(test.PICTPATH+filename));
 		if(imageFile.exists()) imageFile.delete();
-		return b;
+		return filename;
 	}
 
 	private void draw(Graphics2D g,int x,int y,int divide)

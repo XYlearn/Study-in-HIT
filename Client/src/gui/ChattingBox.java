@@ -78,6 +78,23 @@ public class ChattingBox extends JPanel
 
 		this.add(myScroll, BorderLayout.CENTER);
 	}
+	
+	public void bindAndGetRecord(String questionID)
+	{
+		//test.client.addMessageListener();
+		/*(questionMessage msg)->
+		{
+			String addition=msg.getAddition()
+					.replaceAll("\n", "<br>");
+			pushMessage(new Record(
+							msg.getOwner(),
+							"<b>"+msg.getStem()+"</b><br><b>"
+							+addition+"</b>",
+							msg.getTime()));
+			for(int i=0;i<msg.getRecords().size();i++)
+				pushMessage(msg.getRecordAt(i));
+		};*/
+	}
 
 	@Override
 	public void setSize(int width, int height)

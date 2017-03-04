@@ -12,10 +12,13 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import bin.test;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.text.html.HTMLEditorKit;
+import util.MyExpression;
 
 public class InputBox extends JPanel
 {
@@ -39,7 +42,22 @@ public class InputBox extends JPanel
 		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
 		kit.install(myPane);
 		myPane.setEditorKit(kit);
-
+		
+		myPane.addKeyListener(new KeyAdapter()
+				{
+					@Override
+					public void keyPressed(KeyEvent e)
+					{
+						//System.out.println("按下了"+e.getKeyCode());
+						if(e.getKeyCode()==9)
+						{
+							MyExpression exp=new MyExpression();
+							exp.read(getExpressionAtCaret());
+							insertImage(test.PICTPATH+exp.toFile());
+						}
+					}
+				});
+		
 		this.add(myScroll, BorderLayout.CENTER);
 	}
 
@@ -112,7 +130,14 @@ public class InputBox extends JPanel
 				break;
 			}
 		if(begin>=end) return "";
-		else return str.substring(begin,end);
+		else
+		{
+			String tmpstr=myPane.getText();
+			myPane.setText(tmpstr.substring(0,getHTMLOffsetAtCaret(tmpstr,begin))+
+						tmpstr.substring(getHTMLOffsetAtCaret(tmpstr,end)));
+			myPane.setCaretPosition(begin);
+			return str.substring(begin,end);
+		}
 	}
 
 	public void sendMessage()
@@ -154,11 +179,10 @@ public class InputBox extends JPanel
 		} catch (IOException e)
 		{
 			System.out.println("网络异常");
-			return;
 		}
 	}
 	
-	private static int getHTMLOffsetAtCaret(String html,int caret)
+	public static int getHTMLOffsetAtCaret(String html,int caret)
 	{
 		int i;
 		for(i=0;i<html.length();i++)
@@ -175,6 +199,8 @@ public class InputBox extends JPanel
 				caret--;
 				while(i<html.length()&&html.charAt(i)!=';') i++;
 			}
+			else if(html.charAt(i)==' '||html.charAt(i)=='\n'||html.charAt(i)=='\r')
+				continue;
 			else
 				caret--;
 			if(caret==0) break;
