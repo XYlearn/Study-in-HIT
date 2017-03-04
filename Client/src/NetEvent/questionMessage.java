@@ -1,8 +1,8 @@
-package util;
+package NetEvent;
 
 import java.util.ArrayList;
 
-public class questionMessage
+public class questionMessage extends NetEvent
 {
 	private final String id; //题号
 	private final String stem; //题干

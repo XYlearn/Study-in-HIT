@@ -1,5 +1,6 @@
 package gui;
 
+import NetEvent.NetEvent;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -15,6 +16,8 @@ import bin.test;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.text.html.HTMLEditorKit;
@@ -23,6 +26,7 @@ import util.MyExpression;
 public class InputBox extends JPanel
 {
 	//private ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
+	private static Queue<InputBox> listenerQueue=new LinkedList<InputBox>();
 
 	public JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
@@ -179,6 +183,14 @@ public class InputBox extends JPanel
 		} catch (IOException e)
 		{
 			System.out.println("网络异常");
+		}
+	}
+	
+	public static void dispatch(NetEvent e)
+	{
+		switch(e.type)
+		{
+			case NetEvent.EventType.SEND_CONTENT_RESPONSE:
 		}
 	}
 	

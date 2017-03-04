@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
-import util.questionMessage;
-import util.Record;
+import NetEvent.questionMessage;
+import NetEvent.Record;
 
 public class ChattingBox extends JPanel
 {

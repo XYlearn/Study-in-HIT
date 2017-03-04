@@ -1,4 +1,4 @@
-package util;
+package NetEvent;
 
 import java.util.ArrayList;
 
