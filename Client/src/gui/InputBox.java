@@ -188,10 +188,7 @@ public class InputBox extends JPanel
 	
 	public static void dispatch(NetEvent e)
 	{
-		switch(e.type)
-		{
-			case NetEvent.EventType.SEND_CONTENT_RESPONSE:
-		}
+		
 	}
 	
 	public static int getHTMLOffsetAtCaret(String html,int caret)
