@@ -31,7 +31,7 @@ public class Cos {
 					root = "/file/";
 					break;
 			}
-			return Sign.getDownLoadSign(bucketName, root+filename, cred, 300);
+			return Sign.getDownLoadSign(bucketName, root+filename, cred, 1000);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -43,10 +43,10 @@ public class Cos {
 			String root = "";
 			switch (type) {
 				case FILE:
-					root = "/pic/";
+					root = "/";
 					break;
 				case PICTURE:
-					root = "/file/";
+					root = "/";
 					break;
 			}
 			return Sign.getOneEffectiveSign(bucketName, root+filename, cred);

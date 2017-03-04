@@ -2,10 +2,16 @@ package NetEvent;
 
 import Cos.CosHttpClient;
 import Cos.FileOP;
+import com.ClientSendMessage;
 import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.StatFileRequest;
+import util.MD5Tools;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -18,19 +24,16 @@ public class Test {
 		Scanner scanner = new Scanner(System.in);
 
 		Client client = new Client();
+		client.start();
 
 		try {
 
 			System.out.println("用户名:");
-			username = scanner.nextLine();
+			username = "xy16";
 			System.out.println("密码");
 			password = scanner.nextLine();
 			client.launchRequest(username, password);
-			ArrayList<String> s = new ArrayList<>();
-			s.add("2+2=?");
-			client.enterQuestion("1");
-			client.sendContent("hello", new ArrayList<>(), "1");
-			client.solveQuestion(1);
+			client.uploadFile("/home/xy16/1");
 
 		} catch (Exception e) {
 			e.printStackTrace();

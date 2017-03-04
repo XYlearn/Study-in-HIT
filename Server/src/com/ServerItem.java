@@ -3,9 +3,6 @@ package com;
 import com.google.protobuf.ProtocolStringList;
 import org.apache.mina.core.session.IoSession;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +15,26 @@ public class ServerItem {
 	private String sql;
 	private Statement stmt;
 	Cos cos;
+
+	//聊天记录属性
+	private enum CONTENT_MARK {
+		DEFAULT(0),
+		DOUBTED(1),
+		FURTHURASKED(2),
+		DOUBT(4),
+		FURTHERASK(8),
+		ANONIMOUS(16);
+
+		private final int value;
+
+		CONTENT_MARK(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return this.value;
+		}
+	}
 
 	public ServerItem(IoSession session, DatabaseConnection dbconn) {
 		this.session = session;
@@ -159,13 +176,13 @@ public class ServerItem {
 								  ).build();
 					}
 					break;
-				case GET_COS_SIGN_REQUEST:	//获取签名请求
-					if(message.hasGetCosSignRequest()) {
+				case FILE_REQUEST:	//获取签名请求
+					if(message.hasFileRequest()) {
 						try {
 							return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.GET_COS_SIGN_RESPONSE)
+								  .setMsgType(ServerResponseMessage.MSG.FILE_RESPONSE)
 								  .setUsername(username)
-								  .setGetCosSignResponse(handleGetCosCredRequest(message.getGetCosSignRequest()))
+								  .setFileResponse(handleFileRequest(message.getFileRequest()))
 								  .build();
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -185,18 +202,19 @@ public class ServerItem {
 					break;
 				default:
 					return ServerResponseMessage.Message.newBuilder()
-							  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).setUsername("").build();
+							  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).setUsername("").build();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ServerResponseMessage.Message.newBuilder()
-					  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
+					  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).build();
 		}
 
 		return ServerResponseMessage.Message.newBuilder()
-				  .setMsgType(ServerResponseMessage.MSG.UNRECOGNIZED).build();
+				  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).build();
 	}
 
+	//处理信息
 	private ServerResponseMessage.LaunchResponse
 	handleLaunch(ClientSendMessage.LaunchRequest launchRequest)
 			  throws SQLException{
@@ -269,6 +287,19 @@ public class ServerItem {
 	private void
 	handleLogout()
 			  throws SQLException {
+		ServerHandler.serviceMap.remove(session);
+		ArrayList<String> questions = ServerHandler.session_questions_map.get(session);
+		if(!(null == questions)) {
+			for (String question : questions) {
+				ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(question);
+				if(!(null == sessions)) {
+					break;
+				} else {
+					sessions.remove(question);
+				}
+			}
+		}
+		ServerHandler.log.info(username+" Log out");
 		sql = "DELETE FROM online_user WHERE username='?';".replace("?",username);
 		stmt.execute(sql);
 	}
@@ -316,6 +347,8 @@ public class ServerItem {
 		long questionID = sendMessage.getQuestionID();
 		String time = sendMessage.getTime();
 		String record = sendMessage.getContent();
+		Map<Integer, Long> markMap = sendMessage.getMarkMapMap();
+		ProtocolStringList pictures = sendMessage.getPicturesList();
 
 		sql = "SELECT id FROM question WHERE id="+questionID+";";
 		ResultSet rs = stmt.executeQuery(sql);
@@ -326,19 +359,44 @@ public class ServerItem {
 		sql = "UPDATE question SET last_send_time=now() WHERE id = "+questionID;
 		stmt.execute(sql);
 
+		//将markMap转化为String
+		StringBuilder markMapStrBuider = new StringBuilder("");
+		if(markMap.size() > 0) {
+			for (Map.Entry<Integer, Long> entry : markMap.entrySet()) {
+				markMapStrBuider.append(entry.getKey())
+						  .append(":").append(entry.getValue()).append(":");
+			}
+			markMapStrBuider.deleteCharAt(markMapStrBuider.length()-1);
+		}
+		//将pictureMap转化为String
+		StringBuilder recordpicStrBuider = new StringBuilder("");
+		for (String picture : pictures) {
+			recordpicStrBuider.append(picture).append(":");
+		}
+		recordpicStrBuider.deleteCharAt(recordpicStrBuider.length()-1);
+
+
 		//在数据库中记录
-		sql = "INSERT INTO question_id"+questionID+" (record, time, username) "
-				  + "VALUES ('"+record+"',"+"now()"+",'"+username+"');";
+		sql = "INSERT INTO question_id"+questionID+" (record, time, username, markMap, recordpic) "
+				  + "VALUES ('"+record+"',"+"now()"+",'"+username+"', '"
+				  +markMapStrBuider.toString()+"','"+recordpicStrBuider+"');";
 		stmt.execute(sql);
 
 		//返回服务器回复
+			//匿名检查
+		if(markMap!=null && markMap.get(CONTENT_MARK.ANONIMOUS)!=null) {
+			sendBuider.setUser(sendMessage.getUser());
+		} else {
+			sendBuider.setUser("匿名");
+		}
+
 		sendBuider.setQuestionID(questionID);
 		sendBuider.setTime(time);
 		sendBuider.setContent(record);
-		sendBuider.setUser(username);
-		Map<String , String> picturesMap = sendBuider.getPicturesMap();
+		sendBuider.putAllMarkMap(markMap);
 
 		//对每一图片附加腾讯云cos下载签名处理
+		Map<String , String> picturesMap = sendBuider.getPicturesMap();
 		for(String pic : sendMessage.getPicturesList()) {
 			sendBuider.putPictures(pic,cos.getDownloadSign(pic, Cos.TYPE.PICTURE));
 		}
@@ -346,10 +404,17 @@ public class ServerItem {
 		sendBuider.setIsmyself(false);
 		responseSend  = sendBuider.build();
 		ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID+"");
+
 		//给每一个处于房间中的用户发送信息（自己除外）
 		for (IoSession is : ioSessions) {
 			if(!is.equals(session) && is.isConnected()) {
-				is.write(responseSend);
+				is.write(
+						  ServerResponseMessage.Message.newBuilder()
+						  .setUsername(username)
+						  .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
+						  .setSendContent(sendBuider)
+						  .build()
+				);
 			}
 		}
 		//对于用户本身返回上传签名
@@ -376,7 +441,8 @@ public class ServerItem {
 		//获得问题基本信息
 		sql = "SELECT * FROM question WHERE id = ?;".replace("?", questionID.toString());
 		ResultSet rs = stmt.executeQuery(sql);
-		String owner,stem,addition,time,user,contentMessage;
+		String owner,stem,addition,time,user,contentMessage, markMapStr, recordpic;
+		Map<Integer, Long> markMap = null;
 		boolean solved;
 		int good;
 		if(rs.next()) {
@@ -408,11 +474,29 @@ public class ServerItem {
 			contentMessage = rs.getString("record");
 			user = rs.getString("username");
 			time =  rs.getString("time");
+			markMapStr = rs.getString("markMap");
+			recordpic = rs.getString("recordpic");
+
+			//解析
+			markMap = getMarkMap(markMapStr);
+			boolean isAnoimous = false;
+			if(markMap.get(CONTENT_MARK.ANONIMOUS) != null) {
+				isAnoimous = true;
+			}
+			//将图片还原为列表
+			List<String> pics = new ArrayList<>();
+			for(String s : recordpic.split(":")) {
+				pics.add(s);
+			}
+			//添加返回记录
 			questionMessageBuider.addRecord(
 					  ServerResponseMessage.Record.newBuilder()
 					  .setTime(time)
 					  .setContentMessage(contentMessage)
-					  .setUser(user)
+								 //若匿名则设置用户名为匿名
+					  .setUser(isAnoimous?"匿名" : user)
+					  .putAllMarkMap(markMap)
+					  .addAllRecordpic(pics)
 			);
 		}
 		rs.close();
@@ -420,6 +504,16 @@ public class ServerItem {
 		response = builder.setQuestionMessage(questionMessageBuider).setExist(true).build();
 
 		return response;
+	}
+
+	//将数据库中markMap表项还原
+	private Map<Integer, Long> getMarkMap(String str) {
+		Map<Integer, Long> markMap = new HashMap<>();
+		String[] strs = str.split(":");
+		for(int i=0; i<strs.length-1; i++) {
+			markMap.put(Integer.valueOf(strs[i]), Long.valueOf(strs[i+1]));
+		}
+		return markMap;
 	}
 
 	private ServerResponseMessage.QuestionEnterResponse
@@ -558,6 +652,8 @@ public class ServerItem {
 			StringBuffer record = new StringBuffer("");
 			String stem = createQuestionRequest.getStem();
 			String addition = createQuestionRequest.getAddition();
+			ProtocolStringList stempics = createQuestionRequest.getStempicList();
+			ProtocolStringList additionpics = createQuestionRequest.getAdditionpicList();
 
 			//在数据库中记录
 			String time = createQuestionRequest.getTime();
@@ -570,15 +666,29 @@ public class ServerItem {
 			} else {
 				questionID = 0;
 			}
-			sql = "INSERT INTO question (owner, id, stem, addition, solved) VALUES" +
-					  "('"+username+"','"+questionID+"','"+stem+"','"+addition+"',0);";
+			//将图片和并为字符串
+			StringBuilder stempic = new StringBuilder("");
+			StringBuilder additionpic = new StringBuilder("");
+			for(String s : stempics) {
+				stempic.append(s).append(":");
+			} stempic.deleteCharAt(stempic.length()-1);
+			for(String s : additionpics) {
+				additionpic.append(s).append(":");
+			} additionpic.deleteCharAt(additionpic.length()-1);
+
+			sql = "INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES" +
+					  "('"+username+"','"+questionID+"','"+stem+"','"+addition+"',0, '"+stempic+"', '"+additionpic+"');";
 			stmt.execute(sql);
 
 			//创建问题记录表
-			sql = "CREATE TABLE question_id?(\n".replace("?", questionID+"")+
-					  "record VARCHAR(800) NOT NULL,\n" +
+			sql = "CREATE TABLE question_id"+questionID+"(\n" +
+					  "record_id BIGINT AUTO_INCREMENT,\n" +
+					  "record VARCHAR(255) NOT NULL,\n" +
+					  "recordpic VARCHAR(255) DEFAULT '',\n" +
 					  "username VARCHAR(20) NOT NULL,\n" +
-					  "time DATETIME DEFAULT now()\n" +
+					  "time DATETIME DEFAULT now(),\n" +
+					  "markMap VARCHAR(255) DEFAULT \"\",\n" +
+					  "PRIMARY KEY(record_id)\n" +
 					  ");";
 			stmt.execute(sql);
 
@@ -704,31 +814,34 @@ public class ServerItem {
 		return userInformationResponse;
 	}
 
-	private ServerResponseMessage.GetCosSignResponse
-	handleGetCosCredRequest(ClientSendMessage.GetCosSignRequest getCosCredRequest)
-			  throws Exception
-	{
-		ServerResponseMessage.GetCosSignResponse getCosCredResponse = null;
+	private ServerResponseMessage.FileResponse
+	handleFileRequest(ClientSendMessage.FileRequest fileRequest)
+			  throws Exception {
+		ServerResponseMessage.FileResponse response = null;
 		String sign = null;
-		ProtocolStringList files = getCosCredRequest.getFilenameList();
+		ProtocolStringList files = fileRequest.getFilenameList();
 
-		ServerResponseMessage.GetCosSignResponse.Builder builder =
-				  ServerResponseMessage.GetCosSignResponse.newBuilder()
-				  .setSuccess(true);
+		ServerResponseMessage.FileResponse.Builder builder =
+				  ServerResponseMessage.FileResponse.newBuilder();
 
 		if(isLaunched()) {
-			switch (getCosCredRequest.getSignType()) {
+			switch (fileRequest.getSignType()) {
 				case DOWNLOAD:
 					for(String filename : files) {
 						sign = cos.getDownloadSign(filename, Cos.TYPE.PICTURE);
 						builder.putSign(filename, sign);
+						builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.DOWNLOAD);
 					}
+					builder.setSuccess(true);
 					break;
 				case UPLOAD:
 					for(String filename : files) {
 						sign = cos.getUploadSign(filename, Cos.TYPE.PICTURE);
 						builder.putSign(filename, sign);
 					}
+					builder.setSuccess(true);
+					builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.UPLOAD);
+					builder.addAllLocalFilePath(fileRequest.getLocalFilePathList());
 					break;
 				default:
 					throw new Exception("MSG is invalid");
@@ -736,10 +849,9 @@ public class ServerItem {
 			return builder.build();
 
 		} else {
-			getCosCredResponse = ServerResponseMessage.GetCosSignResponse.newBuilder()
-					  .setSuccess(false).build();
+			response = builder.setSuccess(false).build();
 		}
-		return getCosCredResponse;
+		return response;
 	}
 
 	private ServerResponseMessage.GetQuestionListResponse

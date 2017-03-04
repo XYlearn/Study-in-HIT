@@ -3,7 +3,7 @@
 ## 包名：NetEvent
 ## 类名：Client
 
-## 重要通知：
+## 重要通知：（老通知）
 
     //Client使用方法
     public static Client client = new Client();
@@ -13,13 +13,16 @@
     client.start();
     //其他使用方法不变
 
-### 上传下载和匿名追问质疑的API已经放出,但服务器处理程序待完善
+### 上传下载功能已实现，上传文件都经过md5加密，存储在bucket根目录下。该功能一般用于图片的上传下载，上传文件不保留原文件名，上传一般文件的功能待完善
 2017-3-2 更新方法：
 * sendContent
 * uploadFile
 * uploadFiles
 * downloadFile
 * downloadFiles
+
+2017-3-3 更新方法：
+* createQuestion
 
 -----
 
@@ -240,7 +243,9 @@ record（问答记录）结构：
 content:内容
 time:发送时间
 user:发送者
-(图片信息待完善)
+recordID:记录号
+recordpic:记录图片MD5文件名列表
+markMap:记录属性（匿名追问等）与目标房间号的映射，无目标房间，则与-1对应
 
 -----
 
@@ -344,7 +349,7 @@ public void requestUserInfo(String user) throws IOException
 
 -----
 
-##### 原型：
+##### 原型：(旧版，不推荐))
 public void createQuestion(String stem, String addition, ArrayList<String> keywords) throws IOException
 
 ##### 介绍:
@@ -356,6 +361,28 @@ public void createQuestion(String stem, String addition, ArrayList<String> keywo
 |stem|String|问题题干|
 |addition|String|补充问题|
 |keywords|ArrayList< String >|题干和补充的关键分词|
+
+##### 返回值：无
+
+#### 服务器反馈消息：
+* questionMessage:见上文
+
+-----
+
+##### 原型：（新版，推荐）
+public void createQuestion(String stem, String addition, List<String> keywords, List<String> stempics, List<String> additionpics) throws IOException
+
+##### 介绍:
+创建问题（每次扣除3点数）
+
+##### 参数：
+|参数名  |参数类型|参数介绍|
+|:-------:|:-----:|:-----:|
+|stem|String|问题题干|
+|addition|String|补充问题|
+|keywords|ArrayList< String >|题干和补充的关键分词|
+|stempics|List< String >|stem图片路径表|
+|additionpics|List< String >|addition图片路径表|
 
 ##### 返回值：无
 

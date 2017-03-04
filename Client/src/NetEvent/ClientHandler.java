@@ -71,6 +71,7 @@ public class ClientHandler extends IoHandlerAdapter {
 				case SEARCH_INFORMATION_RESPONSE:
 					break;
 				case FILE_RESPONSE:
+					handleFileResponse(recvMessage);
 					break;
 				case UPDATE_MESSAGE:
 					handleUpdateMessage(recvMessage);
@@ -294,15 +295,18 @@ public class ClientHandler extends IoHandlerAdapter {
 			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSignMap().entrySet();
 			switch (fileResponse.getSignType()) {
 				case UPLOAD:
+					int i=0;
 					for (Map.Entry<String, String> entry: file_sigs) {
 						try {
 							Client.fileOP.changeSign(entry.getValue());
-							Client.fileOP.uploadFile(new UploadFileRequest(
+							String s = Client.fileOP.uploadSingleFile(
+									  new UploadFileRequest(
 												 Client.fileOP.getBucktName(),
 												 "/" + entry.getKey(),
-												 PICTPATH + entry.getKey()
+												 fileResponse.getLocalFilePath(i++)
 									  )
 							);
+							System.out.println(s);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -311,11 +315,21 @@ public class ClientHandler extends IoHandlerAdapter {
 				case DOWNLOAD:
 					for (Map.Entry<String, String> entry : file_sigs) {
 						try {
+							File f = new File(PICTPATH);
+							if(!f.exists()) {
+								f.mkdir();
+							}
+							f = new File(PICTPATH + entry.getKey());
+							if(f.exists()) {
+								break;
+							} else {
+								f.createNewFile();
+							}
 							Client.fileOP.changeSign(entry.getValue());
 							Client.fileOP.getFileLocal(new GetFileLocalRequest(
 									  Client.fileOP.getBucktName(),
 									  "/" + entry.getKey(),
-									  PICTPATH + entry.getValue()
+									  PICTPATH + entry.getKey()
 							));
 						} catch (Exception e) {
 							e.printStackTrace();

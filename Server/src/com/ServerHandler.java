@@ -1,10 +1,9 @@
 package com;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,11 +14,11 @@ import java.util.Map;
  */
 public class ServerHandler extends IoHandlerAdapter {
 	//the logger
-	public static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(ServerHandler.class);
+	public static Logger log = Logger.getLogger(ServerHandler.class);
 
 	private DatabaseConnection dbconn = Server.databaseConnection;
 	//set down the map between session and service
-	public Map<IoSession, ServerItem> serviceMap = new HashMap<>();
+	public static Map<IoSession, ServerItem> serviceMap = new HashMap<>();
 
 	//set down the map between question and users
 	public static Map<String, ArrayList<IoSession>> question_sessions_map = new HashMap<>();

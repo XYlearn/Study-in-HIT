@@ -5,6 +5,7 @@ import Cos.FileOP;
 import NetEvent.dataPack.NetPackageCodeFacotry;
 import com.ClientSendMessage;
 import com.ServerResponseMessage;
+import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.session.IdleStatus;
@@ -46,13 +47,13 @@ public class Client extends Thread{
 	public static final String FILEPATH=MAINPATH+"files/";
 
 	//聊天记录属性
-	private enum CONTENT_MARK {
-		DEFAULT(0),
-		DOUBTED(1),
-		FURTHURASKED(2),
-		DOUBT(4),
-		FURTHERASK(8),
-		ANONIMOUS(16);
+	public enum CONTENT_MARK {
+		DEFAULT(0),	//默认
+		DOUBTED(1),	//被质疑
+		FURTHURASKED(2),	//被追问
+		DOUBT(4),	//质疑
+		FURTHERASK(8),	//追问
+		ANONIMOUS(16);	//匿名
 
 		private final int value;
 
@@ -72,6 +73,7 @@ public class Client extends Thread{
 			  new CosHttpClient(CosHttpClient.getDefaultConfig())
 	);
 
+	@Override
 	public void run() {
 		//create tcp/ip connector
 		connector = new NioSocketConnector();
@@ -103,6 +105,7 @@ public class Client extends Thread{
 
 	}
 
+	@Function
 	//发送消息（一般形式
 	private void sendIt(ClientSendMessage.Message sendMessage) throws IOException {
 		if(connected) {
@@ -303,12 +306,40 @@ public class Client extends Thread{
 		System.out.println();
 	}
 
-	public void createQuestion(String stem, String addition, ArrayList<String> keywords) throws IOException {
+	public void createQuestion(String stem, String addition, List<String> keywords) throws IOException {
 		//创建问题字消息builder
 		ClientSendMessage.CreateQuestionRequest.Builder createBuilder =
 				  ClientSendMessage.CreateQuestionRequest.newBuilder()
 							 .setStem(stem)
 							 .setAddition(addition);
+		//添加关键字
+		for(String keyword : keywords) {
+			createBuilder.addKeywords(keyword);
+		}
+
+		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.CREATE_QUESTION_REQUEST)
+				  .setUsername(username)
+				  .setCreateQuestionRequest(createBuilder).build();
+		sendIt(sendMessage);
+	}
+
+	public void createQuestion(String stem, String addition,
+										ArrayList<String> keywords, List<String> stempics, List<String> additionpics)
+			  throws IOException {
+		//创建问题字消息builder
+		ClientSendMessage.CreateQuestionRequest.Builder createBuilder =
+				  ClientSendMessage.CreateQuestionRequest.newBuilder()
+							 .setStem(stem)
+							 .setAddition(addition);
+		if(stempics!=null) {
+			this.uploadFiles(stempics);
+			createBuilder.addAllStempic(stempics);
+		}
+		if(additionpics!=null) {
+			this.uploadFiles(additionpics);
+			createBuilder.addAllAdditionpic(additionpics);
+		}
 		//添加关键字
 		for(String keyword : keywords) {
 			createBuilder.addKeywords(keyword);

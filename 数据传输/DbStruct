@@ -24,7 +24,9 @@ CREATE TABLE question(
 owner VARCHAR(20) NOT NULL,
 id BIGINT AUTO_INCREMENT,
 stem VARCHAR(255) NOT NULL,
+stempic VARCHAR(255) DEFAULT '',
 addition VARCHAR(255),
+additionpic VARCHAR(255) DEFAULT '',
 create_time DATETIME DEFAULT now(),
 solved TINYINT(1) DEFAULT 0,
 praise_num INT DEFAULT 0,
@@ -33,11 +35,23 @@ PRIMARY KEY(id)
 );
 //id为?的问题答疑记录
 CREATE TABLE question_id1(
+record_id BIGINT AUTO_INCREMENT,
 record VARCHAR(255) NOT NULL,
+recordpic VARCHAR(255) DEFAULT '',
 username VARCHAR(20) NOT NULL,
-time DATETIME DEFAULT now()
+time DATETIME DEFAULT now(),
+markMap VARCHAR(255) DEFAULT "",
+PRIMARY KEY(record_id)
 );
 
+/*mark
+ * 0 正常
+ * 1 被质疑
+ * 2 被追问
+ * 4 质疑
+ * 8 追问
+ * 16 匿名
+ */
 CREATE TABLE picture_lib (
 md5 VARCHAR(32) NOT NULL
 );

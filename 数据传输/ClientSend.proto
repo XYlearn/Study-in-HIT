@@ -18,7 +18,7 @@ enum MSG {
    GOOD_QUESTION_REQUEST = 5;
    GOOD_USER_REQUEST = 7;
    //获取Cos签名
-   GET_COS_SIGN_REQUEST = 9;
+   FILE_REQUEST = 9;
    //消息显示信息
    QUESTION_INFORMATION_REQUEST = 10;
    USER_INFORMATION_REQUEST = 11;
@@ -30,6 +30,8 @@ enum MSG {
    SEARCH_INFORMATION_REQUEST = 17;
    //把问题标志为已解决
    SOLVED_QUESTION_REQUEST = 18;
+   //未知消息
+   BAD_MESSAGE = 19;
 }
 
 //-----------枚举定义---------------//
@@ -66,13 +68,6 @@ enum LIST_REFERENCE {
     TIME = 4;
 }
 
-//-----------底层消息--------------//
-
-//发送信息
-message ContentMessage {
-    string content = 1;
-}
-
 //------------具体消息-----------//
 
 //登入信息
@@ -98,6 +93,7 @@ message SendContent {
     repeated string pictures = 5;
     string time = 3;
     string user = 4;
+    map<int32, int64> markMap = 6;
 }
 
 //通告信息
@@ -140,7 +136,9 @@ message GetQuestionListRequest {
 //提出问题
 message CreateQuestionRequest {
     string stem = 1;
+    repeated string stempic = 5;
     string addition = 2;
+    repeated string additionpic = 6;
     string time = 3;
     repeated string keywords = 4;
 }
@@ -156,8 +154,9 @@ message SearchInformationRequest {
 }
 
 //获取Sign
-message GetCosSignRequest {
+message FileRequest {
     repeated string filename = 1;
+    repeated string localFilePath = 3;
     enum SIGNTYPE {
         DOWNLOAD = 0;
         UPLOAD = 1;
@@ -180,7 +179,7 @@ message Message {
     AnnouncementMessage announcementMessage = 6;
     QuestionEnterRequest questionEnterRequest = 7;
     GoodQuestionRequest goodQuestionRequest = 8;
-    GetCosSignRequest getCosSignRequest = 9;
+    FileRequest fileRequest = 9;
     GoodUserRequest goodUserRequest = 10;
     RegisterRequest registerRequest = 11;
     QuestionInformationRequest questionInformationRequest = 13;

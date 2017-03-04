@@ -718,6 +718,25 @@ public final class ServerResponseMessage {
 
     long getMarkMapOrThrow(
         int key);
+
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    java.util.List<java.lang.String>
+        getRecordpicList();
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    int getRecordpicCount();
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    java.lang.String getRecordpic(int index);
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecordpicBytes(int index);
   }
   /**
    * <pre>
@@ -739,6 +758,7 @@ public final class ServerResponseMessage {
       time_ = "";
       user_ = "";
       recordID_ = 0L;
+      recordpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -802,6 +822,15 @@ public final class ServerResponseMessage {
                   markMap__.getKey(), markMap__.getValue());
               break;
             }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                recordpic_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              recordpic_.add(s);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -810,6 +839,9 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          recordpic_ = recordpic_.getUnmodifiableView();
+        }
         makeExtensionsImmutable();
       }
     }
@@ -1024,6 +1056,35 @@ public final class ServerResponseMessage {
       return map.get(key);
     }
 
+    public static final int RECORDPIC_FIELD_NUMBER = 6;
+    private com.google.protobuf.LazyStringList recordpic_;
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getRecordpicList() {
+      return recordpic_;
+    }
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    public int getRecordpicCount() {
+      return recordpic_.size();
+    }
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    public java.lang.String getRecordpic(int index) {
+      return recordpic_.get(index);
+    }
+    /**
+     * <code>repeated string recordpic = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecordpicBytes(int index) {
+      return recordpic_.getByteString(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1054,6 +1115,9 @@ public final class ServerResponseMessage {
           internalGetMarkMap(),
           MarkMapDefaultEntryHolder.defaultEntry,
           5);
+      for (int i = 0; i < recordpic_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, recordpic_.getRaw(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -1084,6 +1148,14 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(5, markMap__);
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < recordpic_.size(); i++) {
+          dataSize += computeStringSizeNoTag(recordpic_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getRecordpicList().size();
+      }
       memoizedSize = size;
       return size;
     }
@@ -1110,6 +1182,8 @@ public final class ServerResponseMessage {
           == other.getRecordID());
       result = result && internalGetMarkMap().equals(
           other.internalGetMarkMap());
+      result = result && getRecordpicList()
+          .equals(other.getRecordpicList());
       return result;
     }
 
@@ -1132,6 +1206,10 @@ public final class ServerResponseMessage {
       if (!internalGetMarkMap().getMap().isEmpty()) {
         hash = (37 * hash) + MARKMAP_FIELD_NUMBER;
         hash = (53 * hash) + internalGetMarkMap().hashCode();
+      }
+      if (getRecordpicCount() > 0) {
+        hash = (37 * hash) + RECORDPIC_FIELD_NUMBER;
+        hash = (53 * hash) + getRecordpicList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1286,6 +1364,8 @@ public final class ServerResponseMessage {
         recordID_ = 0L;
 
         internalGetMutableMarkMap().clear();
+        recordpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -1316,6 +1396,11 @@ public final class ServerResponseMessage {
         result.recordID_ = recordID_;
         result.markMap_ = internalGetMarkMap();
         result.markMap_.makeImmutable();
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          recordpic_ = recordpic_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000020);
+        }
+        result.recordpic_ = recordpic_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1375,6 +1460,16 @@ public final class ServerResponseMessage {
         }
         internalGetMutableMarkMap().mergeFrom(
             other.internalGetMarkMap());
+        if (!other.recordpic_.isEmpty()) {
+          if (recordpic_.isEmpty()) {
+            recordpic_ = other.recordpic_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureRecordpicIsMutable();
+            recordpic_.addAll(other.recordpic_);
+          }
+          onChanged();
+        }
         onChanged();
         return this;
       }
@@ -1755,6 +1850,100 @@ public final class ServerResponseMessage {
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
         internalGetMutableMarkMap().getMutableMap()
             .putAll(values);
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList recordpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureRecordpicIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          recordpic_ = new com.google.protobuf.LazyStringArrayList(recordpic_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getRecordpicList() {
+        return recordpic_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public int getRecordpicCount() {
+        return recordpic_.size();
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public java.lang.String getRecordpic(int index) {
+        return recordpic_.get(index);
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecordpicBytes(int index) {
+        return recordpic_.getByteString(index);
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public Builder setRecordpic(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecordpicIsMutable();
+        recordpic_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public Builder addRecordpic(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureRecordpicIsMutable();
+        recordpic_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public Builder addAllRecordpic(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureRecordpicIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, recordpic_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public Builder clearRecordpic() {
+        recordpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string recordpic = 6;</code>
+       */
+      public Builder addRecordpicBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureRecordpicIsMutable();
+        recordpic_.add(value);
+        onChanged();
         return this;
       }
       public final Builder setUnknownFields(
@@ -2796,6 +2985,25 @@ public final class ServerResponseMessage {
         getStemBytes();
 
     /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    java.util.List<java.lang.String>
+        getStempicList();
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    int getStempicCount();
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    java.lang.String getStempic(int index);
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getStempicBytes(int index);
+
+    /**
      * <code>string addition = 2;</code>
      */
     java.lang.String getAddition();
@@ -2804,6 +3012,25 @@ public final class ServerResponseMessage {
      */
     com.google.protobuf.ByteString
         getAdditionBytes();
+
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    java.util.List<java.lang.String>
+        getAdditionpicList();
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    int getAdditionpicCount();
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    java.lang.String getAdditionpic(int index);
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getAdditionpicBytes(int index);
 
     /**
      * <code>string time = 3;</code>
@@ -2881,7 +3108,9 @@ public final class ServerResponseMessage {
     }
     private QuestionMessage() {
       stem_ = "";
+      stempic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       addition_ = "";
+      additionpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       time_ = "";
       owner_ = "";
       record_ = java.util.Collections.emptyList();
@@ -2940,9 +3169,9 @@ public final class ServerResponseMessage {
               break;
             }
             case 50: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
                 record_ = new java.util.ArrayList<com.ServerResponseMessage.Record>();
-                mutable_bitField0_ |= 0x00000010;
+                mutable_bitField0_ |= 0x00000040;
               }
               record_.add(
                   input.readMessage(com.ServerResponseMessage.Record.parser(), extensionRegistry));
@@ -2963,6 +3192,24 @@ public final class ServerResponseMessage {
               id_ = input.readInt64();
               break;
             }
+            case 82: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                stempic_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              stempic_.add(s);
+              break;
+            }
+            case 90: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                additionpic_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              additionpic_.add(s);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2971,8 +3218,14 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
           record_ = java.util.Collections.unmodifiableList(record_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          stempic_ = stempic_.getUnmodifiableView();
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          additionpic_ = additionpic_.getUnmodifiableView();
         }
         makeExtensionsImmutable();
       }
@@ -3024,6 +3277,35 @@ public final class ServerResponseMessage {
       }
     }
 
+    public static final int STEMPIC_FIELD_NUMBER = 10;
+    private com.google.protobuf.LazyStringList stempic_;
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getStempicList() {
+      return stempic_;
+    }
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    public int getStempicCount() {
+      return stempic_.size();
+    }
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    public java.lang.String getStempic(int index) {
+      return stempic_.get(index);
+    }
+    /**
+     * <code>repeated string stempic = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStempicBytes(int index) {
+      return stempic_.getByteString(index);
+    }
+
     public static final int ADDITION_FIELD_NUMBER = 2;
     private volatile java.lang.Object addition_;
     /**
@@ -3056,6 +3338,35 @@ public final class ServerResponseMessage {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int ADDITIONPIC_FIELD_NUMBER = 11;
+    private com.google.protobuf.LazyStringList additionpic_;
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getAdditionpicList() {
+      return additionpic_;
+    }
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    public int getAdditionpicCount() {
+      return additionpic_.size();
+    }
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    public java.lang.String getAdditionpic(int index) {
+      return additionpic_.get(index);
+    }
+    /**
+     * <code>repeated string additionpic = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAdditionpicBytes(int index) {
+      return additionpic_.getByteString(index);
     }
 
     public static final int TIME_FIELD_NUMBER = 3;
@@ -3224,6 +3535,12 @@ public final class ServerResponseMessage {
       if (id_ != 0L) {
         output.writeInt64(9, id_);
       }
+      for (int i = 0; i < stempic_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, stempic_.getRaw(i));
+      }
+      for (int i = 0; i < additionpic_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, additionpic_.getRaw(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -3259,6 +3576,22 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(9, id_);
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < stempic_.size(); i++) {
+          dataSize += computeStringSizeNoTag(stempic_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getStempicList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < additionpic_.size(); i++) {
+          dataSize += computeStringSizeNoTag(additionpic_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getAdditionpicList().size();
+      }
       memoizedSize = size;
       return size;
     }
@@ -3277,8 +3610,12 @@ public final class ServerResponseMessage {
       boolean result = true;
       result = result && getStem()
           .equals(other.getStem());
+      result = result && getStempicList()
+          .equals(other.getStempicList());
       result = result && getAddition()
           .equals(other.getAddition());
+      result = result && getAdditionpicList()
+          .equals(other.getAdditionpicList());
       result = result && getTime()
           .equals(other.getTime());
       result = result && getOwner()
@@ -3303,8 +3640,16 @@ public final class ServerResponseMessage {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + STEM_FIELD_NUMBER;
       hash = (53 * hash) + getStem().hashCode();
+      if (getStempicCount() > 0) {
+        hash = (37 * hash) + STEMPIC_FIELD_NUMBER;
+        hash = (53 * hash) + getStempicList().hashCode();
+      }
       hash = (37 * hash) + ADDITION_FIELD_NUMBER;
       hash = (53 * hash) + getAddition().hashCode();
+      if (getAdditionpicCount() > 0) {
+        hash = (37 * hash) + ADDITIONPIC_FIELD_NUMBER;
+        hash = (53 * hash) + getAdditionpicList().hashCode();
+      }
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + OWNER_FIELD_NUMBER;
@@ -3446,15 +3791,19 @@ public final class ServerResponseMessage {
         super.clear();
         stem_ = "";
 
+        stempic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
         addition_ = "";
 
+        additionpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
         time_ = "";
 
         owner_ = "";
 
         if (recordBuilder_ == null) {
           record_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000040);
         } else {
           recordBuilder_.clear();
         }
@@ -3489,13 +3838,23 @@ public final class ServerResponseMessage {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.stem_ = stem_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          stempic_ = stempic_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.stempic_ = stempic_;
         result.addition_ = addition_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          additionpic_ = additionpic_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.additionpic_ = additionpic_;
         result.time_ = time_;
         result.owner_ = owner_;
         if (recordBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
             record_ = java.util.Collections.unmodifiableList(record_);
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000040);
           }
           result.record_ = record_;
         } else {
@@ -3550,8 +3909,28 @@ public final class ServerResponseMessage {
           stem_ = other.stem_;
           onChanged();
         }
+        if (!other.stempic_.isEmpty()) {
+          if (stempic_.isEmpty()) {
+            stempic_ = other.stempic_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureStempicIsMutable();
+            stempic_.addAll(other.stempic_);
+          }
+          onChanged();
+        }
         if (!other.getAddition().isEmpty()) {
           addition_ = other.addition_;
+          onChanged();
+        }
+        if (!other.additionpic_.isEmpty()) {
+          if (additionpic_.isEmpty()) {
+            additionpic_ = other.additionpic_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureAdditionpicIsMutable();
+            additionpic_.addAll(other.additionpic_);
+          }
           onChanged();
         }
         if (!other.getTime().isEmpty()) {
@@ -3566,7 +3945,7 @@ public final class ServerResponseMessage {
           if (!other.record_.isEmpty()) {
             if (record_.isEmpty()) {
               record_ = other.record_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000040);
             } else {
               ensureRecordIsMutable();
               record_.addAll(other.record_);
@@ -3579,7 +3958,7 @@ public final class ServerResponseMessage {
               recordBuilder_.dispose();
               recordBuilder_ = null;
               record_ = other.record_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000040);
               recordBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getRecordFieldBuilder() : null;
@@ -3693,6 +4072,100 @@ public final class ServerResponseMessage {
         return this;
       }
 
+      private com.google.protobuf.LazyStringList stempic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureStempicIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          stempic_ = new com.google.protobuf.LazyStringArrayList(stempic_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getStempicList() {
+        return stempic_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public int getStempicCount() {
+        return stempic_.size();
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public java.lang.String getStempic(int index) {
+        return stempic_.get(index);
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStempicBytes(int index) {
+        return stempic_.getByteString(index);
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public Builder setStempic(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStempicIsMutable();
+        stempic_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public Builder addStempic(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStempicIsMutable();
+        stempic_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public Builder addAllStempic(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureStempicIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, stempic_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public Builder clearStempic() {
+        stempic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string stempic = 10;</code>
+       */
+      public Builder addStempicBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureStempicIsMutable();
+        stempic_.add(value);
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object addition_ = "";
       /**
        * <code>string addition = 2;</code>
@@ -3758,6 +4231,100 @@ public final class ServerResponseMessage {
   checkByteStringIsUtf8(value);
         
         addition_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList additionpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureAdditionpicIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          additionpic_ = new com.google.protobuf.LazyStringArrayList(additionpic_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getAdditionpicList() {
+        return additionpic_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public int getAdditionpicCount() {
+        return additionpic_.size();
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public java.lang.String getAdditionpic(int index) {
+        return additionpic_.get(index);
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAdditionpicBytes(int index) {
+        return additionpic_.getByteString(index);
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public Builder setAdditionpic(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAdditionpicIsMutable();
+        additionpic_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public Builder addAdditionpic(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAdditionpicIsMutable();
+        additionpic_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public Builder addAllAdditionpic(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureAdditionpicIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, additionpic_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public Builder clearAdditionpic() {
+        additionpic_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string additionpic = 11;</code>
+       */
+      public Builder addAdditionpicBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureAdditionpicIsMutable();
+        additionpic_.add(value);
         onChanged();
         return this;
       }
@@ -3903,9 +4470,9 @@ public final class ServerResponseMessage {
       private java.util.List<com.ServerResponseMessage.Record> record_ =
         java.util.Collections.emptyList();
       private void ensureRecordIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
           record_ = new java.util.ArrayList<com.ServerResponseMessage.Record>(record_);
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000040;
          }
       }
 
@@ -4055,7 +4622,7 @@ public final class ServerResponseMessage {
       public Builder clearRecord() {
         if (recordBuilder_ == null) {
           record_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000040);
           onChanged();
         } else {
           recordBuilder_.clear();
@@ -4132,7 +4699,7 @@ public final class ServerResponseMessage {
           recordBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               com.ServerResponseMessage.Record, com.ServerResponseMessage.Record.Builder, com.ServerResponseMessage.RecordOrBuilder>(
                   record_,
-                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  ((bitField0_ & 0x00000040) == 0x00000040),
                   getParentForChildren(),
                   isClean());
           record_ = null;
@@ -20988,98 +21555,100 @@ public final class ServerResponseMessage {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024ServerResponse.proto\"\245\001\n\006Record\022\026\n\016con" +
+      "\n\024ServerResponse.proto\"\270\001\n\006Record\022\026\n\016con" +
       "tentMessage\030\001 \001(\t\022\014\n\004time\030\002 \001(\t\022\014\n\004user\030" +
       "\003 \001(\t\022\020\n\010recordID\030\004 \001(\003\022%\n\007markMap\030\005 \003(\013" +
-      "2\024.Record.MarkMapEntry\032.\n\014MarkMapEntry\022\013" +
-      "\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003:\0028\001\"\202\001\n\023Quest" +
-      "ionListMessage\022\022\n\nquestionID\030\001 \001(\003\022\033\n\023qu" +
-      "estionDescription\030\002 \001(\t\022\014\n\004good\030\003 \001(\005\022\017\n" +
-      "\007userNum\030\005 \001(\005\022\014\n\004time\030\006 \001(\t\022\r\n\005owner\030\010 " +
-      "\001(\t\"\221\001\n\017QuestionMessage\022\014\n\004stem\030\001 \001(\t\022\020\n" +
-      "\010addition\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\r\n\005owner\030\005",
-      " \001(\t\022\027\n\006record\030\006 \003(\0132\007.Record\022\016\n\006solved\030" +
-      "\007 \001(\010\022\014\n\004good\030\010 \001(\005\022\n\n\002id\030\t \001(\003\"\246\001\n\013User" +
-      "Message\022\020\n\010username\030\001 \001(\t\022\014\n\004good\030\002 \001(\005\022" +
-      "\023\n\013questionNum\030\004 \001(\005\022\031\n\021solvedQuestionNu" +
-      "m\030\005 \001(\005\022\r\n\005bonus\030\006 \001(\005\022\021\n\tsignature\030\007 \001(" +
-      "\t\022\024\n\014mail_address\030\010 \001(\t\022\017\n\007pic_url\030\t \001(\t" +
-      "\"X\n\016LaunchResponse\022\016\n\006status\030\001 \001(\010\022\023\n\013in" +
-      "formation\030\002 \001(\t\022!\n\013userMessage\030\003 \001(\0132\014.U" +
-      "serMessage\"8\n\020RegisterResponse\022\017\n\007succes" +
-      "s\030\001 \001(\010\022\023\n\013information\030\002 \001(\t\"\254\002\n\013SendCon",
-      "tent\022\022\n\nquestionID\030\001 \001(\003\022\017\n\007content\030\002 \001(" +
-      "\t\022\014\n\004time\030\003 \001(\t\022\014\n\004user\030\004 \001(\t\022,\n\010picture" +
-      "s\030\005 \003(\0132\032.SendContent.PicturesEntry\022\017\n\007s" +
-      "uccess\030\006 \001(\010\022\020\n\010ismyself\030\007 \001(\010\022*\n\007markMa" +
-      "p\030\010 \003(\0132\031.SendContent.MarkMapEntry\032/\n\rPi" +
-      "cturesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:" +
-      "\0028\001\032.\n\014MarkMapEntry\022\013\n\003key\030\001 \001(\005\022\r\n\005valu" +
-      "e\030\002 \001(\003:\0028\001\"1\n\023AnnouncementMessage\022\014\n\004ti" +
-      "me\030\001 \001(\t\022\014\n\004text\030\002 \001(\t\"Q\n\025QuestionEnterR" +
-      "esponse\022\r\n\005allow\030\001 \001(\010\022)\n\017questionMessag",
-      "e\030\002 \001(\0132\020.QuestionMessage\"\'\n\024GoodQuestio" +
-      "nResponse\022\017\n\007success\030\001 \001(\010\"#\n\020GoodUserRe" +
-      "sponse\022\017\n\007success\030\001 \001(\010\"W\n\033QuestionInfor" +
-      "mationResponse\022)\n\017questionMessage\030\001 \001(\0132" +
-      "\020.QuestionMessage\022\r\n\005exist\030\002 \001(\010\"K\n\027User" +
-      "InformationResponse\022!\n\013userMessage\030\001 \001(\013" +
-      "2\014.UserMessage\022\r\n\005exist\030\002 \001(\010\"Y\n\027GetQues" +
-      "tionListResponse\022\013\n\003num\030\001 \001(\005\0221\n\023questio" +
-      "nListMessage\030\002 \003(\0132\024.QuestionListMessage" +
-      "\"T\n\026CreateQuestionResponse\022\017\n\007success\030\001 ",
-      "\001(\010\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionM" +
-      "essage\"*\n\027AbandonQuestionResponse\022\017\n\007suc" +
-      "cess\030\001 \001(\010\"N\n\031SearchInformationResponse\022" +
-      "1\n\023questionListMessage\030\003 \003(\0132\024.QuestionL" +
-      "istMessage\"\332\001\n\014FileResponse\022\017\n\007success\030\001" +
-      " \001(\010\022%\n\004sign\030\002 \003(\0132\027.FileResponse.SignEn" +
-      "try\022(\n\010signType\030\003 \001(\0162\026.FileResponse.SIG" +
-      "NTYPE\022\025\n\rlocalFilePath\030\004 \003(\t\032+\n\tSignEntr" +
-      "y\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIG" +
-      "NTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026Solve",
-      "dQuestionResponse\022\022\n\nquestionID\030\002 \001(\003\022\017\n" +
-      "\007success\030\001 \001(\010\"o\n\rUpdateMessage\022+\n\tuserE" +
-      "nter\030\001 \001(\0132\030.UpdateMessage.UserEnter\0321\n\t" +
-      "UserEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestionI" +
-      "D\030\002 \001(\003\"\350\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004." +
-      "MSG\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse\030\003" +
-      " \001(\0132\017.LaunchResponse\022+\n\020registerRespons" +
-      "e\030\004 \001(\0132\021.RegisterResponse\022!\n\013sendConten" +
-      "t\030\005 \001(\0132\014.SendContent\0221\n\023announcementMes" +
-      "sage\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025ques",
-      "tionEnterResponse\030\007 \001(\0132\026.QuestionEnterR" +
-      "esponse\0223\n\024goodQuestionResponse\030\010 \001(\0132\025." +
-      "GoodQuestionResponse\022+\n\020goodUserResponse" +
-      "\030\n \001(\0132\021.GoodUserResponse\022#\n\014fileRespons" +
-      "e\030\t \001(\0132\r.FileResponse\022%\n\rupdateMessage\030" +
-      "\013 \001(\0132\016.UpdateMessage\022A\n\033questionInforma" +
-      "tionResponse\030\r \001(\0132\034.QuestionInformation" +
-      "Response\0229\n\027userInformationResponse\030\016 \001(" +
-      "\0132\030.UserInformationResponse\0229\n\027getQuesti" +
-      "onListResponse\030\017 \001(\0132\030.GetQuestionListRe",
-      "sponse\0227\n\026createQuestionResponse\030\022 \001(\0132\027" +
-      ".CreateQuestionResponse\0229\n\027abandonQuesti" +
-      "onResponse\030\023 \001(\0132\030.AbandonQuestionRespon" +
-      "se\022=\n\031searchInformationResponse\030\024 \001(\0132\032." +
-      "SearchInformationResponse\0227\n\026solvedQuest" +
-      "ionResponse\030\025 \001(\0132\027.SolvedQuestionRespon" +
-      "se*\304\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGIS" +
-      "TER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNO" +
-      "UNCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RES" +
-      "PONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022G",
-      "OOD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022" +
-      "\021\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATI" +
-      "ON_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPON" +
-      "SE\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030" +
-      "CREATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QU" +
-      "ESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_" +
-      "RESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022" +
-      "\022\017\n\013BAD_MESSAGE\020\023*H\n\014CONTENT_TYPE\022\020\n\014TEX" +
-      "T_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOIC" +
-      "E_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003",
-      "PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003" +
-      "comB\025ServerResponseMessageb\006proto3"
+      "2\024.Record.MarkMapEntry\022\021\n\trecordpic\030\006 \003(" +
+      "\t\032.\n\014MarkMapEntry\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030" +
+      "\002 \001(\003:\0028\001\"\202\001\n\023QuestionListMessage\022\022\n\nque" +
+      "stionID\030\001 \001(\003\022\033\n\023questionDescription\030\002 \001" +
+      "(\t\022\014\n\004good\030\003 \001(\005\022\017\n\007userNum\030\005 \001(\005\022\014\n\004tim" +
+      "e\030\006 \001(\t\022\r\n\005owner\030\010 \001(\t\"\267\001\n\017QuestionMessa" +
+      "ge\022\014\n\004stem\030\001 \001(\t\022\017\n\007stempic\030\n \003(\t\022\020\n\010add",
+      "ition\030\002 \001(\t\022\023\n\013additionpic\030\013 \003(\t\022\014\n\004time" +
+      "\030\003 \001(\t\022\r\n\005owner\030\005 \001(\t\022\027\n\006record\030\006 \003(\0132\007." +
+      "Record\022\016\n\006solved\030\007 \001(\010\022\014\n\004good\030\010 \001(\005\022\n\n\002" +
+      "id\030\t \001(\003\"\246\001\n\013UserMessage\022\020\n\010username\030\001 \001" +
+      "(\t\022\014\n\004good\030\002 \001(\005\022\023\n\013questionNum\030\004 \001(\005\022\031\n" +
+      "\021solvedQuestionNum\030\005 \001(\005\022\r\n\005bonus\030\006 \001(\005\022" +
+      "\021\n\tsignature\030\007 \001(\t\022\024\n\014mail_address\030\010 \001(\t" +
+      "\022\017\n\007pic_url\030\t \001(\t\"X\n\016LaunchResponse\022\016\n\006s" +
+      "tatus\030\001 \001(\010\022\023\n\013information\030\002 \001(\t\022!\n\013user" +
+      "Message\030\003 \001(\0132\014.UserMessage\"8\n\020RegisterR",
+      "esponse\022\017\n\007success\030\001 \001(\010\022\023\n\013information\030" +
+      "\002 \001(\t\"\254\002\n\013SendContent\022\022\n\nquestionID\030\001 \001(" +
+      "\003\022\017\n\007content\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\014\n\004user" +
+      "\030\004 \001(\t\022,\n\010pictures\030\005 \003(\0132\032.SendContent.P" +
+      "icturesEntry\022\017\n\007success\030\006 \001(\010\022\020\n\010ismysel" +
+      "f\030\007 \001(\010\022*\n\007markMap\030\010 \003(\0132\031.SendContent.M" +
+      "arkMapEntry\032/\n\rPicturesEntry\022\013\n\003key\030\001 \001(" +
+      "\t\022\r\n\005value\030\002 \001(\t:\0028\001\032.\n\014MarkMapEntry\022\013\n\003" +
+      "key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003:\0028\001\"1\n\023Announce" +
+      "mentMessage\022\014\n\004time\030\001 \001(\t\022\014\n\004text\030\002 \001(\t\"",
+      "Q\n\025QuestionEnterResponse\022\r\n\005allow\030\001 \001(\010\022" +
+      ")\n\017questionMessage\030\002 \001(\0132\020.QuestionMessa" +
+      "ge\"\'\n\024GoodQuestionResponse\022\017\n\007success\030\001 " +
+      "\001(\010\"#\n\020GoodUserResponse\022\017\n\007success\030\001 \001(\010" +
+      "\"W\n\033QuestionInformationResponse\022)\n\017quest" +
+      "ionMessage\030\001 \001(\0132\020.QuestionMessage\022\r\n\005ex" +
+      "ist\030\002 \001(\010\"K\n\027UserInformationResponse\022!\n\013" +
+      "userMessage\030\001 \001(\0132\014.UserMessage\022\r\n\005exist" +
+      "\030\002 \001(\010\"Y\n\027GetQuestionListResponse\022\013\n\003num" +
+      "\030\001 \001(\005\0221\n\023questionListMessage\030\002 \003(\0132\024.Qu",
+      "estionListMessage\"T\n\026CreateQuestionRespo" +
+      "nse\022\017\n\007success\030\001 \001(\010\022)\n\017questionMessage\030" +
+      "\002 \001(\0132\020.QuestionMessage\"*\n\027AbandonQuesti" +
+      "onResponse\022\017\n\007success\030\001 \001(\010\"N\n\031SearchInf" +
+      "ormationResponse\0221\n\023questionListMessage\030" +
+      "\003 \003(\0132\024.QuestionListMessage\"\332\001\n\014FileResp" +
+      "onse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027.Fi" +
+      "leResponse.SignEntry\022(\n\010signType\030\003 \001(\0162\026" +
+      ".FileResponse.SIGNTYPE\022\025\n\rlocalFilePath\030" +
+      "\004 \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value",
+      "\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006" +
+      "UPLOAD\020\001\"=\n\026SolvedQuestionResponse\022\022\n\nqu" +
+      "estionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"o\n\rUpdat" +
+      "eMessage\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateMess" +
+      "age.UserEnter\0321\n\tUserEnter\022\020\n\010username\030\001" +
+      " \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\350\006\n\007Message\022\026\n\010" +
+      "msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&" +
+      "\n\rlauchResponse\030\003 \001(\0132\017.LaunchResponse\022+" +
+      "\n\020registerResponse\030\004 \001(\0132\021.RegisterRespo" +
+      "nse\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221",
+      "\n\023announcementMessage\030\006 \001(\0132\024.Announceme" +
+      "ntMessage\0225\n\025questionEnterResponse\030\007 \001(\013" +
+      "2\026.QuestionEnterResponse\0223\n\024goodQuestion" +
+      "Response\030\010 \001(\0132\025.GoodQuestionResponse\022+\n" +
+      "\020goodUserResponse\030\n \001(\0132\021.GoodUserRespon" +
+      "se\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022" +
+      "%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A" +
+      "\n\033questionInformationResponse\030\r \001(\0132\034.Qu" +
+      "estionInformationResponse\0229\n\027userInforma" +
+      "tionResponse\030\016 \001(\0132\030.UserInformationResp",
+      "onse\0229\n\027getQuestionListResponse\030\017 \001(\0132\030." +
+      "GetQuestionListResponse\0227\n\026createQuestio" +
+      "nResponse\030\022 \001(\0132\027.CreateQuestionResponse" +
+      "\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030.Aban" +
+      "donQuestionResponse\022=\n\031searchInformation" +
+      "Response\030\024 \001(\0132\032.SearchInformationRespon" +
+      "se\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Sol" +
+      "vedQuestionResponse*\304\003\n\003MSG\022\023\n\017LAUNCH_RE" +
+      "SPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEND_" +
+      "CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n\027Q",
+      "UESTION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QUESTIO" +
+      "N_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022\n\016" +
+      "UPDATE_MESSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!\n\035Q" +
+      "UESTION_INFORMATION_RESPONSE\020\n\022\035\n\031USER_I" +
+      "NFORMATION_RESPONSE\020\013\022\036\n\032GET_QUESTION_LI" +
+      "ST_RESPONSE\020\014\022\034\n\030CREATE_QUESTION_RESPONS" +
+      "E\020\017\022\035\n\031ABANDON_QUESTION_RESPONSE\020\020\022\037\n\033SE" +
+      "ARCH_INFORMATION_RESPONSE\020\021\022\034\n\030SOLVED_QU" +
+      "ESTION_RESPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023*H\n\014CO" +
+      "NTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_",
+      "MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURET" +
+      "YPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICE" +
+      "TYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseMess" +
+      "ageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21098,7 +21667,7 @@ public final class ServerResponseMessage {
     internal_static_Record_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Record_descriptor,
-        new java.lang.String[] { "ContentMessage", "Time", "User", "RecordID", "MarkMap", });
+        new java.lang.String[] { "ContentMessage", "Time", "User", "RecordID", "MarkMap", "Recordpic", });
     internal_static_Record_MarkMapEntry_descriptor =
       internal_static_Record_descriptor.getNestedTypes().get(0);
     internal_static_Record_MarkMapEntry_fieldAccessorTable = new
@@ -21116,7 +21685,7 @@ public final class ServerResponseMessage {
     internal_static_QuestionMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_QuestionMessage_descriptor,
-        new java.lang.String[] { "Stem", "Addition", "Time", "Owner", "Record", "Solved", "Good", "Id", });
+        new java.lang.String[] { "Stem", "Stempic", "Addition", "Additionpic", "Time", "Owner", "Record", "Solved", "Good", "Id", });
     internal_static_UserMessage_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_UserMessage_fieldAccessorTable = new
