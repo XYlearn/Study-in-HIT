@@ -25,14 +25,15 @@ import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.text.html.HTMLEditorKit;
+import util.Dispatcher;
 import util.MyExpression;
 
-public class InputBox extends JPanel
+public class InputBox extends JPanel implements Dispatcher
 {
 	private static Queue<InputBox> listenerQueue=new LinkedList<InputBox>();
 	private static Map<Long,InputBox> map=new HashMap<Long,InputBox>();
 
-	private JTextPane myPane=new JTextPane();
+	private final JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
 	private final HTMLEditorKit kit=new HTMLEditorKit();
 
@@ -193,21 +194,28 @@ public class InputBox extends JPanel
 	
 	public static void dispatch(NetEvent e)
 	{
-		if(e.type==NetEvent.EventType.CONTENT_MESSAGE_EVENT)
+		switch (e.type)
 		{
-			ContentMessageEvent ex=(ContentMessageEvent)e;
-			//if(ex.getUser()==getUser())
+			case CONTENT_MESSAGE_EVENT:
+			{
+				ContentMessageEvent ex=(ContentMessageEvent)e;
+				//if(ex.getUser()==getUser())
 				if(listenerQueue.peek()==map.get(ex.getQuestionID()))
 				{
 					System.out.println("InputBox收到成功发送消息反馈，消息已发送。");
 					map.get(ex.getQuestionID()).myPane.setText("");
 				}
 				else System.out.println("InputBox收到成功发送消息反馈，但事件队列顺序有误！");
-		}
-		else if(e.type==NetEvent.EventType.ENTER_QUESTION_EVENT)
-		{
-			EnterQuestionEvent ex=(EnterQuestionEvent)e;
-			map.get(ex.getQuestionMessage().getId()).myPane.setEditable(true);
+					break;
+			}
+			case ENTER_QUESTION_EVENT:
+			{
+				EnterQuestionEvent ex=(EnterQuestionEvent)e;
+				map.get(ex.getQuestionMessage().getId()).myPane.setEditable(true);
+					break;
+			}
+			default:
+				break;
 		}
 	}
 	

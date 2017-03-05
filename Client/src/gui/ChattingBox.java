@@ -25,14 +25,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
+import util.Dispatcher;
 
-public class ChattingBox extends JPanel
+public class ChattingBox extends JPanel implements Dispatcher
 {
-	private static Queue<ChattingBox> listenerQueue=new LinkedList<ChattingBox>();
-	private static Map<Long,ChattingBox> map=new HashMap<Long,ChattingBox>();
+	private static final Queue<ChattingBox> listenerQueue=new LinkedList<ChattingBox>();
+	private static final Map<Long,ChattingBox> map=new HashMap<Long,ChattingBox>();
 	
 	private final ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 	private final ChattingBoxHyperlinkListener hyperlinkAction=new ChattingBoxHyperlinkListener();
@@ -53,6 +56,8 @@ public class ChattingBox extends JPanel
 	private final JMenuItem reset=new JMenuItem("清屏");
 	private final JMenuItem abspeak=new JMenuItem("禁言");
 	private final JMenuItem getInfo=new JMenuItem("个人资料");
+	
+	private long questionID=-1;
 
 	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
 	private static final String PROPATH="file:"+CLASSPATH;
@@ -85,21 +90,25 @@ public class ChattingBox extends JPanel
 		this.add(myScroll, BorderLayout.CENTER);
 	}
 	
-	public void bindAndGetRecord(String questionID)
+	public void bind(long questionID)
 	{
-		//test.client.addMessageListener();
-		/*(questionMessage msg)->
+		this.questionID=questionID;
+		map.put(questionID, this);
+	}
+	
+	public void requestQuestionRecord()
+	{
+		try
 		{
-			String addition=msg.getAddition()
-					.replaceAll("\n", "<br>");
-			pushMessage(new Record(
-							msg.getOwner(),
-							"<b>"+msg.getStem()+"</b><br><b>"
-							+addition+"</b>",
-							msg.getTime()));
-			for(int i=0;i<msg.getRecords().size();i++)
-				pushMessage(msg.getRecordAt(i));
-		};*/
+			synchronized(listenerQueue)
+			{
+				listenerQueue.add(this);
+				test.client.enterQuestion(questionID);
+			}
+		} catch (IOException ex)
+		{
+			System.out.println(ex);
+		}
 	}
 
 	@Override
@@ -193,19 +202,24 @@ public class ChattingBox extends JPanel
 		pushMessage(tmpRecord);
 	}
 	
-	public void dispatch(NetEvent e)
+	public static void dispatch(NetEvent e)
 	{
-		if(e.type==NetEvent.EventType.CONTENT_MESSAGE_EVENT)
+		switch (e.type)
 		{
-			
-		}
-		else if(e.type==NetEvent.EventType.ENTER_QUESTION_EVENT)
-		{
-			
-		}
-		else if(e.type==NetEvent.EventType.SOLVED_QUESTION_EVENT)
-		{
-			
+			case CONTENT_MESSAGE_EVENT:
+			{
+				break;
+			}
+			case ENTER_QUESTION_EVENT:
+			{
+				break;
+			}
+			case SOLVED_QUESTION_EVENT:
+			{
+				break;
+			}
+			default:
+				break;
 		}
 	}
 
