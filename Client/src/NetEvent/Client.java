@@ -53,7 +53,9 @@ public class Client extends Thread{
 		FURTHURASKED(2),	//被追问
 		DOUBT(4),	//质疑
 		FURTHERASK(8),	//追问
-		ANONIMOUS(16);	//匿名
+		ANONYMOUS(16),	//匿名
+		AUDIO(32), //音频
+		FILE(64); //文件
 
 		private final int value;
 
