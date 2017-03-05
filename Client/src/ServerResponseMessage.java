@@ -7452,6 +7452,11 @@ public final class ServerResponseMessage {
 
     long getMarkMapOrThrow(
         int key);
+
+    /**
+     * <code>int64 recordID = 9;</code>
+     */
+    long getRecordID();
   }
   /**
    * Protobuf type {@code SendContent}
@@ -7472,6 +7477,7 @@ public final class ServerResponseMessage {
       pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       success_ = false;
       ismyself_ = false;
+      recordID_ = 0L;
     }
 
     @java.lang.Override
@@ -7552,6 +7558,11 @@ public final class ServerResponseMessage {
                   MarkMapDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
               markMap_.getMutableMap().put(
                   markMap__.getKey(), markMap__.getValue());
+              break;
+            }
+            case 72: {
+
+              recordID_ = input.readInt64();
               break;
             }
           }
@@ -7826,6 +7837,15 @@ public final class ServerResponseMessage {
       return map.get(key);
     }
 
+    public static final int RECORDID_FIELD_NUMBER = 9;
+    private long recordID_;
+    /**
+     * <code>int64 recordID = 9;</code>
+     */
+    public long getRecordID() {
+      return recordID_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -7865,6 +7885,9 @@ public final class ServerResponseMessage {
           internalGetMarkMap(),
           MarkMapDefaultEntryHolder.defaultEntry,
           8);
+      if (recordID_ != 0L) {
+        output.writeInt64(9, recordID_);
+      }
     }
 
     public int getSerializedSize() {
@@ -7911,6 +7934,10 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(8, markMap__);
       }
+      if (recordID_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, recordID_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -7943,6 +7970,8 @@ public final class ServerResponseMessage {
           == other.getIsmyself());
       result = result && internalGetMarkMap().equals(
           other.internalGetMarkMap());
+      result = result && (getRecordID()
+          == other.getRecordID());
       return result;
     }
 
@@ -7976,6 +8005,9 @@ public final class ServerResponseMessage {
         hash = (37 * hash) + MARKMAP_FIELD_NUMBER;
         hash = (53 * hash) + internalGetMarkMap().hashCode();
       }
+      hash = (37 * hash) + RECORDID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRecordID());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8131,6 +8163,8 @@ public final class ServerResponseMessage {
         ismyself_ = false;
 
         internalGetMutableMarkMap().clear();
+        recordID_ = 0L;
+
         return this;
       }
 
@@ -8168,6 +8202,7 @@ public final class ServerResponseMessage {
         result.ismyself_ = ismyself_;
         result.markMap_ = internalGetMarkMap();
         result.markMap_.makeImmutable();
+        result.recordID_ = recordID_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -8243,6 +8278,9 @@ public final class ServerResponseMessage {
         }
         internalGetMutableMarkMap().mergeFrom(
             other.internalGetMarkMap());
+        if (other.getRecordID() != 0L) {
+          setRecordID(other.getRecordID());
+        }
         onChanged();
         return this;
       }
@@ -8769,6 +8807,32 @@ public final class ServerResponseMessage {
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
         internalGetMutableMarkMap().getMutableMap()
             .putAll(values);
+        return this;
+      }
+
+      private long recordID_ ;
+      /**
+       * <code>int64 recordID = 9;</code>
+       */
+      public long getRecordID() {
+        return recordID_;
+      }
+      /**
+       * <code>int64 recordID = 9;</code>
+       */
+      public Builder setRecordID(long value) {
+        
+        recordID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 recordID = 9;</code>
+       */
+      public Builder clearRecordID() {
+        
+        recordID_ = 0L;
+        onChanged();
         return this;
       }
       public final Builder setUnknownFields(
@@ -21481,77 +21545,77 @@ public final class ServerResponseMessage {
       "tatus\030\001 \001(\010\022\023\n\013information\030\002 \001(\t\022!\n\013user" +
       "Message\030\003 \001(\0132\014.UserMessage\"8\n\020RegisterR",
       "esponse\022\017\n\007success\030\001 \001(\010\022\023\n\013information\030" +
-      "\002 \001(\t\"\337\001\n\013SendContent\022\022\n\nquestionID\030\001 \001(" +
+      "\002 \001(\t\"\361\001\n\013SendContent\022\022\n\nquestionID\030\001 \001(" +
       "\003\022\017\n\007content\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\014\n\004user" +
       "\030\004 \001(\t\022\020\n\010pictures\030\005 \003(\t\022\017\n\007success\030\006 \001(" +
       "\010\022\020\n\010ismyself\030\007 \001(\010\022*\n\007markMap\030\010 \003(\0132\031.S" +
-      "endContent.MarkMapEntry\032.\n\014MarkMapEntry\022" +
-      "\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003:\0028\001\"1\n\023Annou" +
-      "ncementMessage\022\014\n\004time\030\001 \001(\t\022\014\n\004text\030\002 \001" +
-      "(\t\"Q\n\025QuestionEnterResponse\022\r\n\005allow\030\001 \001" +
-      "(\010\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionMe",
-      "ssage\"\'\n\024GoodQuestionResponse\022\017\n\007success" +
-      "\030\001 \001(\010\"#\n\020GoodUserResponse\022\017\n\007success\030\001 " +
-      "\001(\010\"W\n\033QuestionInformationResponse\022)\n\017qu" +
-      "estionMessage\030\001 \001(\0132\020.QuestionMessage\022\r\n" +
-      "\005exist\030\002 \001(\010\"K\n\027UserInformationResponse\022" +
-      "!\n\013userMessage\030\001 \001(\0132\014.UserMessage\022\r\n\005ex" +
-      "ist\030\002 \001(\010\"Y\n\027GetQuestionListResponse\022\013\n\003" +
-      "num\030\001 \001(\005\0221\n\023questionListMessage\030\002 \003(\0132\024" +
-      ".QuestionListMessage\"T\n\026CreateQuestionRe" +
-      "sponse\022\017\n\007success\030\001 \001(\010\022)\n\017questionMessa",
-      "ge\030\002 \001(\0132\020.QuestionMessage\"*\n\027AbandonQue" +
-      "stionResponse\022\017\n\007success\030\001 \001(\010\"N\n\031Search" +
-      "InformationResponse\0221\n\023questionListMessa" +
-      "ge\030\003 \003(\0132\024.QuestionListMessage\"\332\001\n\014FileR" +
-      "esponse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027" +
-      ".FileResponse.SignEntry\022(\n\010signType\030\003 \001(" +
-      "\0162\026.FileResponse.SIGNTYPE\022\025\n\rlocalFilePa" +
-      "th\030\004 \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va" +
-      "lue\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022" +
-      "\n\n\006UPLOAD\020\001\"=\n\026SolvedQuestionResponse\022\022\n",
-      "\nquestionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"o\n\rUp" +
-      "dateMessage\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateM" +
-      "essage.UserEnter\0321\n\tUserEnter\022\020\n\010usernam" +
-      "e\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\350\006\n\007Message\022" +
-      "\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(" +
-      "\t\022&\n\rlauchResponse\030\003 \001(\0132\017.LaunchRespons" +
-      "e\022+\n\020registerResponse\030\004 \001(\0132\021.RegisterRe" +
-      "sponse\022!\n\013sendContent\030\005 \001(\0132\014.SendConten" +
-      "t\0221\n\023announcementMessage\030\006 \001(\0132\024.Announc" +
-      "ementMessage\0225\n\025questionEnterResponse\030\007 ",
-      "\001(\0132\026.QuestionEnterResponse\0223\n\024goodQuest" +
-      "ionResponse\030\010 \001(\0132\025.GoodQuestionResponse" +
-      "\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUserRes" +
-      "ponse\022#\n\014fileResponse\030\t \001(\0132\r.FileRespon" +
-      "se\022%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessag" +
-      "e\022A\n\033questionInformationResponse\030\r \001(\0132\034" +
-      ".QuestionInformationResponse\0229\n\027userInfo" +
-      "rmationResponse\030\016 \001(\0132\030.UserInformationR" +
-      "esponse\0229\n\027getQuestionListResponse\030\017 \001(\013" +
-      "2\030.GetQuestionListResponse\0227\n\026createQues",
-      "tionResponse\030\022 \001(\0132\027.CreateQuestionRespo" +
-      "nse\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030.A" +
-      "bandonQuestionResponse\022=\n\031searchInformat" +
-      "ionResponse\030\024 \001(\0132\032.SearchInformationRes" +
-      "ponse\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027." +
-      "SolvedQuestionResponse*\304\003\n\003MSG\022\023\n\017LAUNCH" +
-      "_RESPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SE" +
-      "ND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033" +
-      "\n\027QUESTION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QUES" +
-      "TION_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022",
-      "\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!" +
-      "\n\035QUESTION_INFORMATION_RESPONSE\020\n\022\035\n\031USE" +
-      "R_INFORMATION_RESPONSE\020\013\022\036\n\032GET_QUESTION" +
-      "_LIST_RESPONSE\020\014\022\034\n\030CREATE_QUESTION_RESP" +
-      "ONSE\020\017\022\035\n\031ABANDON_QUESTION_RESPONSE\020\020\022\037\n" +
-      "\033SEARCH_INFORMATION_RESPONSE\020\021\022\034\n\030SOLVED" +
-      "_QUESTION_RESPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023*H\n" +
-      "\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTU" +
-      "RE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTU" +
-      "RETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVO",
-      "ICETYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseM" +
-      "essageb\006proto3"
+      "endContent.MarkMapEntry\022\020\n\010recordID\030\t \001(" +
+      "\003\032.\n\014MarkMapEntry\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030" +
+      "\002 \001(\003:\0028\001\"1\n\023AnnouncementMessage\022\014\n\004time" +
+      "\030\001 \001(\t\022\014\n\004text\030\002 \001(\t\"Q\n\025QuestionEnterRes" +
+      "ponse\022\r\n\005allow\030\001 \001(\010\022)\n\017questionMessage\030",
+      "\002 \001(\0132\020.QuestionMessage\"\'\n\024GoodQuestionR" +
+      "esponse\022\017\n\007success\030\001 \001(\010\"#\n\020GoodUserResp" +
+      "onse\022\017\n\007success\030\001 \001(\010\"W\n\033QuestionInforma" +
+      "tionResponse\022)\n\017questionMessage\030\001 \001(\0132\020." +
+      "QuestionMessage\022\r\n\005exist\030\002 \001(\010\"K\n\027UserIn" +
+      "formationResponse\022!\n\013userMessage\030\001 \001(\0132\014" +
+      ".UserMessage\022\r\n\005exist\030\002 \001(\010\"Y\n\027GetQuesti" +
+      "onListResponse\022\013\n\003num\030\001 \001(\005\0221\n\023questionL" +
+      "istMessage\030\002 \003(\0132\024.QuestionListMessage\"T" +
+      "\n\026CreateQuestionResponse\022\017\n\007success\030\001 \001(",
+      "\010\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionMes" +
+      "sage\"*\n\027AbandonQuestionResponse\022\017\n\007succe" +
+      "ss\030\001 \001(\010\"N\n\031SearchInformationResponse\0221\n" +
+      "\023questionListMessage\030\003 \003(\0132\024.QuestionLis" +
+      "tMessage\"\332\001\n\014FileResponse\022\017\n\007success\030\001 \001" +
+      "(\010\022%\n\004sign\030\002 \003(\0132\027.FileResponse.SignEntr" +
+      "y\022(\n\010signType\030\003 \001(\0162\026.FileResponse.SIGNT" +
+      "YPE\022\025\n\rlocalFilePath\030\004 \003(\t\032+\n\tSignEntry\022" +
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNT" +
+      "YPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026SolvedQ",
+      "uestionResponse\022\022\n\nquestionID\030\002 \001(\003\022\017\n\007s" +
+      "uccess\030\001 \001(\010\"o\n\rUpdateMessage\022+\n\tuserEnt" +
+      "er\030\001 \001(\0132\030.UpdateMessage.UserEnter\0321\n\tUs" +
+      "erEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestionID\030" +
+      "\002 \001(\003\"\350\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MS" +
+      "G\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001" +
+      "(\0132\017.LaunchResponse\022+\n\020registerResponse\030" +
+      "\004 \001(\0132\021.RegisterResponse\022!\n\013sendContent\030" +
+      "\005 \001(\0132\014.SendContent\0221\n\023announcementMessa" +
+      "ge\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025questi",
+      "onEnterResponse\030\007 \001(\0132\026.QuestionEnterRes" +
+      "ponse\0223\n\024goodQuestionResponse\030\010 \001(\0132\025.Go" +
+      "odQuestionResponse\022+\n\020goodUserResponse\030\n" +
+      " \001(\0132\021.GoodUserResponse\022#\n\014fileResponse\030" +
+      "\t \001(\0132\r.FileResponse\022%\n\rupdateMessage\030\013 " +
+      "\001(\0132\016.UpdateMessage\022A\n\033questionInformati" +
+      "onResponse\030\r \001(\0132\034.QuestionInformationRe" +
+      "sponse\0229\n\027userInformationResponse\030\016 \001(\0132" +
+      "\030.UserInformationResponse\0229\n\027getQuestion" +
+      "ListResponse\030\017 \001(\0132\030.GetQuestionListResp",
+      "onse\0227\n\026createQuestionResponse\030\022 \001(\0132\027.C" +
+      "reateQuestionResponse\0229\n\027abandonQuestion" +
+      "Response\030\023 \001(\0132\030.AbandonQuestionResponse" +
+      "\022=\n\031searchInformationResponse\030\024 \001(\0132\032.Se" +
+      "archInformationResponse\0227\n\026solvedQuestio" +
+      "nResponse\030\025 \001(\0132\027.SolvedQuestionResponse" +
+      "*\304\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTE" +
+      "R_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUN" +
+      "CEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPO" +
+      "NSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOO",
+      "D_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n" +
+      "\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATION" +
+      "_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE" +
+      "\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CR" +
+      "EATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUES" +
+      "TION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RE" +
+      "SPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022\017" +
+      "\n\013BAD_MESSAGE\020\023*H\n\014CONTENT_TYPE\022\020\n\014TEXT_" +
+      "MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_" +
+      "MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PN",
+      "G\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003co" +
+      "mB\025ServerResponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21612,7 +21676,7 @@ public final class ServerResponseMessage {
     internal_static_SendContent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_descriptor,
-        new java.lang.String[] { "QuestionID", "Content", "Time", "User", "Pictures", "Success", "Ismyself", "MarkMap", });
+        new java.lang.String[] { "QuestionID", "Content", "Time", "User", "Pictures", "Success", "Ismyself", "MarkMap", "RecordID", });
     internal_static_SendContent_MarkMapEntry_descriptor =
       internal_static_SendContent_descriptor.getNestedTypes().get(0);
     internal_static_SendContent_MarkMapEntry_fieldAccessorTable = new
