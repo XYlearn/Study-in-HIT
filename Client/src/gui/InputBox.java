@@ -1,8 +1,11 @@
 package gui;
 
+import NetEvent.Client;
+import NetEvent.Client.CONTENT_MARK;
 import NetEvent.eventcom.ContentMessageEvent;
 import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
+import NetEvent.messagecom.Record;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -18,6 +21,7 @@ import bin.test;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -43,6 +47,7 @@ public class InputBox extends JPanel implements Dispatcher
 	private final JMenuItem paste=new JMenuItem("粘贴");
 
 	private long questionID=-1;
+	Map<Integer,Long> markMap=new HashMap<Integer,Long>();
 
 	public InputBox()
 	{
@@ -85,6 +90,36 @@ public class InputBox extends JPanel implements Dispatcher
 	public long getQuestionID()
 	{
 		return questionID;
+	}
+	
+	public void setAnonymous()
+	{
+		markMap.put(CONTENT_MARK.ANONYMOUS.getValue(), -1l);
+	}
+	
+	public void cancelAnonymous()
+	{
+		markMap.remove(CONTENT_MARK.ANONYMOUS.getValue());
+	}
+	
+	public void setDoubt(long recordID)
+	{
+		markMap.put(CONTENT_MARK.DOUBT.getValue(),recordID);
+	}
+	
+	public void cancelDoubt()
+	{
+		markMap.remove(CONTENT_MARK.DOUBT.getValue());
+	}
+	
+	public void setFurtherAsk(long recordID)
+	{
+		markMap.put(CONTENT_MARK.FURTHERASK.getValue(), recordID);
+	}
+	
+	public void cancelFurtherAsk()
+	{
+		markMap.remove(CONTENT_MARK.FURTHERASK.getValue());
 	}
 
 	public void insertImage(File f)
@@ -180,12 +215,42 @@ public class InputBox extends JPanel implements Dispatcher
 		if (message.charAt(message.length()-1)=='\n')
 			message.setLength(message.length()-1);
 		//System.out.println(message.toString());
-		//clear the textpane
-		myPane.setText("");
 		//send the message
 		try
 		{
-			test.client.sendContent(message.toString(), pictures, questionID);
+			test.client.sendContent(message.toString(), pictures, questionID,markMap);
+		} catch (IOException e)
+		{
+			System.out.println("网络异常");
+		}
+		finally
+		{
+			markMap.clear();
+		}
+	}
+	
+	public void sendAudio(String audioFile)
+	{
+		//set the markMap
+		markMap.put(CONTENT_MARK.AUDIO.getValue(), -1l);
+		//send the message
+		try
+		{
+			test.client.sendContent(audioFile, null, questionID);
+		} catch (IOException e)
+		{
+			System.out.println("网络异常");
+		}
+	}
+	
+	public void sendFile(String filepath)
+	{
+		//set the markMap
+		markMap.put(CONTENT_MARK.FILE.getValue(), -1l);
+		//send the message
+		try
+		{
+			test.client.sendContent(filepath, null, questionID);
 		} catch (IOException e)
 		{
 			System.out.println("网络异常");
