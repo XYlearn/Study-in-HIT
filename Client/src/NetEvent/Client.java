@@ -253,7 +253,7 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
-	public void goodQuestion(String questionID) throws IOException {
+	public void goodQuestion(long questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder().setMsgType(ClientSendMessage.MSG.GOOD_QUESTION_REQUEST)
 				  .setGoodQuestionRequest(ClientSendMessage.GoodQuestionRequest.newBuilder()
 							 .setQuestionID(Long.valueOf(questionID)).build()).build();
@@ -261,7 +261,7 @@ public class Client extends Thread{
 	}
 
 
-	public void enterQuestion(String questionID) throws IOException {
+	public void enterQuestion(long questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.QUESTION_ENTER_REQUEST)
 				  .setUsername(username)
@@ -272,7 +272,7 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
-	public void requestQuestionInfo(String questionID) throws IOException {
+	public void requestQuestionInfo(long questionID) throws IOException {
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.QUESTION_INFORMATION_REQUEST)
 				  .setUsername(username)
