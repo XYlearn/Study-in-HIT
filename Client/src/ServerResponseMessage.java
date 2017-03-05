@@ -7391,38 +7391,23 @@ public final class ServerResponseMessage {
         getUserBytes();
 
     /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
+     * <code>repeated string pictures = 5;</code>
+     */
+    java.util.List<java.lang.String>
+        getPicturesList();
+    /**
+     * <code>repeated string pictures = 5;</code>
      */
     int getPicturesCount();
     /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
+     * <code>repeated string pictures = 5;</code>
      */
-    boolean containsPictures(
-        java.lang.String key);
+    java.lang.String getPictures(int index);
     /**
-     * Use {@link #getPicturesMap()} instead.
+     * <code>repeated string pictures = 5;</code>
      */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.String>
-    getPictures();
-    /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.String>
-    getPicturesMap();
-    /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
-     */
-
-    java.lang.String getPicturesOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
-    /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
-     */
-
-    java.lang.String getPicturesOrThrow(
-        java.lang.String key);
+    com.google.protobuf.ByteString
+        getPicturesBytes(int index);
 
     /**
      * <code>bool success = 6;</code>
@@ -7484,6 +7469,7 @@ public final class ServerResponseMessage {
       content_ = "";
       time_ = "";
       user_ = "";
+      pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       success_ = false;
       ismyself_ = false;
     }
@@ -7537,16 +7523,12 @@ public final class ServerResponseMessage {
               break;
             }
             case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-                pictures_ = com.google.protobuf.MapField.newMapField(
-                    PicturesDefaultEntryHolder.defaultEntry);
+                pictures_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000010;
               }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              pictures__ = input.readMessage(
-                  PicturesDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              pictures_.getMutableMap().put(
-                  pictures__.getKey(), pictures__.getValue());
+              pictures_.add(s);
               break;
             }
             case 48: {
@@ -7580,6 +7562,9 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          pictures_ = pictures_.getUnmodifiableView();
+        }
         makeExtensionsImmutable();
       }
     }
@@ -7592,8 +7577,6 @@ public final class ServerResponseMessage {
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
-        case 5:
-          return internalGetPictures();
         case 8:
           return internalGetMarkMap();
         default:
@@ -7721,79 +7704,32 @@ public final class ServerResponseMessage {
     }
 
     public static final int PICTURES_FIELD_NUMBER = 5;
-    private static final class PicturesDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.String> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
-                  com.ServerResponseMessage.internal_static_SendContent_PicturesEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "");
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> pictures_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetPictures() {
-      if (pictures_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            PicturesDefaultEntryHolder.defaultEntry);
-      }
+    private com.google.protobuf.LazyStringList pictures_;
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getPicturesList() {
       return pictures_;
     }
-
+    /**
+     * <code>repeated string pictures = 5;</code>
+     */
     public int getPicturesCount() {
-      return internalGetPictures().getMap().size();
+      return pictures_.size();
     }
     /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
+     * <code>repeated string pictures = 5;</code>
      */
-
-    public boolean containsPictures(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetPictures().getMap().containsKey(key);
+    public java.lang.String getPictures(int index) {
+      return pictures_.get(index);
     }
     /**
-     * Use {@link #getPicturesMap()} instead.
+     * <code>repeated string pictures = 5;</code>
      */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getPictures() {
-      return getPicturesMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.String> getPicturesMap() {
-      return internalGetPictures().getMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
-     */
-
-    public java.lang.String getPicturesOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetPictures().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, string&gt; pictures = 5;</code>
-     */
-
-    public java.lang.String getPicturesOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetPictures().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
+    public com.google.protobuf.ByteString
+        getPicturesBytes(int index) {
+      return pictures_.getByteString(index);
     }
 
     public static final int SUCCESS_FIELD_NUMBER = 6;
@@ -7914,12 +7850,9 @@ public final class ServerResponseMessage {
       if (!getUserBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, user_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetPictures(),
-          PicturesDefaultEntryHolder.defaultEntry,
-          5);
+      for (int i = 0; i < pictures_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, pictures_.getRaw(i));
+      }
       if (success_ != false) {
         output.writeBool(6, success_);
       }
@@ -7952,15 +7885,13 @@ public final class ServerResponseMessage {
       if (!getUserBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, user_);
       }
-      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-           : internalGetPictures().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-        pictures__ = PicturesDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, pictures__);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < pictures_.size(); i++) {
+          dataSize += computeStringSizeNoTag(pictures_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getPicturesList().size();
       }
       if (success_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -8004,8 +7935,8 @@ public final class ServerResponseMessage {
           .equals(other.getTime());
       result = result && getUser()
           .equals(other.getUser());
-      result = result && internalGetPictures().equals(
-          other.internalGetPictures());
+      result = result && getPicturesList()
+          .equals(other.getPicturesList());
       result = result && (getSuccess()
           == other.getSuccess());
       result = result && (getIsmyself()
@@ -8031,9 +7962,9 @@ public final class ServerResponseMessage {
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + USER_FIELD_NUMBER;
       hash = (53 * hash) + getUser().hashCode();
-      if (!internalGetPictures().getMap().isEmpty()) {
+      if (getPicturesCount() > 0) {
         hash = (37 * hash) + PICTURES_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetPictures().hashCode();
+        hash = (53 * hash) + getPicturesList().hashCode();
       }
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
@@ -8143,8 +8074,6 @@ public final class ServerResponseMessage {
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
         switch (number) {
-          case 5:
-            return internalGetPictures();
           case 8:
             return internalGetMarkMap();
           default:
@@ -8156,8 +8085,6 @@ public final class ServerResponseMessage {
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
         switch (number) {
-          case 5:
-            return internalGetMutablePictures();
           case 8:
             return internalGetMutableMarkMap();
           default:
@@ -8197,7 +8124,8 @@ public final class ServerResponseMessage {
 
         user_ = "";
 
-        internalGetMutablePictures().clear();
+        pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         success_ = false;
 
         ismyself_ = false;
@@ -8231,8 +8159,11 @@ public final class ServerResponseMessage {
         result.content_ = content_;
         result.time_ = time_;
         result.user_ = user_;
-        result.pictures_ = internalGetPictures();
-        result.pictures_.makeImmutable();
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          pictures_ = pictures_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.pictures_ = pictures_;
         result.success_ = success_;
         result.ismyself_ = ismyself_;
         result.markMap_ = internalGetMarkMap();
@@ -8294,8 +8225,16 @@ public final class ServerResponseMessage {
           user_ = other.user_;
           onChanged();
         }
-        internalGetMutablePictures().mergeFrom(
-            other.internalGetPictures());
+        if (!other.pictures_.isEmpty()) {
+          if (pictures_.isEmpty()) {
+            pictures_ = other.pictures_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensurePicturesIsMutable();
+            pictures_.addAll(other.pictures_);
+          }
+          onChanged();
+        }
         if (other.getSuccess() != false) {
           setSuccess(other.getSuccess());
         }
@@ -8564,126 +8503,97 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.String> pictures_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetPictures() {
-        if (pictures_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              PicturesDefaultEntryHolder.defaultEntry);
-        }
-        return pictures_;
+      private com.google.protobuf.LazyStringList pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensurePicturesIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          pictures_ = new com.google.protobuf.LazyStringArrayList(pictures_);
+          bitField0_ |= 0x00000010;
+         }
       }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutablePictures() {
-        onChanged();;
-        if (pictures_ == null) {
-          pictures_ = com.google.protobuf.MapField.newMapField(
-              PicturesDefaultEntryHolder.defaultEntry);
-        }
-        if (!pictures_.isMutable()) {
-          pictures_ = pictures_.copy();
-        }
-        return pictures_;
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getPicturesList() {
+        return pictures_.getUnmodifiableView();
       }
-
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
       public int getPicturesCount() {
-        return internalGetPictures().getMap().size();
+        return pictures_.size();
       }
       /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
+       * <code>repeated string pictures = 5;</code>
        */
-
-      public boolean containsPictures(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetPictures().getMap().containsKey(key);
+      public java.lang.String getPictures(int index) {
+        return pictures_.get(index);
       }
       /**
-       * Use {@link #getPicturesMap()} instead.
+       * <code>repeated string pictures = 5;</code>
        */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String> getPictures() {
-        return getPicturesMap();
+      public com.google.protobuf.ByteString
+          getPicturesBytes(int index) {
+        return pictures_.getByteString(index);
       }
       /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
+       * <code>repeated string pictures = 5;</code>
        */
-
-      public java.util.Map<java.lang.String, java.lang.String> getPicturesMap() {
-        return internalGetPictures().getMap();
-      }
-      /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
-       */
-
-      public java.lang.String getPicturesOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetPictures().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
-       */
-
-      public java.lang.String getPicturesOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetPictures().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearPictures() {
-        internalGetMutablePictures().getMutableMap()
-            .clear();
+      public Builder setPictures(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePicturesIsMutable();
+        pictures_.set(index, value);
+        onChanged();
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
+       * <code>repeated string pictures = 5;</code>
        */
-
-      public Builder removePictures(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutablePictures().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String>
-      getMutablePictures() {
-        return internalGetMutablePictures().getMutableMap();
-      }
-      /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
-       */
-      public Builder putPictures(
-          java.lang.String key,
+      public Builder addPictures(
           java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutablePictures().getMutableMap()
-            .put(key, value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePicturesIsMutable();
+        pictures_.add(value);
+        onChanged();
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; pictures = 5;</code>
+       * <code>repeated string pictures = 5;</code>
        */
-
-      public Builder putAllPictures(
-          java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutablePictures().getMutableMap()
-            .putAll(values);
+      public Builder addAllPictures(
+          java.lang.Iterable<java.lang.String> values) {
+        ensurePicturesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, pictures_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder clearPictures() {
+        pictures_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string pictures = 5;</code>
+       */
+      public Builder addPicturesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensurePicturesIsMutable();
+        pictures_.add(value);
+        onChanged();
         return this;
       }
 
@@ -21457,11 +21367,6 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_SendContent_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_SendContent_PicturesEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_SendContent_PicturesEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_SendContent_MarkMapEntry_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -21576,79 +21481,77 @@ public final class ServerResponseMessage {
       "tatus\030\001 \001(\010\022\023\n\013information\030\002 \001(\t\022!\n\013user" +
       "Message\030\003 \001(\0132\014.UserMessage\"8\n\020RegisterR",
       "esponse\022\017\n\007success\030\001 \001(\010\022\023\n\013information\030" +
-      "\002 \001(\t\"\254\002\n\013SendContent\022\022\n\nquestionID\030\001 \001(" +
+      "\002 \001(\t\"\337\001\n\013SendContent\022\022\n\nquestionID\030\001 \001(" +
       "\003\022\017\n\007content\030\002 \001(\t\022\014\n\004time\030\003 \001(\t\022\014\n\004user" +
-      "\030\004 \001(\t\022,\n\010pictures\030\005 \003(\0132\032.SendContent.P" +
-      "icturesEntry\022\017\n\007success\030\006 \001(\010\022\020\n\010ismysel" +
-      "f\030\007 \001(\010\022*\n\007markMap\030\010 \003(\0132\031.SendContent.M" +
-      "arkMapEntry\032/\n\rPicturesEntry\022\013\n\003key\030\001 \001(" +
-      "\t\022\r\n\005value\030\002 \001(\t:\0028\001\032.\n\014MarkMapEntry\022\013\n\003" +
-      "key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003:\0028\001\"1\n\023Announce" +
-      "mentMessage\022\014\n\004time\030\001 \001(\t\022\014\n\004text\030\002 \001(\t\"",
-      "Q\n\025QuestionEnterResponse\022\r\n\005allow\030\001 \001(\010\022" +
-      ")\n\017questionMessage\030\002 \001(\0132\020.QuestionMessa" +
-      "ge\"\'\n\024GoodQuestionResponse\022\017\n\007success\030\001 " +
-      "\001(\010\"#\n\020GoodUserResponse\022\017\n\007success\030\001 \001(\010" +
-      "\"W\n\033QuestionInformationResponse\022)\n\017quest" +
-      "ionMessage\030\001 \001(\0132\020.QuestionMessage\022\r\n\005ex" +
-      "ist\030\002 \001(\010\"K\n\027UserInformationResponse\022!\n\013" +
-      "userMessage\030\001 \001(\0132\014.UserMessage\022\r\n\005exist" +
-      "\030\002 \001(\010\"Y\n\027GetQuestionListResponse\022\013\n\003num" +
-      "\030\001 \001(\005\0221\n\023questionListMessage\030\002 \003(\0132\024.Qu",
-      "estionListMessage\"T\n\026CreateQuestionRespo" +
-      "nse\022\017\n\007success\030\001 \001(\010\022)\n\017questionMessage\030" +
-      "\002 \001(\0132\020.QuestionMessage\"*\n\027AbandonQuesti" +
-      "onResponse\022\017\n\007success\030\001 \001(\010\"N\n\031SearchInf" +
-      "ormationResponse\0221\n\023questionListMessage\030" +
-      "\003 \003(\0132\024.QuestionListMessage\"\332\001\n\014FileResp" +
-      "onse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027.Fi" +
-      "leResponse.SignEntry\022(\n\010signType\030\003 \001(\0162\026" +
-      ".FileResponse.SIGNTYPE\022\025\n\rlocalFilePath\030" +
-      "\004 \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value",
-      "\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006" +
-      "UPLOAD\020\001\"=\n\026SolvedQuestionResponse\022\022\n\nqu" +
-      "estionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"o\n\rUpdat" +
-      "eMessage\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateMess" +
-      "age.UserEnter\0321\n\tUserEnter\022\020\n\010username\030\001" +
-      " \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\350\006\n\007Message\022\026\n\010" +
-      "msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&" +
-      "\n\rlauchResponse\030\003 \001(\0132\017.LaunchResponse\022+" +
-      "\n\020registerResponse\030\004 \001(\0132\021.RegisterRespo" +
-      "nse\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221",
-      "\n\023announcementMessage\030\006 \001(\0132\024.Announceme" +
-      "ntMessage\0225\n\025questionEnterResponse\030\007 \001(\013" +
-      "2\026.QuestionEnterResponse\0223\n\024goodQuestion" +
-      "Response\030\010 \001(\0132\025.GoodQuestionResponse\022+\n" +
-      "\020goodUserResponse\030\n \001(\0132\021.GoodUserRespon" +
-      "se\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022" +
-      "%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A" +
-      "\n\033questionInformationResponse\030\r \001(\0132\034.Qu" +
-      "estionInformationResponse\0229\n\027userInforma" +
-      "tionResponse\030\016 \001(\0132\030.UserInformationResp",
-      "onse\0229\n\027getQuestionListResponse\030\017 \001(\0132\030." +
-      "GetQuestionListResponse\0227\n\026createQuestio" +
-      "nResponse\030\022 \001(\0132\027.CreateQuestionResponse" +
-      "\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030.Aban" +
-      "donQuestionResponse\022=\n\031searchInformation" +
-      "Response\030\024 \001(\0132\032.SearchInformationRespon" +
-      "se\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Sol" +
-      "vedQuestionResponse*\304\003\n\003MSG\022\023\n\017LAUNCH_RE" +
-      "SPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEND_" +
-      "CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n\027Q",
-      "UESTION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QUESTIO" +
-      "N_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022\n\016" +
-      "UPDATE_MESSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!\n\035Q" +
-      "UESTION_INFORMATION_RESPONSE\020\n\022\035\n\031USER_I" +
-      "NFORMATION_RESPONSE\020\013\022\036\n\032GET_QUESTION_LI" +
-      "ST_RESPONSE\020\014\022\034\n\030CREATE_QUESTION_RESPONS" +
-      "E\020\017\022\035\n\031ABANDON_QUESTION_RESPONSE\020\020\022\037\n\033SE" +
-      "ARCH_INFORMATION_RESPONSE\020\021\022\034\n\030SOLVED_QU" +
-      "ESTION_RESPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023*H\n\014CO" +
-      "NTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_",
-      "MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURET" +
-      "YPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICE" +
-      "TYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseMess" +
-      "ageb\006proto3"
+      "\030\004 \001(\t\022\020\n\010pictures\030\005 \003(\t\022\017\n\007success\030\006 \001(" +
+      "\010\022\020\n\010ismyself\030\007 \001(\010\022*\n\007markMap\030\010 \003(\0132\031.S" +
+      "endContent.MarkMapEntry\032.\n\014MarkMapEntry\022" +
+      "\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003:\0028\001\"1\n\023Annou" +
+      "ncementMessage\022\014\n\004time\030\001 \001(\t\022\014\n\004text\030\002 \001" +
+      "(\t\"Q\n\025QuestionEnterResponse\022\r\n\005allow\030\001 \001" +
+      "(\010\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionMe",
+      "ssage\"\'\n\024GoodQuestionResponse\022\017\n\007success" +
+      "\030\001 \001(\010\"#\n\020GoodUserResponse\022\017\n\007success\030\001 " +
+      "\001(\010\"W\n\033QuestionInformationResponse\022)\n\017qu" +
+      "estionMessage\030\001 \001(\0132\020.QuestionMessage\022\r\n" +
+      "\005exist\030\002 \001(\010\"K\n\027UserInformationResponse\022" +
+      "!\n\013userMessage\030\001 \001(\0132\014.UserMessage\022\r\n\005ex" +
+      "ist\030\002 \001(\010\"Y\n\027GetQuestionListResponse\022\013\n\003" +
+      "num\030\001 \001(\005\0221\n\023questionListMessage\030\002 \003(\0132\024" +
+      ".QuestionListMessage\"T\n\026CreateQuestionRe" +
+      "sponse\022\017\n\007success\030\001 \001(\010\022)\n\017questionMessa",
+      "ge\030\002 \001(\0132\020.QuestionMessage\"*\n\027AbandonQue" +
+      "stionResponse\022\017\n\007success\030\001 \001(\010\"N\n\031Search" +
+      "InformationResponse\0221\n\023questionListMessa" +
+      "ge\030\003 \003(\0132\024.QuestionListMessage\"\332\001\n\014FileR" +
+      "esponse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027" +
+      ".FileResponse.SignEntry\022(\n\010signType\030\003 \001(" +
+      "\0162\026.FileResponse.SIGNTYPE\022\025\n\rlocalFilePa" +
+      "th\030\004 \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va" +
+      "lue\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022" +
+      "\n\n\006UPLOAD\020\001\"=\n\026SolvedQuestionResponse\022\022\n",
+      "\nquestionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"o\n\rUp" +
+      "dateMessage\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateM" +
+      "essage.UserEnter\0321\n\tUserEnter\022\020\n\010usernam" +
+      "e\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\350\006\n\007Message\022" +
+      "\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(" +
+      "\t\022&\n\rlauchResponse\030\003 \001(\0132\017.LaunchRespons" +
+      "e\022+\n\020registerResponse\030\004 \001(\0132\021.RegisterRe" +
+      "sponse\022!\n\013sendContent\030\005 \001(\0132\014.SendConten" +
+      "t\0221\n\023announcementMessage\030\006 \001(\0132\024.Announc" +
+      "ementMessage\0225\n\025questionEnterResponse\030\007 ",
+      "\001(\0132\026.QuestionEnterResponse\0223\n\024goodQuest" +
+      "ionResponse\030\010 \001(\0132\025.GoodQuestionResponse" +
+      "\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUserRes" +
+      "ponse\022#\n\014fileResponse\030\t \001(\0132\r.FileRespon" +
+      "se\022%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessag" +
+      "e\022A\n\033questionInformationResponse\030\r \001(\0132\034" +
+      ".QuestionInformationResponse\0229\n\027userInfo" +
+      "rmationResponse\030\016 \001(\0132\030.UserInformationR" +
+      "esponse\0229\n\027getQuestionListResponse\030\017 \001(\013" +
+      "2\030.GetQuestionListResponse\0227\n\026createQues",
+      "tionResponse\030\022 \001(\0132\027.CreateQuestionRespo" +
+      "nse\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030.A" +
+      "bandonQuestionResponse\022=\n\031searchInformat" +
+      "ionResponse\030\024 \001(\0132\032.SearchInformationRes" +
+      "ponse\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027." +
+      "SolvedQuestionResponse*\304\003\n\003MSG\022\023\n\017LAUNCH" +
+      "_RESPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SE" +
+      "ND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033" +
+      "\n\027QUESTION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QUES" +
+      "TION_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022",
+      "\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!" +
+      "\n\035QUESTION_INFORMATION_RESPONSE\020\n\022\035\n\031USE" +
+      "R_INFORMATION_RESPONSE\020\013\022\036\n\032GET_QUESTION" +
+      "_LIST_RESPONSE\020\014\022\034\n\030CREATE_QUESTION_RESP" +
+      "ONSE\020\017\022\035\n\031ABANDON_QUESTION_RESPONSE\020\020\022\037\n" +
+      "\033SEARCH_INFORMATION_RESPONSE\020\021\022\034\n\030SOLVED" +
+      "_QUESTION_RESPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023*H\n" +
+      "\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTU" +
+      "RE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTU" +
+      "RETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVO",
+      "ICETYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseM" +
+      "essageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21710,14 +21613,8 @@ public final class ServerResponseMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_descriptor,
         new java.lang.String[] { "QuestionID", "Content", "Time", "User", "Pictures", "Success", "Ismyself", "MarkMap", });
-    internal_static_SendContent_PicturesEntry_descriptor =
-      internal_static_SendContent_descriptor.getNestedTypes().get(0);
-    internal_static_SendContent_PicturesEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_SendContent_PicturesEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
     internal_static_SendContent_MarkMapEntry_descriptor =
-      internal_static_SendContent_descriptor.getNestedTypes().get(1);
+      internal_static_SendContent_descriptor.getNestedTypes().get(0);
     internal_static_SendContent_MarkMapEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SendContent_MarkMapEntry_descriptor,

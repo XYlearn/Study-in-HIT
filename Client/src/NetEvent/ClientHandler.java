@@ -9,16 +9,19 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.annotation.Native;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Created by xy16 on 17-2-25.
  */
 public class ClientHandler extends IoHandlerAdapter {
+	ClientHandler(Client client) {
+		this.client = client;
+	}
+
 	@Override
 	public void sessionOpened(IoSession session) {
 		System.out.println("Connect to "+session);
@@ -103,11 +106,11 @@ public class ClientHandler extends IoHandlerAdapter {
 		System.out.println("Connection Begin");
 	}
 
-
 	/*handle functions*/
 
 	@Function
-	private void handleRegisterResponse(ServerResponseMessage.Message recvMessage) {
+	private void handleRegisterResponse(ServerResponseMessage.Message recvMessage)
+	{
 		ServerResponseMessage.RegisterResponse registerResponse = recvMessage.getRegisterResponse();
 
 		System.out.println(registerResponse.getInformation());
@@ -140,7 +143,7 @@ public class ClientHandler extends IoHandlerAdapter {
 		System.out.println();
 	}
 
-	private void handleResponseSendContent(ServerResponseMessage.Message recvMessage) {
+	private void handleResponseSendContent(ServerResponseMessage.Message recvMessage) throws IOException{
 		ServerResponseMessage.SendContent sendContent =
 				  recvMessage.getSendContent();
 
@@ -155,33 +158,9 @@ public class ClientHandler extends IoHandlerAdapter {
 
 		//若为他人发送的消息
 		if(!isMyself) {
-			//对每一个图片进行处理
-			for (Map.Entry<String, String> entry : sendContent.getPicturesMap().entrySet()) {
-				//若文件在本地不存在则下载
-				if (!(new File(PICTPATH + entry.getKey()).exists())) {
-					Client.fileOP.changeSign(entry.getValue());
-					boolean finish = false;
-					for(int count = 0;count < 10 && !finish;) {
-						try {
-							Client.fileOP.getFileLocal(
-									  new GetFileLocalRequest(
-												 Client.fileOP.getBucktName(),
-												 "/" + entry.getKey(),
-												 PICTPATH + entry.getKey())
-							);
-							finish = true;
-						} catch (Exception e) {
-							count++;
-							e.printStackTrace();
-						}
-					}
-				}
-				pictures.add(entry.getKey());
-			}
-			//ChattingBox.c.pushMessage(isMyself, content, pictures);
-		} else {
-			//ChattingBox.c.pushMessage(isMyself, content, pictures);
+			client.downloadFiles(pictures);
 		}
+
 		System.out.println((isMyself?"你":recvMessage.getSendContent().getUser())
 				  +"在问题房"+recvMessage.getSendContent().getQuestionID()+"发送了:"+content);
 	}
@@ -370,6 +349,7 @@ public class ClientHandler extends IoHandlerAdapter {
 	}
 
 	@Native
+	private Client client;
 	private String username = "";
 
 	public static final String MAINPATH=bin.test.class.getResource("").getPath()

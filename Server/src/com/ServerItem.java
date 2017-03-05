@@ -340,7 +340,7 @@ public class ServerItem {
 
 	private ServerResponseMessage.SendContent
 	handleSendContent(ClientSendMessage.SendContent sendMessage)
-			  throws SQLException {
+			  throws SQLException 	{
 		ServerResponseMessage.SendContent responseSend = null;
 		ServerResponseMessage.SendContent.Builder sendBuider = ServerResponseMessage.SendContent.newBuilder();
 		//解析数据
@@ -368,13 +368,15 @@ public class ServerItem {
 			}
 			markMapStrBuider.deleteCharAt(markMapStrBuider.length()-1);
 		}
+
 		//将pictureMap转化为String
 		StringBuilder recordpicStrBuider = new StringBuilder("");
-		for (String picture : pictures) {
-			recordpicStrBuider.append(picture).append(":");
+		if(pictures.size()>0) {
+			for (String picture : pictures) {
+				recordpicStrBuider.append(picture).append(":");
+			}
+			recordpicStrBuider.deleteCharAt(recordpicStrBuider.length() - 1);
 		}
-		recordpicStrBuider.deleteCharAt(recordpicStrBuider.length()-1);
-
 
 		//在数据库中记录
 		sql = "INSERT INTO question_id"+questionID+" (record, time, username, markMap, recordpic) "
@@ -395,10 +397,17 @@ public class ServerItem {
 		sendBuider.setContent(record);
 		sendBuider.putAllMarkMap(markMap);
 
-		//对每一图片附加腾讯云cos下载签名处理
-		Map<String , String> picturesMap = sendBuider.getPicturesMap();
+		//对每一图片(文件名为md5)将信息存入数据库中
 		for(String pic : sendMessage.getPicturesList()) {
-			sendBuider.putPictures(pic,cos.getDownloadSign(pic, Cos.TYPE.PICTURE));
+			//数据库操作
+			sql = "SELECT * FROM files WHERE md5='"+pic+"';";
+			rs = stmt.executeQuery(sql);
+			if(!rs.next()) {
+				sql = "INSERT INTO files (md5, filename, user) " +
+						  "VALUES('"+pic+"', '"+pic+"', '"+username+"');";
+				stmt.execute(sql);
+			}
+
 		}
 		sendBuider.setSuccess(true);
 		sendBuider.setIsmyself(false);
@@ -417,11 +426,7 @@ public class ServerItem {
 				);
 			}
 		}
-		//对于用户本身返回上传签名
-		sendBuider.clearPictures();
-		for(String pic : sendMessage.getPicturesList()) {
-			sendBuider.putPictures(pic, cos.getUploadSign(pic, Cos.TYPE.PICTURE));
-		}
+
 		sendBuider.setIsmyself(true);
 		responseSend = sendBuider.build();
 			return responseSend;
@@ -669,12 +674,18 @@ public class ServerItem {
 			//将图片和并为字符串
 			StringBuilder stempic = new StringBuilder("");
 			StringBuilder additionpic = new StringBuilder("");
-			for(String s : stempics) {
-				stempic.append(s).append(":");
-			} stempic.deleteCharAt(stempic.length()-1);
-			for(String s : additionpics) {
-				additionpic.append(s).append(":");
-			} additionpic.deleteCharAt(additionpic.length()-1);
+			if(stempics.size()>0) {
+				for (String s : stempics) {
+					stempic.append(s).append(":");
+				}
+				stempic.deleteCharAt(stempic.length() - 1);
+			}
+			if(additionpics.size()>0) {
+				for (String s : additionpics) {
+					additionpic.append(s).append(":");
+				}
+				additionpic.deleteCharAt(additionpic.length() - 1);
+			}
 
 			sql = "INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES" +
 					  "('"+username+"','"+questionID+"','"+stem+"','"+addition+"',0, '"+stempic+"', '"+additionpic+"');";

@@ -1,0 +1,26 @@
+package NetEvent.eventcom;
+
+public class NetEvent
+{
+	protected NetEvent(EventType type) {this.type = type;}
+
+	public static enum EventType
+	{
+		REGISTER_EVENT,
+		LAUNCH_EVENT,
+		CONTENT_MESSAGE_EVENT,
+		GOOD_USER_EVENT,
+		GOOD_QUESTION_EVENT,
+		ENTER_QUESTION_EVENT,
+		QUESTION_INFO_EVENT,
+		QUESTION_LIST_EVENT,
+		USER_INFO_EVENT,
+		CREATE_QUESTION_EVENT,
+		ABANDON_QUESTION_EVENT,
+		SEARCH_QUESTION_EVENT,
+		FILE_EVENT,
+		UPDATE_EVENT,
+		SOLVED_QUESTION_EVENT
+	}
+	public EventType type;
+}

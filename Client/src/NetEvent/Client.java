@@ -82,7 +82,7 @@ public class Client extends Thread{
 		DefaultIoFilterChainBuilder chain = connector.getFilterChain();
 		chain.addLast("codec", new ProtocolCodecFilter(new NetPackageCodeFacotry(true)));
 
-		connector.setHandler(new ClientHandler());
+		connector.setHandler(new ClientHandler(this));
 
 		connector.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 20);
 
@@ -164,6 +164,7 @@ public class Client extends Thread{
 	}
 
 
+	//not recommend
 	public void sendContent(String contents,ArrayList<String> pictures,String questionID) throws IOException {
 		ClientSendMessage.Message send = null;
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
@@ -171,10 +172,26 @@ public class Client extends Thread{
 				  .setQuestionID(Long.valueOf(questionID));
 
 		if(pictures!=null) {
-			for (String picture : pictures) {
-				contentBuider.addPictures(picture);
+			ArrayList<String> md5s = new ArrayList<>();
+			for (Iterator<String> it = pictures.iterator(); it.hasNext(); ) {
+				File file = new File(it.next());
+				if(!file.exists()) {
+					it.remove();
+					continue;
+				}
+
+				String md5 = MD5Tools.FileToMD5(file);
+				md5s.add(md5);
+				file.renameTo(new File(PICTPATH+md5));
 			}
+			contentBuider.addAllPictures(md5s);
+			for(String md5 : md5s) {
+				md5=PICTPATH+md5;
+			}
+
+			uploadFiles(md5s);
 		}
+
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.SEND_CONTENT)
 				  .setUsername(username)
@@ -182,8 +199,6 @@ public class Client extends Thread{
 				  .build();
 
 		sendIt(sendMessage);
-
-		//在自己的页面上显示
 	}
 
 	public void sendContent(String contents, ArrayList<String> pictures, String questionID,
@@ -192,15 +207,30 @@ public class Client extends Thread{
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
 				  .setContent(contents)
 				  .setQuestionID(Long.valueOf(questionID));
+
 		if(markMap!=null) {
 			contentBuider.putAllMarkMap(markMap);
 		}
 
+		//图片处理
 		if(pictures!=null) {
+			ArrayList<String> md5s = new ArrayList<>();
 			for (String picture : pictures) {
-				contentBuider.addPictures(picture);
+				File file = new File(picture);
+				if(!file.exists()) {
+					pictures.remove(picture);
+				}
+
+				String md5 = MD5Tools.FileToMD5(file);
+				md5s.add(md5);
+				file.renameTo(new File(md5));
 			}
+			contentBuider.addAllPictures(md5s);
+
+			uploadFiles(pictures);
 		}
+
+		//发送消息
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.SEND_CONTENT)
 				  .setUsername(username)
@@ -209,8 +239,8 @@ public class Client extends Thread{
 
 		sendIt(sendMessage);
 
-		//在自己的页面上显示
 	}
+
 
 	public void goodUser(String user) throws IOException {
 		ClientSendMessage.Message sendMessage =

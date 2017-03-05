@@ -33,7 +33,13 @@ public class Test {
 			System.out.println("密码");
 			password = scanner.nextLine();
 			client.launchRequest(username, password);
-			client.uploadFile("/home/xy16/1");
+			ArrayList<String> pics = new ArrayList<>();
+			pics.add("/home/xy16/JavaCode.d/ProjectClientProto/out/produc" +
+					  "tion/ProjectClientProto/pictures/D784FA8B6D98D27699781BD9A7CF19F0");
+
+			client.createQuestion("first question", "lala", new ArrayList<>(), pics, new ArrayList<>());
+			client.enterQuestion("1");
+			client.sendContent("%hello", pics, "1");
 
 		} catch (Exception e) {
 			e.printStackTrace();

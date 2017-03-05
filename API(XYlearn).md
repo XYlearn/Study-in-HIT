@@ -232,7 +232,9 @@ public void enterQuestion(String questionID) throws IOException
 questionMessage结构（下同）:
 * id:问题号
 * stem:提干
+* stempic:题干图片
 * addition:补充
+* addtionpic:补充图片
 * time:提问时间
 * owner:提问者
 * record:问答记录
