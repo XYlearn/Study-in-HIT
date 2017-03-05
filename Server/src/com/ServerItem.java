@@ -384,6 +384,16 @@ public class ServerItem {
 				  +markMapStrBuider.toString()+"','"+recordpicStrBuider+"');";
 		stmt.execute(sql);
 
+		//获取id
+		long recordID = -1;
+		sql = "SELECT max(record_id) FROM question_id;";
+		rs = stmt.executeQuery(sql);
+		if(rs.next()) {
+			recordID = rs.getLong(1);
+		} else {
+			recordID = 1;
+		}
+
 		//返回服务器回复
 			//匿名检查
 		if(markMap!=null && markMap.get(CONTENT_MARK.ANONIMOUS)!=null) {
@@ -411,6 +421,7 @@ public class ServerItem {
 		}
 		sendBuider.setSuccess(true);
 		sendBuider.setIsmyself(false);
+		sendBuider.setRecordID(recordID);
 		responseSend  = sendBuider.build();
 		ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID+"");
 
