@@ -1,5 +1,6 @@
 package gui;
 
+import NetEvent.eventcom.NetEvent;
 import NetEvent.messagecom.Record;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -20,13 +21,19 @@ import bin.test;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 public class ChattingBox extends JPanel
 {
-
+	private static Queue<ChattingBox> listenerQueue=new LinkedList<ChattingBox>();
+	private static Map<Long,ChattingBox> map=new HashMap<Long,ChattingBox>();
+	
 	private final ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 	private final ChattingBoxHyperlinkListener hyperlinkAction=new ChattingBoxHyperlinkListener();
 	private boolean onHyperlink=false;
@@ -184,6 +191,22 @@ public class ChattingBox extends JPanel
 				msg.getPictures(),
 				msg.getMarkMap());
 		pushMessage(tmpRecord);
+	}
+	
+	public void dispatch(NetEvent e)
+	{
+		if(e.type==NetEvent.EventType.CONTENT_MESSAGE_EVENT)
+		{
+			
+		}
+		else if(e.type==NetEvent.EventType.ENTER_QUESTION_EVENT)
+		{
+			
+		}
+		else if(e.type==NetEvent.EventType.SOLVED_QUESTION_EVENT)
+		{
+			
+		}
 	}
 
 	private static String getUserHead(String userName)

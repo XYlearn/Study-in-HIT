@@ -79,7 +79,7 @@ public class test
 					try//&#21834;&#22909;
 					{
 						//System.out.println(StringEscapeUtils.escapeHtml("啊好"));
-						System.out.println(c.myPane.getText());
+						//System.out.println(c.myPane.getText());
 					} catch (Exception ex)
 					{
 						System.out.println(ex);

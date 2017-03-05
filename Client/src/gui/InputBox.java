@@ -1,5 +1,6 @@
 package gui;
 
+import NetEvent.eventcom.ContentMessageEvent;
 import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import javax.swing.JPanel;
@@ -28,11 +29,10 @@ import util.MyExpression;
 
 public class InputBox extends JPanel
 {
-	//private ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 	private static Queue<InputBox> listenerQueue=new LinkedList<InputBox>();
 	private static Map<Long,InputBox> map=new HashMap<Long,InputBox>();
 
-	public JTextPane myPane=new JTextPane();
+	private JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
 	private final HTMLEditorKit kit=new HTMLEditorKit();
 
@@ -46,7 +46,7 @@ public class InputBox extends JPanel
 	public InputBox()
 	{
 		myPane.setContentType("text/html");
-		myPane.setEditable(true);
+		//myPane.setEditable(false);
 		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
 		kit.install(myPane);
 		myPane.setEditorKit(kit);
@@ -195,11 +195,19 @@ public class InputBox extends JPanel
 	{
 		if(e.type==NetEvent.EventType.CONTENT_MESSAGE_EVENT)
 		{
-			
+			ContentMessageEvent ex=(ContentMessageEvent)e;
+			//if(ex.getUser()==getUser())
+				if(listenerQueue.peek()==map.get(ex.getQuestionID()))
+				{
+					System.out.println("InputBox收到成功发送消息反馈，消息已发送。");
+					map.get(ex.getQuestionID()).myPane.setText("");
+				}
+				else System.out.println("InputBox收到成功发送消息反馈，但事件队列顺序有误！");
 		}
 		else if(e.type==NetEvent.EventType.ENTER_QUESTION_EVENT)
 		{
-			
+			EnterQuestionEvent ex=(EnterQuestionEvent)e;
+			map.get(ex.getQuestionMessage().getId()).myPane.setEditable(true);
 		}
 	}
 	
