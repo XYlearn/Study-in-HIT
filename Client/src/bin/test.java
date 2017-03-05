@@ -34,7 +34,7 @@ public class test
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//ChattingBox c=new ChattingBox();
 		InputBox c=new InputBox();
-		c.setQuestionID("1");
+		c.bind(1);
 		f.getContentPane().add(c, BorderLayout.CENTER);
 		f.setVisible(true);
 		//c.setSize(500,550);

@@ -1,6 +1,7 @@
 package gui;
 
-import NetEvent.NetEvent;
+import NetEvent.eventcom.EnterQuestionEvent;
+import NetEvent.eventcom.NetEvent;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -16,7 +17,9 @@ import bin.test;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +30,7 @@ public class InputBox extends JPanel
 {
 	//private ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 	private static Queue<InputBox> listenerQueue=new LinkedList<InputBox>();
+	private static Map<Long,InputBox> map=new HashMap<Long,InputBox>();
 
 	public JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
@@ -37,7 +41,7 @@ public class InputBox extends JPanel
 	private final JMenuItem cut=new JMenuItem("剪切");
 	private final JMenuItem paste=new JMenuItem("粘贴");
 
-	private String questionID="";
+	private long questionID=-1;
 
 	public InputBox()
 	{
@@ -71,12 +75,13 @@ public class InputBox extends JPanel
 		myPane.setPreferredSize(new Dimension(width, height));
 	}
 
-	public void setQuestionID(String qID)
+	public void bind(long questionID)
 	{
-		questionID=qID;
+		this.questionID=questionID;
+		map.put(questionID,this);
 	}
 
-	public String getQuestionID()
+	public long getQuestionID()
 	{
 		return questionID;
 	}
@@ -188,7 +193,14 @@ public class InputBox extends JPanel
 	
 	public static void dispatch(NetEvent e)
 	{
-		
+		if(e.type==NetEvent.EventType.CONTENT_MESSAGE_EVENT)
+		{
+			
+		}
+		else if(e.type==NetEvent.EventType.ENTER_QUESTION_EVENT)
+		{
+			
+		}
 	}
 	
 	public static int getHTMLOffsetAtCaret(String html,int caret)

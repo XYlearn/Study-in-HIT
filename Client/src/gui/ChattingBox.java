@@ -1,5 +1,6 @@
 package gui;
 
+import NetEvent.messagecom.Record;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -22,8 +23,6 @@ import java.util.ArrayList;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
-import NetEvent.questionMessage;
-import NetEvent.Record;
 
 public class ChattingBox extends JPanel
 {
@@ -167,7 +166,10 @@ public class ChattingBox extends JPanel
 				msg.getUser(),
 				"<a href=\"audi:"+msg.getContent()+"\">"
 				+"<img border=\"0\" src=\""+PROPATH+"button_play.gif\"></a>",
-				msg.getTime());
+				msg.getTime(),
+				msg.getRecordID(),
+				msg.getPictures(),
+				msg.getMarkMap());
 		pushMessage(tmpRecord);
 	}
 
@@ -177,7 +179,10 @@ public class ChattingBox extends JPanel
 				msg.getUser(),
 				"<a href=\"file:"+msg.getContent()+"\">"
 				+"[文件]"+msg.getContent()+"</a>",
-				msg.getTime());
+				msg.getTime(),
+				msg.getRecordID(),
+				msg.getPictures(),
+				msg.getMarkMap());
 		pushMessage(tmpRecord);
 	}
 
@@ -190,9 +195,7 @@ public class ChattingBox extends JPanel
 	private class ChattingBoxMouseListener implements MouseListener
 	{
 
-		ChattingBoxMouseListener()
-		{
-		}
+		ChattingBoxMouseListener(){}
 
 		public void mousePressed(MouseEvent e)
 		{
