@@ -39,7 +39,7 @@ public class Test {
 
 			client.createQuestion("first question", "lala", new ArrayList<>(), pics, new ArrayList<>());
 			client.enterQuestion("1");
-			client.sendContent("%hello", pics, "1");
+			client.sendContent("%hello", pics, 1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
