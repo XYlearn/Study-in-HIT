@@ -165,11 +165,11 @@ public class Client extends Thread{
 
 
 	//not recommend
-	public void sendContent(String contents,ArrayList<String> pictures,String questionID) throws IOException {
+	public void sendContent(String contents,ArrayList<String> pictures,long questionID) throws IOException {
 		ClientSendMessage.Message send = null;
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
 				  .setContent(contents)
-				  .setQuestionID(Long.valueOf(questionID));
+				  .setQuestionID(questionID);
 
 		if(pictures!=null) {
 			ArrayList<String> md5s = new ArrayList<>();
@@ -201,12 +201,12 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
-	public void sendContent(String contents, ArrayList<String> pictures, String questionID,
+	public void sendContent(String contents, ArrayList<String> pictures, long questionID,
 									Map<Integer, Long> markMap) throws IOException {
 		ClientSendMessage.Message send = null;
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
 				  .setContent(contents)
-				  .setQuestionID(Long.valueOf(questionID));
+				  .setQuestionID(questionID);
 
 		if(markMap!=null) {
 			contentBuider.putAllMarkMap(markMap);
