@@ -38,7 +38,7 @@ public class Test {
 					  "tion/ProjectClientProto/pictures/D784FA8B6D98D27699781BD9A7CF19F0");
 
 			client.createQuestion("first question", "lala", new ArrayList<>(), pics, new ArrayList<>());
-			client.enterQuestion("1");
+			client.enterQuestion(1);
 			client.sendContent("%hello", pics, 1);
 
 		} catch (Exception e) {
