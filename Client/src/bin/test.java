@@ -76,10 +76,10 @@ public class test
 					System.exit(0);
 					break;
 				case "show":
-					try//&#21834;&#22909;
+					try
 					{
 						//System.out.println(StringEscapeUtils.escapeHtml("啊好"));
-						//System.out.println(c.myPane.getText());
+						System.out.println(c.myPane.getText());
 					} catch (Exception ex)
 					{
 						System.out.println(ex);
