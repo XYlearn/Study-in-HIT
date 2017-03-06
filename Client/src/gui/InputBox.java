@@ -37,7 +37,7 @@ public class InputBox extends JPanel implements Dispatcher
 	private static Queue<InputBox> listenerQueue=new LinkedList<InputBox>();
 	private static Map<Long,InputBox> map=new HashMap<Long,InputBox>();
 
-	private final JTextPane myPane=new JTextPane();
+	public final JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
 	private final HTMLEditorKit kit=new HTMLEditorKit();
 
@@ -131,13 +131,13 @@ public class InputBox extends JPanel implements Dispatcher
 	{
 		try
 		{
-			((HTMLDocument)myPane.getStyledDocument())
-					.insertAfterEnd(myPane.getStyledDocument()
-							.getCharacterElement(myPane.getCaretPosition()),
-							"<br>");
 			int tmppos=myPane.getCaretPosition();
-			myPane.setText(myPane.getText().replaceAll("<br>",
-					"</p><p style=\"margin-top: 0\"><img src=\"file:"+filepath+"\">"));
+			int tmp=getHTMLOffsetAtCaret(myPane.getText(),tmppos);
+			String text=myPane.getText();
+			myPane.setText(
+					text.substring(0,tmp)
+					+"<img src=\"file:"+filepath+"\">\n"
+					+text.substring(tmp));
 			myPane.setCaretPosition(tmppos+2);
 		} catch (Exception e)
 		{
@@ -289,6 +289,7 @@ public class InputBox extends JPanel implements Dispatcher
 		int i;
 		for(i=0;i<html.length();i++)
 		{
+			if(caret==0) break;
 			if(html.charAt(i)=='<')
 			{
 				if((html.charAt(i+1)=='/'&&html.charAt(i+2)=='p'&&html.charAt(i+3)=='>')||
@@ -305,7 +306,6 @@ public class InputBox extends JPanel implements Dispatcher
 				continue;
 			else
 				caret--;
-			if(caret==0) break;
 		}
 		return i;
 	}
