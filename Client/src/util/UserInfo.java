@@ -11,6 +11,17 @@ public class UserInfo implements Dispatcher
 	private static final Map<String,UserMessage> map=new HashMap<String,UserMessage>();
 	private static long startTime;
 	private static long delayTime=3000;
+	private static String myUser="";
+	
+	public static void setMyUserName(String username)
+	{
+		myUser=username;
+	}
+	
+	public static String getMyUserName()
+	{
+		return myUser;
+	}
 	
 	public static void requestUserInfo(String username)
 	{

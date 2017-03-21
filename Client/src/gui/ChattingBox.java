@@ -29,11 +29,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
+import util.UserInfo;
 
 public class ChattingBox extends JPanel implements Dispatcher
 {
@@ -143,7 +146,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		synchronized (records)
 		{
 			Element e=doc.getElement("-1");
-			boolean ismyself="a".equals(msg.getUser());//Personal.username;
+			boolean ismyself=UserInfo.getMyUserName().equals(msg.getUser());
 			String message=msg.getContent().replaceAll("\n", "<br>");
 			if (msg.getPictures()!=null)
 				for (int i=0; i<msg.getPictures().size(); i++)
@@ -278,6 +281,13 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private static String getUserHead(String userName)
 	{
+		try
+		{
+			UserInfo.getPicURL(userName);
+		} catch (IOException ex)
+		{
+			System.out.println("Failed getting userhead.");
+		}
 		return "<a href=\"user:"+userName+"\">"
 				+"<img border=\"0\" src=\""+PROPICTPATH+userName+".jpg\"></a>";
 	}
