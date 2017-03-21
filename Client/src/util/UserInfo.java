@@ -17,6 +17,7 @@ public class UserInfo implements Dispatcher
 		try
 		{
 			test.client.requestUserInfo(username);
+			test.client.downloadFile(username+".jpg");
 		} catch (IOException ex)
 		{
 			System.out.println(ex);
