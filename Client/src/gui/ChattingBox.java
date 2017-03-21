@@ -63,8 +63,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private long questionID=-1;
 
-	private static final String CLASSPATH=ChattingBox.class.getResource("").getPath();
-	private static final String PROPATH="file:"+CLASSPATH;
 	private static final String PROPICTPATH="file:"+test.PICTPATH;
 	private static final String PROFILEPATH="file:"+test.FILEPATH;
 
@@ -170,21 +168,21 @@ public class ChattingBox extends JPanel implements Dispatcher
 						+"<tr><td id=\""+msg.getRecordID()+"-leftHead\" rowspan=\"3\">"
 						+(ismyself?"":getUserHead(msg.getUser()))
 						+"</td>"
-						+"<td><img src=\""+PROPATH+"bubble_lu.jpg\"></td>"
-						+"<td style=\"background-image:url("+PROPATH+"bubble_up.jpg);"
+						+"<td><img src=\""+test.IMGPATH+"bubble_lu.jpg\"></td>"
+						+"<td style=\"background-image:url("+test.IMGPATH+"bubble_up.jpg);"
 						+"background-repeat:repeat-x;\">&nbsp;</td>"
-						+"<td><img src=\""+PROPATH+"bubble_ru.jpg\"></td>"
+						+"<td><img src=\""+test.IMGPATH+"bubble_ru.jpg\"></td>"
 						+"<td id=\""+msg.getRecordID()+"-rightHead\" rowspan=\"3\">"
 						+(ismyself?getUserHead(msg.getUser()):"")
 						+"</td></tr>"
-						+"<tr><td style=\"background-image:url("+PROPATH+"bubble_le.jpg)\">&nbsp;</td>"
+						+"<tr><td style=\"background-image:url("+test.IMGPATH+"bubble_le.jpg)\">&nbsp;</td>"
 						+"<td id=\""+msg.getRecordID()+"-message\" style=\"-webkit-user-select:text;"
 						+"-moz-user-select:text;-ms-user-select:text;"
 						+"user-select:text;font-size:12px;\">"+message+"</td>"
-						+"<td style=\"background-image:url("+PROPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"
-						+"<tr><td><img src=\""+PROPATH+"bubble_ld.jpg\"></td>"
-						+"<td style=\"background-image:url("+PROPATH+"bubble_do.jpg)\">&nbsp;</td>"
-						+"<td><img src=\""+PROPATH+"bubble_rd.jpg\"></td></tr></table><br>");
+						+"<td style=\"background-image:url("+test.IMGPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"
+						+"<tr><td><img src=\""+test.IMGPATH+"bubble_ld.jpg\"></td>"
+						+"<td style=\"background-image:url("+test.IMGPATH+"bubble_do.jpg)\">&nbsp;</td>"
+						+"<td><img src=\""+test.IMGPATH+"bubble_rd.jpg\"></td></tr></table><br>");
 			} catch (Exception ex)
 			{
 				System.out.println(ex);
@@ -204,7 +202,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 					"<a id=\""+msg.getRecordID()+"-audio\" "
 					+"href=\"audi:"+msg.getContent()+"\">"
 					+"<img border=\"0\" "
-					+"src=\""+PROPATH+"button_play.gif\"></a>",
+					+"src=\""+test.IMGPATH+"button_play.gif\"></a>",
 					msg.getTime(),
 					msg.getRecordID(),
 					msg.getPictures(),

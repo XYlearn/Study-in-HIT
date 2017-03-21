@@ -3,8 +3,8 @@ package bin;
 import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
-import gui.ChattingBox;
 import gui.InputBox;
+import gui.dao.login;
 import java.awt.BorderLayout;
 
 public class test
@@ -14,22 +14,16 @@ public class test
 			.substring(0, test.class.getResource("").getPath().length()-4);
 	public static final String PICTPATH=MAINPATH+"pictures/";
 	public static final String FILEPATH=MAINPATH+"files/";
+	public static final String IMGPATH=MAINPATH+"img_src/";
 	public static Client client=new Client();
-
-	public static final void main()
+	
+	public static final void startProgram()
 	{
-		/*client.start();
-		synchronized(client)
-		{
-			try
-			{
-				client.wait();
-			}catch(Exception e)
-			{
-				System.out.println("网络连接错误");
-				System.exit(0);
-			}
-		}*/
+		new login().setVisible(true);
+	}
+
+	public static final void testmain()
+	{
 		JFrame f=new JFrame("Hello, world!");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//ChattingBox c=new ChattingBox();
