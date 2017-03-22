@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
 import gui.InputBox;
-import gui.dao.login;
+import gui.form.UserInformation;
 import java.awt.BorderLayout;
 
 public class test
@@ -19,7 +19,8 @@ public class test
 	
 	public static final void startProgram()
 	{
-		new login().setVisible(true);
+		//new login().setVisible(true);
+		new UserInformation("ask").setVisible(true);
 	}
 
 	public static final void testmain()
