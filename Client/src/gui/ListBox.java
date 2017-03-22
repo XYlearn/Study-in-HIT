@@ -36,7 +36,9 @@ public class ListBox extends JPanel
 		mouseListener=(MouseEvent e)->
 		{
 			//打开对应房间 to be finished
-			mymodel.getElementAt(mylist.locationToIndex(e.getPoint()));//.questionID;
+			int index=mylist.locationToIndex(e.getPoint());
+			if(index<0) return;
+			mymodel.getElementAt(index);
 		};
 		
 		//添加高亮效果
@@ -116,12 +118,6 @@ public class ListBox extends JPanel
 			default:
 				System.out.println("排序依据无效");
 		}
-	}
-	
-	@Override
-	public void setSize(int width,int height)
-	{
-		myscroll.setPreferredSize(new Dimension(width,height));
 	}
 	
 	public void setClickListener(Consumer<MouseEvent> listener)

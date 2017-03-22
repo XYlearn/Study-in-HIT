@@ -116,12 +116,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 		}
 	}
 
-	@Override
-	public void setSize(int width, int height)
-	{
-		myPane.setPreferredSize(new Dimension(width, height));
-	}
-
 	public void clear()
 	{
 		myPane.setText("<html><p id='0'></p></html>");

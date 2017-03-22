@@ -75,12 +75,6 @@ public class InputBox extends JPanel implements Dispatcher
 		this.add(myScroll, BorderLayout.CENTER);
 	}
 
-	@Override
-	public void setSize(int width, int height)
-	{
-		myPane.setPreferredSize(new Dimension(width, height));
-	}
-
 	public void bind(long questionID)
 	{
 		this.questionID=questionID;

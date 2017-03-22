@@ -21,7 +21,7 @@ import gui.form.yinan;
 public class Index extends javax.swing.JFrame
 {
 
-	main ma=new main();
+	MainFrame ma=new MainFrame();
 
 	/**
 	 * Creates new form Index

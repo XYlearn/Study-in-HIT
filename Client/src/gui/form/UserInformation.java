@@ -1,19 +1,24 @@
 package gui.form;
 
 import bin.test;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import util.UserInfo;
 
 public class UserInformation extends javax.swing.JFrame
 {
 	private static Image backgroundImg;
 	private static Image userHeadImg;
 	private JLabel bgLabel;
+	private JTextPane content;
+	private static final String PROPICTPATH="file:"+test.PICTPATH;
 	/**
 	 * Creates new form UserInformation
 	 * @param username
@@ -22,10 +27,53 @@ public class UserInformation extends javax.swing.JFrame
 	{
 		initComponents();
 		setLocationRelativeTo(null);
-		//setResizable(false);
+		setResizable(false);
 		try
 		{
 			backgroundImg=ImageIO.read(new File(test.IMGPATH+"UserInfoBackground.jpg"));
+		} catch (IOException ex)
+		{
+			System.out.println("UserInfoBackground.jpg not found.");
+		}
+		content=new JTextPane()
+				{
+					@Override
+					public void paintComponent(Graphics g)
+					{
+						g.drawImage(backgroundImg, 0, 0, this);
+					}
+				};
+		content.setEditable(false);
+		try
+		{
+			content.setText(
+					"<p align='center'><img src='"+PROPICTPATH+username+".jpg'></p>"
+					+"<div align='center'><p>用户名："+username+"</p>"
+					+"<p>签名："+UserInfo.getSignature(username)+"</p>"
+					+"<p>邮箱："+UserInfo.getMailAddress(username)+"</p>"
+					+"<p>点数："+UserInfo.getBonus(username)+"点</p>"
+					+"<p>被赞次数："+UserInfo.getGood(username)+"次</p>"
+					+"<p>提问次数："+UserInfo.getQuestionNum(username)+"</p>"
+					+"<p>解决次数："+UserInfo.getSolvedQuestionNum(username)+"</p>"
+					+"</div>");
+		} catch (IOException ex)
+		{
+			System.out.println(ex);
+		}
+		
+		content.setBounds(0, 0, this.getWidth(), this.getHeight());
+		this.getContentPane().add(content);
+		/*try
+		{
+			backgroundImg=ImageIO.read(new File(test.IMGPATH+"UserInfoBackground.jpg"));
+			info.setOpaque(false);
+			info.setText("用户名："+username+"</p>"
+					+"签名："+UserInfo.getSignature(username)+"</p>"
+					+"邮箱："+UserInfo.getMailAddress(username)+"</p>"
+					+"点数："+UserInfo.getBonus(username)+"点</p>"
+					+"被赞次数："+UserInfo.getGood(username)+"次</p>"
+					+"提问次数："+UserInfo.getQuestionNum(username)+"</p>"
+					+"解决次数："+UserInfo.getSolvedQuestionNum(username));
 			//UserInfo.getPicURL(username);
 			userHeadImg=ImageIO.read(new File(test.PICTPATH+username+".jpg"));
 		} catch (IOException ex)
@@ -35,7 +83,7 @@ public class UserInformation extends javax.swing.JFrame
 		((JPanel)this.getContentPane()).setOpaque(false);
 		bgLabel=new JLabel(new ImageIcon(test.IMGPATH+"UserInfoBackground.jpg"));
 		bgLabel.setBounds(-9, -22, this.getWidth(), this.getHeight());
-		this.getRootPane().add(bgLabel);
+		this.getRootPane().add(bgLabel);*/
 	}
 
 	/**
@@ -48,33 +96,18 @@ public class UserInformation extends javax.swing.JFrame
     private void initComponents()
     {
 
-        userHeadLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("昵称：");
+        setSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(userHeadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 139, Short.MAX_VALUE))
+            .addGap(0, 380, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(userHeadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 280, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 420, Short.MAX_VALUE)
         );
 
         pack();
@@ -86,7 +119,5 @@ public class UserInformation extends javax.swing.JFrame
 	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel userHeadLabel;
     // End of variables declaration//GEN-END:variables
 }
