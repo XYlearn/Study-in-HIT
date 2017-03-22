@@ -47,7 +47,12 @@ public class ServerItem {
 		}
 	}
 	public boolean isLaunched(){
-		return ServerHandler.session_user_map.get(session).equals(this.username);
+		String name = ServerHandler.session_user_map.get(session);
+		if(null != name) {
+			return name.equals(this.username);
+		} else {
+			return false;
+		}
 	}
 
 	public String getUsername() {return this.username;}
@@ -386,7 +391,7 @@ public class ServerItem {
 
 		//获取id
 		long recordID = -1;
-		sql = "SELECT max(record_id) FROM question_id;";
+		sql = "SELECT max(record_id) FROM question_id"+questionID+";";
 		rs = stmt.executeQuery(sql);
 		if(rs.next()) {
 			recordID = rs.getLong(1);
@@ -426,15 +431,17 @@ public class ServerItem {
 		ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID+"");
 
 		//给每一个处于房间中的用户发送信息（自己除外）
-		for (IoSession is : ioSessions) {
-			if(!is.equals(session) && is.isConnected()) {
-				is.write(
-						  ServerResponseMessage.Message.newBuilder()
-						  .setUsername(username)
-						  .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
-						  .setSendContent(sendBuider)
-						  .build()
-				);
+		if(null != ioSessions) {
+			for (IoSession is : ioSessions) {
+				if (!is.equals(session) && is.isConnected()) {
+					is.write(
+							  ServerResponseMessage.Message.newBuilder()
+										 .setUsername(username)
+										 .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
+										 .setSendContent(sendBuider)
+										 .build()
+					);
+				}
 			}
 		}
 
