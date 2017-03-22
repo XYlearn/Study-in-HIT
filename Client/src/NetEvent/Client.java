@@ -191,7 +191,7 @@ public class Client extends Thread{
 				md5=PICTPATH+md5;
 			}
 
-			uploadFiles(md5s);
+			uploadFiles(md5s, true);
 		}
 
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
@@ -229,7 +229,7 @@ public class Client extends Thread{
 			}
 			contentBuider.addAllPictures(md5s);
 
-			uploadFiles(pictures);
+			uploadFiles(pictures, true);
 		}
 
 		//发送消息
@@ -365,11 +365,11 @@ public class Client extends Thread{
 							 .setStem(stem)
 							 .setAddition(addition);
 		if(stempics!=null) {
-			this.uploadFiles(stempics);
+			this.uploadFiles(stempics,true);
 			createBuilder.addAllStempic(stempics);
 		}
 		if(additionpics!=null) {
-			this.uploadFiles(additionpics);
+			this.uploadFiles(additionpics, true);
 			createBuilder.addAllAdditionpic(additionpics);
 		}
 		//添加关键字
@@ -422,6 +422,14 @@ public class Client extends Thread{
 	}
 
 	public boolean uploadFile(String filePath) throws IOException {
+		return uploadFile(filePath,true);
+	}
+
+	public boolean uploadFile(Iterable<String> filePaths) throws IOException {
+		return uploadFiles(filePaths,true);
+	}
+
+	public boolean uploadFile(String filePath, boolean nameMD5) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
@@ -452,7 +460,7 @@ public class Client extends Thread{
 		return true;
 	}
 
-	public boolean uploadFiles(Iterable<String> filePaths) throws IOException {
+	public boolean uploadFiles(Iterable<String> filePaths, boolean nameMD5) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
@@ -465,7 +473,12 @@ public class Client extends Thread{
 				System.out.println("文件不存在");
 				return false;
 			} else {
-				String filename = MD5Tools.FileToMD5(file);
+				String filename = "";
+				if(nameMD5) {
+					filename = MD5Tools.FileToMD5(file);
+				} else {
+					filename = file.getName();
+				}
 
 				filenames.add(filename);
 				localFilePaths.add(filePath);
