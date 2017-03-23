@@ -51,7 +51,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 	private String currentHyperlink;
 
 	private HTMLEditorKit kit=new HTMLEditorKit();
-	private HTMLDocument doc=new HTMLDocument();
+	private HTMLDocument doc;
 	public JTextPane myPane=new JTextPane();
 	private final JScrollPane myScroll=new JScrollPane(myPane);
 	private final ArrayList<Record> records=new ArrayList<>();
@@ -66,8 +66,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private long questionID=-1;
 
-	private static final String PROPICTPATH="file:"+test.PICTPATH;
-	private static final String PROFILEPATH="file:"+test.FILEPATH;
+	private static final String PROPICTPATH="pictures/";
+	private static final String PROFILEPATH="files/";
 
 	public ChattingBox()
 	{
@@ -78,7 +78,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		myPane.setFont(Font.getFont("宋体"));
 		//myPane.setEditorKit(kit);
 		myPane.setContentType("text/html;charset=unicode");
-		myPane.setText("<html><p id=\"-1\"></p></html>");
+		myPane.setText("<html><p id='-1'></p></html>");
 		doc=(HTMLDocument)myPane.getStyledDocument();
 
 		myPane.addMouseListener(new ChattingBoxMouseListener());
@@ -93,6 +93,12 @@ public class ChattingBox extends JPanel implements Dispatcher
 		myPane.add(userMenu);
 
 		this.add(myScroll, BorderLayout.CENTER);
+	}
+	
+	@Override
+	public void setSize(int width,int height)
+	{
+		myScroll.setPreferredSize(new Dimension(width,height));
 	}
 
 	public void bind(long questionID)
@@ -128,7 +134,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			doc.insertBeforeStart(
 					doc.getElement("-1"),
-					"<p align=\"center\">"+anno+"</p>");
+					"<p align='center'>"+anno+"</p>");
 		} catch (IOException|BadLocationException e)
 		{
 			System.out.println(e);
@@ -147,39 +153,39 @@ public class ChattingBox extends JPanel implements Dispatcher
 					//if(!(new File(test.PICTPATH+msg.pictures.get(i)).exists()))
 					//{}//调用网络接口下载图片，下载完成时刷新
 					message=message.replaceAll("[^%]%"+i+" ",
-							"<a href=\"pict:"+PROPICTPATH+msg.getPictureAt(i)+"\">"
-							+"<img id=\""+msg.getRecordID()+"-"+i
-							+"\" border=\"0\" width=160px height=100px "
-							+"src=\""+PROPICTPATH+msg.getPictureAt(i)+"\" "
-							+"alt=\"正在加载图片\"></a>");
+							"<a href='pict:"+PROPICTPATH+msg.getPictureAt(i)+"'>"
+							+"<img id='"+msg.getRecordID()+"-"+i
+							+"' border='0' width=160px height=100px "
+							+"src='"+PROPICTPATH+msg.getPictureAt(i)+"' "
+							+"alt='正在加载图片'></a>");
 			message=message.replaceAll("%%", "%");
 			try
 			{
-				doc.insertBeforeStart(e, "<p align=\"center\">"+msg.getTime()+"</p>"
-						+"<table id=\""+msg.getRecordID()+"\" border=\"0\" white-space=\"0\" "
-						+"align=\""+(ismyself?"right":"left")+"\" "
-						+"cellspacing=\"0\" cellpadding=\"0\" "
-						+"style=\"font-size:0;-webkit-user-select:none;"
+				doc.insertBeforeStart(e, "<p align='center'>"+msg.getTime()+"</p>"
+						+"<table id='"+msg.getRecordID()+"' border='0' white-space='0' "
+						+"align='"+(ismyself?"right":"left")+"' "
+						+"cellspacing='0' cellpadding='0' "
+						+"style='font-size:0;-webkit-user-select:none;"
 						+"-moz-user-select:none;"
-						+"-ms-user-select:none;user-select:none;\">"
-						+"<tr><td id=\""+msg.getRecordID()+"-leftHead\" rowspan=\"3\">"
+						+"-ms-user-select:none;user-select:none;'>"
+						+"<tr><td id='"+msg.getRecordID()+"-leftHead' rowspan='3'>"
 						+(ismyself?"":getUserHead(msg.getUser()))
 						+"</td>"
-						+"<td><img src=\""+test.IMGPATH+"bubble_lu.jpg\"></td>"
-						+"<td style=\"background-image:url("+test.IMGPATH+"bubble_up.jpg);"
-						+"background-repeat:repeat-x;\">&nbsp;</td>"
-						+"<td><img src=\""+test.IMGPATH+"bubble_ru.jpg\"></td>"
-						+"<td id=\""+msg.getRecordID()+"-rightHead\" rowspan=\"3\">"
+						+"<td><img src='"+test.IMGPATH+"bubble_lu.jpg'></td>"
+						+"<td style='background-image:url("+test.IMGPATH+"bubble_up.jpg);"
+						+"background-repeat:repeat-x;'>&nbsp;</td>"
+						+"<td><img src='"+test.IMGPATH+"bubble_ru.jpg'></td>"
+						+"<td id='"+msg.getRecordID()+"-rightHead' rowspan='3'>"
 						+(ismyself?getUserHead(msg.getUser()):"")
 						+"</td></tr>"
-						+"<tr><td style=\"background-image:url("+test.IMGPATH+"bubble_le.jpg)\">&nbsp;</td>"
-						+"<td id=\""+msg.getRecordID()+"-message\" style=\"-webkit-user-select:text;"
+						+"<tr><td style='background-image:url("+test.IMGPATH+"bubble_le.jpg)'>&nbsp;</td>"
+						+"<td id='"+msg.getRecordID()+"-message' style='-webkit-user-select:text;"
 						+"-moz-user-select:text;-ms-user-select:text;"
-						+"user-select:text;font-size:12px;\">"+message+"</td>"
-						+"<td style=\"background-image:url("+test.IMGPATH+"bubble_ri.jpg)\">&nbsp;</td></tr>"
-						+"<tr><td><img src=\""+test.IMGPATH+"bubble_ld.jpg\"></td>"
-						+"<td style=\"background-image:url("+test.IMGPATH+"bubble_do.jpg)\">&nbsp;</td>"
-						+"<td><img src=\""+test.IMGPATH+"bubble_rd.jpg\"></td></tr></table><br>");
+						+"user-select:text;font-size:12px;'>"+message+"</td>"
+						+"<td style='background-image:url("+test.IMGPATH+"bubble_ri.jpg)'>&nbsp;</td></tr>"
+						+"<tr><td><img src='"+test.IMGPATH+"bubble_ld.jpg'></td>"
+						+"<td style='background-image:url("+test.IMGPATH+"bubble_do.jpg)'>&nbsp;</td>"
+						+"<td><img src='"+test.IMGPATH+"bubble_rd.jpg'></td></tr></table><br>");
 			} catch (Exception ex)
 			{
 				System.out.println(ex);
@@ -196,10 +202,10 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			Record tmpRecord=new Record(
 					msg.getUser(),
-					"<a id=\""+msg.getRecordID()+"-audio\" "
-					+"href=\"audi:"+msg.getContent()+"\">"
-					+"<img border=\"0\" "
-					+"src=\""+test.IMGPATH+"button_play.gif\"></a>",
+					"<a id='"+msg.getRecordID()+"-audio' "
+					+"href='audi:"+msg.getContent()+"'>"
+					+"<img border='0' "
+					+"src='"+test.IMGPATH+"button_play.gif'></a>",
 					msg.getTime(),
 					msg.getRecordID(),
 					msg.getPictures(),
@@ -214,7 +220,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			Record tmpRecord=new Record(
 					msg.getUser(),
-					"<a id=\""+msg.getRecordID()+"-file\" href=\"file:"+msg.getContent()+"\">"
+					"<a id='"+msg.getRecordID()+"-file' href='file:"+msg.getContent()+"'>"
 					+"[文件]"+msg.getContent()+"</a>",
 					msg.getTime(),
 					msg.getRecordID(),
@@ -282,8 +288,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			System.out.println("Failed getting userhead.");
 		}
-		return "<a href=\"user:"+userName+"\">"
-				+"<img border=\"0\" src=\""+PROPICTPATH+userName+".jpg\"></a>";
+		return "<a href='user:"+userName+"'>"
+				+"<img border='0' src='"+PROPICTPATH+userName+".jpg'></a>";
 	}
 
 	private class ChattingBoxMouseListener implements MouseListener
@@ -389,7 +395,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						try
 						{
 							doc.setInnerHTML(e.getSourceElement(),
-									"<img src=\""+PROPICTPATH+"button_play.gif");
+									"<img src='"+PROPICTPATH+"button_play.gif'>");
 						} catch (Exception ex)
 						{
 							System.out.println(ex);
@@ -398,7 +404,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						try
 						{
 							doc.setInnerHTML(e.getSourceElement(),
-									"<img src=\""+PROPICTPATH+"button_stop.gif");
+									"<img src='"+PROPICTPATH+"button_stop.gif'>");
 							AudioTools.playAudio(
 									AudioTools.CLASSPATH+currentHyperlink.substring(5),
 									(String currentPlayingAudio)->
@@ -406,7 +412,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 								try
 								{
 									doc.setInnerHTML(e.getSourceElement(),
-											"<img src=\""+PROPICTPATH+"button_play.gif");
+											"<img src='"+PROPICTPATH+"button_play.gif'>");
 								} catch (Exception ex)
 								{
 									System.out.println(ex);

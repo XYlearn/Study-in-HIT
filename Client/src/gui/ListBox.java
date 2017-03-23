@@ -77,6 +77,12 @@ public class ListBox extends JPanel
 		add(myscroll,BorderLayout.CENTER);
 	}
 	
+	@Override
+	public void setSize(int width,int height)
+	{
+		myscroll.setPreferredSize(new Dimension(width,height));
+	}
+	
 	/**
 	 *
 	 * @param data  The element data to be added

@@ -1,11 +1,9 @@
 package gui;
 
-import NetEvent.Client;
 import NetEvent.Client.CONTENT_MARK;
 import NetEvent.eventcom.ContentMessageEvent;
 import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
-import NetEvent.messagecom.Record;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
@@ -21,13 +19,18 @@ import bin.test;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.Calendar;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
 import util.MyExpression;
@@ -38,6 +41,7 @@ public class InputBox extends JPanel implements Dispatcher
 	private static Map<Long,InputBox> map=new HashMap<Long,InputBox>();
 
 	public final JTextPane myPane=new JTextPane();
+	private final HTMLDocument doc;
 	private final JScrollPane myScroll=new JScrollPane(myPane);
 	private final HTMLEditorKit kit=new HTMLEditorKit();
 
@@ -54,8 +58,17 @@ public class InputBox extends JPanel implements Dispatcher
 		myPane.setContentType("text/html");
 		//myPane.setEditable(false);
 		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
+		kit.setLinkCursor(new Cursor(Cursor.HAND_CURSOR));
 		kit.install(myPane);
 		myPane.setEditorKit(kit);
+		doc=(HTMLDocument)myPane.getStyledDocument();
+		try
+		{
+			doc.setBase(new URL("file:"+test.MAINPATH));
+		} catch (MalformedURLException ex)
+		{
+			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		
 		myPane.addKeyListener(new KeyAdapter()
 				{
@@ -73,6 +86,12 @@ public class InputBox extends JPanel implements Dispatcher
 				});
 		
 		this.add(myScroll, BorderLayout.CENTER);
+	}
+	
+	@Override
+	public void setSize(int width,int height)
+	{
+		myScroll.setPreferredSize(new Dimension(width,height));
 	}
 
 	public void bind(long questionID)
@@ -125,37 +144,27 @@ public class InputBox extends JPanel implements Dispatcher
 	{
 		try
 		{
-			int tmppos=myPane.getCaretPosition();
-			int tmp=getHTMLOffsetAtCaret(myPane.getText(),tmppos);
-			String text=myPane.getText();
-			myPane.setText(
-					text.substring(0,tmp)
-					+"<img src=\"file:"+filepath+"\">\n"
-					+text.substring(tmp));
-			myPane.setCaretPosition(tmppos+2);
-		} catch (Exception e)
+			kit.insertHTML(doc, myPane.getCaretPosition(),
+					"<a href='pict:"+filepath+"'><img border='0' src='file:"+filepath+"'></a>",
+					0, 0, HTML.Tag.A);
+		} catch (BadLocationException|IOException ex)
 		{
-			System.out.println("bad position");
+			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
 	public String getExpressionAtCaret()
 	{
 		int i,begin=0,end=0;
-		String str=myPane.getText();
-		//protect the newlines ('\n')
-		str=         str.replaceAll("\\n *", "")
-				.replaceAll("</p>", "\n")
-				//keep the image or Chinese character as a character
-				.replaceAll("&#[0-9]*?;", "`")
-				.replaceAll("<img.*?>", "`")
-				//clear the HTML format
-				.replaceAll("<.*?>", "")
-				.replaceAll("&lt;", "<")
-				.replaceAll("&gt;", ">")
-				.replaceAll("\r", "");
-		//System.out.println(str);
-		//System.out.println(str.charAt(myPane.getCaretPosition()));
+		String str;
+		try
+		{
+			str=doc.getText(0,doc.getLength());
+		} catch (BadLocationException ex)
+		{
+			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
+			return "";
+		}
 		for(i=myPane.getCaretPosition();i<str.length();i++)
 			if(str.charAt(i)<=32||str.charAt(i)>=127||str.charAt(i)=='`')
 			{
@@ -171,10 +180,15 @@ public class InputBox extends JPanel implements Dispatcher
 		if(begin>=end) return "";
 		else
 		{
-			String tmpstr=myPane.getText();
-			myPane.setText(tmpstr.substring(0,getHTMLOffsetAtCaret(tmpstr,begin))+
-						tmpstr.substring(getHTMLOffsetAtCaret(tmpstr,end)));
+			try
+			{
+				doc.replace(begin, end-begin, "", null);
+			} catch (BadLocationException ex)
+			{
+				Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
+			}
 			myPane.setCaretPosition(begin);
+			//System.out.println(str.substring(begin,end));
 			return str.substring(begin,end);
 		}
 	}
