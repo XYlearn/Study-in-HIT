@@ -7,6 +7,9 @@ import gui.InputBox;
 import gui.dao.MainFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test
 {
@@ -21,6 +24,14 @@ public class test
 	public static final void startProgram()
 	{
 		//new login().setVisible(true);
+		client.start();
+		try
+		{
+			client.launchRequest("test", "123456");
+		} catch (IOException ex)
+		{
+			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		new MainFrame().setVisible(true);
 	}
 
