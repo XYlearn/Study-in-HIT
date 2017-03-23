@@ -1,15 +1,19 @@
 package gui.form;
 
 import bin.test;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import util.UserInfo;
 
 public class UserInformation extends javax.swing.JFrame
@@ -18,7 +22,8 @@ public class UserInformation extends javax.swing.JFrame
 	private static Image userHeadImg;
 	private JLabel bgLabel;
 	private JTextPane content;
-	private static final String PROPICTPATH="file:"+test.PICTPATH;
+	private HTMLDocument doc;
+	private HTMLEditorKit kit;
 	/**
 	 * Creates new form UserInformation
 	 * @param username
@@ -35,30 +40,42 @@ public class UserInformation extends javax.swing.JFrame
 		{
 			System.out.println("UserInfoBackground.jpg not found.");
 		}
-		content=new JTextPane()
-				{
-					@Override
-					public void paintComponent(Graphics g)
-					{
-						g.drawImage(backgroundImg, 0, 0, this);
-					}
-				};
+		kit=new HTMLEditorKit();
+		content=new JTextPane();
+		content.setContentType("text/html");
+		kit.install(content);
+		content.setEditorKit(kit);
+		doc=(HTMLDocument)content.getStyledDocument();
+		try
+		{
+			doc.setBase(new URL("file:"+test.IMGPATH));
+		} catch (MalformedURLException ex)
+		{
+			Logger.getLogger(UserInformation.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		content.setEditable(false);
 		try
 		{
-			content.setText(
-					"<p align='center'><img src='"+PROPICTPATH+username+".jpg'></p>"
-					+"<div align='center'><p>用户名："+username+"</p>"
-					+"<p>签名："+UserInfo.getSignature(username)+"</p>"
-					+"<p>邮箱："+UserInfo.getMailAddress(username)+"</p>"
-					+"<p>点数："+UserInfo.getBonus(username)+"点</p>"
-					+"<p>被赞次数："+UserInfo.getGood(username)+"次</p>"
-					+"<p>提问次数："+UserInfo.getQuestionNum(username)+"</p>"
-					+"<p>解决次数："+UserInfo.getSolvedQuestionNum(username)+"</p>"
-					+"</div>");
+			doc.insertAfterStart(doc.getRootElements()[0].getElement(0),
+					"<body align='center' style='background-image:url(UserInfoBackground.jpg)'>"
+					+"<p><img src='"+username+".jpg' width='50',height='50'></p>"
+					+"<div style='font-size:16px;margin:0 0 0 100px;width:100%'>"
+					+"<p align='left'>用户名："+username+"</p>"
+					+"<p align='left'>签名："+UserInfo.getSignature(username)+"</p>"
+					+"<p align='left'>邮箱："+UserInfo.getMailAddress(username)+"</p>"
+					+"<p align='left'>点数："+UserInfo.getBonus(username)+"点</p>"
+					+"<p align='left'>被赞次数："+UserInfo.getGood(username)+"次</p>"
+					+"<p align='left'>提问次数："+UserInfo.getQuestionNum(username)+"次</p>"
+					+"<p align='left'>解决次数："+UserInfo.getSolvedQuestionNum(username)+"次</p>"
+					+"</div></body>");
+			System.out.println(doc.getText(0, doc.getLength()));
+			System.out.println(content.getText());
 		} catch (IOException ex)
 		{
 			System.out.println(ex);
+		} catch (BadLocationException ex)
+		{
+			Logger.getLogger(UserInformation.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		content.setBounds(0, 0, this.getWidth(), this.getHeight());

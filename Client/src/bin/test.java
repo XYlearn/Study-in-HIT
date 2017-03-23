@@ -4,8 +4,11 @@ import javax.swing.JFrame;
 import java.util.Scanner;
 import NetEvent.Client;
 import gui.InputBox;
-import gui.dao.MainFrame;
+import gui.form.UserInformation;
 import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test
 {
@@ -31,9 +34,9 @@ public class test
 		} catch (InterruptedException ex)
 		{
 			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		new UserInformation("test").setVisible(true);*/
-		new MainFrame().setVisible(true);
+		}*/
+		new UserInformation("test").setVisible(true);
+		//new MainFrame().setVisible(true);
 	}
 
 	public static final void testmain()
