@@ -84,14 +84,8 @@ public class InputBox extends JPanel implements Dispatcher
 						}
 					}
 				});
-		
-		this.add(myScroll, BorderLayout.CENTER);
-	}
-	
-	@Override
-	public void setSize(int width,int height)
-	{
-		myScroll.setPreferredSize(new Dimension(width,height));
+		setLayout(new BorderLayout());
+		add(myScroll, BorderLayout.CENTER);
 	}
 
 	public void bind(long questionID)

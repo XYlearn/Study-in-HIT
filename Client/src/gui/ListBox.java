@@ -74,12 +74,14 @@ public class ListBox extends JPanel
 		mylist.addMouseMotionListener(ma);
 		
 		myscroll=new JScrollPane(mylist);
+		setLayout(new BorderLayout());
 		add(myscroll,BorderLayout.CENTER);
 	}
 	
 	@Override
 	public void setSize(int width,int height)
 	{
+		super.setSize(width, height);
 		myscroll.setPreferredSize(new Dimension(width,height));
 	}
 	

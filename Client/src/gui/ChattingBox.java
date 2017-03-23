@@ -92,7 +92,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 		myPane.add(textMenu);
 		myPane.add(userMenu);
 
-		this.add(myScroll, BorderLayout.CENTER);
+		setLayout(new BorderLayout());
+		add(myScroll, BorderLayout.CENTER);
 	}
 	
 	@Override

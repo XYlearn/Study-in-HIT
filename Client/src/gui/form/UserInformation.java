@@ -80,27 +80,6 @@ public class UserInformation extends javax.swing.JFrame
 		
 		content.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.getContentPane().add(content);
-		/*try
-		{
-			backgroundImg=ImageIO.read(new File(test.IMGPATH+"UserInfoBackground.jpg"));
-			info.setOpaque(false);
-			info.setText("用户名："+username+"</p>"
-					+"签名："+UserInfo.getSignature(username)+"</p>"
-					+"邮箱："+UserInfo.getMailAddress(username)+"</p>"
-					+"点数："+UserInfo.getBonus(username)+"点</p>"
-					+"被赞次数："+UserInfo.getGood(username)+"次</p>"
-					+"提问次数："+UserInfo.getQuestionNum(username)+"</p>"
-					+"解决次数："+UserInfo.getSolvedQuestionNum(username));
-			//UserInfo.getPicURL(username);
-			userHeadImg=ImageIO.read(new File(test.PICTPATH+username+".jpg"));
-		} catch (IOException ex)
-		{
-			System.out.println("pictures not found.");
-		}
-		((JPanel)this.getContentPane()).setOpaque(false);
-		bgLabel=new JLabel(new ImageIcon(test.IMGPATH+"UserInfoBackground.jpg"));
-		bgLabel.setBounds(-9, -22, this.getWidth(), this.getHeight());
-		this.getRootPane().add(bgLabel);*/
 	}
 
 	/**
@@ -112,9 +91,12 @@ public class UserInformation extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${defaultCloseOperation}"), this, org.jdesktop.beansbinding.BeanProperty.create("defaultCloseOperation"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,6 +109,8 @@ public class UserInformation extends javax.swing.JFrame
             .addGap(0, 420, Short.MAX_VALUE)
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,5 +120,6 @@ public class UserInformation extends javax.swing.JFrame
 	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

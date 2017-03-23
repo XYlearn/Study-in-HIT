@@ -21,19 +21,6 @@ public class test
 	public static final void startProgram()
 	{
 		//new login().setVisible(true);
-		/*client.start();
-		try
-		{
-			Thread.sleep(1000);
-			client.launchRequest("test", "123456");
-		} catch (IOException ex)
-		{
-			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InterruptedException ex)
-		{
-			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		new UserInformation("test").setVisible(true);*/
 		new MainFrame().setVisible(true);
 	}
 
