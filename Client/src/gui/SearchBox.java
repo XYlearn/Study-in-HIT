@@ -14,6 +14,7 @@ public class SearchBox extends JPanel
 	private JTextArea mytext=new JTextArea();
 	public SearchBox()
 	{
+		setLayout(new BorderLayout());
 		add(mytext,BorderLayout.CENTER);
 	}
 	

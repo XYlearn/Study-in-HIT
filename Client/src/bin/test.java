@@ -6,10 +6,10 @@ import NetEvent.Client;
 import gui.InputBox;
 import gui.dao.MainFrame;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
+import gui.DrawImageFrame;
+import gui.WhiteBoard;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class test
 {
@@ -20,18 +20,39 @@ public class test
 	public static final String FILEPATH=MAINPATH+"files/";
 	public static final String IMGPATH=MAINPATH+"img_src/";
 	public static Client client=new Client();
-	
+        public static final void Board(){
+           Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+           WhiteBoard frame = new WhiteBoard();
+           frame.setTitle("White Board");
+           frame.setSize(screenSize.width/2,screenSize.height/2);
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           frame.setVisible(true);
+           frame.setLocation(screenSize.width/4,screenSize.height/4);
+        }
+	public static final void Image() throws IOException{
+        DrawImageFrame frame = new DrawImageFrame();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setTitle("图片绘画");
+        frame.setSize((int)screenSize.getWidth()/2,(int)screenSize.getHeight()*3/4);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
 	public static final void startProgram()
 	{
 		//new login().setVisible(true);
-		client.start();
+		/*client.start();
 		try
 		{
+			Thread.sleep(1000);
 			client.launchRequest("test", "123456");
 		} catch (IOException ex)
 		{
 			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InterruptedException ex)
+		{
+			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		new UserInformation("test").setVisible(true);*/
 		new MainFrame().setVisible(true);
 	}
 
