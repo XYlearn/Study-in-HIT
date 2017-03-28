@@ -126,12 +126,7 @@ public class WhiteBoard extends JFrame
     public void mouseMoved(MouseEvent e){
         
     }
-    public void setPenSize(float newPenSize){
+    void setPenSize(float newPenSize){
         penSize = newPenSize;
     }
-    
-    public static void main(String[] args) {
-       ScribblePanel s = new ScribblePanel(); 
-    }
 }
- 
