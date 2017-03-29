@@ -16,6 +16,24 @@ public class ServerItem {
 	private Statement stmt;
 	Cos cos;
 
+	//帐号登录反馈消息字符串
+	private enum LAUNCH_INFORMATION {
+		USER_NOT_EXIST("帐号不存在"),
+		PASSWORD_NOT_MATCH("密码错误"),
+		LAUNCH_SUCCESS("成功登录"),
+		UNKOWN_ERROR("未知错误，登录失败");
+
+		private final String value;
+
+		LAUNCH_INFORMATION(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
+
 	//聊天记录属性
 	private enum CONTENT_MARK {
 		DEFAULT(0),
@@ -46,6 +64,8 @@ public class ServerItem {
 			e.printStackTrace();
 		}
 	}
+
+	//judge by session_user_map
 	public boolean isLaunched(){
 		String name = ServerHandler.session_user_map.get(session);
 		if(null != name) {
@@ -55,7 +75,13 @@ public class ServerItem {
 		}
 	}
 
+	static ServerResponseMessage.Message BadMessage() {
+		return ServerResponseMessage.Message.newBuilder().setUsername("")
+				  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).build();
+	}
+
 	public String getUsername() {return this.username;}
+
 
 	public ServerResponseMessage.Message
 	handleMessage(ClientSendMessage.Message message) {
@@ -72,115 +98,180 @@ public class ServerItem {
 		try {
 			switch (msgType) {
 				case LAUNCH_REQUEST:	//登录消息
-					if(message.hasLauchRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.LAUNCH_RESPONSE)
-								  .setLauchResponse(handleLaunch(message.getLauchRequest()))
-								  .setUsername(username)
-								  .build();
-					} else
+					try {
+						if (message.hasLauchRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.LAUNCH_RESPONSE)
+									  .setLauchResponse(handleLaunch(message.getLauchRequest()))
+									  .setUsername(username)
+									  .build();
+						} else
+							return null;
+					} catch (Exception e) {
+						e.printStackTrace();
 						return null;
+					}
 				case LOGOUT_MESSAGE:	//登出消息
 					handleLogout();
 					return null;
 				case REGISTER_REQUEST: //注册
-					if(message.hasRegisterRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.REGISTER_RESPONSE)
-								  .setRegisterResponse(handleRegisterRequest(message.getRegisterRequest()))
-								  .build();
+					try {
+						if (message.hasRegisterRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.REGISTER_RESPONSE)
+									  .setRegisterResponse(handleRegisterRequest(message.getRegisterRequest()))
+									  .build();
+						} else {
+							return null;
+						}
+					} catch (Exception e){
+						e.printStackTrace();
+						return null;
 					}
 				case SEND_CONTENT:	//发送对话消息
-					if(message.hasSendContent()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
-								  .setUsername(username)
-								  .setSendContent(handleSendContent(message.getSendContent()))
-								  .build();
-					} else
+					try {
+						if (message.hasSendContent()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
+									  .setUsername(username)
+									  .setSendContent(handleSendContent(message.getSendContent()))
+									  .build();
+						} else
+							return null;
+					} catch (Exception e){
+						e.printStackTrace();
 						return null;
+					}
 				case ANNOUNCEMENT_MESSAGE:	//发布公告
 				case GOOD_USER_REQUEST:	//赞用户
-					if(message.hasGoodUserRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.GOOD_USER_RESPONSE)
-								  .setUsername(username)
-								  .setGoodUserResponse(handleGoodUserMessage(message.getGoodUserRequest()))
-								  .build();
+					try {
+						if (message.hasGoodUserRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.GOOD_USER_RESPONSE)
+									  .setUsername(username)
+									  .setGoodUserResponse(handleGoodUserMessage(message.getGoodUserRequest()))
+									  .build();
+						} else {
+							return null;
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
 					}
 				case GOOD_QUESTION_REQUEST:	//赞问题
-					if(message.hasGoodQuestionRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.GOOD_QUESTION_RESPONSE)
-								  .setUsername(username)
-								  .setGoodQuestionResponse(handleGoodQuestionMessage(message.getGoodQuestionRequest()))
-								  .build();
+					try {
+						if (message.hasGoodQuestionRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.GOOD_QUESTION_RESPONSE)
+									  .setUsername(username)
+									  .setGoodQuestionResponse(handleGoodQuestionMessage(message.getGoodQuestionRequest()))
+									  .build();
+						} else
+							return null;
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
 					}
 				case QUESTION_INFORMATION_REQUEST:	//请求问题信息
-					if(message.hasQuestionInformationRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.QUESTION_INFORMATION_RESPONSE)
-								  .setUsername(username)
-								  .setQuestionInformationResponse(handleQuestionInformationRequest(message.getQuestionInformationRequest()))
-								  .build();
+					try {
+						if (message.hasQuestionInformationRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.QUESTION_INFORMATION_RESPONSE)
+									  .setUsername(username)
+									  .setQuestionInformationResponse(handleQuestionInformationRequest(message.getQuestionInformationRequest()))
+									  .build();
+						} else return null;
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
 					}
 				case USER_INFORMATION_REQUEST:	//请求用户信息
-					if(message.hasUserInformationRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.USER_INFORMATION_RESPONSE)
-								  .setUsername(username)
-								  .setUserInformationResponse(handleUserInformationRequest(message.getUserInformationRequest()))
-								  .build();
-					} else
+					try {
+						if (message.hasUserInformationRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.USER_INFORMATION_RESPONSE)
+									  .setUsername(username)
+									  .setUserInformationResponse(handleUserInformationRequest(message.getUserInformationRequest()))
+									  .build();
+						} else
+							return null;
+					} catch (Exception e) {
+						e.printStackTrace();
 						return null;
+					}
 				case GET_QUESTION_LIST_REQUEST:	//获取问题列表
-					if(message.hasGetQuestionListRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.GET_QUESTION_LIST_RESPONSE)
-								  .setUsername(username)
-								  .setGetQuestionListResponse(
-								  		  handleGetQuestionListRequest(message.getGetQuestionListRequest())
-								  ).build();
-					} else {
+					try {
+						if (message.hasGetQuestionListRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.GET_QUESTION_LIST_RESPONSE)
+									  .setUsername(username)
+									  .setGetQuestionListResponse(
+												 handleGetQuestionListRequest(message.getGetQuestionListRequest())
+									  ).build();
+						} else {
+							return null;
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
 						return null;
 					}
 				case CREATE_QUESTION_REQUEST:	//新建问题
-					if(message.hasCreateQuestionRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.CREATE_QUESTION_RESPONSE)
-								  .setUsername(username)
-								  .setCreateQuestionResponse(handleCreateQuestion(message.getCreateQuestionRequest()))
-								  .build();
-					} else
-						return null;
-				case QUESTION_ENTER_REQUEST:	//进入房间
-					if(message.hasQuestionEnterRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.QUESTION_ENTER_RESPONSE)
-								  .setUsername(username)
-								  .setQuestionEnterResponse(handleQuestionEnterRequest(message.getQuestionEnterRequest()))
-								  .build();
-					} else
-						return null;
-				case ABANDON_QUESTION_REQUEST:	//删除问题
-					if(message.hasAbandonQuestionRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.ABANDON_QUESTION_RESPONSE)
-								  .setUsername(username)
-								  .setAbandonQuestionResponse(handleAbandonQuestion(message.getAbandonQuestionRequest()))
-								  .build();
-					} else
-						return null;
-				case SEARCH_INFORMATION_REQUEST:	//搜索信息
-					if(message.hasSearchInformationRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.SEARCH_INFORMATION_RESPONSE)
-								  .setUsername(username)
-								  .setSearchInformationResponse(
-								  		  handleSearchInformationRequest(message.getSearchInformationRequest())
-								  ).build();
+					try {
+						if (message.hasCreateQuestionRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.CREATE_QUESTION_RESPONSE)
+									  .setUsername(username)
+									  .setCreateQuestionResponse(handleCreateQuestion(message.getCreateQuestionRequest()))
+									  .build();
+						} else
+							return null;
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					break;
+				case QUESTION_ENTER_REQUEST:	//进入房间
+					try {
+						if (message.hasQuestionEnterRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.QUESTION_ENTER_RESPONSE)
+									  .setUsername(username)
+									  .setQuestionEnterResponse(handleQuestionEnterRequest(message.getQuestionEnterRequest()))
+									  .build();
+						} else
+							return null;
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
+					}
+				case ABANDON_QUESTION_REQUEST:	//删除问题
+					try {
+						if (message.hasAbandonQuestionRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.ABANDON_QUESTION_RESPONSE)
+									  .setUsername(username)
+									  .setAbandonQuestionResponse(handleAbandonQuestion(message.getAbandonQuestionRequest()))
+									  .build();
+						} else
+							return null;
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
+					}
+				case SEARCH_INFORMATION_REQUEST:	//搜索信息
+					try {
+						if (message.hasSearchInformationRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.SEARCH_INFORMATION_RESPONSE)
+									  .setUsername(username)
+									  .setSearchInformationResponse(
+												 handleSearchInformationRequest(message.getSearchInformationRequest())
+									  ).build();
+						} else {
+							return null;
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
+					}
 				case FILE_REQUEST:	//获取签名请求
 					if(message.hasFileRequest()) {
 						try {
@@ -191,32 +282,33 @@ public class ServerItem {
 								  .build();
 						} catch (Exception e) {
 							e.printStackTrace();
-							return ServerResponseMessage.Message.newBuilder().build();
+							return null;
 						}
 					}
 					break;
 				case SOLVED_QUESTION_REQUEST:
-					if(message.hasSolvedQuestionRequest()) {
-						return ServerResponseMessage.Message.newBuilder()
-								  .setMsgType(ServerResponseMessage.MSG.SOLVED_QUESTION_RESPONSE)
-								  .setUsername(username)
-								  .setSolvedQuestionResponse(
-								  		  handleSolvedQuestionRequest(message.getSolvedQuestionRequest())
-								  ).build();
+					try {
+						if (message.hasSolvedQuestionRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.SOLVED_QUESTION_RESPONSE)
+									  .setUsername(username)
+									  .setSolvedQuestionResponse(
+												 handleSolvedQuestionRequest(message.getSolvedQuestionRequest())
+									  ).build();
+						} else return null;
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
 					}
-					break;
 				default:
-					return ServerResponseMessage.Message.newBuilder()
-							  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).setUsername("").build();
+					throw new Exception("MSG type cant be recognized\n"+message.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ServerResponseMessage.Message.newBuilder()
-					  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).build();
+			return null;
 		}
 
-		return ServerResponseMessage.Message.newBuilder()
-				  .setMsgType(ServerResponseMessage.MSG.BAD_MESSAGE).build();
+		return null;
 	}
 
 	//处理信息
@@ -240,7 +332,7 @@ public class ServerItem {
 		if (realkey == null) {
 			responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
 					  .setStatus(false)
-					  .setInformation("帐号不存在").build();
+					  .setInformation(LAUNCH_INFORMATION.USER_NOT_EXIST.getValue()).build();
 		} else {
 			//比较密码
 			if (key.equals(realkey)) {
@@ -270,7 +362,7 @@ public class ServerItem {
 				).getUserMessage();
 				responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
 						  .setStatus(true)
-						  .setInformation("成功登录")
+						  .setInformation(LAUNCH_INFORMATION.LAUNCH_SUCCESS.getValue())
 						  .setUserMessage(userMessage)
 						  .build();
 				ServerHandler.session_user_map.put(session, username);
@@ -278,14 +370,14 @@ public class ServerItem {
 			} else {
 				responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
 						  .setStatus(false)
-						  .setInformation("帐号或密码错误").build();
+						  .setInformation(LAUNCH_INFORMATION.PASSWORD_NOT_MATCH.getValue()).build();
 				return responseLaunch;
 			}
 		}
 
 		return ServerResponseMessage.LaunchResponse.newBuilder()
 				  .setStatus(false)
-				  .setInformation("登录失败")
+				  .setInformation(LAUNCH_INFORMATION.UNKOWN_ERROR.getValue())
 				  .build();
 	}
 
@@ -811,7 +903,7 @@ public class ServerItem {
 		String mail_address;
 
 		sql = ("SELECT praise_num, question_num, solved_question_num, bonus, signature, mail_address" +
-				  " FROM user WHERE username = '?'").replace("?", username);
+				  " FROM user WHERE username = '?';").replace("?", username);
 		ResultSet rs = stmt.executeQuery(sql);
 		if(rs.next()) {
 			good = rs.getInt("praise_num");

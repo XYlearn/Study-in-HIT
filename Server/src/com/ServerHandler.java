@@ -45,8 +45,12 @@ public class ServerHandler extends IoHandlerAdapter {
 		}
 		ServerResponseMessage.Message response =
 				  serverItem.handleMessage(recvMessage);
+		if(null == response) {
+			response = ServerItem.BadMessage();
+		}
 
-		log.info("Received From "+recvMessage.getUsername()+ " Message Type: "+recvMessage.getMsgType());
+		log.info("Received From "+recvMessage.getUsername()+ " Message Type: "+recvMessage.getMsgType()
+		+ "\n\t" + recvMessage.toString() );
 		if(session.isConnected()) {
 			session.write(response);
 		}
@@ -56,7 +60,8 @@ public class ServerHandler extends IoHandlerAdapter {
 	public void messageSent(IoSession session, Object message) {
 		ServerResponseMessage.Message sendMessage = (ServerResponseMessage.Message)message;
 
-		log.info("Send To "+sendMessage.getUsername() +" Message Type: "+sendMessage.getMsgType());
+		log.info("Send To "+sendMessage.getUsername() +" Message Type: "+sendMessage.getMsgType()
+		+ "\n\t" + sendMessage.toString() );
 	}
 
 	@Override
