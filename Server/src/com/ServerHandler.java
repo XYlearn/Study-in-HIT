@@ -50,7 +50,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		}
 
 		log.info("Received From "+recvMessage.getUsername()+ " Message Type: "+recvMessage.getMsgType()
-		+ "\n\t" + recvMessage.toString() );
+		+ "\n" + recvMessage.toString() + "\n-----------------------------\n" );
 		if(session.isConnected()) {
 			session.write(response);
 		}
@@ -61,7 +61,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		ServerResponseMessage.Message sendMessage = (ServerResponseMessage.Message)message;
 
 		log.info("Send To "+sendMessage.getUsername() +" Message Type: "+sendMessage.getMsgType()
-		+ "\n\t" + sendMessage.toString() );
+		+ "\n" + sendMessage.toString()+ "\n-----------------------------\n" );
 	}
 
 	@Override

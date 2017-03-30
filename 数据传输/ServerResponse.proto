@@ -31,6 +31,8 @@ enum MSG {
    SOLVED_QUESTION_RESPONSE = 18;
    //未知消息
    BAD_MESSAGE = 19;
+   //获取用户列表反馈
+   GET_USER_LIST_RESPONSE = 20;
 }
 
 //-----------枚举定义---------------//
@@ -118,10 +120,11 @@ message SendContent {
     string content = 2;
     string time = 3;
     string user = 4;
-    map<string,string> pictures = 5;
+    repeated string pictures = 5;
     bool success = 6;
     bool ismyself = 7;
     map<int32, int64> markMap = 8;
+    int64 recordID = 9;
 }
 
 //通告信息
@@ -206,6 +209,17 @@ message UpdateMessage {
     UserEnter userEnter = 1;
 }
 
+message GetUserListResponse {
+    bool success = 1;
+    map<string,string> users = 2;
+    int64 questionID = 3; //nessesary when need users in question room
+    enum USER_LIST_TYPE {
+        ACQUAINTANCE_LIST = 0;
+        USERS_IN_ROOM_LIST = 1;
+    }
+    USER_LIST_TYPE userListType = 4;
+}
+
 //----------------顶层消息----------------------
 message Message {
     MSG msg_type = 1;
@@ -226,4 +240,5 @@ message Message {
     AbandonQuestionResponse abandonQuestionResponse = 19;
     SearchInformationResponse searchInformationResponse = 20;
     SolvedQuestionResponse solvedQuestionResponse = 21;
+    GetUserListResponse getUserListResponse = 22;
 }

@@ -533,4 +533,28 @@ public class Client extends Thread{
 		sendIt(request);
 	}
 
+	public void getAcquaintanceList() throws IOException {
+		ClientSendMessage.Message request = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
+				  .setGetUserListRequest(
+							 ClientSendMessage.GetUserListRequest.newBuilder()
+							 .setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST)
+							 .setParam(this.username)
+				  ).build();
+
+		sendIt(request);
+	}
+
+	public void getQuestionUserList(Long questionID) throws IOException {
+		ClientSendMessage.Message request = ClientSendMessage.Message.newBuilder()
+				  .setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
+				  .setGetUserListRequest(
+							 ClientSendMessage.GetUserListRequest.newBuilder()
+							 .setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.USERS_IN_ROOM_LIST)
+							 .setParam(questionID.toString())
+				  ).build();
+
+		sendIt(request);
+	}
+
 }

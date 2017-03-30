@@ -131,6 +131,14 @@ public final class ServerResponseMessage {
      * <code>BAD_MESSAGE = 19;</code>
      */
     BAD_MESSAGE(19),
+    /**
+     * <pre>
+     *获取用户列表反馈
+     * </pre>
+     *
+     * <code>GET_USER_LIST_RESPONSE = 20;</code>
+     */
+    GET_USER_LIST_RESPONSE(20),
     UNRECOGNIZED(-1),
     ;
 
@@ -242,6 +250,14 @@ public final class ServerResponseMessage {
      * <code>BAD_MESSAGE = 19;</code>
      */
     public static final int BAD_MESSAGE_VALUE = 19;
+    /**
+     * <pre>
+     *获取用户列表反馈
+     * </pre>
+     *
+     * <code>GET_USER_LIST_RESPONSE = 20;</code>
+     */
+    public static final int GET_USER_LIST_RESPONSE_VALUE = 20;
 
 
     public final int getNumber() {
@@ -279,6 +295,7 @@ public final class ServerResponseMessage {
         case 17: return SEARCH_INFORMATION_RESPONSE;
         case 18: return SOLVED_QUESTION_RESPONSE;
         case 19: return BAD_MESSAGE;
+        case 20: return GET_USER_LIST_RESPONSE;
         default: return null;
       }
     }
@@ -17683,6 +17700,1021 @@ public final class ServerResponseMessage {
 
   }
 
+  public interface GetUserListResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetUserListResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool success = 1;</code>
+     */
+    boolean getSuccess();
+
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+    int getUsersCount();
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+    boolean containsUsers(
+        java.lang.String key);
+    /**
+     * Use {@link #getUsersMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getUsers();
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getUsersMap();
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+
+    java.lang.String getUsersOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+
+    java.lang.String getUsersOrThrow(
+        java.lang.String key);
+
+    /**
+     * <pre>
+     *nessesary when need users in question room
+     * </pre>
+     *
+     * <code>int64 questionID = 3;</code>
+     */
+    long getQuestionID();
+
+    /**
+     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     */
+    int getUserListTypeValue();
+    /**
+     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     */
+    com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE getUserListType();
+  }
+  /**
+   * Protobuf type {@code GetUserListResponse}
+   */
+  public  static final class GetUserListResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetUserListResponse)
+      GetUserListResponseOrBuilder {
+    // Use GetUserListResponse.newBuilder() to construct.
+    private GetUserListResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetUserListResponse() {
+      success_ = false;
+      questionID_ = 0L;
+      userListType_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private GetUserListResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              success_ = input.readBool();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                users_ = com.google.protobuf.MapField.newMapField(
+                    UsersDefaultEntryHolder.defaultEntry);
+                mutable_bitField0_ |= 0x00000002;
+              }
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+              users__ = input.readMessage(
+                  UsersDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              users_.getMutableMap().put(
+                  users__.getKey(), users__.getValue());
+              break;
+            }
+            case 24: {
+
+              questionID_ = input.readInt64();
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+
+              userListType_ = rawValue;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ServerResponseMessage.internal_static_GetUserListResponse_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 2:
+          return internalGetUsers();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ServerResponseMessage.internal_static_GetUserListResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ServerResponseMessage.GetUserListResponse.class, com.ServerResponseMessage.GetUserListResponse.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code GetUserListResponse.USER_LIST_TYPE}
+     */
+    public enum USER_LIST_TYPE
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>ACQUAINTANCE_LIST = 0;</code>
+       */
+      ACQUAINTANCE_LIST(0),
+      /**
+       * <code>USERS_IN_ROOM_LIST = 1;</code>
+       */
+      USERS_IN_ROOM_LIST(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>ACQUAINTANCE_LIST = 0;</code>
+       */
+      public static final int ACQUAINTANCE_LIST_VALUE = 0;
+      /**
+       * <code>USERS_IN_ROOM_LIST = 1;</code>
+       */
+      public static final int USERS_IN_ROOM_LIST_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static USER_LIST_TYPE valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static USER_LIST_TYPE forNumber(int value) {
+        switch (value) {
+          case 0: return ACQUAINTANCE_LIST;
+          case 1: return USERS_IN_ROOM_LIST;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<USER_LIST_TYPE>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          USER_LIST_TYPE> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<USER_LIST_TYPE>() {
+              public USER_LIST_TYPE findValueByNumber(int number) {
+                return USER_LIST_TYPE.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.GetUserListResponse.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final USER_LIST_TYPE[] VALUES = values();
+
+      public static USER_LIST_TYPE valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private USER_LIST_TYPE(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:GetUserListResponse.USER_LIST_TYPE)
+    }
+
+    private int bitField0_;
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_;
+    /**
+     * <code>bool success = 1;</code>
+     */
+    public boolean getSuccess() {
+      return success_;
+    }
+
+    public static final int USERS_FIELD_NUMBER = 2;
+    private static final class UsersDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  com.ServerResponseMessage.internal_static_GetUserListResponse_UsersEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> users_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetUsers() {
+      if (users_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            UsersDefaultEntryHolder.defaultEntry);
+      }
+      return users_;
+    }
+
+    public int getUsersCount() {
+      return internalGetUsers().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+
+    public boolean containsUsers(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetUsers().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getUsersMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getUsers() {
+      return getUsersMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getUsersMap() {
+      return internalGetUsers().getMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+
+    public java.lang.String getUsersOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetUsers().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, string&gt; users = 2;</code>
+     */
+
+    public java.lang.String getUsersOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetUsers().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    public static final int QUESTIONID_FIELD_NUMBER = 3;
+    private long questionID_;
+    /**
+     * <pre>
+     *nessesary when need users in question room
+     * </pre>
+     *
+     * <code>int64 questionID = 3;</code>
+     */
+    public long getQuestionID() {
+      return questionID_;
+    }
+
+    public static final int USERLISTTYPE_FIELD_NUMBER = 4;
+    private int userListType_;
+    /**
+     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     */
+    public int getUserListTypeValue() {
+      return userListType_;
+    }
+    /**
+     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     */
+    public com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE getUserListType() {
+      com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE result = com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.valueOf(userListType_);
+      return result == null ? com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (success_ != false) {
+        output.writeBool(1, success_);
+      }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetUsers(),
+          UsersDefaultEntryHolder.defaultEntry,
+          2);
+      if (questionID_ != 0L) {
+        output.writeInt64(3, questionID_);
+      }
+      if (userListType_ != com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.ACQUAINTANCE_LIST.getNumber()) {
+        output.writeEnum(4, userListType_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, success_);
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetUsers().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        users__ = UsersDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, users__);
+      }
+      if (questionID_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, questionID_);
+      }
+      if (userListType_ != com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.ACQUAINTANCE_LIST.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, userListType_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ServerResponseMessage.GetUserListResponse)) {
+        return super.equals(obj);
+      }
+      com.ServerResponseMessage.GetUserListResponse other = (com.ServerResponseMessage.GetUserListResponse) obj;
+
+      boolean result = true;
+      result = result && (getSuccess()
+          == other.getSuccess());
+      result = result && internalGetUsers().equals(
+          other.internalGetUsers());
+      result = result && (getQuestionID()
+          == other.getQuestionID());
+      result = result && userListType_ == other.userListType_;
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSuccess());
+      if (!internalGetUsers().getMap().isEmpty()) {
+        hash = (37 * hash) + USERS_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetUsers().hashCode();
+      }
+      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getQuestionID());
+      hash = (37 * hash) + USERLISTTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + userListType_;
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.GetUserListResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ServerResponseMessage.GetUserListResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetUserListResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetUserListResponse)
+        com.ServerResponseMessage.GetUserListResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.internal_static_GetUserListResponse_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 2:
+            return internalGetUsers();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 2:
+            return internalGetMutableUsers();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ServerResponseMessage.internal_static_GetUserListResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ServerResponseMessage.GetUserListResponse.class, com.ServerResponseMessage.GetUserListResponse.Builder.class);
+      }
+
+      // Construct using com.ServerResponseMessage.GetUserListResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        success_ = false;
+
+        internalGetMutableUsers().clear();
+        questionID_ = 0L;
+
+        userListType_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ServerResponseMessage.internal_static_GetUserListResponse_descriptor;
+      }
+
+      public com.ServerResponseMessage.GetUserListResponse getDefaultInstanceForType() {
+        return com.ServerResponseMessage.GetUserListResponse.getDefaultInstance();
+      }
+
+      public com.ServerResponseMessage.GetUserListResponse build() {
+        com.ServerResponseMessage.GetUserListResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ServerResponseMessage.GetUserListResponse buildPartial() {
+        com.ServerResponseMessage.GetUserListResponse result = new com.ServerResponseMessage.GetUserListResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.success_ = success_;
+        result.users_ = internalGetUsers();
+        result.users_.makeImmutable();
+        result.questionID_ = questionID_;
+        result.userListType_ = userListType_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ServerResponseMessage.GetUserListResponse) {
+          return mergeFrom((com.ServerResponseMessage.GetUserListResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ServerResponseMessage.GetUserListResponse other) {
+        if (other == com.ServerResponseMessage.GetUserListResponse.getDefaultInstance()) return this;
+        if (other.getSuccess() != false) {
+          setSuccess(other.getSuccess());
+        }
+        internalGetMutableUsers().mergeFrom(
+            other.internalGetUsers());
+        if (other.getQuestionID() != 0L) {
+          setQuestionID(other.getQuestionID());
+        }
+        if (other.userListType_ != 0) {
+          setUserListTypeValue(other.getUserListTypeValue());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ServerResponseMessage.GetUserListResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ServerResponseMessage.GetUserListResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private boolean success_ ;
+      /**
+       * <code>bool success = 1;</code>
+       */
+      public boolean getSuccess() {
+        return success_;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       */
+      public Builder setSuccess(boolean value) {
+        
+        success_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool success = 1;</code>
+       */
+      public Builder clearSuccess() {
+        
+        success_ = false;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.MapField<
+          java.lang.String, java.lang.String> users_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetUsers() {
+        if (users_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              UsersDefaultEntryHolder.defaultEntry);
+        }
+        return users_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetMutableUsers() {
+        onChanged();;
+        if (users_ == null) {
+          users_ = com.google.protobuf.MapField.newMapField(
+              UsersDefaultEntryHolder.defaultEntry);
+        }
+        if (!users_.isMutable()) {
+          users_ = users_.copy();
+        }
+        return users_;
+      }
+
+      public int getUsersCount() {
+        return internalGetUsers().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+
+      public boolean containsUsers(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetUsers().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getUsersMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getUsers() {
+        return getUsersMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+
+      public java.util.Map<java.lang.String, java.lang.String> getUsersMap() {
+        return internalGetUsers().getMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+
+      public java.lang.String getUsersOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetUsers().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+
+      public java.lang.String getUsersOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetUsers().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearUsers() {
+        internalGetMutableUsers().getMutableMap()
+            .clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+
+      public Builder removeUsers(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableUsers().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String>
+      getMutableUsers() {
+        return internalGetMutableUsers().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+      public Builder putUsers(
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableUsers().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; users = 2;</code>
+       */
+
+      public Builder putAllUsers(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        internalGetMutableUsers().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+
+      private long questionID_ ;
+      /**
+       * <pre>
+       *nessesary when need users in question room
+       * </pre>
+       *
+       * <code>int64 questionID = 3;</code>
+       */
+      public long getQuestionID() {
+        return questionID_;
+      }
+      /**
+       * <pre>
+       *nessesary when need users in question room
+       * </pre>
+       *
+       * <code>int64 questionID = 3;</code>
+       */
+      public Builder setQuestionID(long value) {
+        
+        questionID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *nessesary when need users in question room
+       * </pre>
+       *
+       * <code>int64 questionID = 3;</code>
+       */
+      public Builder clearQuestionID() {
+        
+        questionID_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int userListType_ = 0;
+      /**
+       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       */
+      public int getUserListTypeValue() {
+        return userListType_;
+      }
+      /**
+       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       */
+      public Builder setUserListTypeValue(int value) {
+        userListType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       */
+      public com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE getUserListType() {
+        com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE result = com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.valueOf(userListType_);
+        return result == null ? com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       */
+      public Builder setUserListType(com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        userListType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       */
+      public Builder clearUserListType() {
+        
+        userListType_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetUserListResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetUserListResponse)
+    private static final com.ServerResponseMessage.GetUserListResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ServerResponseMessage.GetUserListResponse();
+    }
+
+    public static com.ServerResponseMessage.GetUserListResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetUserListResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetUserListResponse>() {
+      public GetUserListResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new GetUserListResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetUserListResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetUserListResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ServerResponseMessage.GetUserListResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface MessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Message)
       com.google.protobuf.MessageOrBuilder {
@@ -17913,6 +18945,19 @@ public final class ServerResponseMessage {
      * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder();
+
+    /**
+     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     */
+    boolean hasGetUserListResponse();
+    /**
+     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     */
+    com.ServerResponseMessage.GetUserListResponse getGetUserListResponse();
+    /**
+     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     */
+    com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder();
   }
   /**
    * <pre>
@@ -18175,6 +19220,19 @@ public final class ServerResponseMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(solvedQuestionResponse_);
                 solvedQuestionResponse_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 178: {
+              com.ServerResponseMessage.GetUserListResponse.Builder subBuilder = null;
+              if (getUserListResponse_ != null) {
+                subBuilder = getUserListResponse_.toBuilder();
+              }
+              getUserListResponse_ = input.readMessage(com.ServerResponseMessage.GetUserListResponse.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(getUserListResponse_);
+                getUserListResponse_ = subBuilder.buildPartial();
               }
 
               break;
@@ -18588,6 +19646,27 @@ public final class ServerResponseMessage {
       return getSolvedQuestionResponse();
     }
 
+    public static final int GETUSERLISTRESPONSE_FIELD_NUMBER = 22;
+    private com.ServerResponseMessage.GetUserListResponse getUserListResponse_;
+    /**
+     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     */
+    public boolean hasGetUserListResponse() {
+      return getUserListResponse_ != null;
+    }
+    /**
+     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     */
+    public com.ServerResponseMessage.GetUserListResponse getGetUserListResponse() {
+      return getUserListResponse_ == null ? com.ServerResponseMessage.GetUserListResponse.getDefaultInstance() : getUserListResponse_;
+    }
+    /**
+     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     */
+    public com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder() {
+      return getGetUserListResponse();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -18653,6 +19732,9 @@ public final class ServerResponseMessage {
       }
       if (solvedQuestionResponse_ != null) {
         output.writeMessage(21, getSolvedQuestionResponse());
+      }
+      if (getUserListResponse_ != null) {
+        output.writeMessage(22, getGetUserListResponse());
       }
     }
 
@@ -18731,6 +19813,10 @@ public final class ServerResponseMessage {
       if (solvedQuestionResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(21, getSolvedQuestionResponse());
+      }
+      if (getUserListResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getGetUserListResponse());
       }
       memoizedSize = size;
       return size;
@@ -18831,6 +19917,11 @@ public final class ServerResponseMessage {
         result = result && getSolvedQuestionResponse()
             .equals(other.getSolvedQuestionResponse());
       }
+      result = result && (hasGetUserListResponse() == other.hasGetUserListResponse());
+      if (hasGetUserListResponse()) {
+        result = result && getGetUserListResponse()
+            .equals(other.getGetUserListResponse());
+      }
       return result;
     }
 
@@ -18908,6 +19999,10 @@ public final class ServerResponseMessage {
       if (hasSolvedQuestionResponse()) {
         hash = (37 * hash) + SOLVEDQUESTIONRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getSolvedQuestionResponse().hashCode();
+      }
+      if (hasGetUserListResponse()) {
+        hash = (37 * hash) + GETUSERLISTRESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getGetUserListResponse().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -19131,6 +20226,12 @@ public final class ServerResponseMessage {
           solvedQuestionResponse_ = null;
           solvedQuestionResponseBuilder_ = null;
         }
+        if (getUserListResponseBuilder_ == null) {
+          getUserListResponse_ = null;
+        } else {
+          getUserListResponse_ = null;
+          getUserListResponseBuilder_ = null;
+        }
         return this;
       }
 
@@ -19235,6 +20336,11 @@ public final class ServerResponseMessage {
         } else {
           result.solvedQuestionResponse_ = solvedQuestionResponseBuilder_.build();
         }
+        if (getUserListResponseBuilder_ == null) {
+          result.getUserListResponse_ = getUserListResponse_;
+        } else {
+          result.getUserListResponse_ = getUserListResponseBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -19330,6 +20436,9 @@ public final class ServerResponseMessage {
         }
         if (other.hasSolvedQuestionResponse()) {
           mergeSolvedQuestionResponse(other.getSolvedQuestionResponse());
+        }
+        if (other.hasGetUserListResponse()) {
+          mergeGetUserListResponse(other.getGetUserListResponse());
         }
         onChanged();
         return this;
@@ -21341,6 +22450,123 @@ public final class ServerResponseMessage {
         }
         return solvedQuestionResponseBuilder_;
       }
+
+      private com.ServerResponseMessage.GetUserListResponse getUserListResponse_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder> getUserListResponseBuilder_;
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public boolean hasGetUserListResponse() {
+        return getUserListResponseBuilder_ != null || getUserListResponse_ != null;
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public com.ServerResponseMessage.GetUserListResponse getGetUserListResponse() {
+        if (getUserListResponseBuilder_ == null) {
+          return getUserListResponse_ == null ? com.ServerResponseMessage.GetUserListResponse.getDefaultInstance() : getUserListResponse_;
+        } else {
+          return getUserListResponseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public Builder setGetUserListResponse(com.ServerResponseMessage.GetUserListResponse value) {
+        if (getUserListResponseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          getUserListResponse_ = value;
+          onChanged();
+        } else {
+          getUserListResponseBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public Builder setGetUserListResponse(
+          com.ServerResponseMessage.GetUserListResponse.Builder builderForValue) {
+        if (getUserListResponseBuilder_ == null) {
+          getUserListResponse_ = builderForValue.build();
+          onChanged();
+        } else {
+          getUserListResponseBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public Builder mergeGetUserListResponse(com.ServerResponseMessage.GetUserListResponse value) {
+        if (getUserListResponseBuilder_ == null) {
+          if (getUserListResponse_ != null) {
+            getUserListResponse_ =
+              com.ServerResponseMessage.GetUserListResponse.newBuilder(getUserListResponse_).mergeFrom(value).buildPartial();
+          } else {
+            getUserListResponse_ = value;
+          }
+          onChanged();
+        } else {
+          getUserListResponseBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public Builder clearGetUserListResponse() {
+        if (getUserListResponseBuilder_ == null) {
+          getUserListResponse_ = null;
+          onChanged();
+        } else {
+          getUserListResponse_ = null;
+          getUserListResponseBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public com.ServerResponseMessage.GetUserListResponse.Builder getGetUserListResponseBuilder() {
+        
+        onChanged();
+        return getGetUserListResponseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      public com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder() {
+        if (getUserListResponseBuilder_ != null) {
+          return getUserListResponseBuilder_.getMessageOrBuilder();
+        } else {
+          return getUserListResponse_ == null ?
+              com.ServerResponseMessage.GetUserListResponse.getDefaultInstance() : getUserListResponse_;
+        }
+      }
+      /**
+       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder> 
+          getGetUserListResponseFieldBuilder() {
+        if (getUserListResponseBuilder_ == null) {
+          getUserListResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder>(
+                  getGetUserListResponse(),
+                  getParentForChildren(),
+                  isClean());
+          getUserListResponse_ = null;
+        }
+        return getUserListResponseBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -21511,6 +22737,16 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UpdateMessage_UserEnter_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetUserListResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetUserListResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetUserListResponse_UsersEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetUserListResponse_UsersEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -21578,44 +22814,53 @@ public final class ServerResponseMessage {
       "uccess\030\001 \001(\010\"o\n\rUpdateMessage\022+\n\tuserEnt" +
       "er\030\001 \001(\0132\030.UpdateMessage.UserEnter\0321\n\tUs" +
       "erEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestionID\030" +
-      "\002 \001(\003\"\350\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MS" +
-      "G\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001" +
-      "(\0132\017.LaunchResponse\022+\n\020registerResponse\030" +
-      "\004 \001(\0132\021.RegisterResponse\022!\n\013sendContent\030" +
-      "\005 \001(\0132\014.SendContent\0221\n\023announcementMessa" +
-      "ge\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025questi",
-      "onEnterResponse\030\007 \001(\0132\026.QuestionEnterRes" +
-      "ponse\0223\n\024goodQuestionResponse\030\010 \001(\0132\025.Go" +
-      "odQuestionResponse\022+\n\020goodUserResponse\030\n" +
-      " \001(\0132\021.GoodUserResponse\022#\n\014fileResponse\030" +
-      "\t \001(\0132\r.FileResponse\022%\n\rupdateMessage\030\013 " +
-      "\001(\0132\016.UpdateMessage\022A\n\033questionInformati" +
-      "onResponse\030\r \001(\0132\034.QuestionInformationRe" +
-      "sponse\0229\n\027userInformationResponse\030\016 \001(\0132" +
-      "\030.UserInformationResponse\0229\n\027getQuestion" +
-      "ListResponse\030\017 \001(\0132\030.GetQuestionListResp",
-      "onse\0227\n\026createQuestionResponse\030\022 \001(\0132\027.C" +
-      "reateQuestionResponse\0229\n\027abandonQuestion" +
-      "Response\030\023 \001(\0132\030.AbandonQuestionResponse" +
-      "\022=\n\031searchInformationResponse\030\024 \001(\0132\032.Se" +
-      "archInformationResponse\0227\n\026solvedQuestio" +
-      "nResponse\030\025 \001(\0132\027.SolvedQuestionResponse" +
-      "*\304\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTE" +
-      "R_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUN" +
-      "CEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPO" +
-      "NSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOO",
-      "D_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n" +
-      "\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATION" +
-      "_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE" +
-      "\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CR" +
-      "EATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUES" +
-      "TION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RE" +
-      "SPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022\017" +
-      "\n\013BAD_MESSAGE\020\023*H\n\014CONTENT_TYPE\022\020\n\014TEXT_" +
-      "MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_" +
-      "MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PN",
-      "G\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003co" +
-      "mB\025ServerResponseMessageb\006proto3"
+      "\002 \001(\003\"\224\002\n\023GetUserListResponse\022\017\n\007success" +
+      "\030\001 \001(\010\022.\n\005users\030\002 \003(\0132\037.GetUserListRespo" +
+      "nse.UsersEntry\022\022\n\nquestionID\030\003 \001(\003\0229\n\014us" +
+      "erListType\030\004 \001(\0162#.GetUserListResponse.U" +
+      "SER_LIST_TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t" +
+      "\022\r\n\005value\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n",
+      "\021ACQUAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LI" +
+      "ST\020\001\"\233\007\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG" +
+      "\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(" +
+      "\0132\017.LaunchResponse\022+\n\020registerResponse\030\004" +
+      " \001(\0132\021.RegisterResponse\022!\n\013sendContent\030\005" +
+      " \001(\0132\014.SendContent\0221\n\023announcementMessag" +
+      "e\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025questio" +
+      "nEnterResponse\030\007 \001(\0132\026.QuestionEnterResp" +
+      "onse\0223\n\024goodQuestionResponse\030\010 \001(\0132\025.Goo" +
+      "dQuestionResponse\022+\n\020goodUserResponse\030\n ",
+      "\001(\0132\021.GoodUserResponse\022#\n\014fileResponse\030\t" +
+      " \001(\0132\r.FileResponse\022%\n\rupdateMessage\030\013 \001" +
+      "(\0132\016.UpdateMessage\022A\n\033questionInformatio" +
+      "nResponse\030\r \001(\0132\034.QuestionInformationRes" +
+      "ponse\0229\n\027userInformationResponse\030\016 \001(\0132\030" +
+      ".UserInformationResponse\0229\n\027getQuestionL" +
+      "istResponse\030\017 \001(\0132\030.GetQuestionListRespo" +
+      "nse\0227\n\026createQuestionResponse\030\022 \001(\0132\027.Cr" +
+      "eateQuestionResponse\0229\n\027abandonQuestionR" +
+      "esponse\030\023 \001(\0132\030.AbandonQuestionResponse\022",
+      "=\n\031searchInformationResponse\030\024 \001(\0132\032.Sea" +
+      "rchInformationResponse\0227\n\026solvedQuestion" +
+      "Response\030\025 \001(\0132\027.SolvedQuestionResponse\022" +
+      "1\n\023getUserListResponse\030\026 \001(\0132\024.GetUserLi" +
+      "stResponse*\340\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022" +
+      "\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002" +
+      "\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_E" +
+      "NTER_RESPONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONS" +
+      "E\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022\n\016UPDATE_ME" +
+      "SSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_I",
+      "NFORMATION_RESPONSE\020\n\022\035\n\031USER_INFORMATIO" +
+      "N_RESPONSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPON" +
+      "SE\020\014\022\034\n\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031AB" +
+      "ANDON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFO" +
+      "RMATION_RESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RE" +
+      "SPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_USER_LI" +
+      "ST_RESPONSE\020\024*H\n\014CONTENT_TYPE\022\020\n\014TEXT_ME" +
+      "SSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_ME" +
+      "SSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020" +
+      "\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003comB",
+      "\025ServerResponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21773,12 +23018,24 @@ public final class ServerResponseMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateMessage_UserEnter_descriptor,
         new java.lang.String[] { "Username", "QuestionID", });
-    internal_static_Message_descriptor =
+    internal_static_GetUserListResponse_descriptor =
       getDescriptor().getMessageTypes().get(20);
+    internal_static_GetUserListResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetUserListResponse_descriptor,
+        new java.lang.String[] { "Success", "Users", "QuestionID", "UserListType", });
+    internal_static_GetUserListResponse_UsersEntry_descriptor =
+      internal_static_GetUserListResponse_descriptor.getNestedTypes().get(0);
+    internal_static_GetUserListResponse_UsersEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetUserListResponse_UsersEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_Message_descriptor =
+      getDescriptor().getMessageTypes().get(21);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "FileResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", "SolvedQuestionResponse", });
+        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "FileResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", "SolvedQuestionResponse", "GetUserListResponse", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

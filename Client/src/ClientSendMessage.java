@@ -135,6 +135,14 @@ public final class ClientSendMessage {
      * <code>BAD_MESSAGE = 19;</code>
      */
     BAD_MESSAGE(19),
+    /**
+     * <pre>
+     *获取用户列表
+     * </pre>
+     *
+     * <code>GET_USER_LIST_REQUEST = 20;</code>
+     */
+    GET_USER_LIST_REQUEST(20),
     UNRECOGNIZED(-1),
     ;
 
@@ -250,6 +258,14 @@ public final class ClientSendMessage {
      * <code>BAD_MESSAGE = 19;</code>
      */
     public static final int BAD_MESSAGE_VALUE = 19;
+    /**
+     * <pre>
+     *获取用户列表
+     * </pre>
+     *
+     * <code>GET_USER_LIST_REQUEST = 20;</code>
+     */
+    public static final int GET_USER_LIST_REQUEST_VALUE = 20;
 
 
     public final int getNumber() {
@@ -287,6 +303,7 @@ public final class ClientSendMessage {
         case 17: return SEARCH_INFORMATION_REQUEST;
         case 18: return SOLVED_QUESTION_REQUEST;
         case 19: return BAD_MESSAGE;
+        case 20: return GET_USER_LIST_REQUEST;
         default: return null;
       }
     }
@@ -11245,6 +11262,844 @@ public final class ClientSendMessage {
 
   }
 
+  public interface GetUserListRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetUserListRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string reference = 1;</code>
+     */
+    java.lang.String getReference();
+    /**
+     * <code>string reference = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getReferenceBytes();
+
+    /**
+     * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+     */
+    int getUserListTypeValue();
+    /**
+     * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+     */
+    com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE getUserListType();
+
+    /**
+     * <code>string param = 3;</code>
+     */
+    java.lang.String getParam();
+    /**
+     * <code>string param = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getParamBytes();
+  }
+  /**
+   * <pre>
+   *获取用户列表
+   * </pre>
+   *
+   * Protobuf type {@code GetUserListRequest}
+   */
+  public  static final class GetUserListRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetUserListRequest)
+      GetUserListRequestOrBuilder {
+    // Use GetUserListRequest.newBuilder() to construct.
+    private GetUserListRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetUserListRequest() {
+      reference_ = "";
+      userListType_ = 0;
+      param_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private GetUserListRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              reference_ = s;
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              userListType_ = rawValue;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              param_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ClientSendMessage.internal_static_GetUserListRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ClientSendMessage.internal_static_GetUserListRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ClientSendMessage.GetUserListRequest.class, com.ClientSendMessage.GetUserListRequest.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code GetUserListRequest.USER_LIST_TYPE}
+     */
+    public enum USER_LIST_TYPE
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>ACQUAINTANCE_LIST = 0;</code>
+       */
+      ACQUAINTANCE_LIST(0),
+      /**
+       * <code>USERS_IN_ROOM_LIST = 1;</code>
+       */
+      USERS_IN_ROOM_LIST(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>ACQUAINTANCE_LIST = 0;</code>
+       */
+      public static final int ACQUAINTANCE_LIST_VALUE = 0;
+      /**
+       * <code>USERS_IN_ROOM_LIST = 1;</code>
+       */
+      public static final int USERS_IN_ROOM_LIST_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static USER_LIST_TYPE valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static USER_LIST_TYPE forNumber(int value) {
+        switch (value) {
+          case 0: return ACQUAINTANCE_LIST;
+          case 1: return USERS_IN_ROOM_LIST;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<USER_LIST_TYPE>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          USER_LIST_TYPE> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<USER_LIST_TYPE>() {
+              public USER_LIST_TYPE findValueByNumber(int number) {
+                return USER_LIST_TYPE.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.ClientSendMessage.GetUserListRequest.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final USER_LIST_TYPE[] VALUES = values();
+
+      public static USER_LIST_TYPE valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private USER_LIST_TYPE(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:GetUserListRequest.USER_LIST_TYPE)
+    }
+
+    public static final int REFERENCE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object reference_;
+    /**
+     * <code>string reference = 1;</code>
+     */
+    public java.lang.String getReference() {
+      java.lang.Object ref = reference_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        reference_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string reference = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReferenceBytes() {
+      java.lang.Object ref = reference_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        reference_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int USERLISTTYPE_FIELD_NUMBER = 2;
+    private int userListType_;
+    /**
+     * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+     */
+    public int getUserListTypeValue() {
+      return userListType_;
+    }
+    /**
+     * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+     */
+    public com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE getUserListType() {
+      com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE result = com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.valueOf(userListType_);
+      return result == null ? com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.UNRECOGNIZED : result;
+    }
+
+    public static final int PARAM_FIELD_NUMBER = 3;
+    private volatile java.lang.Object param_;
+    /**
+     * <code>string param = 3;</code>
+     */
+    public java.lang.String getParam() {
+      java.lang.Object ref = param_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        param_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string param = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParamBytes() {
+      java.lang.Object ref = param_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        param_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getReferenceBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, reference_);
+      }
+      if (userListType_ != com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST.getNumber()) {
+        output.writeEnum(2, userListType_);
+      }
+      if (!getParamBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, param_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getReferenceBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, reference_);
+      }
+      if (userListType_ != com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, userListType_);
+      }
+      if (!getParamBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, param_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ClientSendMessage.GetUserListRequest)) {
+        return super.equals(obj);
+      }
+      com.ClientSendMessage.GetUserListRequest other = (com.ClientSendMessage.GetUserListRequest) obj;
+
+      boolean result = true;
+      result = result && getReference()
+          .equals(other.getReference());
+      result = result && userListType_ == other.userListType_;
+      result = result && getParam()
+          .equals(other.getParam());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REFERENCE_FIELD_NUMBER;
+      hash = (53 * hash) + getReference().hashCode();
+      hash = (37 * hash) + USERLISTTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + userListType_;
+      hash = (37 * hash) + PARAM_FIELD_NUMBER;
+      hash = (53 * hash) + getParam().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ClientSendMessage.GetUserListRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ClientSendMessage.GetUserListRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *获取用户列表
+     * </pre>
+     *
+     * Protobuf type {@code GetUserListRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetUserListRequest)
+        com.ClientSendMessage.GetUserListRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ClientSendMessage.internal_static_GetUserListRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ClientSendMessage.internal_static_GetUserListRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ClientSendMessage.GetUserListRequest.class, com.ClientSendMessage.GetUserListRequest.Builder.class);
+      }
+
+      // Construct using com.ClientSendMessage.GetUserListRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        reference_ = "";
+
+        userListType_ = 0;
+
+        param_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ClientSendMessage.internal_static_GetUserListRequest_descriptor;
+      }
+
+      public com.ClientSendMessage.GetUserListRequest getDefaultInstanceForType() {
+        return com.ClientSendMessage.GetUserListRequest.getDefaultInstance();
+      }
+
+      public com.ClientSendMessage.GetUserListRequest build() {
+        com.ClientSendMessage.GetUserListRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ClientSendMessage.GetUserListRequest buildPartial() {
+        com.ClientSendMessage.GetUserListRequest result = new com.ClientSendMessage.GetUserListRequest(this);
+        result.reference_ = reference_;
+        result.userListType_ = userListType_;
+        result.param_ = param_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ClientSendMessage.GetUserListRequest) {
+          return mergeFrom((com.ClientSendMessage.GetUserListRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ClientSendMessage.GetUserListRequest other) {
+        if (other == com.ClientSendMessage.GetUserListRequest.getDefaultInstance()) return this;
+        if (!other.getReference().isEmpty()) {
+          reference_ = other.reference_;
+          onChanged();
+        }
+        if (other.userListType_ != 0) {
+          setUserListTypeValue(other.getUserListTypeValue());
+        }
+        if (!other.getParam().isEmpty()) {
+          param_ = other.param_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ClientSendMessage.GetUserListRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ClientSendMessage.GetUserListRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object reference_ = "";
+      /**
+       * <code>string reference = 1;</code>
+       */
+      public java.lang.String getReference() {
+        java.lang.Object ref = reference_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          reference_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string reference = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReferenceBytes() {
+        java.lang.Object ref = reference_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          reference_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string reference = 1;</code>
+       */
+      public Builder setReference(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        reference_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string reference = 1;</code>
+       */
+      public Builder clearReference() {
+        
+        reference_ = getDefaultInstance().getReference();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string reference = 1;</code>
+       */
+      public Builder setReferenceBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        reference_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int userListType_ = 0;
+      /**
+       * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+       */
+      public int getUserListTypeValue() {
+        return userListType_;
+      }
+      /**
+       * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+       */
+      public Builder setUserListTypeValue(int value) {
+        userListType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+       */
+      public com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE getUserListType() {
+        com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE result = com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.valueOf(userListType_);
+        return result == null ? com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+       */
+      public Builder setUserListType(com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        userListType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GetUserListRequest.USER_LIST_TYPE userListType = 2;</code>
+       */
+      public Builder clearUserListType() {
+        
+        userListType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object param_ = "";
+      /**
+       * <code>string param = 3;</code>
+       */
+      public java.lang.String getParam() {
+        java.lang.Object ref = param_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          param_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string param = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParamBytes() {
+        java.lang.Object ref = param_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          param_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string param = 3;</code>
+       */
+      public Builder setParam(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        param_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string param = 3;</code>
+       */
+      public Builder clearParam() {
+        
+        param_ = getDefaultInstance().getParam();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string param = 3;</code>
+       */
+      public Builder setParamBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        param_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetUserListRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetUserListRequest)
+    private static final com.ClientSendMessage.GetUserListRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ClientSendMessage.GetUserListRequest();
+    }
+
+    public static com.ClientSendMessage.GetUserListRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetUserListRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetUserListRequest>() {
+      public GetUserListRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new GetUserListRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetUserListRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetUserListRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ClientSendMessage.GetUserListRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface MessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Message)
       com.google.protobuf.MessageOrBuilder {
@@ -11475,6 +12330,19 @@ public final class ClientSendMessage {
      * <code>.SolvedQuestionRequest solvedQuestionRequest = 21;</code>
      */
     com.ClientSendMessage.SolvedQuestionRequestOrBuilder getSolvedQuestionRequestOrBuilder();
+
+    /**
+     * <code>.GetUserListRequest getUserListRequest = 22;</code>
+     */
+    boolean hasGetUserListRequest();
+    /**
+     * <code>.GetUserListRequest getUserListRequest = 22;</code>
+     */
+    com.ClientSendMessage.GetUserListRequest getGetUserListRequest();
+    /**
+     * <code>.GetUserListRequest getUserListRequest = 22;</code>
+     */
+    com.ClientSendMessage.GetUserListRequestOrBuilder getGetUserListRequestOrBuilder();
   }
   /**
    * <pre>
@@ -11737,6 +12605,19 @@ public final class ClientSendMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(solvedQuestionRequest_);
                 solvedQuestionRequest_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 178: {
+              com.ClientSendMessage.GetUserListRequest.Builder subBuilder = null;
+              if (getUserListRequest_ != null) {
+                subBuilder = getUserListRequest_.toBuilder();
+              }
+              getUserListRequest_ = input.readMessage(com.ClientSendMessage.GetUserListRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(getUserListRequest_);
+                getUserListRequest_ = subBuilder.buildPartial();
               }
 
               break;
@@ -12150,6 +13031,27 @@ public final class ClientSendMessage {
       return getSolvedQuestionRequest();
     }
 
+    public static final int GETUSERLISTREQUEST_FIELD_NUMBER = 22;
+    private com.ClientSendMessage.GetUserListRequest getUserListRequest_;
+    /**
+     * <code>.GetUserListRequest getUserListRequest = 22;</code>
+     */
+    public boolean hasGetUserListRequest() {
+      return getUserListRequest_ != null;
+    }
+    /**
+     * <code>.GetUserListRequest getUserListRequest = 22;</code>
+     */
+    public com.ClientSendMessage.GetUserListRequest getGetUserListRequest() {
+      return getUserListRequest_ == null ? com.ClientSendMessage.GetUserListRequest.getDefaultInstance() : getUserListRequest_;
+    }
+    /**
+     * <code>.GetUserListRequest getUserListRequest = 22;</code>
+     */
+    public com.ClientSendMessage.GetUserListRequestOrBuilder getGetUserListRequestOrBuilder() {
+      return getGetUserListRequest();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -12215,6 +13117,9 @@ public final class ClientSendMessage {
       }
       if (solvedQuestionRequest_ != null) {
         output.writeMessage(21, getSolvedQuestionRequest());
+      }
+      if (getUserListRequest_ != null) {
+        output.writeMessage(22, getGetUserListRequest());
       }
     }
 
@@ -12293,6 +13198,10 @@ public final class ClientSendMessage {
       if (solvedQuestionRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(21, getSolvedQuestionRequest());
+      }
+      if (getUserListRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getGetUserListRequest());
       }
       memoizedSize = size;
       return size;
@@ -12393,6 +13302,11 @@ public final class ClientSendMessage {
         result = result && getSolvedQuestionRequest()
             .equals(other.getSolvedQuestionRequest());
       }
+      result = result && (hasGetUserListRequest() == other.hasGetUserListRequest());
+      if (hasGetUserListRequest()) {
+        result = result && getGetUserListRequest()
+            .equals(other.getGetUserListRequest());
+      }
       return result;
     }
 
@@ -12470,6 +13384,10 @@ public final class ClientSendMessage {
       if (hasSolvedQuestionRequest()) {
         hash = (37 * hash) + SOLVEDQUESTIONREQUEST_FIELD_NUMBER;
         hash = (53 * hash) + getSolvedQuestionRequest().hashCode();
+      }
+      if (hasGetUserListRequest()) {
+        hash = (37 * hash) + GETUSERLISTREQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getGetUserListRequest().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -12693,6 +13611,12 @@ public final class ClientSendMessage {
           solvedQuestionRequest_ = null;
           solvedQuestionRequestBuilder_ = null;
         }
+        if (getUserListRequestBuilder_ == null) {
+          getUserListRequest_ = null;
+        } else {
+          getUserListRequest_ = null;
+          getUserListRequestBuilder_ = null;
+        }
         return this;
       }
 
@@ -12797,6 +13721,11 @@ public final class ClientSendMessage {
         } else {
           result.solvedQuestionRequest_ = solvedQuestionRequestBuilder_.build();
         }
+        if (getUserListRequestBuilder_ == null) {
+          result.getUserListRequest_ = getUserListRequest_;
+        } else {
+          result.getUserListRequest_ = getUserListRequestBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -12892,6 +13821,9 @@ public final class ClientSendMessage {
         }
         if (other.hasSolvedQuestionRequest()) {
           mergeSolvedQuestionRequest(other.getSolvedQuestionRequest());
+        }
+        if (other.hasGetUserListRequest()) {
+          mergeGetUserListRequest(other.getGetUserListRequest());
         }
         onChanged();
         return this;
@@ -14903,6 +15835,123 @@ public final class ClientSendMessage {
         }
         return solvedQuestionRequestBuilder_;
       }
+
+      private com.ClientSendMessage.GetUserListRequest getUserListRequest_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ClientSendMessage.GetUserListRequest, com.ClientSendMessage.GetUserListRequest.Builder, com.ClientSendMessage.GetUserListRequestOrBuilder> getUserListRequestBuilder_;
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public boolean hasGetUserListRequest() {
+        return getUserListRequestBuilder_ != null || getUserListRequest_ != null;
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public com.ClientSendMessage.GetUserListRequest getGetUserListRequest() {
+        if (getUserListRequestBuilder_ == null) {
+          return getUserListRequest_ == null ? com.ClientSendMessage.GetUserListRequest.getDefaultInstance() : getUserListRequest_;
+        } else {
+          return getUserListRequestBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public Builder setGetUserListRequest(com.ClientSendMessage.GetUserListRequest value) {
+        if (getUserListRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          getUserListRequest_ = value;
+          onChanged();
+        } else {
+          getUserListRequestBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public Builder setGetUserListRequest(
+          com.ClientSendMessage.GetUserListRequest.Builder builderForValue) {
+        if (getUserListRequestBuilder_ == null) {
+          getUserListRequest_ = builderForValue.build();
+          onChanged();
+        } else {
+          getUserListRequestBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public Builder mergeGetUserListRequest(com.ClientSendMessage.GetUserListRequest value) {
+        if (getUserListRequestBuilder_ == null) {
+          if (getUserListRequest_ != null) {
+            getUserListRequest_ =
+              com.ClientSendMessage.GetUserListRequest.newBuilder(getUserListRequest_).mergeFrom(value).buildPartial();
+          } else {
+            getUserListRequest_ = value;
+          }
+          onChanged();
+        } else {
+          getUserListRequestBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public Builder clearGetUserListRequest() {
+        if (getUserListRequestBuilder_ == null) {
+          getUserListRequest_ = null;
+          onChanged();
+        } else {
+          getUserListRequest_ = null;
+          getUserListRequestBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public com.ClientSendMessage.GetUserListRequest.Builder getGetUserListRequestBuilder() {
+        
+        onChanged();
+        return getGetUserListRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      public com.ClientSendMessage.GetUserListRequestOrBuilder getGetUserListRequestOrBuilder() {
+        if (getUserListRequestBuilder_ != null) {
+          return getUserListRequestBuilder_.getMessageOrBuilder();
+        } else {
+          return getUserListRequest_ == null ?
+              com.ClientSendMessage.GetUserListRequest.getDefaultInstance() : getUserListRequest_;
+        }
+      }
+      /**
+       * <code>.GetUserListRequest getUserListRequest = 22;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ClientSendMessage.GetUserListRequest, com.ClientSendMessage.GetUserListRequest.Builder, com.ClientSendMessage.GetUserListRequestOrBuilder> 
+          getGetUserListRequestFieldBuilder() {
+        if (getUserListRequestBuilder_ == null) {
+          getUserListRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ClientSendMessage.GetUserListRequest, com.ClientSendMessage.GetUserListRequest.Builder, com.ClientSendMessage.GetUserListRequestOrBuilder>(
+                  getGetUserListRequest(),
+                  getParentForChildren(),
+                  isClean());
+          getUserListRequest_ = null;
+        }
+        return getUserListRequestBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -15038,6 +16087,11 @@ public final class ClientSendMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_SolvedQuestionRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetUserListRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetUserListRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -15079,47 +16133,54 @@ public final class ClientSendMessage {
       "\t\022\'\n\010signType\030\002 \001(\0162\025.FileRequest.SIGNTY" +
       "PE\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001" +
       "\"+\n\025SolvedQuestionRequest\022\022\n\nquestionID\030" +
-      "\001 \001(\003\"\316\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MS" +
-      "G\022\020\n\010username\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(",
-      "\0132\016.LaunchRequest\022%\n\rlogoutMessage\030\004 \001(\013" +
-      "2\016.LogoutMessage\022!\n\013sendContent\030\005 \001(\0132\014." +
-      "SendContent\0221\n\023announcementMessage\030\006 \001(\013" +
-      "2\024.AnnouncementMessage\0223\n\024questionEnterR" +
-      "equest\030\007 \001(\0132\025.QuestionEnterRequest\0221\n\023g" +
-      "oodQuestionRequest\030\010 \001(\0132\024.GoodQuestionR" +
-      "equest\022!\n\013fileRequest\030\t \001(\0132\014.FileReques" +
-      "t\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReq" +
-      "uest\022)\n\017registerRequest\030\013 \001(\0132\020.Register" +
-      "Request\022?\n\032questionInformationRequest\030\r ",
-      "\001(\0132\033.QuestionInformationRequest\0227\n\026user" +
-      "InformationRequest\030\016 \001(\0132\027.UserInformati" +
-      "onRequest\0227\n\026getQuestionListRequest\030\017 \001(" +
-      "\0132\027.GetQuestionListRequest\0225\n\025createQues" +
-      "tionRequest\030\022 \001(\0132\026.CreateQuestionReques" +
-      "t\0227\n\026abandonQuestionRequest\030\023 \001(\0132\027.Aban" +
-      "donQuestionRequest\022;\n\030searchInformationR" +
-      "equest\030\024 \001(\0132\031.SearchInformationRequest\022" +
-      "5\n\025solvedQuestionRequest\030\025 \001(\0132\026.SolvedQ" +
-      "uestionRequest*\267\003\n\003MSG\022\022\n\016LAUNCH_REQUEST",
-      "\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024\n\020REGISTER_REQUE" +
-      "ST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_M" +
-      "ESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025" +
-      "GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_USER_REQ" +
-      "UEST\020\007\022\020\n\014FILE_REQUEST\020\t\022 \n\034QUESTION_INF" +
-      "ORMATION_REQUEST\020\n\022\034\n\030USER_INFORMATION_R" +
-      "EQUEST\020\013\022\035\n\031GET_QUESTION_LIST_REQUEST\020\014\022" +
-      "\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030ABANDON_" +
-      "QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INFORMATION" +
-      "_REQUEST\020\021\022\033\n\027SOLVED_QUESTION_REQUEST\020\022\022",
-      "\017\n\013BAD_MESSAGE\020\023*H\n\014CONTENT_TYPE\022\020\n\014TEXT" +
-      "_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE" +
-      "_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003P" +
-      "NG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020" +
-      "\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCEND" +
-      "ING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NUMB" +
-      "ERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QUES" +
-      "TION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003com" +
-      "B\021ClientSendMessageb\006proto3"
+      "\001 \001(\003\"\261\001\n\022GetUserListRequest\022\021\n\treferenc" +
+      "e\030\001 \001(\t\0228\n\014userListType\030\002 \001(\0162\".GetUserL",
+      "istRequest.USER_LIST_TYPE\022\r\n\005param\030\003 \001(\t" +
+      "\"?\n\016USER_LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020" +
+      "\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\377\006\n\007Message\022\026\n" +
+      "\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022" +
+      "$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRequest\022%\n" +
+      "\rlogoutMessage\030\004 \001(\0132\016.LogoutMessage\022!\n\013" +
+      "sendContent\030\005 \001(\0132\014.SendContent\0221\n\023annou" +
+      "ncementMessage\030\006 \001(\0132\024.AnnouncementMessa" +
+      "ge\0223\n\024questionEnterRequest\030\007 \001(\0132\025.Quest" +
+      "ionEnterRequest\0221\n\023goodQuestionRequest\030\010",
+      " \001(\0132\024.GoodQuestionRequest\022!\n\013fileReques" +
+      "t\030\t \001(\0132\014.FileRequest\022)\n\017goodUserRequest" +
+      "\030\n \001(\0132\020.GoodUserRequest\022)\n\017registerRequ" +
+      "est\030\013 \001(\0132\020.RegisterRequest\022?\n\032questionI" +
+      "nformationRequest\030\r \001(\0132\033.QuestionInform" +
+      "ationRequest\0227\n\026userInformationRequest\030\016" +
+      " \001(\0132\027.UserInformationRequest\0227\n\026getQues" +
+      "tionListRequest\030\017 \001(\0132\027.GetQuestionListR" +
+      "equest\0225\n\025createQuestionRequest\030\022 \001(\0132\026." +
+      "CreateQuestionRequest\0227\n\026abandonQuestion",
+      "Request\030\023 \001(\0132\027.AbandonQuestionRequest\022;" +
+      "\n\030searchInformationRequest\030\024 \001(\0132\031.Searc" +
+      "hInformationRequest\0225\n\025solvedQuestionReq" +
+      "uest\030\025 \001(\0132\026.SolvedQuestionRequest\022/\n\022ge" +
+      "tUserListRequest\030\026 \001(\0132\023.GetUserListRequ" +
+      "est*\322\003\n\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOU" +
+      "T_MESSAGE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEN" +
+      "D_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n" +
+      "\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTI" +
+      "ON_REQUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\020\n\014F",
+      "ILE_REQUEST\020\t\022 \n\034QUESTION_INFORMATION_RE" +
+      "QUEST\020\n\022\034\n\030USER_INFORMATION_REQUEST\020\013\022\035\n" +
+      "\031GET_QUESTION_LIST_REQUEST\020\014\022\033\n\027CREATE_Q" +
+      "UESTION_REQUEST\020\017\022\034\n\030ABANDON_QUESTION_RE" +
+      "QUEST\020\020\022\036\n\032SEARCH_INFORMATION_REQUEST\020\021\022" +
+      "\033\n\027SOLVED_QUESTION_REQUEST\020\022\022\017\n\013BAD_MESS" +
+      "AGE\020\023\022\031\n\025GET_USER_LIST_REQUEST\020\024*H\n\014CONT" +
+      "ENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_ME" +
+      "SSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYP" +
+      "E\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHT",
+      "YPE\022\014\n\010QUESTION\020\000**\n\tRANKORDER\022\r\n\tASCEND" +
+      "ING\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIST_REFERENCE\022" +
+      "\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022" +
+      "\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022" +
+      "\010\n\004TIME\020\004B\030\n\003comB\021ClientSendMessageb\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -15235,12 +16296,18 @@ public final class ClientSendMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SolvedQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
-    internal_static_Message_descriptor =
+    internal_static_GetUserListRequest_descriptor =
       getDescriptor().getMessageTypes().get(16);
+    internal_static_GetUserListRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetUserListRequest_descriptor,
+        new java.lang.String[] { "Reference", "UserListType", "Param", });
+    internal_static_Message_descriptor =
+      getDescriptor().getMessageTypes().get(17);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "FileRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", "SolvedQuestionRequest", });
+        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "FileRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", "SolvedQuestionRequest", "GetUserListRequest", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

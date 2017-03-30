@@ -2,6 +2,7 @@ package com;
 
 import com.google.protobuf.ProtocolStringList;
 import org.apache.mina.core.session.IoSession;
+import util.AcquaintanceParser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -300,6 +301,19 @@ public class ServerItem {
 						e.printStackTrace();
 						return null;
 					}
+				case GET_USER_LIST_REQUEST:
+					try {
+						if(message.hasGetUserListRequest()) {
+							return ServerResponseMessage.Message.newBuilder()
+									  .setMsgType(ServerResponseMessage.MSG.GET_USER_LIST_RESPONSE)
+									  .setUsername(username)
+									  .setGetUserListResponse(handleGetUserListRequest(message.getGetUserListRequest()))
+									  .build();
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+						return null;
+					}
 				default:
 					throw new Exception("MSG type cant be recognized\n"+message.toString());
 			}
@@ -323,7 +337,7 @@ public class ServerItem {
 
 		//获取密钥
 		sql = "SELECT userkey FROM user WHERE username='?';".replace("?", username);
-		ResultSet rs = stmt.executeQuery(sql);
+		ResultSet rs = stmt.executeQuery(sql.toString());
 		if (rs.next()) {
 			realkey = rs.getString("userkey");
 		}
@@ -1120,5 +1134,67 @@ public class ServerItem {
 		//房间不存在
 		return ServerResponseMessage.SolvedQuestionResponse.newBuilder()
 					  .setSuccess(false).setQuestionID(0).build();
+	}
+
+	private ServerResponseMessage.GetUserListResponse
+	handleGetUserListRequest (ClientSendMessage.GetUserListRequest request)
+				throws SQLException {
+		ServerResponseMessage.GetUserListResponse response = null;
+
+		ClientSendMessage.GetUserListRequest.USER_LIST_TYPE
+				  userListType = request.getUserListType();
+		String param = request.getParam();
+
+		Map<String, String> userAndPictureMap = new HashMap<>();
+
+		ResultSet rs = null;
+
+		String user = null;
+		String pic_url = null;
+
+		switch (userListType) {
+			case ACQUAINTANCE_LIST:
+				String myname = param;
+				String acquaintanceStr = null;
+				sql = "SELECT acquaintance FROM acquaintance_table WHERE username = '"+myname+"';";
+				rs = stmt.executeQuery(sql);
+				if(rs.next()) {
+					acquaintanceStr = rs.getString("acquaintance");
+					List<String> acquaintanceList = AcquaintanceParser.parse(acquaintanceStr);
+					if(!acquaintanceList.isEmpty()) {
+						for (String acquser : acquaintanceList) {
+							user = acquser;
+							sql = "SELECT pic_url FROM user WHERE username = '" + user + "';";
+							rs = stmt.executeQuery(sql);
+							if (rs.next()) {
+								pic_url = rs.getString("pic_url");
+							}
+							rs.close();
+							userAndPictureMap.put(user, pic_url);
+						}
+					}
+				}
+				break;
+			case USERS_IN_ROOM_LIST:
+				Long questionID = Long.valueOf(param);
+				ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(questionID);
+				if(null != sessions) {
+
+					for (IoSession session : sessions) {
+						user = ServerHandler.session_user_map.get(session);
+						sql = "SELECT pic_url FROM user WHERE username='"+user+"';";
+						rs = stmt.executeQuery(sql);
+						if(rs.next()) {
+							pic_url = rs.getString("pic_url");
+						}
+						rs.close();
+						userAndPictureMap.put(user,pic_url);
+					}
+				}
+				break;
+			default:
+		}
+
+		return response;
 	}
 }

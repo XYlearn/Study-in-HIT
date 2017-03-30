@@ -14,6 +14,15 @@ register_time DATETIME DEFAULT now(),
 last_launch_time DATETIME DEFAULT now(),
 PRIMARY KEY(username)
 ); 
+
+//用户好友列表
+CREATE TABLE acquaintence_table(
+username VARCHAR(20) NOT NULL,
+acquaintance TEXT DEFAULT '',
+wait_response TEXT DEFAULT '',
+PRIMARY KEY(username)
+);
+
 //在线用户名单
 CREATE TABLE online_user(
 username VARCHAR(20) NOT NULL,
@@ -52,8 +61,13 @@ PRIMARY KEY(record_id)
  * 8 追问
  * 16 匿名
  */
-CREATE TABLE picture_lib (
-md5 VARCHAR(32) NOT NULL
+CREATE TABLE files (
+md5 VARCHAR(64) NOT NULL,
+filename VARCHAR(255) NOT NULL,
+user VARCHAR(20) NOT NULL,
+mode TINYINT DEFAULT 0,
+time DATETIME DEFAULT now(),
+PRIMARY KEY(md5)
 );
 
 CREATE TABLE words_list1 (

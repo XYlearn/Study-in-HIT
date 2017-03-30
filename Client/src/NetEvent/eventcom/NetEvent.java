@@ -4,23 +4,40 @@ public class NetEvent
 {
 	protected NetEvent(EventType type) {this.type = type;}
 
+	@Override
+	public String toString() {
+		return type.getName()+"\n";
+	}
+
 	public static enum EventType
 	{
-		REGISTER_EVENT,
-		LAUNCH_EVENT,
-		CONTENT_MESSAGE_EVENT,
-		GOOD_USER_EVENT,
-		GOOD_QUESTION_EVENT,
-		ENTER_QUESTION_EVENT,
-		QUESTION_INFO_EVENT,
-		QUESTION_LIST_EVENT,
-		USER_INFO_EVENT,
-		CREATE_QUESTION_EVENT,
-		ABANDON_QUESTION_EVENT,
-		SEARCH_QUESTION_EVENT,
-		FILE_EVENT,
-		UPDATE_EVENT,
-		SOLVED_QUESTION_EVENT
+		REGISTER_EVENT("RegisterEvent"),
+		LAUNCH_EVENT("LaunchEvent"),
+		CONTENT_MESSAGE_EVENT("ContentMessageEvent"),
+		GOOD_USER_EVENT("GoodUserEvent"),
+		GOOD_QUESTION_EVENT("GoodQuestionEvent"),
+		ENTER_QUESTION_EVENT("EnterQuestionEvent"),
+		QUESTION_INFO_EVENT("QuestionInfoEvent"),
+		QUESTION_LIST_EVENT("QuestionListEvent"),
+		USER_INFO_EVENT("UserInfoEvent"),
+		CREATE_QUESTION_EVENT("CreateQuestionEvent"),
+		ABANDON_QUESTION_EVENT("AbandonQuestionEvent"),
+		SEARCH_QUESTION_EVENT("SearchQuestionEvent"),
+		FILE_EVENT("FileEvent"),
+		UPDATE_EVENT("UpdateEvent"),
+		SOLVED_QUESTION_EVENT("SolvedQuestionEvent"),
+		QUESTION_USER_LIST_EVENT("QuestionUserListEvent"),
+		ACQUAINTANCE_USER_LIST_EVENT("AquaintanceUserListEvent");
+
+		private String name;
+
+		EventType(String name) {
+			this.name = name;
+		}
+
+		public String getName() {
+			return this.name;
+		}
 	}
 	public EventType type;
 }

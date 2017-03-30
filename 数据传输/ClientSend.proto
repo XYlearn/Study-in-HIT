@@ -32,6 +32,8 @@ enum MSG {
    SOLVED_QUESTION_REQUEST = 18;
    //未知消息
    BAD_MESSAGE = 19;
+   //获取用户列表
+   GET_USER_LIST_REQUEST = 20;
 }
 
 //-----------枚举定义---------------//
@@ -90,7 +92,7 @@ message RegisterRequest {
 message SendContent {
     int64 questionID = 1;
     string content = 2;
-    repeated string pictures = 5;
+    repeated string pictures = 5;   
     string time = 3;
     string user = 4;
     map<int32, int64> markMap = 6;
@@ -169,6 +171,17 @@ message SolvedQuestionRequest {
     int64 questionID = 1;
 }
 
+//获取用户列表
+message GetUserListRequest {
+    string reference = 1;
+    enum USER_LIST_TYPE {
+        ACQUAINTANCE_LIST = 0;
+        USERS_IN_ROOM_LIST = 1;
+    }
+    USER_LIST_TYPE userListType = 2;
+    string param = 3;
+}
+
 //----------------顶层消息----------------------
 message Message {
     MSG msg_type = 1;
@@ -189,4 +202,5 @@ message Message {
     AbandonQuestionRequest abandonQuestionRequest = 19;
     SearchInformationRequest searchInformationRequest = 20;
     SolvedQuestionRequest solvedQuestionRequest = 21;
+    GetUserListRequest getUserListRequest = 22;
 }

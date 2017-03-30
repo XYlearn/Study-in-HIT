@@ -13,9 +13,9 @@ public class GoodQuestionEvent extends NetEvent {
 		this.success = success;
 	}
 
-	public GoodQuestionEvent(ServerResponseMessage.GoodUserResponse goodUserResponse) {
+	public GoodQuestionEvent(ServerResponseMessage.GoodQuestionResponse goodQuestionResponse) {
 		super(EventType.GOOD_QUESTION_EVENT);
-		this.success = goodUserResponse.getSuccess();
+		this.success = goodQuestionResponse.getSuccess();
 	}
 
 	public boolean isSuccess() {return this.success;}

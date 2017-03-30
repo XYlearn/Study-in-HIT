@@ -20,4 +20,5 @@ public class CreateQuestionEvent extends NetEvent {
 	public boolean isSuccess() {return this.success;}
 
 	public QuestionMessage getQuestionMessage() {return this.questionMessage;}
+
 }

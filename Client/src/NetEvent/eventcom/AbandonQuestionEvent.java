@@ -15,4 +15,5 @@ public class AbandonQuestionEvent extends NetEvent {
 	}
 
 	public boolean isSuccess() {return this.success;}
+
 }
