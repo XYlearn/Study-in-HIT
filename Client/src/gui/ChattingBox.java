@@ -301,12 +301,10 @@ public class ChattingBox extends JPanel implements Dispatcher
 				+"<img border='0' src='"+PROPICTPATH+userName+".jpg'></a>";
 	}
 	
-	private static Element insertBubbledMessage(Record msg)
+	/*private static Element insertBubbledMessage(Record msg)
 	{
 		
-	}
-	
-	private static String 
+	}*/
 
 	private class ChattingBoxMouseListener implements MouseListener
 	{
