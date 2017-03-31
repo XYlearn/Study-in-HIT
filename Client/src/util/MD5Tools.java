@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 public class MD5Tools
 {
 	private static MessageDigest md;
-	MD5Tools(){}
+	private MD5Tools(){}
 
 	public static String FileToMD5(File f)
 	{

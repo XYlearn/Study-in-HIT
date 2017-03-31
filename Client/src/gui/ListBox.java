@@ -1,5 +1,6 @@
 package gui;
 
+import com.ServerResponseMessage.QuestionListMessage;
 import java.awt.Cursor;
 import gui.ListBoxModel.SORT;
 import java.awt.BorderLayout;
@@ -20,6 +21,12 @@ public class ListBox extends JPanel
 	private final ListBoxModel mymodel;
 	private final JScrollPane myscroll;
 	private Consumer<MouseEvent> mouseListener;
+	
+	private static final String SORT_BY_ID="i";
+	private static final String SORT_BY_ASKTIME="a";
+	private static final String SORT_BY_GOOD="g";
+	private static final String SORT_BY_USERNUM="u";
+	private static final String SORT_BY_LASTTIME="l";
 	
 	public ListBox()
 	{
@@ -89,38 +96,38 @@ public class ListBox extends JPanel
 	 *
 	 * @param data  The element data to be added
 	 */
-	public void add(ListElementData data)
+	public synchronized void add(ListElementData data)
 	{
 		mymodel.addElement(data);
 	}
 	
-	public void add(String questionID, String askTime, String username, String pictname,String stem,String addition, int good, int usernum, String lastTime)
+	public synchronized void add(long questionID, String askTime, String username, String pictname,String stem,String addition, int good, int usernum, String lastTime)
 	{
 		mymodel.addElement(new ListElementData(questionID, askTime, username, pictname, stem, addition, good, usernum, lastTime));
 	}
 	
-	public void add(String questionID, String askTime, String username, String stem, String addition, int good, int usernum, String lastTime)
+	public synchronized void add(long questionID, String askTime, String username, String stem, String addition, int good, int usernum, String lastTime)
 	{
 		mymodel.addElement(new ListElementData(questionID, askTime, username, "", stem, addition, good, usernum, lastTime));
 	}
 	
-	public void sort(String sortby)
+	public synchronized void sort(String sortby)
 	{
 		switch(sortby)
 		{
-			case "id":
+			case SORT_BY_ID:
 				mymodel.sortElement(SORT.ID);
 				break;
-			case "asktime":
+			case SORT_BY_ASKTIME:
 				mymodel.sortElement(SORT.ASKTIME);
 				break;
-			case "good":
+			case SORT_BY_GOOD:
 				mymodel.sortElement(SORT.GOOD);
 				break;
-			case "usernum":
+			case SORT_BY_USERNUM:
 				mymodel.sortElement(SORT.USERNUM);
 				break;
-			case "lasttime":
+			case SORT_BY_LASTTIME:
 				mymodel.sortElement(SORT.LASTTIME);
 				break;
 			default:
@@ -133,28 +140,45 @@ public class ListBox extends JPanel
 		mouseListener=listener;
 	}
 	
-	public int locationToIndex(Point location)
+	public synchronized int locationToIndex(Point location)
 	{
 		return mylist.locationToIndex(location);
 	}
 	
-	public ListElementData getElementAt(int index)
+	public synchronized ListElementData getElementAt(int index)
 	{
 		return mymodel.getElementAt(index);
 	}
 	
-	public void addElement(ListElementData element)
+	public synchronized void addElement(ListElementData element)
 	{
 		mymodel.addElement(element);
 	}
 	
-	public void removeElementAt(int index)
+	public synchronized void removeElementAt(int index)
 	{
 		mymodel.removeElementAt(index);
 	}
 	
-	public void readList(String listData)//ListData listdata,this method is used to read data from the client
+	public synchronized void readList(Iterable<QuestionListMessage> listData)
 	{
-		//to be finished
+		synchronized(mymodel)
+		{
+			while(mymodel.getSize()!=0) mymodel.removeElementAt(mymodel.getSize()-1);
+			listData.forEach((QuestionListMessage msg)->
+			{
+				ListElementData d=new ListElementData(
+					msg.getQuestionID(),
+					"",//askTime
+					"",//userName
+					"",//pictname
+					"",//stem
+					msg.getQuestionDescription(),
+					msg.getGood(),
+					msg.getUserNum(),
+					"");//lastTime
+				mymodel.addElement(d);
+			});
+		}
 	}
 }

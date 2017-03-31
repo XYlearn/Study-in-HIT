@@ -9,7 +9,10 @@ import java.awt.BorderLayout;
 import java.awt.*;
 import gui.DrawImageFrame;
 import gui.WhiteBoard;
+import gui.form.UserInformation;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test
 {
@@ -40,7 +43,7 @@ public class test
 	public static final void startProgram()
 	{
 		//new login().setVisible(true);
-		/*client.start();
+		client.start();
 		try
 		{
 			Thread.sleep(1000);
@@ -52,7 +55,7 @@ public class test
 		{
 			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		new UserInformation("test").setVisible(true);*/
+		new UserInformation("test").setVisible(true);
 		new MainFrame().setVisible(true);
 	}
 

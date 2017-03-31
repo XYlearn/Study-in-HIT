@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import util.SegmentAPI;
+import util.SegmentTools;
 
 public class SearchBox extends JPanel
 {
@@ -24,7 +24,7 @@ public class SearchBox extends JPanel
 	}
 	
 	@SuppressWarnings("empty-statement")
-	public void search()
+	public synchronized void search()
 	{
 		if("".equals(mytext.getText())) return;
 		StringBuilder eng=new StringBuilder();
@@ -43,7 +43,7 @@ public class SearchBox extends JPanel
 				last=false;
 		int i=3;
 		String tmpSegment="";
-		while(i-->0&&"".equals(tmpSegment=SegmentAPI.segment(chn.toString())));
+		while(i-->0&&"".equals(tmpSegment=SegmentTools.segment(chn.toString())));
 		if(tmpSegment.equals(""))
 		{
 			System.out.println("分词异常");

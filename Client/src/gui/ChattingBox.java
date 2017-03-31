@@ -40,7 +40,15 @@ import util.UserInfo;
 
 public class ChattingBox extends JPanel implements Dispatcher
 {
-
+	/*
+	元素id格式：recordID-MESSAGE_TYPE-labelName-labelIndex
+	例如：3-plain-img-2
+	*/
+	public static final String MESSAGE_TYPE_PLAIN="plain";
+	public static final String MESSAGE_TYPE_AUDIO="audio";
+	public static final String MESSAGE_TYPE_FILE="file";
+	public static final String MESSAGE_TYPE_ANNOUNCEMENT="anno";
+	
 	private static final Queue<ChattingBox> listenerQueue=new LinkedList<ChattingBox>();
 	private static final Map<Long, ChattingBox> map=new HashMap<Long, ChattingBox>();
 
@@ -187,7 +195,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						+"<tr><td><img src='"+test.IMGPATH+"bubble_ld.jpg'></td>"
 						+"<td style='background-image:url("+test.IMGPATH+"bubble_do.jpg)'>&nbsp;</td>"
 						+"<td><img src='"+test.IMGPATH+"bubble_rd.jpg'></td></tr></table><br>");
-			} catch (Exception ex)
+			} catch (IOException|BadLocationException ex)
 			{
 				System.out.println(ex);
 			}
@@ -292,14 +300,20 @@ public class ChattingBox extends JPanel implements Dispatcher
 		return "<a href='user:"+userName+"'>"
 				+"<img border='0' src='"+PROPICTPATH+userName+".jpg'></a>";
 	}
+	
+	private static Element insertBubbledMessage(Record msg)
+	{
+		
+	}
+	
+	private static String 
 
 	private class ChattingBoxMouseListener implements MouseListener
 	{
 
-		ChattingBoxMouseListener()
-		{
-		}
+		ChattingBoxMouseListener(){}
 
+		@Override
 		public void mousePressed(MouseEvent e)
 		{
 			//System.out.println("pressed!!");
@@ -310,23 +324,24 @@ public class ChattingBox extends JPanel implements Dispatcher
 				if (onHyperlink)
 				{
 					String cmd=currentHyperlink.substring(0, 4);
-					if (cmd.equals("user"))
-					{
+				switch (cmd)
+				{
+					case "user":
 						//user.add(abspeak)
 						//abspeak.setEnabled(true);
 						getInfo.setEnabled(true);
 						reset.setEnabled(true);
 						userMenu.show(ChattingBox.this, e.getX(), e.getY());
-					} else if (cmd.equals("pict"))
-					{
-
-					} else if (cmd.equals("audi"))
-					{
-
-					} else if (cmd.equals("file"))
-					{
-
-					}
+						break;
+					case "pict":
+						break;
+					case "audi":
+						break;
+					case "file":
+						break;
+					default:
+						break;
+				}
 				} else
 				{
 					copy.setEnabled(true);

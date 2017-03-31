@@ -34,7 +34,7 @@ public class AudioTools
 	private enum Status{STOPPED,CAPTURING,PLAYING};
 	private static Status status=Status.STOPPED;
 	public static final String CLASSPATH=AudioTools.class.getResource("").getPath();
-	AudioTools(){}
+	private AudioTools(){}
 
 	/*public static void main(String[] args)
 	{

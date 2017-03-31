@@ -51,7 +51,7 @@ public class InputBox extends JPanel implements Dispatcher
 	private final JMenuItem paste=new JMenuItem("粘贴");
 
 	private long questionID=-1;
-	Map<Integer,Long> markMap=new HashMap<Integer,Long>();
+	private Map<Integer,Long> markMap=new HashMap<>();
 
 	public InputBox()
 	{
@@ -206,8 +206,7 @@ public class InputBox extends JPanel implements Dispatcher
 			pictures=null;
 		//replace the images with "%>"
 		str=str.replaceAll("<img.*?>", "%>")
-				//clear the HTML format
-				.replaceAll("<.*?>", "");
+			.replaceAll("<.*?>", "");
 		//figure out the problem about %
 		StringBuilder message=new StringBuilder(str);
 		for (int i=0; i+1<message.length(); i++)
@@ -216,7 +215,6 @@ public class InputBox extends JPanel implements Dispatcher
 		//remove the last "</p>"(newline)
 		if (message.charAt(message.length()-1)=='\n')
 			message.setLength(message.length()-1);
-		//System.out.println(message.toString());
 		//send the message
 		try
 		{
@@ -224,18 +222,20 @@ public class InputBox extends JPanel implements Dispatcher
 		} catch (IOException e)
 		{
 			System.out.println("网络异常");
+			return;
 		}
-		finally
+		if(markMap.containsKey(CONTENT_MARK.ANONYMOUS.getValue()))
 		{
 			markMap.clear();
+			setAnonymous();
 		}
+		else
+			markMap.clear();
 	}
 	
 	public void sendAudio(String audioFile)
 	{
-		//set the markMap
-		markMap.put(CONTENT_MARK.AUDIO.getValue(), -1l);
-		//send the message
+		markMap.put(CONTENT_MARK.AUDIO.getValue(), -1L);
 		try
 		{
 			test.client.sendContent(audioFile, null, questionID);
@@ -243,13 +243,12 @@ public class InputBox extends JPanel implements Dispatcher
 		{
 			System.out.println("网络异常");
 		}
+		markMap.clear();
 	}
 	
 	public void sendFile(String filepath)
 	{
-		//set the markMap
-		markMap.put(CONTENT_MARK.FILE.getValue(), -1l);
-		//send the message
+		markMap.put(CONTENT_MARK.FILE.getValue(), -1L);
 		try
 		{
 			test.client.sendContent(filepath, null, questionID);
@@ -257,6 +256,7 @@ public class InputBox extends JPanel implements Dispatcher
 		{
 			System.out.println("网络异常");
 		}
+		markMap.clear();
 	}
 	
 	public static void dispatch(NetEvent e)
@@ -304,8 +304,6 @@ public class InputBox extends JPanel implements Dispatcher
 				caret--;
 				while(i<html.length()&&html.charAt(i)!=';') i++;
 			}
-			else if(html.charAt(i)==' '||html.charAt(i)=='\n'||html.charAt(i)=='\r')
-				continue;
 			else
 				caret--;
 		}

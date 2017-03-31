@@ -5,18 +5,18 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.AbstractListModel;
 
-public class ListBoxModel extends AbstractListModel<ListElementData>
+class ListBoxModel extends AbstractListModel<ListElementData>
 {
 	private final List<ListElementData> dataList=new ArrayList<>();
-	public static enum SORT {ID,ASKTIME,GOOD,USERNUM,LASTTIME};
+	static enum SORT {ID,ASKTIME,GOOD,USERNUM,LASTTIME};
 	
-	public void addElement(ListElementData element)
+	void addElement(ListElementData element)
 	{
 		dataList.add(element);
 		super.fireIntervalAdded(this, dataList.size()-1, dataList.size()-1);
 	}
 	
-	public void removeElementAt(int index)
+	void removeElementAt(int index)
 	{
 		dataList.remove(index);
 		super.fireIntervalRemoved(this, index, index);
@@ -38,14 +38,14 @@ public class ListBoxModel extends AbstractListModel<ListElementData>
 	 *
 	 * @param sortby
 	 */
-	public void sortElement(SORT sortby)
+	void sortElement(SORT sortby)
 	{
 		switch(sortby)
 		{
 			case ID:
 				Collections.sort(dataList,(data1, data2)->
 					{
-						long tmp=Long.parseLong(((ListElementData)data1).questionID)-Long.parseLong(((ListElementData)data2).questionID);
+						long tmp=((ListElementData)data1).questionID-((ListElementData)data2).questionID;
 						if(tmp<0) return -1;
 						else if(tmp==0) return 0;
 						else return 1;
