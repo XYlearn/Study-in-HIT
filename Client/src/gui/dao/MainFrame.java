@@ -5,7 +5,9 @@
  */
 package gui.dao;
 
+import NetEvent.eventcom.NetEvent;
 import bin.test;
+import com.ServerResponseMessage.QuestionListMessage;
 import gui.ChattingBox;
 import gui.InputBox;
 import gui.ListBox;
@@ -15,6 +17,7 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -24,13 +27,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import util.Dispatcher;
 
 /**
  *
  * @author __USER__
  */
-public class MainFrame extends javax.swing.JFrame
+public class MainFrame extends javax.swing.JFrame implements Dispatcher
 {
 	private final ListBox listBox;
 	private final SearchBox searchBox;
@@ -63,24 +69,104 @@ public class MainFrame extends javax.swing.JFrame
 				test.IMGPATH+"texs.jpg"));
 		listBox=new ListBox();
 		listBoxPanel.add(listBox,BorderLayout.CENTER);
+		tabPane.remove(0);
+		addStartPageTab();
 		addQuestionTab(1);
 		searchBox=new SearchBox();
 		searchPanel.setLayout(new BorderLayout());
 		searchPanel.add(searchBox,BorderLayout.CENTER);
 	}
 	
+	public void dispatch(NetEvent e)
+	{
+		switch(e.type)
+		{
+			case QUESTION_LIST_EVENT:
+			{
+				
+				break;
+			}
+		}
+	}
+	
 	public void addQuestionTab(long questionID)
 	{
-		JPanel tmpPanel=new JPanel();
-		ChattingBox tmpChattingBox=new ChattingBox();
-		InputBox tmpInputBox=new InputBox();
-		tabPane.addTab(Long.toString(questionID), tmpPanel);
-		tmpPanel.setLayout(new BorderLayout());
-		tmpPanel.add(tmpChattingBox, BorderLayout.CENTER);
-		tmpPanel.add(tmpInputBox, BorderLayout.SOUTH);
-		tmpInputBox.setPreferredSize(new Dimension(tmpInputBox.getWidth(),150));
-		tmpChattingBox.bind(questionID);
-		tmpInputBox.bind(questionID);
+		synchronized(tabPane)
+		{
+			JPanel tmpPanel=new JPanel();
+			ChattingBox tmpChattingBox=new ChattingBox();
+			InputBox tmpInputBox=new InputBox();
+			
+			tabPane.addTab("", tmpPanel);
+			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
+				getNewTabPanel(Long.toString(questionID)));
+			
+			tmpPanel.setLayout(new BorderLayout());
+			tmpPanel.add(tmpChattingBox, BorderLayout.CENTER);
+			tmpPanel.add(tmpInputBox, BorderLayout.SOUTH);
+			tmpInputBox.setPreferredSize(new Dimension(tmpInputBox.getWidth(),150));
+			tmpChattingBox.bind(questionID);
+			tmpInputBox.bind(questionID);
+		}
+	}
+	
+	public void addSearchTab(Iterable<QuestionListMessage> listData)
+	{
+		synchronized(tabPane)
+		{
+			JPanel tmpPanel=new JPanel();
+			ListBox tmpListBox=new ListBox();
+			tmpListBox.readList(listData);
+			
+			tabPane.addTab("", tmpPanel);
+			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
+				getNewTabPanel("搜索结果"));
+			
+			//tmpListBox.setSize(tmpPanel.getWidth()/4*3,tmpPanel.getHeight()/4*3);
+			
+			tmpPanel.setLayout(new BorderLayout());
+			tmpPanel.add(tmpListBox,BorderLayout.CENTER);
+		}
+	}
+	
+	private void addStartPageTab()
+	{
+		synchronized(tabPane)
+		{
+			JPanel tmpPanel=new JPanel();
+			tabPane.addTab("", tmpPanel);
+			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
+				getNewTabPanel("起始页"));
+			tmpPanel.setLayout(new BorderLayout());
+		}
+	}
+	
+	/**
+	 *
+	 * @param text text on the tab
+	 * @return
+	 */
+	protected JPanel getNewTabPanel(String text)
+	{
+		JPanel tmpTabPanel=new JPanel();
+		tmpTabPanel.add(new JLabel(text));
+		tmpTabPanel.setOpaque(false);
+			
+		JButton tmpClose=new JButton("x");
+		tmpClose.setMargin(new Insets(0,0,0,0));
+		tmpClose.setPreferredSize(new Dimension(15,15));
+		tmpTabPanel.add(tmpClose);
+		
+		tmpClose.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				tabPane.remove(tabPane.indexOfTabComponent(tmpTabPanel));
+				if(tabPane.getTabCount()==0) addStartPageTab();
+			}
+		});
+		return tmpTabPanel;
 	}
 
 	/**

@@ -25,12 +25,8 @@ import bin.test;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
@@ -49,8 +45,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 	public static final String MESSAGE_TYPE_FILE="file";
 	public static final String MESSAGE_TYPE_ANNOUNCEMENT="anno";
 	
-	private static final Queue<ChattingBox> listenerQueue=new LinkedList<ChattingBox>();
-	private static final Map<Long, ChattingBox> map=new HashMap<Long, ChattingBox>();
+	private static final Map<Long, ChattingBox> map=new ConcurrentHashMap<Long, ChattingBox>();
 
 	private final ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 	private final ChattingBoxHyperlinkListener hyperlinkAction=new ChattingBoxHyperlinkListener();
@@ -115,16 +110,17 @@ public class ChattingBox extends JPanel implements Dispatcher
 		this.questionID=questionID;
 		map.put(questionID, this);
 	}
+	
+	public void unbind()
+	{
+		map.remove(this.questionID);
+	}
 
 	public void requestQuestionRecord()
 	{
 		try
 		{
-			synchronized (listenerQueue)
-			{
-				listenerQueue.add(this);
-				test.client.enterQuestion(questionID);
-			}
+			test.client.enterQuestion(questionID);
 		} catch (IOException ex)
 		{
 			System.out.println(ex);
@@ -259,20 +255,16 @@ public class ChattingBox extends JPanel implements Dispatcher
 			{
 				EnterQuestionEvent ex=(EnterQuestionEvent)e;
 				if (ex.isSuccess())
-					synchronized (listenerQueue)
+					ex.getQuestionMessage().getRecords().forEach(
+						(Record r)->
 					{
-						ex.getQuestionMessage().getRecords().forEach(
-								(Record r)->
-						{
-							if (r.getMarkMap().containsKey(CONTENT_MARK.AUDIO.getValue()))
-								listenerQueue.peek().pushAudio(r);
-							else if (r.getMarkMap().containsKey(CONTENT_MARK.FILE.getValue()))
-								listenerQueue.peek().pushFile(r);
-							else
-								listenerQueue.peek().pushMessage(r);
-						});
-						listenerQueue.poll();
-					}
+						if (r.getMarkMap().containsKey(CONTENT_MARK.AUDIO.getValue()))
+							map.get(ex.getQuestionMessage().getId()).pushAudio(r);
+						else if (r.getMarkMap().containsKey(CONTENT_MARK.FILE.getValue()))
+							map.get(ex.getQuestionMessage().getId()).pushFile(r);
+						else
+							map.get(ex.getQuestionMessage().getId()).pushMessage(r);
+					});
 				break;
 			}
 			case SOLVED_QUESTION_EVENT:

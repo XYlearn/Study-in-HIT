@@ -12,7 +12,6 @@ import javax.swing.JMenuItem;
 import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
 import java.io.File;
-import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import bin.test;
@@ -25,6 +24,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -37,8 +37,7 @@ import util.MyExpression;
 
 public class InputBox extends JPanel implements Dispatcher
 {
-	private static Queue<InputBox> listenerQueue=new LinkedList<InputBox>();
-	private static Map<Long,InputBox> map=new HashMap<Long,InputBox>();
+	private static final Map<Long,InputBox> map=new ConcurrentHashMap<Long,InputBox>();
 
 	public final JTextPane myPane=new JTextPane();
 	private final HTMLDocument doc;
@@ -92,6 +91,11 @@ public class InputBox extends JPanel implements Dispatcher
 	{
 		this.questionID=questionID;
 		map.put(questionID,this);
+	}
+	
+	public void unbind()
+	{
+		map.remove(this.questionID);
 	}
 
 	public long getQuestionID()
@@ -230,7 +234,7 @@ public class InputBox extends JPanel implements Dispatcher
 			setAnonymous();
 		}
 		else
-			markMap.clear();
+			clearMarkMap();
 	}
 	
 	public void sendAudio(String audioFile)
@@ -243,7 +247,7 @@ public class InputBox extends JPanel implements Dispatcher
 		{
 			System.out.println("网络异常");
 		}
-		markMap.clear();
+		clearMarkMap();
 	}
 	
 	public void sendFile(String filepath)
@@ -256,7 +260,7 @@ public class InputBox extends JPanel implements Dispatcher
 		{
 			System.out.println("网络异常");
 		}
-		markMap.clear();
+		clearMarkMap();
 	}
 	
 	public static void dispatch(NetEvent e)
@@ -267,19 +271,23 @@ public class InputBox extends JPanel implements Dispatcher
 			{
 				ContentMessageEvent ex=(ContentMessageEvent)e;
 				//if(ex.getUser()==getUser())
-				if(listenerQueue.peek()==map.get(ex.getQuestionID()))
+				if(ex.isSuccess())
 				{
-					System.out.println("InputBox收到成功发送消息反馈，消息已发送。");
+					System.out.println("已发送：\n"+ex.getRecord().getContent());
 					map.get(ex.getQuestionID()).myPane.setText("");
 				}
-				else System.out.println("InputBox收到成功发送消息反馈，但事件队列顺序有误！");
-					break;
+				else
+					System.out.println("发送消息失败。");
+				break;
 			}
 			case ENTER_QUESTION_EVENT:
 			{
 				EnterQuestionEvent ex=(EnterQuestionEvent)e;
-				map.get(ex.getQuestionMessage().getId()).myPane.setEditable(true);
-					break;
+				if(ex.isSuccess())
+					map.get(ex.getQuestionMessage().getId()).myPane.setEditable(true);
+				else
+					System.out.println("进入房间失败。");
+				break;
 			}
 			default:
 				break;
@@ -308,5 +316,11 @@ public class InputBox extends JPanel implements Dispatcher
 				caret--;
 		}
 		return i;
+	}
+	
+	private void clearMarkMap()
+	{
+		this.cancelDoubt();
+		this.cancelFurtherAsk();
 	}
 }

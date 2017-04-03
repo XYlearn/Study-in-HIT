@@ -2,20 +2,63 @@ package gui;
 
 import bin.test;
 import java.awt.BorderLayout;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import util.SegmentTools;
 
 public class SearchBox extends JPanel
 {
-	private JTextArea mytext=new JTextArea();
+	private JTextField mytext=new JTextField();
+	private boolean needSelectAll;
+	
 	public SearchBox()
 	{
 		setLayout(new BorderLayout());
 		add(mytext,BorderLayout.CENTER);
+		
+		needSelectAll=false;
+		
+		mytext.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode()==10)
+					search();
+			}
+		});
+		
+		mytext.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if(needSelectAll)
+				{
+					needSelectAll=false;
+					mytext.setSelectionStart(0);
+					mytext.setSelectionEnd(mytext.getText().length());
+				}
+			}
+		});
+		
+		mytext.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				needSelectAll=true;
+			}
+		});
 	}
 	
 	public void setColumns(int column)
@@ -27,6 +70,7 @@ public class SearchBox extends JPanel
 	public synchronized void search()
 	{
 		if("".equals(mytext.getText())) return;
+		needSelectAll=true;
 		StringBuilder eng=new StringBuilder();
 		StringBuilder chn=new StringBuilder(mytext.getText().replaceAll(" ", ""));
 		boolean last=true;
