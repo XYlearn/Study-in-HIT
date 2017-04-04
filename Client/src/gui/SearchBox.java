@@ -71,8 +71,9 @@ public class SearchBox extends JPanel
 	{
 		if("".equals(mytext.getText())) return;
 		needSelectAll=true;
+		
 		StringBuilder eng=new StringBuilder();
-		StringBuilder chn=new StringBuilder(mytext.getText().replaceAll(" ", ""));
+		StringBuilder chn=new StringBuilder(escapeRegExpWords(mytext.getText().replaceAll(" ", "")));
 		boolean last=true;
 		for(int i=0;i<chn.length();i++)
 			if(isASCII(chn.charAt(i)))
@@ -87,11 +88,14 @@ public class SearchBox extends JPanel
 				last=false;
 		int i=3;
 		String tmpSegment="";
-		while(i-->0&&"".equals(tmpSegment=SegmentTools.segment(chn.toString())));
-		if(tmpSegment.equals(""))
+		if(!"".equals(chn.toString()))
 		{
-			System.out.println("分词异常");
-			return;
+			while(i-->0&&"".equals(tmpSegment=SegmentTools.segment(chn.toString())));
+			if(tmpSegment.equals(""))
+			{
+				System.out.println("分词异常，连接服务器失败。");
+				return;
+			}
 		}
 		ArrayList<String> keywords=new ArrayList<>(
 				Arrays.asList(tmpSegment
@@ -117,5 +121,15 @@ public class SearchBox extends JPanel
 	private static boolean isASCII(char c)
 	{
 		return c>=32&&c<127;
+	}
+	
+	private static String escapeRegExpWords(String keyword)
+	{
+		String[] fbsArr=
+		{"\\", "$", "(", ")", "*", "+", ".", "[", "]", "?", "^", "{", "}", "|"};
+		for (String key:fbsArr)
+			if (keyword.contains(key))
+				keyword=keyword.replace(key, "\\"+key);
+		return keyword;
 	}
 }
