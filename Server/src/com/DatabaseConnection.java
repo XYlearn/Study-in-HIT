@@ -1,5 +1,7 @@
 package com;
 
+import com.config.Config;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,10 +13,10 @@ import java.util.Properties;
  */
 public class DatabaseConnection {
 	//mariadb
-	private String driver = "org.mariadb.jdbc.Driver";
-	private String url = "jdbc:mariadb://localhost:3306/sih";
-	private String user = "Admin";
-	private String password = "SiH@6666";
+	private String driver = Config.DataBaseConfig.getDriver();
+	private String url = Config.DataBaseConfig.getUrl();
+	private String user = Config.DataBaseConfig.getUser();
+	private String password = Config.DataBaseConfig.getPassword();
 	static private boolean closed = false;
 
 	Connection connection = null;

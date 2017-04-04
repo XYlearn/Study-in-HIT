@@ -1,5 +1,6 @@
 package com;
 
+import com.config.Config;
 import com.dataPack.NetPackageCodeFacotry;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
@@ -13,7 +14,7 @@ import java.net.InetSocketAddress;
  * Created by xy16 on 17-2-24.
  */
 public class Server {
-	private static int port = 8972;
+	private static int port = Config.ServerConfig.getPort();
 	public static DatabaseConnection databaseConnection = new DatabaseConnection();
 
 	public static void main(String[] args) throws IOException {
