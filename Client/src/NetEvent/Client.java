@@ -248,6 +248,7 @@ public class Client extends Thread{
 		ClientSendMessage.Message sendMessage =
 				  ClientSendMessage.Message.newBuilder()
 							 .setMsgType(ClientSendMessage.MSG.GOOD_USER_REQUEST)
+							 .setUsername(username)
 							 .setGoodUserRequest(
 										ClientSendMessage.GoodUserRequest.newBuilder()
 												  .setUser(user)
@@ -256,9 +257,13 @@ public class Client extends Thread{
 	}
 
 	public void goodQuestion(long questionID) throws IOException {
-		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder().setMsgType(ClientSendMessage.MSG.GOOD_QUESTION_REQUEST)
-				  .setGoodQuestionRequest(ClientSendMessage.GoodQuestionRequest.newBuilder()
-							 .setQuestionID(Long.valueOf(questionID)).build()).build();
+		ClientSendMessage.Message sendMessage =
+				  ClientSendMessage.Message.newBuilder()
+							 .setMsgType(ClientSendMessage.MSG.GOOD_QUESTION_REQUEST)
+							 .setUsername(username)
+							 .setGoodQuestionRequest(
+							 		  ClientSendMessage.GoodQuestionRequest.newBuilder()
+							 			.setQuestionID(Long.valueOf(questionID))).build();
 		sendIt(sendMessage);
 	}
 
@@ -309,33 +314,6 @@ public class Client extends Thread{
 										.setUsername(user)
 				  ).build();
 		sendIt(sendMessage);
-	}
-
-	private void responseUserInfo(ServerResponseMessage.Message recvMessage) {
-		ServerResponseMessage.UserInformationResponse userInformationResponse =
-				  recvMessage.getUserInformationResponse();
-		if(!userInformationResponse.getExist()) {
-			System.out.println("请求的用户不存在");
-		} else {
-			ServerResponseMessage.UserMessage userMessage = userInformationResponse.getUserMessage();
-			String user = userMessage.getUsername();
-			int good = userMessage.getGood();
-			int questionNum = userMessage.getQuestionNum();
-			int solvedQuestionNum = userMessage.getSolvedQuestionNum();
-			int bonus = userMessage.getBonus();
-			String signature = userMessage.getSignature();
-			String mail_address = userMessage.getMailAddress();
-			String pic_url = userMessage.getPicUrl();
-
-			System.out.println("用户名：" + user);
-			System.out.println("签名：\t" + signature);
-			System.out.println("点数：\t" + bonus);
-			System.out.println("赞：\t" + bonus);
-			System.out.println("问题数：\t" + questionNum);
-			System.out.println("已解决问题数：\t" + solvedQuestionNum);
-			System.out.println("邮箱：\t" + mail_address);
-		}
-		System.out.println();
 	}
 
 	public void createQuestion(String stem, String addition, List<String> keywords) throws IOException {
@@ -536,6 +514,7 @@ public class Client extends Thread{
 	public void getAcquaintanceList() throws IOException {
 		ClientSendMessage.Message request = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
+				  .setUsername(username)
 				  .setGetUserListRequest(
 							 ClientSendMessage.GetUserListRequest.newBuilder()
 							 .setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST)
@@ -545,13 +524,14 @@ public class Client extends Thread{
 		sendIt(request);
 	}
 
-	public void getQuestionUserList(Long questionID) throws IOException {
+	public void getQuestionUserList(long questionID) throws IOException {
 		ClientSendMessage.Message request = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
+				  .setUsername(username)
 				  .setGetUserListRequest(
 							 ClientSendMessage.GetUserListRequest.newBuilder()
 							 .setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.USERS_IN_ROOM_LIST)
-							 .setParam(questionID.toString())
+							 .setParam(String.valueOf(questionID))
 				  ).build();
 
 		sendIt(request);

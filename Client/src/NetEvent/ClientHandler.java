@@ -1,6 +1,7 @@
 package NetEvent;
 
 import NetEvent.eventcom.*;
+import com.ClientSendMessage;
 import com.ServerResponseMessage;
 import com.google.protobuf.ProtocolStringList;
 import com.qcloud.cos.request.GetFileLocalRequest;
@@ -37,6 +38,7 @@ public class ClientHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		ServerResponseMessage.Message recvMessage = (ServerResponseMessage.Message) message;
+		System.out.println("Received Message:\n"+recvMessage.toString());
 		//处理数据
 		if (recvMessage != null) {
 			switch (recvMessage.getMsgType()) {
@@ -98,7 +100,7 @@ public class ClientHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageSent(IoSession session, Object message) {
-		System.out.println("Send message");
+		System.out.println("Send Message:\n"+((ClientSendMessage.Message)message).toString());
 	}
 
 	@Override
