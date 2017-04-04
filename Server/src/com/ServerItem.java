@@ -3,6 +3,7 @@ package com;
 import com.google.protobuf.ProtocolStringList;
 import org.apache.mina.core.session.IoSession;
 import util.AcquaintanceParser;
+import util.SQLStringParser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -350,22 +351,6 @@ public class ServerItem {
 		} else {
 			//比较密码
 			if (key.equals(realkey)) {
-				sql = "SELECT username FROM online_user WHERE username='?'".replace("?", username);
-
-				rs = stmt.executeQuery(sql);
-
-				//判断用户是否处于登录状态
-				if (rs.next()) {
-					inOnlineUser = true;
-					ServerHandler.session_user_map.replace(session, username);
-				}
-				rs.close();
-
-				//在已登录用户表中记录
-				if(!inOnlineUser) {
-					sql = "INSERT INTO online_user(username) VALUES('?');".replace("?", username);
-					stmt.execute(sql);
-				}
 
 				//更新最后登录时间
 				sql = "UPDATE user SET last_launch_time=now() WHERE username='?';".replace("?", username);
@@ -379,6 +364,7 @@ public class ServerItem {
 						  .setInformation(LAUNCH_INFORMATION.LAUNCH_SUCCESS.getValue())
 						  .setUserMessage(userMessage)
 						  .build();
+				//添加登录用户
 				ServerHandler.session_user_map.put(session, username);
 				return responseLaunch;
 			} else {
@@ -713,12 +699,12 @@ public class ServerItem {
 		     throws SQLException {
 		ServerResponseMessage.GoodQuestionResponse goodQuestionResponse = null;
 		Long questionID = goodQuestionRequest.getQuestionID();
-		Integer good=0;
+		Integer good;
 
 		sql = "Select praise_num FROM question WHERE id=?;".replace("?", questionID.toString());
 		ResultSet rs = stmt.executeQuery(sql);
 		if(rs.next()) {
-			good = rs.getInt(1)+1;
+			good = rs.getInt("praise_num")+1;
 			sql = "UPDATE question SET praise_num=?".replace("?", good.toString())
 					  +" WHERE id=?;".replace("?", questionID.toString());
 			stmt.execute(sql);
@@ -1056,52 +1042,52 @@ public class ServerItem {
 		String keyword = ite.next();
 		ResultSet rs;
 
-		if(!keyword.equals("")) {
-			sql = "SELECT * FROM word_list1 WHERE keyword LIKE \""+keyword+"\";";
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				String dbkeyword = rs.getString("keyword");
-
+		try {
+			Set<Long> set1 = new HashSet<>();
+			if (ite.hasNext()) {
+				keyword = SQLStringParser.parse(ite.next());
+				sql = "SELECT * FROM words_list2 WHERE word='" + keyword + "';";
+				rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					set1.add(new Long(rs.getLong("question")));
+				}
+				rs.close();
 			}
-			rs.close();
-		}
-
-		Set<Long> set1 = new HashSet<>();
-		if(ite.hasNext()) {
-			sql = "SELECT * FROM word_list2 WHERE keyword='"+keyword+"';";
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				set1.add( rs.getLong("question") );
-			}
-			rs.close();
-		}
-		while (ite.hasNext()) {
-			sql = "SELECT * FROM word_list2 WHERE keyword='"+keyword+"';";
-			rs = stmt.executeQuery(sql);
 			Set<Long> set2 = new HashSet<>();
-			while (rs.next()) {
-				set2.add( rs.getLong("question") );
+			while (ite.hasNext()) {
+				try {
+					keyword = SQLStringParser.parse(ite.next());
+					sql = "SELECT * FROM words_list2 WHERE word='" + keyword + "';";
+					rs = stmt.executeQuery(sql);
+					while (rs.next()) {
+						set2.add(new Long(rs.getLong("question")));
+					}
+					rs.close();
+				} catch (SQLException e) {
+					continue;
+				}
 			}
-			set1.retainAll(set2);
-			rs.close();
-		}
+			set1.addAll(set2);
 
-		//获得问题消息
-		for(Long question : set1) {
-			int userNum = ServerHandler.question_sessions_map.size();
-			sql = "SELECT * FROM question WHERE id="+question+";";
-			rs = stmt.executeQuery(sql);
+			//获得问题消息
+			for (Long question : set1) {
+				int userNum = ServerHandler.question_sessions_map.size();
+				sql = "SELECT * FROM question WHERE id=" + question + ";";
+				rs = stmt.executeQuery(sql);
 
-			builder.addQuestionListMessage(
-					  ServerResponseMessage.QuestionListMessage.newBuilder()
-					  .setQuestionID(question)
-					  .setGood(rs.getInt("praise_num"))
-					  .setOwner(rs.getString("owner"))
-					  .setQuestionDescription(rs.getString("stem"))
-					  .setTime(rs.getString("create_time"))
-					  .setUserNum(userNum)
-			);
-			rs.close();
+				builder.addQuestionListMessage(
+						  ServerResponseMessage.QuestionListMessage.newBuilder()
+									 .setQuestionID(question)
+									 .setGood(rs.getInt("praise_num"))
+									 .setOwner(rs.getString("owner"))
+									 .setQuestionDescription(rs.getString("stem"))
+									 .setTime(rs.getString("create_time"))
+									 .setUserNum(userNum)
+				);
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		response = builder.build();
 		return response;
@@ -1193,8 +1179,10 @@ public class ServerItem {
 				}
 				break;
 			default:
+				return null;
 		}
 
 		return response;
 	}
+
 }
