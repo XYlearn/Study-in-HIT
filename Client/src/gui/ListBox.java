@@ -1,6 +1,9 @@
 package gui;
 
-import com.ServerResponseMessage.QuestionListMessage;
+import NetEvent.eventcom.NetEvent;
+import NetEvent.eventcom.QuestionListEvent;
+import NetEvent.eventcom.SearchQuestionEvent;
+import NetEvent.messagecom.QuestionListMessage;
 import java.awt.Cursor;
 import gui.ListBoxModel.SORT;
 import java.awt.BorderLayout;
@@ -9,18 +12,24 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import java.util.function.Consumer;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import util.Dispatcher;
 
-public class ListBox extends JPanel
+public class ListBox extends JPanel implements Dispatcher
 {
 	private final JList<ListElementData> mylist;
 	private final ListBoxModel mymodel;
 	private final JScrollPane myscroll;
 	private Consumer<MouseEvent> mouseListener;
+	
+	private static final Map<Integer,ListBox> map=new ConcurrentHashMap<Integer,ListBox>();
+	private int searchID=0;
 	
 	private static final String SORT_BY_ID="i";
 	private static final String SORT_BY_ASKTIME="a";
@@ -90,6 +99,40 @@ public class ListBox extends JPanel
 	{
 		super.setSize(width, height);
 		myscroll.setPreferredSize(new Dimension(width,height));
+	}
+	
+	public void bind(int searchID)
+	{
+		this.searchID=searchID;
+		map.put(searchID, this);
+	}
+	
+	public void unbind()
+	{
+		map.remove(searchID);
+	}
+	
+	public void dispatch(NetEvent e)
+	{
+		switch(e.type)
+		{
+			case QUESTION_LIST_EVENT:
+			{
+				QuestionListEvent ex=(QuestionListEvent)e;
+				if(map.containsKey(0))
+					map.get(0).readList(ex.getQuestionListMessage());
+				break;
+			}
+			case SEARCH_QUESTION_EVENT:
+			{
+				SearchQuestionEvent ex=(SearchQuestionEvent)e;
+				if(map.containsKey(ex.getSearchID()))
+					map.get(ex.getSearchID()).readList(ex.getQuestionList());
+				break;
+			}
+			default:
+				break;
+		}
 	}
 	
 	/**

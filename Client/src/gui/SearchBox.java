@@ -19,6 +19,7 @@ public class SearchBox extends JPanel
 {
 	private JTextField mytext=new JTextField();
 	private boolean needSelectAll;
+	private static int searchID=1;
 	
 	public SearchBox()
 	{
@@ -109,7 +110,7 @@ public class SearchBox extends JPanel
 		keywords.add(0, eng.toString());
 		try
 		{
-			test.client.searchInformation(keywords);
+			test.client.searchInformation(keywords,searchID++);
 		}
 		catch(IOException e)
 		{
