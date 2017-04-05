@@ -14,8 +14,10 @@ import gui.ListBox;
 import gui.SearchBox;
 import gui.form.UserInformation;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
@@ -28,8 +30,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import util.AudioTools;
 import util.Dispatcher;
 
 /**
@@ -40,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 {
 	private final ListBox listBox;
 	private final SearchBox searchBox;
+	private JFileChooser fileChooser;
 	
 	public MainFrame()
 	{
@@ -75,6 +81,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		searchBox=new SearchBox();
 		searchPanel.setLayout(new BorderLayout());
 		searchPanel.add(searchBox,BorderLayout.CENTER);
+		fileChooser=new JFileChooser();
 	}
 	
 	public void dispatch(NetEvent e)
@@ -94,16 +101,95 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		synchronized(tabPane)
 		{
 			JPanel tmpPanel=new JPanel();
+			JPanel buttonPanel=new JPanel();
 			ChattingBox tmpChattingBox=new ChattingBox();
 			InputBox tmpInputBox=new InputBox();
+			
+			JButton insertPictureButton=new JButton("图片");
+			insertPictureButton.addMouseListener(
+				new MouseAdapter()
+				{
+					@Override
+					public void mouseClicked(MouseEvent e)
+					{
+						fileChooser.setDialogTitle("选择要发送的图片");
+						fileChooser.setFileFilter(
+							new FileNameExtensionFilter(
+								"图片文件(*.jpg,*.bmp,*.gif,*.png)",
+								"jpg","bmp","gif","png"));
+						fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+						if(fileChooser.showDialog(null,"打开")==JFileChooser.APPROVE_OPTION)
+							tmpInputBox.insertImage(fileChooser.getSelectedFile());
+					}
+				});
+			
+			JButton recordAudioButton=new JButton("语音");
+			final Color tmpRecordingColor=recordAudioButton.getBackground();
+			recordAudioButton.addMouseListener(
+				new MouseAdapter()
+				{
+					@Override
+					public synchronized void mouseClicked(MouseEvent e)
+					{
+						if(!AudioTools.isCapturing())
+						{
+							System.out.println(recordAudioButton.getBackground());
+							if(AudioTools.startCapture())
+							{
+								recordAudioButton.setText("停止");
+								recordAudioButton.setBackground(Color.green);
+							}
+						}
+						else
+						{
+							String filename=AudioTools.stopAndSaveCapture();
+							recordAudioButton.setText("语音");
+							recordAudioButton.setBackground(tmpRecordingColor);
+							if(filename!=null)
+								tmpInputBox.sendAudio(filename);
+						}
+					}
+				});
+			
+			JButton expressionConvertButton=new JButton("公式(Tab)");
+			expressionConvertButton.addMouseListener(
+				new MouseAdapter()
+				{
+					@Override
+					public void mouseClicked(MouseEvent e)
+					{
+						tmpInputBox.readAndInsertExpression();
+					}
+				});
+			
+			JButton sendButton=new JButton("发送(Enter)");
+			sendButton.addMouseListener(
+				new MouseAdapter()
+				{
+					@Override
+					public void mouseClicked(MouseEvent e)
+					{
+						tmpInputBox.sendMessage();
+					}
+				});
+			
+			buttonPanel.setLayout(new GridLayout(1,6,5,5));
+			buttonPanel.add(recordAudioButton);
+			buttonPanel.add(insertPictureButton);
+			buttonPanel.add(expressionConvertButton);
+			buttonPanel.add(new JPanel());
+			buttonPanel.add(new JPanel());
+			buttonPanel.add(sendButton);
 			
 			tabPane.addTab("", tmpPanel);
 			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
 				getNewTabPanel(Long.toString(questionID)));
 			
 			tmpPanel.setLayout(new BorderLayout());
-			tmpPanel.add(tmpChattingBox, BorderLayout.CENTER);
+			tmpPanel.add(buttonPanel,BorderLayout.CENTER);
+			tmpPanel.add(tmpChattingBox, BorderLayout.NORTH);
 			tmpPanel.add(tmpInputBox, BorderLayout.SOUTH);
+			buttonPanel.setPreferredSize(new Dimension(buttonPanel.getWidth(),25));
 			tmpInputBox.setPreferredSize(new Dimension(tmpInputBox.getWidth(),150));
 			tmpChattingBox.bind(questionID);
 			tmpInputBox.bind(questionID);
@@ -198,6 +284,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         listBoxPanel = new javax.swing.JPanel();
         headLabel = new javax.swing.JLabel();
         searchPanel = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("学在工大");
@@ -254,6 +341,8 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
             .add(0, 0, Short.MAX_VALUE)
         );
 
+        jButton2.setText("+");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,7 +354,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                     .add(layout.createSequentialGroup()
                         .add(headLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)))
+                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(tabPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
@@ -313,7 +405,9 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(headLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(listBoxPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -359,6 +453,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;

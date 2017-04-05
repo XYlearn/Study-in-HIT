@@ -22,24 +22,29 @@ public class test
 	public static final String PICTPATH=MAINPATH+"pictures/";
 	public static final String FILEPATH=MAINPATH+"files/";
 	public static final String IMGPATH=MAINPATH+"img_src/";
+	public static final String AUDIOPATH=MAINPATH+"audio/";
 	public static Client client=new Client();
-        public static final void Board(){
-           Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
-           WhiteBoard frame = new WhiteBoard();
-           frame.setTitle("White Board");
-           frame.setSize(screenSize.width/2,screenSize.height/2);
-           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           frame.setVisible(true);
-           frame.setLocation(screenSize.width/4,screenSize.height/4);
-        }
-	public static final void Image() throws IOException{
-        DrawImageFrame frame = new DrawImageFrame();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setTitle("图片绘画");
-        frame.setSize((int)screenSize.getWidth()/2,(int)screenSize.getHeight()*3/4);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
+
+	public static final void Board()
+	{
+		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+		WhiteBoard frame=new WhiteBoard();
+		frame.setTitle("White Board");
+		frame.setSize(screenSize.width/2, screenSize.height/2);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setLocation(screenSize.width/4, screenSize.height/4);
+	}
+
+	public static final void Image() throws IOException
+	{
+		DrawImageFrame frame=new DrawImageFrame();
+		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setTitle("图片绘画");
+		frame.setSize((int)screenSize.getWidth()/2, (int)screenSize.getHeight()*3/4);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 	public static final void startProgram()
 	{
 		//new login().setVisible(true);

@@ -74,13 +74,8 @@ public class InputBox extends JPanel implements Dispatcher
 					@Override
 					public void keyPressed(KeyEvent e)
 					{
-						//System.out.println("按下了"+e.getKeyCode());
 						if(e.getKeyCode()==9)
-						{
-							MyExpression exp=new MyExpression();
-							exp.read(getExpressionAtCaret());
-							insertImage(test.PICTPATH+exp.toFile());
-						}
+							readAndInsertExpression();
 					}
 				});
 		setLayout(new BorderLayout());
@@ -132,23 +127,31 @@ public class InputBox extends JPanel implements Dispatcher
 	{
 		markMap.remove(CONTENT_MARK.FURTHERASK.getValue());
 	}
+	
+	public void readAndInsertExpression()
+	{
+		MyExpression exp=new MyExpression();
+		exp.read(getExpressionAtCaret());
+		insertImage(test.PICTPATH+exp.toFile());
+	}
 
 	public void insertImage(File f)
 	{
-		insertImage(f.getPath());
-	}
-
-	public void insertImage(String filepath)
-	{
+		if(!f.exists()) return;
 		try
 		{
 			kit.insertHTML(doc, myPane.getCaretPosition(),
-					"<a href='pict:"+filepath+"'><img border='0' src='file:"+filepath+"'></a>",
+					"<a href='pict:"+f.getPath()+"'><img border='0' src='file:"+f.getPath()+"'></a>",
 					0, 0, HTML.Tag.A);
 		} catch (BadLocationException|IOException ex)
 		{
 			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+
+	public void insertImage(String filepath)
+	{
+		insertImage(new File(filepath));
 	}
 	
 	public String getExpressionAtCaret()
@@ -225,7 +228,7 @@ public class InputBox extends JPanel implements Dispatcher
 			test.client.sendContent(message.toString(), pictures, questionID,markMap);
 		} catch (IOException e)
 		{
-			System.out.println("网络异常");
+			System.out.println("消息发送失败");
 			return;
 		}
 		if(markMap.containsKey(CONTENT_MARK.ANONYMOUS.getValue()))
@@ -242,10 +245,10 @@ public class InputBox extends JPanel implements Dispatcher
 		markMap.put(CONTENT_MARK.AUDIO.getValue(), -1L);
 		try
 		{
-			test.client.sendContent(audioFile, null, questionID);
+			test.client.sendContent(audioFile, null, questionID,markMap);
 		} catch (IOException e)
 		{
-			System.out.println("网络异常");
+			System.out.println("消息发送失败");
 		}
 		clearMarkMap();
 	}
@@ -255,10 +258,10 @@ public class InputBox extends JPanel implements Dispatcher
 		markMap.put(CONTENT_MARK.FILE.getValue(), -1L);
 		try
 		{
-			test.client.sendContent(filepath, null, questionID);
+			test.client.sendContent(filepath, null, questionID,markMap);
 		} catch (IOException e)
 		{
-			System.out.println("网络异常");
+			System.out.println("消息发送失败");
 		}
 		clearMarkMap();
 	}
@@ -320,7 +323,9 @@ public class InputBox extends JPanel implements Dispatcher
 	
 	private void clearMarkMap()
 	{
-		this.cancelDoubt();
-		this.cancelFurtherAsk();
+		markMap.remove(CONTENT_MARK.DOUBT.getValue());
+		markMap.remove(CONTENT_MARK.FURTHERASK.getValue());
+		markMap.remove(CONTENT_MARK.AUDIO.getValue());
+		markMap.remove(CONTENT_MARK.FILE.getValue());
 	}
 }
