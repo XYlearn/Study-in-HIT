@@ -6,8 +6,8 @@
 package gui.dao;
 
 import NetEvent.eventcom.NetEvent;
+import NetEvent.messagecom.QuestionListMessage;
 import bin.test;
-import com.ServerResponseMessage.QuestionListMessage;
 import gui.ChattingBox;
 import gui.InputBox;
 import gui.ListBox;
