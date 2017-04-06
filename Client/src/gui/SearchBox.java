@@ -72,9 +72,26 @@ public class SearchBox extends JPanel
 	{
 		if("".equals(mytext.getText())) return;
 		needSelectAll=true;
-		
+		ArrayList<String> keywords=getKeyWords(mytext.getText());
+		if(keywords==null)
+		{
+			System.out.println("分词异常");
+			return;
+		}
+		/*try
+		{
+			test.client.searchInformation(keywords,searchID++);
+		}
+		catch(IOException e)
+		{
+			System.out.println("搜索异常");
+		}*/
+	}
+	
+	public static ArrayList<String> getKeyWords(String content)
+	{
 		StringBuilder eng=new StringBuilder();
-		StringBuilder chn=new StringBuilder(escapeRegExpWords(mytext.getText().replaceAll(" ", "")));
+		StringBuilder chn=new StringBuilder(escapeRegExpWords(content.replaceAll(" ", "")));
 		boolean last=true;
 		for(int i=0;i<chn.length();i++)
 			if(isASCII(chn.charAt(i)))
@@ -95,7 +112,7 @@ public class SearchBox extends JPanel
 			if(tmpSegment.equals(""))
 			{
 				System.out.println("分词异常，连接服务器失败。");
-				return;
+				return null;
 			}
 		}
 		ArrayList<String> keywords=new ArrayList<>(
@@ -108,15 +125,7 @@ public class SearchBox extends JPanel
 						.replaceAll(" …", "")
 						.replaceAll("\n", "").split(" ")));
 		keywords.add(0, eng.toString());
-		try
-		{
-			test.client.searchInformation(keywords,searchID++);
-		}
-		catch(IOException e)
-		{
-			System.out.println("搜索异常");
-		}
-		System.out.println(keywords.toString());
+		return keywords;
 	}
 	
 	private static boolean isASCII(char c)

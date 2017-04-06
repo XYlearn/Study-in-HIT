@@ -4,19 +4,22 @@ import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.QuestionListEvent;
 import NetEvent.eventcom.SearchQuestionEvent;
 import NetEvent.messagecom.QuestionListMessage;
+import bin.test;
 import java.awt.Cursor;
 import gui.ListBoxModel.SORT;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import util.Dispatcher;
@@ -51,10 +54,18 @@ public class ListBox extends JPanel implements Dispatcher
 		//设置鼠标监听
 		mouseListener=(MouseEvent e)->
 		{
-			//打开对应房间 to be finished
 			int index=mylist.locationToIndex(e.getPoint());
 			if(index<0) return;
-			mymodel.getElementAt(index);
+			test.mainFrame.addQuestionTab(
+				mymodel.getElementAt(index).questionID);
+			try
+			{
+				test.client.enterQuestion(mymodel.getElementAt(index).questionID);
+			} catch (IOException ex)
+			{
+				Logger.getLogger(ListBox.class.getName()).log(Level.SEVERE, null, ex);
+				System.out.println("发送进入房间请求失败");
+			}
 		};
 		
 		//添加高亮效果
@@ -92,13 +103,6 @@ public class ListBox extends JPanel implements Dispatcher
 		myscroll=new JScrollPane(mylist);
 		setLayout(new BorderLayout());
 		add(myscroll,BorderLayout.CENTER);
-	}
-	
-	@Override
-	public void setSize(int width,int height)
-	{
-		super.setSize(width, height);
-		myscroll.setPreferredSize(new Dimension(width,height));
 	}
 	
 	public void bind(int searchID)

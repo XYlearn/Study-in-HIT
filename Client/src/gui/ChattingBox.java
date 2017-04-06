@@ -98,12 +98,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 		setLayout(new BorderLayout());
 		add(myScroll, BorderLayout.CENTER);
 	}
-	
-	@Override
-	public void setSize(int width,int height)
-	{
-		myScroll.setPreferredSize(new Dimension(width,height));
-	}
 
 	public void bind(long questionID)
 	{
@@ -412,7 +406,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 							doc.setInnerHTML(e.getSourceElement(),
 									"<img src='"+PROPICTPATH+"button_stop.gif'>");
 							AudioTools.playAudio(
-									AudioTools.CLASSPATH+currentHyperlink.substring(5),
+									test.AUDIOPATH+currentHyperlink.substring(5),
 									(String currentPlayingAudio)->
 							{
 								try

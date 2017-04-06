@@ -23,7 +23,8 @@ public class test
 	public static final String FILEPATH=MAINPATH+"files/";
 	public static final String IMGPATH=MAINPATH+"img_src/";
 	public static final String AUDIOPATH=MAINPATH+"audio/";
-	public static Client client=new Client();
+	public static final Client client=new Client();
+	public static MainFrame mainFrame;
 
 	public static final void Board()
 	{
@@ -60,8 +61,9 @@ public class test
 		{
 			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		new UserInformation("test").setVisible(true);
-		new MainFrame().setVisible(true);
+		//new UserInformation("test").setVisible(true);
+		mainFrame=new MainFrame();
+		mainFrame.setVisible(true);
 	}
 
 	public static final void testmain()

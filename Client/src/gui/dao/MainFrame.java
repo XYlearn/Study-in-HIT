@@ -5,8 +5,8 @@
  */
 package gui.dao;
 
+import NetEvent.eventcom.CreateQuestionEvent;
 import NetEvent.eventcom.NetEvent;
-import NetEvent.messagecom.QuestionListMessage;
 import bin.test;
 import gui.ChattingBox;
 import gui.InputBox;
@@ -31,11 +31,16 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import util.AudioTools;
 import util.Dispatcher;
+import util.SegmentTools;
 
 /**
  *
@@ -45,7 +50,8 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 {
 	private final ListBox listBox;
 	private final SearchBox searchBox;
-	private JFileChooser fileChooser;
+	private final JFileChooser fileChooser;
+	private NewRoomFrame newRoomFrame=null;
 	
 	public MainFrame()
 	{
@@ -71,27 +77,56 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 				new UserInformation("test").setVisible(true);
 			}
 		});
+		newRoomButton.addMouseListener(
+			new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					if(newRoomFrame==null) initNewRoomFrame();
+					newRoomFrame.setVisible(true);
+				}
+			});
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				test.IMGPATH+"texs.jpg"));
 		listBox=new ListBox();
 		listBoxPanel.add(listBox,BorderLayout.CENTER);
-		tabPane.remove(0);
+		while(tabPane.getTabCount()>0)
+			tabPane.remove(0);
 		addStartPageTab();
-		addQuestionTab(1);
 		searchBox=new SearchBox();
 		searchPanel.setLayout(new BorderLayout());
 		searchPanel.add(searchBox,BorderLayout.CENTER);
 		fileChooser=new JFileChooser();
+		
+		//test
+		addQuestionTab(1);
+		addSearchTab(2);
 	}
 	
 	public void dispatch(NetEvent e)
 	{
 		switch(e.type)
 		{
-			case QUESTION_LIST_EVENT:
+			case CREATE_QUESTION_EVENT:
 			{
-				
-				break;
+				CreateQuestionEvent ex=(CreateQuestionEvent)e;
+				if(ex.isSuccess())
+				{
+					newRoomFrame.clearText();
+					newRoomFrame.setVisible(false);
+					addQuestionTab(ex.getQuestionMessage().getId());
+					try
+					{
+						test.client.enterQuestion(ex.getQuestionMessage().getId());
+					} catch (IOException ex1)
+					{
+						Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex1);
+						System.out.println("发送进入新房间请求失败");
+					}
+				}
+				else
+					System.out.println("创建新房间失败");
 			}
 		}
 	}
@@ -101,6 +136,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		synchronized(tabPane)
 		{
 			JPanel tmpPanel=new JPanel();
+			JPanel middlePanel=new JPanel();
 			JPanel buttonPanel=new JPanel();
 			ChattingBox tmpChattingBox=new ChattingBox();
 			InputBox tmpInputBox=new InputBox();
@@ -185,32 +221,40 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
 				getNewTabPanel(Long.toString(questionID)));
 			
-			tmpPanel.setLayout(new BorderLayout());
-			tmpPanel.add(buttonPanel,BorderLayout.CENTER);
-			tmpPanel.add(tmpChattingBox, BorderLayout.NORTH);
-			tmpPanel.add(tmpInputBox, BorderLayout.SOUTH);
-			buttonPanel.setPreferredSize(new Dimension(buttonPanel.getWidth(),25));
-			tmpInputBox.setPreferredSize(new Dimension(tmpInputBox.getWidth(),150));
+			BorderLayout bl1=new BorderLayout();
+			BorderLayout bl2=new BorderLayout();
+			bl1.setHgap(3);
+			bl1.setVgap(3);
+			bl2.setHgap(3);
+			tmpPanel.setLayout(bl1);
+			middlePanel.setLayout(bl2);
+			middlePanel.add(buttonPanel,BorderLayout.NORTH);
+			middlePanel.add(tmpInputBox, BorderLayout.SOUTH);
+			tmpPanel.add(tmpChattingBox, BorderLayout.CENTER);
+			tmpPanel.add(middlePanel,BorderLayout.SOUTH);
+			tmpInputBox.setPreferredSize(new Dimension(0,150));
+			buttonPanel.setPreferredSize(new Dimension(0,25));
 			tmpChattingBox.bind(questionID);
 			tmpInputBox.bind(questionID);
 		}
 	}
 	
-	public void addSearchTab(Iterable<QuestionListMessage> listData)
+	public void addSearchTab(int searchID)
 	{
 		synchronized(tabPane)
 		{
 			JPanel tmpPanel=new JPanel();
 			ListBox tmpListBox=new ListBox();
-			tmpListBox.readList(listData);
+			tmpListBox.bind(searchID);
 			
 			tabPane.addTab("", tmpPanel);
 			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
 				getNewTabPanel("搜索结果"));
 			
-			//tmpListBox.setSize(tmpPanel.getWidth()/4*3,tmpPanel.getHeight()/4*3);
-			
-			tmpPanel.setLayout(new BorderLayout());
+			BorderLayout bl=new BorderLayout();
+			bl.setVgap(10);
+			bl.setHgap(10);
+			tmpPanel.setLayout(bl);
 			tmpPanel.add(tmpListBox,BorderLayout.CENTER);
 		}
 	}
@@ -254,6 +298,121 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		});
 		return tmpTabPanel;
 	}
+	
+	private void initNewRoomFrame()
+	{
+		JLabel label1=new JLabel("你的问题：");
+		JLabel label2=new JLabel("详细描述：");
+		JLabel errLabel=new JLabel();
+		errLabel.setForeground(Color.red);
+		JTextField stemText=new JTextField();
+		JTextArea additionText=new JTextArea();
+		JButton okButton=new JButton("创建问题");
+		JButton cancelButton=new JButton("取消");
+		
+		JPanel topPanel=new JPanel();
+		topPanel.setLayout(new BorderLayout());
+		topPanel.add(label1,BorderLayout.WEST);
+		topPanel.add(stemText);
+		label1.setPreferredSize(new Dimension(100,0));
+		
+		JPanel middlePanel=new JPanel();
+		middlePanel.setLayout(new BorderLayout());
+		middlePanel.setAlignmentY(0);
+		middlePanel.add(label2,BorderLayout.WEST);
+		middlePanel.add(additionText);
+		label2.setPreferredSize(new Dimension(100,0));
+		
+		JPanel buttonPanel=new JPanel();
+		BorderLayout bl1=new BorderLayout();
+		bl1.setHgap(10);
+		buttonPanel.setPreferredSize(new Dimension(150,0));
+		buttonPanel.setLayout(bl1);
+		buttonPanel.add(okButton,BorderLayout.WEST);
+		buttonPanel.add(cancelButton,BorderLayout.EAST);
+		
+		JPanel bottomPanel=new JPanel();
+		bottomPanel.setPreferredSize(new Dimension(0,40));
+		bottomPanel.setLayout(new BorderLayout());
+		bottomPanel.add(buttonPanel,BorderLayout.EAST);
+		bottomPanel.add(errLabel,BorderLayout.WEST);
+		
+		newRoomFrame=new NewRoomFrame(stemText,additionText,"创建问题");
+		BorderLayout bl=new BorderLayout();
+		bl.setVgap(5);
+		newRoomFrame.getContentPane().setLayout(bl);
+		newRoomFrame.setPreferredSize(new Dimension(400,300));
+		newRoomFrame.setResizable(false);
+		newRoomFrame.getContentPane().add(topPanel,BorderLayout.NORTH);
+		newRoomFrame.getContentPane().add(middlePanel,BorderLayout.CENTER);
+		newRoomFrame.getContentPane().add(bottomPanel,BorderLayout.SOUTH);
+		
+		newRoomFrame.pack();
+		newRoomFrame.setLocationRelativeTo(null);
+		
+		cancelButton.addMouseListener(
+			new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					newRoomFrame.setVisible(false);
+					errLabel.setText("");
+					//stemText.setText("");
+					//additionText.setText("");
+				}
+			});
+		
+		okButton.addMouseListener(
+			new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					if(stemText.getText().length()<5)
+					{
+						errLabel.setText("标题字数太少辣！");
+						return;
+					}
+					else if(additionText.getText().length()==0)
+					{
+						errLabel.setText("问题描述不要留空辣！");
+						return;
+					}
+					else
+						errLabel.setText("");
+					
+					try
+					{
+						test.client.createQuestion(
+								stemText.getText(),
+								additionText.getText(),
+								SearchBox.getKeyWords(stemText.getText()));
+					} catch (IOException ex)
+					{
+						Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+						errLabel.setText("发送创建房间请求失败");
+					}
+				}
+			});
+	}
+	
+	private class NewRoomFrame extends JFrame
+	{
+		private JTextField stemText;
+		private JTextArea additionText;
+		public NewRoomFrame(JTextField stemText,JTextArea additionText,String title)
+		{
+			super(title);
+			this.stemText=stemText;
+			this.additionText=additionText;
+		}
+		public void clearText()
+		{
+			stemText.setText("");
+			additionText.setText("");
+		}
+	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -280,11 +439,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         jLabel27 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         tabPane = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
         listBoxPanel = new javax.swing.JPanel();
         headLabel = new javax.swing.JLabel();
         searchPanel = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        newRoomButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("学在工大");
@@ -323,9 +481,6 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 
         jButton1.setText("写入文本");
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
-        tabPane.addTab("startPage", jPanel1);
-
         listBoxPanel.setLayout(new java.awt.BorderLayout());
 
         headLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -341,7 +496,9 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
             .add(0, 0, Short.MAX_VALUE)
         );
 
-        jButton2.setText("+");
+        newRoomButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        newRoomButton.setText("+");
+        newRoomButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -357,7 +514,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                         .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
-                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(tabPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
@@ -406,7 +563,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                             .add(headLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(listBoxPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
@@ -453,7 +610,6 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -466,10 +622,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel listBoxPanel;
+    private javax.swing.JButton newRoomButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTabbedPane tabPane;
     // End of variables declaration//GEN-END:variables
