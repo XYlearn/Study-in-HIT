@@ -8,6 +8,7 @@ package gui.dao;
 import NetEvent.eventcom.CreateQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import bin.test;
+import com.ClientSendMessage;
 import gui.ChattingBox;
 import gui.InputBox;
 import gui.ListBox;
@@ -90,6 +91,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				test.IMGPATH+"texs.jpg"));
 		listBox=new ListBox();
+		listBox.bind(0);
 		listBoxPanel.add(listBox,BorderLayout.CENTER);
 		while(tabPane.getTabCount()>0)
 			tabPane.remove(0);
@@ -98,6 +100,16 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		searchPanel.setLayout(new BorderLayout());
 		searchPanel.add(searchBox,BorderLayout.CENTER);
 		fileChooser=new JFileChooser();
+		try
+		{
+			test.client.requestQuestionList(
+				ClientSendMessage.LIST_REFERENCE.TIME,
+				ClientSendMessage.RANKORDER.DESCENDING,
+				10);
+		} catch (IOException ex)
+		{
+			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		
 		//test
 		addQuestionTab(1);
