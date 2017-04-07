@@ -34,6 +34,7 @@ import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
 import util.MyExpression;
+import util.UserInfo;
 
 public class InputBox extends JPanel implements Dispatcher
 {
@@ -273,14 +274,14 @@ public class InputBox extends JPanel implements Dispatcher
 			case CONTENT_MESSAGE_EVENT:
 			{
 				ContentMessageEvent ex=(ContentMessageEvent)e;
-				//if(ex.getUser()==getUser())
-				if(ex.isSuccess())
-				{
-					System.out.println("已发送：\n"+ex.getRecord().getContent());
-					map.get(ex.getQuestionID()).myPane.setText("");
-				}
-				else
-					System.out.println("发送消息失败。");
+				if (ex.isSuccess()==true)
+					if (ex.getRecord().getUser().equals(UserInfo.getMyUserName()))
+						if (ex.isSuccess())
+						{
+							System.out.println("已发送：\n"+ex.getRecord().getContent());
+							map.get(ex.getQuestionID()).myPane.setText("");
+						} else
+							System.out.println("发送消息失败。");
 				break;
 			}
 			case ENTER_QUESTION_EVENT:

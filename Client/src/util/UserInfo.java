@@ -1,7 +1,8 @@
 package util;
 
+import NetEvent.eventcom.UserInfoEvent;
+import NetEvent.messagecom.UserMessage;
 import bin.test;
-import com.ServerResponseMessage.UserMessage;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,9 +30,10 @@ public class UserInfo implements Dispatcher
 		test.client.downloadFile(username+".jpg");
 	}
 	
-	public static void dispatch(UserMessage msg)
+	public static void dispatch(UserInfoEvent e)
 	{
-		map.put(msg.getUsername(),msg);
+		if(e.isExist())
+			map.put(e.getUserMessage().getUsername(),e.getUserMessage());
 	}
 	
 	public static void setDelay(long delay)
