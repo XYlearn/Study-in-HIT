@@ -1,4 +1,4 @@
-//用户表
+﻿//用户表
 CREATE TABLE user(
 username VARCHAR(20) NOT NULL,
 userkey VARCHAR(32) NOT NULL,
@@ -18,8 +18,8 @@ PRIMARY KEY(username)
 //用户好友列表
 CREATE TABLE acquaintence_table(
 username VARCHAR(20) NOT NULL,
-acquaintance TEXT DEFAULT '',
-wait_response TEXT DEFAULT '',
+acquaintance TEXT NOT NULL,
+wait_response TEXT NOT NULL,
 PRIMARY KEY(username)
 );
 

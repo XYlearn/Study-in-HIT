@@ -1,0 +1,245 @@
+syntax = "proto3";
+option java_outer_classname = "ServerResponseMessage";
+option java_package = "com";
+
+//消息类型序号
+enum MSG {
+   //登录登出回复
+   LAUNCH_RESPONSE = 0;
+   REGISTER_RESPONSE = 1;
+   //发送对话消息及公告消息
+   SEND_CONTENT = 2;
+   ANNOUNCEMENT_MESSAGE = 3;
+   //进入问题房间回复
+   QUESTION_ENTER_RESPONSE = 4;
+   //评价信息
+   GOOD_QUESTION_RESPONSE = 5;
+   GOOD_USER_RESPONSE = 7;
+   //更新消息
+   UPDATE_MESSAGE = 8;
+   //获取COS Sign回复
+   FILE_RESPONSE = 9;
+   //消息显示信息
+   QUESTION_INFORMATION_RESPONSE = 10;
+   USER_INFORMATION_RESPONSE = 11;
+   GET_QUESTION_LIST_RESPONSE = 12;
+   //创建取消问题
+   CREATE_QUESTION_RESPONSE = 15;
+   ABANDON_QUESTION_RESPONSE = 16;
+   //搜索内容
+   SEARCH_INFORMATION_RESPONSE = 17;
+   SOLVED_QUESTION_RESPONSE = 18;
+   //未知消息
+   BAD_MESSAGE = 19;
+   //获取用户列表反馈
+   GET_USER_LIST_RESPONSE = 20;
+}
+
+//-----------枚举定义---------------//
+
+//内容类型
+enum CONTENT_TYPE {
+    TEXT_MESSAGE = 0;
+    PICTURE_MESSAGE = 1;
+    VOICE_MESSAGE = 2;
+}
+//图像类型
+enum PICTURETYPE {
+    JPEG = 0;
+    PNG = 1;
+    GIF = 2;
+}
+//音频类型
+enum VOICETYPE {
+    MP4 = 0;
+}
+
+//记录消息体
+message Record {
+    string contentMessage = 1;
+    string time = 2;
+    string user = 3;
+    int64 recordID = 4;
+    map<int32, int64> markMap = 5;
+    repeated string recordpic = 6;
+}
+
+//问题列表项消息体
+message QuestionListMessage {
+    int64 questionID = 1;
+    string questionDescription = 2;
+    int32 good = 3;
+    int32 userNum = 5;
+    string time = 6;
+    string owner = 8;
+}
+
+//问题信息消息体
+message QuestionMessage {
+    string stem = 1;
+    repeated string stempic = 10;
+    string addition = 2;
+    repeated string additionpic = 11;
+    string time = 3;
+    string owner = 5;
+    repeated Record record = 6;
+    bool solved = 7;
+    int32 good = 8;
+    int64 id = 9;
+}
+
+//用户信息消息体
+message UserMessage {
+    string username = 1;
+    int32 good = 2;
+    int32 questionNum = 4;
+    int32 solvedQuestionNum = 5;
+    int32 bonus = 6;
+    string signature = 7;
+    string mail_address = 8;
+    string pic_url = 9;
+}
+
+//-------------具体消息-------------//
+
+//登入回复
+message LaunchResponse {
+    bool status = 1;
+    string information = 2;
+    UserMessage userMessage = 3;
+}
+
+//注册回复
+message RegisterResponse {
+    bool success = 1;
+    string information = 2;
+}
+
+message SendContent {
+    int64 questionID = 1;
+    string content = 2;
+    string time = 3;
+    string user = 4;
+    repeated string pictures = 5;
+    bool success = 6;
+    bool ismyself = 7;
+    map<int32, int64> markMap = 8;
+    int64 recordID = 9;
+}
+
+//通告信息
+message AnnouncementMessage {
+    string time = 1;
+    string text = 2;
+}
+
+//进入问题房间回复
+message QuestionEnterResponse {
+    bool allow = 1;
+    QuestionMessage questionMessage = 2;
+}
+
+//赞问题回复
+message GoodQuestionResponse {
+    bool success = 1;
+}
+
+//赞用户回复
+message GoodUserResponse {
+    bool success = 1;
+}
+
+//问题信息回复
+message QuestionInformationResponse {
+    QuestionMessage questionMessage = 1;
+    bool exist = 2;
+}
+
+//用户信息回复
+message UserInformationResponse {
+    UserMessage userMessage = 1;
+    bool exist = 2;
+}
+
+//更新问题房间列表回复
+message GetQuestionListResponse {
+    int32 num = 1;
+    repeated QuestionListMessage questionListMessage = 2;
+}
+
+//提出问题回复
+message CreateQuestionResponse {
+    bool success = 1;
+    QuestionMessage questionMessage = 2;
+}
+
+//取消问题回复
+message AbandonQuestionResponse {
+    bool success = 1;
+}
+
+//搜索内容回复
+message SearchInformationResponse {
+    int32 searchID = 1;
+    repeated QuestionListMessage questionListMessage = 2;
+}
+
+//获取Sign
+message FileResponse {
+    bool success = 1;
+    map<string,string> sign = 2;
+    enum SIGNTYPE {
+        DOWNLOAD = 0;
+        UPLOAD = 1;
+    }
+    SIGNTYPE signType = 3;
+    repeated string localFilePath = 4;
+}
+
+//标志解决问题的回复
+message SolvedQuestionResponse {
+    int64 questionID = 2;
+    bool success = 1;
+}
+
+message UpdateMessage {
+    message UserEnter {
+        string username = 1;
+        int64 questionID = 2;
+    }
+    UserEnter userEnter = 1;
+}
+
+message GetUserListResponse {
+    bool success = 1;
+    map<string,string> users = 2;
+    int64 questionID = 3; //nessesary when need users in question room
+    enum USER_LIST_TYPE {
+        ACQUAINTANCE_LIST = 0;
+        USERS_IN_ROOM_LIST = 1;
+    }
+    USER_LIST_TYPE userListType = 4;
+}
+
+//----------------顶层消息----------------------
+message Message {
+    MSG msg_type = 1;
+    string username = 2;
+    LaunchResponse lauchResponse = 3;
+    RegisterResponse registerResponse = 4;
+    SendContent sendContent = 5;
+    AnnouncementMessage announcementMessage = 6;
+    QuestionEnterResponse questionEnterResponse = 7;
+    GoodQuestionResponse goodQuestionResponse = 8;
+    GoodUserResponse goodUserResponse = 10;
+    FileResponse fileResponse = 9;
+    UpdateMessage updateMessage = 11;
+    QuestionInformationResponse questionInformationResponse = 13;
+    UserInformationResponse userInformationResponse = 14;
+    GetQuestionListResponse getQuestionListResponse = 15;
+    CreateQuestionResponse createQuestionResponse = 18;
+    AbandonQuestionResponse abandonQuestionResponse = 19;
+    SearchInformationResponse searchInformationResponse = 20;
+    SolvedQuestionResponse solvedQuestionResponse = 21;
+    GetUserListResponse getUserListResponse = 22;
+}

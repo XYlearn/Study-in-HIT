@@ -29,7 +29,7 @@ public class SendDecoder extends CumulativeProtocolDecoder {
 					out.write(request);
 					return true;
 				} catch (InvalidProtocolBufferException e) {
-					throw e;
+					return false;
 				}
 			}
 		}

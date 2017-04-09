@@ -668,37 +668,37 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
     java.lang.String getContentMessage();
     /**
-     * <code>string contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
     com.google.protobuf.ByteString
         getContentMessageBytes();
 
     /**
-     * <code>string time = 2;</code>
+     * <code>optional string time = 2;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>string time = 2;</code>
+     * <code>optional string time = 2;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
 
     /**
-     * <code>string user = 3;</code>
+     * <code>optional string user = 3;</code>
      */
     java.lang.String getUser();
     /**
-     * <code>string user = 3;</code>
+     * <code>optional string user = 3;</code>
      */
     com.google.protobuf.ByteString
         getUserBytes();
 
     /**
-     * <code>int64 recordID = 4;</code>
+     * <code>optional int64 recordID = 4;</code>
      */
     long getRecordID();
 
@@ -833,10 +833,9 @@ public final class ServerResponseMessage {
                 mutable_bitField0_ |= 0x00000010;
               }
               com.google.protobuf.MapEntry<java.lang.Integer, java.lang.Long>
-              markMap__ = input.readMessage(
+              markMap = input.readMessage(
                   MarkMapDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              markMap_.getMutableMap().put(
-                  markMap__.getKey(), markMap__.getValue());
+              markMap_.getMutableMap().put(markMap.getKey(), markMap.getValue());
               break;
             }
             case 50: {
@@ -889,7 +888,7 @@ public final class ServerResponseMessage {
     public static final int CONTENTMESSAGE_FIELD_NUMBER = 1;
     private volatile java.lang.Object contentMessage_;
     /**
-     * <code>string contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
     public java.lang.String getContentMessage() {
       java.lang.Object ref = contentMessage_;
@@ -904,7 +903,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string contentMessage = 1;</code>
+     * <code>optional string contentMessage = 1;</code>
      */
     public com.google.protobuf.ByteString
         getContentMessageBytes() {
@@ -923,7 +922,7 @@ public final class ServerResponseMessage {
     public static final int TIME_FIELD_NUMBER = 2;
     private volatile java.lang.Object time_;
     /**
-     * <code>string time = 2;</code>
+     * <code>optional string time = 2;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -938,7 +937,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string time = 2;</code>
+     * <code>optional string time = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -957,7 +956,7 @@ public final class ServerResponseMessage {
     public static final int USER_FIELD_NUMBER = 3;
     private volatile java.lang.Object user_;
     /**
-     * <code>string user = 3;</code>
+     * <code>optional string user = 3;</code>
      */
     public java.lang.String getUser() {
       java.lang.Object ref = user_;
@@ -972,7 +971,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string user = 3;</code>
+     * <code>optional string user = 3;</code>
      */
     public com.google.protobuf.ByteString
         getUserBytes() {
@@ -991,7 +990,7 @@ public final class ServerResponseMessage {
     public static final int RECORDID_FIELD_NUMBER = 4;
     private long recordID_;
     /**
-     * <code>int64 recordID = 4;</code>
+     * <code>optional int64 recordID = 4;</code>
      */
     public long getRecordID() {
       return recordID_;
@@ -1126,12 +1125,15 @@ public final class ServerResponseMessage {
       if (recordID_ != 0L) {
         output.writeInt64(4, recordID_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeIntegerMapTo(
-          output,
-          internalGetMarkMap(),
-          MarkMapDefaultEntryHolder.defaultEntry,
-          5);
+      for (java.util.Map.Entry<java.lang.Integer, java.lang.Long> entry
+           : internalGetMarkMap().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.Integer, java.lang.Long>
+        markMap = MarkMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        output.writeMessage(5, markMap);
+      }
       for (int i = 0; i < recordpic_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, recordpic_.getRaw(i));
       }
@@ -1158,12 +1160,12 @@ public final class ServerResponseMessage {
       for (java.util.Map.Entry<java.lang.Integer, java.lang.Long> entry
            : internalGetMarkMap().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.Integer, java.lang.Long>
-        markMap__ = MarkMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+        markMap = MarkMapDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, markMap__);
+            .computeMessageSize(5, markMap);
       }
       {
         int dataSize = 0;
@@ -1210,7 +1212,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + CONTENTMESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getContentMessage().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
@@ -1516,7 +1518,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object contentMessage_ = "";
       /**
-       * <code>string contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public java.lang.String getContentMessage() {
         java.lang.Object ref = contentMessage_;
@@ -1531,7 +1533,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public com.google.protobuf.ByteString
           getContentMessageBytes() {
@@ -1547,7 +1549,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public Builder setContentMessage(
           java.lang.String value) {
@@ -1560,7 +1562,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public Builder clearContentMessage() {
         
@@ -1569,7 +1571,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string contentMessage = 1;</code>
+       * <code>optional string contentMessage = 1;</code>
        */
       public Builder setContentMessageBytes(
           com.google.protobuf.ByteString value) {
@@ -1585,7 +1587,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>string time = 2;</code>
+       * <code>optional string time = 2;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -1600,7 +1602,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 2;</code>
+       * <code>optional string time = 2;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -1616,7 +1618,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 2;</code>
+       * <code>optional string time = 2;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -1629,7 +1631,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 2;</code>
+       * <code>optional string time = 2;</code>
        */
       public Builder clearTime() {
         
@@ -1638,7 +1640,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 2;</code>
+       * <code>optional string time = 2;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -1654,7 +1656,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object user_ = "";
       /**
-       * <code>string user = 3;</code>
+       * <code>optional string user = 3;</code>
        */
       public java.lang.String getUser() {
         java.lang.Object ref = user_;
@@ -1669,7 +1671,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string user = 3;</code>
+       * <code>optional string user = 3;</code>
        */
       public com.google.protobuf.ByteString
           getUserBytes() {
@@ -1685,7 +1687,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string user = 3;</code>
+       * <code>optional string user = 3;</code>
        */
       public Builder setUser(
           java.lang.String value) {
@@ -1698,7 +1700,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string user = 3;</code>
+       * <code>optional string user = 3;</code>
        */
       public Builder clearUser() {
         
@@ -1707,7 +1709,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string user = 3;</code>
+       * <code>optional string user = 3;</code>
        */
       public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
@@ -1723,13 +1725,13 @@ public final class ServerResponseMessage {
 
       private long recordID_ ;
       /**
-       * <code>int64 recordID = 4;</code>
+       * <code>optional int64 recordID = 4;</code>
        */
       public long getRecordID() {
         return recordID_;
       }
       /**
-       * <code>int64 recordID = 4;</code>
+       * <code>optional int64 recordID = 4;</code>
        */
       public Builder setRecordID(long value) {
         
@@ -1738,7 +1740,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int64 recordID = 4;</code>
+       * <code>optional int64 recordID = 4;</code>
        */
       public Builder clearRecordID() {
         
@@ -1824,8 +1826,7 @@ public final class ServerResponseMessage {
       }
 
       public Builder clearMarkMap() {
-        internalGetMutableMarkMap().getMutableMap()
-            .clear();
+        getMutableMarkMap().clear();
         return this;
       }
       /**
@@ -1835,8 +1836,7 @@ public final class ServerResponseMessage {
       public Builder removeMarkMap(
           int key) {
         
-        internalGetMutableMarkMap().getMutableMap()
-            .remove(key);
+        getMutableMarkMap().remove(key);
         return this;
       }
       /**
@@ -1855,8 +1855,7 @@ public final class ServerResponseMessage {
           long value) {
         
         
-        internalGetMutableMarkMap().getMutableMap()
-            .put(key, value);
+        getMutableMarkMap().put(key, value);
         return this;
       }
       /**
@@ -1865,8 +1864,7 @@ public final class ServerResponseMessage {
 
       public Builder putAllMarkMap(
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
-        internalGetMutableMarkMap().getMutableMap()
-            .putAll(values);
+        getMutableMarkMap().putAll(values);
         return this;
       }
 
@@ -2017,46 +2015,46 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 questionID = 1;</code>
+     * <code>optional int64 questionID = 1;</code>
      */
     long getQuestionID();
 
     /**
-     * <code>string questionDescription = 2;</code>
+     * <code>optional string questionDescription = 2;</code>
      */
     java.lang.String getQuestionDescription();
     /**
-     * <code>string questionDescription = 2;</code>
+     * <code>optional string questionDescription = 2;</code>
      */
     com.google.protobuf.ByteString
         getQuestionDescriptionBytes();
 
     /**
-     * <code>int32 good = 3;</code>
+     * <code>optional int32 good = 3;</code>
      */
     int getGood();
 
     /**
-     * <code>int32 userNum = 5;</code>
+     * <code>optional int32 userNum = 5;</code>
      */
     int getUserNum();
 
     /**
-     * <code>string time = 6;</code>
+     * <code>optional string time = 6;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>string time = 6;</code>
+     * <code>optional string time = 6;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
 
     /**
-     * <code>string owner = 8;</code>
+     * <code>optional string owner = 8;</code>
      */
     java.lang.String getOwner();
     /**
-     * <code>string owner = 8;</code>
+     * <code>optional string owner = 8;</code>
      */
     com.google.protobuf.ByteString
         getOwnerBytes();
@@ -2169,7 +2167,7 @@ public final class ServerResponseMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>int64 questionID = 1;</code>
+     * <code>optional int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -2178,7 +2176,7 @@ public final class ServerResponseMessage {
     public static final int QUESTIONDESCRIPTION_FIELD_NUMBER = 2;
     private volatile java.lang.Object questionDescription_;
     /**
-     * <code>string questionDescription = 2;</code>
+     * <code>optional string questionDescription = 2;</code>
      */
     public java.lang.String getQuestionDescription() {
       java.lang.Object ref = questionDescription_;
@@ -2193,7 +2191,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string questionDescription = 2;</code>
+     * <code>optional string questionDescription = 2;</code>
      */
     public com.google.protobuf.ByteString
         getQuestionDescriptionBytes() {
@@ -2212,7 +2210,7 @@ public final class ServerResponseMessage {
     public static final int GOOD_FIELD_NUMBER = 3;
     private int good_;
     /**
-     * <code>int32 good = 3;</code>
+     * <code>optional int32 good = 3;</code>
      */
     public int getGood() {
       return good_;
@@ -2221,7 +2219,7 @@ public final class ServerResponseMessage {
     public static final int USERNUM_FIELD_NUMBER = 5;
     private int userNum_;
     /**
-     * <code>int32 userNum = 5;</code>
+     * <code>optional int32 userNum = 5;</code>
      */
     public int getUserNum() {
       return userNum_;
@@ -2230,7 +2228,7 @@ public final class ServerResponseMessage {
     public static final int TIME_FIELD_NUMBER = 6;
     private volatile java.lang.Object time_;
     /**
-     * <code>string time = 6;</code>
+     * <code>optional string time = 6;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -2245,7 +2243,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string time = 6;</code>
+     * <code>optional string time = 6;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -2264,7 +2262,7 @@ public final class ServerResponseMessage {
     public static final int OWNER_FIELD_NUMBER = 8;
     private volatile java.lang.Object owner_;
     /**
-     * <code>string owner = 8;</code>
+     * <code>optional string owner = 8;</code>
      */
     public java.lang.String getOwner() {
       java.lang.Object ref = owner_;
@@ -2279,7 +2277,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string owner = 8;</code>
+     * <code>optional string owner = 8;</code>
      */
     public com.google.protobuf.ByteString
         getOwnerBytes() {
@@ -2390,7 +2388,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -2656,13 +2654,13 @@ public final class ServerResponseMessage {
 
       private long questionID_ ;
       /**
-       * <code>int64 questionID = 1;</code>
+       * <code>optional int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>int64 questionID = 1;</code>
+       * <code>optional int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -2671,7 +2669,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int64 questionID = 1;</code>
+       * <code>optional int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -2682,7 +2680,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object questionDescription_ = "";
       /**
-       * <code>string questionDescription = 2;</code>
+       * <code>optional string questionDescription = 2;</code>
        */
       public java.lang.String getQuestionDescription() {
         java.lang.Object ref = questionDescription_;
@@ -2697,7 +2695,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string questionDescription = 2;</code>
+       * <code>optional string questionDescription = 2;</code>
        */
       public com.google.protobuf.ByteString
           getQuestionDescriptionBytes() {
@@ -2713,7 +2711,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string questionDescription = 2;</code>
+       * <code>optional string questionDescription = 2;</code>
        */
       public Builder setQuestionDescription(
           java.lang.String value) {
@@ -2726,7 +2724,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string questionDescription = 2;</code>
+       * <code>optional string questionDescription = 2;</code>
        */
       public Builder clearQuestionDescription() {
         
@@ -2735,7 +2733,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string questionDescription = 2;</code>
+       * <code>optional string questionDescription = 2;</code>
        */
       public Builder setQuestionDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -2751,13 +2749,13 @@ public final class ServerResponseMessage {
 
       private int good_ ;
       /**
-       * <code>int32 good = 3;</code>
+       * <code>optional int32 good = 3;</code>
        */
       public int getGood() {
         return good_;
       }
       /**
-       * <code>int32 good = 3;</code>
+       * <code>optional int32 good = 3;</code>
        */
       public Builder setGood(int value) {
         
@@ -2766,7 +2764,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 good = 3;</code>
+       * <code>optional int32 good = 3;</code>
        */
       public Builder clearGood() {
         
@@ -2777,13 +2775,13 @@ public final class ServerResponseMessage {
 
       private int userNum_ ;
       /**
-       * <code>int32 userNum = 5;</code>
+       * <code>optional int32 userNum = 5;</code>
        */
       public int getUserNum() {
         return userNum_;
       }
       /**
-       * <code>int32 userNum = 5;</code>
+       * <code>optional int32 userNum = 5;</code>
        */
       public Builder setUserNum(int value) {
         
@@ -2792,7 +2790,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 userNum = 5;</code>
+       * <code>optional int32 userNum = 5;</code>
        */
       public Builder clearUserNum() {
         
@@ -2803,7 +2801,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>string time = 6;</code>
+       * <code>optional string time = 6;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -2818,7 +2816,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 6;</code>
+       * <code>optional string time = 6;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -2834,7 +2832,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 6;</code>
+       * <code>optional string time = 6;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -2847,7 +2845,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 6;</code>
+       * <code>optional string time = 6;</code>
        */
       public Builder clearTime() {
         
@@ -2856,7 +2854,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 6;</code>
+       * <code>optional string time = 6;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -2872,7 +2870,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object owner_ = "";
       /**
-       * <code>string owner = 8;</code>
+       * <code>optional string owner = 8;</code>
        */
       public java.lang.String getOwner() {
         java.lang.Object ref = owner_;
@@ -2887,7 +2885,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string owner = 8;</code>
+       * <code>optional string owner = 8;</code>
        */
       public com.google.protobuf.ByteString
           getOwnerBytes() {
@@ -2903,7 +2901,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string owner = 8;</code>
+       * <code>optional string owner = 8;</code>
        */
       public Builder setOwner(
           java.lang.String value) {
@@ -2916,7 +2914,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string owner = 8;</code>
+       * <code>optional string owner = 8;</code>
        */
       public Builder clearOwner() {
         
@@ -2925,7 +2923,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string owner = 8;</code>
+       * <code>optional string owner = 8;</code>
        */
       public Builder setOwnerBytes(
           com.google.protobuf.ByteString value) {
@@ -2992,11 +2990,11 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string stem = 1;</code>
+     * <code>optional string stem = 1;</code>
      */
     java.lang.String getStem();
     /**
-     * <code>string stem = 1;</code>
+     * <code>optional string stem = 1;</code>
      */
     com.google.protobuf.ByteString
         getStemBytes();
@@ -3021,11 +3019,11 @@ public final class ServerResponseMessage {
         getStempicBytes(int index);
 
     /**
-     * <code>string addition = 2;</code>
+     * <code>optional string addition = 2;</code>
      */
     java.lang.String getAddition();
     /**
-     * <code>string addition = 2;</code>
+     * <code>optional string addition = 2;</code>
      */
     com.google.protobuf.ByteString
         getAdditionBytes();
@@ -3050,21 +3048,21 @@ public final class ServerResponseMessage {
         getAdditionpicBytes(int index);
 
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
 
     /**
-     * <code>string owner = 5;</code>
+     * <code>optional string owner = 5;</code>
      */
     java.lang.String getOwner();
     /**
-     * <code>string owner = 5;</code>
+     * <code>optional string owner = 5;</code>
      */
     com.google.protobuf.ByteString
         getOwnerBytes();
@@ -3094,17 +3092,17 @@ public final class ServerResponseMessage {
         int index);
 
     /**
-     * <code>bool solved = 7;</code>
+     * <code>optional bool solved = 7;</code>
      */
     boolean getSolved();
 
     /**
-     * <code>int32 good = 8;</code>
+     * <code>optional int32 good = 8;</code>
      */
     int getGood();
 
     /**
-     * <code>int64 id = 9;</code>
+     * <code>optional int64 id = 9;</code>
      */
     long getId();
   }
@@ -3263,7 +3261,7 @@ public final class ServerResponseMessage {
     public static final int STEM_FIELD_NUMBER = 1;
     private volatile java.lang.Object stem_;
     /**
-     * <code>string stem = 1;</code>
+     * <code>optional string stem = 1;</code>
      */
     public java.lang.String getStem() {
       java.lang.Object ref = stem_;
@@ -3278,7 +3276,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string stem = 1;</code>
+     * <code>optional string stem = 1;</code>
      */
     public com.google.protobuf.ByteString
         getStemBytes() {
@@ -3326,7 +3324,7 @@ public final class ServerResponseMessage {
     public static final int ADDITION_FIELD_NUMBER = 2;
     private volatile java.lang.Object addition_;
     /**
-     * <code>string addition = 2;</code>
+     * <code>optional string addition = 2;</code>
      */
     public java.lang.String getAddition() {
       java.lang.Object ref = addition_;
@@ -3341,7 +3339,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string addition = 2;</code>
+     * <code>optional string addition = 2;</code>
      */
     public com.google.protobuf.ByteString
         getAdditionBytes() {
@@ -3389,7 +3387,7 @@ public final class ServerResponseMessage {
     public static final int TIME_FIELD_NUMBER = 3;
     private volatile java.lang.Object time_;
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -3404,7 +3402,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -3423,7 +3421,7 @@ public final class ServerResponseMessage {
     public static final int OWNER_FIELD_NUMBER = 5;
     private volatile java.lang.Object owner_;
     /**
-     * <code>string owner = 5;</code>
+     * <code>optional string owner = 5;</code>
      */
     public java.lang.String getOwner() {
       java.lang.Object ref = owner_;
@@ -3438,7 +3436,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string owner = 5;</code>
+     * <code>optional string owner = 5;</code>
      */
     public com.google.protobuf.ByteString
         getOwnerBytes() {
@@ -3492,7 +3490,7 @@ public final class ServerResponseMessage {
     public static final int SOLVED_FIELD_NUMBER = 7;
     private boolean solved_;
     /**
-     * <code>bool solved = 7;</code>
+     * <code>optional bool solved = 7;</code>
      */
     public boolean getSolved() {
       return solved_;
@@ -3501,7 +3499,7 @@ public final class ServerResponseMessage {
     public static final int GOOD_FIELD_NUMBER = 8;
     private int good_;
     /**
-     * <code>int32 good = 8;</code>
+     * <code>optional int32 good = 8;</code>
      */
     public int getGood() {
       return good_;
@@ -3510,7 +3508,7 @@ public final class ServerResponseMessage {
     public static final int ID_FIELD_NUMBER = 9;
     private long id_;
     /**
-     * <code>int64 id = 9;</code>
+     * <code>optional int64 id = 9;</code>
      */
     public long getId() {
       return id_;
@@ -3654,7 +3652,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + STEM_FIELD_NUMBER;
       hash = (53 * hash) + getStem().hashCode();
       if (getStempicCount() > 0) {
@@ -4022,7 +4020,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object stem_ = "";
       /**
-       * <code>string stem = 1;</code>
+       * <code>optional string stem = 1;</code>
        */
       public java.lang.String getStem() {
         java.lang.Object ref = stem_;
@@ -4037,7 +4035,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string stem = 1;</code>
+       * <code>optional string stem = 1;</code>
        */
       public com.google.protobuf.ByteString
           getStemBytes() {
@@ -4053,7 +4051,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string stem = 1;</code>
+       * <code>optional string stem = 1;</code>
        */
       public Builder setStem(
           java.lang.String value) {
@@ -4066,7 +4064,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string stem = 1;</code>
+       * <code>optional string stem = 1;</code>
        */
       public Builder clearStem() {
         
@@ -4075,7 +4073,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string stem = 1;</code>
+       * <code>optional string stem = 1;</code>
        */
       public Builder setStemBytes(
           com.google.protobuf.ByteString value) {
@@ -4185,7 +4183,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object addition_ = "";
       /**
-       * <code>string addition = 2;</code>
+       * <code>optional string addition = 2;</code>
        */
       public java.lang.String getAddition() {
         java.lang.Object ref = addition_;
@@ -4200,7 +4198,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string addition = 2;</code>
+       * <code>optional string addition = 2;</code>
        */
       public com.google.protobuf.ByteString
           getAdditionBytes() {
@@ -4216,7 +4214,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string addition = 2;</code>
+       * <code>optional string addition = 2;</code>
        */
       public Builder setAddition(
           java.lang.String value) {
@@ -4229,7 +4227,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string addition = 2;</code>
+       * <code>optional string addition = 2;</code>
        */
       public Builder clearAddition() {
         
@@ -4238,7 +4236,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string addition = 2;</code>
+       * <code>optional string addition = 2;</code>
        */
       public Builder setAdditionBytes(
           com.google.protobuf.ByteString value) {
@@ -4348,7 +4346,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -4363,7 +4361,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -4379,7 +4377,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -4392,7 +4390,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder clearTime() {
         
@@ -4401,7 +4399,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -4417,7 +4415,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object owner_ = "";
       /**
-       * <code>string owner = 5;</code>
+       * <code>optional string owner = 5;</code>
        */
       public java.lang.String getOwner() {
         java.lang.Object ref = owner_;
@@ -4432,7 +4430,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string owner = 5;</code>
+       * <code>optional string owner = 5;</code>
        */
       public com.google.protobuf.ByteString
           getOwnerBytes() {
@@ -4448,7 +4446,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string owner = 5;</code>
+       * <code>optional string owner = 5;</code>
        */
       public Builder setOwner(
           java.lang.String value) {
@@ -4461,7 +4459,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string owner = 5;</code>
+       * <code>optional string owner = 5;</code>
        */
       public Builder clearOwner() {
         
@@ -4470,7 +4468,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string owner = 5;</code>
+       * <code>optional string owner = 5;</code>
        */
       public Builder setOwnerBytes(
           com.google.protobuf.ByteString value) {
@@ -4726,13 +4724,13 @@ public final class ServerResponseMessage {
 
       private boolean solved_ ;
       /**
-       * <code>bool solved = 7;</code>
+       * <code>optional bool solved = 7;</code>
        */
       public boolean getSolved() {
         return solved_;
       }
       /**
-       * <code>bool solved = 7;</code>
+       * <code>optional bool solved = 7;</code>
        */
       public Builder setSolved(boolean value) {
         
@@ -4741,7 +4739,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool solved = 7;</code>
+       * <code>optional bool solved = 7;</code>
        */
       public Builder clearSolved() {
         
@@ -4752,13 +4750,13 @@ public final class ServerResponseMessage {
 
       private int good_ ;
       /**
-       * <code>int32 good = 8;</code>
+       * <code>optional int32 good = 8;</code>
        */
       public int getGood() {
         return good_;
       }
       /**
-       * <code>int32 good = 8;</code>
+       * <code>optional int32 good = 8;</code>
        */
       public Builder setGood(int value) {
         
@@ -4767,7 +4765,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 good = 8;</code>
+       * <code>optional int32 good = 8;</code>
        */
       public Builder clearGood() {
         
@@ -4778,13 +4776,13 @@ public final class ServerResponseMessage {
 
       private long id_ ;
       /**
-       * <code>int64 id = 9;</code>
+       * <code>optional int64 id = 9;</code>
        */
       public long getId() {
         return id_;
       }
       /**
-       * <code>int64 id = 9;</code>
+       * <code>optional int64 id = 9;</code>
        */
       public Builder setId(long value) {
         
@@ -4793,7 +4791,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int64 id = 9;</code>
+       * <code>optional int64 id = 9;</code>
        */
       public Builder clearId() {
         
@@ -4855,61 +4853,61 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string username = 1;</code>
+     * <code>optional string username = 1;</code>
      */
     java.lang.String getUsername();
     /**
-     * <code>string username = 1;</code>
+     * <code>optional string username = 1;</code>
      */
     com.google.protobuf.ByteString
         getUsernameBytes();
 
     /**
-     * <code>int32 good = 2;</code>
+     * <code>optional int32 good = 2;</code>
      */
     int getGood();
 
     /**
-     * <code>int32 questionNum = 4;</code>
+     * <code>optional int32 questionNum = 4;</code>
      */
     int getQuestionNum();
 
     /**
-     * <code>int32 solvedQuestionNum = 5;</code>
+     * <code>optional int32 solvedQuestionNum = 5;</code>
      */
     int getSolvedQuestionNum();
 
     /**
-     * <code>int32 bonus = 6;</code>
+     * <code>optional int32 bonus = 6;</code>
      */
     int getBonus();
 
     /**
-     * <code>string signature = 7;</code>
+     * <code>optional string signature = 7;</code>
      */
     java.lang.String getSignature();
     /**
-     * <code>string signature = 7;</code>
+     * <code>optional string signature = 7;</code>
      */
     com.google.protobuf.ByteString
         getSignatureBytes();
 
     /**
-     * <code>string mail_address = 8;</code>
+     * <code>optional string mail_address = 8;</code>
      */
     java.lang.String getMailAddress();
     /**
-     * <code>string mail_address = 8;</code>
+     * <code>optional string mail_address = 8;</code>
      */
     com.google.protobuf.ByteString
         getMailAddressBytes();
 
     /**
-     * <code>string pic_url = 9;</code>
+     * <code>optional string pic_url = 9;</code>
      */
     java.lang.String getPicUrl();
     /**
-     * <code>string pic_url = 9;</code>
+     * <code>optional string pic_url = 9;</code>
      */
     com.google.protobuf.ByteString
         getPicUrlBytes();
@@ -5035,7 +5033,7 @@ public final class ServerResponseMessage {
     public static final int USERNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object username_;
     /**
-     * <code>string username = 1;</code>
+     * <code>optional string username = 1;</code>
      */
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
@@ -5050,7 +5048,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string username = 1;</code>
+     * <code>optional string username = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
@@ -5069,7 +5067,7 @@ public final class ServerResponseMessage {
     public static final int GOOD_FIELD_NUMBER = 2;
     private int good_;
     /**
-     * <code>int32 good = 2;</code>
+     * <code>optional int32 good = 2;</code>
      */
     public int getGood() {
       return good_;
@@ -5078,7 +5076,7 @@ public final class ServerResponseMessage {
     public static final int QUESTIONNUM_FIELD_NUMBER = 4;
     private int questionNum_;
     /**
-     * <code>int32 questionNum = 4;</code>
+     * <code>optional int32 questionNum = 4;</code>
      */
     public int getQuestionNum() {
       return questionNum_;
@@ -5087,7 +5085,7 @@ public final class ServerResponseMessage {
     public static final int SOLVEDQUESTIONNUM_FIELD_NUMBER = 5;
     private int solvedQuestionNum_;
     /**
-     * <code>int32 solvedQuestionNum = 5;</code>
+     * <code>optional int32 solvedQuestionNum = 5;</code>
      */
     public int getSolvedQuestionNum() {
       return solvedQuestionNum_;
@@ -5096,7 +5094,7 @@ public final class ServerResponseMessage {
     public static final int BONUS_FIELD_NUMBER = 6;
     private int bonus_;
     /**
-     * <code>int32 bonus = 6;</code>
+     * <code>optional int32 bonus = 6;</code>
      */
     public int getBonus() {
       return bonus_;
@@ -5105,7 +5103,7 @@ public final class ServerResponseMessage {
     public static final int SIGNATURE_FIELD_NUMBER = 7;
     private volatile java.lang.Object signature_;
     /**
-     * <code>string signature = 7;</code>
+     * <code>optional string signature = 7;</code>
      */
     public java.lang.String getSignature() {
       java.lang.Object ref = signature_;
@@ -5120,7 +5118,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string signature = 7;</code>
+     * <code>optional string signature = 7;</code>
      */
     public com.google.protobuf.ByteString
         getSignatureBytes() {
@@ -5139,7 +5137,7 @@ public final class ServerResponseMessage {
     public static final int MAIL_ADDRESS_FIELD_NUMBER = 8;
     private volatile java.lang.Object mailAddress_;
     /**
-     * <code>string mail_address = 8;</code>
+     * <code>optional string mail_address = 8;</code>
      */
     public java.lang.String getMailAddress() {
       java.lang.Object ref = mailAddress_;
@@ -5154,7 +5152,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string mail_address = 8;</code>
+     * <code>optional string mail_address = 8;</code>
      */
     public com.google.protobuf.ByteString
         getMailAddressBytes() {
@@ -5173,7 +5171,7 @@ public final class ServerResponseMessage {
     public static final int PIC_URL_FIELD_NUMBER = 9;
     private volatile java.lang.Object picUrl_;
     /**
-     * <code>string pic_url = 9;</code>
+     * <code>optional string pic_url = 9;</code>
      */
     public java.lang.String getPicUrl() {
       java.lang.Object ref = picUrl_;
@@ -5188,7 +5186,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string pic_url = 9;</code>
+     * <code>optional string pic_url = 9;</code>
      */
     public com.google.protobuf.ByteString
         getPicUrlBytes() {
@@ -5316,7 +5314,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
       hash = (53 * hash) + getUsername().hashCode();
       hash = (37 * hash) + GOOD_FIELD_NUMBER;
@@ -5598,7 +5596,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object username_ = "";
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public java.lang.String getUsername() {
         java.lang.Object ref = username_;
@@ -5613,7 +5611,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
@@ -5629,7 +5627,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
@@ -5642,7 +5640,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public Builder clearUsername() {
         
@@ -5651,7 +5649,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
@@ -5667,13 +5665,13 @@ public final class ServerResponseMessage {
 
       private int good_ ;
       /**
-       * <code>int32 good = 2;</code>
+       * <code>optional int32 good = 2;</code>
        */
       public int getGood() {
         return good_;
       }
       /**
-       * <code>int32 good = 2;</code>
+       * <code>optional int32 good = 2;</code>
        */
       public Builder setGood(int value) {
         
@@ -5682,7 +5680,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 good = 2;</code>
+       * <code>optional int32 good = 2;</code>
        */
       public Builder clearGood() {
         
@@ -5693,13 +5691,13 @@ public final class ServerResponseMessage {
 
       private int questionNum_ ;
       /**
-       * <code>int32 questionNum = 4;</code>
+       * <code>optional int32 questionNum = 4;</code>
        */
       public int getQuestionNum() {
         return questionNum_;
       }
       /**
-       * <code>int32 questionNum = 4;</code>
+       * <code>optional int32 questionNum = 4;</code>
        */
       public Builder setQuestionNum(int value) {
         
@@ -5708,7 +5706,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 questionNum = 4;</code>
+       * <code>optional int32 questionNum = 4;</code>
        */
       public Builder clearQuestionNum() {
         
@@ -5719,13 +5717,13 @@ public final class ServerResponseMessage {
 
       private int solvedQuestionNum_ ;
       /**
-       * <code>int32 solvedQuestionNum = 5;</code>
+       * <code>optional int32 solvedQuestionNum = 5;</code>
        */
       public int getSolvedQuestionNum() {
         return solvedQuestionNum_;
       }
       /**
-       * <code>int32 solvedQuestionNum = 5;</code>
+       * <code>optional int32 solvedQuestionNum = 5;</code>
        */
       public Builder setSolvedQuestionNum(int value) {
         
@@ -5734,7 +5732,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 solvedQuestionNum = 5;</code>
+       * <code>optional int32 solvedQuestionNum = 5;</code>
        */
       public Builder clearSolvedQuestionNum() {
         
@@ -5745,13 +5743,13 @@ public final class ServerResponseMessage {
 
       private int bonus_ ;
       /**
-       * <code>int32 bonus = 6;</code>
+       * <code>optional int32 bonus = 6;</code>
        */
       public int getBonus() {
         return bonus_;
       }
       /**
-       * <code>int32 bonus = 6;</code>
+       * <code>optional int32 bonus = 6;</code>
        */
       public Builder setBonus(int value) {
         
@@ -5760,7 +5758,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 bonus = 6;</code>
+       * <code>optional int32 bonus = 6;</code>
        */
       public Builder clearBonus() {
         
@@ -5771,7 +5769,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object signature_ = "";
       /**
-       * <code>string signature = 7;</code>
+       * <code>optional string signature = 7;</code>
        */
       public java.lang.String getSignature() {
         java.lang.Object ref = signature_;
@@ -5786,7 +5784,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string signature = 7;</code>
+       * <code>optional string signature = 7;</code>
        */
       public com.google.protobuf.ByteString
           getSignatureBytes() {
@@ -5802,7 +5800,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string signature = 7;</code>
+       * <code>optional string signature = 7;</code>
        */
       public Builder setSignature(
           java.lang.String value) {
@@ -5815,7 +5813,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string signature = 7;</code>
+       * <code>optional string signature = 7;</code>
        */
       public Builder clearSignature() {
         
@@ -5824,7 +5822,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string signature = 7;</code>
+       * <code>optional string signature = 7;</code>
        */
       public Builder setSignatureBytes(
           com.google.protobuf.ByteString value) {
@@ -5840,7 +5838,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object mailAddress_ = "";
       /**
-       * <code>string mail_address = 8;</code>
+       * <code>optional string mail_address = 8;</code>
        */
       public java.lang.String getMailAddress() {
         java.lang.Object ref = mailAddress_;
@@ -5855,7 +5853,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string mail_address = 8;</code>
+       * <code>optional string mail_address = 8;</code>
        */
       public com.google.protobuf.ByteString
           getMailAddressBytes() {
@@ -5871,7 +5869,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string mail_address = 8;</code>
+       * <code>optional string mail_address = 8;</code>
        */
       public Builder setMailAddress(
           java.lang.String value) {
@@ -5884,7 +5882,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string mail_address = 8;</code>
+       * <code>optional string mail_address = 8;</code>
        */
       public Builder clearMailAddress() {
         
@@ -5893,7 +5891,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string mail_address = 8;</code>
+       * <code>optional string mail_address = 8;</code>
        */
       public Builder setMailAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -5909,7 +5907,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object picUrl_ = "";
       /**
-       * <code>string pic_url = 9;</code>
+       * <code>optional string pic_url = 9;</code>
        */
       public java.lang.String getPicUrl() {
         java.lang.Object ref = picUrl_;
@@ -5924,7 +5922,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string pic_url = 9;</code>
+       * <code>optional string pic_url = 9;</code>
        */
       public com.google.protobuf.ByteString
           getPicUrlBytes() {
@@ -5940,7 +5938,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string pic_url = 9;</code>
+       * <code>optional string pic_url = 9;</code>
        */
       public Builder setPicUrl(
           java.lang.String value) {
@@ -5953,7 +5951,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string pic_url = 9;</code>
+       * <code>optional string pic_url = 9;</code>
        */
       public Builder clearPicUrl() {
         
@@ -5962,7 +5960,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string pic_url = 9;</code>
+       * <code>optional string pic_url = 9;</code>
        */
       public Builder setPicUrlBytes(
           com.google.protobuf.ByteString value) {
@@ -6029,30 +6027,30 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool status = 1;</code>
+     * <code>optional bool status = 1;</code>
      */
     boolean getStatus();
 
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     java.lang.String getInformation();
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     com.google.protobuf.ByteString
         getInformationBytes();
 
     /**
-     * <code>.UserMessage userMessage = 3;</code>
+     * <code>optional .UserMessage userMessage = 3;</code>
      */
     boolean hasUserMessage();
     /**
-     * <code>.UserMessage userMessage = 3;</code>
+     * <code>optional .UserMessage userMessage = 3;</code>
      */
     com.ServerResponseMessage.UserMessage getUserMessage();
     /**
-     * <code>.UserMessage userMessage = 3;</code>
+     * <code>optional .UserMessage userMessage = 3;</code>
      */
     com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder();
   }
@@ -6151,7 +6149,7 @@ public final class ServerResponseMessage {
     public static final int STATUS_FIELD_NUMBER = 1;
     private boolean status_;
     /**
-     * <code>bool status = 1;</code>
+     * <code>optional bool status = 1;</code>
      */
     public boolean getStatus() {
       return status_;
@@ -6160,7 +6158,7 @@ public final class ServerResponseMessage {
     public static final int INFORMATION_FIELD_NUMBER = 2;
     private volatile java.lang.Object information_;
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     public java.lang.String getInformation() {
       java.lang.Object ref = information_;
@@ -6175,7 +6173,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     public com.google.protobuf.ByteString
         getInformationBytes() {
@@ -6194,19 +6192,19 @@ public final class ServerResponseMessage {
     public static final int USERMESSAGE_FIELD_NUMBER = 3;
     private com.ServerResponseMessage.UserMessage userMessage_;
     /**
-     * <code>.UserMessage userMessage = 3;</code>
+     * <code>optional .UserMessage userMessage = 3;</code>
      */
     public boolean hasUserMessage() {
       return userMessage_ != null;
     }
     /**
-     * <code>.UserMessage userMessage = 3;</code>
+     * <code>optional .UserMessage userMessage = 3;</code>
      */
     public com.ServerResponseMessage.UserMessage getUserMessage() {
       return userMessage_ == null ? com.ServerResponseMessage.UserMessage.getDefaultInstance() : userMessage_;
     }
     /**
-     * <code>.UserMessage userMessage = 3;</code>
+     * <code>optional .UserMessage userMessage = 3;</code>
      */
     public com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder() {
       return getUserMessage();
@@ -6285,7 +6283,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getStatus());
@@ -6535,13 +6533,13 @@ public final class ServerResponseMessage {
 
       private boolean status_ ;
       /**
-       * <code>bool status = 1;</code>
+       * <code>optional bool status = 1;</code>
        */
       public boolean getStatus() {
         return status_;
       }
       /**
-       * <code>bool status = 1;</code>
+       * <code>optional bool status = 1;</code>
        */
       public Builder setStatus(boolean value) {
         
@@ -6550,7 +6548,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool status = 1;</code>
+       * <code>optional bool status = 1;</code>
        */
       public Builder clearStatus() {
         
@@ -6561,7 +6559,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object information_ = "";
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public java.lang.String getInformation() {
         java.lang.Object ref = information_;
@@ -6576,7 +6574,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public com.google.protobuf.ByteString
           getInformationBytes() {
@@ -6592,7 +6590,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public Builder setInformation(
           java.lang.String value) {
@@ -6605,7 +6603,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public Builder clearInformation() {
         
@@ -6614,7 +6612,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public Builder setInformationBytes(
           com.google.protobuf.ByteString value) {
@@ -6632,13 +6630,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> userMessageBuilder_;
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public boolean hasUserMessage() {
         return userMessageBuilder_ != null || userMessage_ != null;
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public com.ServerResponseMessage.UserMessage getUserMessage() {
         if (userMessageBuilder_ == null) {
@@ -6648,7 +6646,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public Builder setUserMessage(com.ServerResponseMessage.UserMessage value) {
         if (userMessageBuilder_ == null) {
@@ -6664,7 +6662,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public Builder setUserMessage(
           com.ServerResponseMessage.UserMessage.Builder builderForValue) {
@@ -6678,7 +6676,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public Builder mergeUserMessage(com.ServerResponseMessage.UserMessage value) {
         if (userMessageBuilder_ == null) {
@@ -6696,7 +6694,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public Builder clearUserMessage() {
         if (userMessageBuilder_ == null) {
@@ -6710,7 +6708,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public com.ServerResponseMessage.UserMessage.Builder getUserMessageBuilder() {
         
@@ -6718,7 +6716,7 @@ public final class ServerResponseMessage {
         return getUserMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       public com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder() {
         if (userMessageBuilder_ != null) {
@@ -6729,7 +6727,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UserMessage userMessage = 3;</code>
+       * <code>optional .UserMessage userMessage = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> 
@@ -6798,16 +6796,16 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
 
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     java.lang.String getInformation();
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     com.google.protobuf.ByteString
         getInformationBytes();
@@ -6894,7 +6892,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -6903,7 +6901,7 @@ public final class ServerResponseMessage {
     public static final int INFORMATION_FIELD_NUMBER = 2;
     private volatile java.lang.Object information_;
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     public java.lang.String getInformation() {
       java.lang.Object ref = information_;
@@ -6918,7 +6916,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string information = 2;</code>
+     * <code>optional string information = 2;</code>
      */
     public com.google.protobuf.ByteString
         getInformationBytes() {
@@ -6995,7 +6993,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -7227,13 +7225,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -7242,7 +7240,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -7253,7 +7251,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object information_ = "";
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public java.lang.String getInformation() {
         java.lang.Object ref = information_;
@@ -7268,7 +7266,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public com.google.protobuf.ByteString
           getInformationBytes() {
@@ -7284,7 +7282,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public Builder setInformation(
           java.lang.String value) {
@@ -7297,7 +7295,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public Builder clearInformation() {
         
@@ -7306,7 +7304,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string information = 2;</code>
+       * <code>optional string information = 2;</code>
        */
       public Builder setInformationBytes(
           com.google.protobuf.ByteString value) {
@@ -7373,36 +7371,36 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 questionID = 1;</code>
+     * <code>optional int64 questionID = 1;</code>
      */
     long getQuestionID();
 
     /**
-     * <code>string content = 2;</code>
+     * <code>optional string content = 2;</code>
      */
     java.lang.String getContent();
     /**
-     * <code>string content = 2;</code>
+     * <code>optional string content = 2;</code>
      */
     com.google.protobuf.ByteString
         getContentBytes();
 
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
 
     /**
-     * <code>string user = 4;</code>
+     * <code>optional string user = 4;</code>
      */
     java.lang.String getUser();
     /**
-     * <code>string user = 4;</code>
+     * <code>optional string user = 4;</code>
      */
     com.google.protobuf.ByteString
         getUserBytes();
@@ -7427,12 +7425,12 @@ public final class ServerResponseMessage {
         getPicturesBytes(int index);
 
     /**
-     * <code>bool success = 6;</code>
+     * <code>optional bool success = 6;</code>
      */
     boolean getSuccess();
 
     /**
-     * <code>bool ismyself = 7;</code>
+     * <code>optional bool ismyself = 7;</code>
      */
     boolean getIsmyself();
 
@@ -7471,7 +7469,7 @@ public final class ServerResponseMessage {
         int key);
 
     /**
-     * <code>int64 recordID = 9;</code>
+     * <code>optional int64 recordID = 9;</code>
      */
     long getRecordID();
   }
@@ -7571,10 +7569,9 @@ public final class ServerResponseMessage {
                 mutable_bitField0_ |= 0x00000080;
               }
               com.google.protobuf.MapEntry<java.lang.Integer, java.lang.Long>
-              markMap__ = input.readMessage(
+              markMap = input.readMessage(
                   MarkMapDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              markMap_.getMutableMap().put(
-                  markMap__.getKey(), markMap__.getValue());
+              markMap_.getMutableMap().put(markMap.getKey(), markMap.getValue());
               break;
             }
             case 72: {
@@ -7623,7 +7620,7 @@ public final class ServerResponseMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 1;
     private long questionID_;
     /**
-     * <code>int64 questionID = 1;</code>
+     * <code>optional int64 questionID = 1;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -7632,7 +7629,7 @@ public final class ServerResponseMessage {
     public static final int CONTENT_FIELD_NUMBER = 2;
     private volatile java.lang.Object content_;
     /**
-     * <code>string content = 2;</code>
+     * <code>optional string content = 2;</code>
      */
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
@@ -7647,7 +7644,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string content = 2;</code>
+     * <code>optional string content = 2;</code>
      */
     public com.google.protobuf.ByteString
         getContentBytes() {
@@ -7666,7 +7663,7 @@ public final class ServerResponseMessage {
     public static final int TIME_FIELD_NUMBER = 3;
     private volatile java.lang.Object time_;
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -7681,7 +7678,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string time = 3;</code>
+     * <code>optional string time = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -7700,7 +7697,7 @@ public final class ServerResponseMessage {
     public static final int USER_FIELD_NUMBER = 4;
     private volatile java.lang.Object user_;
     /**
-     * <code>string user = 4;</code>
+     * <code>optional string user = 4;</code>
      */
     public java.lang.String getUser() {
       java.lang.Object ref = user_;
@@ -7715,7 +7712,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string user = 4;</code>
+     * <code>optional string user = 4;</code>
      */
     public com.google.protobuf.ByteString
         getUserBytes() {
@@ -7763,7 +7760,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 6;
     private boolean success_;
     /**
-     * <code>bool success = 6;</code>
+     * <code>optional bool success = 6;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -7772,7 +7769,7 @@ public final class ServerResponseMessage {
     public static final int ISMYSELF_FIELD_NUMBER = 7;
     private boolean ismyself_;
     /**
-     * <code>bool ismyself = 7;</code>
+     * <code>optional bool ismyself = 7;</code>
      */
     public boolean getIsmyself() {
       return ismyself_;
@@ -7857,7 +7854,7 @@ public final class ServerResponseMessage {
     public static final int RECORDID_FIELD_NUMBER = 9;
     private long recordID_;
     /**
-     * <code>int64 recordID = 9;</code>
+     * <code>optional int64 recordID = 9;</code>
      */
     public long getRecordID() {
       return recordID_;
@@ -7896,12 +7893,15 @@ public final class ServerResponseMessage {
       if (ismyself_ != false) {
         output.writeBool(7, ismyself_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeIntegerMapTo(
-          output,
-          internalGetMarkMap(),
-          MarkMapDefaultEntryHolder.defaultEntry,
-          8);
+      for (java.util.Map.Entry<java.lang.Integer, java.lang.Long> entry
+           : internalGetMarkMap().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.Integer, java.lang.Long>
+        markMap = MarkMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        output.writeMessage(8, markMap);
+      }
       if (recordID_ != 0L) {
         output.writeInt64(9, recordID_);
       }
@@ -7944,12 +7944,12 @@ public final class ServerResponseMessage {
       for (java.util.Map.Entry<java.lang.Integer, java.lang.Long> entry
            : internalGetMarkMap().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.Integer, java.lang.Long>
-        markMap__ = MarkMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+        markMap = MarkMapDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(8, markMap__);
+            .computeMessageSize(8, markMap);
       }
       if (recordID_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -7998,7 +7998,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -8327,13 +8327,13 @@ public final class ServerResponseMessage {
 
       private long questionID_ ;
       /**
-       * <code>int64 questionID = 1;</code>
+       * <code>optional int64 questionID = 1;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>int64 questionID = 1;</code>
+       * <code>optional int64 questionID = 1;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -8342,7 +8342,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int64 questionID = 1;</code>
+       * <code>optional int64 questionID = 1;</code>
        */
       public Builder clearQuestionID() {
         
@@ -8353,7 +8353,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object content_ = "";
       /**
-       * <code>string content = 2;</code>
+       * <code>optional string content = 2;</code>
        */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
@@ -8368,7 +8368,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string content = 2;</code>
+       * <code>optional string content = 2;</code>
        */
       public com.google.protobuf.ByteString
           getContentBytes() {
@@ -8384,7 +8384,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string content = 2;</code>
+       * <code>optional string content = 2;</code>
        */
       public Builder setContent(
           java.lang.String value) {
@@ -8397,7 +8397,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string content = 2;</code>
+       * <code>optional string content = 2;</code>
        */
       public Builder clearContent() {
         
@@ -8406,7 +8406,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string content = 2;</code>
+       * <code>optional string content = 2;</code>
        */
       public Builder setContentBytes(
           com.google.protobuf.ByteString value) {
@@ -8422,7 +8422,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -8437,7 +8437,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -8453,7 +8453,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -8466,7 +8466,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder clearTime() {
         
@@ -8475,7 +8475,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 3;</code>
+       * <code>optional string time = 3;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -8491,7 +8491,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object user_ = "";
       /**
-       * <code>string user = 4;</code>
+       * <code>optional string user = 4;</code>
        */
       public java.lang.String getUser() {
         java.lang.Object ref = user_;
@@ -8506,7 +8506,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string user = 4;</code>
+       * <code>optional string user = 4;</code>
        */
       public com.google.protobuf.ByteString
           getUserBytes() {
@@ -8522,7 +8522,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string user = 4;</code>
+       * <code>optional string user = 4;</code>
        */
       public Builder setUser(
           java.lang.String value) {
@@ -8535,7 +8535,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string user = 4;</code>
+       * <code>optional string user = 4;</code>
        */
       public Builder clearUser() {
         
@@ -8544,7 +8544,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string user = 4;</code>
+       * <code>optional string user = 4;</code>
        */
       public Builder setUserBytes(
           com.google.protobuf.ByteString value) {
@@ -8654,13 +8654,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 6;</code>
+       * <code>optional bool success = 6;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 6;</code>
+       * <code>optional bool success = 6;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -8669,7 +8669,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 6;</code>
+       * <code>optional bool success = 6;</code>
        */
       public Builder clearSuccess() {
         
@@ -8680,13 +8680,13 @@ public final class ServerResponseMessage {
 
       private boolean ismyself_ ;
       /**
-       * <code>bool ismyself = 7;</code>
+       * <code>optional bool ismyself = 7;</code>
        */
       public boolean getIsmyself() {
         return ismyself_;
       }
       /**
-       * <code>bool ismyself = 7;</code>
+       * <code>optional bool ismyself = 7;</code>
        */
       public Builder setIsmyself(boolean value) {
         
@@ -8695,7 +8695,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool ismyself = 7;</code>
+       * <code>optional bool ismyself = 7;</code>
        */
       public Builder clearIsmyself() {
         
@@ -8781,8 +8781,7 @@ public final class ServerResponseMessage {
       }
 
       public Builder clearMarkMap() {
-        internalGetMutableMarkMap().getMutableMap()
-            .clear();
+        getMutableMarkMap().clear();
         return this;
       }
       /**
@@ -8792,8 +8791,7 @@ public final class ServerResponseMessage {
       public Builder removeMarkMap(
           int key) {
         
-        internalGetMutableMarkMap().getMutableMap()
-            .remove(key);
+        getMutableMarkMap().remove(key);
         return this;
       }
       /**
@@ -8812,8 +8810,7 @@ public final class ServerResponseMessage {
           long value) {
         
         
-        internalGetMutableMarkMap().getMutableMap()
-            .put(key, value);
+        getMutableMarkMap().put(key, value);
         return this;
       }
       /**
@@ -8822,20 +8819,19 @@ public final class ServerResponseMessage {
 
       public Builder putAllMarkMap(
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
-        internalGetMutableMarkMap().getMutableMap()
-            .putAll(values);
+        getMutableMarkMap().putAll(values);
         return this;
       }
 
       private long recordID_ ;
       /**
-       * <code>int64 recordID = 9;</code>
+       * <code>optional int64 recordID = 9;</code>
        */
       public long getRecordID() {
         return recordID_;
       }
       /**
-       * <code>int64 recordID = 9;</code>
+       * <code>optional int64 recordID = 9;</code>
        */
       public Builder setRecordID(long value) {
         
@@ -8844,7 +8840,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int64 recordID = 9;</code>
+       * <code>optional int64 recordID = 9;</code>
        */
       public Builder clearRecordID() {
         
@@ -8906,21 +8902,21 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string time = 1;</code>
+     * <code>optional string time = 1;</code>
      */
     java.lang.String getTime();
     /**
-     * <code>string time = 1;</code>
+     * <code>optional string time = 1;</code>
      */
     com.google.protobuf.ByteString
         getTimeBytes();
 
     /**
-     * <code>string text = 2;</code>
+     * <code>optional string text = 2;</code>
      */
     java.lang.String getText();
     /**
-     * <code>string text = 2;</code>
+     * <code>optional string text = 2;</code>
      */
     com.google.protobuf.ByteString
         getTextBytes();
@@ -9008,7 +9004,7 @@ public final class ServerResponseMessage {
     public static final int TIME_FIELD_NUMBER = 1;
     private volatile java.lang.Object time_;
     /**
-     * <code>string time = 1;</code>
+     * <code>optional string time = 1;</code>
      */
     public java.lang.String getTime() {
       java.lang.Object ref = time_;
@@ -9023,7 +9019,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string time = 1;</code>
+     * <code>optional string time = 1;</code>
      */
     public com.google.protobuf.ByteString
         getTimeBytes() {
@@ -9042,7 +9038,7 @@ public final class ServerResponseMessage {
     public static final int TEXT_FIELD_NUMBER = 2;
     private volatile java.lang.Object text_;
     /**
-     * <code>string text = 2;</code>
+     * <code>optional string text = 2;</code>
      */
     public java.lang.String getText() {
       java.lang.Object ref = text_;
@@ -9057,7 +9053,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string text = 2;</code>
+     * <code>optional string text = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTextBytes() {
@@ -9133,7 +9129,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + TIME_FIELD_NUMBER;
       hash = (53 * hash) + getTime().hashCode();
       hash = (37 * hash) + TEXT_FIELD_NUMBER;
@@ -9365,7 +9361,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object time_ = "";
       /**
-       * <code>string time = 1;</code>
+       * <code>optional string time = 1;</code>
        */
       public java.lang.String getTime() {
         java.lang.Object ref = time_;
@@ -9380,7 +9376,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 1;</code>
+       * <code>optional string time = 1;</code>
        */
       public com.google.protobuf.ByteString
           getTimeBytes() {
@@ -9396,7 +9392,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string time = 1;</code>
+       * <code>optional string time = 1;</code>
        */
       public Builder setTime(
           java.lang.String value) {
@@ -9409,7 +9405,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 1;</code>
+       * <code>optional string time = 1;</code>
        */
       public Builder clearTime() {
         
@@ -9418,7 +9414,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string time = 1;</code>
+       * <code>optional string time = 1;</code>
        */
       public Builder setTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -9434,7 +9430,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object text_ = "";
       /**
-       * <code>string text = 2;</code>
+       * <code>optional string text = 2;</code>
        */
       public java.lang.String getText() {
         java.lang.Object ref = text_;
@@ -9449,7 +9445,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string text = 2;</code>
+       * <code>optional string text = 2;</code>
        */
       public com.google.protobuf.ByteString
           getTextBytes() {
@@ -9465,7 +9461,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string text = 2;</code>
+       * <code>optional string text = 2;</code>
        */
       public Builder setText(
           java.lang.String value) {
@@ -9478,7 +9474,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string text = 2;</code>
+       * <code>optional string text = 2;</code>
        */
       public Builder clearText() {
         
@@ -9487,7 +9483,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string text = 2;</code>
+       * <code>optional string text = 2;</code>
        */
       public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
@@ -9554,20 +9550,20 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool allow = 1;</code>
+     * <code>optional bool allow = 1;</code>
      */
     boolean getAllow();
 
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     boolean hasQuestionMessage();
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     com.ServerResponseMessage.QuestionMessage getQuestionMessage();
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
   }
@@ -9659,7 +9655,7 @@ public final class ServerResponseMessage {
     public static final int ALLOW_FIELD_NUMBER = 1;
     private boolean allow_;
     /**
-     * <code>bool allow = 1;</code>
+     * <code>optional bool allow = 1;</code>
      */
     public boolean getAllow() {
       return allow_;
@@ -9668,19 +9664,19 @@ public final class ServerResponseMessage {
     public static final int QUESTIONMESSAGE_FIELD_NUMBER = 2;
     private com.ServerResponseMessage.QuestionMessage questionMessage_;
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     public boolean hasQuestionMessage() {
       return questionMessage_ != null;
     }
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
       return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
     }
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
       return getQuestionMessage();
@@ -9751,7 +9747,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + ALLOW_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getAllow());
@@ -9992,13 +9988,13 @@ public final class ServerResponseMessage {
 
       private boolean allow_ ;
       /**
-       * <code>bool allow = 1;</code>
+       * <code>optional bool allow = 1;</code>
        */
       public boolean getAllow() {
         return allow_;
       }
       /**
-       * <code>bool allow = 1;</code>
+       * <code>optional bool allow = 1;</code>
        */
       public Builder setAllow(boolean value) {
         
@@ -10007,7 +10003,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool allow = 1;</code>
+       * <code>optional bool allow = 1;</code>
        */
       public Builder clearAllow() {
         
@@ -10020,13 +10016,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public boolean hasQuestionMessage() {
         return questionMessageBuilder_ != null || questionMessage_ != null;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
         if (questionMessageBuilder_ == null) {
@@ -10036,7 +10032,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder setQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
         if (questionMessageBuilder_ == null) {
@@ -10052,7 +10048,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder setQuestionMessage(
           com.ServerResponseMessage.QuestionMessage.Builder builderForValue) {
@@ -10066,7 +10062,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder mergeQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
         if (questionMessageBuilder_ == null) {
@@ -10084,7 +10080,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder clearQuestionMessage() {
         if (questionMessageBuilder_ == null) {
@@ -10098,7 +10094,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public com.ServerResponseMessage.QuestionMessage.Builder getQuestionMessageBuilder() {
         
@@ -10106,7 +10102,7 @@ public final class ServerResponseMessage {
         return getQuestionMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
         if (questionMessageBuilder_ != null) {
@@ -10117,7 +10113,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
@@ -10186,7 +10182,7 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
   }
@@ -10265,7 +10261,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -10324,7 +10320,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -10547,13 +10543,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -10562,7 +10558,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -10624,7 +10620,7 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
   }
@@ -10703,7 +10699,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -10762,7 +10758,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -10985,13 +10981,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -11000,7 +10996,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -11062,20 +11058,20 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.QuestionMessage questionMessage = 1;</code>
+     * <code>optional .QuestionMessage questionMessage = 1;</code>
      */
     boolean hasQuestionMessage();
     /**
-     * <code>.QuestionMessage questionMessage = 1;</code>
+     * <code>optional .QuestionMessage questionMessage = 1;</code>
      */
     com.ServerResponseMessage.QuestionMessage getQuestionMessage();
     /**
-     * <code>.QuestionMessage questionMessage = 1;</code>
+     * <code>optional .QuestionMessage questionMessage = 1;</code>
      */
     com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
 
     /**
-     * <code>bool exist = 2;</code>
+     * <code>optional bool exist = 2;</code>
      */
     boolean getExist();
   }
@@ -11167,19 +11163,19 @@ public final class ServerResponseMessage {
     public static final int QUESTIONMESSAGE_FIELD_NUMBER = 1;
     private com.ServerResponseMessage.QuestionMessage questionMessage_;
     /**
-     * <code>.QuestionMessage questionMessage = 1;</code>
+     * <code>optional .QuestionMessage questionMessage = 1;</code>
      */
     public boolean hasQuestionMessage() {
       return questionMessage_ != null;
     }
     /**
-     * <code>.QuestionMessage questionMessage = 1;</code>
+     * <code>optional .QuestionMessage questionMessage = 1;</code>
      */
     public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
       return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
     }
     /**
-     * <code>.QuestionMessage questionMessage = 1;</code>
+     * <code>optional .QuestionMessage questionMessage = 1;</code>
      */
     public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
       return getQuestionMessage();
@@ -11188,7 +11184,7 @@ public final class ServerResponseMessage {
     public static final int EXIST_FIELD_NUMBER = 2;
     private boolean exist_;
     /**
-     * <code>bool exist = 2;</code>
+     * <code>optional bool exist = 2;</code>
      */
     public boolean getExist() {
       return exist_;
@@ -11259,7 +11255,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       if (hasQuestionMessage()) {
         hash = (37 * hash) + QUESTIONMESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getQuestionMessage().hashCode();
@@ -11502,13 +11498,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public boolean hasQuestionMessage() {
         return questionMessageBuilder_ != null || questionMessage_ != null;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
         if (questionMessageBuilder_ == null) {
@@ -11518,7 +11514,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public Builder setQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
         if (questionMessageBuilder_ == null) {
@@ -11534,7 +11530,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public Builder setQuestionMessage(
           com.ServerResponseMessage.QuestionMessage.Builder builderForValue) {
@@ -11548,7 +11544,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public Builder mergeQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
         if (questionMessageBuilder_ == null) {
@@ -11566,7 +11562,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public Builder clearQuestionMessage() {
         if (questionMessageBuilder_ == null) {
@@ -11580,7 +11576,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionMessage.Builder getQuestionMessageBuilder() {
         
@@ -11588,7 +11584,7 @@ public final class ServerResponseMessage {
         return getQuestionMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
         if (questionMessageBuilder_ != null) {
@@ -11599,7 +11595,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionMessage questionMessage = 1;</code>
+       * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
@@ -11617,13 +11613,13 @@ public final class ServerResponseMessage {
 
       private boolean exist_ ;
       /**
-       * <code>bool exist = 2;</code>
+       * <code>optional bool exist = 2;</code>
        */
       public boolean getExist() {
         return exist_;
       }
       /**
-       * <code>bool exist = 2;</code>
+       * <code>optional bool exist = 2;</code>
        */
       public Builder setExist(boolean value) {
         
@@ -11632,7 +11628,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool exist = 2;</code>
+       * <code>optional bool exist = 2;</code>
        */
       public Builder clearExist() {
         
@@ -11694,20 +11690,20 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.UserMessage userMessage = 1;</code>
+     * <code>optional .UserMessage userMessage = 1;</code>
      */
     boolean hasUserMessage();
     /**
-     * <code>.UserMessage userMessage = 1;</code>
+     * <code>optional .UserMessage userMessage = 1;</code>
      */
     com.ServerResponseMessage.UserMessage getUserMessage();
     /**
-     * <code>.UserMessage userMessage = 1;</code>
+     * <code>optional .UserMessage userMessage = 1;</code>
      */
     com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder();
 
     /**
-     * <code>bool exist = 2;</code>
+     * <code>optional bool exist = 2;</code>
      */
     boolean getExist();
   }
@@ -11799,19 +11795,19 @@ public final class ServerResponseMessage {
     public static final int USERMESSAGE_FIELD_NUMBER = 1;
     private com.ServerResponseMessage.UserMessage userMessage_;
     /**
-     * <code>.UserMessage userMessage = 1;</code>
+     * <code>optional .UserMessage userMessage = 1;</code>
      */
     public boolean hasUserMessage() {
       return userMessage_ != null;
     }
     /**
-     * <code>.UserMessage userMessage = 1;</code>
+     * <code>optional .UserMessage userMessage = 1;</code>
      */
     public com.ServerResponseMessage.UserMessage getUserMessage() {
       return userMessage_ == null ? com.ServerResponseMessage.UserMessage.getDefaultInstance() : userMessage_;
     }
     /**
-     * <code>.UserMessage userMessage = 1;</code>
+     * <code>optional .UserMessage userMessage = 1;</code>
      */
     public com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder() {
       return getUserMessage();
@@ -11820,7 +11816,7 @@ public final class ServerResponseMessage {
     public static final int EXIST_FIELD_NUMBER = 2;
     private boolean exist_;
     /**
-     * <code>bool exist = 2;</code>
+     * <code>optional bool exist = 2;</code>
      */
     public boolean getExist() {
       return exist_;
@@ -11891,7 +11887,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       if (hasUserMessage()) {
         hash = (37 * hash) + USERMESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getUserMessage().hashCode();
@@ -12134,13 +12130,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> userMessageBuilder_;
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public boolean hasUserMessage() {
         return userMessageBuilder_ != null || userMessage_ != null;
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public com.ServerResponseMessage.UserMessage getUserMessage() {
         if (userMessageBuilder_ == null) {
@@ -12150,7 +12146,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public Builder setUserMessage(com.ServerResponseMessage.UserMessage value) {
         if (userMessageBuilder_ == null) {
@@ -12166,7 +12162,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public Builder setUserMessage(
           com.ServerResponseMessage.UserMessage.Builder builderForValue) {
@@ -12180,7 +12176,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public Builder mergeUserMessage(com.ServerResponseMessage.UserMessage value) {
         if (userMessageBuilder_ == null) {
@@ -12198,7 +12194,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public Builder clearUserMessage() {
         if (userMessageBuilder_ == null) {
@@ -12212,7 +12208,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public com.ServerResponseMessage.UserMessage.Builder getUserMessageBuilder() {
         
@@ -12220,7 +12216,7 @@ public final class ServerResponseMessage {
         return getUserMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       public com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder() {
         if (userMessageBuilder_ != null) {
@@ -12231,7 +12227,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UserMessage userMessage = 1;</code>
+       * <code>optional .UserMessage userMessage = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> 
@@ -12249,13 +12245,13 @@ public final class ServerResponseMessage {
 
       private boolean exist_ ;
       /**
-       * <code>bool exist = 2;</code>
+       * <code>optional bool exist = 2;</code>
        */
       public boolean getExist() {
         return exist_;
       }
       /**
-       * <code>bool exist = 2;</code>
+       * <code>optional bool exist = 2;</code>
        */
       public Builder setExist(boolean value) {
         
@@ -12264,7 +12260,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool exist = 2;</code>
+       * <code>optional bool exist = 2;</code>
        */
       public Builder clearExist() {
         
@@ -12326,7 +12322,7 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 num = 1;</code>
+     * <code>optional int32 num = 1;</code>
      */
     int getNum();
 
@@ -12443,7 +12439,7 @@ public final class ServerResponseMessage {
     public static final int NUM_FIELD_NUMBER = 1;
     private int num_;
     /**
-     * <code>int32 num = 1;</code>
+     * <code>optional int32 num = 1;</code>
      */
     public int getNum() {
       return num_;
@@ -12546,7 +12542,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + NUM_FIELD_NUMBER;
       hash = (53 * hash) + getNum();
       if (getQuestionListMessageCount() > 0) {
@@ -12818,13 +12814,13 @@ public final class ServerResponseMessage {
 
       private int num_ ;
       /**
-       * <code>int32 num = 1;</code>
+       * <code>optional int32 num = 1;</code>
        */
       public int getNum() {
         return num_;
       }
       /**
-       * <code>int32 num = 1;</code>
+       * <code>optional int32 num = 1;</code>
        */
       public Builder setNum(int value) {
         
@@ -12833,7 +12829,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int32 num = 1;</code>
+       * <code>optional int32 num = 1;</code>
        */
       public Builder clearNum() {
         
@@ -13135,20 +13131,20 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
 
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     boolean hasQuestionMessage();
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     com.ServerResponseMessage.QuestionMessage getQuestionMessage();
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
   }
@@ -13240,7 +13236,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -13249,19 +13245,19 @@ public final class ServerResponseMessage {
     public static final int QUESTIONMESSAGE_FIELD_NUMBER = 2;
     private com.ServerResponseMessage.QuestionMessage questionMessage_;
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     public boolean hasQuestionMessage() {
       return questionMessage_ != null;
     }
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
       return questionMessage_ == null ? com.ServerResponseMessage.QuestionMessage.getDefaultInstance() : questionMessage_;
     }
     /**
-     * <code>.QuestionMessage questionMessage = 2;</code>
+     * <code>optional .QuestionMessage questionMessage = 2;</code>
      */
     public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
       return getQuestionMessage();
@@ -13332,7 +13328,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -13573,13 +13569,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -13588,7 +13584,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -13601,13 +13597,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public boolean hasQuestionMessage() {
         return questionMessageBuilder_ != null || questionMessage_ != null;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public com.ServerResponseMessage.QuestionMessage getQuestionMessage() {
         if (questionMessageBuilder_ == null) {
@@ -13617,7 +13613,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder setQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
         if (questionMessageBuilder_ == null) {
@@ -13633,7 +13629,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder setQuestionMessage(
           com.ServerResponseMessage.QuestionMessage.Builder builderForValue) {
@@ -13647,7 +13643,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder mergeQuestionMessage(com.ServerResponseMessage.QuestionMessage value) {
         if (questionMessageBuilder_ == null) {
@@ -13665,7 +13661,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public Builder clearQuestionMessage() {
         if (questionMessageBuilder_ == null) {
@@ -13679,7 +13675,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public com.ServerResponseMessage.QuestionMessage.Builder getQuestionMessageBuilder() {
         
@@ -13687,7 +13683,7 @@ public final class ServerResponseMessage {
         return getQuestionMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       public com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder() {
         if (questionMessageBuilder_ != null) {
@@ -13698,7 +13694,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionMessage questionMessage = 2;</code>
+       * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
@@ -13767,7 +13763,7 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
   }
@@ -13846,7 +13842,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -13905,7 +13901,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -14128,13 +14124,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -14143,7 +14139,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -14205,28 +14201,33 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     java.util.List<com.ServerResponseMessage.QuestionListMessage> 
         getQuestionListMessageList();
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     com.ServerResponseMessage.QuestionListMessage getQuestionListMessage(int index);
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     int getQuestionListMessageCount();
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     java.util.List<? extends com.ServerResponseMessage.QuestionListMessageOrBuilder> 
         getQuestionListMessageOrBuilderList();
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     com.ServerResponseMessage.QuestionListMessageOrBuilder getQuestionListMessageOrBuilder(
         int index);
+
+    /**
+     * <code>optional int32 searchID = 2;</code>
+     */
+    int getSearchID();
   }
   /**
    * <pre>
@@ -14245,6 +14246,7 @@ public final class ServerResponseMessage {
     }
     private SearchInformationResponse() {
       questionListMessage_ = java.util.Collections.emptyList();
+      searchID_ = 0;
     }
 
     @java.lang.Override
@@ -14272,13 +14274,18 @@ public final class ServerResponseMessage {
               }
               break;
             }
-            case 26: {
+            case 10: {
               if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
                 questionListMessage_ = new java.util.ArrayList<com.ServerResponseMessage.QuestionListMessage>();
                 mutable_bitField0_ |= 0x00000001;
               }
               questionListMessage_.add(
                   input.readMessage(com.ServerResponseMessage.QuestionListMessage.parser(), extensionRegistry));
+              break;
+            }
+            case 16: {
+
+              searchID_ = input.readInt32();
               break;
             }
           }
@@ -14307,39 +14314,49 @@ public final class ServerResponseMessage {
               com.ServerResponseMessage.SearchInformationResponse.class, com.ServerResponseMessage.SearchInformationResponse.Builder.class);
     }
 
-    public static final int QUESTIONLISTMESSAGE_FIELD_NUMBER = 3;
+    private int bitField0_;
+    public static final int QUESTIONLISTMESSAGE_FIELD_NUMBER = 1;
     private java.util.List<com.ServerResponseMessage.QuestionListMessage> questionListMessage_;
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     public java.util.List<com.ServerResponseMessage.QuestionListMessage> getQuestionListMessageList() {
       return questionListMessage_;
     }
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     public java.util.List<? extends com.ServerResponseMessage.QuestionListMessageOrBuilder> 
         getQuestionListMessageOrBuilderList() {
       return questionListMessage_;
     }
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     public int getQuestionListMessageCount() {
       return questionListMessage_.size();
     }
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     public com.ServerResponseMessage.QuestionListMessage getQuestionListMessage(int index) {
       return questionListMessage_.get(index);
     }
     /**
-     * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+     * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
      */
     public com.ServerResponseMessage.QuestionListMessageOrBuilder getQuestionListMessageOrBuilder(
         int index) {
       return questionListMessage_.get(index);
+    }
+
+    public static final int SEARCHID_FIELD_NUMBER = 2;
+    private int searchID_;
+    /**
+     * <code>optional int32 searchID = 2;</code>
+     */
+    public int getSearchID() {
+      return searchID_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -14355,7 +14372,10 @@ public final class ServerResponseMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < questionListMessage_.size(); i++) {
-        output.writeMessage(3, questionListMessage_.get(i));
+        output.writeMessage(1, questionListMessage_.get(i));
+      }
+      if (searchID_ != 0) {
+        output.writeInt32(2, searchID_);
       }
     }
 
@@ -14366,7 +14386,11 @@ public final class ServerResponseMessage {
       size = 0;
       for (int i = 0; i < questionListMessage_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, questionListMessage_.get(i));
+          .computeMessageSize(1, questionListMessage_.get(i));
+      }
+      if (searchID_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, searchID_);
       }
       memoizedSize = size;
       return size;
@@ -14386,6 +14410,8 @@ public final class ServerResponseMessage {
       boolean result = true;
       result = result && getQuestionListMessageList()
           .equals(other.getQuestionListMessageList());
+      result = result && (getSearchID()
+          == other.getSearchID());
       return result;
     }
 
@@ -14395,11 +14421,13 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       if (getQuestionListMessageCount() > 0) {
         hash = (37 * hash) + QUESTIONLISTMESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getQuestionListMessageList().hashCode();
       }
+      hash = (37 * hash) + SEARCHID_FIELD_NUMBER;
+      hash = (53 * hash) + getSearchID();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -14529,6 +14557,8 @@ public final class ServerResponseMessage {
         } else {
           questionListMessageBuilder_.clear();
         }
+        searchID_ = 0;
+
         return this;
       }
 
@@ -14552,6 +14582,7 @@ public final class ServerResponseMessage {
       public com.ServerResponseMessage.SearchInformationResponse buildPartial() {
         com.ServerResponseMessage.SearchInformationResponse result = new com.ServerResponseMessage.SearchInformationResponse(this);
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (questionListMessageBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             questionListMessage_ = java.util.Collections.unmodifiableList(questionListMessage_);
@@ -14561,6 +14592,8 @@ public final class ServerResponseMessage {
         } else {
           result.questionListMessage_ = questionListMessageBuilder_.build();
         }
+        result.searchID_ = searchID_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -14628,6 +14661,9 @@ public final class ServerResponseMessage {
             }
           }
         }
+        if (other.getSearchID() != 0) {
+          setSearchID(other.getSearchID());
+        }
         onChanged();
         return this;
       }
@@ -14668,7 +14704,7 @@ public final class ServerResponseMessage {
           com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> questionListMessageBuilder_;
 
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public java.util.List<com.ServerResponseMessage.QuestionListMessage> getQuestionListMessageList() {
         if (questionListMessageBuilder_ == null) {
@@ -14678,7 +14714,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public int getQuestionListMessageCount() {
         if (questionListMessageBuilder_ == null) {
@@ -14688,7 +14724,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionListMessage getQuestionListMessage(int index) {
         if (questionListMessageBuilder_ == null) {
@@ -14698,7 +14734,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder setQuestionListMessage(
           int index, com.ServerResponseMessage.QuestionListMessage value) {
@@ -14715,7 +14751,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder setQuestionListMessage(
           int index, com.ServerResponseMessage.QuestionListMessage.Builder builderForValue) {
@@ -14729,7 +14765,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder addQuestionListMessage(com.ServerResponseMessage.QuestionListMessage value) {
         if (questionListMessageBuilder_ == null) {
@@ -14745,7 +14781,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder addQuestionListMessage(
           int index, com.ServerResponseMessage.QuestionListMessage value) {
@@ -14762,7 +14798,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder addQuestionListMessage(
           com.ServerResponseMessage.QuestionListMessage.Builder builderForValue) {
@@ -14776,7 +14812,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder addQuestionListMessage(
           int index, com.ServerResponseMessage.QuestionListMessage.Builder builderForValue) {
@@ -14790,7 +14826,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder addAllQuestionListMessage(
           java.lang.Iterable<? extends com.ServerResponseMessage.QuestionListMessage> values) {
@@ -14805,7 +14841,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder clearQuestionListMessage() {
         if (questionListMessageBuilder_ == null) {
@@ -14818,7 +14854,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public Builder removeQuestionListMessage(int index) {
         if (questionListMessageBuilder_ == null) {
@@ -14831,14 +14867,14 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionListMessage.Builder getQuestionListMessageBuilder(
           int index) {
         return getQuestionListMessageFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionListMessageOrBuilder getQuestionListMessageOrBuilder(
           int index) {
@@ -14848,7 +14884,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public java.util.List<? extends com.ServerResponseMessage.QuestionListMessageOrBuilder> 
            getQuestionListMessageOrBuilderList() {
@@ -14859,14 +14895,14 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionListMessage.Builder addQuestionListMessageBuilder() {
         return getQuestionListMessageFieldBuilder().addBuilder(
             com.ServerResponseMessage.QuestionListMessage.getDefaultInstance());
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public com.ServerResponseMessage.QuestionListMessage.Builder addQuestionListMessageBuilder(
           int index) {
@@ -14874,7 +14910,7 @@ public final class ServerResponseMessage {
             index, com.ServerResponseMessage.QuestionListMessage.getDefaultInstance());
       }
       /**
-       * <code>repeated .QuestionListMessage questionListMessage = 3;</code>
+       * <code>repeated .QuestionListMessage questionListMessage = 1;</code>
        */
       public java.util.List<com.ServerResponseMessage.QuestionListMessage.Builder> 
            getQuestionListMessageBuilderList() {
@@ -14893,6 +14929,32 @@ public final class ServerResponseMessage {
           questionListMessage_ = null;
         }
         return questionListMessageBuilder_;
+      }
+
+      private int searchID_ ;
+      /**
+       * <code>optional int32 searchID = 2;</code>
+       */
+      public int getSearchID() {
+        return searchID_;
+      }
+      /**
+       * <code>optional int32 searchID = 2;</code>
+       */
+      public Builder setSearchID(int value) {
+        
+        searchID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 searchID = 2;</code>
+       */
+      public Builder clearSearchID() {
+        
+        searchID_ = 0;
+        onChanged();
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -14948,7 +15010,7 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
 
@@ -14987,11 +15049,11 @@ public final class ServerResponseMessage {
         java.lang.String key);
 
     /**
-     * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+     * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
      */
     int getSignTypeValue();
     /**
-     * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+     * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
      */
     com.ServerResponseMessage.FileResponse.SIGNTYPE getSignType();
 
@@ -15072,10 +15134,9 @@ public final class ServerResponseMessage {
                 mutable_bitField0_ |= 0x00000002;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              sign__ = input.readMessage(
+              sign = input.readMessage(
                   SignDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              sign_.getMutableMap().put(
-                  sign__.getKey(), sign__.getValue());
+              sign_.getMutableMap().put(sign.getKey(), sign.getValue());
               break;
             }
             case 24: {
@@ -15232,7 +15293,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -15317,13 +15378,13 @@ public final class ServerResponseMessage {
     public static final int SIGNTYPE_FIELD_NUMBER = 3;
     private int signType_;
     /**
-     * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+     * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
      */
     public int getSignTypeValue() {
       return signType_;
     }
     /**
-     * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+     * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
      */
     public com.ServerResponseMessage.FileResponse.SIGNTYPE getSignType() {
       com.ServerResponseMessage.FileResponse.SIGNTYPE result = com.ServerResponseMessage.FileResponse.SIGNTYPE.valueOf(signType_);
@@ -15374,12 +15435,15 @@ public final class ServerResponseMessage {
       if (success_ != false) {
         output.writeBool(1, success_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetSign(),
-          SignDefaultEntryHolder.defaultEntry,
-          2);
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetSign().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        sign = SignDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        output.writeMessage(2, sign);
+      }
       if (signType_ != com.ServerResponseMessage.FileResponse.SIGNTYPE.DOWNLOAD.getNumber()) {
         output.writeEnum(3, signType_);
       }
@@ -15400,12 +15464,12 @@ public final class ServerResponseMessage {
       for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetSign().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-        sign__ = SignDefaultEntryHolder.defaultEntry.newBuilderForType()
+        sign = SignDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, sign__);
+            .computeMessageSize(2, sign);
       }
       if (signType_ != com.ServerResponseMessage.FileResponse.SIGNTYPE.DOWNLOAD.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -15451,7 +15515,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -15738,13 +15802,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -15753,7 +15817,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -15839,8 +15903,7 @@ public final class ServerResponseMessage {
       }
 
       public Builder clearSign() {
-        internalGetMutableSign().getMutableMap()
-            .clear();
+        getMutableSign().clear();
         return this;
       }
       /**
@@ -15850,8 +15913,7 @@ public final class ServerResponseMessage {
       public Builder removeSign(
           java.lang.String key) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableSign().getMutableMap()
-            .remove(key);
+        getMutableSign().remove(key);
         return this;
       }
       /**
@@ -15870,8 +15932,7 @@ public final class ServerResponseMessage {
           java.lang.String value) {
         if (key == null) { throw new java.lang.NullPointerException(); }
         if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableSign().getMutableMap()
-            .put(key, value);
+        getMutableSign().put(key, value);
         return this;
       }
       /**
@@ -15880,20 +15941,19 @@ public final class ServerResponseMessage {
 
       public Builder putAllSign(
           java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutableSign().getMutableMap()
-            .putAll(values);
+        getMutableSign().putAll(values);
         return this;
       }
 
       private int signType_ = 0;
       /**
-       * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+       * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
        */
       public int getSignTypeValue() {
         return signType_;
       }
       /**
-       * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+       * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
        */
       public Builder setSignTypeValue(int value) {
         signType_ = value;
@@ -15901,14 +15961,14 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+       * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
        */
       public com.ServerResponseMessage.FileResponse.SIGNTYPE getSignType() {
         com.ServerResponseMessage.FileResponse.SIGNTYPE result = com.ServerResponseMessage.FileResponse.SIGNTYPE.valueOf(signType_);
         return result == null ? com.ServerResponseMessage.FileResponse.SIGNTYPE.UNRECOGNIZED : result;
       }
       /**
-       * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+       * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
        */
       public Builder setSignType(com.ServerResponseMessage.FileResponse.SIGNTYPE value) {
         if (value == null) {
@@ -15920,7 +15980,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.FileResponse.SIGNTYPE signType = 3;</code>
+       * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
        */
       public Builder clearSignType() {
         
@@ -16076,12 +16136,12 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 questionID = 2;</code>
+     * <code>optional int64 questionID = 2;</code>
      */
     long getQuestionID();
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
   }
@@ -16166,7 +16226,7 @@ public final class ServerResponseMessage {
     public static final int QUESTIONID_FIELD_NUMBER = 2;
     private long questionID_;
     /**
-     * <code>int64 questionID = 2;</code>
+     * <code>optional int64 questionID = 2;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -16175,7 +16235,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -16243,7 +16303,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionID());
@@ -16475,13 +16535,13 @@ public final class ServerResponseMessage {
 
       private long questionID_ ;
       /**
-       * <code>int64 questionID = 2;</code>
+       * <code>optional int64 questionID = 2;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
-       * <code>int64 questionID = 2;</code>
+       * <code>optional int64 questionID = 2;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -16490,7 +16550,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>int64 questionID = 2;</code>
+       * <code>optional int64 questionID = 2;</code>
        */
       public Builder clearQuestionID() {
         
@@ -16501,13 +16561,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -16516,7 +16576,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -16578,15 +16638,15 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+     * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     boolean hasUserEnter();
     /**
-     * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+     * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     com.ServerResponseMessage.UpdateMessage.UserEnter getUserEnter();
     /**
-     * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+     * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder getUserEnterOrBuilder();
   }
@@ -16670,17 +16730,17 @@ public final class ServerResponseMessage {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       java.lang.String getUsername();
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       com.google.protobuf.ByteString
           getUsernameBytes();
 
       /**
-       * <code>int64 questionID = 2;</code>
+       * <code>optional int64 questionID = 2;</code>
        */
       long getQuestionID();
     }
@@ -16762,7 +16822,7 @@ public final class ServerResponseMessage {
       public static final int USERNAME_FIELD_NUMBER = 1;
       private volatile java.lang.Object username_;
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public java.lang.String getUsername() {
         java.lang.Object ref = username_;
@@ -16777,7 +16837,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string username = 1;</code>
+       * <code>optional string username = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
@@ -16796,7 +16856,7 @@ public final class ServerResponseMessage {
       public static final int QUESTIONID_FIELD_NUMBER = 2;
       private long questionID_;
       /**
-       * <code>int64 questionID = 2;</code>
+       * <code>optional int64 questionID = 2;</code>
        */
       public long getQuestionID() {
         return questionID_;
@@ -16863,7 +16923,7 @@ public final class ServerResponseMessage {
           return memoizedHashCode;
         }
         int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (19 * hash) + getDescriptorForType().hashCode();
         hash = (37 * hash) + USERNAME_FIELD_NUMBER;
         hash = (53 * hash) + getUsername().hashCode();
         hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
@@ -17091,7 +17151,7 @@ public final class ServerResponseMessage {
 
         private java.lang.Object username_ = "";
         /**
-         * <code>string username = 1;</code>
+         * <code>optional string username = 1;</code>
          */
         public java.lang.String getUsername() {
           java.lang.Object ref = username_;
@@ -17106,7 +17166,7 @@ public final class ServerResponseMessage {
           }
         }
         /**
-         * <code>string username = 1;</code>
+         * <code>optional string username = 1;</code>
          */
         public com.google.protobuf.ByteString
             getUsernameBytes() {
@@ -17122,7 +17182,7 @@ public final class ServerResponseMessage {
           }
         }
         /**
-         * <code>string username = 1;</code>
+         * <code>optional string username = 1;</code>
          */
         public Builder setUsername(
             java.lang.String value) {
@@ -17135,7 +17195,7 @@ public final class ServerResponseMessage {
           return this;
         }
         /**
-         * <code>string username = 1;</code>
+         * <code>optional string username = 1;</code>
          */
         public Builder clearUsername() {
           
@@ -17144,7 +17204,7 @@ public final class ServerResponseMessage {
           return this;
         }
         /**
-         * <code>string username = 1;</code>
+         * <code>optional string username = 1;</code>
          */
         public Builder setUsernameBytes(
             com.google.protobuf.ByteString value) {
@@ -17160,13 +17220,13 @@ public final class ServerResponseMessage {
 
         private long questionID_ ;
         /**
-         * <code>int64 questionID = 2;</code>
+         * <code>optional int64 questionID = 2;</code>
          */
         public long getQuestionID() {
           return questionID_;
         }
         /**
-         * <code>int64 questionID = 2;</code>
+         * <code>optional int64 questionID = 2;</code>
          */
         public Builder setQuestionID(long value) {
           
@@ -17175,7 +17235,7 @@ public final class ServerResponseMessage {
           return this;
         }
         /**
-         * <code>int64 questionID = 2;</code>
+         * <code>optional int64 questionID = 2;</code>
          */
         public Builder clearQuestionID() {
           
@@ -17235,19 +17295,19 @@ public final class ServerResponseMessage {
     public static final int USERENTER_FIELD_NUMBER = 1;
     private com.ServerResponseMessage.UpdateMessage.UserEnter userEnter_;
     /**
-     * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+     * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     public boolean hasUserEnter() {
       return userEnter_ != null;
     }
     /**
-     * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+     * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     public com.ServerResponseMessage.UpdateMessage.UserEnter getUserEnter() {
       return userEnter_ == null ? com.ServerResponseMessage.UpdateMessage.UserEnter.getDefaultInstance() : userEnter_;
     }
     /**
-     * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+     * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     public com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder getUserEnterOrBuilder() {
       return getUserEnter();
@@ -17309,7 +17369,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       if (hasUserEnter()) {
         hash = (37 * hash) + USERENTER_FIELD_NUMBER;
         hash = (53 * hash) + getUserEnter().hashCode();
@@ -17539,13 +17599,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UpdateMessage.UserEnter, com.ServerResponseMessage.UpdateMessage.UserEnter.Builder, com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder> userEnterBuilder_;
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public boolean hasUserEnter() {
         return userEnterBuilder_ != null || userEnter_ != null;
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public com.ServerResponseMessage.UpdateMessage.UserEnter getUserEnter() {
         if (userEnterBuilder_ == null) {
@@ -17555,7 +17615,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public Builder setUserEnter(com.ServerResponseMessage.UpdateMessage.UserEnter value) {
         if (userEnterBuilder_ == null) {
@@ -17571,7 +17631,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public Builder setUserEnter(
           com.ServerResponseMessage.UpdateMessage.UserEnter.Builder builderForValue) {
@@ -17585,7 +17645,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public Builder mergeUserEnter(com.ServerResponseMessage.UpdateMessage.UserEnter value) {
         if (userEnterBuilder_ == null) {
@@ -17603,7 +17663,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public Builder clearUserEnter() {
         if (userEnterBuilder_ == null) {
@@ -17617,7 +17677,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public com.ServerResponseMessage.UpdateMessage.UserEnter.Builder getUserEnterBuilder() {
         
@@ -17625,7 +17685,7 @@ public final class ServerResponseMessage {
         return getUserEnterFieldBuilder().getBuilder();
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       public com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder getUserEnterOrBuilder() {
         if (userEnterBuilder_ != null) {
@@ -17636,7 +17696,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UpdateMessage.UserEnter userEnter = 1;</code>
+       * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UpdateMessage.UserEnter, com.ServerResponseMessage.UpdateMessage.UserEnter.Builder, com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder> 
@@ -17705,7 +17765,7 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     boolean getSuccess();
 
@@ -17748,16 +17808,16 @@ public final class ServerResponseMessage {
      *nessesary when need users in question room
      * </pre>
      *
-     * <code>int64 questionID = 3;</code>
+     * <code>optional int64 questionID = 3;</code>
      */
     long getQuestionID();
 
     /**
-     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
      */
     int getUserListTypeValue();
     /**
-     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
      */
     com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE getUserListType();
   }
@@ -17815,10 +17875,9 @@ public final class ServerResponseMessage {
                 mutable_bitField0_ |= 0x00000002;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              users__ = input.readMessage(
+              users = input.readMessage(
                   UsersDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              users_.getMutableMap().put(
-                  users__.getKey(), users__.getValue());
+              users_.getMutableMap().put(users.getKey(), users.getValue());
               break;
             }
             case 24: {
@@ -17968,7 +18027,7 @@ public final class ServerResponseMessage {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * <code>optional bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
@@ -18057,7 +18116,7 @@ public final class ServerResponseMessage {
      *nessesary when need users in question room
      * </pre>
      *
-     * <code>int64 questionID = 3;</code>
+     * <code>optional int64 questionID = 3;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -18066,13 +18125,13 @@ public final class ServerResponseMessage {
     public static final int USERLISTTYPE_FIELD_NUMBER = 4;
     private int userListType_;
     /**
-     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
      */
     public int getUserListTypeValue() {
       return userListType_;
     }
     /**
-     * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+     * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
      */
     public com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE getUserListType() {
       com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE result = com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.valueOf(userListType_);
@@ -18094,12 +18153,15 @@ public final class ServerResponseMessage {
       if (success_ != false) {
         output.writeBool(1, success_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetUsers(),
-          UsersDefaultEntryHolder.defaultEntry,
-          2);
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetUsers().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        users = UsersDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        output.writeMessage(2, users);
+      }
       if (questionID_ != 0L) {
         output.writeInt64(3, questionID_);
       }
@@ -18120,12 +18182,12 @@ public final class ServerResponseMessage {
       for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetUsers().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-        users__ = UsersDefaultEntryHolder.defaultEntry.newBuilderForType()
+        users = UsersDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, users__);
+            .computeMessageSize(2, users);
       }
       if (questionID_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -18167,7 +18229,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
@@ -18438,13 +18500,13 @@ public final class ServerResponseMessage {
 
       private boolean success_ ;
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public boolean getSuccess() {
         return success_;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder setSuccess(boolean value) {
         
@@ -18453,7 +18515,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>bool success = 1;</code>
+       * <code>optional bool success = 1;</code>
        */
       public Builder clearSuccess() {
         
@@ -18539,8 +18601,7 @@ public final class ServerResponseMessage {
       }
 
       public Builder clearUsers() {
-        internalGetMutableUsers().getMutableMap()
-            .clear();
+        getMutableUsers().clear();
         return this;
       }
       /**
@@ -18550,8 +18611,7 @@ public final class ServerResponseMessage {
       public Builder removeUsers(
           java.lang.String key) {
         if (key == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableUsers().getMutableMap()
-            .remove(key);
+        getMutableUsers().remove(key);
         return this;
       }
       /**
@@ -18570,8 +18630,7 @@ public final class ServerResponseMessage {
           java.lang.String value) {
         if (key == null) { throw new java.lang.NullPointerException(); }
         if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableUsers().getMutableMap()
-            .put(key, value);
+        getMutableUsers().put(key, value);
         return this;
       }
       /**
@@ -18580,8 +18639,7 @@ public final class ServerResponseMessage {
 
       public Builder putAllUsers(
           java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutableUsers().getMutableMap()
-            .putAll(values);
+        getMutableUsers().putAll(values);
         return this;
       }
 
@@ -18591,7 +18649,7 @@ public final class ServerResponseMessage {
        *nessesary when need users in question room
        * </pre>
        *
-       * <code>int64 questionID = 3;</code>
+       * <code>optional int64 questionID = 3;</code>
        */
       public long getQuestionID() {
         return questionID_;
@@ -18601,7 +18659,7 @@ public final class ServerResponseMessage {
        *nessesary when need users in question room
        * </pre>
        *
-       * <code>int64 questionID = 3;</code>
+       * <code>optional int64 questionID = 3;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -18614,7 +18672,7 @@ public final class ServerResponseMessage {
        *nessesary when need users in question room
        * </pre>
        *
-       * <code>int64 questionID = 3;</code>
+       * <code>optional int64 questionID = 3;</code>
        */
       public Builder clearQuestionID() {
         
@@ -18625,13 +18683,13 @@ public final class ServerResponseMessage {
 
       private int userListType_ = 0;
       /**
-       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
        */
       public int getUserListTypeValue() {
         return userListType_;
       }
       /**
-       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
        */
       public Builder setUserListTypeValue(int value) {
         userListType_ = value;
@@ -18639,14 +18697,14 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
        */
       public com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE getUserListType() {
         com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE result = com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.valueOf(userListType_);
         return result == null ? com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.UNRECOGNIZED : result;
       }
       /**
-       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
        */
       public Builder setUserListType(com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE value) {
         if (value == null) {
@@ -18658,7 +18716,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
+       * <code>optional .GetUserListResponse.USER_LIST_TYPE userListType = 4;</code>
        */
       public Builder clearUserListType() {
         
@@ -18720,242 +18778,242 @@ public final class ServerResponseMessage {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.MSG msg_type = 1;</code>
+     * <code>optional .MSG msg_type = 1;</code>
      */
     int getMsgTypeValue();
     /**
-     * <code>.MSG msg_type = 1;</code>
+     * <code>optional .MSG msg_type = 1;</code>
      */
     com.ServerResponseMessage.MSG getMsgType();
 
     /**
-     * <code>string username = 2;</code>
+     * <code>optional string username = 2;</code>
      */
     java.lang.String getUsername();
     /**
-     * <code>string username = 2;</code>
+     * <code>optional string username = 2;</code>
      */
     com.google.protobuf.ByteString
         getUsernameBytes();
 
     /**
-     * <code>.LaunchResponse lauchResponse = 3;</code>
+     * <code>optional .LaunchResponse lauchResponse = 3;</code>
      */
     boolean hasLauchResponse();
     /**
-     * <code>.LaunchResponse lauchResponse = 3;</code>
+     * <code>optional .LaunchResponse lauchResponse = 3;</code>
      */
     com.ServerResponseMessage.LaunchResponse getLauchResponse();
     /**
-     * <code>.LaunchResponse lauchResponse = 3;</code>
+     * <code>optional .LaunchResponse lauchResponse = 3;</code>
      */
     com.ServerResponseMessage.LaunchResponseOrBuilder getLauchResponseOrBuilder();
 
     /**
-     * <code>.RegisterResponse registerResponse = 4;</code>
+     * <code>optional .RegisterResponse registerResponse = 4;</code>
      */
     boolean hasRegisterResponse();
     /**
-     * <code>.RegisterResponse registerResponse = 4;</code>
+     * <code>optional .RegisterResponse registerResponse = 4;</code>
      */
     com.ServerResponseMessage.RegisterResponse getRegisterResponse();
     /**
-     * <code>.RegisterResponse registerResponse = 4;</code>
+     * <code>optional .RegisterResponse registerResponse = 4;</code>
      */
     com.ServerResponseMessage.RegisterResponseOrBuilder getRegisterResponseOrBuilder();
 
     /**
-     * <code>.SendContent sendContent = 5;</code>
+     * <code>optional .SendContent sendContent = 5;</code>
      */
     boolean hasSendContent();
     /**
-     * <code>.SendContent sendContent = 5;</code>
+     * <code>optional .SendContent sendContent = 5;</code>
      */
     com.ServerResponseMessage.SendContent getSendContent();
     /**
-     * <code>.SendContent sendContent = 5;</code>
+     * <code>optional .SendContent sendContent = 5;</code>
      */
     com.ServerResponseMessage.SendContentOrBuilder getSendContentOrBuilder();
 
     /**
-     * <code>.AnnouncementMessage announcementMessage = 6;</code>
+     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
      */
     boolean hasAnnouncementMessage();
     /**
-     * <code>.AnnouncementMessage announcementMessage = 6;</code>
+     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
      */
     com.ServerResponseMessage.AnnouncementMessage getAnnouncementMessage();
     /**
-     * <code>.AnnouncementMessage announcementMessage = 6;</code>
+     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
      */
     com.ServerResponseMessage.AnnouncementMessageOrBuilder getAnnouncementMessageOrBuilder();
 
     /**
-     * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+     * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
      */
     boolean hasQuestionEnterResponse();
     /**
-     * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+     * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
      */
     com.ServerResponseMessage.QuestionEnterResponse getQuestionEnterResponse();
     /**
-     * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+     * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
      */
     com.ServerResponseMessage.QuestionEnterResponseOrBuilder getQuestionEnterResponseOrBuilder();
 
     /**
-     * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+     * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
      */
     boolean hasGoodQuestionResponse();
     /**
-     * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+     * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
      */
     com.ServerResponseMessage.GoodQuestionResponse getGoodQuestionResponse();
     /**
-     * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+     * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
      */
     com.ServerResponseMessage.GoodQuestionResponseOrBuilder getGoodQuestionResponseOrBuilder();
 
     /**
-     * <code>.GoodUserResponse goodUserResponse = 10;</code>
+     * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     boolean hasGoodUserResponse();
     /**
-     * <code>.GoodUserResponse goodUserResponse = 10;</code>
+     * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     com.ServerResponseMessage.GoodUserResponse getGoodUserResponse();
     /**
-     * <code>.GoodUserResponse goodUserResponse = 10;</code>
+     * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     com.ServerResponseMessage.GoodUserResponseOrBuilder getGoodUserResponseOrBuilder();
 
     /**
-     * <code>.FileResponse fileResponse = 9;</code>
+     * <code>optional .FileResponse fileResponse = 9;</code>
      */
     boolean hasFileResponse();
     /**
-     * <code>.FileResponse fileResponse = 9;</code>
+     * <code>optional .FileResponse fileResponse = 9;</code>
      */
     com.ServerResponseMessage.FileResponse getFileResponse();
     /**
-     * <code>.FileResponse fileResponse = 9;</code>
+     * <code>optional .FileResponse fileResponse = 9;</code>
      */
     com.ServerResponseMessage.FileResponseOrBuilder getFileResponseOrBuilder();
 
     /**
-     * <code>.UpdateMessage updateMessage = 11;</code>
+     * <code>optional .UpdateMessage updateMessage = 11;</code>
      */
     boolean hasUpdateMessage();
     /**
-     * <code>.UpdateMessage updateMessage = 11;</code>
+     * <code>optional .UpdateMessage updateMessage = 11;</code>
      */
     com.ServerResponseMessage.UpdateMessage getUpdateMessage();
     /**
-     * <code>.UpdateMessage updateMessage = 11;</code>
+     * <code>optional .UpdateMessage updateMessage = 11;</code>
      */
     com.ServerResponseMessage.UpdateMessageOrBuilder getUpdateMessageOrBuilder();
 
     /**
-     * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+     * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
      */
     boolean hasQuestionInformationResponse();
     /**
-     * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+     * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
      */
     com.ServerResponseMessage.QuestionInformationResponse getQuestionInformationResponse();
     /**
-     * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+     * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
      */
     com.ServerResponseMessage.QuestionInformationResponseOrBuilder getQuestionInformationResponseOrBuilder();
 
     /**
-     * <code>.UserInformationResponse userInformationResponse = 14;</code>
+     * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
      */
     boolean hasUserInformationResponse();
     /**
-     * <code>.UserInformationResponse userInformationResponse = 14;</code>
+     * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
      */
     com.ServerResponseMessage.UserInformationResponse getUserInformationResponse();
     /**
-     * <code>.UserInformationResponse userInformationResponse = 14;</code>
+     * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
      */
     com.ServerResponseMessage.UserInformationResponseOrBuilder getUserInformationResponseOrBuilder();
 
     /**
-     * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+     * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
      */
     boolean hasGetQuestionListResponse();
     /**
-     * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+     * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
      */
     com.ServerResponseMessage.GetQuestionListResponse getGetQuestionListResponse();
     /**
-     * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+     * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
      */
     com.ServerResponseMessage.GetQuestionListResponseOrBuilder getGetQuestionListResponseOrBuilder();
 
     /**
-     * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+     * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
      */
     boolean hasCreateQuestionResponse();
     /**
-     * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+     * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
      */
     com.ServerResponseMessage.CreateQuestionResponse getCreateQuestionResponse();
     /**
-     * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+     * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
      */
     com.ServerResponseMessage.CreateQuestionResponseOrBuilder getCreateQuestionResponseOrBuilder();
 
     /**
-     * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+     * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
      */
     boolean hasAbandonQuestionResponse();
     /**
-     * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+     * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
      */
     com.ServerResponseMessage.AbandonQuestionResponse getAbandonQuestionResponse();
     /**
-     * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+     * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
      */
     com.ServerResponseMessage.AbandonQuestionResponseOrBuilder getAbandonQuestionResponseOrBuilder();
 
     /**
-     * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+     * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
      */
     boolean hasSearchInformationResponse();
     /**
-     * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+     * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
      */
     com.ServerResponseMessage.SearchInformationResponse getSearchInformationResponse();
     /**
-     * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+     * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
      */
     com.ServerResponseMessage.SearchInformationResponseOrBuilder getSearchInformationResponseOrBuilder();
 
     /**
-     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     boolean hasSolvedQuestionResponse();
     /**
-     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     com.ServerResponseMessage.SolvedQuestionResponse getSolvedQuestionResponse();
     /**
-     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder();
 
     /**
-     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     boolean hasGetUserListResponse();
     /**
-     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     com.ServerResponseMessage.GetUserListResponse getGetUserListResponse();
     /**
-     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder();
   }
@@ -19263,13 +19321,13 @@ public final class ServerResponseMessage {
     public static final int MSG_TYPE_FIELD_NUMBER = 1;
     private int msgType_;
     /**
-     * <code>.MSG msg_type = 1;</code>
+     * <code>optional .MSG msg_type = 1;</code>
      */
     public int getMsgTypeValue() {
       return msgType_;
     }
     /**
-     * <code>.MSG msg_type = 1;</code>
+     * <code>optional .MSG msg_type = 1;</code>
      */
     public com.ServerResponseMessage.MSG getMsgType() {
       com.ServerResponseMessage.MSG result = com.ServerResponseMessage.MSG.valueOf(msgType_);
@@ -19279,7 +19337,7 @@ public final class ServerResponseMessage {
     public static final int USERNAME_FIELD_NUMBER = 2;
     private volatile java.lang.Object username_;
     /**
-     * <code>string username = 2;</code>
+     * <code>optional string username = 2;</code>
      */
     public java.lang.String getUsername() {
       java.lang.Object ref = username_;
@@ -19294,7 +19352,7 @@ public final class ServerResponseMessage {
       }
     }
     /**
-     * <code>string username = 2;</code>
+     * <code>optional string username = 2;</code>
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
@@ -19313,19 +19371,19 @@ public final class ServerResponseMessage {
     public static final int LAUCHRESPONSE_FIELD_NUMBER = 3;
     private com.ServerResponseMessage.LaunchResponse lauchResponse_;
     /**
-     * <code>.LaunchResponse lauchResponse = 3;</code>
+     * <code>optional .LaunchResponse lauchResponse = 3;</code>
      */
     public boolean hasLauchResponse() {
       return lauchResponse_ != null;
     }
     /**
-     * <code>.LaunchResponse lauchResponse = 3;</code>
+     * <code>optional .LaunchResponse lauchResponse = 3;</code>
      */
     public com.ServerResponseMessage.LaunchResponse getLauchResponse() {
       return lauchResponse_ == null ? com.ServerResponseMessage.LaunchResponse.getDefaultInstance() : lauchResponse_;
     }
     /**
-     * <code>.LaunchResponse lauchResponse = 3;</code>
+     * <code>optional .LaunchResponse lauchResponse = 3;</code>
      */
     public com.ServerResponseMessage.LaunchResponseOrBuilder getLauchResponseOrBuilder() {
       return getLauchResponse();
@@ -19334,19 +19392,19 @@ public final class ServerResponseMessage {
     public static final int REGISTERRESPONSE_FIELD_NUMBER = 4;
     private com.ServerResponseMessage.RegisterResponse registerResponse_;
     /**
-     * <code>.RegisterResponse registerResponse = 4;</code>
+     * <code>optional .RegisterResponse registerResponse = 4;</code>
      */
     public boolean hasRegisterResponse() {
       return registerResponse_ != null;
     }
     /**
-     * <code>.RegisterResponse registerResponse = 4;</code>
+     * <code>optional .RegisterResponse registerResponse = 4;</code>
      */
     public com.ServerResponseMessage.RegisterResponse getRegisterResponse() {
       return registerResponse_ == null ? com.ServerResponseMessage.RegisterResponse.getDefaultInstance() : registerResponse_;
     }
     /**
-     * <code>.RegisterResponse registerResponse = 4;</code>
+     * <code>optional .RegisterResponse registerResponse = 4;</code>
      */
     public com.ServerResponseMessage.RegisterResponseOrBuilder getRegisterResponseOrBuilder() {
       return getRegisterResponse();
@@ -19355,19 +19413,19 @@ public final class ServerResponseMessage {
     public static final int SENDCONTENT_FIELD_NUMBER = 5;
     private com.ServerResponseMessage.SendContent sendContent_;
     /**
-     * <code>.SendContent sendContent = 5;</code>
+     * <code>optional .SendContent sendContent = 5;</code>
      */
     public boolean hasSendContent() {
       return sendContent_ != null;
     }
     /**
-     * <code>.SendContent sendContent = 5;</code>
+     * <code>optional .SendContent sendContent = 5;</code>
      */
     public com.ServerResponseMessage.SendContent getSendContent() {
       return sendContent_ == null ? com.ServerResponseMessage.SendContent.getDefaultInstance() : sendContent_;
     }
     /**
-     * <code>.SendContent sendContent = 5;</code>
+     * <code>optional .SendContent sendContent = 5;</code>
      */
     public com.ServerResponseMessage.SendContentOrBuilder getSendContentOrBuilder() {
       return getSendContent();
@@ -19376,19 +19434,19 @@ public final class ServerResponseMessage {
     public static final int ANNOUNCEMENTMESSAGE_FIELD_NUMBER = 6;
     private com.ServerResponseMessage.AnnouncementMessage announcementMessage_;
     /**
-     * <code>.AnnouncementMessage announcementMessage = 6;</code>
+     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
      */
     public boolean hasAnnouncementMessage() {
       return announcementMessage_ != null;
     }
     /**
-     * <code>.AnnouncementMessage announcementMessage = 6;</code>
+     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
      */
     public com.ServerResponseMessage.AnnouncementMessage getAnnouncementMessage() {
       return announcementMessage_ == null ? com.ServerResponseMessage.AnnouncementMessage.getDefaultInstance() : announcementMessage_;
     }
     /**
-     * <code>.AnnouncementMessage announcementMessage = 6;</code>
+     * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
      */
     public com.ServerResponseMessage.AnnouncementMessageOrBuilder getAnnouncementMessageOrBuilder() {
       return getAnnouncementMessage();
@@ -19397,19 +19455,19 @@ public final class ServerResponseMessage {
     public static final int QUESTIONENTERRESPONSE_FIELD_NUMBER = 7;
     private com.ServerResponseMessage.QuestionEnterResponse questionEnterResponse_;
     /**
-     * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+     * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
      */
     public boolean hasQuestionEnterResponse() {
       return questionEnterResponse_ != null;
     }
     /**
-     * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+     * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
      */
     public com.ServerResponseMessage.QuestionEnterResponse getQuestionEnterResponse() {
       return questionEnterResponse_ == null ? com.ServerResponseMessage.QuestionEnterResponse.getDefaultInstance() : questionEnterResponse_;
     }
     /**
-     * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+     * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
      */
     public com.ServerResponseMessage.QuestionEnterResponseOrBuilder getQuestionEnterResponseOrBuilder() {
       return getQuestionEnterResponse();
@@ -19418,19 +19476,19 @@ public final class ServerResponseMessage {
     public static final int GOODQUESTIONRESPONSE_FIELD_NUMBER = 8;
     private com.ServerResponseMessage.GoodQuestionResponse goodQuestionResponse_;
     /**
-     * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+     * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
      */
     public boolean hasGoodQuestionResponse() {
       return goodQuestionResponse_ != null;
     }
     /**
-     * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+     * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
      */
     public com.ServerResponseMessage.GoodQuestionResponse getGoodQuestionResponse() {
       return goodQuestionResponse_ == null ? com.ServerResponseMessage.GoodQuestionResponse.getDefaultInstance() : goodQuestionResponse_;
     }
     /**
-     * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+     * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
      */
     public com.ServerResponseMessage.GoodQuestionResponseOrBuilder getGoodQuestionResponseOrBuilder() {
       return getGoodQuestionResponse();
@@ -19439,19 +19497,19 @@ public final class ServerResponseMessage {
     public static final int GOODUSERRESPONSE_FIELD_NUMBER = 10;
     private com.ServerResponseMessage.GoodUserResponse goodUserResponse_;
     /**
-     * <code>.GoodUserResponse goodUserResponse = 10;</code>
+     * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     public boolean hasGoodUserResponse() {
       return goodUserResponse_ != null;
     }
     /**
-     * <code>.GoodUserResponse goodUserResponse = 10;</code>
+     * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     public com.ServerResponseMessage.GoodUserResponse getGoodUserResponse() {
       return goodUserResponse_ == null ? com.ServerResponseMessage.GoodUserResponse.getDefaultInstance() : goodUserResponse_;
     }
     /**
-     * <code>.GoodUserResponse goodUserResponse = 10;</code>
+     * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
      */
     public com.ServerResponseMessage.GoodUserResponseOrBuilder getGoodUserResponseOrBuilder() {
       return getGoodUserResponse();
@@ -19460,19 +19518,19 @@ public final class ServerResponseMessage {
     public static final int FILERESPONSE_FIELD_NUMBER = 9;
     private com.ServerResponseMessage.FileResponse fileResponse_;
     /**
-     * <code>.FileResponse fileResponse = 9;</code>
+     * <code>optional .FileResponse fileResponse = 9;</code>
      */
     public boolean hasFileResponse() {
       return fileResponse_ != null;
     }
     /**
-     * <code>.FileResponse fileResponse = 9;</code>
+     * <code>optional .FileResponse fileResponse = 9;</code>
      */
     public com.ServerResponseMessage.FileResponse getFileResponse() {
       return fileResponse_ == null ? com.ServerResponseMessage.FileResponse.getDefaultInstance() : fileResponse_;
     }
     /**
-     * <code>.FileResponse fileResponse = 9;</code>
+     * <code>optional .FileResponse fileResponse = 9;</code>
      */
     public com.ServerResponseMessage.FileResponseOrBuilder getFileResponseOrBuilder() {
       return getFileResponse();
@@ -19481,19 +19539,19 @@ public final class ServerResponseMessage {
     public static final int UPDATEMESSAGE_FIELD_NUMBER = 11;
     private com.ServerResponseMessage.UpdateMessage updateMessage_;
     /**
-     * <code>.UpdateMessage updateMessage = 11;</code>
+     * <code>optional .UpdateMessage updateMessage = 11;</code>
      */
     public boolean hasUpdateMessage() {
       return updateMessage_ != null;
     }
     /**
-     * <code>.UpdateMessage updateMessage = 11;</code>
+     * <code>optional .UpdateMessage updateMessage = 11;</code>
      */
     public com.ServerResponseMessage.UpdateMessage getUpdateMessage() {
       return updateMessage_ == null ? com.ServerResponseMessage.UpdateMessage.getDefaultInstance() : updateMessage_;
     }
     /**
-     * <code>.UpdateMessage updateMessage = 11;</code>
+     * <code>optional .UpdateMessage updateMessage = 11;</code>
      */
     public com.ServerResponseMessage.UpdateMessageOrBuilder getUpdateMessageOrBuilder() {
       return getUpdateMessage();
@@ -19502,19 +19560,19 @@ public final class ServerResponseMessage {
     public static final int QUESTIONINFORMATIONRESPONSE_FIELD_NUMBER = 13;
     private com.ServerResponseMessage.QuestionInformationResponse questionInformationResponse_;
     /**
-     * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+     * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
      */
     public boolean hasQuestionInformationResponse() {
       return questionInformationResponse_ != null;
     }
     /**
-     * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+     * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
      */
     public com.ServerResponseMessage.QuestionInformationResponse getQuestionInformationResponse() {
       return questionInformationResponse_ == null ? com.ServerResponseMessage.QuestionInformationResponse.getDefaultInstance() : questionInformationResponse_;
     }
     /**
-     * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+     * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
      */
     public com.ServerResponseMessage.QuestionInformationResponseOrBuilder getQuestionInformationResponseOrBuilder() {
       return getQuestionInformationResponse();
@@ -19523,19 +19581,19 @@ public final class ServerResponseMessage {
     public static final int USERINFORMATIONRESPONSE_FIELD_NUMBER = 14;
     private com.ServerResponseMessage.UserInformationResponse userInformationResponse_;
     /**
-     * <code>.UserInformationResponse userInformationResponse = 14;</code>
+     * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
      */
     public boolean hasUserInformationResponse() {
       return userInformationResponse_ != null;
     }
     /**
-     * <code>.UserInformationResponse userInformationResponse = 14;</code>
+     * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
      */
     public com.ServerResponseMessage.UserInformationResponse getUserInformationResponse() {
       return userInformationResponse_ == null ? com.ServerResponseMessage.UserInformationResponse.getDefaultInstance() : userInformationResponse_;
     }
     /**
-     * <code>.UserInformationResponse userInformationResponse = 14;</code>
+     * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
      */
     public com.ServerResponseMessage.UserInformationResponseOrBuilder getUserInformationResponseOrBuilder() {
       return getUserInformationResponse();
@@ -19544,19 +19602,19 @@ public final class ServerResponseMessage {
     public static final int GETQUESTIONLISTRESPONSE_FIELD_NUMBER = 15;
     private com.ServerResponseMessage.GetQuestionListResponse getQuestionListResponse_;
     /**
-     * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+     * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
      */
     public boolean hasGetQuestionListResponse() {
       return getQuestionListResponse_ != null;
     }
     /**
-     * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+     * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
      */
     public com.ServerResponseMessage.GetQuestionListResponse getGetQuestionListResponse() {
       return getQuestionListResponse_ == null ? com.ServerResponseMessage.GetQuestionListResponse.getDefaultInstance() : getQuestionListResponse_;
     }
     /**
-     * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+     * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
      */
     public com.ServerResponseMessage.GetQuestionListResponseOrBuilder getGetQuestionListResponseOrBuilder() {
       return getGetQuestionListResponse();
@@ -19565,19 +19623,19 @@ public final class ServerResponseMessage {
     public static final int CREATEQUESTIONRESPONSE_FIELD_NUMBER = 18;
     private com.ServerResponseMessage.CreateQuestionResponse createQuestionResponse_;
     /**
-     * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+     * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
      */
     public boolean hasCreateQuestionResponse() {
       return createQuestionResponse_ != null;
     }
     /**
-     * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+     * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
      */
     public com.ServerResponseMessage.CreateQuestionResponse getCreateQuestionResponse() {
       return createQuestionResponse_ == null ? com.ServerResponseMessage.CreateQuestionResponse.getDefaultInstance() : createQuestionResponse_;
     }
     /**
-     * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+     * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
      */
     public com.ServerResponseMessage.CreateQuestionResponseOrBuilder getCreateQuestionResponseOrBuilder() {
       return getCreateQuestionResponse();
@@ -19586,19 +19644,19 @@ public final class ServerResponseMessage {
     public static final int ABANDONQUESTIONRESPONSE_FIELD_NUMBER = 19;
     private com.ServerResponseMessage.AbandonQuestionResponse abandonQuestionResponse_;
     /**
-     * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+     * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
      */
     public boolean hasAbandonQuestionResponse() {
       return abandonQuestionResponse_ != null;
     }
     /**
-     * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+     * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
      */
     public com.ServerResponseMessage.AbandonQuestionResponse getAbandonQuestionResponse() {
       return abandonQuestionResponse_ == null ? com.ServerResponseMessage.AbandonQuestionResponse.getDefaultInstance() : abandonQuestionResponse_;
     }
     /**
-     * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+     * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
      */
     public com.ServerResponseMessage.AbandonQuestionResponseOrBuilder getAbandonQuestionResponseOrBuilder() {
       return getAbandonQuestionResponse();
@@ -19607,19 +19665,19 @@ public final class ServerResponseMessage {
     public static final int SEARCHINFORMATIONRESPONSE_FIELD_NUMBER = 20;
     private com.ServerResponseMessage.SearchInformationResponse searchInformationResponse_;
     /**
-     * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+     * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
      */
     public boolean hasSearchInformationResponse() {
       return searchInformationResponse_ != null;
     }
     /**
-     * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+     * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
      */
     public com.ServerResponseMessage.SearchInformationResponse getSearchInformationResponse() {
       return searchInformationResponse_ == null ? com.ServerResponseMessage.SearchInformationResponse.getDefaultInstance() : searchInformationResponse_;
     }
     /**
-     * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+     * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
      */
     public com.ServerResponseMessage.SearchInformationResponseOrBuilder getSearchInformationResponseOrBuilder() {
       return getSearchInformationResponse();
@@ -19628,19 +19686,19 @@ public final class ServerResponseMessage {
     public static final int SOLVEDQUESTIONRESPONSE_FIELD_NUMBER = 21;
     private com.ServerResponseMessage.SolvedQuestionResponse solvedQuestionResponse_;
     /**
-     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     public boolean hasSolvedQuestionResponse() {
       return solvedQuestionResponse_ != null;
     }
     /**
-     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     public com.ServerResponseMessage.SolvedQuestionResponse getSolvedQuestionResponse() {
       return solvedQuestionResponse_ == null ? com.ServerResponseMessage.SolvedQuestionResponse.getDefaultInstance() : solvedQuestionResponse_;
     }
     /**
-     * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+     * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
      */
     public com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder() {
       return getSolvedQuestionResponse();
@@ -19649,19 +19707,19 @@ public final class ServerResponseMessage {
     public static final int GETUSERLISTRESPONSE_FIELD_NUMBER = 22;
     private com.ServerResponseMessage.GetUserListResponse getUserListResponse_;
     /**
-     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     public boolean hasGetUserListResponse() {
       return getUserListResponse_ != null;
     }
     /**
-     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     public com.ServerResponseMessage.GetUserListResponse getGetUserListResponse() {
       return getUserListResponse_ == null ? com.ServerResponseMessage.GetUserListResponse.getDefaultInstance() : getUserListResponse_;
     }
     /**
-     * <code>.GetUserListResponse getUserListResponse = 22;</code>
+     * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     public com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder() {
       return getGetUserListResponse();
@@ -19931,7 +19989,7 @@ public final class ServerResponseMessage {
         return memoizedHashCode;
       }
       int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + MSG_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + msgType_;
       hash = (37 * hash) + USERNAME_FIELD_NUMBER;
@@ -20468,13 +20526,13 @@ public final class ServerResponseMessage {
 
       private int msgType_ = 0;
       /**
-       * <code>.MSG msg_type = 1;</code>
+       * <code>optional .MSG msg_type = 1;</code>
        */
       public int getMsgTypeValue() {
         return msgType_;
       }
       /**
-       * <code>.MSG msg_type = 1;</code>
+       * <code>optional .MSG msg_type = 1;</code>
        */
       public Builder setMsgTypeValue(int value) {
         msgType_ = value;
@@ -20482,14 +20540,14 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.MSG msg_type = 1;</code>
+       * <code>optional .MSG msg_type = 1;</code>
        */
       public com.ServerResponseMessage.MSG getMsgType() {
         com.ServerResponseMessage.MSG result = com.ServerResponseMessage.MSG.valueOf(msgType_);
         return result == null ? com.ServerResponseMessage.MSG.UNRECOGNIZED : result;
       }
       /**
-       * <code>.MSG msg_type = 1;</code>
+       * <code>optional .MSG msg_type = 1;</code>
        */
       public Builder setMsgType(com.ServerResponseMessage.MSG value) {
         if (value == null) {
@@ -20501,7 +20559,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.MSG msg_type = 1;</code>
+       * <code>optional .MSG msg_type = 1;</code>
        */
       public Builder clearMsgType() {
         
@@ -20512,7 +20570,7 @@ public final class ServerResponseMessage {
 
       private java.lang.Object username_ = "";
       /**
-       * <code>string username = 2;</code>
+       * <code>optional string username = 2;</code>
        */
       public java.lang.String getUsername() {
         java.lang.Object ref = username_;
@@ -20527,7 +20585,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string username = 2;</code>
+       * <code>optional string username = 2;</code>
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
@@ -20543,7 +20601,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>string username = 2;</code>
+       * <code>optional string username = 2;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
@@ -20556,7 +20614,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string username = 2;</code>
+       * <code>optional string username = 2;</code>
        */
       public Builder clearUsername() {
         
@@ -20565,7 +20623,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>string username = 2;</code>
+       * <code>optional string username = 2;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
@@ -20583,13 +20641,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.LaunchResponse, com.ServerResponseMessage.LaunchResponse.Builder, com.ServerResponseMessage.LaunchResponseOrBuilder> lauchResponseBuilder_;
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public boolean hasLauchResponse() {
         return lauchResponseBuilder_ != null || lauchResponse_ != null;
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public com.ServerResponseMessage.LaunchResponse getLauchResponse() {
         if (lauchResponseBuilder_ == null) {
@@ -20599,7 +20657,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public Builder setLauchResponse(com.ServerResponseMessage.LaunchResponse value) {
         if (lauchResponseBuilder_ == null) {
@@ -20615,7 +20673,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public Builder setLauchResponse(
           com.ServerResponseMessage.LaunchResponse.Builder builderForValue) {
@@ -20629,7 +20687,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public Builder mergeLauchResponse(com.ServerResponseMessage.LaunchResponse value) {
         if (lauchResponseBuilder_ == null) {
@@ -20647,7 +20705,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public Builder clearLauchResponse() {
         if (lauchResponseBuilder_ == null) {
@@ -20661,7 +20719,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public com.ServerResponseMessage.LaunchResponse.Builder getLauchResponseBuilder() {
         
@@ -20669,7 +20727,7 @@ public final class ServerResponseMessage {
         return getLauchResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       public com.ServerResponseMessage.LaunchResponseOrBuilder getLauchResponseOrBuilder() {
         if (lauchResponseBuilder_ != null) {
@@ -20680,7 +20738,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.LaunchResponse lauchResponse = 3;</code>
+       * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.LaunchResponse, com.ServerResponseMessage.LaunchResponse.Builder, com.ServerResponseMessage.LaunchResponseOrBuilder> 
@@ -20700,13 +20758,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.RegisterResponse, com.ServerResponseMessage.RegisterResponse.Builder, com.ServerResponseMessage.RegisterResponseOrBuilder> registerResponseBuilder_;
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public boolean hasRegisterResponse() {
         return registerResponseBuilder_ != null || registerResponse_ != null;
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public com.ServerResponseMessage.RegisterResponse getRegisterResponse() {
         if (registerResponseBuilder_ == null) {
@@ -20716,7 +20774,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public Builder setRegisterResponse(com.ServerResponseMessage.RegisterResponse value) {
         if (registerResponseBuilder_ == null) {
@@ -20732,7 +20790,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public Builder setRegisterResponse(
           com.ServerResponseMessage.RegisterResponse.Builder builderForValue) {
@@ -20746,7 +20804,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public Builder mergeRegisterResponse(com.ServerResponseMessage.RegisterResponse value) {
         if (registerResponseBuilder_ == null) {
@@ -20764,7 +20822,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public Builder clearRegisterResponse() {
         if (registerResponseBuilder_ == null) {
@@ -20778,7 +20836,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public com.ServerResponseMessage.RegisterResponse.Builder getRegisterResponseBuilder() {
         
@@ -20786,7 +20844,7 @@ public final class ServerResponseMessage {
         return getRegisterResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       public com.ServerResponseMessage.RegisterResponseOrBuilder getRegisterResponseOrBuilder() {
         if (registerResponseBuilder_ != null) {
@@ -20797,7 +20855,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.RegisterResponse registerResponse = 4;</code>
+       * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.RegisterResponse, com.ServerResponseMessage.RegisterResponse.Builder, com.ServerResponseMessage.RegisterResponseOrBuilder> 
@@ -20817,13 +20875,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.SendContent, com.ServerResponseMessage.SendContent.Builder, com.ServerResponseMessage.SendContentOrBuilder> sendContentBuilder_;
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public boolean hasSendContent() {
         return sendContentBuilder_ != null || sendContent_ != null;
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public com.ServerResponseMessage.SendContent getSendContent() {
         if (sendContentBuilder_ == null) {
@@ -20833,7 +20891,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public Builder setSendContent(com.ServerResponseMessage.SendContent value) {
         if (sendContentBuilder_ == null) {
@@ -20849,7 +20907,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public Builder setSendContent(
           com.ServerResponseMessage.SendContent.Builder builderForValue) {
@@ -20863,7 +20921,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public Builder mergeSendContent(com.ServerResponseMessage.SendContent value) {
         if (sendContentBuilder_ == null) {
@@ -20881,7 +20939,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public Builder clearSendContent() {
         if (sendContentBuilder_ == null) {
@@ -20895,7 +20953,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public com.ServerResponseMessage.SendContent.Builder getSendContentBuilder() {
         
@@ -20903,7 +20961,7 @@ public final class ServerResponseMessage {
         return getSendContentFieldBuilder().getBuilder();
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       public com.ServerResponseMessage.SendContentOrBuilder getSendContentOrBuilder() {
         if (sendContentBuilder_ != null) {
@@ -20914,7 +20972,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.SendContent sendContent = 5;</code>
+       * <code>optional .SendContent sendContent = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.SendContent, com.ServerResponseMessage.SendContent.Builder, com.ServerResponseMessage.SendContentOrBuilder> 
@@ -20934,13 +20992,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.AnnouncementMessage, com.ServerResponseMessage.AnnouncementMessage.Builder, com.ServerResponseMessage.AnnouncementMessageOrBuilder> announcementMessageBuilder_;
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public boolean hasAnnouncementMessage() {
         return announcementMessageBuilder_ != null || announcementMessage_ != null;
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public com.ServerResponseMessage.AnnouncementMessage getAnnouncementMessage() {
         if (announcementMessageBuilder_ == null) {
@@ -20950,7 +21008,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder setAnnouncementMessage(com.ServerResponseMessage.AnnouncementMessage value) {
         if (announcementMessageBuilder_ == null) {
@@ -20966,7 +21024,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder setAnnouncementMessage(
           com.ServerResponseMessage.AnnouncementMessage.Builder builderForValue) {
@@ -20980,7 +21038,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder mergeAnnouncementMessage(com.ServerResponseMessage.AnnouncementMessage value) {
         if (announcementMessageBuilder_ == null) {
@@ -20998,7 +21056,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public Builder clearAnnouncementMessage() {
         if (announcementMessageBuilder_ == null) {
@@ -21012,7 +21070,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public com.ServerResponseMessage.AnnouncementMessage.Builder getAnnouncementMessageBuilder() {
         
@@ -21020,7 +21078,7 @@ public final class ServerResponseMessage {
         return getAnnouncementMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       public com.ServerResponseMessage.AnnouncementMessageOrBuilder getAnnouncementMessageOrBuilder() {
         if (announcementMessageBuilder_ != null) {
@@ -21031,7 +21089,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.AnnouncementMessage announcementMessage = 6;</code>
+       * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.AnnouncementMessage, com.ServerResponseMessage.AnnouncementMessage.Builder, com.ServerResponseMessage.AnnouncementMessageOrBuilder> 
@@ -21051,13 +21109,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionEnterResponse, com.ServerResponseMessage.QuestionEnterResponse.Builder, com.ServerResponseMessage.QuestionEnterResponseOrBuilder> questionEnterResponseBuilder_;
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public boolean hasQuestionEnterResponse() {
         return questionEnterResponseBuilder_ != null || questionEnterResponse_ != null;
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public com.ServerResponseMessage.QuestionEnterResponse getQuestionEnterResponse() {
         if (questionEnterResponseBuilder_ == null) {
@@ -21067,7 +21125,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public Builder setQuestionEnterResponse(com.ServerResponseMessage.QuestionEnterResponse value) {
         if (questionEnterResponseBuilder_ == null) {
@@ -21083,7 +21141,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public Builder setQuestionEnterResponse(
           com.ServerResponseMessage.QuestionEnterResponse.Builder builderForValue) {
@@ -21097,7 +21155,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public Builder mergeQuestionEnterResponse(com.ServerResponseMessage.QuestionEnterResponse value) {
         if (questionEnterResponseBuilder_ == null) {
@@ -21115,7 +21173,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public Builder clearQuestionEnterResponse() {
         if (questionEnterResponseBuilder_ == null) {
@@ -21129,7 +21187,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public com.ServerResponseMessage.QuestionEnterResponse.Builder getQuestionEnterResponseBuilder() {
         
@@ -21137,7 +21195,7 @@ public final class ServerResponseMessage {
         return getQuestionEnterResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       public com.ServerResponseMessage.QuestionEnterResponseOrBuilder getQuestionEnterResponseOrBuilder() {
         if (questionEnterResponseBuilder_ != null) {
@@ -21148,7 +21206,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionEnterResponse questionEnterResponse = 7;</code>
+       * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionEnterResponse, com.ServerResponseMessage.QuestionEnterResponse.Builder, com.ServerResponseMessage.QuestionEnterResponseOrBuilder> 
@@ -21168,13 +21226,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GoodQuestionResponse, com.ServerResponseMessage.GoodQuestionResponse.Builder, com.ServerResponseMessage.GoodQuestionResponseOrBuilder> goodQuestionResponseBuilder_;
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public boolean hasGoodQuestionResponse() {
         return goodQuestionResponseBuilder_ != null || goodQuestionResponse_ != null;
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public com.ServerResponseMessage.GoodQuestionResponse getGoodQuestionResponse() {
         if (goodQuestionResponseBuilder_ == null) {
@@ -21184,7 +21242,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public Builder setGoodQuestionResponse(com.ServerResponseMessage.GoodQuestionResponse value) {
         if (goodQuestionResponseBuilder_ == null) {
@@ -21200,7 +21258,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public Builder setGoodQuestionResponse(
           com.ServerResponseMessage.GoodQuestionResponse.Builder builderForValue) {
@@ -21214,7 +21272,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public Builder mergeGoodQuestionResponse(com.ServerResponseMessage.GoodQuestionResponse value) {
         if (goodQuestionResponseBuilder_ == null) {
@@ -21232,7 +21290,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public Builder clearGoodQuestionResponse() {
         if (goodQuestionResponseBuilder_ == null) {
@@ -21246,7 +21304,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public com.ServerResponseMessage.GoodQuestionResponse.Builder getGoodQuestionResponseBuilder() {
         
@@ -21254,7 +21312,7 @@ public final class ServerResponseMessage {
         return getGoodQuestionResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       public com.ServerResponseMessage.GoodQuestionResponseOrBuilder getGoodQuestionResponseOrBuilder() {
         if (goodQuestionResponseBuilder_ != null) {
@@ -21265,7 +21323,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GoodQuestionResponse goodQuestionResponse = 8;</code>
+       * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GoodQuestionResponse, com.ServerResponseMessage.GoodQuestionResponse.Builder, com.ServerResponseMessage.GoodQuestionResponseOrBuilder> 
@@ -21285,13 +21343,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GoodUserResponse, com.ServerResponseMessage.GoodUserResponse.Builder, com.ServerResponseMessage.GoodUserResponseOrBuilder> goodUserResponseBuilder_;
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public boolean hasGoodUserResponse() {
         return goodUserResponseBuilder_ != null || goodUserResponse_ != null;
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public com.ServerResponseMessage.GoodUserResponse getGoodUserResponse() {
         if (goodUserResponseBuilder_ == null) {
@@ -21301,7 +21359,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public Builder setGoodUserResponse(com.ServerResponseMessage.GoodUserResponse value) {
         if (goodUserResponseBuilder_ == null) {
@@ -21317,7 +21375,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public Builder setGoodUserResponse(
           com.ServerResponseMessage.GoodUserResponse.Builder builderForValue) {
@@ -21331,7 +21389,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public Builder mergeGoodUserResponse(com.ServerResponseMessage.GoodUserResponse value) {
         if (goodUserResponseBuilder_ == null) {
@@ -21349,7 +21407,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public Builder clearGoodUserResponse() {
         if (goodUserResponseBuilder_ == null) {
@@ -21363,7 +21421,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public com.ServerResponseMessage.GoodUserResponse.Builder getGoodUserResponseBuilder() {
         
@@ -21371,7 +21429,7 @@ public final class ServerResponseMessage {
         return getGoodUserResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       public com.ServerResponseMessage.GoodUserResponseOrBuilder getGoodUserResponseOrBuilder() {
         if (goodUserResponseBuilder_ != null) {
@@ -21382,7 +21440,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GoodUserResponse goodUserResponse = 10;</code>
+       * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GoodUserResponse, com.ServerResponseMessage.GoodUserResponse.Builder, com.ServerResponseMessage.GoodUserResponseOrBuilder> 
@@ -21402,13 +21460,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.FileResponse, com.ServerResponseMessage.FileResponse.Builder, com.ServerResponseMessage.FileResponseOrBuilder> fileResponseBuilder_;
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public boolean hasFileResponse() {
         return fileResponseBuilder_ != null || fileResponse_ != null;
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public com.ServerResponseMessage.FileResponse getFileResponse() {
         if (fileResponseBuilder_ == null) {
@@ -21418,7 +21476,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public Builder setFileResponse(com.ServerResponseMessage.FileResponse value) {
         if (fileResponseBuilder_ == null) {
@@ -21434,7 +21492,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public Builder setFileResponse(
           com.ServerResponseMessage.FileResponse.Builder builderForValue) {
@@ -21448,7 +21506,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public Builder mergeFileResponse(com.ServerResponseMessage.FileResponse value) {
         if (fileResponseBuilder_ == null) {
@@ -21466,7 +21524,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public Builder clearFileResponse() {
         if (fileResponseBuilder_ == null) {
@@ -21480,7 +21538,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public com.ServerResponseMessage.FileResponse.Builder getFileResponseBuilder() {
         
@@ -21488,7 +21546,7 @@ public final class ServerResponseMessage {
         return getFileResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       public com.ServerResponseMessage.FileResponseOrBuilder getFileResponseOrBuilder() {
         if (fileResponseBuilder_ != null) {
@@ -21499,7 +21557,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.FileResponse fileResponse = 9;</code>
+       * <code>optional .FileResponse fileResponse = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.FileResponse, com.ServerResponseMessage.FileResponse.Builder, com.ServerResponseMessage.FileResponseOrBuilder> 
@@ -21519,13 +21577,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UpdateMessage, com.ServerResponseMessage.UpdateMessage.Builder, com.ServerResponseMessage.UpdateMessageOrBuilder> updateMessageBuilder_;
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public boolean hasUpdateMessage() {
         return updateMessageBuilder_ != null || updateMessage_ != null;
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public com.ServerResponseMessage.UpdateMessage getUpdateMessage() {
         if (updateMessageBuilder_ == null) {
@@ -21535,7 +21593,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public Builder setUpdateMessage(com.ServerResponseMessage.UpdateMessage value) {
         if (updateMessageBuilder_ == null) {
@@ -21551,7 +21609,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public Builder setUpdateMessage(
           com.ServerResponseMessage.UpdateMessage.Builder builderForValue) {
@@ -21565,7 +21623,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public Builder mergeUpdateMessage(com.ServerResponseMessage.UpdateMessage value) {
         if (updateMessageBuilder_ == null) {
@@ -21583,7 +21641,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public Builder clearUpdateMessage() {
         if (updateMessageBuilder_ == null) {
@@ -21597,7 +21655,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public com.ServerResponseMessage.UpdateMessage.Builder getUpdateMessageBuilder() {
         
@@ -21605,7 +21663,7 @@ public final class ServerResponseMessage {
         return getUpdateMessageFieldBuilder().getBuilder();
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       public com.ServerResponseMessage.UpdateMessageOrBuilder getUpdateMessageOrBuilder() {
         if (updateMessageBuilder_ != null) {
@@ -21616,7 +21674,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UpdateMessage updateMessage = 11;</code>
+       * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UpdateMessage, com.ServerResponseMessage.UpdateMessage.Builder, com.ServerResponseMessage.UpdateMessageOrBuilder> 
@@ -21636,13 +21694,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionInformationResponse, com.ServerResponseMessage.QuestionInformationResponse.Builder, com.ServerResponseMessage.QuestionInformationResponseOrBuilder> questionInformationResponseBuilder_;
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public boolean hasQuestionInformationResponse() {
         return questionInformationResponseBuilder_ != null || questionInformationResponse_ != null;
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public com.ServerResponseMessage.QuestionInformationResponse getQuestionInformationResponse() {
         if (questionInformationResponseBuilder_ == null) {
@@ -21652,7 +21710,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public Builder setQuestionInformationResponse(com.ServerResponseMessage.QuestionInformationResponse value) {
         if (questionInformationResponseBuilder_ == null) {
@@ -21668,7 +21726,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public Builder setQuestionInformationResponse(
           com.ServerResponseMessage.QuestionInformationResponse.Builder builderForValue) {
@@ -21682,7 +21740,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public Builder mergeQuestionInformationResponse(com.ServerResponseMessage.QuestionInformationResponse value) {
         if (questionInformationResponseBuilder_ == null) {
@@ -21700,7 +21758,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public Builder clearQuestionInformationResponse() {
         if (questionInformationResponseBuilder_ == null) {
@@ -21714,7 +21772,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public com.ServerResponseMessage.QuestionInformationResponse.Builder getQuestionInformationResponseBuilder() {
         
@@ -21722,7 +21780,7 @@ public final class ServerResponseMessage {
         return getQuestionInformationResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       public com.ServerResponseMessage.QuestionInformationResponseOrBuilder getQuestionInformationResponseOrBuilder() {
         if (questionInformationResponseBuilder_ != null) {
@@ -21733,7 +21791,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.QuestionInformationResponse questionInformationResponse = 13;</code>
+       * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.QuestionInformationResponse, com.ServerResponseMessage.QuestionInformationResponse.Builder, com.ServerResponseMessage.QuestionInformationResponseOrBuilder> 
@@ -21753,13 +21811,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UserInformationResponse, com.ServerResponseMessage.UserInformationResponse.Builder, com.ServerResponseMessage.UserInformationResponseOrBuilder> userInformationResponseBuilder_;
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public boolean hasUserInformationResponse() {
         return userInformationResponseBuilder_ != null || userInformationResponse_ != null;
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public com.ServerResponseMessage.UserInformationResponse getUserInformationResponse() {
         if (userInformationResponseBuilder_ == null) {
@@ -21769,7 +21827,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public Builder setUserInformationResponse(com.ServerResponseMessage.UserInformationResponse value) {
         if (userInformationResponseBuilder_ == null) {
@@ -21785,7 +21843,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public Builder setUserInformationResponse(
           com.ServerResponseMessage.UserInformationResponse.Builder builderForValue) {
@@ -21799,7 +21857,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public Builder mergeUserInformationResponse(com.ServerResponseMessage.UserInformationResponse value) {
         if (userInformationResponseBuilder_ == null) {
@@ -21817,7 +21875,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public Builder clearUserInformationResponse() {
         if (userInformationResponseBuilder_ == null) {
@@ -21831,7 +21889,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public com.ServerResponseMessage.UserInformationResponse.Builder getUserInformationResponseBuilder() {
         
@@ -21839,7 +21897,7 @@ public final class ServerResponseMessage {
         return getUserInformationResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       public com.ServerResponseMessage.UserInformationResponseOrBuilder getUserInformationResponseOrBuilder() {
         if (userInformationResponseBuilder_ != null) {
@@ -21850,7 +21908,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.UserInformationResponse userInformationResponse = 14;</code>
+       * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.UserInformationResponse, com.ServerResponseMessage.UserInformationResponse.Builder, com.ServerResponseMessage.UserInformationResponseOrBuilder> 
@@ -21870,13 +21928,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GetQuestionListResponse, com.ServerResponseMessage.GetQuestionListResponse.Builder, com.ServerResponseMessage.GetQuestionListResponseOrBuilder> getQuestionListResponseBuilder_;
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public boolean hasGetQuestionListResponse() {
         return getQuestionListResponseBuilder_ != null || getQuestionListResponse_ != null;
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public com.ServerResponseMessage.GetQuestionListResponse getGetQuestionListResponse() {
         if (getQuestionListResponseBuilder_ == null) {
@@ -21886,7 +21944,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public Builder setGetQuestionListResponse(com.ServerResponseMessage.GetQuestionListResponse value) {
         if (getQuestionListResponseBuilder_ == null) {
@@ -21902,7 +21960,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public Builder setGetQuestionListResponse(
           com.ServerResponseMessage.GetQuestionListResponse.Builder builderForValue) {
@@ -21916,7 +21974,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public Builder mergeGetQuestionListResponse(com.ServerResponseMessage.GetQuestionListResponse value) {
         if (getQuestionListResponseBuilder_ == null) {
@@ -21934,7 +21992,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public Builder clearGetQuestionListResponse() {
         if (getQuestionListResponseBuilder_ == null) {
@@ -21948,7 +22006,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public com.ServerResponseMessage.GetQuestionListResponse.Builder getGetQuestionListResponseBuilder() {
         
@@ -21956,7 +22014,7 @@ public final class ServerResponseMessage {
         return getGetQuestionListResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       public com.ServerResponseMessage.GetQuestionListResponseOrBuilder getGetQuestionListResponseOrBuilder() {
         if (getQuestionListResponseBuilder_ != null) {
@@ -21967,7 +22025,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GetQuestionListResponse getQuestionListResponse = 15;</code>
+       * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GetQuestionListResponse, com.ServerResponseMessage.GetQuestionListResponse.Builder, com.ServerResponseMessage.GetQuestionListResponseOrBuilder> 
@@ -21987,13 +22045,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.CreateQuestionResponse, com.ServerResponseMessage.CreateQuestionResponse.Builder, com.ServerResponseMessage.CreateQuestionResponseOrBuilder> createQuestionResponseBuilder_;
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public boolean hasCreateQuestionResponse() {
         return createQuestionResponseBuilder_ != null || createQuestionResponse_ != null;
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public com.ServerResponseMessage.CreateQuestionResponse getCreateQuestionResponse() {
         if (createQuestionResponseBuilder_ == null) {
@@ -22003,7 +22061,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public Builder setCreateQuestionResponse(com.ServerResponseMessage.CreateQuestionResponse value) {
         if (createQuestionResponseBuilder_ == null) {
@@ -22019,7 +22077,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public Builder setCreateQuestionResponse(
           com.ServerResponseMessage.CreateQuestionResponse.Builder builderForValue) {
@@ -22033,7 +22091,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public Builder mergeCreateQuestionResponse(com.ServerResponseMessage.CreateQuestionResponse value) {
         if (createQuestionResponseBuilder_ == null) {
@@ -22051,7 +22109,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public Builder clearCreateQuestionResponse() {
         if (createQuestionResponseBuilder_ == null) {
@@ -22065,7 +22123,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public com.ServerResponseMessage.CreateQuestionResponse.Builder getCreateQuestionResponseBuilder() {
         
@@ -22073,7 +22131,7 @@ public final class ServerResponseMessage {
         return getCreateQuestionResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       public com.ServerResponseMessage.CreateQuestionResponseOrBuilder getCreateQuestionResponseOrBuilder() {
         if (createQuestionResponseBuilder_ != null) {
@@ -22084,7 +22142,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.CreateQuestionResponse createQuestionResponse = 18;</code>
+       * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.CreateQuestionResponse, com.ServerResponseMessage.CreateQuestionResponse.Builder, com.ServerResponseMessage.CreateQuestionResponseOrBuilder> 
@@ -22104,13 +22162,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.AbandonQuestionResponse, com.ServerResponseMessage.AbandonQuestionResponse.Builder, com.ServerResponseMessage.AbandonQuestionResponseOrBuilder> abandonQuestionResponseBuilder_;
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public boolean hasAbandonQuestionResponse() {
         return abandonQuestionResponseBuilder_ != null || abandonQuestionResponse_ != null;
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public com.ServerResponseMessage.AbandonQuestionResponse getAbandonQuestionResponse() {
         if (abandonQuestionResponseBuilder_ == null) {
@@ -22120,7 +22178,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public Builder setAbandonQuestionResponse(com.ServerResponseMessage.AbandonQuestionResponse value) {
         if (abandonQuestionResponseBuilder_ == null) {
@@ -22136,7 +22194,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public Builder setAbandonQuestionResponse(
           com.ServerResponseMessage.AbandonQuestionResponse.Builder builderForValue) {
@@ -22150,7 +22208,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public Builder mergeAbandonQuestionResponse(com.ServerResponseMessage.AbandonQuestionResponse value) {
         if (abandonQuestionResponseBuilder_ == null) {
@@ -22168,7 +22226,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public Builder clearAbandonQuestionResponse() {
         if (abandonQuestionResponseBuilder_ == null) {
@@ -22182,7 +22240,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public com.ServerResponseMessage.AbandonQuestionResponse.Builder getAbandonQuestionResponseBuilder() {
         
@@ -22190,7 +22248,7 @@ public final class ServerResponseMessage {
         return getAbandonQuestionResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       public com.ServerResponseMessage.AbandonQuestionResponseOrBuilder getAbandonQuestionResponseOrBuilder() {
         if (abandonQuestionResponseBuilder_ != null) {
@@ -22201,7 +22259,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.AbandonQuestionResponse abandonQuestionResponse = 19;</code>
+       * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.AbandonQuestionResponse, com.ServerResponseMessage.AbandonQuestionResponse.Builder, com.ServerResponseMessage.AbandonQuestionResponseOrBuilder> 
@@ -22221,13 +22279,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.SearchInformationResponse, com.ServerResponseMessage.SearchInformationResponse.Builder, com.ServerResponseMessage.SearchInformationResponseOrBuilder> searchInformationResponseBuilder_;
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public boolean hasSearchInformationResponse() {
         return searchInformationResponseBuilder_ != null || searchInformationResponse_ != null;
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public com.ServerResponseMessage.SearchInformationResponse getSearchInformationResponse() {
         if (searchInformationResponseBuilder_ == null) {
@@ -22237,7 +22295,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public Builder setSearchInformationResponse(com.ServerResponseMessage.SearchInformationResponse value) {
         if (searchInformationResponseBuilder_ == null) {
@@ -22253,7 +22311,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public Builder setSearchInformationResponse(
           com.ServerResponseMessage.SearchInformationResponse.Builder builderForValue) {
@@ -22267,7 +22325,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public Builder mergeSearchInformationResponse(com.ServerResponseMessage.SearchInformationResponse value) {
         if (searchInformationResponseBuilder_ == null) {
@@ -22285,7 +22343,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public Builder clearSearchInformationResponse() {
         if (searchInformationResponseBuilder_ == null) {
@@ -22299,7 +22357,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public com.ServerResponseMessage.SearchInformationResponse.Builder getSearchInformationResponseBuilder() {
         
@@ -22307,7 +22365,7 @@ public final class ServerResponseMessage {
         return getSearchInformationResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       public com.ServerResponseMessage.SearchInformationResponseOrBuilder getSearchInformationResponseOrBuilder() {
         if (searchInformationResponseBuilder_ != null) {
@@ -22318,7 +22376,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.SearchInformationResponse searchInformationResponse = 20;</code>
+       * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.SearchInformationResponse, com.ServerResponseMessage.SearchInformationResponse.Builder, com.ServerResponseMessage.SearchInformationResponseOrBuilder> 
@@ -22338,13 +22396,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder> solvedQuestionResponseBuilder_;
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public boolean hasSolvedQuestionResponse() {
         return solvedQuestionResponseBuilder_ != null || solvedQuestionResponse_ != null;
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public com.ServerResponseMessage.SolvedQuestionResponse getSolvedQuestionResponse() {
         if (solvedQuestionResponseBuilder_ == null) {
@@ -22354,7 +22412,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public Builder setSolvedQuestionResponse(com.ServerResponseMessage.SolvedQuestionResponse value) {
         if (solvedQuestionResponseBuilder_ == null) {
@@ -22370,7 +22428,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public Builder setSolvedQuestionResponse(
           com.ServerResponseMessage.SolvedQuestionResponse.Builder builderForValue) {
@@ -22384,7 +22442,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public Builder mergeSolvedQuestionResponse(com.ServerResponseMessage.SolvedQuestionResponse value) {
         if (solvedQuestionResponseBuilder_ == null) {
@@ -22402,7 +22460,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public Builder clearSolvedQuestionResponse() {
         if (solvedQuestionResponseBuilder_ == null) {
@@ -22416,7 +22474,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public com.ServerResponseMessage.SolvedQuestionResponse.Builder getSolvedQuestionResponseBuilder() {
         
@@ -22424,7 +22482,7 @@ public final class ServerResponseMessage {
         return getSolvedQuestionResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       public com.ServerResponseMessage.SolvedQuestionResponseOrBuilder getSolvedQuestionResponseOrBuilder() {
         if (solvedQuestionResponseBuilder_ != null) {
@@ -22435,7 +22493,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.SolvedQuestionResponse solvedQuestionResponse = 21;</code>
+       * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder> 
@@ -22455,13 +22513,13 @@ public final class ServerResponseMessage {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder> getUserListResponseBuilder_;
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public boolean hasGetUserListResponse() {
         return getUserListResponseBuilder_ != null || getUserListResponse_ != null;
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public com.ServerResponseMessage.GetUserListResponse getGetUserListResponse() {
         if (getUserListResponseBuilder_ == null) {
@@ -22471,7 +22529,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public Builder setGetUserListResponse(com.ServerResponseMessage.GetUserListResponse value) {
         if (getUserListResponseBuilder_ == null) {
@@ -22487,7 +22545,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public Builder setGetUserListResponse(
           com.ServerResponseMessage.GetUserListResponse.Builder builderForValue) {
@@ -22501,7 +22559,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public Builder mergeGetUserListResponse(com.ServerResponseMessage.GetUserListResponse value) {
         if (getUserListResponseBuilder_ == null) {
@@ -22519,7 +22577,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public Builder clearGetUserListResponse() {
         if (getUserListResponseBuilder_ == null) {
@@ -22533,7 +22591,7 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public com.ServerResponseMessage.GetUserListResponse.Builder getGetUserListResponseBuilder() {
         
@@ -22541,7 +22599,7 @@ public final class ServerResponseMessage {
         return getGetUserListResponseFieldBuilder().getBuilder();
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       public com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder() {
         if (getUserListResponseBuilder_ != null) {
@@ -22552,7 +22610,7 @@ public final class ServerResponseMessage {
         }
       }
       /**
-       * <code>.GetUserListResponse getUserListResponse = 22;</code>
+       * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder> 
@@ -22802,65 +22860,66 @@ public final class ServerResponseMessage {
       "\n\026CreateQuestionResponse\022\017\n\007success\030\001 \001(",
       "\010\022)\n\017questionMessage\030\002 \001(\0132\020.QuestionMes" +
       "sage\"*\n\027AbandonQuestionResponse\022\017\n\007succe" +
-      "ss\030\001 \001(\010\"N\n\031SearchInformationResponse\0221\n" +
-      "\023questionListMessage\030\003 \003(\0132\024.QuestionLis" +
-      "tMessage\"\332\001\n\014FileResponse\022\017\n\007success\030\001 \001" +
-      "(\010\022%\n\004sign\030\002 \003(\0132\027.FileResponse.SignEntr" +
-      "y\022(\n\010signType\030\003 \001(\0162\026.FileResponse.SIGNT" +
-      "YPE\022\025\n\rlocalFilePath\030\004 \003(\t\032+\n\tSignEntry\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNT" +
-      "YPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026SolvedQ",
-      "uestionResponse\022\022\n\nquestionID\030\002 \001(\003\022\017\n\007s" +
-      "uccess\030\001 \001(\010\"o\n\rUpdateMessage\022+\n\tuserEnt" +
-      "er\030\001 \001(\0132\030.UpdateMessage.UserEnter\0321\n\tUs" +
-      "erEnter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestionID\030" +
-      "\002 \001(\003\"\224\002\n\023GetUserListResponse\022\017\n\007success" +
-      "\030\001 \001(\010\022.\n\005users\030\002 \003(\0132\037.GetUserListRespo" +
-      "nse.UsersEntry\022\022\n\nquestionID\030\003 \001(\003\0229\n\014us" +
-      "erListType\030\004 \001(\0162#.GetUserListResponse.U" +
-      "SER_LIST_TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t" +
-      "\022\r\n\005value\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n",
-      "\021ACQUAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LI" +
-      "ST\020\001\"\233\007\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG" +
-      "\022\020\n\010username\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(" +
-      "\0132\017.LaunchResponse\022+\n\020registerResponse\030\004" +
-      " \001(\0132\021.RegisterResponse\022!\n\013sendContent\030\005" +
-      " \001(\0132\014.SendContent\0221\n\023announcementMessag" +
-      "e\030\006 \001(\0132\024.AnnouncementMessage\0225\n\025questio" +
-      "nEnterResponse\030\007 \001(\0132\026.QuestionEnterResp" +
-      "onse\0223\n\024goodQuestionResponse\030\010 \001(\0132\025.Goo" +
-      "dQuestionResponse\022+\n\020goodUserResponse\030\n ",
-      "\001(\0132\021.GoodUserResponse\022#\n\014fileResponse\030\t" +
-      " \001(\0132\r.FileResponse\022%\n\rupdateMessage\030\013 \001" +
-      "(\0132\016.UpdateMessage\022A\n\033questionInformatio" +
-      "nResponse\030\r \001(\0132\034.QuestionInformationRes" +
-      "ponse\0229\n\027userInformationResponse\030\016 \001(\0132\030" +
-      ".UserInformationResponse\0229\n\027getQuestionL" +
-      "istResponse\030\017 \001(\0132\030.GetQuestionListRespo" +
-      "nse\0227\n\026createQuestionResponse\030\022 \001(\0132\027.Cr" +
-      "eateQuestionResponse\0229\n\027abandonQuestionR" +
-      "esponse\030\023 \001(\0132\030.AbandonQuestionResponse\022",
-      "=\n\031searchInformationResponse\030\024 \001(\0132\032.Sea" +
-      "rchInformationResponse\0227\n\026solvedQuestion" +
-      "Response\030\025 \001(\0132\027.SolvedQuestionResponse\022" +
-      "1\n\023getUserListResponse\030\026 \001(\0132\024.GetUserLi" +
-      "stResponse*\340\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022" +
-      "\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002" +
-      "\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_E" +
-      "NTER_RESPONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONS" +
-      "E\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022\n\016UPDATE_ME" +
-      "SSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_I",
-      "NFORMATION_RESPONSE\020\n\022\035\n\031USER_INFORMATIO" +
-      "N_RESPONSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPON" +
-      "SE\020\014\022\034\n\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031AB" +
-      "ANDON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFO" +
-      "RMATION_RESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RE" +
-      "SPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_USER_LI" +
-      "ST_RESPONSE\020\024*H\n\014CONTENT_TYPE\022\020\n\014TEXT_ME" +
-      "SSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_ME" +
-      "SSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020" +
-      "\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003comB",
-      "\025ServerResponseMessageb\006proto3"
+      "ss\030\001 \001(\010\"`\n\031SearchInformationResponse\0221\n" +
+      "\023questionListMessage\030\001 \003(\0132\024.QuestionLis" +
+      "tMessage\022\020\n\010searchID\030\002 \001(\005\"\332\001\n\014FileRespo" +
+      "nse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027.Fil" +
+      "eResponse.SignEntry\022(\n\010signType\030\003 \001(\0162\026." +
+      "FileResponse.SIGNTYPE\022\025\n\rlocalFilePath\030\004" +
+      " \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
+      "\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006U",
+      "PLOAD\020\001\"=\n\026SolvedQuestionResponse\022\022\n\nque" +
+      "stionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"o\n\rUpdate" +
+      "Message\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateMessa" +
+      "ge.UserEnter\0321\n\tUserEnter\022\020\n\010username\030\001 " +
+      "\001(\t\022\022\n\nquestionID\030\002 \001(\003\"\224\002\n\023GetUserListR" +
+      "esponse\022\017\n\007success\030\001 \001(\010\022.\n\005users\030\002 \003(\0132" +
+      "\037.GetUserListResponse.UsersEntry\022\022\n\nques" +
+      "tionID\030\003 \001(\003\0229\n\014userListType\030\004 \001(\0162#.Get" +
+      "UserListResponse.USER_LIST_TYPE\032,\n\nUsers" +
+      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"?\n",
+      "\016USER_LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026" +
+      "\n\022USERS_IN_ROOM_LIST\020\001\"\233\007\n\007Message\022\026\n\010ms" +
+      "g_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\r" +
+      "lauchResponse\030\003 \001(\0132\017.LaunchResponse\022+\n\020" +
+      "registerResponse\030\004 \001(\0132\021.RegisterRespons" +
+      "e\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023" +
+      "announcementMessage\030\006 \001(\0132\024.Announcement" +
+      "Message\0225\n\025questionEnterResponse\030\007 \001(\0132\026" +
+      ".QuestionEnterResponse\0223\n\024goodQuestionRe" +
+      "sponse\030\010 \001(\0132\025.GoodQuestionResponse\022+\n\020g",
+      "oodUserResponse\030\n \001(\0132\021.GoodUserResponse" +
+      "\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022%\n" +
+      "\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n\033" +
+      "questionInformationResponse\030\r \001(\0132\034.Ques" +
+      "tionInformationResponse\0229\n\027userInformati" +
+      "onResponse\030\016 \001(\0132\030.UserInformationRespon" +
+      "se\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.Ge" +
+      "tQuestionListResponse\0227\n\026createQuestionR" +
+      "esponse\030\022 \001(\0132\027.CreateQuestionResponse\0229" +
+      "\n\027abandonQuestionResponse\030\023 \001(\0132\030.Abando",
+      "nQuestionResponse\022=\n\031searchInformationRe" +
+      "sponse\030\024 \001(\0132\032.SearchInformationResponse" +
+      "\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Solve" +
+      "dQuestionResponse\0221\n\023getUserListResponse" +
+      "\030\026 \001(\0132\024.GetUserListResponse*\340\003\n\003MSG\022\023\n\017" +
+      "LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001" +
+      "\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSA" +
+      "GE\020\003\022\033\n\027QUESTION_ENTER_RESPONSE\020\004\022\032\n\026GOO" +
+      "D_QUESTION_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPO" +
+      "NSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFILE_RESPON",
+      "SE\020\t\022!\n\035QUESTION_INFORMATION_RESPONSE\020\n\022" +
+      "\035\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n\032GET_QU" +
+      "ESTION_LIST_RESPONSE\020\014\022\034\n\030CREATE_QUESTIO" +
+      "N_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_RESPONS" +
+      "E\020\020\022\037\n\033SEARCH_INFORMATION_RESPONSE\020\021\022\034\n\030" +
+      "SOLVED_QUESTION_RESPONSE\020\022\022\017\n\013BAD_MESSAG" +
+      "E\020\023\022\032\n\026GET_USER_LIST_RESPONSE\020\024*H\n\014CONTE" +
+      "NT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MES" +
+      "SAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE" +
+      "\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYP",
+      "E\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseMessage" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -22987,7 +23046,7 @@ public final class ServerResponseMessage {
     internal_static_SearchInformationResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchInformationResponse_descriptor,
-        new java.lang.String[] { "QuestionListMessage", });
+        new java.lang.String[] { "QuestionListMessage", "SearchID", });
     internal_static_FileResponse_descriptor =
       getDescriptor().getMessageTypes().get(17);
     internal_static_FileResponse_fieldAccessorTable = new

@@ -1086,6 +1086,7 @@ public class ServerItem {
 				);
 				rs.close();
 			}
+			builder.setSearchID(request.getSearchID());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

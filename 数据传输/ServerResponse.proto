@@ -180,7 +180,8 @@ message AbandonQuestionResponse {
 
 //搜索内容回复
 message SearchInformationResponse {
-    repeated QuestionListMessage questionListMessage = 3;
+    int32 searchID = 1;
+    repeated QuestionListMessage questionListMessage = 2;
 }
 
 //获取Sign
