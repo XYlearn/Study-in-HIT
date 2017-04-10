@@ -35,7 +35,7 @@ public class ResponseDecoder extends CumulativeProtocolDecoder {
 					out.write(response);
 					return true;
 				} catch (InvalidProtocolBufferException e) {
-					throw e;
+					return false;
 				}
 			}
 		}

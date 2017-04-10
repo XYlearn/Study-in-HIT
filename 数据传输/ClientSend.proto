@@ -153,6 +153,7 @@ message AbandonQuestionRequest {
 //搜索内容
 message SearchInformationRequest {
     repeated string keywords = 1;
+    int32 searchID = 2;
 }
 
 //获取Sign
