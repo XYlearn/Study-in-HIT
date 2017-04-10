@@ -27,9 +27,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.undo.UndoManager;
 import util.Dispatcher;
 import util.MyExpression;
 import util.UserInfo;
@@ -42,11 +44,14 @@ public class InputBox extends JPanel implements Dispatcher
 	private final HTMLDocument doc;
 	private final JScrollPane myScroll=new JScrollPane(myPane);
 	private final HTMLEditorKit kit=new HTMLEditorKit();
+	private final UndoManager undoManager;
 
 	private final JPopupMenu textMenu=new JPopupMenu();
 	private final JMenuItem copy=new JMenuItem("复制");
 	private final JMenuItem cut=new JMenuItem("剪切");
 	private final JMenuItem paste=new JMenuItem("粘贴");
+	private final JMenuItem undo=new JMenuItem("撤销");
+	private final JMenuItem redo=new JMenuItem("恢复");
 
 	private long questionID=-1;
 	private Map<Integer,Long> markMap=new HashMap<>();
@@ -68,15 +73,34 @@ public class InputBox extends JPanel implements Dispatcher
 			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
+		undoManager=new UndoManager()
+		{
+			@Override
+			public void undoableEditHappened(UndoableEditEvent e)
+			{
+				undoManager.addEdit(e.getEdit());
+			}
+		};
+		doc.addUndoableEditListener(undoManager);
+		
 		myPane.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyPressed(KeyEvent e)
 				{
-					@Override
-					public void keyPressed(KeyEvent e)
-					{
-						if(e.getKeyCode()==9)
-							readAndInsertExpression();
-					}
-				});
+					if(e.getKeyCode()==9)
+						readAndInsertExpression();
+					else if(e.isControlDown()
+						&&e.getKeyCode()==KeyEvent.VK_Z
+						&&undoManager.canUndo())
+						undoManager.undo();
+					else if(e.isControlDown()
+						&&e.getKeyCode()==KeyEvent.VK_Y
+						&&undoManager.canRedo())
+						undoManager.redo();
+						
+				}
+			});
 		setLayout(new BorderLayout());
 		add(myScroll, BorderLayout.CENTER);
 	}
