@@ -21,9 +21,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -142,7 +140,7 @@ public class InputBox extends JPanel implements Dispatcher
 		try
 		{
 			kit.insertHTML(doc, myPane.getCaretPosition(),
-					"<a href='pict:"+f.getPath()+"'><img border='0' src='file:"+f.getPath()+"'></a>",
+					"<a href='pict:"+f.getPath()+"'><img border='0' src='file:/"+f.getPath()+"'></a>",
 					0, 0, HTML.Tag.A);
 		} catch (BadLocationException|IOException ex)
 		{
@@ -167,6 +165,7 @@ public class InputBox extends JPanel implements Dispatcher
 			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
 			return "";
 		}
+		if(myPane.getCaretPosition()==str.length()) end=str.length();
 		for(i=myPane.getCaretPosition();i<str.length();i++)
 			if(str.charAt(i)<=32||str.charAt(i)>=127||str.charAt(i)=='`')
 			{

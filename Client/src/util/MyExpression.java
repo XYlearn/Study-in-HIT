@@ -19,7 +19,6 @@ public class MyExpression
 	private int inity=-1,height=-1,width=-1;
 	private static final Font[] fonts={new Font("Arial",0,30),new Font("Arial",0,15),new Font("Arial",0,10)};
 	private static final int BORDER=5,HEIGHT=30;
-	private static final String CLASSPATH=MyExpression.class.getResource("").getPath();
 	// ********根号还不能画出
 	//需要处理的符号：
 	//替换：root
