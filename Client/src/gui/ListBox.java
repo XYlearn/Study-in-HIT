@@ -117,7 +117,7 @@ public class ListBox extends JPanel implements Dispatcher
 		map.remove(searchID);
 	}
 	
-	public void dispatch(NetEvent e)
+	public static void dispatch(NetEvent e)
 	{
 		switch(e.type)
 		{

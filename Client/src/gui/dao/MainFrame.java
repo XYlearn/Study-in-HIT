@@ -110,10 +110,6 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		{
 			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
-		//test
-		addQuestionTab(1);
-		addSearchTab(2);
 	}
 	
 	public void dispatch(NetEvent e)

@@ -1,24 +1,23 @@
 package NetEvent;
 
 import NetEvent.eventcom.*;
+import bin.test;
 import com.ClientSendMessage;
 import com.ServerResponseMessage;
-import com.google.protobuf.ProtocolStringList;
 import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.UploadFileRequest;
 import gui.ChattingBox;
 import gui.InputBox;
+import gui.ListBox;
 import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
-import sun.nio.ch.Net;
 import util.UserInfo;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Native;
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * Created by xy16 on 17-2-25.
@@ -80,14 +79,17 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case GET_QUESTION_LIST_RESPONSE:	//
 					netEvent = handleResponseQuestionList(recvMessage);
+					ListBox.dispatch(netEvent);
 					break;
 				case CREATE_QUESTION_RESPONSE:	//
 					netEvent = handleResponseCreateQuestion(recvMessage);
+					test.mainFrame.dispatch(netEvent);
 					break;
 				case ABANDON_QUESTION_RESPONSE:	//
 					break;
 				case SEARCH_INFORMATION_RESPONSE:	//
 					netEvent = handleResponseSearchInformation(recvMessage);
+					ListBox.dispatch(netEvent);
 					break;
 				case FILE_RESPONSE:	//
 					handleFileResponse(recvMessage);

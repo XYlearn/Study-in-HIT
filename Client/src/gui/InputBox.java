@@ -54,7 +54,7 @@ public class InputBox extends JPanel implements Dispatcher
 	private final JMenuItem redo=new JMenuItem("恢复");
 
 	private long questionID=-1;
-	private Map<Integer,Long> markMap=new HashMap<>();
+	private Map<Integer,Long> markMap;
 
 	public InputBox()
 	{
@@ -88,8 +88,18 @@ public class InputBox extends JPanel implements Dispatcher
 				@Override
 				public void keyPressed(KeyEvent e)
 				{
-					if(e.getKeyCode()==9)
+					if(e.getKeyCode()==KeyEvent.VK_TAB)
 						readAndInsertExpression();
+					else if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER)
+					{
+						try {
+							doc.insertString(myPane.getCaretPosition(), "\n", null);
+						} catch (BadLocationException ex) {
+							Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
+						}
+					}
+					else if(e.getKeyCode()==KeyEvent.VK_ENTER)
+						sendMessage();
 					else if(e.isControlDown()
 						&&e.getKeyCode()==KeyEvent.VK_Z
 						&&undoManager.canUndo())
@@ -103,6 +113,7 @@ public class InputBox extends JPanel implements Dispatcher
 			});
 		setLayout(new BorderLayout());
 		add(myScroll, BorderLayout.CENTER);
+		markMap=new ConcurrentHashMap<>()	;
 	}
 
 	public void bind(long questionID)
@@ -255,13 +266,8 @@ public class InputBox extends JPanel implements Dispatcher
 			System.out.println("消息发送失败");
 			return;
 		}
-		if(markMap.containsKey(CONTENT_MARK.ANONYMOUS.getValue()))
-		{
-			markMap.clear();
-			setAnonymous();
-		}
-		else
-			clearMarkMap();
+		System.out.println(markMap.containsKey(CONTENT_MARK.ANONYMOUS.getValue()));
+		clearMarkMap();
 	}
 	
 	public void sendAudio(String audioFile)

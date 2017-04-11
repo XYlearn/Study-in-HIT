@@ -19,14 +19,17 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import util.AudioTools;
 import bin.test;
 import java.awt.Font;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
@@ -83,6 +86,13 @@ public class ChattingBox extends JPanel implements Dispatcher
 		myPane.setContentType("text/html;charset=unicode");
 		myPane.setText("<html><p id='-1'></p></html>");
 		doc=(HTMLDocument)myPane.getStyledDocument();
+		try
+		{
+			doc.setBase(new URL("file:"+test.MAINPATH));
+		} catch (MalformedURLException ex)
+		{
+			Logger.getLogger(InputBox.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
 		myPane.addMouseListener(new ChattingBoxMouseListener());
 		myPane.addHyperlinkListener(hyperlinkAction);
@@ -146,6 +156,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			Element e=doc.getElement("-1");
 			boolean ismyself=UserInfo.getMyUserName().equals(msg.getUser());
+			String tmpUser=msg.getMarkMap()
+					.containsKey(CONTENT_MARK.ANONYMOUS.getValue())?"匿名":msg.getUser();
 			String message=msg.getContent().replaceAll("\n", "<br>");
 			if (msg.getPictures()!=null)
 				for (int i=0; i<msg.getPictures().size(); i++)
@@ -168,7 +180,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						+"-moz-user-select:none;"
 						+"-ms-user-select:none;user-select:none;'>"
 						+"<tr><td id='"+msg.getRecordID()+"-leftHead' rowspan='3'>"
-						+(ismyself?"":getUserHead(msg.getUser()))
+						+(ismyself?"":getUserHead(tmpUser))
 						+"</td>"
 						+"<td><img src='"+test.IMGPATH+"bubble_lu.jpg'></td>"
 						+"<td style='background-image:url("+test.IMGPATH+"bubble_up.jpg);"
@@ -191,7 +203,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 			}
 			records.add(msg);
 		}
-
 		myPane.setSelectionStart(myPane.getText().length());
 	}
 
@@ -249,6 +260,16 @@ public class ChattingBox extends JPanel implements Dispatcher
 			{
 				EnterQuestionEvent ex=(EnterQuestionEvent)e;
 				if (ex.isSuccess())
+				{
+					map.get(ex.getQuestionMessage().getId()).pushMessage(
+						new Record(
+							ex.getQuestionMessage().getOwner(),
+							ex.getQuestionMessage().getStem()+"\n"
+							+ex.getQuestionMessage().getAddition(),
+							ex.getQuestionMessage().getTime(),
+							0,
+							ex.getQuestionMessage().getAdditionpic(), //PROBLEM!!!
+							new ConcurrentHashMap()));
 					ex.getQuestionMessage().getRecords().forEach(
 						(Record r)->
 					{
@@ -259,6 +280,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						else
 							map.get(ex.getQuestionMessage().getId()).pushMessage(r);
 					});
+				}
 				break;
 			}
 			case SOLVED_QUESTION_EVENT:
@@ -276,12 +298,16 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private static String getUserHead(String userName)
 	{
-		try
+		if (!"匿名".equals(userName))
 		{
-			UserInfo.getPicURL(userName);
-		} catch (IOException ex)
-		{
-			System.out.println("Failed getting userhead.");
+			try
+			{
+				UserInfo.getPicURL(userName);
+			} catch (IOException ex)
+			{
+				System.out.println("Failed getting userhead.");
+				System.out.println(ex);
+			}
 		}
 		return "<a href='user:"+userName+"'>"
 				+"<img border='0' src='"+PROPICTPATH+userName+".jpg'></a>";

@@ -13,6 +13,7 @@ import gui.form.UserInformation;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import util.UserInfo;
 
 public class test
 {
@@ -53,6 +54,7 @@ public class test
 		try
 		{
 			Thread.sleep(1000);
+			UserInfo.setMyUserName("test");
 			client.launchRequest("test", "123456");
 		} catch (IOException ex)
 		{
