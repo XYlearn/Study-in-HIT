@@ -149,13 +149,17 @@ public class ChattingBox extends JPanel implements Dispatcher
 			System.out.println(e);
 		}
 	}
-
+	
 	public void pushMessage(Record msg)
+	{
+		pushMessage(msg,UserInfo.getMyUserName().equals(msg.getUser()));
+	}
+
+	public void pushMessage(Record msg,boolean ismyself)
 	{
 		synchronized (records)
 		{
 			Element e=doc.getElement("-1");
-			boolean ismyself=UserInfo.getMyUserName().equals(msg.getUser());
 			String tmpUser=msg.getMarkMap()
 					.containsKey(CONTENT_MARK.ANONYMOUS.getValue())?"匿名":msg.getUser();
 			String message=msg.getContent().replaceAll("\n", "<br>");
@@ -205,8 +209,13 @@ public class ChattingBox extends JPanel implements Dispatcher
 		}
 		myPane.setSelectionStart(myPane.getText().length());
 	}
-
+	
 	public void pushAudio(Record msg)
+	{
+		pushAudio(msg,UserInfo.getMyUserName().equals(msg.getUser()));
+	}
+
+	public void pushAudio(Record msg,boolean ismyself)
 	{
 		synchronized (records)
 		{
@@ -220,7 +229,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 					msg.getRecordID(),
 					msg.getPictures(),
 					msg.getMarkMap());
-			pushMessage(tmpRecord);
+			pushMessage(tmpRecord,ismyself);
 		}
 	}
 
@@ -249,11 +258,11 @@ public class ChattingBox extends JPanel implements Dispatcher
 				ContentMessageEvent ex=(ContentMessageEvent)e;
 				if (ex.isSuccess())
 					if (ex.getRecord().getMarkMap().containsKey(CONTENT_MARK.AUDIO.getValue()))
-						map.get(ex.getQuestionID()).pushAudio(ex.getRecord());
+						map.get(ex.getQuestionID()).pushAudio(ex.getRecord(),ex.isMyself());
 					else if (ex.getRecord().getMarkMap().containsKey(CONTENT_MARK.FILE.getValue()))
 						map.get(ex.getQuestionID()).pushFile(ex.getRecord());
 					else
-						map.get(ex.getQuestionID()).pushMessage(ex.getRecord());
+						map.get(ex.getQuestionID()).pushMessage(ex.getRecord(),ex.isMyself());
 				break;
 			}
 			case ENTER_QUESTION_EVENT:

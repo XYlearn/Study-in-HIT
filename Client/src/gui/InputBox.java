@@ -89,7 +89,11 @@ public class InputBox extends JPanel implements Dispatcher
 				public void keyPressed(KeyEvent e)
 				{
 					if(e.getKeyCode()==KeyEvent.VK_TAB)
+					{
+						myPane.setEditable(false);
 						readAndInsertExpression();
+						myPane.setEditable(true);
+					}
 					else if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER)
 					{
 						try {
@@ -231,6 +235,7 @@ public class InputBox extends JPanel implements Dispatcher
 
 	public void sendMessage()
 	{
+		myPane.setEditable(false);
 		ArrayList<String> pictures=new ArrayList<>();
 		int count=0;
 		String str=myPane.getText();
@@ -266,8 +271,10 @@ public class InputBox extends JPanel implements Dispatcher
 			System.out.println("消息发送失败");
 			return;
 		}
-		System.out.println(markMap.containsKey(CONTENT_MARK.ANONYMOUS.getValue()));
-		clearMarkMap();
+		finally
+		{
+			clearMarkMap();
+		}
 	}
 	
 	public void sendAudio(String audioFile)
@@ -280,12 +287,17 @@ public class InputBox extends JPanel implements Dispatcher
 		{
 			System.out.println("消息发送失败");
 		}
-		clearMarkMap();
+		finally
+		{
+			clearMarkMap();
+		}
 	}
 	
 	public void sendFile(String filepath)
 	{
 		markMap.put(CONTENT_MARK.FILE.getValue(), -1L);
+		boolean tmpAnonymous=markMap.containsKey(CONTENT_MARK.ANONYMOUS.getValue());
+		markMap.remove(CONTENT_MARK.ANONYMOUS.getValue());
 		try
 		{
 			test.client.sendContent(filepath, null, questionID,markMap);
@@ -293,7 +305,11 @@ public class InputBox extends JPanel implements Dispatcher
 		{
 			System.out.println("消息发送失败");
 		}
-		clearMarkMap();
+		finally
+		{
+			if(tmpAnonymous) markMap.put(CONTENT_MARK.ANONYMOUS.getValue(), -1L);
+			clearMarkMap();
+		}
 	}
 	
 	public static void dispatch(NetEvent e)
@@ -304,11 +320,12 @@ public class InputBox extends JPanel implements Dispatcher
 			{
 				ContentMessageEvent ex=(ContentMessageEvent)e;
 				if (ex.isSuccess()==true)
-					if (ex.getRecord().getUser().equals(UserInfo.getMyUserName()))
+					if (ex.isMyself())
 						if (ex.isSuccess())
 						{
 							System.out.println("已发送：\n"+ex.getRecord().getContent());
 							map.get(ex.getQuestionID()).myPane.setText("");
+							map.get(ex.getQuestionID()).myPane.setEditable(true);
 						} else
 							System.out.println("发送消息失败。");
 				break;
