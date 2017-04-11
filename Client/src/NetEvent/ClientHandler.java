@@ -6,10 +6,13 @@ import com.ServerResponseMessage;
 import com.google.protobuf.ProtocolStringList;
 import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.UploadFileRequest;
+import gui.ChattingBox;
+import gui.InputBox;
 import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 import sun.nio.ch.Net;
+import util.UserInfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,56 +43,66 @@ public class ClientHandler extends IoHandlerAdapter {
 		ServerResponseMessage.Message recvMessage = (ServerResponseMessage.Message) message;
 		System.out.println("Received Message:\n"+recvMessage.toString());
 		//处理数据
+		NetEvent netEvent = null;
 		if (recvMessage != null) {
 			switch (recvMessage.getMsgType()) {
-				case REGISTER_RESPONSE:
-					handleRegisterResponse(recvMessage);
+				case REGISTER_RESPONSE:	//
+					netEvent = handleRegisterResponse(recvMessage);
 					break;
-				case LAUNCH_RESPONSE:
-					handleResponseLaunch(recvMessage);
+				case LAUNCH_RESPONSE:	//
+					netEvent = handleResponseLaunch(recvMessage);
+                    client.setLaunched(((LaunchEvent)netEvent).isStatus());
 					break;
 				case SEND_CONTENT:
-					handleResponseSendContent(recvMessage);
+					netEvent = handleResponseSendContent(recvMessage);
+					ChattingBox.dispatch(netEvent);
+					InputBox.dispatch(netEvent);	// if received message is from myself then delete it from input box
 					break;
-				case ANNOUNCEMENT_MESSAGE:
-				case QUESTION_ENTER_RESPONSE:
-					handleResponseEnterQuestion(recvMessage);
+				case ANNOUNCEMENT_MESSAGE:	//
 					break;
-				case GOOD_QUESTION_RESPONSE:
-					handleResponseGoodQuestion(recvMessage);
+				case QUESTION_ENTER_RESPONSE:	//
+					netEvent = handleResponseEnterQuestion(recvMessage);
+					InputBox.dispatch(netEvent);
+					ChattingBox.dispatch(netEvent);
 					break;
-				case GOOD_USER_RESPONSE:
-					handleResponseGoodUser(recvMessage);
+				case GOOD_QUESTION_RESPONSE:	//
+					netEvent = handleResponseGoodQuestion(recvMessage);
 					break;
-				case QUESTION_INFORMATION_RESPONSE:
-					handleResponseQuestionInfo(recvMessage);
+				case GOOD_USER_RESPONSE:	//
+					netEvent = handleResponseGoodUser(recvMessage);
 					break;
-				case USER_INFORMATION_RESPONSE:
-
+				case QUESTION_INFORMATION_RESPONSE:	//
+					netEvent = handleResponseQuestionInfo(recvMessage);
 					break;
-				case GET_QUESTION_LIST_RESPONSE:
-					handleResponseQuestionList(recvMessage);
+				case USER_INFORMATION_RESPONSE:	//
+					netEvent = handleResponseUserInformation(recvMessage);
+					UserInfo.dispatch((UserInfoEvent) netEvent);
 					break;
-				case CREATE_QUESTION_RESPONSE:
-					handleResponseCreateQuestion(recvMessage);
+				case GET_QUESTION_LIST_RESPONSE:	//
+					netEvent = handleResponseQuestionList(recvMessage);
 					break;
-				case ABANDON_QUESTION_RESPONSE:
+				case CREATE_QUESTION_RESPONSE:	//
+					netEvent = handleResponseCreateQuestion(recvMessage);
 					break;
-				case SEARCH_INFORMATION_RESPONSE:
+				case ABANDON_QUESTION_RESPONSE:	//
 					break;
-				case FILE_RESPONSE:
+				case SEARCH_INFORMATION_RESPONSE:	//
+					netEvent = handleResponseSearchInformation(recvMessage);
+					break;
+				case FILE_RESPONSE:	//
 					handleFileResponse(recvMessage);
 					break;
-				case UPDATE_MESSAGE:
+				case UPDATE_MESSAGE:	//
 					handleUpdateMessage(recvMessage);
 					break;
 				case SOLVED_QUESTION_RESPONSE:
-					handleResponseSolvedQuestion(recvMessage);
+					netEvent = handleResponseSolvedQuestion(recvMessage);
+					ChattingBox.dispatch(netEvent);
 					break;
-				case GET_USER_LIST_RESPONSE:
-					handleResponseGetUserList(recvMessage);
+				case GET_USER_LIST_RESPONSE:	//
+					netEvent = handleResponseGetUserList(recvMessage);
 					break;
-				case BAD_MESSAGE:
+				case BAD_MESSAGE:	//
 					System.out.println("未知消息:\n" + recvMessage);
 					break;
 				default:
@@ -225,6 +238,10 @@ public class ClientHandler extends IoHandlerAdapter {
 		return (NetEvent) new SolvedQuestionEvent(recvMessage.getSolvedQuestionResponse());
 	}
 
+	private NetEvent handleResponseSearchInformation(ServerResponseMessage.Message recvMessage) {
+		return (NetEvent) new SearchQuestionEvent(recvMessage.getSearchInformationResponse());
+	}
+
 	private NetEvent handleResponseGetUserList(ServerResponseMessage.Message recvMessage) {
 		ServerResponseMessage.GetUserListResponse getUserListResponse = recvMessage.getGetUserListResponse();
 		switch (getUserListResponse.getUserListType()) {
@@ -235,6 +252,10 @@ public class ClientHandler extends IoHandlerAdapter {
 			default:
 				return null;
 		}
+	}
+
+	private NetEvent handleResponseUserInformation(ServerResponseMessage.Message recvMessage) {
+		return (NetEvent) new UserInfoEvent(recvMessage.getUserInformationResponse());
 	}
 
 	@Native

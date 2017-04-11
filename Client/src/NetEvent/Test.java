@@ -27,20 +27,12 @@ public class Test {
 		client.start();
 
 		try {
-
-			System.out.println("用户名:");
-			username = "xy16";
-			System.out.println("密码");
+			System.out.println("username:");
+			username = scanner.nextLine();
+			System.out.println("password:");
 			password = scanner.nextLine();
 			client.launchRequest(username, password);
-			ArrayList<String> pics = new ArrayList<>();
-			pics.add("/home/xy16/JavaCode.d/ProjectClientProto/out/produc" +
-					  "tion/ProjectClientProto/pictures/D784FA8B6D98D27699781BD9A7CF19F0");
-
-			client.createQuestion("first question", "lala", new ArrayList<>(), pics, new ArrayList<>());
-			client.enterQuestion(1);
-			client.sendContent("%hello", pics, 1);
-
+			client.uploadFile("C:\\Users\\XHWhy\\Downloads\\第三周Web小组技术分享.docx");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

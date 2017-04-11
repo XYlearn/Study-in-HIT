@@ -31,6 +31,7 @@ public class Client extends Thread{
 	private ConnectFuture connectFuture = null;
 	private NioSocketConnector connector = null;
 	private IoSession session = null;
+	private boolean launched = false;
 
 	//当前用户名
 	private String username = "";
@@ -39,6 +40,8 @@ public class Client extends Thread{
 	boolean isOver;
 	private boolean connected = false;
 	public boolean isConnected() {return connected;}
+	public boolean isLaunched() {return this.launched;}
+	public void setLaunched(boolean launched) {this.launched = launched;}
 
 	//文件路径
 	public static final String MAINPATH=bin.test.class.getResource("").getPath()
@@ -373,19 +376,24 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
-	public void searchInformation(ArrayList<String> keywords) throws IOException {
+	public void searchInformation(ArrayList<String> keywords, int searchID) throws IOException {
 		ClientSendMessage.SearchInformationRequest.Builder searchBuider =
 				  ClientSendMessage.SearchInformationRequest.newBuilder();
 
 		for(String keyword : keywords) {
 			searchBuider.addKeywords(keyword);
 		}
+		searchBuider.setSearchID(searchID);
 
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
 				  .setMsgType(ClientSendMessage.MSG.SEARCH_INFORMATION_REQUEST)
 				  .setUsername(username)
 				  .setSearchInformationRequest(searchBuider).build();
 		sendIt(sendMessage);
+	}
+
+	public void searchInformation(ArrayList<String> keywords) throws IOException {
+		searchInformation(keywords, 0);
 	}
 
 	public void solveQuestion(long questionID) throws IOException {

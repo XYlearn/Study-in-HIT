@@ -1,6 +1,7 @@
 package NetEvent.eventcom;
 
 import NetEvent.messagecom.QuestionListMessage;
+import com.ClientSendMessage;
 import com.ServerResponseMessage;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class SearchQuestionEvent extends NetEvent {
 	public SearchQuestionEvent(ServerResponseMessage.SearchInformationResponse response) {
 		super(EventType.SEARCH_QUESTION_EVENT);
 
-		this.questionList = new ArrayList<>();
 		this.searchID = response.getSearchID();
+		this.questionList = new ArrayList<>();
 		for (ServerResponseMessage.QuestionListMessage qlm : response.getQuestionListMessageList()) {
 			questionList.add(new QuestionListMessage(qlm));
 		}
