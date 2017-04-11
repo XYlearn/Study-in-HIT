@@ -5,17 +5,47 @@ import org.apache.mina.core.session.IoSession;
 import util.AcquaintanceParser;
 import util.SQLStringParser;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import static com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.ACQUAINTANCE_LIST;
+import static com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.USERS_IN_ROOM_LIST;
+
 public class ServerItem {
 	private IoSession session;
 	private String username = null;
+	private String password = null;
 	private DatabaseConnection dbconn;
-	private String sql;
-	private Statement stmt;
+
+	/*SQL statement*/
+	private PreparedStatement pstmtSelectUser;
+	private PreparedStatement pstmtUpdateUserLaunchTime;
+	private PreparedStatement pstmtInsertUser;
+	private PreparedStatement pstmtSelectQuestion;
+	private PreparedStatement pstmtInsertQuestion;
+	private PreparedStatement pstmtUpdateQuestionSendTime;
+	private PreparedStatement pstmtInsertQuestionID;
+	private PreparedStatement pstmtSelectQuestionID;
+	private PreparedStatement pstmtMaxQuestionID;
+	private PreparedStatement pstmtInsertFiles;
+	private PreparedStatement pstmtSelectFiles;
+	private PreparedStatement pstmtUpdateGoodQuestion;
+	private PreparedStatement pstmtUpdateGoodUser;
+	private PreparedStatement pstmtGetMaxQuestionID;
+	private PreparedStatement pstmtCreateQuestionID;
+	private PreparedStatement pstmtUpdateUserBonus;
+	private PreparedStatement pstmtInsertWordList;
+	private PreparedStatement pstmtDeleteFromQuestion;
+	private PreparedStatement pstmtDropQuestionID;
+	private PreparedStatement pstmtDeleteFromWordList;
+	private PreparedStatement pstmtSelectWordList;
+	private PreparedStatement pstmtQuestionSolved;
+	private PreparedStatement pstmtSelectAcquaintance;
+	private Statement stmtSelectQuestionByOrder;
+
 	Cos cos;
 
 	//帐号登录反馈消息字符串
@@ -56,12 +86,50 @@ public class ServerItem {
 		}
 	}
 
+	/*init serveritem*/
 	public ServerItem(IoSession session, DatabaseConnection dbconn) {
 		this.session = session;
 		this.dbconn = dbconn;
 		this.cos = new Cos();
+		pstmtInit();
+	}
+	private void pstmtInit() {
 		try {
-			stmt = dbconn.connection.createStatement();
+			pstmtSelectUser = dbconn.connection.prepareStatement("SELECT * FROM user WHERE username=?;");
+			pstmtUpdateUserLaunchTime = dbconn.connection.prepareStatement("UPDATE user SET last_launch_time=now() WHERE username=?;");
+			pstmtInsertUser = dbconn.connection.prepareStatement("INSERT INTO user (username, userkey, signature, mail_address)VALUES(?,?,?,?);");
+			pstmtSelectQuestion = dbconn.connection.prepareStatement("SELECT * FROM question WHERE id=?;");
+			pstmtSelectQuestionID = dbconn.connection.prepareStatement("SELECT * FROM question_id?;");
+			pstmtUpdateQuestionSendTime = dbconn.connection.prepareStatement("UPDATE question SET last_send_time=now() WHERE id=?");
+			pstmtInsertQuestionID = dbconn.connection.prepareStatement("INSERT INTO question_id? (record, time, username, markMap, recordpic) VALUES(?,now(),?,?,?);");
+			pstmtMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(record_id) FROM question_id?;");
+			pstmtInsertFiles = dbconn.connection.prepareStatement("INSERT INTO files (md5, filename, user) VALUES(?,?,?);");
+			pstmtSelectFiles = dbconn.connection.prepareStatement("SELECT * FROM files WHERE md5=?;");
+			pstmtUpdateGoodQuestion = dbconn.connection.prepareStatement("UPDATE question SET praise_num=?;");
+			pstmtUpdateGoodUser = dbconn.connection.prepareStatement("UPDATE user SET praise_num=? WHERE username=?;");
+			pstmtGetMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(id) FROM question;");
+			pstmtInsertQuestion = dbconn.connection.prepareStatement("INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES(?,?,?,?,?,?,?);");
+			pstmtCreateQuestionID = dbconn.connection.prepareStatement(
+					"CREATE TABLE question_id?"+"(\n" +
+							"record_id BIGINT AUTO_INCREMENT,\n" +
+							"record VARCHAR(255) NOT NULL,\n" +
+							"recordpic VARCHAR(255) DEFAULT '',\n" +
+							"username VARCHAR(20) NOT NULL,\n" +
+							"time DATETIME DEFAULT now(),\n" +
+							"markMap VARCHAR(255) DEFAULT \"\",\n" +
+							"PRIMARY KEY(record_id)\n" +
+							");");
+			pstmtUpdateUserBonus = dbconn.connection.prepareStatement("UPDATE user SET bonus=?, question_num=? WHERE username=?;");
+			pstmtInsertWordList = dbconn.connection.prepareStatement("INSERT INTO words_list? (word, question) VALUES(?,?);");
+
+			pstmtDeleteFromWordList = dbconn.connection.prepareStatement("DELETE FROM words_list? WHERE question=?;");
+			pstmtDeleteFromQuestion = dbconn.connection.prepareStatement("DELETE FROM question WHERE id=?;");
+			pstmtDropQuestionID = dbconn.connection.prepareStatement("DROP TABLE question_id?;");
+			pstmtSelectWordList = dbconn.connection.prepareStatement("SELECT * FROM words_list? WHERE word=?;");
+			pstmtQuestionSolved = dbconn.connection.prepareStatement("UPDATE question SET solved=1 WHERE id=?;");
+			pstmtSelectAcquaintance = dbconn.connection.prepareStatement("SELECT acquaintance FROM acquaintance_table WHERE username=?;");
+			stmtSelectQuestionByOrder = dbconn.connection.createStatement();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,9 +161,6 @@ public class ServerItem {
 		ClientSendMessage.MSG msgType = message.getMsgType();
 		//获取用户名
 		this.username = message.getUsername();
-		if(username.equals("")) {
-			return ServerResponseMessage.Message.newBuilder().build();
-		}
 		//处理消息
 		try {
 			switch (msgType) {
@@ -114,7 +179,8 @@ public class ServerItem {
 						return null;
 					}
 				case LOGOUT_MESSAGE:	//登出消息
-					handleLogout();
+					if(isLaunched())
+						handleLogout();
 					return null;
 				case REGISTER_REQUEST: //注册
 					try {
@@ -132,7 +198,7 @@ public class ServerItem {
 					}
 				case SEND_CONTENT:	//发送对话消息
 					try {
-						if (message.hasSendContent()) {
+						if (message.hasSendContent() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.SEND_CONTENT)
 									  .setUsername(username)
@@ -145,9 +211,10 @@ public class ServerItem {
 						return null;
 					}
 				case ANNOUNCEMENT_MESSAGE:	//发布公告
+					break;
 				case GOOD_USER_REQUEST:	//赞用户
 					try {
-						if (message.hasGoodUserRequest()) {
+						if (message.hasGoodUserRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.GOOD_USER_RESPONSE)
 									  .setUsername(username)
@@ -162,7 +229,7 @@ public class ServerItem {
 					}
 				case GOOD_QUESTION_REQUEST:	//赞问题
 					try {
-						if (message.hasGoodQuestionRequest()) {
+						if (message.hasGoodQuestionRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.GOOD_QUESTION_RESPONSE)
 									  .setUsername(username)
@@ -176,7 +243,7 @@ public class ServerItem {
 					}
 				case QUESTION_INFORMATION_REQUEST:	//请求问题信息
 					try {
-						if (message.hasQuestionInformationRequest()) {
+						if (message.hasQuestionInformationRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.QUESTION_INFORMATION_RESPONSE)
 									  .setUsername(username)
@@ -189,7 +256,7 @@ public class ServerItem {
 					}
 				case USER_INFORMATION_REQUEST:	//请求用户信息
 					try {
-						if (message.hasUserInformationRequest()) {
+						if (message.hasUserInformationRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.USER_INFORMATION_RESPONSE)
 									  .setUsername(username)
@@ -203,7 +270,7 @@ public class ServerItem {
 					}
 				case GET_QUESTION_LIST_REQUEST:	//获取问题列表
 					try {
-						if (message.hasGetQuestionListRequest()) {
+						if (message.hasGetQuestionListRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.GET_QUESTION_LIST_RESPONSE)
 									  .setUsername(username)
@@ -219,7 +286,7 @@ public class ServerItem {
 					}
 				case CREATE_QUESTION_REQUEST:	//新建问题
 					try {
-						if (message.hasCreateQuestionRequest()) {
+						if (message.hasCreateQuestionRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.CREATE_QUESTION_RESPONSE)
 									  .setUsername(username)
@@ -232,7 +299,7 @@ public class ServerItem {
 					}
 				case QUESTION_ENTER_REQUEST:	//进入房间
 					try {
-						if (message.hasQuestionEnterRequest()) {
+						if (message.hasQuestionEnterRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.QUESTION_ENTER_RESPONSE)
 									  .setUsername(username)
@@ -246,7 +313,7 @@ public class ServerItem {
 					}
 				case ABANDON_QUESTION_REQUEST:	//删除问题
 					try {
-						if (message.hasAbandonQuestionRequest()) {
+						if (message.hasAbandonQuestionRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.ABANDON_QUESTION_RESPONSE)
 									  .setUsername(username)
@@ -260,7 +327,7 @@ public class ServerItem {
 					}
 				case SEARCH_INFORMATION_REQUEST:	//搜索信息
 					try {
-						if (message.hasSearchInformationRequest()) {
+						if (message.hasSearchInformationRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.SEARCH_INFORMATION_RESPONSE)
 									  .setUsername(username)
@@ -275,7 +342,7 @@ public class ServerItem {
 						return null;
 					}
 				case FILE_REQUEST:	//获取签名请求
-					if(message.hasFileRequest()) {
+					if(message.hasFileRequest() && isLaunched()) {
 						try {
 							return ServerResponseMessage.Message.newBuilder()
 								  .setMsgType(ServerResponseMessage.MSG.FILE_RESPONSE)
@@ -290,7 +357,7 @@ public class ServerItem {
 					break;
 				case SOLVED_QUESTION_REQUEST:
 					try {
-						if (message.hasSolvedQuestionRequest()) {
+						if (message.hasSolvedQuestionRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.SOLVED_QUESTION_RESPONSE)
 									  .setUsername(username)
@@ -304,7 +371,7 @@ public class ServerItem {
 					}
 				case GET_USER_LIST_REQUEST:
 					try {
-						if(message.hasGetUserListRequest()) {
+						if(message.hasGetUserListRequest() && isLaunched()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.GET_USER_LIST_RESPONSE)
 									  .setUsername(username)
@@ -337,8 +404,8 @@ public class ServerItem {
 		boolean inOnlineUser = false;
 
 		//获取密钥
-		sql = "SELECT userkey FROM user WHERE username='?';".replace("?", username);
-		ResultSet rs = stmt.executeQuery(sql.toString());
+		pstmtSelectUser.setString(1, username);
+		ResultSet rs = pstmtSelectUser.executeQuery();
 		if (rs.next()) {
 			realkey = rs.getString("userkey");
 		}
@@ -353,8 +420,8 @@ public class ServerItem {
 			if (key.equals(realkey)) {
 
 				//更新最后登录时间
-				sql = "UPDATE user SET last_launch_time=now() WHERE username='?';".replace("?", username);
-				stmt.execute(sql);
+				pstmtUpdateUserLaunchTime.setString(1, username);
+				pstmtUpdateUserLaunchTime.execute();
 				userMessage = handleUserInformationRequest(
 						  ClientSendMessage.UserInformationRequest.newBuilder()
 									 .setUsername(username).build()
@@ -397,8 +464,6 @@ public class ServerItem {
 			}
 		}
 		ServerHandler.log.info(username+" Log out");
-		sql = "DELETE FROM online_user WHERE username='?';".replace("?",username);
-		stmt.execute(sql);
 	}
 
 	private ServerResponseMessage.RegisterResponse
@@ -410,10 +475,10 @@ public class ServerItem {
 		String mail_address = request.getMailAddress();
 		String signature = request.getSignature();
 
-		sql = "SELECT * FROM user WHERE username = "+username;
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectUser.setString(1,username);
+		ResultSet rs = pstmtSelectUser.executeQuery();
 		//用户已存在
-		if(!rs.next()) {
+		if(rs.next()) {
 			response = ServerResponseMessage.RegisterResponse.newBuilder()
 					  .setSuccess(false)
 					  .setInformation("用户已存在")
@@ -424,9 +489,11 @@ public class ServerItem {
 		//邮箱已被注册
 
 		//注册成功
-		sql = sql = "INSERT INTO user (username, userkey, signature, mail_address)"
-				  + "VALUES('" + username + "','" + password + "','" + signature + "','" + mail_address + "');";
-		stmt.execute(sql);
+		pstmtInsertUser.setString(1,username);
+		pstmtInsertUser.setString(2,password);
+		pstmtInsertUser.setString(3,signature);
+		pstmtInsertUser.setString(4,mail_address);
+		pstmtInsertUser.execute();
 
 		response = ServerResponseMessage.RegisterResponse.newBuilder()
 				  .setSuccess(true)
@@ -447,14 +514,15 @@ public class ServerItem {
 		Map<Integer, Long> markMap = sendMessage.getMarkMapMap();
 		ProtocolStringList pictures = sendMessage.getPicturesList();
 
-		sql = "SELECT id FROM question WHERE id="+questionID+";";
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectQuestion.setLong(1,questionID);
+		ResultSet rs = pstmtSelectQuestion.executeQuery();
 		if(!rs.next()) {
 			return ServerResponseMessage.SendContent.newBuilder().setSuccess(false).build();
 		}
+		rs.close();
 
-		sql = "UPDATE question SET last_send_time=now() WHERE id = "+questionID;
-		stmt.execute(sql);
+		pstmtUpdateQuestionSendTime.setLong(1, questionID);
+		pstmtUpdateQuestionSendTime.execute();
 
 		//将markMap转化为String
 		StringBuilder markMapStrBuider = new StringBuilder("");
@@ -476,23 +544,26 @@ public class ServerItem {
 		}
 
 		//在数据库中记录
-		sql = "INSERT INTO question_id"+questionID+" (record, time, username, markMap, recordpic) "
-				  + "VALUES ('"+record+"',"+"now()"+",'"+username+"', '"
-				  +markMapStrBuider.toString()+"','"+recordpicStrBuider+"');";
-		stmt.execute(sql);
+		pstmtInsertQuestionID.setLong(1,questionID);
+		pstmtInsertQuestionID.setString(2,record);
+		pstmtInsertQuestionID.setString(3, username);
+		pstmtInsertQuestionID.setString(4, markMap.toString());
+		pstmtInsertQuestionID.setString(5, recordpicStrBuider.toString());
+		pstmtInsertQuestionID.execute();
 
 		//获取id
-		long recordID = -1;
-		sql = "SELECT max(record_id) FROM question_id"+questionID+";";
-		rs = stmt.executeQuery(sql);
+		long recordID;
+		pstmtMaxQuestionID.setLong(1, questionID);
+		rs = pstmtMaxQuestionID.executeQuery();
 		if(rs.next()) {
 			recordID = rs.getLong(1);
 		} else {
 			recordID = 1;
 		}
+		rs.close();
 
 		//返回服务器回复
-			//匿名检查
+		//匿名检查
 		if(markMap!=null && markMap.get(CONTENT_MARK.ANONIMOUS)!=null) {
 			sendBuider.setUser(sendMessage.getUser());
 		} else {
@@ -507,12 +578,13 @@ public class ServerItem {
 		//对每一图片(文件名为md5)将信息存入数据库中
 		for(String pic : sendMessage.getPicturesList()) {
 			//数据库操作
-			sql = "SELECT * FROM files WHERE md5='"+pic+"';";
-			rs = stmt.executeQuery(sql);
+			pstmtSelectFiles.setString(1,pic);
+			rs = pstmtSelectFiles.executeQuery();
 			if(!rs.next()) {
-				sql = "INSERT INTO files (md5, filename, user) " +
-						  "VALUES('"+pic+"', '"+pic+"', '"+username+"');";
-				stmt.execute(sql);
+				pstmtInsertFiles.setString(1,pic);
+				pstmtInsertFiles.setString(2,pic);
+				pstmtInsertFiles.setString(3,username);
+				pstmtInsertFiles.execute();
 			}
 
 		}
@@ -554,8 +626,8 @@ public class ServerItem {
 		Long questionID = request.getQuestionID();
 
 		//获得问题基本信息
-		sql = "SELECT * FROM question WHERE id = ?;".replace("?", questionID.toString());
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectQuestion.setLong(1, questionID);
+		ResultSet rs = pstmtSelectQuestion.executeQuery();
 		String owner,stem,addition,time,user,contentMessage, markMapStr, recordpic;
 		Map<Integer, Long> markMap = null;
 		boolean solved;
@@ -575,15 +647,16 @@ public class ServerItem {
 					  .setTime(time)
 					  .setSolved(solved)
 					  .setGood(good);
+			rs.close();
 		} else {
+			rs.close();
 			return ServerResponseMessage.QuestionInformationResponse.newBuilder()
 					  .setExist(false).build();
 		}
-		rs.close();
 
 		//获得问题记录
-		sql = "SELECT * FROM question_id?".replace("?", questionID.toString());
-		rs = stmt.executeQuery(sql);
+		pstmtSelectQuestionID.setLong(1, questionID);
+		rs = pstmtSelectQuestionID.executeQuery();
 
 		while (rs.next()) {
 			contentMessage = rs.getString("record");
@@ -653,7 +726,7 @@ public class ServerItem {
 					  .setQuestionMessage(questionInformationResponse.getQuestionMessage())
 					  .setAllow(true)
 					  .build();
-			//将用户socket添加进问题socket列表中
+			//将用户session添加进question_sessions列表中
 			ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID.toString());
 			if(null==ioSessions) {
 				ioSessions = new ArrayList<>();
@@ -701,13 +774,12 @@ public class ServerItem {
 		Long questionID = goodQuestionRequest.getQuestionID();
 		Integer good;
 
-		sql = "Select praise_num FROM question WHERE id=?;".replace("?", questionID.toString());
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectQuestion.setLong(1, questionID);
+		ResultSet rs = pstmtSelectQuestion.executeQuery();
 		if(rs.next()) {
 			good = rs.getInt("praise_num")+1;
-			sql = "UPDATE question SET praise_num=?".replace("?", good.toString())
-					  +" WHERE id=?;".replace("?", questionID.toString());
-			stmt.execute(sql);
+			pstmtUpdateGoodQuestion.setInt(1,good);
+			pstmtUpdateGoodQuestion.execute();
 			goodQuestionResponse = ServerResponseMessage.GoodQuestionResponse.newBuilder()
 					  .setSuccess(true).build();
 		} else {
@@ -725,13 +797,13 @@ public class ServerItem {
 		ServerResponseMessage.GoodUserResponse goodUserResponse = null;
 		String user = goodUserRequest.getUser();
 		Integer good=0;
-		sql = "Select praise_num FROM user WHERE username='?';".replace("?", user);
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectUser.setString(1, user);
+		ResultSet rs = pstmtSelectUser.executeQuery();
 		if(rs.next()) {
 			good = rs.getInt("praise_num")+1;
-			sql = "UPDATE user SET praise_num=?".replace("?", good.toString())
-					  +" WHERE username='?';".replace("?", user);
-			stmt.execute(sql);
+			pstmtUpdateGoodUser.setInt(1,good);
+			pstmtUpdateGoodUser.setString(2,user);
+			pstmtUpdateGoodUser.execute();
 			goodUserResponse = ServerResponseMessage.GoodUserResponse.newBuilder()
 					  .setSuccess(true).build();
 		} else {
@@ -751,11 +823,11 @@ public class ServerItem {
 		//检查积分是否足够
 		int bonus=0;
 		int question_num = 0;
-		sql = "SELECT bonus, question_num FROM user WHERE username = '?';".replace("?", username);
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectUser.setString(1,username);
+		ResultSet rs = pstmtSelectUser.executeQuery();
 		if(rs.next()) {
-			bonus = rs.getInt(1);
-			question_num = rs.getInt(2);
+			bonus = rs.getInt("bonus");
+			question_num = rs.getInt("question_num");
 		}
 		rs.close();
 
@@ -772,16 +844,17 @@ public class ServerItem {
 
 			//在数据库中记录
 			String time = createQuestionRequest.getTime();
-			sql = "SELECT max(id) FROM question;";
 			long questionID = 1;
-			rs = stmt.executeQuery(sql);
+			rs = pstmtGetMaxQuestionID.executeQuery();
 			if(rs.next())
 			{
 				questionID = rs.getLong(1)+1;
 			} else {
 				questionID = 0;
 			}
-			//将图片和并为字符串
+			rs.close();
+
+			//将图片合并为字符串
 			StringBuilder stempic = new StringBuilder("");
 			StringBuilder additionpic = new StringBuilder("");
 			if(stempics.size()>0) {
@@ -797,25 +870,27 @@ public class ServerItem {
 				additionpic.deleteCharAt(additionpic.length() - 1);
 			}
 
-			sql = "INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES" +
+			/*sql = "INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES" +
 					  "('"+username+"','"+questionID+"','"+stem+"','"+addition+"',0, '"+stempic+"', '"+additionpic+"');";
-			stmt.execute(sql);
+			stmt.execute(sql);*/
+			pstmtInsertQuestion.setString(1,username);
+			pstmtInsertQuestion.setLong(2,questionID);
+			pstmtInsertQuestion.setString(3, stem);
+			pstmtInsertQuestion.setString(4,addition);
+			pstmtInsertQuestion.setBoolean(5, false);
+			pstmtInsertQuestion.setString(6, stempic.toString());
+			pstmtInsertQuestion.setString(7, additionpic.toString());
+			pstmtInsertQuestion.execute();
 
 			//创建问题记录表
-			sql = "CREATE TABLE question_id"+questionID+"(\n" +
-					  "record_id BIGINT AUTO_INCREMENT,\n" +
-					  "record VARCHAR(255) NOT NULL,\n" +
-					  "recordpic VARCHAR(255) DEFAULT '',\n" +
-					  "username VARCHAR(20) NOT NULL,\n" +
-					  "time DATETIME DEFAULT now(),\n" +
-					  "markMap VARCHAR(255) DEFAULT \"\",\n" +
-					  "PRIMARY KEY(record_id)\n" +
-					  ");";
-			stmt.execute(sql);
+			pstmtCreateQuestionID.setLong(1,questionID);
+			pstmtCreateQuestionID.execute();
 
 			//扣除点数,增加提问数量
-			sql = "UPDATE user SET bonus="+(bonus-3)+", question_num="+(question_num+1)+" WHERE username = '"+username+"';";
-			stmt.execute(sql);
+			pstmtUpdateUserBonus.setInt(1, bonus);
+			pstmtUpdateUserBonus.setLong(2, question_num+1);
+			pstmtUpdateUserBonus.setString(3,username);
+			pstmtUpdateUserBonus.execute();
 
 			//插入分词列表
 			ProtocolStringList keywords = createQuestionRequest.getKeywordsList();
@@ -827,14 +902,18 @@ public class ServerItem {
 
 			if(keyword.equals("")) {
 			} else {
-				sql = "INSERT INTO words_list1 (word, question) VALUES('"+keyword+"',"+questionID+")";
-				stmt.execute(sql);
+				pstmtInsertWordList.setInt(1,1);
+				pstmtInsertWordList.setString(2,keyword);
+				pstmtInsertWordList.setLong(3,questionID);
+				pstmtInsertWordList.execute();
 			}
 
 			while (ite.hasNext()){
 				keyword = ite.next();
-				sql = "INSERT INTO words_list2 (word, question) VALUES('"+keyword+"',"+questionID+");";
-				stmt.execute(sql);
+				pstmtInsertWordList.setInt(1,2);
+				pstmtInsertWordList.setString(2,keyword);
+				pstmtInsertWordList.setLong(3,questionID);
+				pstmtInsertWordList.execute();
 			}
 
 			ServerResponseMessage.QuestionMessage questionMessage =
@@ -855,36 +934,44 @@ public class ServerItem {
 	handleAbandonQuestion(ClientSendMessage.AbandonQuestionRequest abandonQuestionRequest)
 			  throws SQLException {
 		ServerResponseMessage.AbandonQuestionResponse abandonQuestionResponse = null;
-		boolean ok;
+		boolean auth;
 
 		long questionID = abandonQuestionRequest.getQuestionID();
 		String owner = null;
-		sql = "SELECT owner FROM user WHERE id = "+questionID+";";
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectQuestion.setLong(1,questionID);
+		ResultSet rs = pstmtSelectQuestion.executeQuery();
 		if(rs.next()) {
-			owner=rs.getString("id");
-		} else
-			return null;
+			owner=rs.getString("owner");
+		} else {
+			auth = false;
+			abandonQuestionResponse = ServerResponseMessage.AbandonQuestionResponse
+					.newBuilder().setSuccess(auth).build();
+
+			return abandonQuestionResponse;
+		}
 		rs.close();
 
-		ok = owner.equals(username);
-		if(ok) {
+		auth = owner.equals(this.username);
+		if(auth) {
 			//删除问题项
-			sql = "DELETE FROM question WHERE id = "+questionID+";";
-			stmt.execute(sql);
+			pstmtDeleteFromQuestion.setLong(1, questionID);
+			pstmtDeleteFromQuestion.execute();
 			//删除问题记录
-			sql = "DROP TABLE question_id="+questionID+";";
-			stmt.execute(sql);
+			pstmtDropQuestionID.setLong(1,questionID);
+			pstmtDropQuestionID.execute();
 			//删除分词列表中指向问题的项
-			sql = "DELETE FROM word_list1 WHERE question="+questionID+";";
-			stmt.execute(sql);
-			sql = "DELETE FROM word_list2 WHERE question="+questionID+";";
-			stmt.execute(sql);
-		} else
-			ok = false;
+			pstmtDeleteFromWordList.setInt(1, 1);
+			pstmtDeleteFromWordList.setLong(2,questionID);
+			pstmtDeleteFromWordList.execute();
+			pstmtDeleteFromWordList.setInt(1, 2);
+			pstmtDeleteFromWordList.setLong(2,questionID);
+			pstmtDeleteFromWordList.execute();
+		} else {
+			auth = false;
+		}
 
 		abandonQuestionResponse = ServerResponseMessage.AbandonQuestionResponse
-				  .newBuilder().setSuccess(ok).build();
+				  .newBuilder().setSuccess(auth).build();
 
 		return abandonQuestionResponse;
 	}
@@ -902,9 +989,8 @@ public class ServerItem {
 		String signature;
 		String mail_address;
 
-		sql = ("SELECT praise_num, question_num, solved_question_num, bonus, signature, mail_address" +
-				  " FROM user WHERE username = '?';").replace("?", username);
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectUser.setString(1,username);
+		ResultSet rs = pstmtSelectUser.executeQuery();
 		if(rs.next()) {
 			good = rs.getInt("praise_num");
 			questionNum = rs.getInt("question_num");
@@ -1006,8 +1092,8 @@ public class ServerItem {
 			default:
 				ref = "praise_num";
 		}
-		sql = "SELECT * FROM question ORDER BY "+ref+" "+order+";";
-		ResultSet rs = stmt.executeQuery(sql);
+
+		ResultSet rs = stmtSelectQuestionByOrder.executeQuery("SELECT * FROM question ORDER BY "+ref+" "+order+";");
 		int i;
 		for(i=0;i<questionNum && rs.next();i++) {
 			int userNum = 0;
@@ -1046,8 +1132,9 @@ public class ServerItem {
 			Set<Long> set1 = new HashSet<>();
 			if (ite.hasNext()) {
 				keyword = SQLStringParser.parse(ite.next());
-				sql = "SELECT * FROM words_list2 WHERE word='" + keyword + "';";
-				rs = stmt.executeQuery(sql);
+				pstmtSelectWordList.setInt(1,1);
+				pstmtSelectWordList.setString(2, keyword);
+				rs = pstmtSelectWordList.executeQuery();
 				while (rs.next()) {
 					set1.add(new Long(rs.getLong("question")));
 				}
@@ -1057,8 +1144,9 @@ public class ServerItem {
 			while (ite.hasNext()) {
 				try {
 					keyword = SQLStringParser.parse(ite.next());
-					sql = "SELECT * FROM words_list2 WHERE word='" + keyword + "';";
-					rs = stmt.executeQuery(sql);
+					pstmtSelectWordList.setInt(1,2);
+					pstmtSelectWordList.setString(2,keyword);
+					rs = pstmtSelectWordList.executeQuery();
 					while (rs.next()) {
 						set2.add(new Long(rs.getLong("question")));
 					}
@@ -1072,8 +1160,8 @@ public class ServerItem {
 			//获得问题消息
 			for (Long question : set1) {
 				int userNum = ServerHandler.question_sessions_map.size();
-				sql = "SELECT * FROM question WHERE id=" + question + ";";
-				rs = stmt.executeQuery(sql);
+				pstmtSelectQuestion.setLong(1,question);
+				rs = pstmtSelectQuestion.executeQuery();
 
 				builder.addQuestionListMessage(
 						  ServerResponseMessage.QuestionListMessage.newBuilder()
@@ -1101,14 +1189,14 @@ public class ServerItem {
 		ServerResponseMessage.SolvedQuestionResponse response = null;
 
 		Long questionID = request.getQuestionID();
-		sql = "SELECT owner FROM question WHERE id="+questionID+";";
-		ResultSet rs = stmt.executeQuery(sql);
+		pstmtSelectQuestion.setLong(1,questionID);
+		ResultSet rs = pstmtSelectQuestion.executeQuery();
 		if(rs.next()) {
 			String owner = rs.getString("owner");
 			rs.close();
 			if(owner.equals(username)) {
-				sql = "UPDATE question SET solved=1 WHERE id="+questionID+";";
-				stmt.execute(sql);
+				pstmtQuestionSolved.setLong(1,questionID);
+				pstmtQuestionSolved.execute();
 				return ServerResponseMessage.SolvedQuestionResponse.newBuilder()
 						  .setSuccess(true).setQuestionID(questionID).build();
 			}
@@ -1143,16 +1231,18 @@ public class ServerItem {
 			case ACQUAINTANCE_LIST:
 				String myname = param;
 				String acquaintanceStr = null;
-				sql = "SELECT acquaintance FROM acquaintance_table WHERE username = '"+myname+"';";
-				rs = stmt.executeQuery(sql);
+				pstmtSelectAcquaintance.setString(1, myname);
+				rs = pstmtSelectAcquaintance.executeQuery();
 				if(rs.next()) {
 					acquaintanceStr = rs.getString("acquaintance");
+					rs.close();
+
 					List<String> acquaintanceList = AcquaintanceParser.parse(acquaintanceStr);
 					if(!acquaintanceList.isEmpty()) {
 						for (String acquser : acquaintanceList) {
 							user = acquser;
-							sql = "SELECT pic_url FROM user WHERE username = '" + user + "';";
-							rs = stmt.executeQuery(sql);
+							pstmtSelectUser.setString(1,user);
+							rs = pstmtSelectUser.executeQuery();
 							if (rs.next()) {
 								pic_url = rs.getString("pic_url");
 							}
@@ -1161,6 +1251,10 @@ public class ServerItem {
 						}
 					}
 				}
+				response = ServerResponseMessage.GetUserListResponse.newBuilder()
+						.setSuccess(true)
+						.setUserListType(ACQUAINTANCE_LIST)
+						.build();
 				break;
 			case USERS_IN_ROOM_LIST:
 				Long questionID = Long.valueOf(param);
@@ -1169,18 +1263,25 @@ public class ServerItem {
 
 					for (IoSession session : sessions) {
 						user = ServerHandler.session_user_map.get(session);
-						sql = "SELECT pic_url FROM user WHERE username='"+user+"';";
-						rs = stmt.executeQuery(sql);
-						if(rs.next()) {
+						pstmtSelectUser.setString(1,user);
+						rs = pstmtSelectUser.executeQuery();
+						if (rs.next()) {
 							pic_url = rs.getString("pic_url");
 						}
 						rs.close();
-						userAndPictureMap.put(user,pic_url);
+						userAndPictureMap.put(user, pic_url);
 					}
 				}
+				response = ServerResponseMessage.GetUserListResponse.newBuilder()
+						.setSuccess(true)
+						.setQuestionID(questionID)
+						.setUserListType(USERS_IN_ROOM_LIST)
+						.build();
 				break;
 			default:
-				return null;
+				response = ServerResponseMessage.GetUserListResponse.newBuilder()
+						.setSuccess(false)
+						.build();
 		}
 
 		return response;
