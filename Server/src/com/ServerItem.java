@@ -564,10 +564,10 @@ public class ServerItem {
 
 		//返回服务器回复
 		//匿名检查
-		if(markMap!=null && markMap.get(CONTENT_MARK.ANONIMOUS)!=null) {
-			sendBuider.setUser(sendMessage.getUser());
-		} else {
+		if(markMap!=null && markMap.get(CONTENT_MARK.ANONIMOUS.getValue())!=null) {
 			sendBuider.setUser("匿名");
+		} else {
+			sendBuider.setUser(sendMessage.getUser());
 		}
 
 		sendBuider.setQuestionID(questionID);
