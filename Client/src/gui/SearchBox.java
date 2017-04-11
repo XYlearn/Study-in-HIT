@@ -78,14 +78,14 @@ public class SearchBox extends JPanel
 			System.out.println("分词异常");
 			return;
 		}
-		/*try
+		try
 		{
 			test.client.searchInformation(keywords,searchID++);
 		}
 		catch(IOException e)
 		{
 			System.out.println("搜索异常");
-		}*/
+		}
 	}
 	
 	public static ArrayList<String> getKeyWords(String content)
