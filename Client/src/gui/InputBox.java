@@ -166,6 +166,11 @@ public class InputBox extends JPanel implements Dispatcher
 		markMap.remove(CONTENT_MARK.FURTHERASK.getValue());
 	}
 	
+	public void setEditable(boolean able)
+	{
+		myPane.setEditable(able);
+	}
+	
 	public void readAndInsertExpression()
 	{
 		MyExpression exp=new MyExpression();
@@ -245,7 +250,7 @@ public class InputBox extends JPanel implements Dispatcher
 				//replace the % that user inputted
 				.replaceAll("%", "%%");
 		//get the path of the images
-		Pattern pat=Pattern.compile("<img[^>]*? src=\".*?([^/]*?)\".*?>");
+		Pattern pat=Pattern.compile("<img[^>]*? src=\"file:(.*?)\".*?>");
 		Matcher mat=pat.matcher(str);
 		while (mat.find())
 			pictures.add(mat.group(1));
@@ -269,7 +274,6 @@ public class InputBox extends JPanel implements Dispatcher
 		} catch (IOException e)
 		{
 			System.out.println("消息发送失败");
-			return;
 		}
 		finally
 		{

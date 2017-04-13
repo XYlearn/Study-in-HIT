@@ -251,6 +251,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			buttonPanel.setPreferredSize(new Dimension(0,25));
 			tmpChattingBox.bind(questionID);
 			tmpInputBox.bind(questionID);
+			tmpInputBox.setEditable(false);
 			tabPane.setSelectedComponent(tmpPanel);
 		}
 	}

@@ -30,7 +30,8 @@ class ListBoxCellRenderer extends DefaultListCellRenderer
 					Image.SCALE_DEFAULT));
 			setIcon(ii);
 		}
-		setText(((ListElementData)value).stem);
+		setText("<html><body>"+((ListElementData)value).stem
+			+"<br>"+((ListElementData)value).addition+"</body></html>");
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setHorizontalTextPosition(SwingConstants.CENTER);
 		return this;

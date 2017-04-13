@@ -5,7 +5,6 @@ import NetEvent.eventcom.NetEvent;
 import bin.test;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -28,29 +27,29 @@ import util.Dispatcher;
  */
 public class LoginFrame extends JFrame implements Dispatcher
 {
-	private JPanel topPanel;
-	private JPanel labelPanel;
-	private JPanel textPanel;
-	private JPanel buttonPanel;
-	private JLabel iconLabel;
-	private JLabel errLabel;
-	private JLabel usernameLabel;
-	private JLabel passwordLabel;
+	private final JPanel topPanel;
+	private final JPanel labelPanel;
+	private final JPanel textPanel;
+	private final JPanel buttonPanel;
+	private final JLabel iconLabel;
+	private final JLabel errLabel;
+	private final JLabel usernameLabel;
+	private final JLabel passwordLabel;
 	private JTextField usernameText;
 	private JTextField passwordText;
-	private JButton signinButton;
-	private JButton loginButton;
+	private final JButton signinButton;
+	private final JButton loginButton;
+	
+	private final TextThread textThread;
 	
 	private boolean launched;
-	private long startTime=0;
-	private static final long connectDelay=1000;
-	private static final long launchDelay=3000;
 	private static final String STATUS_CONNECTING="连接中...";
 	private static final String STATUS_LAUNCHING="登录中...";
 	
 	public LoginFrame()
 	{
 		launched=false;
+		textThread=new TextThread();
 		
 		iconLabel=new JLabel();
 		iconLabel.setIcon(new ImageIcon(test.IMGPATH+"texs.jpg"));
@@ -83,8 +82,10 @@ public class LoginFrame extends JFrame implements Dispatcher
 		buttonPanel.add(signinButton,BorderLayout.WEST);
 		buttonPanel.add(loginButton,BorderLayout.EAST);
 		
+		BorderLayout bl=new BorderLayout();
+		bl.setVgap(5);
 		this.setTitle("学在工大 - 登录");
-		this.getContentPane().setLayout(new BorderLayout());
+		this.getContentPane().setLayout(bl);
 		this.add(topPanel,BorderLayout.NORTH);
 		this.add(labelPanel,BorderLayout.WEST);
 		this.add(textPanel,BorderLayout.CENTER);
@@ -128,11 +129,18 @@ public class LoginFrame extends JFrame implements Dispatcher
 	
 	public void launch()
 	{
-		errLabel.setText(" ");
+		if(!textThread.isAlive()) textThread.start();
+		try
+		{
+			Thread.sleep(10);
+		} catch (InterruptedException ex)
+		{
+			Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
 		if ("".equals(usernameText.getText()))
 		{
-			errLabel.setForeground(Color.red);
-			errLabel.setText("用户名在哪里吖？");
+			textThread.setText("用户名在哪里吖？",false);
 			return;
 		}
 		else if ("admin offline".equals(usernameText.getText()))
@@ -144,66 +152,41 @@ public class LoginFrame extends JFrame implements Dispatcher
 		}
 		else if ("".equals(passwordText.getText()))
 		{
-			errLabel.setForeground(Color.red);
-			errLabel.setText("密码不见了吖！");
+			textThread.setText("密码不见了吖！",false);
 			return;
 		}
-		abandonButtons();
-		/*errLabel.setForeground(Color.green);
-		errLabel.setText("连接中...");
-		//errLabel.repaint();
-		startTime=System.currentTimeMillis();
+		textThread.abandonButtons();
+		textThread.setText("连接中...",true);
 		if (!test.client.isAlive())
 			test.client.start();
-		try
-		{
-			Thread.sleep(connectDelay);
-		} catch (InterruptedException ex)
-		{
-			Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		if (System.currentTimeMillis()>startTime+connectDelay)
+		if (!test.client.waitUntilConnected())
 		{
 			test.client.interrupt();
-			errLabel.setForeground(Color.red);
-			errLabel.setText("连接超时辣！");
-			enableButtons();
+			textThread.setText("连接超时辣！",false);
+			textThread.enableButtons();
 			return;
-		}*/
+		}
 		try
 		{
-			errLabel.setForeground(Color.green);
-			errLabel.setText("登录中...");
-			//this.repaint();
-			startTime=System.currentTimeMillis();
+			textThread.setText("登录中...",true);
 			test.client.launchRequest(usernameText.getText(), passwordText.getText());
 		} catch (IOException ex)
 		{
 			Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
-			errLabel.setForeground(Color.red);
-			errLabel.setText("网断辣！");
-			enableButtons();
+			textThread.setText("网断辣！",false);
+			textThread.enableButtons();
 			return;
 		}
 		
 		//delay for the launch
-		/*try
-		{
-			Thread.sleep(launchDelay);
-		} catch (InterruptedException ex)
-		{
-			Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		
-		if (System.currentTimeMillis()>startTime+launchDelay)
+		if (!test.client.waitUntilLaunched())
 		{
 			test.client.interrupt();
-			errLabel.setForeground(Color.red);
-			errLabel.setText("登录超时辣！");
-			enableButtons();
+			textThread.setText("登录超时辣！",false);
+			textThread.enableButtons();
 			passwordText.requestFocus();
 			return;
-		}*/
+		}
 	}
 	
 	public boolean isLaunched()
@@ -218,40 +201,87 @@ public class LoginFrame extends JFrame implements Dispatcher
 			case LAUNCH_EVENT:
 			{
 				LaunchEvent ex=(LaunchEvent)e;
-				if(ex.isSuccess())
+				if(ex.isSuccess()&&test.client.waitUntilLaunched())
 				{
 					launched=true;
-					errLabel.setForeground(Color.green);
-					errLabel.setText("登录成功辣！");
+					textThread.setText(ex.getInformation(),true);
 					test.mainFrame=new MainFrame();
 					test.mainFrame.setUserInformation(ex.getUserMessage());
 					this.setVisible(false);
 					test.mainFrame.setVisible(true);
+					textThread.stopThread();
 				}
 				else
 				{
-					errLabel.setForeground(Color.red);
-					errLabel.setText("登录失败辣！");
+					textThread.setText(ex.getInformation(),false);
 				}
 				System.out.println(ex.getInformation());
-				enableButtons();
+				textThread.enableButtons();
 			}
 		}
 	}
 	
-	private void abandonButtons()
+	private class TextThread extends Thread
 	{
-		usernameText.setEnabled(false);
-		passwordText.setEnabled(false);
-		signinButton.setEnabled(false);
-		loginButton.setEnabled(false);
-	}
-	
-	private void enableButtons()
-	{
-		usernameText.setEnabled(true);
-		passwordText.setEnabled(true);
-		signinButton.setEnabled(true);
-		loginButton.setEnabled(true);
+		private boolean running=true;
+		private boolean readyToEditText=false;
+		private boolean readyToEditButtons=false;
+		private String text="";
+		private boolean good=false;
+		private boolean target=false;
+		
+		@Override
+		public void run()
+		{
+			while(running)
+			{
+				if(readyToEditText)
+				{
+					if(good) errLabel.setForeground(Color.green);
+					else errLabel.setForeground(Color.red);
+					errLabel.setText(text);
+					readyToEditText=false;
+				}
+				else if(readyToEditButtons)
+				{
+					usernameText.setEnabled(target);
+					passwordText.setEnabled(target);
+					signinButton.setEnabled(target);
+					loginButton.setEnabled(target);
+					readyToEditButtons=false;
+				}
+				try
+				{
+					Thread.sleep(100);
+				} catch (InterruptedException ex)
+				{
+					Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		}
+		
+		public void stopThread()
+		{
+			running=false;
+		}
+		
+		public void setText(String text,boolean good)
+		{
+			this.text=text;
+			this.good=good;
+			readyToEditText=true;
+		}
+		
+		public void abandonButtons()
+		{
+			target=false;
+			readyToEditButtons=true;
+		}
+
+		public void enableButtons()
+		{
+			target=true;
+			readyToEditButtons=true;
+		}
 	}
 }

@@ -47,7 +47,7 @@ public class test
 	}
 	public static final void startProgram()
 	{
-		client.start();
+		//client.start();
 		loginFrame=new LoginFrame();
 		loginFrame.setVisible(true);
 		/*client.start();
