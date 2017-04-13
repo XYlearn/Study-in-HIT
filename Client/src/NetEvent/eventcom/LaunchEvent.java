@@ -26,7 +26,7 @@ public class LaunchEvent extends NetEvent{
 		this.userMessage = new UserMessage(launchResponse.getUserMessage());
 	}
 
-	public boolean isStatus() {return this.success;}
+	public boolean isSuccess() {return this.success;}
 
 	public String getInformation() {return this.information;}
 

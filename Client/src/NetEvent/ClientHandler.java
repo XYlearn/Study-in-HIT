@@ -50,7 +50,8 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case LAUNCH_RESPONSE:	//
 					netEvent = handleResponseLaunch(recvMessage);
-                    client.setLaunched(((LaunchEvent)netEvent).isStatus());
+					client.setLaunched(((LaunchEvent)netEvent).isSuccess());
+					test.loginFrame.dispatch(netEvent);
 					break;
 				case SEND_CONTENT:
 					netEvent = handleResponseSendContent(recvMessage);

@@ -31,7 +31,7 @@
                   <Group type="102" attributes="0">
                       <Component id="headLabel" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel2" pref="38" max="32767" attributes="0"/>
+                      <Component id="usernameLabel" pref="38" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -98,7 +98,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="headLabel" max="32767" attributes="0"/>
-                          <Component id="jLabel2" pref="100" max="32767" attributes="0"/>
+                          <Component id="usernameLabel" pref="100" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="newRoomButton" min="-2" pref="30" max="-2" attributes="0"/>
@@ -151,7 +151,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="usernameLabel">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="&#x5f20;&#x4e09;"/>

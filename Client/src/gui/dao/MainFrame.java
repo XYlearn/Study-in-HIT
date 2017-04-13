@@ -7,6 +7,7 @@ package gui.dao;
 
 import NetEvent.eventcom.CreateQuestionEvent;
 import NetEvent.eventcom.NetEvent;
+import NetEvent.messagecom.UserMessage;
 import bin.test;
 import com.ClientSendMessage;
 import gui.ChattingBox;
@@ -34,14 +35,13 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import util.AudioTools;
 import util.Dispatcher;
-import util.SegmentTools;
+import util.UserInfo;
 
 /**
  *
@@ -58,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	{
 		initComponents();
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize((int)(screenSize.getWidth()*0.6),(int)(screenSize.getHeight()*0.6));
+		this.setSize((int)(screenSize.getWidth()*0.7),(int)(screenSize.getHeight()*0.7));
 		setLocationRelativeTo(null);
 		try
 		{
@@ -74,8 +74,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				//new UserInformation(UserInfo.getMyUserName()).setVisible(true);
-				new UserInformation("test").setVisible(true);
+				new UserInformation(UserInfo.getMyUserName()).setVisible(true);
 			}
 		});
 		newRoomButton.addMouseListener(
@@ -137,6 +136,14 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 					System.out.println("创建新房间失败");
 			}
 		}
+	}
+	
+	public void setUserInformation(UserMessage msg)
+	{
+		//System.out.println("头像地址："+msg.getPicUrl());
+		headLabel.setIcon(new ImageIcon(test.PICTPATH+msg.getUsername()+".jpg"));
+		usernameLabel.setText(msg.getUsername());
+		UserInfo.setMyUserName(msg.getUsername());
 	}
 	
 	public void addQuestionTab(long questionID)
@@ -244,6 +251,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			buttonPanel.setPreferredSize(new Dimension(0,25));
 			tmpChattingBox.bind(questionID);
 			tmpInputBox.bind(questionID);
+			tabPane.setSelectedComponent(tmpPanel);
 		}
 	}
 	
@@ -431,7 +439,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     private void initComponents()
     {
 
-        jLabel2 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -455,8 +463,8 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("学在工大");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("张三");
+        usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        usernameLabel.setText("张三");
 
         jLabel17.setForeground(new java.awt.Color(255, 51, 51));
         jLabel17.setText("今日公告");
@@ -519,7 +527,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                     .add(layout.createSequentialGroup()
                         .add(headLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                        .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
                         .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
@@ -569,7 +577,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(headLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                            .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -621,7 +629,6 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -636,6 +643,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     private javax.swing.JButton newRoomButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTabbedPane tabPane;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 
 }

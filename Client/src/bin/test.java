@@ -9,11 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.*;
 import gui.DrawImageFrame;
 import gui.WhiteBoard;
-import gui.form.UserInformation;
+import gui.dao.LoginFrame;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import util.UserInfo;
 
 public class test
 {
@@ -26,6 +23,7 @@ public class test
 	public static final String AUDIOPATH=MAINPATH+"audio/";
 	public static final Client client=new Client();
 	public static MainFrame mainFrame;
+	public static LoginFrame loginFrame;
 
 	public static final void Board()
 	{
@@ -49,23 +47,22 @@ public class test
 	}
 	public static final void startProgram()
 	{
-		//new login().setVisible(true);
 		client.start();
+		loginFrame=new LoginFrame();
+		loginFrame.setVisible(true);
+		/*client.start();
 		try
 		{
-			Thread.sleep(1000);
+			while(!client.isConnected());
 			UserInfo.setMyUserName("test");
 			client.launchRequest("test", "123456");
 		} catch (IOException ex)
 		{
 			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (InterruptedException ex)
-		{
-			Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		//new UserInformation("test").setVisible(true);
 		mainFrame=new MainFrame();
-		mainFrame.setVisible(true);
+		mainFrame.setVisible(true);*/
 	}
 
 	public static final void testmain()
