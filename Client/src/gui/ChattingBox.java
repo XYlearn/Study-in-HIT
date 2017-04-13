@@ -119,6 +119,15 @@ public class ChattingBox extends JPanel implements Dispatcher
 	{
 		map.remove(this.questionID);
 	}
+	public static void unbind(long questionID)
+	{
+		map.remove(questionID);
+	}
+	
+	public static boolean isExist(long questionID)
+	{
+		return map.containsKey(questionID);
+	}
 
 	public void requestQuestionRecord()
 	{

@@ -56,7 +56,8 @@ public class ListBox extends JPanel implements Dispatcher
 		{
 			int index=mylist.locationToIndex(e.getPoint());
 			if(index<0) return;
-			test.mainFrame.addQuestionTab(mymodel.getElementAt(index).questionID);
+			if(!test.mainFrame.addQuestionTab(mymodel.getElementAt(index).questionID))
+				return;
 			try
 			{
 				test.client.enterQuestion(mymodel.getElementAt(index).questionID);

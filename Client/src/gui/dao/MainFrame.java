@@ -27,6 +27,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -53,6 +55,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	private final SearchBox searchBox;
 	private final JFileChooser fileChooser;
 	private NewRoomFrame newRoomFrame=null;
+	
+	private static final Map<Long,JPanel> map=new ConcurrentHashMap<>();
+	
+	private static final int QUESTION_LIST_NUMBER=20;
 	
 	public MainFrame()
 	{
@@ -87,6 +93,24 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 					newRoomFrame.setVisible(true);
 				}
 			});
+		refreshQuestionListButton.addMouseListener(
+			new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					try
+					{
+						test.client.requestQuestionList(
+								ClientSendMessage.LIST_REFERENCE.TIME,
+								ClientSendMessage.RANKORDER.DESCENDING,
+								QUESTION_LIST_NUMBER);
+					} catch (IOException ex)
+					{
+						Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+					}
+				}
+			});
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				test.IMGPATH+"texs.jpg"));
 		listBox=new ListBox();
@@ -104,7 +128,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			test.client.requestQuestionList(
 				ClientSendMessage.LIST_REFERENCE.TIME,
 				ClientSendMessage.RANKORDER.DESCENDING,
-				10);
+				QUESTION_LIST_NUMBER);
 		} catch (IOException ex)
 		{
 			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +149,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 					addQuestionTab(ex.getQuestionMessage().getId());
 					try
 					{
+						test.client.requestQuestionList(
+							ClientSendMessage.LIST_REFERENCE.TIME,
+							ClientSendMessage.RANKORDER.DESCENDING,
+							QUESTION_LIST_NUMBER);
 						test.client.enterQuestion(ex.getQuestionMessage().getId());
 					} catch (IOException ex1)
 					{
@@ -146,8 +174,13 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		UserInfo.setMyUserName(msg.getUsername());
 	}
 	
-	public void addQuestionTab(long questionID)
+	public boolean addQuestionTab(long questionID)
 	{
+		if(map.containsKey(questionID))
+		{
+			tabPane.setSelectedComponent(map.get(questionID));
+			return false;
+		}
 		synchronized(tabPane)
 		{
 			JPanel tmpPanel=new JPanel();
@@ -234,7 +267,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			
 			tabPane.addTab("", tmpPanel);
 			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
-				getNewTabPanel(Long.toString(questionID)));
+				getNewTabPanel(questionID,Long.toString(questionID)));
 			
 			BorderLayout bl1=new BorderLayout();
 			BorderLayout bl2=new BorderLayout();
@@ -253,6 +286,8 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			tmpInputBox.bind(questionID);
 			tmpInputBox.setEditable(false);
 			tabPane.setSelectedComponent(tmpPanel);
+			map.put(questionID, tmpPanel);
+			return true;
 		}
 	}
 	
@@ -266,7 +301,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			
 			tabPane.addTab("", tmpPanel);
 			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
-				getNewTabPanel("搜索结果"));
+				getNewTabPanel(-2,"搜索结果"));
 			
 			BorderLayout bl=new BorderLayout();
 			bl.setVgap(10);
@@ -283,17 +318,18 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			JPanel tmpPanel=new JPanel();
 			tabPane.addTab("", tmpPanel);
 			tabPane.setTabComponentAt(tabPane.getTabCount()-1,
-				getNewTabPanel("起始页"));
+				getNewTabPanel(-1,"起始页"));
 			tmpPanel.setLayout(new BorderLayout());
 		}
 	}
 	
 	/**
 	 *
+	 * @param questionID
 	 * @param text text on the tab
 	 * @return
 	 */
-	protected JPanel getNewTabPanel(String text)
+	protected JPanel getNewTabPanel(long questionID,String text)
 	{
 		JPanel tmpTabPanel=new JPanel();
 		tmpTabPanel.add(new JLabel(text));
@@ -309,6 +345,12 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				if(questionID>=0)
+				{
+					ChattingBox.unbind(questionID);
+					InputBox.unbind(questionID);
+					map.remove(questionID);
+				}
 				tabPane.remove(tabPane.indexOfTabComponent(tmpTabPanel));
 				if(tabPane.getTabCount()==0) addStartPageTab();
 			}
@@ -460,6 +502,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         headLabel = new javax.swing.JLabel();
         searchPanel = new javax.swing.JPanel();
         newRoomButton = new javax.swing.JButton();
+        refreshQuestionListButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("学在工大");
@@ -517,6 +560,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         newRoomButton.setText("+");
         newRoomButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
+        refreshQuestionListButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        refreshQuestionListButton.setText("↑");
+        refreshQuestionListButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -531,6 +578,8 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                         .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
+                        .add(refreshQuestionListButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -580,7 +629,9 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                             .add(headLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(newRoomButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(refreshQuestionListButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(listBoxPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
@@ -642,6 +693,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel listBoxPanel;
     private javax.swing.JButton newRoomButton;
+    private javax.swing.JButton refreshQuestionListButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTabbedPane tabPane;
     private javax.swing.JLabel usernameLabel;

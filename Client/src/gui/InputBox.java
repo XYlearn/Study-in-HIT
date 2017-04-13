@@ -20,7 +20,6 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -34,7 +33,6 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.undo.UndoManager;
 import util.Dispatcher;
 import util.MyExpression;
-import util.UserInfo;
 
 public class InputBox extends JPanel implements Dispatcher
 {
@@ -129,6 +127,15 @@ public class InputBox extends JPanel implements Dispatcher
 	public void unbind()
 	{
 		map.remove(this.questionID);
+	}
+	public static void unbind(long questionID)
+	{
+		map.remove(questionID);
+	}
+	
+	public static boolean isExist(long questionID)
+	{
+		return map.containsKey(questionID);
 	}
 
 	public long getQuestionID()
