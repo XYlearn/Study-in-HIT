@@ -17,9 +17,11 @@ public class SendDecoder extends CumulativeProtocolDecoder {
 			return false;
 		} else {
 			//get the length of data
+			in.mark();
 			int len = in.getInt() - Integer.BYTES;
 
 			if(in.remaining() < len) {
+				in.reset();
 				return false;
 			} else {
 				byte[] messageByte = new byte[len];

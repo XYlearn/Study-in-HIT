@@ -24,7 +24,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";//"123.207.159.156";
+	private static String host = "123.207.159.156";
 	private static int port = 8972;
 
 	//connection object
@@ -94,6 +94,7 @@ public class Client extends Thread{
 
 		//set the default buffersize
 		connector.getSessionConfig().setSendBufferSize(10240);
+		connector.getSessionConfig().setReadBufferSize(10240);
 		connector.getSessionConfig().setReceiveBufferSize(10240);
 
 		//connect to the server
@@ -258,10 +259,13 @@ public class Client extends Thread{
 		//图片处理
 		if(pictures!=null) {
 			ArrayList<String> md5s = new ArrayList<>();
+			ArrayList<String> picturesExist = new ArrayList<>();
 			for (String picture : pictures) {
 				File file = new File(picture);
 				if(!file.exists()) {
-					pictures.remove(picture);
+					continue;
+				} else {
+					picturesExist.add(picture);
 				}
 
 				String md5 = MD5Tools.FileToMD5(file);
@@ -270,7 +274,7 @@ public class Client extends Thread{
 			}
 			contentBuider.addAllPictures(md5s);
 
-			uploadFiles(pictures, true);
+			uploadFiles(picturesExist, true);
 		}
 
 		//发送消息

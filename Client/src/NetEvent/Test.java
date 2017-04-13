@@ -31,8 +31,7 @@ public class Test {
 			username = scanner.nextLine();
 			System.out.println("password:");
 			password = scanner.nextLine();
-			client.launchRequest(username, password);
-			client.uploadFile("C:\\Users\\XHWhy\\Downloads\\第三周Web小组技术分享.docx");
+			client.registerRequest(username, password, "没有", "装傻");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
