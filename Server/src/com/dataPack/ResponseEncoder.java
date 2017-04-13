@@ -1,4 +1,4 @@
-package com.dataPack;
+package NetEvent.dataPack;
 
 import com.ServerResponseMessage;
 import org.apache.mina.core.buffer.IoBuffer;

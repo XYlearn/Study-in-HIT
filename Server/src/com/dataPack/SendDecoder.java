@@ -1,4 +1,4 @@
-package com.dataPack;
+package NetEvent.dataPack;
 
 import com.ClientSendMessage;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -17,9 +17,11 @@ public class SendDecoder extends CumulativeProtocolDecoder {
 			return false;
 		} else {
 			//get the length of data
+			in.mark();
 			int len = in.getInt() - Integer.BYTES;
 
 			if(in.remaining() < len) {
+				in.reset();
 				return false;
 			} else {
 				byte[] messageByte = new byte[len];
@@ -29,7 +31,7 @@ public class SendDecoder extends CumulativeProtocolDecoder {
 					out.write(request);
 					return true;
 				} catch (InvalidProtocolBufferException e) {
-					return false;
+					throw e;
 				}
 			}
 		}
