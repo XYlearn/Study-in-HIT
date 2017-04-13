@@ -1097,9 +1097,15 @@ public class ServerItem {
 		int i;
 		for(i=0;i<questionNum && rs.next();i++) {
 			int userNum = 0;
-			Iterator<IoSession> ite = ServerHandler.question_sessions_map.get(rs.getString("id")).iterator();
-			while (ite.next()!=null) {
-				userNum++;
+			long questionID = rs.getLong("id");
+			ArrayList list = ServerHandler.question_sessions_map.get(questionID);
+			if(null != list) {
+				Iterator<IoSession> ite = list.iterator();
+				if (ite != null) {
+					while (ite.next() != null) {
+						userNum++;
+					}
+				}
 			}
 			builder.addQuestionListMessage(
 					  ServerResponseMessage.QuestionListMessage.newBuilder()
