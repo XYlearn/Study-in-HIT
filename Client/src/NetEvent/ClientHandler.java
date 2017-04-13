@@ -30,6 +30,10 @@ public class ClientHandler extends IoHandlerAdapter {
 	@Override
 	public void sessionOpened(IoSession session) {
 		System.out.println("Connect to "+session);
+		synchronized (client) {
+			client.setConnected(true);
+			client.notifyAll();
+		}
 	}
 
 	@Override
@@ -50,8 +54,10 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case LAUNCH_RESPONSE:	//
 					netEvent = handleResponseLaunch(recvMessage);
-					client.setLaunched(((LaunchEvent)netEvent).isSuccess());
-					test.loginFrame.dispatch(netEvent);
+					synchronized (client) {
+						client.setLaunched(((LaunchEvent) netEvent).isStatus());
+						client.notifyAll();
+					}
 					break;
 				case SEND_CONTENT:
 					netEvent = handleResponseSendContent(recvMessage);

@@ -24,7 +24,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";
+	private static String host = "localhost";//"123.207.159.156";
 	private static int port = 8972;
 
 	//connection object
@@ -40,6 +40,7 @@ public class Client extends Thread{
 	boolean isOver;
 	private boolean connected = false;
 	public boolean isConnected() {return connected;}
+	public void setConnected(boolean connected) {this.connected = connected;}
 	public boolean isLaunched() {return this.launched;}
 	public void setLaunched(boolean launched) {this.launched = launched;}
 
@@ -111,6 +112,41 @@ public class Client extends Thread{
 	}
 
 	@Function
+	/*等待链接*/
+	public boolean waitUntilConnected() {
+		if(isConnected())
+			return true;
+		else {
+			try {
+				synchronized (this) {
+					wait(10000);
+				}
+			} catch (InterruptedException e) {
+				return false;
+			}
+			if(isConnected())
+				return true;
+			else return false;
+		}
+	}
+
+	public boolean waitUntilLaunched() {
+		if(isLaunched()) {
+			return true;
+		} else {
+			try {
+				synchronized (this) {
+					wait(100000);
+					if(isLaunched())
+						return true;
+					else return false;
+				}
+			} catch (InterruptedException e) {
+				return false;
+			}
+		}
+	}
+
 	//发送消息（一般形式
 	private void sendIt(ClientSendMessage.Message sendMessage) throws IOException {
 		if(connected) {
@@ -215,6 +251,8 @@ public class Client extends Thread{
 
 		if(markMap!=null) {
 			contentBuider.putAllMarkMap(markMap);
+		} else {
+			contentBuider.putAllMarkMap(new HashMap<>());
 		}
 
 		//图片处理
