@@ -68,8 +68,9 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		setLocationRelativeTo(null);
 		try
 		{
-			headLabel.setIcon(new ImageIcon(ImageIO.read(new File(test.IMGPATH+"test.jpg"))
-					.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+			headLabel.setIcon(new ImageIcon(
+				ImageIO.read(new File(test.PICTPATH+"test.jpg"))
+				.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 		} catch (IOException ex)
 		{
 			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);

@@ -211,7 +211,7 @@ public class ListBox extends JPanel implements Dispatcher
 	{
 		synchronized(mymodel)
 		{
-			while(mymodel.getSize()!=0) mymodel.removeElementAt(mymodel.getSize()-1);
+			while(mymodel.getSize()!=0) mymodel.removeElementAt(0);
 			listData.forEach((QuestionListMessage msg)->
 			{
 				ListElementData d=new ListElementData(
@@ -226,7 +226,7 @@ public class ListBox extends JPanel implements Dispatcher
 					"");//lastTime
 				mymodel.addElement(d);
 			});
-			mylist.validate();
 		}
+		mylist.validate();
 	}
 }
