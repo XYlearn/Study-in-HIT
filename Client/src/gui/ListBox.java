@@ -226,6 +226,7 @@ public class ListBox extends JPanel implements Dispatcher
 					"");//lastTime
 				mymodel.addElement(d);
 			});
+			mylist.validate();
 		}
 	}
 }
