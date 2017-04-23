@@ -11,6 +11,7 @@ import gui.DrawImageFrame;
 import gui.WhiteBoard;
 import gui.dao.LoginFrame;
 import java.io.IOException;
+import util.Settings;
 
 public class test
 {
