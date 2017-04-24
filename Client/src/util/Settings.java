@@ -58,7 +58,14 @@ public class Settings
 	
 	public enum Client
 	{
-		TIME_OUT("ClientTimeOut@3000");
+		TIME_OUT("ClientTimeOut@3000"),
+		SERVER_HOST("ServerHost@123.207.159.156"),
+		SERVER_PORT("ServerPort@8972"),
+		READ_BUFFER_SIZE("ReadBufferSize@10240"),
+		SEND_BUFFER_SIZE("SendBufferSize@10240"),
+		RECEIVE_BUFFER_SIZE("ReceiveBufferSize@10240"),
+		IDLE_TIME("IdleTime@20"),
+		WRITE_TIME_OUT("WriteTimeOut@1000");
 		
 		private final String KEY;
 		private final String DEFAULT;

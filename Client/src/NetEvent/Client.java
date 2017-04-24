@@ -91,6 +91,7 @@ public class Client extends Thread{
 		connector.setHandler(new ClientHandler(this));
 
 		connector.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 20);
+		connector.getSessionConfig().setWriteTimeout(1000);
 
 		//set the default buffersize
 		connector.getSessionConfig().setSendBufferSize(10240);
