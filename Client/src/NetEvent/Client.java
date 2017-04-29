@@ -232,7 +232,7 @@ public class Client extends Thread{
 				md5=PICTPATH+md5;
 			}
 
-			uploadFiles(md5s, true);
+			uploadFiles(md5s);
 		}
 
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
@@ -275,7 +275,7 @@ public class Client extends Thread{
 			}
 			contentBuider.addAllPictures(md5s);
 
-			uploadFiles(picturesExist, true);
+			uploadFiles(picturesExist);
 		}
 
 		//发送消息
@@ -389,11 +389,11 @@ public class Client extends Thread{
 							 .setStem(stem)
 							 .setAddition(addition);
 		if(stempics!=null) {
-			this.uploadFiles(stempics,true);
+			this.uploadFiles(stempics);
 			createBuilder.addAllStempic(stempics);
 		}
 		if(additionpics!=null) {
-			this.uploadFiles(additionpics, true);
+			this.uploadFiles(additionpics);
 			createBuilder.addAllAdditionpic(additionpics);
 		}
 		//添加关键字
@@ -451,14 +451,6 @@ public class Client extends Thread{
 	}
 
 	public boolean uploadFile(String filePath) throws IOException {
-		return uploadFile(filePath,true);
-	}
-
-	public boolean uploadFile(Iterable<String> filePaths) throws IOException {
-		return uploadFiles(filePaths,true);
-	}
-
-	public boolean uploadFile(String filePath, boolean nameMD5) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
@@ -468,14 +460,17 @@ public class Client extends Thread{
 			return false;
 		}
 
-		String filename = MD5Tools.FileToMD5(file);
+		String filename = file.getName();
 		ArrayList<String> filenames = new ArrayList<>();
 		filenames.add(filename);
 		ArrayList<String> localFilePaths = new ArrayList<>();
 		localFilePaths.add(filePath);
+		ArrayList<String> md5s = new ArrayList<>();
+		md5s.add(MD5Tools.FileToMD5(file));
 
 		builder.addAllFilename(filenames)
 				  .addAllLocalFilePath(localFilePaths)
+				  .addAllMd5(md5s)
 				  .setSignType(ClientSendMessage.FileRequest.SIGNTYPE.UPLOAD);
 
 		request = ClientSendMessage.Message.newBuilder()
@@ -489,12 +484,13 @@ public class Client extends Thread{
 		return true;
 	}
 
-	public boolean uploadFiles(Iterable<String> filePaths, boolean nameMD5) throws IOException {
+	public boolean uploadFiles(Iterable<String> filePaths) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
 		ArrayList<String> localFilePaths = new ArrayList<>();
 		ArrayList<String> filenames = new ArrayList<>();
+		ArrayList<String> md5s = new ArrayList<>();
 
 		for(String filePath : filePaths) {
 			File file = new File(filePath);
@@ -502,20 +498,16 @@ public class Client extends Thread{
 				System.out.println("文件不存在");
 				return false;
 			} else {
-				String filename = "";
-				if(nameMD5) {
-					filename = MD5Tools.FileToMD5(file);
-				} else {
-					filename = file.getName();
-				}
-
+				String filename = file.getName();
 				filenames.add(filename);
 				localFilePaths.add(filePath);
+				md5s.add(MD5Tools.FileToMD5(file));
 			}
 
 		}
 		builder.addAllFilename(filenames)
 				  .addAllLocalFilePath(localFilePaths)
+				  .addAllMd5(md5s)
 				  .setSignType(ClientSendMessage.FileRequest.SIGNTYPE.UPLOAD);
 
 		request = ClientSendMessage.Message.newBuilder()
@@ -539,10 +531,10 @@ public class Client extends Thread{
 		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
 
 		request = ClientSendMessage.Message.newBuilder()
-				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
-				  .setUsername(username)
-				  .setFileRequest(builder)
-				  .build();
+				.setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
+				.setUsername(username)
+				.setFileRequest(builder)
+				.build();
 
 		sendIt(request);
 	}
@@ -554,36 +546,36 @@ public class Client extends Thread{
 		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
 
 		request = ClientSendMessage.Message.newBuilder()
-				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
-				  .setUsername(username)
-				  .setFileRequest(builder)
-				  .build();
+				.setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
+				.setUsername(username)
+				.setFileRequest(builder)
+				.build();
 
 		sendIt(request);
 	}
 
 	public void getAcquaintanceList() throws IOException {
 		ClientSendMessage.Message request = ClientSendMessage.Message.newBuilder()
-				  .setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
-				  .setUsername(username)
-				  .setGetUserListRequest(
-							 ClientSendMessage.GetUserListRequest.newBuilder()
-							 .setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST)
-							 .setParam(this.username)
-				  ).build();
+				.setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
+				.setUsername(username)
+				.setGetUserListRequest(
+						ClientSendMessage.GetUserListRequest.newBuilder()
+								.setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST)
+								.setParam(this.username)
+				).build();
 
 		sendIt(request);
 	}
 
 	public void getQuestionUserList(long questionID) throws IOException {
 		ClientSendMessage.Message request = ClientSendMessage.Message.newBuilder()
-				  .setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
-				  .setUsername(username)
-				  .setGetUserListRequest(
-							 ClientSendMessage.GetUserListRequest.newBuilder()
-							 .setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.USERS_IN_ROOM_LIST)
-							 .setParam(String.valueOf(questionID))
-				  ).build();
+				.setMsgType(ClientSendMessage.MSG.GET_USER_LIST_REQUEST)
+				.setUsername(username)
+				.setGetUserListRequest(
+						ClientSendMessage.GetUserListRequest.newBuilder()
+								.setUserListType(ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.USERS_IN_ROOM_LIST)
+								.setParam(String.valueOf(questionID))
+				).build();
 
 		sendIt(request);
 	}

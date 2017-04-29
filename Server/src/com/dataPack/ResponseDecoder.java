@@ -1,6 +1,6 @@
-package NetEvent.dataPack;
+package com.dataPack;
 
-
+import com.ClientSendMessage;
 import com.ServerResponseMessage;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.mina.core.buffer.IoBuffer;
@@ -37,7 +37,7 @@ public class ResponseDecoder extends CumulativeProtocolDecoder {
 					out.write(response);
 					return true;
 				} catch (InvalidProtocolBufferException e) {
-					throw e;
+					return false;
 				}
 			}
 		}

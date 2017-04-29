@@ -4,6 +4,7 @@ import NetEvent.eventcom.*;
 import bin.test;
 import com.ClientSendMessage;
 import com.ServerResponseMessage;
+import com.google.protobuf.ProtocolStringList;
 import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.UploadFileRequest;
 import gui.ChattingBox;
@@ -185,9 +186,10 @@ public class ClientHandler extends IoHandlerAdapter {
 
 		if(fileResponse.getSuccess()) {
 			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSignMap().entrySet();
+			int i;
 			switch (fileResponse.getSignType()) {
 				case UPLOAD:
-					int i=0;
+					i=0;
 					for (Map.Entry<String, String> entry: file_sigs) {
 						try {
 							Client.fileOP.changeSign(entry.getValue());
@@ -205,6 +207,9 @@ public class ClientHandler extends IoHandlerAdapter {
 					}
 					break;
 				case DOWNLOAD:
+					ProtocolStringList md5s = fileResponse.getMd5List();
+					String localPath = "";
+					i=0;
 					for (Map.Entry<String, String> entry : file_sigs) {
 						try {
 							File f = new File(PICTPATH);
@@ -212,16 +217,14 @@ public class ClientHandler extends IoHandlerAdapter {
 								f.mkdir();
 							}
 							f = new File(PICTPATH + entry.getKey());
-							if(f.exists()) {
-								break;
-							} else {
+							if(!f.exists()) {
 								f.createNewFile();
 							}
 							Client.fileOP.changeSign(entry.getValue());
 							Client.fileOP.getFileLocal(new GetFileLocalRequest(
 									  Client.fileOP.getBucktName(),
-									  "/" + entry.getKey(),
-									  PICTPATH + entry.getKey()
+									  "/" + md5s.get(i++),
+									  PICTPATH + entry.getValue()+util.FileOperator.getExtension(entry.getKey())
 							));
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -229,10 +232,12 @@ public class ClientHandler extends IoHandlerAdapter {
 					}
 					break;
 				case UNRECOGNIZED:
+					System.out.println("无效的FileResponse");
 					break;
 				default:
 			}
-		}
+		} else
+			System.out.println("下载失败");
 	}
 
 	private void handleUpdateMessage(ServerResponseMessage.Message recvMessage) {

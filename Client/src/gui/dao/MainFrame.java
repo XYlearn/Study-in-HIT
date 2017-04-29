@@ -66,7 +66,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize((int)(screenSize.getWidth()*0.7),(int)(screenSize.getHeight()*0.7));
 		setLocationRelativeTo(null);
-		try
+		/*try
 		{
 			headLabel.setIcon(new ImageIcon(
 				ImageIO.read(new File(test.PICTPATH+"test.jpg"))
@@ -74,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		} catch (IOException ex)
 		{
 			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		}*/
 		headLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		headLabel.addMouseListener(new MouseAdapter()
 		{

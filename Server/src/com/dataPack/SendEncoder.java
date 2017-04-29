@@ -1,7 +1,6 @@
-package NetEvent.dataPack;
+package com.dataPack;
 
 import com.ClientSendMessage;
-import com.ServerResponseMessage;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoder;
