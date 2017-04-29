@@ -31,7 +31,7 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@ Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-		log.info(cause.getLocalizedMessage(), cause);
+		log.error("",cause);
 	}
 
 	@ Override

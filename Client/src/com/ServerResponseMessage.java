@@ -15049,6 +15049,25 @@ public final class ServerResponseMessage {
         java.lang.String key);
 
     /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    java.util.List<java.lang.String>
+        getMd5List();
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    int getMd5Count();
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    java.lang.String getMd5(int index);
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMd5Bytes(int index);
+
+    /**
      * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
      */
     int getSignTypeValue();
@@ -15078,7 +15097,7 @@ public final class ServerResponseMessage {
   }
   /**
    * <pre>
-   *获取Sign
+   *文件回复
    * </pre>
    *
    * Protobuf type {@code FileResponse}
@@ -15093,6 +15112,7 @@ public final class ServerResponseMessage {
     }
     private FileResponse() {
       success_ = false;
+      md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       signType_ = 0;
       localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
@@ -15147,11 +15167,20 @@ public final class ServerResponseMessage {
             }
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
                 localFilePath_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000008;
+                mutable_bitField0_ |= 0x00000010;
               }
               localFilePath_.add(s);
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                md5_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              md5_.add(s);
               break;
             }
           }
@@ -15162,8 +15191,11 @@ public final class ServerResponseMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
           localFilePath_ = localFilePath_.getUnmodifiableView();
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          md5_ = md5_.getUnmodifiableView();
         }
         makeExtensionsImmutable();
       }
@@ -15375,6 +15407,35 @@ public final class ServerResponseMessage {
       return map.get(key);
     }
 
+    public static final int MD5_FIELD_NUMBER = 5;
+    private com.google.protobuf.LazyStringList md5_;
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getMd5List() {
+      return md5_;
+    }
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    public int getMd5Count() {
+      return md5_.size();
+    }
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    public java.lang.String getMd5(int index) {
+      return md5_.get(index);
+    }
+    /**
+     * <code>repeated string md5 = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMd5Bytes(int index) {
+      return md5_.getByteString(index);
+    }
+
     public static final int SIGNTYPE_FIELD_NUMBER = 3;
     private int signType_;
     /**
@@ -15450,6 +15511,9 @@ public final class ServerResponseMessage {
       for (int i = 0; i < localFilePath_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, localFilePath_.getRaw(i));
       }
+      for (int i = 0; i < md5_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, md5_.getRaw(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -15483,6 +15547,14 @@ public final class ServerResponseMessage {
         size += dataSize;
         size += 1 * getLocalFilePathList().size();
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < md5_.size(); i++) {
+          dataSize += computeStringSizeNoTag(md5_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getMd5List().size();
+      }
       memoizedSize = size;
       return size;
     }
@@ -15503,6 +15575,8 @@ public final class ServerResponseMessage {
           == other.getSuccess());
       result = result && internalGetSign().equals(
           other.internalGetSign());
+      result = result && getMd5List()
+          .equals(other.getMd5List());
       result = result && signType_ == other.signType_;
       result = result && getLocalFilePathList()
           .equals(other.getLocalFilePathList());
@@ -15522,6 +15596,10 @@ public final class ServerResponseMessage {
       if (!internalGetSign().getMap().isEmpty()) {
         hash = (37 * hash) + SIGN_FIELD_NUMBER;
         hash = (53 * hash) + internalGetSign().hashCode();
+      }
+      if (getMd5Count() > 0) {
+        hash = (37 * hash) + MD5_FIELD_NUMBER;
+        hash = (53 * hash) + getMd5List().hashCode();
       }
       hash = (37 * hash) + SIGNTYPE_FIELD_NUMBER;
       hash = (53 * hash) + signType_;
@@ -15613,7 +15691,7 @@ public final class ServerResponseMessage {
     }
     /**
      * <pre>
-     *获取Sign
+     *文件回复
      * </pre>
      *
      * Protobuf type {@code FileResponse}
@@ -15676,10 +15754,12 @@ public final class ServerResponseMessage {
         success_ = false;
 
         internalGetMutableSign().clear();
+        md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
         signType_ = 0;
 
         localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -15707,10 +15787,15 @@ public final class ServerResponseMessage {
         result.success_ = success_;
         result.sign_ = internalGetSign();
         result.sign_.makeImmutable();
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          md5_ = md5_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.md5_ = md5_;
         result.signType_ = signType_;
-        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
           localFilePath_ = localFilePath_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000010);
         }
         result.localFilePath_ = localFilePath_;
         result.bitField0_ = to_bitField0_;
@@ -15760,13 +15845,23 @@ public final class ServerResponseMessage {
         }
         internalGetMutableSign().mergeFrom(
             other.internalGetSign());
+        if (!other.md5_.isEmpty()) {
+          if (md5_.isEmpty()) {
+            md5_ = other.md5_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureMd5IsMutable();
+            md5_.addAll(other.md5_);
+          }
+          onChanged();
+        }
         if (other.signType_ != 0) {
           setSignTypeValue(other.getSignTypeValue());
         }
         if (!other.localFilePath_.isEmpty()) {
           if (localFilePath_.isEmpty()) {
             localFilePath_ = other.localFilePath_;
-            bitField0_ = (bitField0_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000010);
           } else {
             ensureLocalFilePathIsMutable();
             localFilePath_.addAll(other.localFilePath_);
@@ -15945,6 +16040,100 @@ public final class ServerResponseMessage {
         return this;
       }
 
+      private com.google.protobuf.LazyStringList md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureMd5IsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          md5_ = new com.google.protobuf.LazyStringArrayList(md5_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getMd5List() {
+        return md5_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public int getMd5Count() {
+        return md5_.size();
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public java.lang.String getMd5(int index) {
+        return md5_.get(index);
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMd5Bytes(int index) {
+        return md5_.getByteString(index);
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public Builder setMd5(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMd5IsMutable();
+        md5_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public Builder addMd5(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMd5IsMutable();
+        md5_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public Builder addAllMd5(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureMd5IsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, md5_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public Builder clearMd5() {
+        md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 5;</code>
+       */
+      public Builder addMd5Bytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureMd5IsMutable();
+        md5_.add(value);
+        onChanged();
+        return this;
+      }
+
       private int signType_ = 0;
       /**
        * <code>optional .FileResponse.SIGNTYPE signType = 3;</code>
@@ -15991,9 +16180,9 @@ public final class ServerResponseMessage {
 
       private com.google.protobuf.LazyStringList localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureLocalFilePathIsMutable() {
-        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
           localFilePath_ = new com.google.protobuf.LazyStringArrayList(localFilePath_);
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000010;
          }
       }
       /**
@@ -16064,7 +16253,7 @@ public final class ServerResponseMessage {
        */
       public Builder clearLocalFilePath() {
         localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -22862,64 +23051,64 @@ public final class ServerResponseMessage {
       "sage\"*\n\027AbandonQuestionResponse\022\017\n\007succe" +
       "ss\030\001 \001(\010\"`\n\031SearchInformationResponse\022\020\n" +
       "\010searchID\030\001 \001(\005\0221\n\023questionListMessage\030\002" +
-      " \003(\0132\024.QuestionListMessage\"\332\001\n\014FileRespo" +
+      " \003(\0132\024.QuestionListMessage\"\347\001\n\014FileRespo" +
       "nse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027.Fil" +
-      "eResponse.SignEntry\022(\n\010signType\030\003 \001(\0162\026." +
-      "FileResponse.SIGNTYPE\022\025\n\rlocalFilePath\030\004" +
-      " \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
-      "\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006U",
-      "PLOAD\020\001\"=\n\026SolvedQuestionResponse\022\022\n\nque" +
-      "stionID\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"o\n\rUpdate" +
-      "Message\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateMessa" +
-      "ge.UserEnter\0321\n\tUserEnter\022\020\n\010username\030\001 " +
-      "\001(\t\022\022\n\nquestionID\030\002 \001(\003\"\224\002\n\023GetUserListR" +
-      "esponse\022\017\n\007success\030\001 \001(\010\022.\n\005users\030\002 \003(\0132" +
-      "\037.GetUserListResponse.UsersEntry\022\022\n\nques" +
-      "tionID\030\003 \001(\003\0229\n\014userListType\030\004 \001(\0162#.Get" +
-      "UserListResponse.USER_LIST_TYPE\032,\n\nUsers" +
-      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"?\n",
-      "\016USER_LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026" +
-      "\n\022USERS_IN_ROOM_LIST\020\001\"\233\007\n\007Message\022\026\n\010ms" +
-      "g_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\r" +
-      "lauchResponse\030\003 \001(\0132\017.LaunchResponse\022+\n\020" +
-      "registerResponse\030\004 \001(\0132\021.RegisterRespons" +
-      "e\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023" +
-      "announcementMessage\030\006 \001(\0132\024.Announcement" +
-      "Message\0225\n\025questionEnterResponse\030\007 \001(\0132\026" +
-      ".QuestionEnterResponse\0223\n\024goodQuestionRe" +
-      "sponse\030\010 \001(\0132\025.GoodQuestionResponse\022+\n\020g",
-      "oodUserResponse\030\n \001(\0132\021.GoodUserResponse" +
-      "\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022%\n" +
-      "\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n\033" +
-      "questionInformationResponse\030\r \001(\0132\034.Ques" +
-      "tionInformationResponse\0229\n\027userInformati" +
-      "onResponse\030\016 \001(\0132\030.UserInformationRespon" +
-      "se\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.Ge" +
-      "tQuestionListResponse\0227\n\026createQuestionR" +
-      "esponse\030\022 \001(\0132\027.CreateQuestionResponse\0229" +
-      "\n\027abandonQuestionResponse\030\023 \001(\0132\030.Abando",
-      "nQuestionResponse\022=\n\031searchInformationRe" +
-      "sponse\030\024 \001(\0132\032.SearchInformationResponse" +
-      "\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Solve" +
-      "dQuestionResponse\0221\n\023getUserListResponse" +
-      "\030\026 \001(\0132\024.GetUserListResponse*\340\003\n\003MSG\022\023\n\017" +
-      "LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER_RESPONSE\020\001" +
-      "\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSA" +
-      "GE\020\003\022\033\n\027QUESTION_ENTER_RESPONSE\020\004\022\032\n\026GOO" +
-      "D_QUESTION_RESPONSE\020\005\022\026\n\022GOOD_USER_RESPO" +
-      "NSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFILE_RESPON",
-      "SE\020\t\022!\n\035QUESTION_INFORMATION_RESPONSE\020\n\022" +
-      "\035\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n\032GET_QU" +
-      "ESTION_LIST_RESPONSE\020\014\022\034\n\030CREATE_QUESTIO" +
-      "N_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_RESPONS" +
-      "E\020\020\022\037\n\033SEARCH_INFORMATION_RESPONSE\020\021\022\034\n\030" +
-      "SOLVED_QUESTION_RESPONSE\020\022\022\017\n\013BAD_MESSAG" +
-      "E\020\023\022\032\n\026GET_USER_LIST_RESPONSE\020\024*H\n\014CONTE" +
-      "NT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MES" +
-      "SAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE" +
-      "\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYP",
-      "E\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseMessage" +
-      "b\006proto3"
+      "eResponse.SignEntry\022\013\n\003md5\030\005 \003(\t\022(\n\010sign" +
+      "Type\030\003 \001(\0162\026.FileResponse.SIGNTYPE\022\025\n\rlo" +
+      "calFilePath\030\004 \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 " +
+      "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DO",
+      "WNLOAD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026SolvedQuestionRe" +
+      "sponse\022\022\n\nquestionID\030\002 \001(\003\022\017\n\007success\030\001 " +
+      "\001(\010\"o\n\rUpdateMessage\022+\n\tuserEnter\030\001 \001(\0132" +
+      "\030.UpdateMessage.UserEnter\0321\n\tUserEnter\022\020" +
+      "\n\010username\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\224\002\n" +
+      "\023GetUserListResponse\022\017\n\007success\030\001 \001(\010\022.\n" +
+      "\005users\030\002 \003(\0132\037.GetUserListResponse.Users" +
+      "Entry\022\022\n\nquestionID\030\003 \001(\003\0229\n\014userListTyp" +
+      "e\030\004 \001(\0162#.GetUserListResponse.USER_LIST_" +
+      "TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value",
+      "\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n\021ACQUAINT" +
+      "ANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\233\007\n\007" +
+      "Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010usern" +
+      "ame\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.Launc" +
+      "hResponse\022+\n\020registerResponse\030\004 \001(\0132\021.Re" +
+      "gisterResponse\022!\n\013sendContent\030\005 \001(\0132\014.Se" +
+      "ndContent\0221\n\023announcementMessage\030\006 \001(\0132\024" +
+      ".AnnouncementMessage\0225\n\025questionEnterRes" +
+      "ponse\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024g" +
+      "oodQuestionResponse\030\010 \001(\0132\025.GoodQuestion",
+      "Response\022+\n\020goodUserResponse\030\n \001(\0132\021.Goo" +
+      "dUserResponse\022#\n\014fileResponse\030\t \001(\0132\r.Fi" +
+      "leResponse\022%\n\rupdateMessage\030\013 \001(\0132\016.Upda" +
+      "teMessage\022A\n\033questionInformationResponse" +
+      "\030\r \001(\0132\034.QuestionInformationResponse\0229\n\027" +
+      "userInformationResponse\030\016 \001(\0132\030.UserInfo" +
+      "rmationResponse\0229\n\027getQuestionListRespon" +
+      "se\030\017 \001(\0132\030.GetQuestionListResponse\0227\n\026cr" +
+      "eateQuestionResponse\030\022 \001(\0132\027.CreateQuest" +
+      "ionResponse\0229\n\027abandonQuestionResponse\030\023",
+      " \001(\0132\030.AbandonQuestionResponse\022=\n\031search" +
+      "InformationResponse\030\024 \001(\0132\032.SearchInform" +
+      "ationResponse\0227\n\026solvedQuestionResponse\030" +
+      "\025 \001(\0132\027.SolvedQuestionResponse\0221\n\023getUse" +
+      "rListResponse\030\026 \001(\0132\024.GetUserListRespons" +
+      "e*\340\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGIST" +
+      "ER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOU" +
+      "NCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESP" +
+      "ONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GO" +
+      "OD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021",
+      "\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATIO" +
+      "N_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPONS" +
+      "E\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030C" +
+      "REATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUE" +
+      "STION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_R" +
+      "ESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022" +
+      "\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESPON" +
+      "SE\020\024*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023" +
+      "\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)" +
+      "\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020",
+      "\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerRe" +
+      "sponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -23052,7 +23241,7 @@ public final class ServerResponseMessage {
     internal_static_FileResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FileResponse_descriptor,
-        new java.lang.String[] { "Success", "Sign", "SignType", "LocalFilePath", });
+        new java.lang.String[] { "Success", "Sign", "Md5", "SignType", "LocalFilePath", });
     internal_static_FileResponse_SignEntry_descriptor =
       internal_static_FileResponse_descriptor.getNestedTypes().get(0);
     internal_static_FileResponse_SignEntry_fieldAccessorTable = new

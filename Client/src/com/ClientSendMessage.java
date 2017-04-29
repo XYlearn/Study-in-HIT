@@ -9965,6 +9965,25 @@ public final class ClientSendMessage {
         getFilenameBytes(int index);
 
     /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    java.util.List<java.lang.String>
+        getMd5List();
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    int getMd5Count();
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    java.lang.String getMd5(int index);
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getMd5Bytes(int index);
+
+    /**
      * <code>repeated string localFilePath = 3;</code>
      */
     java.util.List<java.lang.String>
@@ -9994,7 +10013,7 @@ public final class ClientSendMessage {
   }
   /**
    * <pre>
-   *获取Sign
+   *文件请求
    * </pre>
    *
    * Protobuf type {@code FileRequest}
@@ -10009,6 +10028,7 @@ public final class ClientSendMessage {
     }
     private FileRequest() {
       filename_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       signType_ = 0;
     }
@@ -10055,11 +10075,20 @@ public final class ClientSendMessage {
             }
             case 26: {
               java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
                 localFilePath_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000004;
               }
               localFilePath_.add(s);
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                md5_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              md5_.add(s);
               break;
             }
           }
@@ -10073,8 +10102,11 @@ public final class ClientSendMessage {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           filename_ = filename_.getUnmodifiableView();
         }
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           localFilePath_ = localFilePath_.getUnmodifiableView();
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          md5_ = md5_.getUnmodifiableView();
         }
         makeExtensionsImmutable();
       }
@@ -10219,6 +10251,35 @@ public final class ClientSendMessage {
       return filename_.getByteString(index);
     }
 
+    public static final int MD5_FIELD_NUMBER = 4;
+    private com.google.protobuf.LazyStringList md5_;
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getMd5List() {
+      return md5_;
+    }
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    public int getMd5Count() {
+      return md5_.size();
+    }
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    public java.lang.String getMd5(int index) {
+      return md5_.get(index);
+    }
+    /**
+     * <code>repeated string md5 = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMd5Bytes(int index) {
+      return md5_.getByteString(index);
+    }
+
     public static final int LOCALFILEPATH_FIELD_NUMBER = 3;
     private com.google.protobuf.LazyStringList localFilePath_;
     /**
@@ -10285,6 +10346,9 @@ public final class ClientSendMessage {
       for (int i = 0; i < localFilePath_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, localFilePath_.getRaw(i));
       }
+      for (int i = 0; i < md5_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, md5_.getRaw(i));
+      }
     }
 
     public int getSerializedSize() {
@@ -10312,6 +10376,14 @@ public final class ClientSendMessage {
         size += dataSize;
         size += 1 * getLocalFilePathList().size();
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < md5_.size(); i++) {
+          dataSize += computeStringSizeNoTag(md5_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getMd5List().size();
+      }
       memoizedSize = size;
       return size;
     }
@@ -10330,6 +10402,8 @@ public final class ClientSendMessage {
       boolean result = true;
       result = result && getFilenameList()
           .equals(other.getFilenameList());
+      result = result && getMd5List()
+          .equals(other.getMd5List());
       result = result && getLocalFilePathList()
           .equals(other.getLocalFilePathList());
       result = result && signType_ == other.signType_;
@@ -10346,6 +10420,10 @@ public final class ClientSendMessage {
       if (getFilenameCount() > 0) {
         hash = (37 * hash) + FILENAME_FIELD_NUMBER;
         hash = (53 * hash) + getFilenameList().hashCode();
+      }
+      if (getMd5Count() > 0) {
+        hash = (37 * hash) + MD5_FIELD_NUMBER;
+        hash = (53 * hash) + getMd5List().hashCode();
       }
       if (getLocalFilePathCount() > 0) {
         hash = (37 * hash) + LOCALFILEPATH_FIELD_NUMBER;
@@ -10437,7 +10515,7 @@ public final class ClientSendMessage {
     }
     /**
      * <pre>
-     *获取Sign
+     *文件请求
      * </pre>
      *
      * Protobuf type {@code FileRequest}
@@ -10477,8 +10555,10 @@ public final class ClientSendMessage {
         super.clear();
         filename_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
-        localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
+        localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
         signType_ = 0;
 
         return this;
@@ -10511,8 +10591,13 @@ public final class ClientSendMessage {
         }
         result.filename_ = filename_;
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          localFilePath_ = localFilePath_.getUnmodifiableView();
+          md5_ = md5_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.md5_ = md5_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          localFilePath_ = localFilePath_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000004);
         }
         result.localFilePath_ = localFilePath_;
         result.signType_ = signType_;
@@ -10568,10 +10653,20 @@ public final class ClientSendMessage {
           }
           onChanged();
         }
+        if (!other.md5_.isEmpty()) {
+          if (md5_.isEmpty()) {
+            md5_ = other.md5_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureMd5IsMutable();
+            md5_.addAll(other.md5_);
+          }
+          onChanged();
+        }
         if (!other.localFilePath_.isEmpty()) {
           if (localFilePath_.isEmpty()) {
             localFilePath_ = other.localFilePath_;
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureLocalFilePathIsMutable();
             localFilePath_.addAll(other.localFilePath_);
@@ -10702,11 +10797,105 @@ public final class ClientSendMessage {
         return this;
       }
 
+      private com.google.protobuf.LazyStringList md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureMd5IsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          md5_ = new com.google.protobuf.LazyStringArrayList(md5_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getMd5List() {
+        return md5_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public int getMd5Count() {
+        return md5_.size();
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public java.lang.String getMd5(int index) {
+        return md5_.get(index);
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMd5Bytes(int index) {
+        return md5_.getByteString(index);
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public Builder setMd5(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMd5IsMutable();
+        md5_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public Builder addMd5(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMd5IsMutable();
+        md5_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public Builder addAllMd5(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureMd5IsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, md5_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public Builder clearMd5() {
+        md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string md5 = 4;</code>
+       */
+      public Builder addMd5Bytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureMd5IsMutable();
+        md5_.add(value);
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.LazyStringList localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureLocalFilePathIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
           localFilePath_ = new com.google.protobuf.LazyStringArrayList(localFilePath_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
          }
       }
       /**
@@ -10777,7 +10966,7 @@ public final class ClientSendMessage {
        */
       public Builder clearLocalFilePath() {
         localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -16193,58 +16382,58 @@ public final class ClientSendMessage {
       "ywords\030\004 \003(\t\",\n\026AbandonQuestionRequest\022\022" +
       "\n\nquestionID\030\001 \001(\003\">\n\030SearchInformationR" +
       "equest\022\020\n\010keywords\030\001 \003(\t\022\020\n\010searchID\030\002 \001" +
-      "(\005\"\205\001\n\013FileRequest\022\020\n\010filename\030\001 \003(\t\022\025\n\r" +
-      "localFilePath\030\003 \003(\t\022\'\n\010signType\030\002 \001(\0162\025." +
-      "FileRequest.SIGNTYPE\"$\n\010SIGNTYPE\022\014\n\010DOWN" +
-      "LOAD\020\000\022\n\n\006UPLOAD\020\001\"+\n\025SolvedQuestionRequ" +
-      "est\022\022\n\nquestionID\030\001 \001(\003\"\261\001\n\022GetUserListR" +
-      "equest\022\021\n\treference\030\001 \001(\t\0228\n\014userListTyp",
-      "e\030\002 \001(\0162\".GetUserListRequest.USER_LIST_T" +
-      "YPE\022\r\n\005param\030\003 \001(\t\"?\n\016USER_LIST_TYPE\022\025\n\021" +
-      "ACQUAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIS" +
-      "T\020\001\"\377\006\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022" +
-      "\020\n\010username\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(\0132" +
-      "\016.LaunchRequest\022%\n\rlogoutMessage\030\004 \001(\0132\016" +
-      ".LogoutMessage\022!\n\013sendContent\030\005 \001(\0132\014.Se" +
-      "ndContent\0221\n\023announcementMessage\030\006 \001(\0132\024" +
-      ".AnnouncementMessage\0223\n\024questionEnterReq" +
-      "uest\030\007 \001(\0132\025.QuestionEnterRequest\0221\n\023goo",
-      "dQuestionRequest\030\010 \001(\0132\024.GoodQuestionReq" +
-      "uest\022!\n\013fileRequest\030\t \001(\0132\014.FileRequest\022" +
-      ")\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReque" +
-      "st\022)\n\017registerRequest\030\013 \001(\0132\020.RegisterRe" +
-      "quest\022?\n\032questionInformationRequest\030\r \001(" +
-      "\0132\033.QuestionInformationRequest\0227\n\026userIn" +
-      "formationRequest\030\016 \001(\0132\027.UserInformation" +
-      "Request\0227\n\026getQuestionListRequest\030\017 \001(\0132" +
-      "\027.GetQuestionListRequest\0225\n\025createQuesti" +
-      "onRequest\030\022 \001(\0132\026.CreateQuestionRequest\022",
-      "7\n\026abandonQuestionRequest\030\023 \001(\0132\027.Abando" +
-      "nQuestionRequest\022;\n\030searchInformationReq" +
-      "uest\030\024 \001(\0132\031.SearchInformationRequest\0225\n" +
-      "\025solvedQuestionRequest\030\025 \001(\0132\026.SolvedQue" +
-      "stionRequest\022/\n\022getUserListRequest\030\026 \001(\013" +
-      "2\023.GetUserListRequest*\322\003\n\003MSG\022\022\n\016LAUNCH_" +
-      "REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024\n\020REGISTE" +
-      "R_REQUEST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNC" +
-      "EMENT_MESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUES" +
-      "T\020\004\022\031\n\025GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_U",
-      "SER_REQUEST\020\007\022\020\n\014FILE_REQUEST\020\t\022 \n\034QUEST" +
-      "ION_INFORMATION_REQUEST\020\n\022\034\n\030USER_INFORM" +
-      "ATION_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_REQ" +
-      "UEST\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030A" +
-      "BANDON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INFO" +
-      "RMATION_REQUEST\020\021\022\033\n\027SOLVED_QUESTION_REQ" +
-      "UEST\020\022\022\017\n\013BAD_MESSAGE\020\023\022\031\n\025GET_USER_LIST" +
-      "_REQUEST\020\024*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSA" +
-      "GE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSA" +
-      "GE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007",
-      "\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n\tR" +
-      "ANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020\001*" +
-      "j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NUMBERS\020\000\022" +
-      "\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION\020\002" +
-      "\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021Clie" +
-      "ntSendMessageb\006proto3"
+      "(\005\"\222\001\n\013FileRequest\022\020\n\010filename\030\001 \003(\t\022\013\n\003" +
+      "md5\030\004 \003(\t\022\025\n\rlocalFilePath\030\003 \003(\t\022\'\n\010sign" +
+      "Type\030\002 \001(\0162\025.FileRequest.SIGNTYPE\"$\n\010SIG" +
+      "NTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"+\n\025Solve" +
+      "dQuestionRequest\022\022\n\nquestionID\030\001 \001(\003\"\261\001\n" +
+      "\022GetUserListRequest\022\021\n\treference\030\001 \001(\t\0228",
+      "\n\014userListType\030\002 \001(\0162\".GetUserListReques" +
+      "t.USER_LIST_TYPE\022\r\n\005param\030\003 \001(\t\"?\n\016USER_" +
+      "LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026\n\022USER" +
+      "S_IN_ROOM_LIST\020\001\"\377\006\n\007Message\022\026\n\010msg_type" +
+      "\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauchR" +
+      "equest\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutMe" +
+      "ssage\030\004 \001(\0132\016.LogoutMessage\022!\n\013sendConte" +
+      "nt\030\005 \001(\0132\014.SendContent\0221\n\023announcementMe" +
+      "ssage\030\006 \001(\0132\024.AnnouncementMessage\0223\n\024que" +
+      "stionEnterRequest\030\007 \001(\0132\025.QuestionEnterR",
+      "equest\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.Go" +
+      "odQuestionRequest\022!\n\013fileRequest\030\t \001(\0132\014" +
+      ".FileRequest\022)\n\017goodUserRequest\030\n \001(\0132\020." +
+      "GoodUserRequest\022)\n\017registerRequest\030\013 \001(\013" +
+      "2\020.RegisterRequest\022?\n\032questionInformatio" +
+      "nRequest\030\r \001(\0132\033.QuestionInformationRequ" +
+      "est\0227\n\026userInformationRequest\030\016 \001(\0132\027.Us" +
+      "erInformationRequest\0227\n\026getQuestionListR" +
+      "equest\030\017 \001(\0132\027.GetQuestionListRequest\0225\n" +
+      "\025createQuestionRequest\030\022 \001(\0132\026.CreateQue",
+      "stionRequest\0227\n\026abandonQuestionRequest\030\023" +
+      " \001(\0132\027.AbandonQuestionRequest\022;\n\030searchI" +
+      "nformationRequest\030\024 \001(\0132\031.SearchInformat" +
+      "ionRequest\0225\n\025solvedQuestionRequest\030\025 \001(" +
+      "\0132\026.SolvedQuestionRequest\022/\n\022getUserList" +
+      "Request\030\026 \001(\0132\023.GetUserListRequest*\322\003\n\003M" +
+      "SG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE" +
+      "\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CONTENT" +
+      "\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUESTION" +
+      "_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_REQUES",
+      "T\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\020\n\014FILE_REQUE" +
+      "ST\020\t\022 \n\034QUESTION_INFORMATION_REQUEST\020\n\022\034" +
+      "\n\030USER_INFORMATION_REQUEST\020\013\022\035\n\031GET_QUES" +
+      "TION_LIST_REQUEST\020\014\022\033\n\027CREATE_QUESTION_R" +
+      "EQUEST\020\017\022\034\n\030ABANDON_QUESTION_REQUEST\020\020\022\036" +
+      "\n\032SEARCH_INFORMATION_REQUEST\020\021\022\033\n\027SOLVED" +
+      "_QUESTION_REQUEST\020\022\022\017\n\013BAD_MESSAGE\020\023\022\031\n\025" +
+      "GET_USER_LIST_REQUEST\020\024*H\n\014CONTENT_TYPE\022" +
+      "\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021" +
+      "\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG",
+      "\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QU" +
+      "ESTION\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022\016\n\n" +
+      "DESCENDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUESTI" +
+      "ON_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_" +
+      "OF_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004" +
+      "B\030\n\003comB\021ClientSendMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -16353,7 +16542,7 @@ public final class ClientSendMessage {
     internal_static_FileRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FileRequest_descriptor,
-        new java.lang.String[] { "Filename", "LocalFilePath", "SignType", });
+        new java.lang.String[] { "Filename", "Md5", "LocalFilePath", "SignType", });
     internal_static_SolvedQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_SolvedQuestionRequest_fieldAccessorTable = new

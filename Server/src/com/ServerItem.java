@@ -94,44 +94,53 @@ public class ServerItem {
 		pstmtInit();
 	}
 	private void pstmtInit() {
-		try {
-			pstmtSelectUser = dbconn.connection.prepareStatement("SELECT * FROM user WHERE username=?;");
-			pstmtUpdateUserLaunchTime = dbconn.connection.prepareStatement("UPDATE user SET last_launch_time=now() WHERE username=?;");
-			pstmtInsertUser = dbconn.connection.prepareStatement("INSERT INTO user (username, userkey, signature, mail_address)VALUES(?,?,?,?);");
-			pstmtSelectQuestion = dbconn.connection.prepareStatement("SELECT * FROM question WHERE id=?;");
-			pstmtSelectQuestionID = dbconn.connection.prepareStatement("SELECT * FROM question_id?;");
-			pstmtUpdateQuestionSendTime = dbconn.connection.prepareStatement("UPDATE question SET last_send_time=now() WHERE id=?");
-			pstmtInsertQuestionID = dbconn.connection.prepareStatement("INSERT INTO question_id? (record, time, username, markMap, recordpic) VALUES(?,now(),?,?,?);");
-			pstmtMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(record_id) FROM question_id?;");
-			pstmtInsertFiles = dbconn.connection.prepareStatement("INSERT INTO files (md5, filename, user) VALUES(?,?,?);");
-			pstmtSelectFiles = dbconn.connection.prepareStatement("SELECT * FROM files WHERE md5=?;");
-			pstmtUpdateGoodQuestion = dbconn.connection.prepareStatement("UPDATE question SET praise_num=?;");
-			pstmtUpdateGoodUser = dbconn.connection.prepareStatement("UPDATE user SET praise_num=? WHERE username=?;");
-			pstmtGetMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(id) FROM question;");
-			pstmtInsertQuestion = dbconn.connection.prepareStatement("INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES(?,?,?,?,?,?,?);");
-			pstmtCreateQuestionID = dbconn.connection.prepareStatement(
-					"CREATE TABLE question_id?"+"(\n" +
-							"record_id BIGINT AUTO_INCREMENT,\n" +
-							"record VARCHAR(255) NOT NULL,\n" +
-							"recordpic VARCHAR(255) DEFAULT '',\n" +
-							"username VARCHAR(20) NOT NULL,\n" +
-							"time DATETIME DEFAULT now(),\n" +
-							"markMap VARCHAR(255) DEFAULT \"\",\n" +
-							"PRIMARY KEY(record_id)\n" +
-							");");
-			pstmtUpdateUserBonus = dbconn.connection.prepareStatement("UPDATE user SET bonus=?, question_num=? WHERE username=?;");
-			pstmtInsertWordList = dbconn.connection.prepareStatement("INSERT INTO words_list? (word, question) VALUES(?,?);");
+		boolean isSuccess = false;
+		for(int i=0; i<5 && ! isSuccess; i++) {
+			try {
+				pstmtSelectUser = dbconn.connection.prepareStatement("SELECT * FROM user WHERE username=?;");
+				pstmtUpdateUserLaunchTime = dbconn.connection.prepareStatement("UPDATE user SET last_launch_time=now() WHERE username=?;");
+				pstmtInsertUser = dbconn.connection.prepareStatement("INSERT INTO user (username, userkey, signature, mail_address)VALUES(?,?,?,?);");
+				pstmtSelectQuestion = dbconn.connection.prepareStatement("SELECT * FROM question WHERE id=?;");
+				pstmtSelectQuestionID = dbconn.connection.prepareStatement("SELECT * FROM question_id?;");
+				pstmtUpdateQuestionSendTime = dbconn.connection.prepareStatement("UPDATE question SET last_send_time=now() WHERE id=?");
+				pstmtInsertQuestionID = dbconn.connection.prepareStatement("INSERT INTO question_id? (record, time, username, markMap, recordpic) VALUES(?,now(),?,?,?);");
+				pstmtMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(record_id) FROM question_id?;");
+				pstmtInsertFiles = dbconn.connection.prepareStatement("INSERT INTO files (md5, filename, user) VALUES(?,?,?);");
+				pstmtSelectFiles = dbconn.connection.prepareStatement("SELECT * FROM files WHERE filename=?;");
+				pstmtUpdateGoodQuestion = dbconn.connection.prepareStatement("UPDATE question SET praise_num=?;");
+				pstmtUpdateGoodUser = dbconn.connection.prepareStatement("UPDATE user SET praise_num=? WHERE username=?;");
+				pstmtGetMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(id) FROM question;");
+				pstmtInsertQuestion = dbconn.connection.prepareStatement("INSERT INTO question (owner, id, stem, addition, solved, stempic, additionpic) VALUES(?,?,?,?,?,?,?);");
+				pstmtCreateQuestionID = dbconn.connection.prepareStatement(
+						"CREATE TABLE question_id?" + "(\n" +
+								"record_id BIGINT AUTO_INCREMENT,\n" +
+								"record VARCHAR(255) NOT NULL,\n" +
+								"recordpic VARCHAR(255) DEFAULT '',\n" +
+								"username VARCHAR(20) NOT NULL,\n" +
+								"time DATETIME DEFAULT now(),\n" +
+								"markMap VARCHAR(255) DEFAULT \"\",\n" +
+								"PRIMARY KEY(record_id)\n" +
+								");");
+				pstmtUpdateUserBonus = dbconn.connection.prepareStatement("UPDATE user SET bonus=?, question_num=? WHERE username=?;");
+				pstmtInsertWordList = dbconn.connection.prepareStatement("INSERT INTO words_list? (word, question) VALUES(?,?);");
 
-			pstmtDeleteFromWordList = dbconn.connection.prepareStatement("DELETE FROM words_list? WHERE question=?;");
-			pstmtDeleteFromQuestion = dbconn.connection.prepareStatement("DELETE FROM question WHERE id=?;");
-			pstmtDropQuestionID = dbconn.connection.prepareStatement("DROP TABLE question_id?;");
-			pstmtSelectWordList = dbconn.connection.prepareStatement("SELECT * FROM words_list? WHERE word=?;");
-			pstmtQuestionSolved = dbconn.connection.prepareStatement("UPDATE question SET solved=1 WHERE id=?;");
-			pstmtSelectAcquaintance = dbconn.connection.prepareStatement("SELECT acquaintance FROM acquaintance_table WHERE username=?;");
-			stmtSelectQuestionByOrder = dbconn.connection.createStatement();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+				pstmtDeleteFromWordList = dbconn.connection.prepareStatement("DELETE FROM words_list? WHERE question=?;");
+				pstmtDeleteFromQuestion = dbconn.connection.prepareStatement("DELETE FROM question WHERE id=?;");
+				pstmtDropQuestionID = dbconn.connection.prepareStatement("DROP TABLE question_id?;");
+				pstmtSelectWordList = dbconn.connection.prepareStatement("SELECT * FROM words_list? WHERE word=?;");
+				pstmtQuestionSolved = dbconn.connection.prepareStatement("UPDATE question SET solved=1 WHERE id=?;");
+				pstmtSelectAcquaintance = dbconn.connection.prepareStatement("SELECT acquaintance FROM acquaintance_table WHERE username=?;");
+				stmtSelectQuestionByOrder = dbconn.connection.createStatement();
+				isSuccess = true;
+			} catch (SQLException e) {
+				if(i==5) {
+					ServerHandler.log.error("", e);
+				}
+				if(dbconn.isClosed() && !dbconn.restartConnection()) {
+					System.gc();
+				} else
+					break;
+			}
 		}
 	}
 
@@ -175,7 +184,8 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case LOGOUT_MESSAGE:	//登出消息
@@ -193,7 +203,7 @@ public class ServerItem {
 							return null;
 						}
 					} catch (Exception e){
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case SEND_CONTENT:	//发送对话消息
@@ -207,7 +217,7 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e){
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case ANNOUNCEMENT_MESSAGE:	//发布公告
@@ -224,7 +234,7 @@ public class ServerItem {
 							return null;
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case GOOD_QUESTION_REQUEST:	//赞问题
@@ -238,7 +248,7 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case QUESTION_INFORMATION_REQUEST:	//请求问题信息
@@ -251,7 +261,7 @@ public class ServerItem {
 									  .build();
 						} else return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case USER_INFORMATION_REQUEST:	//请求用户信息
@@ -265,7 +275,7 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case GET_QUESTION_LIST_REQUEST:	//获取问题列表
@@ -281,7 +291,7 @@ public class ServerItem {
 							return null;
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case CREATE_QUESTION_REQUEST:	//新建问题
@@ -295,7 +305,7 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 					}
 				case QUESTION_ENTER_REQUEST:	//进入房间
 					try {
@@ -308,7 +318,7 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case ABANDON_QUESTION_REQUEST:	//删除问题
@@ -322,7 +332,7 @@ public class ServerItem {
 						} else
 							return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case SEARCH_INFORMATION_REQUEST:	//搜索信息
@@ -338,7 +348,7 @@ public class ServerItem {
 							return null;
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case FILE_REQUEST:	//获取签名请求
@@ -350,7 +360,7 @@ public class ServerItem {
 								  .setFileResponse(handleFileRequest(message.getFileRequest()))
 								  .build();
 						} catch (Exception e) {
-							e.printStackTrace();
+							ServerHandler.log.error("",e);
 							return null;
 						}
 					}
@@ -366,7 +376,7 @@ public class ServerItem {
 									  ).build();
 						} else return null;
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				case GET_USER_LIST_REQUEST:
@@ -379,14 +389,14 @@ public class ServerItem {
 									  .build();
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+						ServerHandler.log.error("",e);
 						return null;
 					}
 				default:
 					throw new Exception("MSG type cant be recognized\n"+message.toString());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			ServerHandler.log.error("",e);
 			return null;
 		}
 
@@ -733,8 +743,10 @@ public class ServerItem {
 				ioSessions.add(session);
 				ServerHandler.question_sessions_map.put(questionID.toString(), ioSessions);
 			} else {
-				ioSessions.add(session);
-				ServerHandler.question_sessions_map.replace(questionID.toString(), ioSessions);
+				if(!ioSessions.contains(session)) {
+					ioSessions.add(session);
+					ServerHandler.question_sessions_map.replace(questionID.toString(), ioSessions);
+				}
 			}
 
 			//向用户问题表中添加问题
@@ -1025,26 +1037,29 @@ public class ServerItem {
 	handleFileRequest(ClientSendMessage.FileRequest fileRequest)
 			  throws Exception {
 		ServerResponseMessage.FileResponse response = null;
-		String sign = null;
+		String sign = null, md5 = null;
 		ProtocolStringList files = fileRequest.getFilenameList();
 
 		ServerResponseMessage.FileResponse.Builder builder =
 				  ServerResponseMessage.FileResponse.newBuilder();
 
 		if(isLaunched()) {
+			int i=0;
 			switch (fileRequest.getSignType()) {
 				case DOWNLOAD:
 					for(String filename : files) {
-						sign = cos.getDownloadSign(filename, Cos.TYPE.PICTURE);
+						sign = cos.getDownloadSign(filename);
 						builder.putSign(filename, sign);
+						builder.addMd5(fileRequest.getMd5(i++));
 						builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.DOWNLOAD);
 					}
 					builder.setSuccess(true);
 					break;
 				case UPLOAD:
 					for(String filename : files) {
-						sign = cos.getUploadSign(filename, Cos.TYPE.PICTURE);
+						sign = cos.getUploadSign(filename);
 						builder.putSign(filename, sign);
+						builder.addMd5(fileRequest.getMd5(i++));
 					}
 					builder.setSuccess(true);
 					builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.UPLOAD);
@@ -1182,7 +1197,7 @@ public class ServerItem {
 			}
 			builder.setSearchID(request.getSearchID());
 		} catch (Exception e) {
-			e.printStackTrace();
+			ServerHandler.log.error("",e);
 		}
 		response = builder.build();
 		return response;

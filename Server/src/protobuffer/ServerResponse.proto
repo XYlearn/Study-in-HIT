@@ -184,10 +184,11 @@ message SearchInformationResponse {
     repeated QuestionListMessage questionListMessage = 2;
 }
 
-//获取Sign
+//文件回复
 message FileResponse {
     bool success = 1;
     map<string,string> sign = 2;
+    repeated string md5 = 5;
     enum SIGNTYPE {
         DOWNLOAD = 0;
         UPLOAD = 1;

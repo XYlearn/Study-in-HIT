@@ -156,9 +156,10 @@ message SearchInformationRequest {
     int32 searchID = 2;
 }
 
-//获取Sign
+//文件请求
 message FileRequest {
     repeated string filename = 1;
+    repeated string md5 = 4;
     repeated string localFilePath = 3;
     enum SIGNTYPE {
         DOWNLOAD = 0;

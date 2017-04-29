@@ -35,6 +35,22 @@ public class DatabaseConnection {
 		}
 	}
 
+	public boolean restartConnection() {
+		try {
+			Class.forName(driver);
+			//设置参数
+			Properties properties =  new Properties();
+			properties.put("user", user);
+			properties.put("password", password);
+			//获取连接
+			connection = DriverManager.getConnection(url, properties);
+			return  true;
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public void closeConnection() {
 		try {
 			connection.close();
