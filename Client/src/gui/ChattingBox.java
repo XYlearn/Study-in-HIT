@@ -35,6 +35,8 @@ import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
+import util.Settings;
+import util.Settings.*;
 import util.UserInfo;
 
 public class ChattingBox extends JPanel implements Dispatcher
@@ -43,10 +45,10 @@ public class ChattingBox extends JPanel implements Dispatcher
 	元素id格式：recordID-MESSAGE_TYPE-labelName-labelIndex
 	例如：3-plain-img-2
 	*/
-	public static final String MESSAGE_TYPE_PLAIN="plain";
-	public static final String MESSAGE_TYPE_AUDIO="audio";
-	public static final String MESSAGE_TYPE_FILE="file";
-	public static final String MESSAGE_TYPE_ANNOUNCEMENT="anno";
+	public static final String MESSAGE_TYPE_PLAIN=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_PLAIN.getKey());
+	public static final String MESSAGE_TYPE_AUDIO=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_AUDIO.getKey());
+	public static final String MESSAGE_TYPE_FILE=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_FILE.getKey());
+	public static final String MESSAGE_TYPE_ANNOUNCEMENT=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_ANNOUNCEMENT.getKey());
 	
 	private static final Map<Long, ChattingBox> map=new ConcurrentHashMap<Long, ChattingBox>();
 
