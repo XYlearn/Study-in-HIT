@@ -23,11 +23,26 @@ public class Settings
 	private static final String COMMENT="Settings of StudyInHIT";
 	private static InputStream inStream;
 	private static final Properties propertiesTable=new Properties();
-	private static final Properties defaultPropertiesTable=new Properties();
 	
+	/**
+	 * 读取属性值。
+	 * @param key 键值
+	 * @return 所查询的属性值
+	 */
 	public static String getProperty(String key)
 	{
 		return propertiesTable.getProperty(key);
+	}
+	
+	/**
+	 * 设置并保存新属性。
+	 * @param key 键值
+	 * @param value 新的属性值
+	 */
+	public static void setProperty(String key,String value)
+	{
+		propertiesTable.setProperty(key, value);
+		saveFile();
 	}
 	
 	//key and default value are splited by '@'
@@ -115,7 +130,7 @@ public class Settings
 	public enum ChattingBox
 	{
 		HISTORY_RECORD_COUNT("ChattingBoxHistoryRecordCount@-1"),
-		BUBBLE_HTML_FILE("ChattingBoxBubbleHtmlFile@bubble.html");
+		HTML_FILE("ChattingBoxHtmlFile@cb.html");
 		
 		private final String KEY;
 		private final String DEFAULT;
@@ -185,39 +200,6 @@ public class Settings
 		}
 	}
 	
-	static
-	{
-		if(!loadFile())
-		{
-			propertiesTable.clear();
-			for(Global e:Global.values())
-			{
-				propertiesTable.setProperty(e.getKey(), e.getDefault());
-			}
-			for(Client e:Client.values())
-			{
-				propertiesTable.setProperty(e.getKey(), e.getDefault());
-			}
-			for(ListBox e:ListBox.values())
-			{
-				propertiesTable.setProperty(e.getKey(), e.getDefault());
-			}
-			for(ChattingBox e:ChattingBox.values())
-			{
-				propertiesTable.setProperty(e.getKey(), e.getDefault());
-			}
-			for(InputBox e:InputBox.values())
-			{
-				propertiesTable.setProperty(e.getKey(), e.getDefault());
-			}
-			for(WhiteBoard e:WhiteBoard.values())
-			{
-				propertiesTable.setProperty(e.getKey(), e.getDefault());
-			}
-			saveFile();
-		}
-	}
-	
 	private static boolean loadFile()
 	{
 		File f=new File(SETTINGS_FILE);
@@ -262,5 +244,24 @@ public class Settings
 			return false;
 		}
 		return true;
+	}
+	
+	static
+	{
+		propertiesTable.clear();
+		for (           Global e   :Global.values())
+			propertiesTable.setProperty(e.getKey(), e.getDefault());
+		for (            Client e   :Client.values())
+			propertiesTable.setProperty(e.getKey(), e.getDefault());
+		for (         ListBox e   :ListBox.values())
+			propertiesTable.setProperty(e.getKey(), e.getDefault());
+		for (ChattingBox e   :ChattingBox.values())
+			propertiesTable.setProperty(e.getKey(), e.getDefault());
+		for (      InputBox e   :InputBox.values())
+			propertiesTable.setProperty(e.getKey(), e.getDefault());
+		for ( WhiteBoard e   :WhiteBoard.values())
+			propertiesTable.setProperty(e.getKey(), e.getDefault());
+		if (!loadFile())
+			saveFile();
 	}
 }
