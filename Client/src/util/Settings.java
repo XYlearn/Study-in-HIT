@@ -130,7 +130,7 @@ public class Settings
 	public enum ChattingBox
 	{
 		HISTORY_RECORD_COUNT("ChattingBoxHistoryRecordCount@-1"),
-		HTML_FILE("ChattingBoxHtmlFile@cb.html");
+		HTML_FILE_PATH("ChattingBoxHtmlFilePath@gui/cb.html");
 		
 		private final String KEY;
 		private final String DEFAULT;
