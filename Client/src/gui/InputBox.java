@@ -90,6 +90,7 @@ public class InputBox extends JPanel implements Dispatcher
 					{
 						myPane.setEditable(false);
 						readAndInsertExpression();
+						e.consume();
 						myPane.setEditable(true);
 					}
 					else if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER)

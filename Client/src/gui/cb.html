@@ -1,46 +1,62 @@
-<!--
-time:
--->
+<html>
+<head>
+	<meta charset='UTF-8'>
+</head>
+<body>
+	<p id='-1'>&nbsp;</p>
+</body>
+</html>
+<!--SPLIT-->
 <p align='center'>
-	<!--time-->
+	<!--ANNOUNCEMENT-->
 </p>
-<table id='<!--recordID-->' border='0' white-space='0' align='<!--(ismyself?"right":"left")-->' cellspacing='0' cellpadding='0' style='font-size:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;'>
+<!--SPLIT-->
+<p align='center'>
+	<!--TIME-->
+</p>
+<!--SPLIT-->
+<table id='<!--RECORDID-->' border='0' white-space='0' align='<!--DIRECTION-->' cellspacing='0' cellpadding='0' style='font-size:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;'>
 	<tr>
-		<td id='"+msg.getRecordID()+"-leftHead' rowspan='3'>
-			<!--(ismyself?"":getUserHead(tmpUser))-->
+		<td id='<!--RECORDID-->-leftHead' rowspan='3'>
+			<!--LEFTHEAD-->
 		</td>
 		<td>
-			<img src='<!--test.IMGPATH+"bubble_lu.jpg"-->'>
+			<img src='<!--IMGPATH-->bubble_lu.jpg'>
 		</td>
 		<td style='background-image:url(
-		<!--test.IMGPATH+"bubble_up.jpg"-->);background-repeat:repeat-x;'>
+		<!--IMGPATH-->bubble_up.jpg);background-repeat:repeat-x;'>
 			&nbsp;
 		</td>
 		<td>
-			<img src='<!--test.IMGPATH+"bubble_ru.jpg"-->'>
+			<img src='<!--IMGPATH-->bubble_ru.jpg'>
 		</td>
-		<td id='"+msg.getRecordID()+"-rightHead' rowspan='3'>
-			<!--(ismyself?getUserHead(msg.getUser()):"")-->
+		<td id='<!--RECORDID-->-rightHead' rowspan='3'>
+			<!--RIGHTHEAD-->
 		</td>
 	</tr>
 	<tr>
-		<td style='background-image:url("+test.IMGPATH+"bubble_le.jpg)'>&nbsp;</td>
-		<td id='"+msg.getRecordID()+"-message' style='-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;font-size:12px;'>	<!--message-->
+		<td style='background-image:url(<!--IMGPATH-->bubble_le.jpg)'>&nbsp;</td>
+		<td id='<!--RECORDID-->-message' style='-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;font-size:12px;'>
+			<!--MESSAGE-->
 		</td>
-		<td style='background-image:url("+test.IMGPATH+"bubble_ri.jpg)'>
+		<td style='background-image:url(<!--IMGPATH-->bubble_ri.jpg)'>
 			&nbsp;
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<img src='"+test.IMGPATH+"bubble_ld.jpg'>
+			<img src='<!--IMGPATH-->bubble_ld.jpg'>
 		</td>
-		<td style='background-image:url("+test.IMGPATH+"bubble_do.jpg)'>
+		<td style='background-image:url(<!--IMGPATH-->bubble_do.jpg)'>
 			&nbsp;
 		</td>
 		<td>
-			<img src='"+test.IMGPATH+"bubble_rd.jpg'>
+			<img src='<!--IMGPATH-->bubble_rd.jpg'>
 		</td>
 	</tr>
 </table>
 <br/>
+<!--SPLIT-->
+<a href='pict:<!--PICTPATH--><!--PICTUREATi-->'>
+	<img id='<!--RECORDID-->-<!--i-->' border='0' width=160px height=100px src='<!--PICTPATH--><!--PICTUREATi-->' alt='正在加载图片'>
+</a>

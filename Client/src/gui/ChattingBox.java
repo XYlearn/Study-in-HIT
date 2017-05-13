@@ -22,6 +22,9 @@ import java.awt.BorderLayout;
 import util.AudioTools;
 import bin.test;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,7 +39,6 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
 import util.Settings;
-import util.Settings.*;
 import util.UserInfo;
 
 public class ChattingBox extends JPanel implements Dispatcher
@@ -45,10 +47,34 @@ public class ChattingBox extends JPanel implements Dispatcher
 	元素id格式：recordID-MESSAGE_TYPE-labelName-labelIndex
 	例如：3-plain-img-2
 	*/
-	public static final String MESSAGE_TYPE_PLAIN=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_PLAIN.getKey());
-	public static final String MESSAGE_TYPE_AUDIO=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_AUDIO.getKey());
-	public static final String MESSAGE_TYPE_FILE=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_FILE.getKey());
-	public static final String MESSAGE_TYPE_ANNOUNCEMENT=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_ANNOUNCEMENT.getKey());
+	public static final String MESSAGE_TYPE_PLAIN;
+	public static final String MESSAGE_TYPE_AUDIO;
+	public static final String MESSAGE_TYPE_FILE;
+	public static final String MESSAGE_TYPE_ANNOUNCEMENT;
+	
+	private static final String HISTORY_RECORD_COUNT;
+	private static final String HTML_FILE_PATH;
+	private static final String HTML_INIT;
+	private static final String HTML_MESSAGE_TIME;
+	private static final String HTML_MESSAGE_BUBBLE;
+	private static final String HTML_MESSAGE_ANNOUNCEMENT;
+	private static final String HTML_MESSAGE_PICTURE;
+	
+	private static final String HTML_TAG_SPLIT;
+	private static final String HTML_TAG_TIME;
+	private static final String HTML_TAG_ANNOUNCEMENT;
+	private static final String HTML_TAG_RECORD_ID;
+	private static final String HTML_TAG_DIRECTION;
+	private static final String HTML_TAG_LEFT_HEAD;
+	private static final String HTML_TAG_IMG_PATH;
+	private static final String HTML_TAG_RIGHT_HEAD;
+	private static final String HTML_TAG_MESSAGE;
+	private static final String HTML_TAG_PICT_PATH;
+	private static final String HTML_TAG_PICTURE_AT_I;
+	private static final String HTML_TAG_I;
+	
+	private static final String ALIGN_LEFT="left";
+	private static final String ALIGN_RIGHT="right";
 	
 	private static final Map<Long, ChattingBox> map=new ConcurrentHashMap<Long, ChattingBox>();
 
@@ -76,6 +102,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private static final String PROPICTPATH="pictures/";
 	private static final String PROFILEPATH="files/";
+	private static final String PROIMGPATH="img_src/";
 
 	public ChattingBox()
 	{
@@ -85,8 +112,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		myPane.setEditable(false);
 		myPane.setFont(Font.getFont("宋体"));
 		//myPane.setEditorKit(kit);
-		myPane.setContentType("text/html;charset=unicode");
-		myPane.setText("<html><p id='-1'></p></html>");
+		myPane.setText(HTML_INIT);
 		doc=(HTMLDocument)myPane.getStyledDocument();
 		try
 		{
@@ -144,7 +170,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	public void clear()
 	{
-		myPane.setText("<html><p id='0'></p></html>");
+		myPane.setText(HTML_INIT);
 		doc=(HTMLDocument)myPane.getStyledDocument();
 	}
 
@@ -154,7 +180,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			doc.insertBeforeStart(
 					doc.getElement("-1"),
-					"<p align='center'>"+anno+"</p>");
+					HTML_MESSAGE_ANNOUNCEMENT.replaceAll(HTML_TAG_ANNOUNCEMENT, anno));
 		} catch (IOException|BadLocationException e)
 		{
 			System.out.println(e);
@@ -174,44 +200,25 @@ public class ChattingBox extends JPanel implements Dispatcher
 			String tmpUser=msg.getMarkMap()
 					.containsKey(CONTENT_MARK.ANONYMOUS.getValue())?"匿名":msg.getUser();
 			String message=msg.getContent().replaceAll("\n", "<br>");
+			message=message.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()));
 			if (msg.getPictures()!=null)
 				for (int i=0; i<msg.getPictures().size(); i++)
 					//if(!(new File(test.PICTPATH+msg.pictures.get(i)).exists()))
 					//{}//调用网络接口下载图片，下载完成时刷新
 					message=message.replaceAll("[^%]%"+i+" ",
-							"<a href='pict:"+PROPICTPATH+msg.getPictureAt(i)+"'>"
-							+"<img id='"+msg.getRecordID()+"-"+i
-							+"' border='0' width=160px height=100px "
-							+"src='"+PROPICTPATH+msg.getPictureAt(i)+"' "
-							+"alt='正在加载图片'></a>");
+						HTML_MESSAGE_PICTURE
+						.replaceAll(HTML_TAG_PICTURE_AT_I, msg.getPictureAt(i))
+						.replaceAll(HTML_TAG_I, String.valueOf(i)));
 			message=message.replaceAll("%%", "%");
 			try
 			{
-				doc.insertBeforeStart(e, "<p align='center'>"+msg.getTime()+"</p>"
-						+"<table id='"+msg.getRecordID()+"' border='0' white-space='0' "
-						+"align='"+(ismyself?"right":"left")+"' "
-						+"cellspacing='0' cellpadding='0' "
-						+"style='font-size:0;-webkit-user-select:none;"
-						+"-moz-user-select:none;"
-						+"-ms-user-select:none;user-select:none;'>"
-						+"<tr><td id='"+msg.getRecordID()+"-leftHead' rowspan='3'>"
-						+(ismyself?"":getUserHead(tmpUser))
-						+"</td>"
-						+"<td><img src='"+test.IMGPATH+"bubble_lu.jpg'></td>"
-						+"<td style='background-image:url("+test.IMGPATH+"bubble_up.jpg);"
-						+"background-repeat:repeat-x;'>&nbsp;</td>"
-						+"<td><img src='"+test.IMGPATH+"bubble_ru.jpg'></td>"
-						+"<td id='"+msg.getRecordID()+"-rightHead' rowspan='3'>"
-						+(ismyself?getUserHead(msg.getUser()):"")
-						+"</td></tr>"
-						+"<tr><td style='background-image:url("+test.IMGPATH+"bubble_le.jpg)'>&nbsp;</td>"
-						+"<td id='"+msg.getRecordID()+"-message' style='-webkit-user-select:text;"
-						+"-moz-user-select:text;-ms-user-select:text;"
-						+"user-select:text;font-size:12px;'>"+message+"</td>"
-						+"<td style='background-image:url("+test.IMGPATH+"bubble_ri.jpg)'>&nbsp;</td></tr>"
-						+"<tr><td><img src='"+test.IMGPATH+"bubble_ld.jpg'></td>"
-						+"<td style='background-image:url("+test.IMGPATH+"bubble_do.jpg)'>&nbsp;</td>"
-						+"<td><img src='"+test.IMGPATH+"bubble_rd.jpg'></td></tr></table><br>");
+				doc.insertBeforeStart(e,
+					HTML_MESSAGE_BUBBLE
+					.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()))
+					.replaceAll(HTML_TAG_DIRECTION, ismyself?ALIGN_RIGHT:ALIGN_LEFT)
+					.replaceAll(HTML_TAG_LEFT_HEAD, ismyself?"":getUserHead(msg.getUser()))
+					.replaceAll(HTML_TAG_RIGHT_HEAD, ismyself?getUserHead(msg.getUser()):"")
+					.replaceAll(HTML_TAG_MESSAGE, message));
 			} catch (IOException|BadLocationException ex)
 			{
 				System.out.println(ex);
@@ -337,6 +344,51 @@ public class ChattingBox extends JPanel implements Dispatcher
 	{
 		
 	}*/
+	
+	static
+	{
+		HISTORY_RECORD_COUNT=Settings.getProperty(Settings.ChattingBox.HISTORY_RECORD_COUNT.getKey());
+		HTML_FILE_PATH=Settings.getProperty(Settings.ChattingBox.HTML_FILE_PATH.getKey());
+		MESSAGE_TYPE_PLAIN=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_PLAIN.getKey());
+		MESSAGE_TYPE_AUDIO=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_AUDIO.getKey());
+		MESSAGE_TYPE_FILE=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_FILE.getKey());
+		MESSAGE_TYPE_ANNOUNCEMENT=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_ANNOUNCEMENT.getKey());
+		
+		HTML_TAG_SPLIT=Settings.getProperty(Settings.ChattingBox.TAG_SPLIT.getKey());
+		HTML_TAG_TIME=Settings.getProperty(Settings.ChattingBox.TAG_TIME.getKey());
+		HTML_TAG_ANNOUNCEMENT=Settings.getProperty(Settings.ChattingBox.TAG_ANNOUNCEMENT.getKey());
+		HTML_TAG_RECORD_ID=Settings.getProperty(Settings.ChattingBox.TAG_RECORD_ID.getKey());
+		HTML_TAG_DIRECTION=Settings.getProperty(Settings.ChattingBox.TAG_DIRECTION.getKey());
+		HTML_TAG_LEFT_HEAD=Settings.getProperty(Settings.ChattingBox.TAG_LEFT_HEAD.getKey());
+		HTML_TAG_IMG_PATH=Settings.getProperty(Settings.ChattingBox.TAG_IMG_PATH.getKey());
+		HTML_TAG_RIGHT_HEAD=Settings.getProperty(Settings.ChattingBox.TAG_RIGHT_HEAD.getKey());
+		HTML_TAG_MESSAGE=Settings.getProperty(Settings.ChattingBox.TAG_MESSAGE.getKey());
+		HTML_TAG_PICT_PATH=Settings.getProperty(Settings.ChattingBox.TAG_PICT_PATH.getKey());
+		HTML_TAG_PICTURE_AT_I=Settings.getProperty(Settings.ChattingBox.TAG_PICTURE_AT_I.getKey());
+		HTML_TAG_I=Settings.getProperty(Settings.ChattingBox.TAG_I.getKey());
+		
+		File f=new File(test.MAINPATH+HTML_FILE_PATH);
+		BufferedReader reader;
+		StringBuilder html=new StringBuilder();
+		String str;
+		try
+		{
+			reader=new BufferedReader(new FileReader(f));
+			while(reader.ready())
+				html.append(reader.readLine());
+			str=html.toString();
+		} catch (Exception ex)
+		{
+			Logger.getLogger(ChattingBox.class.getName()).log(Level.SEVERE, null, ex);
+			str=Settings.ChattingBox.getDefaultHTML();
+		}
+		String[] htmlList=str.split(HTML_TAG_SPLIT);
+		HTML_INIT=htmlList[0];
+		HTML_MESSAGE_ANNOUNCEMENT=htmlList[1];
+		HTML_MESSAGE_TIME=htmlList[2];
+		HTML_MESSAGE_BUBBLE=htmlList[3].replaceAll(HTML_TAG_IMG_PATH, PROIMGPATH);
+		HTML_MESSAGE_PICTURE=htmlList[4].replaceAll(HTML_TAG_PICT_PATH, PROPICTPATH);
+	}
 
 	private class ChattingBoxMouseListener implements MouseListener
 	{

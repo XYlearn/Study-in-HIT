@@ -2,10 +2,12 @@ package util;
 
 import bin.test;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,9 +27,9 @@ public class Settings
 	private static final Properties propertiesTable=new Properties();
 	
 	/**
-	 * 读取属性值。
-	 * @param key 键值
-	 * @return 所查询的属性值
+	 * Get property value.
+	 * @param key the key
+	 * @return value of the corresponding property
 	 */
 	public static String getProperty(String key)
 	{
@@ -35,9 +37,9 @@ public class Settings
 	}
 	
 	/**
-	 * 设置并保存新属性。
-	 * @param key 键值
-	 * @param value 新的属性值
+	 * Set and save property.
+	 * @param key the key
+	 * @param value new value for this property
 	 */
 	public static void setProperty(String key,String value)
 	{
@@ -57,7 +59,8 @@ public class Settings
 		{
 			String[] tmp=key.split("@");
 			KEY=tmp[0];
-			DEFAULT=tmp[1];
+			if(tmp.length>1) DEFAULT=tmp[1];
+			else DEFAULT="";
 		}
 
 		public String getKey()
@@ -88,7 +91,8 @@ public class Settings
 		{
 			String[] tmp=key.split("@");
 			KEY=tmp[0];
-			DEFAULT=tmp[1];
+			if(tmp.length>1) DEFAULT=tmp[1];
+			else DEFAULT="";
 		}
 
 		public String getKey()
@@ -113,7 +117,8 @@ public class Settings
 		{
 			String[] tmp=key.split("@");
 			KEY=tmp[0];
-			DEFAULT=tmp[1];
+			if(tmp.length>1) DEFAULT=tmp[1];
+			else DEFAULT="";
 		}
 
 		public String getKey()
@@ -134,7 +139,21 @@ public class Settings
 		MESSAGE_TYPE_PLAIN("ChattingBoxMessageTypePlain@plain"),
 		MESSAGE_TYPE_AUDIO("ChattingBoxMessageTypeAudio@audio"),
 		MESSAGE_TYPE_FILE("ChattingBoxMessageTypeFile@file"),
-		MESSAGE_TYPE_ANNOUNCEMENT("ChattingBoxMessageTypeAnnouncement@anno");
+		MESSAGE_TYPE_ANNOUNCEMENT("ChattingBoxMessageTypeAnnouncement@anno"),
+		TAG_SPLIT("ChattingBoxTagSplit@<!--SPLIT-->"),
+		TAG_TIME("ChattingBoxTagTime@<!--TIME-->"),
+		TAG_ANNOUNCEMENT("ChattingBoxTagAnnouncement@<!--ANNOUNCEMENT-->"),
+		TAG_RECORD_ID("ChattingBoxTagRecordId@<!--RECORDID-->"),
+		TAG_DIRECTION("ChattingBoxTagDirection@<!--DIRECTION-->"),
+		TAG_LEFT_HEAD("ChattingBoxTagLeftHead@<!--LEFTHEAD-->"),
+		TAG_IMG_PATH("ChattingBoxTagImgPath@<!--IMGPATH-->"),
+		TAG_RIGHT_HEAD("ChattingBoxTagRightHead@<!--RIGHTHEAD-->"),
+		TAG_MESSAGE("ChattingBoxTagMessage@<!--MESSAGE-->"),
+		TAG_PICT_PATH("ChattingBoxTagPictPath@<!--PICTPATH-->"),
+		TAG_PICTURE_AT_I("ChattingBoxTagPictureAtI@<!--PICTUREATi-->"),
+		TAG_I("ChattingBoxTagI@<!--i-->");
+		
+		private static String defaultHtml=DEFAULT_HTML_FOR_CHATTING_BOX;
 		
 		private final String KEY;
 		private final String DEFAULT;
@@ -142,7 +161,8 @@ public class Settings
 		{
 			String[] tmp=key.split("@");
 			KEY=tmp[0];
-			DEFAULT=tmp[1];
+			if(tmp.length>1) DEFAULT=tmp[1];
+			else DEFAULT="";
 		}
 
 		public String getKey()
@@ -153,6 +173,16 @@ public class Settings
 		public String getDefault()
 		{
 			return DEFAULT;
+		}
+		
+		public static String getDefaultHTML()
+		{
+			return defaultHtml;
+		}
+		
+		static void setDefaultHTML(String html)
+		{
+			defaultHtml=html;
 		}
 	}
 	
@@ -166,7 +196,8 @@ public class Settings
 		{
 			String[] tmp=key.split("@");
 			KEY=tmp[0];
-			DEFAULT=tmp[1];
+			if(tmp.length>1) DEFAULT=tmp[1];
+			else DEFAULT="";
 		}
 
 		public String getKey()
@@ -190,7 +221,8 @@ public class Settings
 		{
 			String[] tmp=key.split("@");
 			KEY=tmp[0];
-			DEFAULT=tmp[1];
+			if(tmp.length>1) DEFAULT=tmp[1];
+			else DEFAULT="";
 		}
 
 		public String getKey()
@@ -219,6 +251,30 @@ public class Settings
 			Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
 			return false;
 		}
+		f=new File(test.MAINPATH+getProperty(ChattingBox.HTML_FILE_PATH.getKey()));
+		FileReader fileReader;
+		BufferedReader reader;
+		StringBuilder sb=new StringBuilder();
+		String tmp;
+		try
+		{
+			fileReader=new FileReader(f);
+			reader=new BufferedReader(fileReader);
+		} catch (FileNotFoundException ex)
+		{
+			Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+		}
+		try
+		{
+			while((tmp=reader.readLine())!=null)
+				sb.append(tmp);
+		} catch (IOException ex)
+		{
+			Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		tmp=sb.toString();
+		if(!tmp.equals("")) ChattingBox.setDefaultHTML(tmp);
 		return true;
 	}
 	
@@ -268,4 +324,68 @@ public class Settings
 		if (!loadFile())
 			saveFile();
 	}
+	
+	private static final String DEFAULT_HTML_FOR_CHATTING_BOX=
+			"<html>"
+			+"<head>"
+			+"<meta charset='UTF-8'>"
+			+"</head>"
+			+"<body>"
+			+"<p id='-1'>&nbsp;</p>"
+			+"</body>"
+			+"</html>"
+			+"<!--SPLIT-->"
+			+"<p align='center'>"
+			+"<!--ANNOUNCEMENT-->"
+			+"</p>"
+			+"<!--SPLIT-->"
+			+"<p align='center'>"
+			+"<!--TIME-->"
+			+"</p>"
+			+"<!--SPLIT-->"
+			+"<table id='<!--RECORDID-->' border='0' white-space='0' align='<!--DIRECTION-->' cellspacing='0' cellpadding='0' style='font-size:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;'>"
+			+"<tr>"
+			+"<td id='<!--RECORDID-->-leftHead' rowspan='3'>"
+			+"<!--LEFTHEAD-->"
+			+"</td>"
+			+"<td>"
+			+"<img src='<!--IMGPATH-->bubble_lu.jpg'>"
+			+"</td>"
+			+"<td style='background-image:url("
+			+"<!--IMGPATH-->bubble_up.jpg);background-repeat:repeat-x;'>"
+			+"&nbsp;"
+			+"</td>"
+			+"<td>"
+			+"<img src='<!--IMGPATH-->bubble_ru.jpg'>"
+			+"</td>"
+			+"<td id='<!--RECORDID-->-rightHead' rowspan='3'>"
+			+"<!--RIGHTHEAD-->"
+			+"</td>"
+			+"</tr>"
+			+"<tr>"
+			+"<td style='background-image:url(<!--IMGPATH-->bubble_le.jpg)'>&nbsp;</td>"
+			+"<td id='<!--RECORDID-->-message' style='-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;font-size:12px;'>"
+			+"<!--MESSAGE-->"
+			+"</td>"
+			+"<td style='background-image:url(<!--IMGPATH-->bubble_ri.jpg)'>"
+			+"&nbsp;"
+			+"</td>"
+			+"</tr>"
+			+"<tr>"
+			+"<td>"
+			+"<img src='<!--IMGPATH-->bubble_ld.jpg'>"
+			+"</td>"
+			+"<td style='background-image:url(<!--IMGPATH-->bubble_do.jpg)'>"
+			+"&nbsp;"
+			+"</td>"
+			+"<td>"
+			+"<img src='<!--IMGPATH-->bubble_rd.jpg'>"
+			+"</td>"
+			+"</tr>"
+			+"</table>"
+			+"<br/>"
+			+"<!--SPLIT-->" 
+			+"<a href='pict:<!--PICTPATH--><!--PICTUREATi-->'>" 
+			+"<img id='<!--RECORDID-->-<!--i-->' border='0' width=160px height=100px src='<!--PICTPATH--><!--PICTUREATi-->' alt='正在加载图片'>\n" 
+			+"</a>";
 }
