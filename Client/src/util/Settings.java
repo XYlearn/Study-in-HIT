@@ -11,7 +11,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +28,7 @@ public class Settings
 	private static final String COMMENT="Settings of StudyInHIT";
 	private static InputStream inStream;
 	private static final Properties propertiesTable=new Properties();
+	private static final Map<String,Consumer<String> > listenerMap=new ConcurrentHashMap<>();
 	
 	/**
 	 * Get property value.
@@ -45,6 +49,17 @@ public class Settings
 	{
 		propertiesTable.setProperty(key, value);
 		saveFile();
+		listenerMap.get(key).accept(value);
+	}
+	
+	/**
+	 * Bind an event listener of property change event to a property.
+	 * @param key the key of the property
+	 * @param listener the listener to be bind
+	 */
+	public static void bind(String key,Consumer<String> listener)
+	{
+		listenerMap.put(key, listener);
 	}
 	
 	//key and default value are splited by '@'
