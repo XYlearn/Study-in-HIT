@@ -47,18 +47,23 @@ public class ChattingBox extends JPanel implements Dispatcher
 	元素id格式：recordID-MESSAGE_TYPE-labelName-labelIndex
 	例如：3-plain-img-2
 	*/
-	public static final String MESSAGE_TYPE_PLAIN;
-	public static final String MESSAGE_TYPE_AUDIO;
-	public static final String MESSAGE_TYPE_FILE;
-	public static final String MESSAGE_TYPE_ANNOUNCEMENT;
+	private static final String MESSAGE_TYPE_PLAIN;
+	private static final String MESSAGE_TYPE_AUDIO;
+	private static final String MESSAGE_TYPE_FILE;
+	private static final String MESSAGE_TYPE_ANNOUNCEMENT;
 	
-	private static final String HISTORY_RECORD_COUNT;
+	private static final String HYPERLINK_TYPE_USER;
+	private static final String HYPERLINK_TYPE_PICTURE;
+	private static final String HYPERLINK_TYPE_AUDIO;
+	private static final String HYPERLINK_TYPE_FILE;
+	
+	private static int HISTORY_RECORD_COUNT;
 	private static final String HTML_FILE_PATH;
 	private static final String HTML_INIT;
-	private static final String HTML_MESSAGE_TIME;
-	private static final String HTML_MESSAGE_BUBBLE;
-	private static final String HTML_MESSAGE_ANNOUNCEMENT;
-	private static final String HTML_MESSAGE_PICTURE;
+	private static String HTML_MESSAGE_TIME;
+	private static String HTML_MESSAGE_BUBBLE;
+	private static String HTML_MESSAGE_ANNOUNCEMENT;
+	private static String HTML_MESSAGE_PICTURE;
 	
 	private static final String HTML_TAG_SPLIT;
 	private static final String HTML_TAG_TIME;
@@ -347,12 +352,19 @@ public class ChattingBox extends JPanel implements Dispatcher
 	
 	static
 	{
-		HISTORY_RECORD_COUNT=Settings.getProperty(Settings.ChattingBox.HISTORY_RECORD_COUNT.getKey());
+		HISTORY_RECORD_COUNT=Integer.parseInt(Settings.getProperty(Settings.ChattingBox.HISTORY_RECORD_COUNT.getKey()));
+		Settings.bind(Settings.ChattingBox.HISTORY_RECORD_COUNT.getKey(),
+				   (String s)->HISTORY_RECORD_COUNT=Integer.parseInt(s));
 		HTML_FILE_PATH=Settings.getProperty(Settings.ChattingBox.HTML_FILE_PATH.getKey());
 		MESSAGE_TYPE_PLAIN=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_PLAIN.getKey());
 		MESSAGE_TYPE_AUDIO=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_AUDIO.getKey());
 		MESSAGE_TYPE_FILE=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_FILE.getKey());
 		MESSAGE_TYPE_ANNOUNCEMENT=Settings.getProperty(Settings.ChattingBox.MESSAGE_TYPE_ANNOUNCEMENT.getKey());
+		
+		HYPERLINK_TYPE_USER=Settings.getProperty(Settings.ChattingBox.HYPERLINK_TYPE_USER.getKey());
+		HYPERLINK_TYPE_PICTURE=Settings.getProperty(Settings.ChattingBox.HYPERLINK_TYPE_PICTURE.getKey());
+		HYPERLINK_TYPE_AUDIO=Settings.getProperty(Settings.ChattingBox.HYPERLINK_TYPE_AUDIO.getKey());
+		HYPERLINK_TYPE_FILE=Settings.getProperty(Settings.ChattingBox.HYPERLINK_TYPE_FILE.getKey());
 		
 		HTML_TAG_SPLIT=Settings.getProperty(Settings.ChattingBox.TAG_SPLIT.getKey());
 		HTML_TAG_TIME=Settings.getProperty(Settings.ChattingBox.TAG_TIME.getKey());
@@ -406,25 +418,24 @@ public class ChattingBox extends JPanel implements Dispatcher
 				if (onHyperlink)
 				{
 					String cmd=currentHyperlink.substring(0, 4);
-				switch (cmd)
-				{
-					case "user":
+					if(HYPERLINK_TYPE_USER.equals(cmd))
+					{
 						//user.add(abspeak)
 						//abspeak.setEnabled(true);
 						getInfo.setEnabled(true);
 						reset.setEnabled(true);
 						userMenu.show(ChattingBox.this, e.getX(), e.getY());
-						break;
-					case "pict":
-						break;
-					case "audi":
-						break;
-					case "file":
-						break;
-					default:
-						break;
+					}
+					else if(HYPERLINK_TYPE_PICTURE.equals(cmd))
+					{}
+					else if(HYPERLINK_TYPE_AUDIO.equals(cmd))
+					{}
+					else if(HYPERLINK_TYPE_FILE.equals(cmd))
+					{}
+					else
+					{}
 				}
-				} else
+				else
 				{
 					copy.setEnabled(true);
 					reset.setEnabled(true);
@@ -481,13 +492,15 @@ public class ChattingBox extends JPanel implements Dispatcher
 			{
 				//System.out.println("HyperlinkActivated!!");
 				String cmd=currentHyperlink.substring(0, 4);
-				if (cmd.equals("user"))
+				if (HYPERLINK_TYPE_USER.equals(cmd))
 				{
 					//利用currentHyperlink.substring(5)打开个人资料
-				} else if (cmd.equals("pict"))
+				}
+				else if (HYPERLINK_TYPE_PICTURE.equals(cmd))
 				{
 					//利用图片框打开大图
-				} else if (cmd.equals("audi"))
+				}
+				else if (HYPERLINK_TYPE_AUDIO.equals(cmd))
 					//System.out.println("激活超链接："+currentHyperlink);
 					if (AudioTools.isPlaying())
 						try
@@ -520,7 +533,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						{
 							System.out.println(ex);
 						}
-				else if (cmd.equals("file"))
+				else if (HYPERLINK_TYPE_FILE.equals(cmd))
 				{
 					File f;
 					if ((f=new File(test.FILEPATH+currentHyperlink.substring(5))).exists())
