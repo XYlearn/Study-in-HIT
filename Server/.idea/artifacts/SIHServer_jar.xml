@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SIHServer:jar">
+    <output-path>$PROJECT_DIR$/../SIHServer/out/artifacts/SIHServer_jar</output-path>
+    <root id="archive" name="SIHServer.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../SIHServer/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="SIHServer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SIHServer/lib/log4j-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SIHServer/lib/protobuf-java-3.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SIHServer/lib/qCloud.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../SIHServer/lib/mariadb-java-client-1.5.9.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

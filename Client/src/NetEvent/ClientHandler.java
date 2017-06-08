@@ -10,6 +10,7 @@ import com.qcloud.cos.request.UploadFileRequest;
 import gui.ChattingBox;
 import gui.InputBox;
 import gui.ListBox;
+import gui.WhiteBoard;
 import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
@@ -112,6 +113,10 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case GET_USER_LIST_RESPONSE:	//
 					netEvent = handleResponseGetUserList(recvMessage);
+					break;
+				case WHITE_BOARD_MESSAGE:
+					netEvent = handleResponseWhiteBoardMessage(recvMessage);
+					WhiteBoard.dispatch(netEvent);
 					break;
 				case BAD_MESSAGE:	//
 					System.out.println("未知消息:\n" + recvMessage);
@@ -271,6 +276,10 @@ public class ClientHandler extends IoHandlerAdapter {
 
 	private NetEvent handleResponseUserInformation(ServerResponseMessage.Message recvMessage) {
 		return (NetEvent) new UserInfoEvent(recvMessage.getUserInformationResponse());
+	}
+
+	private NetEvent handleResponseWhiteBoardMessage(ServerResponseMessage.Message recvMessage) {
+		return (NetEvent) new WhiteBoardEvent(recvMessage.getWhiteBoardMessage());
 	}
 
 	@Native

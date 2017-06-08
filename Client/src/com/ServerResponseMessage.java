@@ -139,6 +139,10 @@ public final class ServerResponseMessage {
      * <code>GET_USER_LIST_RESPONSE = 20;</code>
      */
     GET_USER_LIST_RESPONSE(20),
+    /**
+     * <code>WHITE_BOARD_MESSAGE = 21;</code>
+     */
+    WHITE_BOARD_MESSAGE(21),
     UNRECOGNIZED(-1),
     ;
 
@@ -258,6 +262,10 @@ public final class ServerResponseMessage {
      * <code>GET_USER_LIST_RESPONSE = 20;</code>
      */
     public static final int GET_USER_LIST_RESPONSE_VALUE = 20;
+    /**
+     * <code>WHITE_BOARD_MESSAGE = 21;</code>
+     */
+    public static final int WHITE_BOARD_MESSAGE_VALUE = 21;
 
 
     public final int getNumber() {
@@ -296,6 +304,7 @@ public final class ServerResponseMessage {
         case 18: return SOLVED_QUESTION_RESPONSE;
         case 19: return BAD_MESSAGE;
         case 20: return GET_USER_LIST_RESPONSE;
+        case 21: return WHITE_BOARD_MESSAGE;
         default: return null;
       }
     }
@@ -18962,6 +18971,978 @@ public final class ServerResponseMessage {
 
   }
 
+  public interface WhiteBoardMessageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:WhiteBoardMessage)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 x1 = 1;</code>
+     */
+    int getX1();
+
+    /**
+     * <code>optional int32 y1 = 2;</code>
+     */
+    int getY1();
+
+    /**
+     * <code>optional int32 x2 = 3;</code>
+     */
+    int getX2();
+
+    /**
+     * <code>optional int32 y2 = 4;</code>
+     */
+    int getY2();
+
+    /**
+     * <code>optional int32 color = 5;</code>
+     */
+    int getColor();
+
+    /**
+     * <code>optional float stroke = 6;</code>
+     */
+    float getStroke();
+
+    /**
+     * <code>optional int64 questionId = 7;</code>
+     */
+    long getQuestionId();
+  }
+  /**
+   * Protobuf type {@code WhiteBoardMessage}
+   */
+  public  static final class WhiteBoardMessage extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:WhiteBoardMessage)
+      WhiteBoardMessageOrBuilder {
+    // Use WhiteBoardMessage.newBuilder() to construct.
+    private WhiteBoardMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private WhiteBoardMessage() {
+      x1_ = 0;
+      y1_ = 0;
+      x2_ = 0;
+      y2_ = 0;
+      color_ = 0;
+      stroke_ = 0F;
+      questionId_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private WhiteBoardMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              x1_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              y1_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              x2_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              y2_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              color_ = input.readInt32();
+              break;
+            }
+            case 53: {
+
+              stroke_ = input.readFloat();
+              break;
+            }
+            case 56: {
+
+              questionId_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ServerResponseMessage.internal_static_WhiteBoardMessage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ServerResponseMessage.internal_static_WhiteBoardMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ServerResponseMessage.WhiteBoardMessage.class, com.ServerResponseMessage.WhiteBoardMessage.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code WhiteBoardMessage.COLOR}
+     */
+    public enum COLOR
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>RED = 0;</code>
+       */
+      RED(0),
+      /**
+       * <code>ORANGE = 1;</code>
+       */
+      ORANGE(1),
+      /**
+       * <code>YELLOW = 2;</code>
+       */
+      YELLOW(2),
+      /**
+       * <code>GREEN = 3;</code>
+       */
+      GREEN(3),
+      /**
+       * <code>CYAN = 4;</code>
+       */
+      CYAN(4),
+      /**
+       * <code>BLUE = 5;</code>
+       */
+      BLUE(5),
+      /**
+       * <code>MAGENTA = 6;</code>
+       */
+      MAGENTA(6),
+      /**
+       * <code>WHITE = 7;</code>
+       */
+      WHITE(7),
+      /**
+       * <code>BLACK = 8;</code>
+       */
+      BLACK(8),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>RED = 0;</code>
+       */
+      public static final int RED_VALUE = 0;
+      /**
+       * <code>ORANGE = 1;</code>
+       */
+      public static final int ORANGE_VALUE = 1;
+      /**
+       * <code>YELLOW = 2;</code>
+       */
+      public static final int YELLOW_VALUE = 2;
+      /**
+       * <code>GREEN = 3;</code>
+       */
+      public static final int GREEN_VALUE = 3;
+      /**
+       * <code>CYAN = 4;</code>
+       */
+      public static final int CYAN_VALUE = 4;
+      /**
+       * <code>BLUE = 5;</code>
+       */
+      public static final int BLUE_VALUE = 5;
+      /**
+       * <code>MAGENTA = 6;</code>
+       */
+      public static final int MAGENTA_VALUE = 6;
+      /**
+       * <code>WHITE = 7;</code>
+       */
+      public static final int WHITE_VALUE = 7;
+      /**
+       * <code>BLACK = 8;</code>
+       */
+      public static final int BLACK_VALUE = 8;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static COLOR valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static COLOR forNumber(int value) {
+        switch (value) {
+          case 0: return RED;
+          case 1: return ORANGE;
+          case 2: return YELLOW;
+          case 3: return GREEN;
+          case 4: return CYAN;
+          case 5: return BLUE;
+          case 6: return MAGENTA;
+          case 7: return WHITE;
+          case 8: return BLACK;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<COLOR>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          COLOR> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<COLOR>() {
+              public COLOR findValueByNumber(int number) {
+                return COLOR.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.WhiteBoardMessage.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final COLOR[] VALUES = values();
+
+      public static COLOR valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private COLOR(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:WhiteBoardMessage.COLOR)
+    }
+
+    public static final int X1_FIELD_NUMBER = 1;
+    private int x1_;
+    /**
+     * <code>optional int32 x1 = 1;</code>
+     */
+    public int getX1() {
+      return x1_;
+    }
+
+    public static final int Y1_FIELD_NUMBER = 2;
+    private int y1_;
+    /**
+     * <code>optional int32 y1 = 2;</code>
+     */
+    public int getY1() {
+      return y1_;
+    }
+
+    public static final int X2_FIELD_NUMBER = 3;
+    private int x2_;
+    /**
+     * <code>optional int32 x2 = 3;</code>
+     */
+    public int getX2() {
+      return x2_;
+    }
+
+    public static final int Y2_FIELD_NUMBER = 4;
+    private int y2_;
+    /**
+     * <code>optional int32 y2 = 4;</code>
+     */
+    public int getY2() {
+      return y2_;
+    }
+
+    public static final int COLOR_FIELD_NUMBER = 5;
+    private int color_;
+    /**
+     * <code>optional int32 color = 5;</code>
+     */
+    public int getColor() {
+      return color_;
+    }
+
+    public static final int STROKE_FIELD_NUMBER = 6;
+    private float stroke_;
+    /**
+     * <code>optional float stroke = 6;</code>
+     */
+    public float getStroke() {
+      return stroke_;
+    }
+
+    public static final int QUESTIONID_FIELD_NUMBER = 7;
+    private long questionId_;
+    /**
+     * <code>optional int64 questionId = 7;</code>
+     */
+    public long getQuestionId() {
+      return questionId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (x1_ != 0) {
+        output.writeInt32(1, x1_);
+      }
+      if (y1_ != 0) {
+        output.writeInt32(2, y1_);
+      }
+      if (x2_ != 0) {
+        output.writeInt32(3, x2_);
+      }
+      if (y2_ != 0) {
+        output.writeInt32(4, y2_);
+      }
+      if (color_ != 0) {
+        output.writeInt32(5, color_);
+      }
+      if (stroke_ != 0F) {
+        output.writeFloat(6, stroke_);
+      }
+      if (questionId_ != 0L) {
+        output.writeInt64(7, questionId_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (x1_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, x1_);
+      }
+      if (y1_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, y1_);
+      }
+      if (x2_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, x2_);
+      }
+      if (y2_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, y2_);
+      }
+      if (color_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, color_);
+      }
+      if (stroke_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(6, stroke_);
+      }
+      if (questionId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, questionId_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage)) {
+        return super.equals(obj);
+      }
+      com.ServerResponseMessage.WhiteBoardMessage other = (com.ServerResponseMessage.WhiteBoardMessage) obj;
+
+      boolean result = true;
+      result = result && (getX1()
+          == other.getX1());
+      result = result && (getY1()
+          == other.getY1());
+      result = result && (getX2()
+          == other.getX2());
+      result = result && (getY2()
+          == other.getY2());
+      result = result && (getColor()
+          == other.getColor());
+      result = result && (
+          java.lang.Float.floatToIntBits(getStroke())
+          == java.lang.Float.floatToIntBits(
+              other.getStroke()));
+      result = result && (getQuestionId()
+          == other.getQuestionId());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + X1_FIELD_NUMBER;
+      hash = (53 * hash) + getX1();
+      hash = (37 * hash) + Y1_FIELD_NUMBER;
+      hash = (53 * hash) + getY1();
+      hash = (37 * hash) + X2_FIELD_NUMBER;
+      hash = (53 * hash) + getX2();
+      hash = (37 * hash) + Y2_FIELD_NUMBER;
+      hash = (53 * hash) + getY2();
+      hash = (37 * hash) + COLOR_FIELD_NUMBER;
+      hash = (53 * hash) + getColor();
+      hash = (37 * hash) + STROKE_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getStroke());
+      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getQuestionId());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ServerResponseMessage.WhiteBoardMessage prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code WhiteBoardMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:WhiteBoardMessage)
+        com.ServerResponseMessage.WhiteBoardMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.internal_static_WhiteBoardMessage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ServerResponseMessage.internal_static_WhiteBoardMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ServerResponseMessage.WhiteBoardMessage.class, com.ServerResponseMessage.WhiteBoardMessage.Builder.class);
+      }
+
+      // Construct using com.ServerResponseMessage.WhiteBoardMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        x1_ = 0;
+
+        y1_ = 0;
+
+        x2_ = 0;
+
+        y2_ = 0;
+
+        color_ = 0;
+
+        stroke_ = 0F;
+
+        questionId_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ServerResponseMessage.internal_static_WhiteBoardMessage_descriptor;
+      }
+
+      public com.ServerResponseMessage.WhiteBoardMessage getDefaultInstanceForType() {
+        return com.ServerResponseMessage.WhiteBoardMessage.getDefaultInstance();
+      }
+
+      public com.ServerResponseMessage.WhiteBoardMessage build() {
+        com.ServerResponseMessage.WhiteBoardMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ServerResponseMessage.WhiteBoardMessage buildPartial() {
+        com.ServerResponseMessage.WhiteBoardMessage result = new com.ServerResponseMessage.WhiteBoardMessage(this);
+        result.x1_ = x1_;
+        result.y1_ = y1_;
+        result.x2_ = x2_;
+        result.y2_ = y2_;
+        result.color_ = color_;
+        result.stroke_ = stroke_;
+        result.questionId_ = questionId_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ServerResponseMessage.WhiteBoardMessage) {
+          return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ServerResponseMessage.WhiteBoardMessage other) {
+        if (other == com.ServerResponseMessage.WhiteBoardMessage.getDefaultInstance()) return this;
+        if (other.getX1() != 0) {
+          setX1(other.getX1());
+        }
+        if (other.getY1() != 0) {
+          setY1(other.getY1());
+        }
+        if (other.getX2() != 0) {
+          setX2(other.getX2());
+        }
+        if (other.getY2() != 0) {
+          setY2(other.getY2());
+        }
+        if (other.getColor() != 0) {
+          setColor(other.getColor());
+        }
+        if (other.getStroke() != 0F) {
+          setStroke(other.getStroke());
+        }
+        if (other.getQuestionId() != 0L) {
+          setQuestionId(other.getQuestionId());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ServerResponseMessage.WhiteBoardMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int x1_ ;
+      /**
+       * <code>optional int32 x1 = 1;</code>
+       */
+      public int getX1() {
+        return x1_;
+      }
+      /**
+       * <code>optional int32 x1 = 1;</code>
+       */
+      public Builder setX1(int value) {
+        
+        x1_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 x1 = 1;</code>
+       */
+      public Builder clearX1() {
+        
+        x1_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y1_ ;
+      /**
+       * <code>optional int32 y1 = 2;</code>
+       */
+      public int getY1() {
+        return y1_;
+      }
+      /**
+       * <code>optional int32 y1 = 2;</code>
+       */
+      public Builder setY1(int value) {
+        
+        y1_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 y1 = 2;</code>
+       */
+      public Builder clearY1() {
+        
+        y1_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int x2_ ;
+      /**
+       * <code>optional int32 x2 = 3;</code>
+       */
+      public int getX2() {
+        return x2_;
+      }
+      /**
+       * <code>optional int32 x2 = 3;</code>
+       */
+      public Builder setX2(int value) {
+        
+        x2_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 x2 = 3;</code>
+       */
+      public Builder clearX2() {
+        
+        x2_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y2_ ;
+      /**
+       * <code>optional int32 y2 = 4;</code>
+       */
+      public int getY2() {
+        return y2_;
+      }
+      /**
+       * <code>optional int32 y2 = 4;</code>
+       */
+      public Builder setY2(int value) {
+        
+        y2_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 y2 = 4;</code>
+       */
+      public Builder clearY2() {
+        
+        y2_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int color_ ;
+      /**
+       * <code>optional int32 color = 5;</code>
+       */
+      public int getColor() {
+        return color_;
+      }
+      /**
+       * <code>optional int32 color = 5;</code>
+       */
+      public Builder setColor(int value) {
+        
+        color_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 color = 5;</code>
+       */
+      public Builder clearColor() {
+        
+        color_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private float stroke_ ;
+      /**
+       * <code>optional float stroke = 6;</code>
+       */
+      public float getStroke() {
+        return stroke_;
+      }
+      /**
+       * <code>optional float stroke = 6;</code>
+       */
+      public Builder setStroke(float value) {
+        
+        stroke_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional float stroke = 6;</code>
+       */
+      public Builder clearStroke() {
+        
+        stroke_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private long questionId_ ;
+      /**
+       * <code>optional int64 questionId = 7;</code>
+       */
+      public long getQuestionId() {
+        return questionId_;
+      }
+      /**
+       * <code>optional int64 questionId = 7;</code>
+       */
+      public Builder setQuestionId(long value) {
+        
+        questionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 questionId = 7;</code>
+       */
+      public Builder clearQuestionId() {
+        
+        questionId_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:WhiteBoardMessage)
+    }
+
+    // @@protoc_insertion_point(class_scope:WhiteBoardMessage)
+    private static final com.ServerResponseMessage.WhiteBoardMessage DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ServerResponseMessage.WhiteBoardMessage();
+    }
+
+    public static com.ServerResponseMessage.WhiteBoardMessage getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<WhiteBoardMessage>
+        PARSER = new com.google.protobuf.AbstractParser<WhiteBoardMessage>() {
+      public WhiteBoardMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new WhiteBoardMessage(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<WhiteBoardMessage> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<WhiteBoardMessage> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ServerResponseMessage.WhiteBoardMessage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface MessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Message)
       com.google.protobuf.MessageOrBuilder {
@@ -19205,6 +20186,19 @@ public final class ServerResponseMessage {
      * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
      */
     com.ServerResponseMessage.GetUserListResponseOrBuilder getGetUserListResponseOrBuilder();
+
+    /**
+     * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+     */
+    boolean hasWhiteBoardMessage();
+    /**
+     * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+     */
+    com.ServerResponseMessage.WhiteBoardMessage getWhiteBoardMessage();
+    /**
+     * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+     */
+    com.ServerResponseMessage.WhiteBoardMessageOrBuilder getWhiteBoardMessageOrBuilder();
   }
   /**
    * <pre>
@@ -19480,6 +20474,19 @@ public final class ServerResponseMessage {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(getUserListResponse_);
                 getUserListResponse_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 186: {
+              com.ServerResponseMessage.WhiteBoardMessage.Builder subBuilder = null;
+              if (whiteBoardMessage_ != null) {
+                subBuilder = whiteBoardMessage_.toBuilder();
+              }
+              whiteBoardMessage_ = input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(whiteBoardMessage_);
+                whiteBoardMessage_ = subBuilder.buildPartial();
               }
 
               break;
@@ -19914,6 +20921,27 @@ public final class ServerResponseMessage {
       return getGetUserListResponse();
     }
 
+    public static final int WHITEBOARDMESSAGE_FIELD_NUMBER = 23;
+    private com.ServerResponseMessage.WhiteBoardMessage whiteBoardMessage_;
+    /**
+     * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+     */
+    public boolean hasWhiteBoardMessage() {
+      return whiteBoardMessage_ != null;
+    }
+    /**
+     * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+     */
+    public com.ServerResponseMessage.WhiteBoardMessage getWhiteBoardMessage() {
+      return whiteBoardMessage_ == null ? com.ServerResponseMessage.WhiteBoardMessage.getDefaultInstance() : whiteBoardMessage_;
+    }
+    /**
+     * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+     */
+    public com.ServerResponseMessage.WhiteBoardMessageOrBuilder getWhiteBoardMessageOrBuilder() {
+      return getWhiteBoardMessage();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -19982,6 +21010,9 @@ public final class ServerResponseMessage {
       }
       if (getUserListResponse_ != null) {
         output.writeMessage(22, getGetUserListResponse());
+      }
+      if (whiteBoardMessage_ != null) {
+        output.writeMessage(23, getWhiteBoardMessage());
       }
     }
 
@@ -20064,6 +21095,10 @@ public final class ServerResponseMessage {
       if (getUserListResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(22, getGetUserListResponse());
+      }
+      if (whiteBoardMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, getWhiteBoardMessage());
       }
       memoizedSize = size;
       return size;
@@ -20169,6 +21204,11 @@ public final class ServerResponseMessage {
         result = result && getGetUserListResponse()
             .equals(other.getGetUserListResponse());
       }
+      result = result && (hasWhiteBoardMessage() == other.hasWhiteBoardMessage());
+      if (hasWhiteBoardMessage()) {
+        result = result && getWhiteBoardMessage()
+            .equals(other.getWhiteBoardMessage());
+      }
       return result;
     }
 
@@ -20250,6 +21290,10 @@ public final class ServerResponseMessage {
       if (hasGetUserListResponse()) {
         hash = (37 * hash) + GETUSERLISTRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getGetUserListResponse().hashCode();
+      }
+      if (hasWhiteBoardMessage()) {
+        hash = (37 * hash) + WHITEBOARDMESSAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getWhiteBoardMessage().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -20479,6 +21523,12 @@ public final class ServerResponseMessage {
           getUserListResponse_ = null;
           getUserListResponseBuilder_ = null;
         }
+        if (whiteBoardMessageBuilder_ == null) {
+          whiteBoardMessage_ = null;
+        } else {
+          whiteBoardMessage_ = null;
+          whiteBoardMessageBuilder_ = null;
+        }
         return this;
       }
 
@@ -20588,6 +21638,11 @@ public final class ServerResponseMessage {
         } else {
           result.getUserListResponse_ = getUserListResponseBuilder_.build();
         }
+        if (whiteBoardMessageBuilder_ == null) {
+          result.whiteBoardMessage_ = whiteBoardMessage_;
+        } else {
+          result.whiteBoardMessage_ = whiteBoardMessageBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -20686,6 +21741,9 @@ public final class ServerResponseMessage {
         }
         if (other.hasGetUserListResponse()) {
           mergeGetUserListResponse(other.getGetUserListResponse());
+        }
+        if (other.hasWhiteBoardMessage()) {
+          mergeWhiteBoardMessage(other.getWhiteBoardMessage());
         }
         onChanged();
         return this;
@@ -22814,6 +23872,123 @@ public final class ServerResponseMessage {
         }
         return getUserListResponseBuilder_;
       }
+
+      private com.ServerResponseMessage.WhiteBoardMessage whiteBoardMessage_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.WhiteBoardMessage, com.ServerResponseMessage.WhiteBoardMessage.Builder, com.ServerResponseMessage.WhiteBoardMessageOrBuilder> whiteBoardMessageBuilder_;
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public boolean hasWhiteBoardMessage() {
+        return whiteBoardMessageBuilder_ != null || whiteBoardMessage_ != null;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage getWhiteBoardMessage() {
+        if (whiteBoardMessageBuilder_ == null) {
+          return whiteBoardMessage_ == null ? com.ServerResponseMessage.WhiteBoardMessage.getDefaultInstance() : whiteBoardMessage_;
+        } else {
+          return whiteBoardMessageBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public Builder setWhiteBoardMessage(com.ServerResponseMessage.WhiteBoardMessage value) {
+        if (whiteBoardMessageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          whiteBoardMessage_ = value;
+          onChanged();
+        } else {
+          whiteBoardMessageBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public Builder setWhiteBoardMessage(
+          com.ServerResponseMessage.WhiteBoardMessage.Builder builderForValue) {
+        if (whiteBoardMessageBuilder_ == null) {
+          whiteBoardMessage_ = builderForValue.build();
+          onChanged();
+        } else {
+          whiteBoardMessageBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public Builder mergeWhiteBoardMessage(com.ServerResponseMessage.WhiteBoardMessage value) {
+        if (whiteBoardMessageBuilder_ == null) {
+          if (whiteBoardMessage_ != null) {
+            whiteBoardMessage_ =
+              com.ServerResponseMessage.WhiteBoardMessage.newBuilder(whiteBoardMessage_).mergeFrom(value).buildPartial();
+          } else {
+            whiteBoardMessage_ = value;
+          }
+          onChanged();
+        } else {
+          whiteBoardMessageBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public Builder clearWhiteBoardMessage() {
+        if (whiteBoardMessageBuilder_ == null) {
+          whiteBoardMessage_ = null;
+          onChanged();
+        } else {
+          whiteBoardMessage_ = null;
+          whiteBoardMessageBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.Builder getWhiteBoardMessageBuilder() {
+        
+        onChanged();
+        return getWhiteBoardMessageFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessageOrBuilder getWhiteBoardMessageOrBuilder() {
+        if (whiteBoardMessageBuilder_ != null) {
+          return whiteBoardMessageBuilder_.getMessageOrBuilder();
+        } else {
+          return whiteBoardMessage_ == null ?
+              com.ServerResponseMessage.WhiteBoardMessage.getDefaultInstance() : whiteBoardMessage_;
+        }
+      }
+      /**
+       * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.WhiteBoardMessage, com.ServerResponseMessage.WhiteBoardMessage.Builder, com.ServerResponseMessage.WhiteBoardMessageOrBuilder> 
+          getWhiteBoardMessageFieldBuilder() {
+        if (whiteBoardMessageBuilder_ == null) {
+          whiteBoardMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.WhiteBoardMessage, com.ServerResponseMessage.WhiteBoardMessage.Builder, com.ServerResponseMessage.WhiteBoardMessageOrBuilder>(
+                  getWhiteBoardMessage(),
+                  getParentForChildren(),
+                  isClean());
+          whiteBoardMessage_ = null;
+        }
+        return whiteBoardMessageBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -22994,6 +24169,11 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_GetUserListResponse_UsersEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_WhiteBoardMessage_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_WhiteBoardMessage_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -23068,47 +24248,55 @@ public final class ServerResponseMessage {
       "e\030\004 \001(\0162#.GetUserListResponse.USER_LIST_" +
       "TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value",
       "\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n\021ACQUAINT" +
-      "ANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\233\007\n\007" +
-      "Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010usern" +
-      "ame\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.Launc" +
-      "hResponse\022+\n\020registerResponse\030\004 \001(\0132\021.Re" +
-      "gisterResponse\022!\n\013sendContent\030\005 \001(\0132\014.Se" +
-      "ndContent\0221\n\023announcementMessage\030\006 \001(\0132\024" +
-      ".AnnouncementMessage\0225\n\025questionEnterRes" +
-      "ponse\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024g" +
-      "oodQuestionResponse\030\010 \001(\0132\025.GoodQuestion",
-      "Response\022+\n\020goodUserResponse\030\n \001(\0132\021.Goo" +
-      "dUserResponse\022#\n\014fileResponse\030\t \001(\0132\r.Fi" +
-      "leResponse\022%\n\rupdateMessage\030\013 \001(\0132\016.Upda" +
-      "teMessage\022A\n\033questionInformationResponse" +
-      "\030\r \001(\0132\034.QuestionInformationResponse\0229\n\027" +
-      "userInformationResponse\030\016 \001(\0132\030.UserInfo" +
-      "rmationResponse\0229\n\027getQuestionListRespon" +
-      "se\030\017 \001(\0132\030.GetQuestionListResponse\0227\n\026cr" +
-      "eateQuestionResponse\030\022 \001(\0132\027.CreateQuest" +
-      "ionResponse\0229\n\027abandonQuestionResponse\030\023",
-      " \001(\0132\030.AbandonQuestionResponse\022=\n\031search" +
-      "InformationResponse\030\024 \001(\0132\032.SearchInform" +
-      "ationResponse\0227\n\026solvedQuestionResponse\030" +
-      "\025 \001(\0132\027.SolvedQuestionResponse\0221\n\023getUse" +
-      "rListResponse\030\026 \001(\0132\024.GetUserListRespons" +
-      "e*\340\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGIST" +
-      "ER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOU" +
-      "NCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESP" +
-      "ONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GO" +
-      "OD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021",
-      "\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATIO" +
-      "N_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPONS" +
-      "E\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030C" +
-      "REATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUE" +
-      "STION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_R" +
-      "ESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022" +
-      "\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESPON" +
-      "SE\020\024*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023" +
-      "\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)" +
-      "\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020",
-      "\002*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerRe" +
-      "sponseMessageb\006proto3"
+      "ANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\342\001\n\021" +
+      "WhiteBoardMessage\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(" +
+      "\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005" +
+      "\022\016\n\006stroke\030\006 \001(\002\022\022\n\nquestionId\030\007 \001(\003\"j\n\005" +
+      "COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020\002\022\t" +
+      "\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA" +
+      "\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\312\007\n\007Message\022\026\n\010" +
+      "msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&" +
+      "\n\rlauchResponse\030\003 \001(\0132\017.LaunchResponse\022+",
+      "\n\020registerResponse\030\004 \001(\0132\021.RegisterRespo" +
+      "nse\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221" +
+      "\n\023announcementMessage\030\006 \001(\0132\024.Announceme" +
+      "ntMessage\0225\n\025questionEnterResponse\030\007 \001(\013" +
+      "2\026.QuestionEnterResponse\0223\n\024goodQuestion" +
+      "Response\030\010 \001(\0132\025.GoodQuestionResponse\022+\n" +
+      "\020goodUserResponse\030\n \001(\0132\021.GoodUserRespon" +
+      "se\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022" +
+      "%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A" +
+      "\n\033questionInformationResponse\030\r \001(\0132\034.Qu",
+      "estionInformationResponse\0229\n\027userInforma" +
+      "tionResponse\030\016 \001(\0132\030.UserInformationResp" +
+      "onse\0229\n\027getQuestionListResponse\030\017 \001(\0132\030." +
+      "GetQuestionListResponse\0227\n\026createQuestio" +
+      "nResponse\030\022 \001(\0132\027.CreateQuestionResponse" +
+      "\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030.Aban" +
+      "donQuestionResponse\022=\n\031searchInformation" +
+      "Response\030\024 \001(\0132\032.SearchInformationRespon" +
+      "se\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Sol" +
+      "vedQuestionResponse\0221\n\023getUserListRespon",
+      "se\030\026 \001(\0132\024.GetUserListResponse\022-\n\021whiteB" +
+      "oardMessage\030\027 \001(\0132\022.WhiteBoardMessage*\371\003" +
+      "\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER_R" +
+      "ESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEM" +
+      "ENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPONSE" +
+      "\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD_U" +
+      "SER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFI" +
+      "LE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATION_RE" +
+      "SPONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE\020\013\022" +
+      "\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CREAT",
+      "E_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUESTIO" +
+      "N_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RESPO" +
+      "NSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022\017\n\013B" +
+      "AD_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESPONSE\020\024" +
+      "\022\027\n\023WHITE_BOARD_MESSAGE\020\025*H\n\014CONTENT_TYP" +
+      "E\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001" +
+      "\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JP" +
+      "EG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003M" +
+      "P4\020\000B\034\n\003comB\025ServerResponseMessageb\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -23278,12 +24466,18 @@ public final class ServerResponseMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetUserListResponse_UsersEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_Message_descriptor =
+    internal_static_WhiteBoardMessage_descriptor =
       getDescriptor().getMessageTypes().get(21);
+    internal_static_WhiteBoardMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_WhiteBoardMessage_descriptor,
+        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Stroke", "QuestionId", });
+    internal_static_Message_descriptor =
+      getDescriptor().getMessageTypes().get(22);
     internal_static_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "FileResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", "SolvedQuestionResponse", "GetUserListResponse", });
+        new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "FileResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", "SolvedQuestionResponse", "GetUserListResponse", "WhiteBoardMessage", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

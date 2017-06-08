@@ -9,22 +9,56 @@ package gui;
  *
  * @author zhaowei
  */
+import NetEvent.Client;
+import NetEvent.eventcom.NetEvent;
+import NetEvent.eventcom.WhiteBoardEvent;
+import gui.dao.LoginFrame;
+import util.Dispatcher;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.event.*;
 /**
  *
  * @author zhaowei
  */
-public class WhiteBoard extends JFrame
-        implements ActionListener,ChangeListener{
+public class WhiteBoard extends JPanel
+        implements ActionListener,ChangeListener, Dispatcher{
+
+    /*test function*/
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.start();
+
+        Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+        JFrame frame = new JFrame();
+        frame.add(new WhiteBoard(client));
+        frame.setTitle("White Board");
+        frame.setSize(screenSize.width/2, screenSize.height/2);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setLocation(screenSize.width/4, screenSize.height/4);
+
+        try {
+            client.launchRequest("xy16", "123456");
+        } catch (Exception e) {}
+    }
+
+
     ColorPanel colorChoose = new ColorPanel();
-    ScribblePanel sP1 = new ScribblePanel();
+    ScribblePanel sP1;
     private JSlider jsldVert = new JSlider(JSlider.VERTICAL,0,20,4);
+    private Client client = null;
+    private static Map boardMap = new HashMap();
+    private static int num = 0;
     
-       public WhiteBoard(){
-           getContentPane().setLayout(new BorderLayout());
+       public WhiteBoard(Client client){
+           this.setLayout(new BorderLayout());
+           sP1 = new ScribblePanel(client);
            colorChoose.setLayout(new GridLayout(0,1));
            colorChoose.jb1.addActionListener(this);
            colorChoose.jb2.addActionListener(this);
@@ -40,10 +74,11 @@ public class WhiteBoard extends JFrame
            jsldVert.setMajorTickSpacing(4);
            jsldVert.setMinorTickSpacing(1);
            jsldVert.setPaintTrack(false);
-           getContentPane().add(sP1,BorderLayout.CENTER);
-           getContentPane().add(colorChoose,BorderLayout.EAST);
-           getContentPane().add(jsldVert,BorderLayout.WEST);
+           this.add(sP1,BorderLayout.CENTER);
+           this.add(colorChoose,BorderLayout.EAST);
+           this.add(jsldVert,BorderLayout.WEST);
            jsldVert.addChangeListener(this);
+           boardMap.put(num++, this.sP1);
        }
        
     @Override
@@ -66,7 +101,7 @@ public class WhiteBoard extends JFrame
             sP1.color = (Color.WHITE);
         if(e.getSource() == colorChoose.jb9)
             sP1.color = (Color.BLACK);
-        
+
     }
     public void setWhiteColor(Graphics g) {
         g.setColor(Color.WHITE); 
@@ -79,54 +114,84 @@ public class WhiteBoard extends JFrame
         float newPenSize = (float)(15*value/maximumValue);
         sP1.setPenSize(newPenSize);
     }
-}
-  class ScribblePanel extends JPanel
-        implements MouseListener,MouseMotionListener{
-    final int CIRCLESIZE = 20;
-    Color color = Color.BLACK;
-    private Point lineStart = new Point(0,0);
-    public Graphics g;
-    public Graphics2D g2;
-    public float penSize = 3;
-    public ScribblePanel(){
-        addMouseListener(this);
-        addMouseMotionListener(this);
+
+    public static void dispatch(NetEvent event) {
+        ScribblePanel panel = (ScribblePanel) boardMap.get(0);
+        WhiteBoardEvent e = (WhiteBoardEvent) event;
+        panel.draw(e.getColor(), e.getStroke(), e.getX1(), e.getY1(), e.getX2(), e.getY2());
     }
-    public void mouseClicked(MouseEvent e){
-        
-    }
-    public void mouseEntered(MouseEvent e){
-        
-    }
-    public void mouseExited(MouseEvent e){
-        
-    }
-    public void mouseReleased(MouseEvent e){
-        
-    }
-    public void mousePressed(MouseEvent e){
-        lineStart.move(e.getX(),e.getY());
-    }
-    public void mouseDragged(MouseEvent e){
-        g = getGraphics();
-        g2 = (Graphics2D)g;
-        if(e.isMetaDown()){
-            g2.setColor(getBackground());
-            g2.setStroke(new BasicStroke(6));
-            g2.drawLine(lineStart.x,lineStart.y, e.getX(),e.getY());
-    }
-        else{
-            g2.setColor(color);
-            g2.setStroke(new BasicStroke(penSize));
-            g2.drawLine(lineStart.x,lineStart.y,e.getX(), e.getY());
+
+
+
+    /*inner class*/
+    class ScribblePanel extends JPanel
+            implements MouseListener,MouseMotionListener{
+        final int CIRCLESIZE = 20;
+        Color color = Color.BLACK;
+        private Point lineStart = new Point(0,0);
+        public Graphics g;
+        public Graphics2D g2;
+        public float penSize = 3;
+        private Client client;
+
+        public ScribblePanel(Client client){
+            addMouseListener(this);
+            addMouseMotionListener(this);
+            this.client = client;
         }
-        lineStart.move(e.getX(), e.getY());
-        g.dispose();
-}
-    public void mouseMoved(MouseEvent e){
-        
+        public void mouseClicked(MouseEvent e){
+
+        }
+        public void mouseEntered(MouseEvent e){
+
+        }
+        public void mouseExited(MouseEvent e){
+
+        }
+        public void mouseReleased(MouseEvent e){
+
+        }
+        public void mousePressed(MouseEvent e){
+            lineStart.move(e.getX(),e.getY());
+        }
+        public void mouseDragged(MouseEvent e){
+            g = getGraphics();
+            g2 = (Graphics2D)g;
+            Color tempColor = color;
+            if(e.isMetaDown())
+                color = getBackground();
+
+            draw(color, penSize, lineStart.x, lineStart.y, e.getX(), e.getY());
+            try {
+                client.whiteBoardMessage(lineStart.x, lineStart.y, e.getX(), e.getY(), color.getRGB(), penSize, 30);
+            } catch (IOException ex) {
+                //exception handle
+                ex.printStackTrace();
+            }
+            lineStart.move(e.getX(), e.getY());
+            color = tempColor;
+        }
+        public void mouseMoved(MouseEvent e){
+
+        }
+
+        private void draw(Color color, float stroke, int x1, int y1, int x2, int y2) {
+            g = getGraphics();
+            g2 = (Graphics2D)g;
+            g2.setColor(color);
+            g2.setStroke(new BasicStroke(stroke));
+            g2.drawLine(x1, y1, x2, y2);
+            g.dispose();
+        }
+        private void draw(int color, float stroke, int x1, int y1, int x2, int y2) {
+            draw(new Color(color), stroke, x1, y1, x2, y2);
+        }
+
+        void setPenSize(float newPenSize){
+            penSize = newPenSize;
+        }
+
+
     }
-    void setPenSize(float newPenSize){
-        penSize = newPenSize;
-    }
+
 }

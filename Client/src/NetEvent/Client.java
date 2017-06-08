@@ -14,6 +14,7 @@ import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import util.MD5Tools;
 
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -24,7 +25,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";
+	private static String host = "localhost"; //"123.207.159.156";
 	private static int port = 8972;
 
 	//connection object
@@ -578,6 +579,21 @@ public class Client extends Thread{
 				).build();
 
 		sendIt(request);
+	}
+
+	public void whiteBoardMessage(int x1, int y1, int x2, int y2, int color, float stroke, int questionID) throws IOException{
+		ClientSendMessage.Message message =
+				ClientSendMessage.Message.newBuilder()
+						.setMsgType(ClientSendMessage.MSG.WHITE_BOARD_MESSAGE)
+						.setUsername(username)
+						.setWhiteBoardMessage(
+								ClientSendMessage.WhiteBoardMessage.newBuilder()
+								.setColor(color)
+								.setQuestionId(questionID)
+								.setStroke(stroke)
+								.setX1(x1).setY1(y1).setX2(x2).setY2(y2)
+						).build();
+		sendIt(message);
 	}
 
 }

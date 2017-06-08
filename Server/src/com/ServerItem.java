@@ -5,6 +5,7 @@ import org.apache.mina.core.session.IoSession;
 import util.AcquaintanceParser;
 import util.SQLStringParser;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,8 +17,8 @@ import static com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.USERS
 
 public class ServerItem {
 	private IoSession session;
-	private String username = null;
-	private String password = null;
+	private String username = "";
+	private String password = "";
 	private DatabaseConnection dbconn;
 
 	/*SQL statement*/
@@ -147,7 +148,7 @@ public class ServerItem {
 	//judge by session_user_map
 	public boolean isLaunched(){
 		String name = ServerHandler.session_user_map.get(session);
-		if(null != name) {
+		if("" != name) {
 			return name.equals(this.username);
 		} else {
 			return false;
@@ -392,6 +393,19 @@ public class ServerItem {
 						ServerHandler.log.error("",e);
 						return null;
 					}
+				case WHITE_BOARD_MESSAGE:
+					try {
+						if(message.hasWhiteBoardMessage() && isLaunched()) {
+							return ServerResponseMessage.Message.newBuilder()
+									.setMsgType(ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE)
+									.setUsername(username)
+									.setWhiteBoardMessage(handleWhiteBoardMessage(message.getWhiteBoardMessage()))
+									.build();
+						}
+					} catch (Exception e) {
+						ServerHandler.log.error("", e);
+					}
+					break;
 				default:
 					throw new Exception("MSG type cant be recognized\n"+message.toString());
 			}
@@ -1305,6 +1319,32 @@ public class ServerItem {
 						.build();
 		}
 
+		return response;
+	}
+
+	private ServerResponseMessage.WhiteBoardMessage
+	handleWhiteBoardMessage (ClientSendMessage.WhiteBoardMessage request) {
+		ServerResponseMessage.WhiteBoardMessage response =
+				ServerResponseMessage.WhiteBoardMessage.newBuilder()
+						.setColor(request.getColor())
+						.setStroke(request.getStroke())
+						.setX1(request.getX1())
+						.setY1(request.getY1())
+						.setX2(request.getX2())
+						.setY2(request.getY2()).build();
+		ServerResponseMessage.Message message =
+				ServerResponseMessage.Message.newBuilder()
+				.setUsername(username)
+				.setMsgType(ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE)
+				.setWhiteBoardMessage(response).build();
+
+
+
+		//ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(request.getQuestionId());
+		Set<IoSession> sessions = ServerHandler.serviceMap.keySet();
+		for(IoSession session : sessions) {
+			session.write(message);
+		}
 		return response;
 	}
 

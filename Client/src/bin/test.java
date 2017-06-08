@@ -24,7 +24,7 @@ public class test
 	public static final Client client=new Client();
 	public static MainFrame mainFrame;
 	public static LoginFrame loginFrame;
-
+	/*
 	public static final void Board()
 	{
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -44,7 +44,7 @@ public class test
 		frame.setSize((int)screenSize.getWidth()/2, (int)screenSize.getHeight()*3/4);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+	}*/
 	public static final void startProgram()
 	{
 		//client.start();

@@ -27,7 +27,8 @@ public class NetEvent
 		UPDATE_EVENT("UpdateEvent"),
 		SOLVED_QUESTION_EVENT("SolvedQuestionEvent"),
 		QUESTION_USER_LIST_EVENT("QuestionUserListEvent"),
-		ACQUAINTANCE_USER_LIST_EVENT("AquaintanceUserListEvent");
+		ACQUAINTANCE_USER_LIST_EVENT("AquaintanceUserListEvent"),
+		WHITE_BOARD_EVENT("WhiteBoardEvent");
 
 		private String name;
 

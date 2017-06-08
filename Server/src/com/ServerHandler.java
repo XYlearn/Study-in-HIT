@@ -37,6 +37,8 @@ public class ServerHandler extends IoHandlerAdapter {
 	@ Override
 	public void messageReceived(IoSession session, Object message) {
 		ClientSendMessage.Message recvMessage = (ClientSendMessage.Message) message;
+		boolean ignore = false;
+		ServerResponseMessage.MSG msgType;
 
 		ServerItem serverItem = serviceMap.get(session);
 		if(serverItem.equals(null)) {
@@ -49,9 +51,13 @@ public class ServerHandler extends IoHandlerAdapter {
 			response = ServerItem.BadMessage();
 		}
 
+		/*message type that don't need to respond*/
+		msgType = response.getMsgType();
+		ignore = msgType == ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE;
+
 		log.info("Received From "+recvMessage.getUsername()+ " Message Type: "+recvMessage.getMsgType()
 		+ "\n" + recvMessage.toString() + "\n-----------------------------\n" );
-		if(session.isConnected()) {
+		if(session.isConnected() && !ignore) {
 			session.write(response);
 		}
 	}
