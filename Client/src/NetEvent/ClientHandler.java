@@ -129,6 +129,9 @@ public class ClientHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageSent(IoSession session, Object message) {
+		if (((ClientSendMessage.Message)message).getMsgType() == ClientSendMessage.MSG.WHITE_BOARD_MESSAGE) {
+			return;
+		}
 		System.out.println("Send Message:\n"+((ClientSendMessage.Message)message).toString());
 	}
 

@@ -18,9 +18,11 @@ import util.Dispatcher;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.border.Border;
 import javax.swing.event.*;
 /**
  *
@@ -44,7 +46,7 @@ public class WhiteBoard extends JPanel
         frame.setLocation(screenSize.width/4, screenSize.height/4);
 
         try {
-            client.launchRequest("xy16", "123456");
+            client.launchRequest("test", "123456");
         } catch (Exception e) {}
     }
 
@@ -78,28 +80,30 @@ public class WhiteBoard extends JPanel
            this.add(colorChoose,BorderLayout.EAST);
            this.add(jsldVert,BorderLayout.WEST);
            jsldVert.addChangeListener(this);
+
            boardMap.put(num++, this.sP1);
+
        }
        
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == colorChoose.jb1)
            sP1.color = Color.RED;
-        if(e.getSource() == colorChoose.jb2)
+        else if(e.getSource() == colorChoose.jb2)
             sP1.color = Color.ORANGE;
-        if(e.getSource() == colorChoose.jb3)
+        else if(e.getSource() == colorChoose.jb3)
             sP1.color = Color.YELLOW;
-        if(e.getSource() == colorChoose.jb4)
+        else if(e.getSource() == colorChoose.jb4)
             sP1.color = (Color.GREEN);
-        if(e.getSource() == colorChoose.jb5)
+        else if(e.getSource() == colorChoose.jb5)
             sP1.color = (Color.CYAN);
-        if(e.getSource() == colorChoose.jb6)
+        else if(e.getSource() == colorChoose.jb6)
             sP1.color = (Color.BLUE);
-        if(e.getSource() == colorChoose.jb7)
+        else if(e.getSource() == colorChoose.jb7)
             sP1.color = (Color.MAGENTA);
-        if(e.getSource() == colorChoose.jb8)
+        else if(e.getSource() == colorChoose.jb8)
             sP1.color = (Color.WHITE);
-        if(e.getSource() == colorChoose.jb9)
+        else if(e.getSource() == colorChoose.jb9)
             sP1.color = (Color.BLACK);
 
     }
@@ -128,70 +132,135 @@ public class WhiteBoard extends JPanel
             implements MouseListener,MouseMotionListener{
         final int CIRCLESIZE = 20;
         Color color = Color.BLACK;
-        private Point lineStart = new Point(0,0);
-        public Graphics g;
-        public Graphics2D g2;
+        private Point pointStart = new Point(0,0);
+        public Graphics graphics;
         public float penSize = 3;
+
+        Color defaultColor = Color.WHITE;
+
+        private Image curImage = null;
+        private boolean isCls = false;
+        private boolean textType = true;
+        private boolean repaint = true;
+
         private Client client;
 
         public ScribblePanel(Client client){
             addMouseListener(this);
             addMouseMotionListener(this);
             this.client = client;
+            this.setBackground(defaultColor);
         }
+
         public void mouseClicked(MouseEvent e){
+            if(e.isAltDown()) {
+                graphics = this.getGraphics();
+                graphics.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+                graphics.dispose();
+                graphics = curImage.getGraphics();
+                graphics.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+                graphics.dispose();
+            } else if(textType) {
+            }
 
         }
         public void mouseEntered(MouseEvent e){
-
+            //flush();
         }
         public void mouseExited(MouseEvent e){
 
         }
         public void mouseReleased(MouseEvent e){
-
-        }
-        public void mousePressed(MouseEvent e){
-            lineStart.move(e.getX(),e.getY());
-        }
-        public void mouseDragged(MouseEvent e){
-            g = getGraphics();
-            g2 = (Graphics2D)g;
-            Color tempColor = color;
-            if(e.isMetaDown())
-                color = getBackground();
-
-            draw(color, penSize, lineStart.x, lineStart.y, e.getX(), e.getY());
-            try {
-                client.whiteBoardMessage(lineStart.x, lineStart.y, e.getX(), e.getY(), color.getRGB(), penSize, 30);
-            } catch (IOException ex) {
-                //exception handle
-                ex.printStackTrace();
+            if(isCls) {
+                clear(pointStart.x, pointStart.y, e.getX(), e.getY());
             }
-            lineStart.move(e.getX(), e.getY());
-            color = tempColor;
+        }
+        public void mousePressed(MouseEvent e) {
+            if (e.isAltDown()) {
+                pointStart.move(e.getX(), e.getY());
+                isCls = true;
+            } else {
+                pointStart.move(e.getX(), e.getY());
+            }
+        }
+
+        public void mouseDragged(MouseEvent e){
+            if(e.isAltDown()) {
+
+            } else {
+                isCls = false;
+                Color tempColor = color;
+                if (e.isMetaDown())
+                    color = getBackground();
+
+                draw(color, penSize, pointStart.x, pointStart.y, e.getX(), e.getY());
+                pointStart.move(e.getX(), e.getY());
+                try {
+                    client.whiteBoardMessage(pointStart.x, pointStart.y, e.getX(), e.getY(), color.getRGB(), penSize, 30);
+                } catch (IOException ex) {
+                    //exception handle
+                    ex.printStackTrace();
+                }
+                color = tempColor;
+            }
         }
         public void mouseMoved(MouseEvent e){
-
+            flush();
         }
 
+        /*draw on the panel*/
         private void draw(Color color, float stroke, int x1, int y1, int x2, int y2) {
-            g = getGraphics();
-            g2 = (Graphics2D)g;
+            graphics = getGraphics();
+            Graphics2D g2 = (Graphics2D)graphics;
             g2.setColor(color);
             g2.setStroke(new BasicStroke(stroke));
             g2.drawLine(x1, y1, x2, y2);
-            g.dispose();
+            graphics.dispose();
+
+            /*save to curImage*/
+            graphics = curImage.getGraphics();
+            g2 = (Graphics2D)graphics;
+            g2.setColor(color);
+            g2.setStroke(new BasicStroke(stroke));
+            g2.drawLine(x1, y1, x2, y2);
+            graphics.dispose();
         }
         private void draw(int color, float stroke, int x1, int y1, int x2, int y2) {
             draw(new Color(color), stroke, x1, y1, x2, y2);
+        }
+
+        /*set a rectangle area to background*/
+        private void clear(int x1, int y1, int x2, int y2) {
+            graphics = getGraphics();
+            Graphics2D g2 = (Graphics2D) graphics;
+            g2.setColor(getBackground());
+            g2.clearRect(x1 < x2 ? x1 : x2, y1 < y2 ? y1 : y2, Math.abs(x1-x2), Math.abs(y2-y1));
+            graphics.dispose();
+
+            /*update curImage*/
+            graphics = curImage.getGraphics();
+            g2 = (Graphics2D) graphics;
+            g2.setColor(getBackground());
+            g2.clearRect(x1 < x2 ? x1 : x2, y1 < y2 ? y1 : y2, Math.abs(x1-x2), Math.abs(y2-y1));
+            graphics.dispose();
         }
 
         void setPenSize(float newPenSize){
             penSize = newPenSize;
         }
 
-
+        void flush() {
+            if(curImage == null) {
+                /*initialize bufferedImage*/
+                curImage = createImage(getWidth(), getHeight());
+                Graphics tempGraphics =  curImage.getGraphics();
+                tempGraphics.setColor(defaultColor);
+                tempGraphics.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+                tempGraphics.dispose();
+            }
+            graphics = getGraphics();
+            graphics.drawImage(curImage, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
 }
