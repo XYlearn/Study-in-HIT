@@ -3,6 +3,8 @@ package NetEvent;
 import Cos.CosHttpClient;
 import Cos.FileOP;
 import NetEvent.dataPack.NetPackageCodeFacotry;
+import NetEvent.eventcom.NetEvent;
+import NetEvent.eventcom.WhiteBoardEvent;
 import com.ClientSendMessage;
 import com.ServerResponseMessage;
 import jdk.nashorn.internal.objects.annotations.Function;
@@ -12,6 +14,7 @@ import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
+import sun.nio.ch.Net;
 import util.MD5Tools;
 
 import java.awt.event.MouseEvent;
@@ -581,17 +584,18 @@ public class Client extends Thread{
 		sendIt(request);
 	}
 
-	public void whiteBoardMessage(int x1, int y1, int x2, int y2, int color, float stroke, int questionID) throws IOException{
+	public void whiteBoardMessage(WhiteBoardEvent event) throws IOException{
 		ClientSendMessage.Message message =
 				ClientSendMessage.Message.newBuilder()
 						.setMsgType(ClientSendMessage.MSG.WHITE_BOARD_MESSAGE)
 						.setUsername(username)
 						.setWhiteBoardMessage(
 								ClientSendMessage.WhiteBoardMessage.newBuilder()
-								.setColor(color)
-								.setQuestionId(questionID)
-								.setStroke(stroke)
-								.setX1(x1).setY1(y1).setX2(x2).setY2(y2)
+								.setColor(event.getColor())
+								.setQuestionId(event.getQuestionID())
+								.setStroke(event.getStroke())
+								.setX1(event.getX1()).setY1(event.getY1()).setX2(event.getX2()).setY2(event.getY2())
+								.setIsCls(event.isCls()).setIsACls(event.isACls())
 						).build();
 		sendIt(message);
 	}

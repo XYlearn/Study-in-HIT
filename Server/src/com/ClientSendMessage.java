@@ -12400,6 +12400,29 @@ public final class ClientSendMessage {
      * <code>optional int64 questionId = 7;</code>
      */
     long getQuestionId();
+
+    /**
+     * <code>optional bool isCls = 8;</code>
+     */
+    boolean getIsCls();
+
+    /**
+     * <code>optional bool isACls = 9;</code>
+     */
+    boolean getIsACls();
+
+    /**
+     * <code>repeated int32 Image = 10;</code>
+     */
+    java.util.List<java.lang.Integer> getImageList();
+    /**
+     * <code>repeated int32 Image = 10;</code>
+     */
+    int getImageCount();
+    /**
+     * <code>repeated int32 Image = 10;</code>
+     */
+    int getImage(int index);
   }
   /**
    * Protobuf type {@code WhiteBoardMessage}
@@ -12420,6 +12443,9 @@ public final class ClientSendMessage {
       color_ = 0;
       stroke_ = 0F;
       questionId_ = 0L;
+      isCls_ = false;
+      isACls_ = false;
+      image_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -12482,6 +12508,37 @@ public final class ClientSendMessage {
               questionId_ = input.readInt64();
               break;
             }
+            case 64: {
+
+              isCls_ = input.readBool();
+              break;
+            }
+            case 72: {
+
+              isACls_ = input.readBool();
+              break;
+            }
+            case 80: {
+              if (!((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
+                image_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000200;
+              }
+              image_.add(input.readInt32());
+              break;
+            }
+            case 82: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000200) == 0x00000200) && input.getBytesUntilLimit() > 0) {
+                image_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000200;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                image_.add(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -12490,6 +12547,9 @@ public final class ClientSendMessage {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
+          image_ = java.util.Collections.unmodifiableList(image_);
+        }
         makeExtensionsImmutable();
       }
     }
@@ -12666,6 +12726,7 @@ public final class ClientSendMessage {
       // @@protoc_insertion_point(enum_scope:WhiteBoardMessage.COLOR)
     }
 
+    private int bitField0_;
     public static final int X1_FIELD_NUMBER = 1;
     private int x1_;
     /**
@@ -12729,6 +12790,47 @@ public final class ClientSendMessage {
       return questionId_;
     }
 
+    public static final int ISCLS_FIELD_NUMBER = 8;
+    private boolean isCls_;
+    /**
+     * <code>optional bool isCls = 8;</code>
+     */
+    public boolean getIsCls() {
+      return isCls_;
+    }
+
+    public static final int ISACLS_FIELD_NUMBER = 9;
+    private boolean isACls_;
+    /**
+     * <code>optional bool isACls = 9;</code>
+     */
+    public boolean getIsACls() {
+      return isACls_;
+    }
+
+    public static final int IMAGE_FIELD_NUMBER = 10;
+    private java.util.List<java.lang.Integer> image_;
+    /**
+     * <code>repeated int32 Image = 10;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getImageList() {
+      return image_;
+    }
+    /**
+     * <code>repeated int32 Image = 10;</code>
+     */
+    public int getImageCount() {
+      return image_.size();
+    }
+    /**
+     * <code>repeated int32 Image = 10;</code>
+     */
+    public int getImage(int index) {
+      return image_.get(index);
+    }
+    private int imageMemoizedSerializedSize = -1;
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -12741,6 +12843,7 @@ public final class ClientSendMessage {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (x1_ != 0) {
         output.writeInt32(1, x1_);
       }
@@ -12761,6 +12864,19 @@ public final class ClientSendMessage {
       }
       if (questionId_ != 0L) {
         output.writeInt64(7, questionId_);
+      }
+      if (isCls_ != false) {
+        output.writeBool(8, isCls_);
+      }
+      if (isACls_ != false) {
+        output.writeBool(9, isACls_);
+      }
+      if (getImageList().size() > 0) {
+        output.writeUInt32NoTag(82);
+        output.writeUInt32NoTag(imageMemoizedSerializedSize);
+      }
+      for (int i = 0; i < image_.size(); i++) {
+        output.writeInt32NoTag(image_.get(i));
       }
     }
 
@@ -12797,6 +12913,28 @@ public final class ClientSendMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(7, questionId_);
       }
+      if (isCls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, isCls_);
+      }
+      if (isACls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, isACls_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < image_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(image_.get(i));
+        }
+        size += dataSize;
+        if (!getImageList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        imageMemoizedSerializedSize = dataSize;
+      }
       memoizedSize = size;
       return size;
     }
@@ -12829,6 +12967,12 @@ public final class ClientSendMessage {
               other.getStroke()));
       result = result && (getQuestionId()
           == other.getQuestionId());
+      result = result && (getIsCls()
+          == other.getIsCls());
+      result = result && (getIsACls()
+          == other.getIsACls());
+      result = result && getImageList()
+          .equals(other.getImageList());
       return result;
     }
 
@@ -12855,6 +12999,16 @@ public final class ClientSendMessage {
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionId());
+      hash = (37 * hash) + ISCLS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsCls());
+      hash = (37 * hash) + ISACLS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsACls());
+      if (getImageCount() > 0) {
+        hash = (37 * hash) + IMAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getImageList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12987,6 +13141,12 @@ public final class ClientSendMessage {
 
         questionId_ = 0L;
 
+        isCls_ = false;
+
+        isACls_ = false;
+
+        image_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
 
@@ -13009,6 +13169,8 @@ public final class ClientSendMessage {
 
       public com.ClientSendMessage.WhiteBoardMessage buildPartial() {
         com.ClientSendMessage.WhiteBoardMessage result = new com.ClientSendMessage.WhiteBoardMessage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.x1_ = x1_;
         result.y1_ = y1_;
         result.x2_ = x2_;
@@ -13016,6 +13178,14 @@ public final class ClientSendMessage {
         result.color_ = color_;
         result.stroke_ = stroke_;
         result.questionId_ = questionId_;
+        result.isCls_ = isCls_;
+        result.isACls_ = isACls_;
+        if (((bitField0_ & 0x00000200) == 0x00000200)) {
+          image_ = java.util.Collections.unmodifiableList(image_);
+          bitField0_ = (bitField0_ & ~0x00000200);
+        }
+        result.image_ = image_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -13078,6 +13248,22 @@ public final class ClientSendMessage {
         if (other.getQuestionId() != 0L) {
           setQuestionId(other.getQuestionId());
         }
+        if (other.getIsCls() != false) {
+          setIsCls(other.getIsCls());
+        }
+        if (other.getIsACls() != false) {
+          setIsACls(other.getIsACls());
+        }
+        if (!other.image_.isEmpty()) {
+          if (image_.isEmpty()) {
+            image_ = other.image_;
+            bitField0_ = (bitField0_ & ~0x00000200);
+          } else {
+            ensureImageIsMutable();
+            image_.addAll(other.image_);
+          }
+          onChanged();
+        }
         onChanged();
         return this;
       }
@@ -13103,6 +13289,7 @@ public final class ClientSendMessage {
         }
         return this;
       }
+      private int bitField0_;
 
       private int x1_ ;
       /**
@@ -13282,6 +13469,124 @@ public final class ClientSendMessage {
       public Builder clearQuestionId() {
         
         questionId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private boolean isCls_ ;
+      /**
+       * <code>optional bool isCls = 8;</code>
+       */
+      public boolean getIsCls() {
+        return isCls_;
+      }
+      /**
+       * <code>optional bool isCls = 8;</code>
+       */
+      public Builder setIsCls(boolean value) {
+        
+        isCls_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isCls = 8;</code>
+       */
+      public Builder clearIsCls() {
+        
+        isCls_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isACls_ ;
+      /**
+       * <code>optional bool isACls = 9;</code>
+       */
+      public boolean getIsACls() {
+        return isACls_;
+      }
+      /**
+       * <code>optional bool isACls = 9;</code>
+       */
+      public Builder setIsACls(boolean value) {
+        
+        isACls_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isACls = 9;</code>
+       */
+      public Builder clearIsACls() {
+        
+        isACls_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Integer> image_ = java.util.Collections.emptyList();
+      private void ensureImageIsMutable() {
+        if (!((bitField0_ & 0x00000200) == 0x00000200)) {
+          image_ = new java.util.ArrayList<java.lang.Integer>(image_);
+          bitField0_ |= 0x00000200;
+         }
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getImageList() {
+        return java.util.Collections.unmodifiableList(image_);
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public int getImageCount() {
+        return image_.size();
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public int getImage(int index) {
+        return image_.get(index);
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public Builder setImage(
+          int index, int value) {
+        ensureImageIsMutable();
+        image_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public Builder addImage(int value) {
+        ensureImageIsMutable();
+        image_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public Builder addAllImage(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureImageIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, image_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 Image = 10;</code>
+       */
+      public Builder clearImage() {
+        image_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000200);
         onChanged();
         return this;
       }
@@ -17571,57 +17876,58 @@ public final class ClientSendMessage {
       "\n\014userListType\030\002 \001(\0162\".GetUserListReques" +
       "t.USER_LIST_TYPE\022\r\n\005param\030\003 \001(\t\"?\n\016USER_" +
       "LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026\n\022USER" +
-      "S_IN_ROOM_LIST\020\001\"\342\001\n\021WhiteBoardMessage\022\n" +
+      "S_IN_ROOM_LIST\020\001\"\220\002\n\021WhiteBoardMessage\022\n" +
       "\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2" +
       "\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\016\n\006stroke\030\006 \001(\002\022\022\n" +
-      "\nquestionId\030\007 \001(\003\"j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006O" +
-      "RANGE\020\001\022\n\n\006YELLOW\020\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004" +
-      "\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BL" +
-      "ACK\020\010\"\256\007\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MS",
-      "G\022\020\n\010username\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(" +
-      "\0132\016.LaunchRequest\022%\n\rlogoutMessage\030\004 \001(\013" +
-      "2\016.LogoutMessage\022!\n\013sendContent\030\005 \001(\0132\014." +
-      "SendContent\0221\n\023announcementMessage\030\006 \001(\013" +
-      "2\024.AnnouncementMessage\0223\n\024questionEnterR" +
-      "equest\030\007 \001(\0132\025.QuestionEnterRequest\0221\n\023g" +
-      "oodQuestionRequest\030\010 \001(\0132\024.GoodQuestionR" +
-      "equest\022!\n\013fileRequest\030\t \001(\0132\014.FileReques" +
-      "t\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUserReq" +
-      "uest\022)\n\017registerRequest\030\013 \001(\0132\020.Register",
-      "Request\022?\n\032questionInformationRequest\030\r " +
-      "\001(\0132\033.QuestionInformationRequest\0227\n\026user" +
-      "InformationRequest\030\016 \001(\0132\027.UserInformati" +
-      "onRequest\0227\n\026getQuestionListRequest\030\017 \001(" +
-      "\0132\027.GetQuestionListRequest\0225\n\025createQues" +
-      "tionRequest\030\022 \001(\0132\026.CreateQuestionReques" +
-      "t\0227\n\026abandonQuestionRequest\030\023 \001(\0132\027.Aban" +
-      "donQuestionRequest\022;\n\030searchInformationR" +
-      "equest\030\024 \001(\0132\031.SearchInformationRequest\022" +
-      "5\n\025solvedQuestionRequest\030\025 \001(\0132\026.SolvedQ",
-      "uestionRequest\022/\n\022getUserListRequest\030\026 \001" +
-      "(\0132\023.GetUserListRequest\022-\n\021whiteBoardMes" +
-      "sage\030\027 \001(\0132\022.WhiteBoardMessage*\353\003\n\003MSG\022\022" +
-      "\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024" +
-      "\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030" +
-      "\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUESTION_ENT" +
-      "ER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_REQUEST\020\005\022" +
-      "\025\n\021GOOD_USER_REQUEST\020\007\022\020\n\014FILE_REQUEST\020\t" +
-      "\022 \n\034QUESTION_INFORMATION_REQUEST\020\n\022\034\n\030US" +
-      "ER_INFORMATION_REQUEST\020\013\022\035\n\031GET_QUESTION",
-      "_LIST_REQUEST\020\014\022\033\n\027CREATE_QUESTION_REQUE" +
-      "ST\020\017\022\034\n\030ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SE" +
-      "ARCH_INFORMATION_REQUEST\020\021\022\033\n\027SOLVED_QUE" +
-      "STION_REQUEST\020\022\022\017\n\013BAD_MESSAGE\020\023\022\031\n\025GET_" +
-      "USER_LIST_REQUEST\020\024\022\027\n\023WHITE_BOARD_MESSA" +
-      "GE\020\025*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023" +
-      "\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)" +
-      "\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020" +
-      "\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n\tRANKORD" +
-      "ER\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIS",
-      "T_REFERENCE\022\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRA" +
-      "ISE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013CL" +
-      "ICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021ClientSend" +
-      "Messageb\006proto3"
+      "\nquestionId\030\007 \001(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n\006isAC" +
+      "ls\030\t \001(\010\022\r\n\005Image\030\n \003(\005\"j\n\005COLOR\022\007\n\003RED\020" +
+      "\000\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020\002\022\t\n\005GREEN\020\003\022\010\n\004" +
+      "CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA\020\006\022\t\n\005WHITE\020\007",
+      "\022\t\n\005BLACK\020\010\"\256\007\n\007Message\022\026\n\010msg_type\030\001 \001(" +
+      "\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauchReques" +
+      "t\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutMessage" +
+      "\030\004 \001(\0132\016.LogoutMessage\022!\n\013sendContent\030\005 " +
+      "\001(\0132\014.SendContent\0221\n\023announcementMessage" +
+      "\030\006 \001(\0132\024.AnnouncementMessage\0223\n\024question" +
+      "EnterRequest\030\007 \001(\0132\025.QuestionEnterReques" +
+      "t\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.GoodQue" +
+      "stionRequest\022!\n\013fileRequest\030\t \001(\0132\014.File" +
+      "Request\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodU",
+      "serRequest\022)\n\017registerRequest\030\013 \001(\0132\020.Re" +
+      "gisterRequest\022?\n\032questionInformationRequ" +
+      "est\030\r \001(\0132\033.QuestionInformationRequest\0227" +
+      "\n\026userInformationRequest\030\016 \001(\0132\027.UserInf" +
+      "ormationRequest\0227\n\026getQuestionListReques" +
+      "t\030\017 \001(\0132\027.GetQuestionListRequest\0225\n\025crea" +
+      "teQuestionRequest\030\022 \001(\0132\026.CreateQuestion" +
+      "Request\0227\n\026abandonQuestionRequest\030\023 \001(\0132" +
+      "\027.AbandonQuestionRequest\022;\n\030searchInform" +
+      "ationRequest\030\024 \001(\0132\031.SearchInformationRe",
+      "quest\0225\n\025solvedQuestionRequest\030\025 \001(\0132\026.S" +
+      "olvedQuestionRequest\022/\n\022getUserListReque" +
+      "st\030\026 \001(\0132\023.GetUserListRequest\022-\n\021whiteBo" +
+      "ardMessage\030\027 \001(\0132\022.WhiteBoardMessage*\353\003\n" +
+      "\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESSA" +
+      "GE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CONTE" +
+      "NT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUESTI" +
+      "ON_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_REQU" +
+      "EST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\020\n\014FILE_REQ" +
+      "UEST\020\t\022 \n\034QUESTION_INFORMATION_REQUEST\020\n",
+      "\022\034\n\030USER_INFORMATION_REQUEST\020\013\022\035\n\031GET_QU" +
+      "ESTION_LIST_REQUEST\020\014\022\033\n\027CREATE_QUESTION" +
+      "_REQUEST\020\017\022\034\n\030ABANDON_QUESTION_REQUEST\020\020" +
+      "\022\036\n\032SEARCH_INFORMATION_REQUEST\020\021\022\033\n\027SOLV" +
+      "ED_QUESTION_REQUEST\020\022\022\017\n\013BAD_MESSAGE\020\023\022\031" +
+      "\n\025GET_USER_LIST_REQUEST\020\024\022\027\n\023WHITE_BOARD" +
+      "_MESSAGE\020\025*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSA" +
+      "GE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSA" +
+      "GE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007" +
+      "\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n\tR",
+      "ANKORDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020\001*" +
+      "j\n\016LIST_REFERENCE\022\024\n\020QUESTION_NUMBERS\020\000\022" +
+      "\020\n\014PRAISE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION\020\002" +
+      "\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021Clie" +
+      "ntSendMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -17748,7 +18054,7 @@ public final class ClientSendMessage {
     internal_static_WhiteBoardMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_WhiteBoardMessage_descriptor,
-        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Stroke", "QuestionId", });
+        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Stroke", "QuestionId", "IsCls", "IsACls", "Image", });
     internal_static_Message_descriptor =
       getDescriptor().getMessageTypes().get(18);
     internal_static_Message_fieldAccessorTable = new

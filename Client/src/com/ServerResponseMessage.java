@@ -19009,6 +19009,21 @@ public final class ServerResponseMessage {
      * <code>optional int64 questionId = 7;</code>
      */
     long getQuestionId();
+
+    /**
+     * <code>optional bool isCls = 8;</code>
+     */
+    boolean getIsCls();
+
+    /**
+     * <code>optional bool isACls = 9;</code>
+     */
+    boolean getIsACls();
+
+    /**
+     * <code>optional bytes image = 10;</code>
+     */
+    com.google.protobuf.ByteString getImage();
   }
   /**
    * Protobuf type {@code WhiteBoardMessage}
@@ -19029,6 +19044,9 @@ public final class ServerResponseMessage {
       color_ = 0;
       stroke_ = 0F;
       questionId_ = 0L;
+      isCls_ = false;
+      isACls_ = false;
+      image_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -19089,6 +19107,21 @@ public final class ServerResponseMessage {
             case 56: {
 
               questionId_ = input.readInt64();
+              break;
+            }
+            case 64: {
+
+              isCls_ = input.readBool();
+              break;
+            }
+            case 72: {
+
+              isACls_ = input.readBool();
+              break;
+            }
+            case 82: {
+
+              image_ = input.readBytes();
               break;
             }
           }
@@ -19338,6 +19371,33 @@ public final class ServerResponseMessage {
       return questionId_;
     }
 
+    public static final int ISCLS_FIELD_NUMBER = 8;
+    private boolean isCls_;
+    /**
+     * <code>optional bool isCls = 8;</code>
+     */
+    public boolean getIsCls() {
+      return isCls_;
+    }
+
+    public static final int ISACLS_FIELD_NUMBER = 9;
+    private boolean isACls_;
+    /**
+     * <code>optional bool isACls = 9;</code>
+     */
+    public boolean getIsACls() {
+      return isACls_;
+    }
+
+    public static final int IMAGE_FIELD_NUMBER = 10;
+    private com.google.protobuf.ByteString image_;
+    /**
+     * <code>optional bytes image = 10;</code>
+     */
+    public com.google.protobuf.ByteString getImage() {
+      return image_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -19370,6 +19430,15 @@ public final class ServerResponseMessage {
       }
       if (questionId_ != 0L) {
         output.writeInt64(7, questionId_);
+      }
+      if (isCls_ != false) {
+        output.writeBool(8, isCls_);
+      }
+      if (isACls_ != false) {
+        output.writeBool(9, isACls_);
+      }
+      if (!image_.isEmpty()) {
+        output.writeBytes(10, image_);
       }
     }
 
@@ -19406,6 +19475,18 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(7, questionId_);
       }
+      if (isCls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, isCls_);
+      }
+      if (isACls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, isACls_);
+      }
+      if (!image_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(10, image_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -19438,6 +19519,12 @@ public final class ServerResponseMessage {
               other.getStroke()));
       result = result && (getQuestionId()
           == other.getQuestionId());
+      result = result && (getIsCls()
+          == other.getIsCls());
+      result = result && (getIsACls()
+          == other.getIsACls());
+      result = result && getImage()
+          .equals(other.getImage());
       return result;
     }
 
@@ -19464,6 +19551,14 @@ public final class ServerResponseMessage {
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionId());
+      hash = (37 * hash) + ISCLS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsCls());
+      hash = (37 * hash) + ISACLS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsACls());
+      hash = (37 * hash) + IMAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getImage().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -19596,6 +19691,12 @@ public final class ServerResponseMessage {
 
         questionId_ = 0L;
 
+        isCls_ = false;
+
+        isACls_ = false;
+
+        image_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -19625,6 +19726,9 @@ public final class ServerResponseMessage {
         result.color_ = color_;
         result.stroke_ = stroke_;
         result.questionId_ = questionId_;
+        result.isCls_ = isCls_;
+        result.isACls_ = isACls_;
+        result.image_ = image_;
         onBuilt();
         return result;
       }
@@ -19686,6 +19790,15 @@ public final class ServerResponseMessage {
         }
         if (other.getQuestionId() != 0L) {
           setQuestionId(other.getQuestionId());
+        }
+        if (other.getIsCls() != false) {
+          setIsCls(other.getIsCls());
+        }
+        if (other.getIsACls() != false) {
+          setIsACls(other.getIsACls());
+        }
+        if (other.getImage() != com.google.protobuf.ByteString.EMPTY) {
+          setImage(other.getImage());
         }
         onChanged();
         return this;
@@ -19891,6 +20004,87 @@ public final class ServerResponseMessage {
       public Builder clearQuestionId() {
         
         questionId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private boolean isCls_ ;
+      /**
+       * <code>optional bool isCls = 8;</code>
+       */
+      public boolean getIsCls() {
+        return isCls_;
+      }
+      /**
+       * <code>optional bool isCls = 8;</code>
+       */
+      public Builder setIsCls(boolean value) {
+        
+        isCls_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isCls = 8;</code>
+       */
+      public Builder clearIsCls() {
+        
+        isCls_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isACls_ ;
+      /**
+       * <code>optional bool isACls = 9;</code>
+       */
+      public boolean getIsACls() {
+        return isACls_;
+      }
+      /**
+       * <code>optional bool isACls = 9;</code>
+       */
+      public Builder setIsACls(boolean value) {
+        
+        isACls_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isACls = 9;</code>
+       */
+      public Builder clearIsACls() {
+        
+        isACls_ = false;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString image_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes image = 10;</code>
+       */
+      public com.google.protobuf.ByteString getImage() {
+        return image_;
+      }
+      /**
+       * <code>optional bytes image = 10;</code>
+       */
+      public Builder setImage(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        image_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes image = 10;</code>
+       */
+      public Builder clearImage() {
+        
+        image_ = getDefaultInstance().getImage();
         onChanged();
         return this;
       }
@@ -24248,55 +24442,56 @@ public final class ServerResponseMessage {
       "e\030\004 \001(\0162#.GetUserListResponse.USER_LIST_" +
       "TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value",
       "\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n\021ACQUAINT" +
-      "ANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\342\001\n\021" +
+      "ANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\220\002\n\021" +
       "WhiteBoardMessage\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(" +
       "\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005" +
-      "\022\016\n\006stroke\030\006 \001(\002\022\022\n\nquestionId\030\007 \001(\003\"j\n\005" +
-      "COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020\002\022\t" +
-      "\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA" +
-      "\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\312\007\n\007Message\022\026\n\010" +
-      "msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&" +
-      "\n\rlauchResponse\030\003 \001(\0132\017.LaunchResponse\022+",
-      "\n\020registerResponse\030\004 \001(\0132\021.RegisterRespo" +
-      "nse\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221" +
-      "\n\023announcementMessage\030\006 \001(\0132\024.Announceme" +
-      "ntMessage\0225\n\025questionEnterResponse\030\007 \001(\013" +
-      "2\026.QuestionEnterResponse\0223\n\024goodQuestion" +
-      "Response\030\010 \001(\0132\025.GoodQuestionResponse\022+\n" +
-      "\020goodUserResponse\030\n \001(\0132\021.GoodUserRespon" +
-      "se\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022" +
-      "%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A" +
-      "\n\033questionInformationResponse\030\r \001(\0132\034.Qu",
-      "estionInformationResponse\0229\n\027userInforma" +
-      "tionResponse\030\016 \001(\0132\030.UserInformationResp" +
-      "onse\0229\n\027getQuestionListResponse\030\017 \001(\0132\030." +
-      "GetQuestionListResponse\0227\n\026createQuestio" +
-      "nResponse\030\022 \001(\0132\027.CreateQuestionResponse" +
-      "\0229\n\027abandonQuestionResponse\030\023 \001(\0132\030.Aban" +
-      "donQuestionResponse\022=\n\031searchInformation" +
-      "Response\030\024 \001(\0132\032.SearchInformationRespon" +
-      "se\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Sol" +
-      "vedQuestionResponse\0221\n\023getUserListRespon",
-      "se\030\026 \001(\0132\024.GetUserListResponse\022-\n\021whiteB" +
-      "oardMessage\030\027 \001(\0132\022.WhiteBoardMessage*\371\003" +
-      "\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER_R" +
-      "ESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEM" +
-      "ENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPONSE" +
-      "\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD_U" +
-      "SER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFI" +
-      "LE_RESPONSE\020\t\022!\n\035QUESTION_INFORMATION_RE" +
-      "SPONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE\020\013\022" +
-      "\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CREAT",
-      "E_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUESTIO" +
-      "N_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RESPO" +
-      "NSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022\017\n\013B" +
-      "AD_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESPONSE\020\024" +
-      "\022\027\n\023WHITE_BOARD_MESSAGE\020\025*H\n\014CONTENT_TYP" +
-      "E\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001" +
-      "\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JP" +
-      "EG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003M" +
-      "P4\020\000B\034\n\003comB\025ServerResponseMessageb\006prot" +
-      "o3"
+      "\022\016\n\006stroke\030\006 \001(\002\022\022\n\nquestionId\030\007 \001(\003\022\r\n\005" +
+      "isCls\030\010 \001(\010\022\016\n\006isACls\030\t \001(\010\022\r\n\005image\030\n \001" +
+      "(\014\"j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELL" +
+      "OW\020\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007M" +
+      "AGENTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\312\007\n\007Messa" +
+      "ge\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002",
+      " \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.LaunchResp" +
+      "onse\022+\n\020registerResponse\030\004 \001(\0132\021.Registe" +
+      "rResponse\022!\n\013sendContent\030\005 \001(\0132\014.SendCon" +
+      "tent\0221\n\023announcementMessage\030\006 \001(\0132\024.Anno" +
+      "uncementMessage\0225\n\025questionEnterResponse" +
+      "\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024goodQu" +
+      "estionResponse\030\010 \001(\0132\025.GoodQuestionRespo" +
+      "nse\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUser" +
+      "Response\022#\n\014fileResponse\030\t \001(\0132\r.FileRes" +
+      "ponse\022%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMes",
+      "sage\022A\n\033questionInformationResponse\030\r \001(" +
+      "\0132\034.QuestionInformationResponse\0229\n\027userI" +
+      "nformationResponse\030\016 \001(\0132\030.UserInformati" +
+      "onResponse\0229\n\027getQuestionListResponse\030\017 " +
+      "\001(\0132\030.GetQuestionListResponse\0227\n\026createQ" +
+      "uestionResponse\030\022 \001(\0132\027.CreateQuestionRe" +
+      "sponse\0229\n\027abandonQuestionResponse\030\023 \001(\0132" +
+      "\030.AbandonQuestionResponse\022=\n\031searchInfor" +
+      "mationResponse\030\024 \001(\0132\032.SearchInformation" +
+      "Response\0227\n\026solvedQuestionResponse\030\025 \001(\013",
+      "2\027.SolvedQuestionResponse\0221\n\023getUserList" +
+      "Response\030\026 \001(\0132\024.GetUserListResponse\022-\n\021" +
+      "whiteBoardMessage\030\027 \001(\0132\022.WhiteBoardMess" +
+      "age*\371\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGI" +
+      "STER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANN" +
+      "OUNCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RE" +
+      "SPONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022" +
+      "GOOD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010" +
+      "\022\021\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMAT" +
+      "ION_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPO",
+      "NSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n" +
+      "\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_Q" +
+      "UESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION" +
+      "_RESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020" +
+      "\022\022\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESP" +
+      "ONSE\020\024\022\027\n\023WHITE_BOARD_MESSAGE\020\025*H\n\014CONTE" +
+      "NT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MES" +
+      "SAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE" +
+      "\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYP" +
+      "E\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseMessage",
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -24471,7 +24666,7 @@ public final class ServerResponseMessage {
     internal_static_WhiteBoardMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_WhiteBoardMessage_descriptor,
-        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Stroke", "QuestionId", });
+        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Stroke", "QuestionId", "IsCls", "IsACls", "Image", });
     internal_static_Message_descriptor =
       getDescriptor().getMessageTypes().get(22);
     internal_static_Message_fieldAccessorTable = new

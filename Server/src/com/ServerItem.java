@@ -1331,7 +1331,10 @@ public class ServerItem {
 						.setX1(request.getX1())
 						.setY1(request.getY1())
 						.setX2(request.getX2())
-						.setY2(request.getY2()).build();
+						.setY2(request.getY2())
+						.setQuestionId(request.getQuestionId())
+						.setIsCls(request.getIsCls())
+						.setIsACls(request.getIsACls()).build();
 		ServerResponseMessage.Message message =
 				ServerResponseMessage.Message.newBuilder()
 				.setUsername(username)
@@ -1343,7 +1346,8 @@ public class ServerItem {
 		//ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(request.getQuestionId());
 		Set<IoSession> sessions = ServerHandler.serviceMap.keySet();
 		for(IoSession session : sessions) {
-			session.write(message);
+			if(session != this.session)
+				session.write(message);
 		}
 		return response;
 	}

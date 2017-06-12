@@ -236,6 +236,9 @@ message WhiteBoardMessage {
     int32 color = 5;
     float stroke = 6;
     int64 questionId = 7;
+    bool isCls = 8;
+    bool isACls = 9;
+    bytes image = 10;
 }
 
 //----------------顶层消息----------------------
