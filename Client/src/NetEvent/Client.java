@@ -226,10 +226,7 @@ public class Client extends Thread{
 					it.remove();
 					continue;
 				}
-
-				String md5 = MD5Tools.FileToMD5(file);
-				md5s.add(md5);
-				file.renameTo(new File(PICTPATH+md5));
+				md5s.add(file.getName().substring(0, file.getName().lastIndexOf(".")));
 			}
 			contentBuider.addAllPictures(md5s);
 			for(String md5 : md5s) {

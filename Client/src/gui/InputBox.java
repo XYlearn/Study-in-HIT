@@ -32,6 +32,7 @@ import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.undo.UndoManager;
 import util.Dispatcher;
+import util.MD5Tools;
 import util.MyExpression;
 
 public class InputBox extends JPanel implements Dispatcher
@@ -56,7 +57,7 @@ public class InputBox extends JPanel implements Dispatcher
 
 	public InputBox()
 	{
-		myPane.setContentType("text/html");
+		myPane.setContentType("text/html"); 
 		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
 		kit.setLinkCursor(new Cursor(Cursor.HAND_CURSOR));
 		kit.install(myPane);
@@ -188,10 +189,15 @@ public class InputBox extends JPanel implements Dispatcher
 	public void insertImage(File f)
 	{
 		if(!f.exists()) return;
+		String filename=f.getName();
+		filename=MD5Tools.FileToMD5(f)+filename.substring(filename.lastIndexOf("."),filename.length());
+		f.renameTo(new File(test.PICTPATH+filename));
 		try
 		{
 			kit.insertHTML(doc, myPane.getCaretPosition(),
-					"<a href='pict:"+f.getPath()+"'><img border='0' src='file:/"+f.getPath()+"'></a>",
+					"<a href='pict:"+filename+"'><img border='0' src='file:/"
+					+test.PICTPATH+filename
+					+"'></a>",
 					0, 0, HTML.Tag.A);
 		} catch (BadLocationException|IOException ex)
 		{
@@ -260,7 +266,7 @@ public class InputBox extends JPanel implements Dispatcher
 		Pattern pat=Pattern.compile("<img[^>]*? src=\"file:(.*?)\".*?>");
 		Matcher mat=pat.matcher(str);
 		while (mat.find())
-			pictures.add(mat.group(1));
+			pictures.add(test.PICTPATH+mat.group(1));
 		if (pictures.isEmpty())
 			pictures=null;
 		//replace the images with "%>"
