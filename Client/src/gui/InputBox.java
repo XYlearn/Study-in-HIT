@@ -57,7 +57,6 @@ public class InputBox extends JPanel implements Dispatcher
 	public InputBox()
 	{
 		myPane.setContentType("text/html");
-		//myPane.setEditable(false);
 		kit.setDefaultCursor(new Cursor(Cursor.TEXT_CURSOR));
 		kit.setLinkCursor(new Cursor(Cursor.HAND_CURSOR));
 		kit.install(myPane);
