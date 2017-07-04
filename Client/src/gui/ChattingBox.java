@@ -23,12 +23,12 @@ import util.AudioTools;
 import bin.test;
 import java.awt.Font;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -194,43 +194,49 @@ public class ChattingBox extends JPanel implements Dispatcher
 	
 	public void pushMessage(Record msg)
 	{
-		pushMessage(msg,UserInfo.getMyUserName().equals(msg.getUser()));
+		ArrayList<Record> msgs=new ArrayList<>();
+		msgs.add(msg);
+		pushMessages(msgs);
 	}
-
-	public void pushMessage(Record msg,boolean ismyself)
+	
+	public void pushMessages(List<Record> msgs)
 	{
-		synchronized (records)
+		synchronized(records)
 		{
-			Element e=doc.getElement("-1");
-			String tmpUser=msg.getMarkMap()
-					.containsKey(CONTENT_MARK.ANONYMOUS.getValue())?"匿名":msg.getUser();
-			String message=msg.getContent().replaceAll("\n", "<br>");
-			message=message.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()));
-			if (msg.getPictures()!=null)
-				for (int i=0; i<msg.getPictures().size(); i++)
-					//if(!(new File(test.PICTPATH+msg.pictures.get(i)).exists()))
-					//{}//调用网络接口下载图片，下载完成时刷新
-					message=message.replaceAll("[^%]%"+i+" ",
-						HTML_MESSAGE_PICTURE
-						.replaceAll(HTML_TAG_PICTURE_AT_I, msg.getPictureAt(i))
-						.replaceAll(HTML_TAG_I, String.valueOf(i)));
-			message=message.replaceAll("%%", "%");
+			StringBuilder message=new StringBuilder();
+			msgs.forEach((Record msg)->message.append(addMessage(msg)));
 			try
 			{
-				doc.insertBeforeStart(e,
-					HTML_MESSAGE_BUBBLE
-					.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()))
-					.replaceAll(HTML_TAG_DIRECTION, ismyself?ALIGN_RIGHT:ALIGN_LEFT)
-					.replaceAll(HTML_TAG_LEFT_HEAD, ismyself?"":getUserHead(msg.getUser()))
-					.replaceAll(HTML_TAG_RIGHT_HEAD, ismyself?getUserHead(msg.getUser()):"")
-					.replaceAll(HTML_TAG_MESSAGE, message));
-			} catch (IOException|BadLocationException ex)
+				doc.insertBeforeStart(doc.getElement("-1"),message.toString());
+			} catch (BadLocationException|IOException ex)
 			{
-				System.out.println(ex);
+				Logger.getLogger(ChattingBox.class.getName()).log(Level.SEVERE, null, ex);
 			}
-			records.add(msg);
+			myPane.setSelectionStart(myPane.getText().length());
 		}
-		myPane.setSelectionStart(myPane.getText().length());
+	}
+
+	public String addMessage(Record msg)
+	{
+		boolean ismyself=UserInfo.getMyUserName().equals(msg.getUser());
+		String tmpUser=msg.getMarkMap()
+					.containsKey(CONTENT_MARK.ANONYMOUS.getValue())?"匿名":msg.getUser();
+		String message=msg.getContent().replaceAll("\n", "<br>");
+		message=message.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()));
+		if (msg.getPictures()!=null)
+			for (int i=0; i<msg.getPictures().size(); i++)
+				message=message.replaceAll("[^%]%"+i+" ",
+					HTML_MESSAGE_PICTURE
+					.replaceAll(HTML_TAG_PICTURE_AT_I, msg.getPictureAt(i))
+					.replaceAll(HTML_TAG_I, String.valueOf(i)));
+		message=message.replaceAll("%%", "%");
+		records.add(msg);
+		return HTML_MESSAGE_BUBBLE
+				.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()))
+				.replaceAll(HTML_TAG_DIRECTION, ismyself?ALIGN_RIGHT:ALIGN_LEFT)
+				.replaceAll(HTML_TAG_LEFT_HEAD, ismyself?"":getUserHead(tmpUser))
+				.replaceAll(HTML_TAG_RIGHT_HEAD, ismyself?getUserHead(tmpUser):"")
+				.replaceAll(HTML_TAG_MESSAGE, message);
 	}
 	
 	public void pushAudio(Record msg)
@@ -252,7 +258,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 					msg.getRecordID(),
 					msg.getPictures(),
 					msg.getMarkMap());
-			pushMessage(tmpRecord,ismyself);
+			pushMessage(tmpRecord);
 		}
 	}
 
@@ -285,7 +291,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 					else if (ex.getRecord().getMarkMap().containsKey(CONTENT_MARK.FILE.getValue()))
 						map.get(ex.getQuestionID()).pushFile(ex.getRecord());
 					else
-						map.get(ex.getQuestionID()).pushMessage(ex.getRecord(),ex.isMyself());
+						map.get(ex.getQuestionID()).pushMessage(ex.getRecord());
 				break;
 			}
 			case ENTER_QUESTION_EVENT:
