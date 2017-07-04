@@ -7,10 +7,8 @@ import gui.InputBox;
 import gui.dao.MainFrame;
 import java.awt.BorderLayout;
 import java.awt.*;
-import gui.DrawImageFrame;
-import gui.WhiteBoard;
+
 import gui.dao.LoginFrame;
-import java.io.IOException;
 
 public class test
 {

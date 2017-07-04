@@ -4,6 +4,9 @@ import org.apache.log4j.Logger;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
+import util.GraphicPoints;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,13 +24,16 @@ public class ServerHandler extends IoHandlerAdapter {
 	public static Map<IoSession, ServerItem> serviceMap = new HashMap<>();
 
 	//set down the map between question and users
-	public static Map<String, ArrayList<IoSession>> question_sessions_map = new HashMap<>();
+	public static Map<Long, ArrayList<IoSession>> question_sessions_map = new HashMap<>();
 
 	//set down the map between user and questions
-	public static Map <IoSession, ArrayList<String>> session_questions_map = new HashMap<>();
+	public static Map <IoSession, ArrayList<Long>> session_questions_map = new HashMap<>();
 
 	//set down the map between username and session
 	public static Map<IoSession, String> session_user_map = new HashMap<>();
+
+	//restore the Image of every questionRoom
+	public static Map<Long, GraphicPoints> question_image_map = new HashMap<>();
 
 	@ Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
@@ -48,12 +54,13 @@ public class ServerHandler extends IoHandlerAdapter {
 		ServerResponseMessage.Message response =
 				  serverItem.handleMessage(recvMessage);
 		if(null == response) {
-			response = ServerItem.BadMessage();
+			response = ServerResponseMessage.Message.newBuilder().setMsgType(ServerResponseMessage.MSG.IGNORE_MESSAGE).build();
 		}
 
 		/*message type that don't need to respond*/
 		msgType = response.getMsgType();
-		ignore = msgType == ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE;
+		ignore = msgType == ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE ||
+				msgType == ServerResponseMessage.MSG.IGNORE_MESSAGE;
 
 		log.info("Received From "+recvMessage.getUsername()+ " Message Type: "+recvMessage.getMsgType()
 		+ "\n" + recvMessage.toString() + "\n-----------------------------\n" );
@@ -79,9 +86,9 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public void sessionClosed(IoSession session) {
 		serviceMap.remove(session);
-		ArrayList<String> questions = session_questions_map.get(session);
+		ArrayList<Long> questions = session_questions_map.get(session);
 		if(!(null == questions)) {
-			for (String question : questions) {
+			for (Long question : questions) {
 				ArrayList<IoSession> sessions = question_sessions_map.get(question);
 				if(!(null == sessions)) {
 					break;

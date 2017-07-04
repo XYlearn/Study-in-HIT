@@ -3,88 +3,103 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.wb;
 
 /**
  *
  * @author zhaowei
  */
 import NetEvent.Client;
+import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.WhiteBoardEvent;
-import com.ClientSendMessage;
-import gui.dao.LoginFrame;
 import util.Dispatcher;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.border.Border;
+import java.util.*;
 import javax.swing.event.*;
 /**
  *
  * @author zhaowei
  */
 public class WhiteBoard extends JPanel
-        implements ActionListener,ChangeListener, Dispatcher{
-
-    /*test function*/
-    public static void main(String[] args) {
-        Client client = new Client();
-        client.start();
-
-        Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
-        JFrame frame = new JFrame();
-        frame.add(new WhiteBoard(client));
-        frame.setTitle("White Board");
-        frame.setSize(screenSize.width/2, screenSize.height/2);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setLocation(screenSize.width/4, screenSize.height/4);
-
-        try {
-            client.launchRequest("test", "123456");
-        } catch (Exception e) {}
-    }
-
+        implements ActionListener,ChangeListener{
 
     ColorPanel colorChoose = new ColorPanel();
     ScribblePanel sP1;
+    JPanel canvasPanel;
+    CardLayout card;
     private JSlider jsldVert = new JSlider(JSlider.VERTICAL,0,20,4);
     private Client client = null;
-    private static Map boardMap = new HashMap();
+    public static WhiteBoard whiteBoard;
+    public static ArrayList<ScribblePanel> panelList = new ArrayList<>();
+    public static ArrayList<Long> questionIDs = new ArrayList<>();
     private static int num = 0;
     
-       public WhiteBoard(Client client){
-           this.setLayout(new BorderLayout());
-           sP1 = new ScribblePanel(client);
-           colorChoose.setLayout(new GridLayout(0,1));
-           colorChoose.jb1.addActionListener(this);
-           colorChoose.jb2.addActionListener(this);
-           colorChoose.jb3.addActionListener(this);
-           colorChoose.jb4.addActionListener(this);
-           colorChoose.jb5.addActionListener(this);
-           colorChoose.jb6.addActionListener(this);
-           colorChoose.jb7.addActionListener(this);
-           colorChoose.jb8.addActionListener(this);
-           colorChoose.jb9.addActionListener(this);
-           jsldVert.setPaintLabels(true);
-           jsldVert.setPaintTicks(true);
-           jsldVert.setMajorTickSpacing(4);
-           jsldVert.setMinorTickSpacing(1);
-           jsldVert.setPaintTrack(false);
-           this.add(sP1,BorderLayout.CENTER);
-           this.add(colorChoose,BorderLayout.EAST);
-           this.add(jsldVert,BorderLayout.WEST);
-           jsldVert.addChangeListener(this);
+    public WhiteBoard(Client client){
+        this.client = client;
+        this.setLayout(new BorderLayout());
+        /*设置画布*/
+        card = new CardLayout(0,0);
+        canvasPanel = new JPanel(card);
 
-           boardMap.put(num++, this.sP1);
+        colorChoose.setLayout(new GridLayout(0,1));
+        colorChoose.jb1.addActionListener(this);
+        colorChoose.jb2.addActionListener(this);
+        colorChoose.jb3.addActionListener(this);
+        colorChoose.jb4.addActionListener(this);
+        colorChoose.jb5.addActionListener(this);
+        colorChoose.jb6.addActionListener(this);
+        colorChoose.jb7.addActionListener(this);
+        colorChoose.jb8.addActionListener(this);
+        colorChoose.jb9.addActionListener(this);
+        jsldVert.setPaintLabels(true);
+        jsldVert.setPaintTicks(true);
+        jsldVert.setMajorTickSpacing(4);
+        jsldVert.setMinorTickSpacing(1);
+        jsldVert.setPaintTrack(false);
+        addPanel(0);
+        sP1 = panelList.get(0);
+        this.add(canvasPanel,BorderLayout.CENTER);
+        this.add(colorChoose,BorderLayout.EAST);
+        this.add(jsldVert,BorderLayout.WEST);
+        jsldVert.addChangeListener(this);
 
+        whiteBoard = this;
        }
+
+    public void choosePanel(long questionID) {
+        if(!questionIDs.contains(questionID))
+            return;
+        card.show(canvasPanel, String.valueOf(questionID));
+        sP1 = panelList.get(questionIDs.indexOf(questionID));
+        sP1.refresh();
+    }
+
+    public ScribblePanel addPanel(long questionID) {
+        if(questionIDs.contains(questionID)) {
+            return panelList.get(questionIDs.indexOf(questionID));
+        }
+        ScribblePanel panel = new ScribblePanel(client, questionID);
+        panelList.add(panel);
+        questionIDs.add(questionID);
+        canvasPanel.add(panel, String.valueOf(questionID));
+
+        return panel;
+    }
+
+    public void removePanel(long questionID) {
+        if(questionID == 0) return;
+        if(questionIDs.contains(questionID)) {
+            ScribblePanel panel = panelList.get(questionIDs.indexOf(questionID));
+            canvasPanel.remove(panel);
+            panelList.remove(panel);
+            questionIDs.remove(questionIDs.indexOf(questionID));
+        }
+    }
        
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -108,9 +123,6 @@ public class WhiteBoard extends JPanel
             sP1.color = (Color.BLACK);
 
     }
-    public void setWhiteColor(Graphics g) {
-        g.setColor(Color.WHITE); 
-    }
 
     @Override
     public void stateChanged(ChangeEvent e) {
@@ -120,49 +132,33 @@ public class WhiteBoard extends JPanel
         sP1.setPenSize(newPenSize);
     }
 
-    /*handle net event*/
-    public static void dispatch(NetEvent event) {
-        ScribblePanel panel = (ScribblePanel) boardMap.get(0);
-        WhiteBoardEvent e = (WhiteBoardEvent) event;
-        if (e.isCls()) {
-            panel.clear(e.getX1(), e.getY1(), e.getX2(), e.getY2());
-        } else if(e.isACls()) {
-            panel.clearAll();
-        } else {
-            panel.draw(e.getColor(), e.getStroke(), e.getX1(), e.getY1(), e.getX2(), e.getY2());
-        }
-    }
-
-
-
-    /*inner class*/
-    class ScribblePanel extends JPanel
+    /*画板*/
+    public class ScribblePanel extends JPanel
             implements MouseListener,MouseMotionListener{
         final int CIRCLESIZE = 20;
         Color color = Color.BLACK;
         private Point pointStart = new Point(0,0);
         public Graphics graphics;
         public float penSize = 3;
-
         private long questionID = -1;
 
-        private Image curImage = null;
+        public Thread repaintThread = null;
+
+        private GraphicPoints curImage = new GraphicPoints(this);
         private boolean isCls = false;
-        private boolean textType = true;
-        private boolean repaint = true;
+        private float penfix = 1;  //适应窗口的画笔粗细变化系数
 
         private Client client;
 
-        public ScribblePanel(Client client){
+        public ScribblePanel(Client client, Long questionID){
             addMouseListener(this);
             addMouseMotionListener(this);
             this.client = client;
-        }
-
-        public ScribblePanel(Client client, long questionID){
-            this(client);
             this.questionID = questionID;
         }
+
+        public void setCurImage(GraphicPoints image) {this.curImage = image;}
+        public float getPenfix() {return this.penfix;}
 
         /*Mouse events*/
         public void mouseClicked(MouseEvent e){
@@ -170,6 +166,7 @@ public class WhiteBoard extends JPanel
                 clearAll();
                 WhiteBoardEvent event = new WhiteBoardEvent();
                 event.setACls(true);
+                /*reset the curImage to blank*/
                 try {
                     client.whiteBoardMessage(event);
                 } catch (IOException ex) {}
@@ -177,10 +174,8 @@ public class WhiteBoard extends JPanel
 
         }
         public void mouseEntered(MouseEvent e){
-            //flush();
         }
         public void mouseExited(MouseEvent e){
-
         }
         public void mouseReleased(MouseEvent e){
             if(isCls) {
@@ -208,7 +203,6 @@ public class WhiteBoard extends JPanel
                 pointStart.move(e.getX(), e.getY());
             }
         }
-
         public void mouseDragged(MouseEvent e){
             if(e.isAltDown()) {
 
@@ -218,21 +212,24 @@ public class WhiteBoard extends JPanel
                 if (e.isMetaDown())
                     color = getBackground();
 
-                draw(color, penSize, pointStart.x, pointStart.y, e.getX(), e.getY());
+                draw(color, penSize*penfix, pointStart.x, pointStart.y, e.getX(), e.getY());
                 try {
+                    //network message
                     WhiteBoardEvent event = new WhiteBoardEvent();
                     event.setX1(pointStart.x);
                     event.setY1(pointStart.y);
                     event.setX2(e.getX());
                     event.setY2(e.getY());
                     event.setColor(color.getRGB());
-                    event.setStroke(penSize);
+                    event.setPensize(penSize);
                     event.setQuestionID(questionID);
                     event.setCls(false);
                     event.setACls(false);
+                    event.setRefresh(false);
+                    event.setReceiveImage(false);
+                    event.setImage(new GraphicPoints());
                     client.whiteBoardMessage(event);
                 } catch (IOException ex) {
-                    //exception handle
                     ex.printStackTrace();
                 }
                 pointStart.move(e.getX(), e.getY());
@@ -240,12 +237,11 @@ public class WhiteBoard extends JPanel
             }
         }
         public void mouseMoved(MouseEvent e){
-            flush();
+            //refresh();
         }
 
-
-        /*draw on the panel*/
-        private void draw(Color color, float stroke, int x1, int y1, int x2, int y2) {
+        /*画线、点*/
+        public void draw(Color color, float stroke, int x1, int y1, int x2, int y2) {
             graphics = getGraphics();
             Graphics2D g2 = (Graphics2D)graphics;
             g2.setColor(color);
@@ -254,19 +250,14 @@ public class WhiteBoard extends JPanel
             graphics.dispose();
 
             /*save to curImage*/
-            graphics = curImage.getGraphics();
-            g2 = (Graphics2D)graphics;
-            g2.setColor(color);
-            g2.setStroke(new BasicStroke(stroke));
-            g2.drawLine(x1, y1, x2, y2);
-            graphics.dispose();
+            curImage.addPoint(x1, y1, x2, y2, penSize, color);
         }
-        private void draw(int color, float stroke, int x1, int y1, int x2, int y2) {
+        public void draw(int color, float stroke, int x1, int y1, int x2, int y2) {
             draw(new Color(color), stroke, x1, y1, x2, y2);
         }
 
-        /*set a rectangle area to background*/
-        private void clear(int x1, int y1, int x2, int y2) {
+        /*清除区域内容*/
+        public void clear(int x1, int y1, int x2, int y2) {
             graphics = getGraphics();
             Graphics2D g2 = (Graphics2D) graphics;
             g2.setColor(getBackground());
@@ -274,40 +265,29 @@ public class WhiteBoard extends JPanel
             graphics.dispose();
 
             /*update curImage*/
-            graphics = curImage.getGraphics();
-            g2 = (Graphics2D) graphics;
-            g2.setColor(getBackground());
-            g2.clearRect(x1 < x2 ? x1 : x2, y1 < y2 ? y1 : y2, Math.abs(x1-x2), Math.abs(y2-y1));
-            graphics.dispose();
+            curImage.clear(x1, y1, x2, y2);
         }
 
-        private void clearAll() {
+        /*清除整张图片内容*/
+        public void clearAll() {
             graphics = this.getGraphics();
             graphics.setColor(getBackground());
             graphics.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
             graphics.dispose();
-            graphics = curImage.getGraphics();
-            graphics.setColor(getBackground());
-            graphics.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-            graphics.dispose();
+
+            curImage.clearAll();
         }
 
-        void setPenSize(float newPenSize){
+        /*设置画笔粗细*/
+        public void setPenSize(float newPenSize){
             penSize = newPenSize;
         }
 
-        void flush() {
-            if(curImage == null) {
-                /*initialize bufferedImage*/
-                curImage = createImage(getWidth(), getHeight());
-                Graphics tempGraphics =  curImage.getGraphics();
-                tempGraphics.setColor(getBackground());
-                tempGraphics.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-                tempGraphics.dispose();
-            }
-            graphics = getGraphics();
-            graphics.drawImage(curImage, 0, 0, getWidth(), getHeight(), this);
+        /*刷新*/
+        public void refresh() {
+            curImage.draw((Graphics2D) getGraphics(), penfix);
         }
+
     }
 
 }

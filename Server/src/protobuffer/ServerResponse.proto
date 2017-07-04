@@ -34,6 +34,7 @@ enum MSG {
    //获取用户列表反馈
    GET_USER_LIST_RESPONSE = 20;
    WHITE_BOARD_MESSAGE = 21;
+   IGNORE_MESSAGE = 22;
 }
 
 //-----------枚举定义---------------//
@@ -210,6 +211,8 @@ message UpdateMessage {
         int64 questionID = 2;
     }
     UserEnter userEnter = 1;
+    bytes whiteBoardImage = 2;
+    bool sendImage = 3;
 }
 
 message GetUserListResponse {
@@ -234,11 +237,31 @@ message WhiteBoardMessage {
         WHITE = 7; BLACK = 8;
     }
     int32 color = 5;
-    float stroke = 6;
+    float pensize = 6;
     int64 questionId = 7;
     bool isCls = 8;
     bool isACls = 9;
-    bytes image = 10;
+    bool isRefresh = 10;
+    bool isReceiveImage = 11;
+    message WhiteBoardImage {
+        message GraphicPoint {
+            int32 x1 = 1;
+            int32 y1 = 2;
+            int32 x2 = 3;
+            int32 y2 = 4;
+            int32 color = 5;
+            float pensize = 6;
+        }
+        message GraphicRect {
+            int32 x1 = 1;
+            int32 y1 = 2;
+            int32 x2 = 3;
+            int32 y2 = 4;
+        }
+        repeated GraphicPoint points = 1;
+        repeated GraphicRect rects = 2;
+    }
+    WhiteBoardImage image = 12;
 }
 
 //----------------顶层消息----------------------

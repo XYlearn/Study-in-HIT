@@ -143,6 +143,10 @@ public final class ServerResponseMessage {
      * <code>WHITE_BOARD_MESSAGE = 21;</code>
      */
     WHITE_BOARD_MESSAGE(21),
+    /**
+     * <code>IGNORE_MESSAGE = 22;</code>
+     */
+    IGNORE_MESSAGE(22),
     UNRECOGNIZED(-1),
     ;
 
@@ -266,6 +270,10 @@ public final class ServerResponseMessage {
      * <code>WHITE_BOARD_MESSAGE = 21;</code>
      */
     public static final int WHITE_BOARD_MESSAGE_VALUE = 21;
+    /**
+     * <code>IGNORE_MESSAGE = 22;</code>
+     */
+    public static final int IGNORE_MESSAGE_VALUE = 22;
 
 
     public final int getNumber() {
@@ -305,6 +313,7 @@ public final class ServerResponseMessage {
         case 19: return BAD_MESSAGE;
         case 20: return GET_USER_LIST_RESPONSE;
         case 21: return WHITE_BOARD_MESSAGE;
+        case 22: return IGNORE_MESSAGE;
         default: return null;
       }
     }
@@ -16847,6 +16856,16 @@ public final class ServerResponseMessage {
      * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
      */
     com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder getUserEnterOrBuilder();
+
+    /**
+     * <code>optional bytes whiteBoardImage = 2;</code>
+     */
+    com.google.protobuf.ByteString getWhiteBoardImage();
+
+    /**
+     * <code>optional bool sendImage = 3;</code>
+     */
+    boolean getSendImage();
   }
   /**
    * Protobuf type {@code UpdateMessage}
@@ -16860,6 +16879,8 @@ public final class ServerResponseMessage {
       super(builder);
     }
     private UpdateMessage() {
+      whiteBoardImage_ = com.google.protobuf.ByteString.EMPTY;
+      sendImage_ = false;
     }
 
     @java.lang.Override
@@ -16898,6 +16919,16 @@ public final class ServerResponseMessage {
                 userEnter_ = subBuilder.buildPartial();
               }
 
+              break;
+            }
+            case 18: {
+
+              whiteBoardImage_ = input.readBytes();
+              break;
+            }
+            case 24: {
+
+              sendImage_ = input.readBool();
               break;
             }
           }
@@ -17511,6 +17542,24 @@ public final class ServerResponseMessage {
       return getUserEnter();
     }
 
+    public static final int WHITEBOARDIMAGE_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString whiteBoardImage_;
+    /**
+     * <code>optional bytes whiteBoardImage = 2;</code>
+     */
+    public com.google.protobuf.ByteString getWhiteBoardImage() {
+      return whiteBoardImage_;
+    }
+
+    public static final int SENDIMAGE_FIELD_NUMBER = 3;
+    private boolean sendImage_;
+    /**
+     * <code>optional bool sendImage = 3;</code>
+     */
+    public boolean getSendImage() {
+      return sendImage_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -17526,6 +17575,12 @@ public final class ServerResponseMessage {
       if (userEnter_ != null) {
         output.writeMessage(1, getUserEnter());
       }
+      if (!whiteBoardImage_.isEmpty()) {
+        output.writeBytes(2, whiteBoardImage_);
+      }
+      if (sendImage_ != false) {
+        output.writeBool(3, sendImage_);
+      }
     }
 
     public int getSerializedSize() {
@@ -17536,6 +17591,14 @@ public final class ServerResponseMessage {
       if (userEnter_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getUserEnter());
+      }
+      if (!whiteBoardImage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, whiteBoardImage_);
+      }
+      if (sendImage_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, sendImage_);
       }
       memoizedSize = size;
       return size;
@@ -17558,6 +17621,10 @@ public final class ServerResponseMessage {
         result = result && getUserEnter()
             .equals(other.getUserEnter());
       }
+      result = result && getWhiteBoardImage()
+          .equals(other.getWhiteBoardImage());
+      result = result && (getSendImage()
+          == other.getSendImage());
       return result;
     }
 
@@ -17572,6 +17639,11 @@ public final class ServerResponseMessage {
         hash = (37 * hash) + USERENTER_FIELD_NUMBER;
         hash = (53 * hash) + getUserEnter().hashCode();
       }
+      hash = (37 * hash) + WHITEBOARDIMAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getWhiteBoardImage().hashCode();
+      hash = (37 * hash) + SENDIMAGE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSendImage());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -17696,6 +17768,10 @@ public final class ServerResponseMessage {
           userEnter_ = null;
           userEnterBuilder_ = null;
         }
+        whiteBoardImage_ = com.google.protobuf.ByteString.EMPTY;
+
+        sendImage_ = false;
+
         return this;
       }
 
@@ -17723,6 +17799,8 @@ public final class ServerResponseMessage {
         } else {
           result.userEnter_ = userEnterBuilder_.build();
         }
+        result.whiteBoardImage_ = whiteBoardImage_;
+        result.sendImage_ = sendImage_;
         onBuilt();
         return result;
       }
@@ -17766,6 +17844,12 @@ public final class ServerResponseMessage {
         if (other == com.ServerResponseMessage.UpdateMessage.getDefaultInstance()) return this;
         if (other.hasUserEnter()) {
           mergeUserEnter(other.getUserEnter());
+        }
+        if (other.getWhiteBoardImage() != com.google.protobuf.ByteString.EMPTY) {
+          setWhiteBoardImage(other.getWhiteBoardImage());
+        }
+        if (other.getSendImage() != false) {
+          setSendImage(other.getSendImage());
         }
         onChanged();
         return this;
@@ -17908,6 +17992,61 @@ public final class ServerResponseMessage {
           userEnter_ = null;
         }
         return userEnterBuilder_;
+      }
+
+      private com.google.protobuf.ByteString whiteBoardImage_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes whiteBoardImage = 2;</code>
+       */
+      public com.google.protobuf.ByteString getWhiteBoardImage() {
+        return whiteBoardImage_;
+      }
+      /**
+       * <code>optional bytes whiteBoardImage = 2;</code>
+       */
+      public Builder setWhiteBoardImage(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        whiteBoardImage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes whiteBoardImage = 2;</code>
+       */
+      public Builder clearWhiteBoardImage() {
+        
+        whiteBoardImage_ = getDefaultInstance().getWhiteBoardImage();
+        onChanged();
+        return this;
+      }
+
+      private boolean sendImage_ ;
+      /**
+       * <code>optional bool sendImage = 3;</code>
+       */
+      public boolean getSendImage() {
+        return sendImage_;
+      }
+      /**
+       * <code>optional bool sendImage = 3;</code>
+       */
+      public Builder setSendImage(boolean value) {
+        
+        sendImage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool sendImage = 3;</code>
+       */
+      public Builder clearSendImage() {
+        
+        sendImage_ = false;
+        onChanged();
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -19001,9 +19140,9 @@ public final class ServerResponseMessage {
     int getColor();
 
     /**
-     * <code>optional float stroke = 6;</code>
+     * <code>optional float pensize = 6;</code>
      */
-    float getStroke();
+    float getPensize();
 
     /**
      * <code>optional int64 questionId = 7;</code>
@@ -19021,9 +19160,27 @@ public final class ServerResponseMessage {
     boolean getIsACls();
 
     /**
-     * <code>optional bytes image = 10;</code>
+     * <code>optional bool isRefresh = 10;</code>
      */
-    com.google.protobuf.ByteString getImage();
+    boolean getIsRefresh();
+
+    /**
+     * <code>optional bool isReceiveImage = 11;</code>
+     */
+    boolean getIsReceiveImage();
+
+    /**
+     * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+     */
+    boolean hasImage();
+    /**
+     * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+     */
+    com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage getImage();
+    /**
+     * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+     */
+    com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder getImageOrBuilder();
   }
   /**
    * Protobuf type {@code WhiteBoardMessage}
@@ -19042,11 +19199,12 @@ public final class ServerResponseMessage {
       x2_ = 0;
       y2_ = 0;
       color_ = 0;
-      stroke_ = 0F;
+      pensize_ = 0F;
       questionId_ = 0L;
       isCls_ = false;
       isACls_ = false;
-      image_ = com.google.protobuf.ByteString.EMPTY;
+      isRefresh_ = false;
+      isReceiveImage_ = false;
     }
 
     @java.lang.Override
@@ -19101,7 +19259,7 @@ public final class ServerResponseMessage {
             }
             case 53: {
 
-              stroke_ = input.readFloat();
+              pensize_ = input.readFloat();
               break;
             }
             case 56: {
@@ -19119,9 +19277,27 @@ public final class ServerResponseMessage {
               isACls_ = input.readBool();
               break;
             }
-            case 82: {
+            case 80: {
 
-              image_ = input.readBytes();
+              isRefresh_ = input.readBool();
+              break;
+            }
+            case 88: {
+
+              isReceiveImage_ = input.readBool();
+              break;
+            }
+            case 98: {
+              com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder subBuilder = null;
+              if (image_ != null) {
+                subBuilder = image_.toBuilder();
+              }
+              image_ = input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(image_);
+                image_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           }
@@ -19308,6 +19484,2473 @@ public final class ServerResponseMessage {
       // @@protoc_insertion_point(enum_scope:WhiteBoardMessage.COLOR)
     }
 
+    public interface WhiteBoardImageOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:WhiteBoardMessage.WhiteBoardImage)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint> 
+          getPointsList();
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint getPoints(int index);
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      int getPointsCount();
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      java.util.List<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> 
+          getPointsOrBuilderList();
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder getPointsOrBuilder(
+          int index);
+
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect> 
+          getRectsList();
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect getRects(int index);
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      int getRectsCount();
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      java.util.List<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> 
+          getRectsOrBuilderList();
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder getRectsOrBuilder(
+          int index);
+    }
+    /**
+     * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage}
+     */
+    public  static final class WhiteBoardImage extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage)
+        WhiteBoardImageOrBuilder {
+      // Use WhiteBoardImage.newBuilder() to construct.
+      private WhiteBoardImage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private WhiteBoardImage() {
+        points_ = java.util.Collections.emptyList();
+        rects_ = java.util.Collections.emptyList();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      }
+      private WhiteBoardImage(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!input.skipField(tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                  points_ = new java.util.ArrayList<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint>();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                points_.add(
+                    input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.parser(), extensionRegistry));
+                break;
+              }
+              case 18: {
+                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                  rects_ = new java.util.ArrayList<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect>();
+                  mutable_bitField0_ |= 0x00000002;
+                }
+                rects_.add(
+                    input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.parser(), extensionRegistry));
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+            points_ = java.util.Collections.unmodifiableList(points_);
+          }
+          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+            rects_ = java.util.Collections.unmodifiableList(rects_);
+          }
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.class, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder.class);
+      }
+
+      public interface GraphicPointOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>optional int32 x1 = 1;</code>
+         */
+        int getX1();
+
+        /**
+         * <code>optional int32 y1 = 2;</code>
+         */
+        int getY1();
+
+        /**
+         * <code>optional int32 x2 = 3;</code>
+         */
+        int getX2();
+
+        /**
+         * <code>optional int32 y2 = 4;</code>
+         */
+        int getY2();
+
+        /**
+         * <code>optional int32 color = 5;</code>
+         */
+        int getColor();
+
+        /**
+         * <code>optional float pensize = 6;</code>
+         */
+        float getPensize();
+      }
+      /**
+       * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicPoint}
+       */
+      public  static final class GraphicPoint extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
+          GraphicPointOrBuilder {
+        // Use GraphicPoint.newBuilder() to construct.
+        private GraphicPoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private GraphicPoint() {
+          x1_ = 0;
+          y1_ = 0;
+          x2_ = 0;
+          y2_ = 0;
+          color_ = 0;
+          pensize_ = 0F;
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        }
+        private GraphicPoint(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          int mutable_bitField0_ = 0;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  x1_ = input.readInt32();
+                  break;
+                }
+                case 16: {
+
+                  y1_ = input.readInt32();
+                  break;
+                }
+                case 24: {
+
+                  x2_ = input.readInt32();
+                  break;
+                }
+                case 32: {
+
+                  y2_ = input.readInt32();
+                  break;
+                }
+                case 40: {
+
+                  color_ = input.readInt32();
+                  break;
+                }
+                case 53: {
+
+                  pensize_ = input.readFloat();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.class, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder.class);
+        }
+
+        public static final int X1_FIELD_NUMBER = 1;
+        private int x1_;
+        /**
+         * <code>optional int32 x1 = 1;</code>
+         */
+        public int getX1() {
+          return x1_;
+        }
+
+        public static final int Y1_FIELD_NUMBER = 2;
+        private int y1_;
+        /**
+         * <code>optional int32 y1 = 2;</code>
+         */
+        public int getY1() {
+          return y1_;
+        }
+
+        public static final int X2_FIELD_NUMBER = 3;
+        private int x2_;
+        /**
+         * <code>optional int32 x2 = 3;</code>
+         */
+        public int getX2() {
+          return x2_;
+        }
+
+        public static final int Y2_FIELD_NUMBER = 4;
+        private int y2_;
+        /**
+         * <code>optional int32 y2 = 4;</code>
+         */
+        public int getY2() {
+          return y2_;
+        }
+
+        public static final int COLOR_FIELD_NUMBER = 5;
+        private int color_;
+        /**
+         * <code>optional int32 color = 5;</code>
+         */
+        public int getColor() {
+          return color_;
+        }
+
+        public static final int PENSIZE_FIELD_NUMBER = 6;
+        private float pensize_;
+        /**
+         * <code>optional float pensize = 6;</code>
+         */
+        public float getPensize() {
+          return pensize_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          if (x1_ != 0) {
+            output.writeInt32(1, x1_);
+          }
+          if (y1_ != 0) {
+            output.writeInt32(2, y1_);
+          }
+          if (x2_ != 0) {
+            output.writeInt32(3, x2_);
+          }
+          if (y2_ != 0) {
+            output.writeInt32(4, y2_);
+          }
+          if (color_ != 0) {
+            output.writeInt32(5, color_);
+          }
+          if (pensize_ != 0F) {
+            output.writeFloat(6, pensize_);
+          }
+        }
+
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (x1_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(1, x1_);
+          }
+          if (y1_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(2, y1_);
+          }
+          if (x2_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(3, x2_);
+          }
+          if (y2_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(4, y2_);
+          }
+          if (color_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(5, color_);
+          }
+          if (pensize_ != 0F) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeFloatSize(6, pensize_);
+          }
+          memoizedSize = size;
+          return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint)) {
+            return super.equals(obj);
+          }
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint other = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) obj;
+
+          boolean result = true;
+          result = result && (getX1()
+              == other.getX1());
+          result = result && (getY1()
+              == other.getY1());
+          result = result && (getX2()
+              == other.getX2());
+          result = result && (getY2()
+              == other.getY2());
+          result = result && (getColor()
+              == other.getColor());
+          result = result && (
+              java.lang.Float.floatToIntBits(getPensize())
+              == java.lang.Float.floatToIntBits(
+                  other.getPensize()));
+          return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptorForType().hashCode();
+          hash = (37 * hash) + X1_FIELD_NUMBER;
+          hash = (53 * hash) + getX1();
+          hash = (37 * hash) + Y1_FIELD_NUMBER;
+          hash = (53 * hash) + getY1();
+          hash = (37 * hash) + X2_FIELD_NUMBER;
+          hash = (53 * hash) + getX2();
+          hash = (37 * hash) + Y2_FIELD_NUMBER;
+          hash = (53 * hash) + getY2();
+          hash = (37 * hash) + COLOR_FIELD_NUMBER;
+          hash = (53 * hash) + getColor();
+          hash = (37 * hash) + PENSIZE_FIELD_NUMBER;
+          hash = (53 * hash) + java.lang.Float.floatToIntBits(
+              getPensize());
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicPoint}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
+          }
+
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.class, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder.class);
+          }
+
+          // Construct using com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          public Builder clear() {
+            super.clear();
+            x1_ = 0;
+
+            y1_ = 0;
+
+            x2_ = 0;
+
+            y2_ = 0;
+
+            color_ = 0;
+
+            pensize_ = 0F;
+
+            return this;
+          }
+
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
+          }
+
+          public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint getDefaultInstanceForType() {
+            return com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.getDefaultInstance();
+          }
+
+          public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint build() {
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint buildPartial() {
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint result = new com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint(this);
+            result.x1_ = x1_;
+            result.y1_ = y1_;
+            result.x2_ = x2_;
+            result.y2_ = y2_;
+            result.color_ = color_;
+            result.pensize_ = pensize_;
+            onBuilt();
+            return result;
+          }
+
+          public Builder clone() {
+            return (Builder) super.clone();
+          }
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+            return (Builder) super.setField(field, value);
+          }
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+          }
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+          }
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+          }
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+          }
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) {
+              return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint other) {
+            if (other == com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.getDefaultInstance()) return this;
+            if (other.getX1() != 0) {
+              setX1(other.getX1());
+            }
+            if (other.getY1() != 0) {
+              setY1(other.getY1());
+            }
+            if (other.getX2() != 0) {
+              setX2(other.getX2());
+            }
+            if (other.getY2() != 0) {
+              setY2(other.getY2());
+            }
+            if (other.getColor() != 0) {
+              setColor(other.getColor());
+            }
+            if (other.getPensize() != 0F) {
+              setPensize(other.getPensize());
+            }
+            onChanged();
+            return this;
+          }
+
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+
+          private int x1_ ;
+          /**
+           * <code>optional int32 x1 = 1;</code>
+           */
+          public int getX1() {
+            return x1_;
+          }
+          /**
+           * <code>optional int32 x1 = 1;</code>
+           */
+          public Builder setX1(int value) {
+            
+            x1_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 x1 = 1;</code>
+           */
+          public Builder clearX1() {
+            
+            x1_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int y1_ ;
+          /**
+           * <code>optional int32 y1 = 2;</code>
+           */
+          public int getY1() {
+            return y1_;
+          }
+          /**
+           * <code>optional int32 y1 = 2;</code>
+           */
+          public Builder setY1(int value) {
+            
+            y1_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 y1 = 2;</code>
+           */
+          public Builder clearY1() {
+            
+            y1_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int x2_ ;
+          /**
+           * <code>optional int32 x2 = 3;</code>
+           */
+          public int getX2() {
+            return x2_;
+          }
+          /**
+           * <code>optional int32 x2 = 3;</code>
+           */
+          public Builder setX2(int value) {
+            
+            x2_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 x2 = 3;</code>
+           */
+          public Builder clearX2() {
+            
+            x2_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int y2_ ;
+          /**
+           * <code>optional int32 y2 = 4;</code>
+           */
+          public int getY2() {
+            return y2_;
+          }
+          /**
+           * <code>optional int32 y2 = 4;</code>
+           */
+          public Builder setY2(int value) {
+            
+            y2_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 y2 = 4;</code>
+           */
+          public Builder clearY2() {
+            
+            y2_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int color_ ;
+          /**
+           * <code>optional int32 color = 5;</code>
+           */
+          public int getColor() {
+            return color_;
+          }
+          /**
+           * <code>optional int32 color = 5;</code>
+           */
+          public Builder setColor(int value) {
+            
+            color_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 color = 5;</code>
+           */
+          public Builder clearColor() {
+            
+            color_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private float pensize_ ;
+          /**
+           * <code>optional float pensize = 6;</code>
+           */
+          public float getPensize() {
+            return pensize_;
+          }
+          /**
+           * <code>optional float pensize = 6;</code>
+           */
+          public Builder setPensize(float value) {
+            
+            pensize_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional float pensize = 6;</code>
+           */
+          public Builder clearPensize() {
+            
+            pensize_ = 0F;
+            onChanged();
+            return this;
+          }
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return this;
+          }
+
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return this;
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
+        }
+
+        // @@protoc_insertion_point(class_scope:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
+        private static final com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint();
+        }
+
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<GraphicPoint>
+            PARSER = new com.google.protobuf.AbstractParser<GraphicPoint>() {
+          public GraphicPoint parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+              return new GraphicPoint(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<GraphicPoint> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<GraphicPoint> getParserForType() {
+          return PARSER;
+        }
+
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      public interface GraphicRectOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>optional int32 x1 = 1;</code>
+         */
+        int getX1();
+
+        /**
+         * <code>optional int32 y1 = 2;</code>
+         */
+        int getY1();
+
+        /**
+         * <code>optional int32 x2 = 3;</code>
+         */
+        int getX2();
+
+        /**
+         * <code>optional int32 y2 = 4;</code>
+         */
+        int getY2();
+      }
+      /**
+       * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicRect}
+       */
+      public  static final class GraphicRect extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
+          GraphicRectOrBuilder {
+        // Use GraphicRect.newBuilder() to construct.
+        private GraphicRect(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private GraphicRect() {
+          x1_ = 0;
+          y1_ = 0;
+          x2_ = 0;
+          y2_ = 0;
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+        }
+        private GraphicRect(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          int mutable_bitField0_ = 0;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  x1_ = input.readInt32();
+                  break;
+                }
+                case 16: {
+
+                  y1_ = input.readInt32();
+                  break;
+                }
+                case 24: {
+
+                  x2_ = input.readInt32();
+                  break;
+                }
+                case 32: {
+
+                  y2_ = input.readInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.class, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder.class);
+        }
+
+        public static final int X1_FIELD_NUMBER = 1;
+        private int x1_;
+        /**
+         * <code>optional int32 x1 = 1;</code>
+         */
+        public int getX1() {
+          return x1_;
+        }
+
+        public static final int Y1_FIELD_NUMBER = 2;
+        private int y1_;
+        /**
+         * <code>optional int32 y1 = 2;</code>
+         */
+        public int getY1() {
+          return y1_;
+        }
+
+        public static final int X2_FIELD_NUMBER = 3;
+        private int x2_;
+        /**
+         * <code>optional int32 x2 = 3;</code>
+         */
+        public int getX2() {
+          return x2_;
+        }
+
+        public static final int Y2_FIELD_NUMBER = 4;
+        private int y2_;
+        /**
+         * <code>optional int32 y2 = 4;</code>
+         */
+        public int getY2() {
+          return y2_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          if (x1_ != 0) {
+            output.writeInt32(1, x1_);
+          }
+          if (y1_ != 0) {
+            output.writeInt32(2, y1_);
+          }
+          if (x2_ != 0) {
+            output.writeInt32(3, x2_);
+          }
+          if (y2_ != 0) {
+            output.writeInt32(4, y2_);
+          }
+        }
+
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (x1_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(1, x1_);
+          }
+          if (y1_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(2, y1_);
+          }
+          if (x2_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(3, x2_);
+          }
+          if (y2_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(4, y2_);
+          }
+          memoizedSize = size;
+          return size;
+        }
+
+        private static final long serialVersionUID = 0L;
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect)) {
+            return super.equals(obj);
+          }
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect other = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) obj;
+
+          boolean result = true;
+          result = result && (getX1()
+              == other.getX1());
+          result = result && (getY1()
+              == other.getY1());
+          result = result && (getX2()
+              == other.getX2());
+          result = result && (getY2()
+              == other.getY2());
+          return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptorForType().hashCode();
+          hash = (37 * hash) + X1_FIELD_NUMBER;
+          hash = (53 * hash) + getX1();
+          hash = (37 * hash) + Y1_FIELD_NUMBER;
+          hash = (53 * hash) + getY1();
+          hash = (37 * hash) + X2_FIELD_NUMBER;
+          hash = (53 * hash) + getX2();
+          hash = (37 * hash) + Y2_FIELD_NUMBER;
+          hash = (53 * hash) + getY2();
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicRect}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
+          }
+
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.class, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder.class);
+          }
+
+          // Construct using com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          public Builder clear() {
+            super.clear();
+            x1_ = 0;
+
+            y1_ = 0;
+
+            x2_ = 0;
+
+            y2_ = 0;
+
+            return this;
+          }
+
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
+          }
+
+          public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect getDefaultInstanceForType() {
+            return com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.getDefaultInstance();
+          }
+
+          public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect build() {
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect buildPartial() {
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect result = new com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect(this);
+            result.x1_ = x1_;
+            result.y1_ = y1_;
+            result.x2_ = x2_;
+            result.y2_ = y2_;
+            onBuilt();
+            return result;
+          }
+
+          public Builder clone() {
+            return (Builder) super.clone();
+          }
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+            return (Builder) super.setField(field, value);
+          }
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+          }
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+          }
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+          }
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+          }
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) {
+              return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect other) {
+            if (other == com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.getDefaultInstance()) return this;
+            if (other.getX1() != 0) {
+              setX1(other.getX1());
+            }
+            if (other.getY1() != 0) {
+              setY1(other.getY1());
+            }
+            if (other.getX2() != 0) {
+              setX2(other.getX2());
+            }
+            if (other.getY2() != 0) {
+              setY2(other.getY2());
+            }
+            onChanged();
+            return this;
+          }
+
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+
+          private int x1_ ;
+          /**
+           * <code>optional int32 x1 = 1;</code>
+           */
+          public int getX1() {
+            return x1_;
+          }
+          /**
+           * <code>optional int32 x1 = 1;</code>
+           */
+          public Builder setX1(int value) {
+            
+            x1_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 x1 = 1;</code>
+           */
+          public Builder clearX1() {
+            
+            x1_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int y1_ ;
+          /**
+           * <code>optional int32 y1 = 2;</code>
+           */
+          public int getY1() {
+            return y1_;
+          }
+          /**
+           * <code>optional int32 y1 = 2;</code>
+           */
+          public Builder setY1(int value) {
+            
+            y1_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 y1 = 2;</code>
+           */
+          public Builder clearY1() {
+            
+            y1_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int x2_ ;
+          /**
+           * <code>optional int32 x2 = 3;</code>
+           */
+          public int getX2() {
+            return x2_;
+          }
+          /**
+           * <code>optional int32 x2 = 3;</code>
+           */
+          public Builder setX2(int value) {
+            
+            x2_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 x2 = 3;</code>
+           */
+          public Builder clearX2() {
+            
+            x2_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private int y2_ ;
+          /**
+           * <code>optional int32 y2 = 4;</code>
+           */
+          public int getY2() {
+            return y2_;
+          }
+          /**
+           * <code>optional int32 y2 = 4;</code>
+           */
+          public Builder setY2(int value) {
+            
+            y2_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>optional int32 y2 = 4;</code>
+           */
+          public Builder clearY2() {
+            
+            y2_ = 0;
+            onChanged();
+            return this;
+          }
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return this;
+          }
+
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return this;
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
+        }
+
+        // @@protoc_insertion_point(class_scope:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
+        private static final com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect();
+        }
+
+        public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<GraphicRect>
+            PARSER = new com.google.protobuf.AbstractParser<GraphicRect>() {
+          public GraphicRect parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+              return new GraphicRect(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<GraphicRect> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<GraphicRect> getParserForType() {
+          return PARSER;
+        }
+
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      public static final int POINTS_FIELD_NUMBER = 1;
+      private java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint> points_;
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      public java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint> getPointsList() {
+        return points_;
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      public java.util.List<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> 
+          getPointsOrBuilderList() {
+        return points_;
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      public int getPointsCount() {
+        return points_.size();
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint getPoints(int index) {
+        return points_.get(index);
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder getPointsOrBuilder(
+          int index) {
+        return points_.get(index);
+      }
+
+      public static final int RECTS_FIELD_NUMBER = 2;
+      private java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect> rects_;
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      public java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect> getRectsList() {
+        return rects_;
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      public java.util.List<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> 
+          getRectsOrBuilderList() {
+        return rects_;
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      public int getRectsCount() {
+        return rects_.size();
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect getRects(int index) {
+        return rects_.get(index);
+      }
+      /**
+       * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder getRectsOrBuilder(
+          int index) {
+        return rects_.get(index);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        for (int i = 0; i < points_.size(); i++) {
+          output.writeMessage(1, points_.get(i));
+        }
+        for (int i = 0; i < rects_.size(); i++) {
+          output.writeMessage(2, rects_.get(i));
+        }
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        for (int i = 0; i < points_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, points_.get(i));
+        }
+        for (int i = 0; i < rects_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, rects_.get(i));
+        }
+        memoizedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage)) {
+          return super.equals(obj);
+        }
+        com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage other = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage) obj;
+
+        boolean result = true;
+        result = result && getPointsList()
+            .equals(other.getPointsList());
+        result = result && getRectsList()
+            .equals(other.getRectsList());
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptorForType().hashCode();
+        if (getPointsCount() > 0) {
+          hash = (37 * hash) + POINTS_FIELD_NUMBER;
+          hash = (53 * hash) + getPointsList().hashCode();
+        }
+        if (getRectsCount() > 0) {
+          hash = (37 * hash) + RECTS_FIELD_NUMBER;
+          hash = (53 * hash) + getRectsList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage)
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.class, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder.class);
+        }
+
+        // Construct using com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getPointsFieldBuilder();
+            getRectsFieldBuilder();
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          if (pointsBuilder_ == null) {
+            points_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            pointsBuilder_.clear();
+          }
+          if (rectsBuilder_ == null) {
+            rects_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            rectsBuilder_.clear();
+          }
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
+        }
+
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage getDefaultInstanceForType() {
+          return com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.getDefaultInstance();
+        }
+
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage build() {
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage buildPartial() {
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage result = new com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage(this);
+          int from_bitField0_ = bitField0_;
+          if (pointsBuilder_ == null) {
+            if (((bitField0_ & 0x00000001) == 0x00000001)) {
+              points_ = java.util.Collections.unmodifiableList(points_);
+              bitField0_ = (bitField0_ & ~0x00000001);
+            }
+            result.points_ = points_;
+          } else {
+            result.points_ = pointsBuilder_.build();
+          }
+          if (rectsBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              rects_ = java.util.Collections.unmodifiableList(rects_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.rects_ = rects_;
+          } else {
+            result.rects_ = rectsBuilder_.build();
+          }
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage) {
+            return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage other) {
+          if (other == com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.getDefaultInstance()) return this;
+          if (pointsBuilder_ == null) {
+            if (!other.points_.isEmpty()) {
+              if (points_.isEmpty()) {
+                points_ = other.points_;
+                bitField0_ = (bitField0_ & ~0x00000001);
+              } else {
+                ensurePointsIsMutable();
+                points_.addAll(other.points_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.points_.isEmpty()) {
+              if (pointsBuilder_.isEmpty()) {
+                pointsBuilder_.dispose();
+                pointsBuilder_ = null;
+                points_ = other.points_;
+                bitField0_ = (bitField0_ & ~0x00000001);
+                pointsBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getPointsFieldBuilder() : null;
+              } else {
+                pointsBuilder_.addAllMessages(other.points_);
+              }
+            }
+          }
+          if (rectsBuilder_ == null) {
+            if (!other.rects_.isEmpty()) {
+              if (rects_.isEmpty()) {
+                rects_ = other.rects_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureRectsIsMutable();
+                rects_.addAll(other.rects_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.rects_.isEmpty()) {
+              if (rectsBuilder_.isEmpty()) {
+                rectsBuilder_.dispose();
+                rectsBuilder_ = null;
+                rects_ = other.rects_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                rectsBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getRectsFieldBuilder() : null;
+              } else {
+                rectsBuilder_.addAllMessages(other.rects_);
+              }
+            }
+          }
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint> points_ =
+          java.util.Collections.emptyList();
+        private void ensurePointsIsMutable() {
+          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+            points_ = new java.util.ArrayList<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint>(points_);
+            bitField0_ |= 0x00000001;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> pointsBuilder_;
+
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint> getPointsList() {
+          if (pointsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(points_);
+          } else {
+            return pointsBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public int getPointsCount() {
+          if (pointsBuilder_ == null) {
+            return points_.size();
+          } else {
+            return pointsBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint getPoints(int index) {
+          if (pointsBuilder_ == null) {
+            return points_.get(index);
+          } else {
+            return pointsBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder setPoints(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint value) {
+          if (pointsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensurePointsIsMutable();
+            points_.set(index, value);
+            onChanged();
+          } else {
+            pointsBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder setPoints(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder builderForValue) {
+          if (pointsBuilder_ == null) {
+            ensurePointsIsMutable();
+            points_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            pointsBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder addPoints(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint value) {
+          if (pointsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensurePointsIsMutable();
+            points_.add(value);
+            onChanged();
+          } else {
+            pointsBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder addPoints(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint value) {
+          if (pointsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensurePointsIsMutable();
+            points_.add(index, value);
+            onChanged();
+          } else {
+            pointsBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder addPoints(
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder builderForValue) {
+          if (pointsBuilder_ == null) {
+            ensurePointsIsMutable();
+            points_.add(builderForValue.build());
+            onChanged();
+          } else {
+            pointsBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder addPoints(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder builderForValue) {
+          if (pointsBuilder_ == null) {
+            ensurePointsIsMutable();
+            points_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            pointsBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder addAllPoints(
+            java.lang.Iterable<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint> values) {
+          if (pointsBuilder_ == null) {
+            ensurePointsIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, points_);
+            onChanged();
+          } else {
+            pointsBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder clearPoints() {
+          if (pointsBuilder_ == null) {
+            points_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+            onChanged();
+          } else {
+            pointsBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public Builder removePoints(int index) {
+          if (pointsBuilder_ == null) {
+            ensurePointsIsMutable();
+            points_.remove(index);
+            onChanged();
+          } else {
+            pointsBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder getPointsBuilder(
+            int index) {
+          return getPointsFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder getPointsOrBuilder(
+            int index) {
+          if (pointsBuilder_ == null) {
+            return points_.get(index);  } else {
+            return pointsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public java.util.List<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> 
+             getPointsOrBuilderList() {
+          if (pointsBuilder_ != null) {
+            return pointsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(points_);
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder addPointsBuilder() {
+          return getPointsFieldBuilder().addBuilder(
+              com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder addPointsBuilder(
+            int index) {
+          return getPointsFieldBuilder().addBuilder(
+              index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicPoint points = 1;</code>
+         */
+        public java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder> 
+             getPointsBuilderList() {
+          return getPointsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> 
+            getPointsFieldBuilder() {
+          if (pointsBuilder_ == null) {
+            pointsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder>(
+                    points_,
+                    ((bitField0_ & 0x00000001) == 0x00000001),
+                    getParentForChildren(),
+                    isClean());
+            points_ = null;
+          }
+          return pointsBuilder_;
+        }
+
+        private java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect> rects_ =
+          java.util.Collections.emptyList();
+        private void ensureRectsIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            rects_ = new java.util.ArrayList<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect>(rects_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> rectsBuilder_;
+
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect> getRectsList() {
+          if (rectsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(rects_);
+          } else {
+            return rectsBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public int getRectsCount() {
+          if (rectsBuilder_ == null) {
+            return rects_.size();
+          } else {
+            return rectsBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect getRects(int index) {
+          if (rectsBuilder_ == null) {
+            return rects_.get(index);
+          } else {
+            return rectsBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder setRects(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect value) {
+          if (rectsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureRectsIsMutable();
+            rects_.set(index, value);
+            onChanged();
+          } else {
+            rectsBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder setRects(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder builderForValue) {
+          if (rectsBuilder_ == null) {
+            ensureRectsIsMutable();
+            rects_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            rectsBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder addRects(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect value) {
+          if (rectsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureRectsIsMutable();
+            rects_.add(value);
+            onChanged();
+          } else {
+            rectsBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder addRects(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect value) {
+          if (rectsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureRectsIsMutable();
+            rects_.add(index, value);
+            onChanged();
+          } else {
+            rectsBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder addRects(
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder builderForValue) {
+          if (rectsBuilder_ == null) {
+            ensureRectsIsMutable();
+            rects_.add(builderForValue.build());
+            onChanged();
+          } else {
+            rectsBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder addRects(
+            int index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder builderForValue) {
+          if (rectsBuilder_ == null) {
+            ensureRectsIsMutable();
+            rects_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            rectsBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder addAllRects(
+            java.lang.Iterable<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect> values) {
+          if (rectsBuilder_ == null) {
+            ensureRectsIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, rects_);
+            onChanged();
+          } else {
+            rectsBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder clearRects() {
+          if (rectsBuilder_ == null) {
+            rects_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            rectsBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public Builder removeRects(int index) {
+          if (rectsBuilder_ == null) {
+            ensureRectsIsMutable();
+            rects_.remove(index);
+            onChanged();
+          } else {
+            rectsBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder getRectsBuilder(
+            int index) {
+          return getRectsFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder getRectsOrBuilder(
+            int index) {
+          if (rectsBuilder_ == null) {
+            return rects_.get(index);  } else {
+            return rectsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public java.util.List<? extends com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> 
+             getRectsOrBuilderList() {
+          if (rectsBuilder_ != null) {
+            return rectsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(rects_);
+          }
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder addRectsBuilder() {
+          return getRectsFieldBuilder().addBuilder(
+              com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder addRectsBuilder(
+            int index) {
+          return getRectsFieldBuilder().addBuilder(
+              index, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .WhiteBoardMessage.WhiteBoardImage.GraphicRect rects = 2;</code>
+         */
+        public java.util.List<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder> 
+             getRectsBuilderList() {
+          return getRectsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> 
+            getRectsFieldBuilder() {
+          if (rectsBuilder_ == null) {
+            rectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder>(
+                    rects_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            rects_ = null;
+          }
+          return rectsBuilder_;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return this;
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return this;
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:WhiteBoardMessage.WhiteBoardImage)
+      }
+
+      // @@protoc_insertion_point(class_scope:WhiteBoardMessage.WhiteBoardImage)
+      private static final com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage();
+      }
+
+      public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<WhiteBoardImage>
+          PARSER = new com.google.protobuf.AbstractParser<WhiteBoardImage>() {
+        public WhiteBoardImage parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new WhiteBoardImage(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<WhiteBoardImage> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<WhiteBoardImage> getParserForType() {
+        return PARSER;
+      }
+
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
     public static final int X1_FIELD_NUMBER = 1;
     private int x1_;
     /**
@@ -19353,13 +21996,13 @@ public final class ServerResponseMessage {
       return color_;
     }
 
-    public static final int STROKE_FIELD_NUMBER = 6;
-    private float stroke_;
+    public static final int PENSIZE_FIELD_NUMBER = 6;
+    private float pensize_;
     /**
-     * <code>optional float stroke = 6;</code>
+     * <code>optional float pensize = 6;</code>
      */
-    public float getStroke() {
-      return stroke_;
+    public float getPensize() {
+      return pensize_;
     }
 
     public static final int QUESTIONID_FIELD_NUMBER = 7;
@@ -19389,13 +22032,43 @@ public final class ServerResponseMessage {
       return isACls_;
     }
 
-    public static final int IMAGE_FIELD_NUMBER = 10;
-    private com.google.protobuf.ByteString image_;
+    public static final int ISREFRESH_FIELD_NUMBER = 10;
+    private boolean isRefresh_;
     /**
-     * <code>optional bytes image = 10;</code>
+     * <code>optional bool isRefresh = 10;</code>
      */
-    public com.google.protobuf.ByteString getImage() {
-      return image_;
+    public boolean getIsRefresh() {
+      return isRefresh_;
+    }
+
+    public static final int ISRECEIVEIMAGE_FIELD_NUMBER = 11;
+    private boolean isReceiveImage_;
+    /**
+     * <code>optional bool isReceiveImage = 11;</code>
+     */
+    public boolean getIsReceiveImage() {
+      return isReceiveImage_;
+    }
+
+    public static final int IMAGE_FIELD_NUMBER = 12;
+    private com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage image_;
+    /**
+     * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+     */
+    public boolean hasImage() {
+      return image_ != null;
+    }
+    /**
+     * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+     */
+    public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage getImage() {
+      return image_ == null ? com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.getDefaultInstance() : image_;
+    }
+    /**
+     * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+     */
+    public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder getImageOrBuilder() {
+      return getImage();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -19425,8 +22098,8 @@ public final class ServerResponseMessage {
       if (color_ != 0) {
         output.writeInt32(5, color_);
       }
-      if (stroke_ != 0F) {
-        output.writeFloat(6, stroke_);
+      if (pensize_ != 0F) {
+        output.writeFloat(6, pensize_);
       }
       if (questionId_ != 0L) {
         output.writeInt64(7, questionId_);
@@ -19437,8 +22110,14 @@ public final class ServerResponseMessage {
       if (isACls_ != false) {
         output.writeBool(9, isACls_);
       }
-      if (!image_.isEmpty()) {
-        output.writeBytes(10, image_);
+      if (isRefresh_ != false) {
+        output.writeBool(10, isRefresh_);
+      }
+      if (isReceiveImage_ != false) {
+        output.writeBool(11, isReceiveImage_);
+      }
+      if (image_ != null) {
+        output.writeMessage(12, getImage());
       }
     }
 
@@ -19467,9 +22146,9 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, color_);
       }
-      if (stroke_ != 0F) {
+      if (pensize_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, stroke_);
+          .computeFloatSize(6, pensize_);
       }
       if (questionId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -19483,9 +22162,17 @@ public final class ServerResponseMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(9, isACls_);
       }
-      if (!image_.isEmpty()) {
+      if (isRefresh_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(10, image_);
+          .computeBoolSize(10, isRefresh_);
+      }
+      if (isReceiveImage_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(11, isReceiveImage_);
+      }
+      if (image_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getImage());
       }
       memoizedSize = size;
       return size;
@@ -19514,17 +22201,24 @@ public final class ServerResponseMessage {
       result = result && (getColor()
           == other.getColor());
       result = result && (
-          java.lang.Float.floatToIntBits(getStroke())
+          java.lang.Float.floatToIntBits(getPensize())
           == java.lang.Float.floatToIntBits(
-              other.getStroke()));
+              other.getPensize()));
       result = result && (getQuestionId()
           == other.getQuestionId());
       result = result && (getIsCls()
           == other.getIsCls());
       result = result && (getIsACls()
           == other.getIsACls());
-      result = result && getImage()
-          .equals(other.getImage());
+      result = result && (getIsRefresh()
+          == other.getIsRefresh());
+      result = result && (getIsReceiveImage()
+          == other.getIsReceiveImage());
+      result = result && (hasImage() == other.hasImage());
+      if (hasImage()) {
+        result = result && getImage()
+            .equals(other.getImage());
+      }
       return result;
     }
 
@@ -19545,9 +22239,9 @@ public final class ServerResponseMessage {
       hash = (53 * hash) + getY2();
       hash = (37 * hash) + COLOR_FIELD_NUMBER;
       hash = (53 * hash) + getColor();
-      hash = (37 * hash) + STROKE_FIELD_NUMBER;
+      hash = (37 * hash) + PENSIZE_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getStroke());
+          getPensize());
       hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getQuestionId());
@@ -19557,8 +22251,16 @@ public final class ServerResponseMessage {
       hash = (37 * hash) + ISACLS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsACls());
-      hash = (37 * hash) + IMAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getImage().hashCode();
+      hash = (37 * hash) + ISREFRESH_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsRefresh());
+      hash = (37 * hash) + ISRECEIVEIMAGE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsReceiveImage());
+      if (hasImage()) {
+        hash = (37 * hash) + IMAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getImage().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -19687,7 +22389,7 @@ public final class ServerResponseMessage {
 
         color_ = 0;
 
-        stroke_ = 0F;
+        pensize_ = 0F;
 
         questionId_ = 0L;
 
@@ -19695,8 +22397,16 @@ public final class ServerResponseMessage {
 
         isACls_ = false;
 
-        image_ = com.google.protobuf.ByteString.EMPTY;
+        isRefresh_ = false;
 
+        isReceiveImage_ = false;
+
+        if (imageBuilder_ == null) {
+          image_ = null;
+        } else {
+          image_ = null;
+          imageBuilder_ = null;
+        }
         return this;
       }
 
@@ -19724,11 +22434,17 @@ public final class ServerResponseMessage {
         result.x2_ = x2_;
         result.y2_ = y2_;
         result.color_ = color_;
-        result.stroke_ = stroke_;
+        result.pensize_ = pensize_;
         result.questionId_ = questionId_;
         result.isCls_ = isCls_;
         result.isACls_ = isACls_;
-        result.image_ = image_;
+        result.isRefresh_ = isRefresh_;
+        result.isReceiveImage_ = isReceiveImage_;
+        if (imageBuilder_ == null) {
+          result.image_ = image_;
+        } else {
+          result.image_ = imageBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -19785,8 +22501,8 @@ public final class ServerResponseMessage {
         if (other.getColor() != 0) {
           setColor(other.getColor());
         }
-        if (other.getStroke() != 0F) {
-          setStroke(other.getStroke());
+        if (other.getPensize() != 0F) {
+          setPensize(other.getPensize());
         }
         if (other.getQuestionId() != 0L) {
           setQuestionId(other.getQuestionId());
@@ -19797,8 +22513,14 @@ public final class ServerResponseMessage {
         if (other.getIsACls() != false) {
           setIsACls(other.getIsACls());
         }
-        if (other.getImage() != com.google.protobuf.ByteString.EMPTY) {
-          setImage(other.getImage());
+        if (other.getIsRefresh() != false) {
+          setIsRefresh(other.getIsRefresh());
+        }
+        if (other.getIsReceiveImage() != false) {
+          setIsReceiveImage(other.getIsReceiveImage());
+        }
+        if (other.hasImage()) {
+          mergeImage(other.getImage());
         }
         onChanged();
         return this;
@@ -19956,28 +22678,28 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private float stroke_ ;
+      private float pensize_ ;
       /**
-       * <code>optional float stroke = 6;</code>
+       * <code>optional float pensize = 6;</code>
        */
-      public float getStroke() {
-        return stroke_;
+      public float getPensize() {
+        return pensize_;
       }
       /**
-       * <code>optional float stroke = 6;</code>
+       * <code>optional float pensize = 6;</code>
        */
-      public Builder setStroke(float value) {
+      public Builder setPensize(float value) {
         
-        stroke_ = value;
+        pensize_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional float stroke = 6;</code>
+       * <code>optional float pensize = 6;</code>
        */
-      public Builder clearStroke() {
+      public Builder clearPensize() {
         
-        stroke_ = 0F;
+        pensize_ = 0F;
         onChanged();
         return this;
       }
@@ -20060,33 +22782,173 @@ public final class ServerResponseMessage {
         return this;
       }
 
-      private com.google.protobuf.ByteString image_ = com.google.protobuf.ByteString.EMPTY;
+      private boolean isRefresh_ ;
       /**
-       * <code>optional bytes image = 10;</code>
+       * <code>optional bool isRefresh = 10;</code>
        */
-      public com.google.protobuf.ByteString getImage() {
-        return image_;
+      public boolean getIsRefresh() {
+        return isRefresh_;
       }
       /**
-       * <code>optional bytes image = 10;</code>
+       * <code>optional bool isRefresh = 10;</code>
        */
-      public Builder setImage(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        image_ = value;
+      public Builder setIsRefresh(boolean value) {
+        
+        isRefresh_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bytes image = 10;</code>
+       * <code>optional bool isRefresh = 10;</code>
+       */
+      public Builder clearIsRefresh() {
+        
+        isRefresh_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isReceiveImage_ ;
+      /**
+       * <code>optional bool isReceiveImage = 11;</code>
+       */
+      public boolean getIsReceiveImage() {
+        return isReceiveImage_;
+      }
+      /**
+       * <code>optional bool isReceiveImage = 11;</code>
+       */
+      public Builder setIsReceiveImage(boolean value) {
+        
+        isReceiveImage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isReceiveImage = 11;</code>
+       */
+      public Builder clearIsReceiveImage() {
+        
+        isReceiveImage_ = false;
+        onChanged();
+        return this;
+      }
+
+      private com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage image_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder> imageBuilder_;
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public boolean hasImage() {
+        return imageBuilder_ != null || image_ != null;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage getImage() {
+        if (imageBuilder_ == null) {
+          return image_ == null ? com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.getDefaultInstance() : image_;
+        } else {
+          return imageBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public Builder setImage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage value) {
+        if (imageBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          image_ = value;
+          onChanged();
+        } else {
+          imageBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public Builder setImage(
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder builderForValue) {
+        if (imageBuilder_ == null) {
+          image_ = builderForValue.build();
+          onChanged();
+        } else {
+          imageBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public Builder mergeImage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage value) {
+        if (imageBuilder_ == null) {
+          if (image_ != null) {
+            image_ =
+              com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.newBuilder(image_).mergeFrom(value).buildPartial();
+          } else {
+            image_ = value;
+          }
+          onChanged();
+        } else {
+          imageBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
        */
       public Builder clearImage() {
-        
-        image_ = getDefaultInstance().getImage();
-        onChanged();
+        if (imageBuilder_ == null) {
+          image_ = null;
+          onChanged();
+        } else {
+          image_ = null;
+          imageBuilder_ = null;
+        }
+
         return this;
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder getImageBuilder() {
+        
+        onChanged();
+        return getImageFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      public com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder getImageOrBuilder() {
+        if (imageBuilder_ != null) {
+          return imageBuilder_.getMessageOrBuilder();
+        } else {
+          return image_ == null ?
+              com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.getDefaultInstance() : image_;
+        }
+      }
+      /**
+       * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder> 
+          getImageFieldBuilder() {
+        if (imageBuilder_ == null) {
+          imageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder>(
+                  getImage(),
+                  getParentForChildren(),
+                  isClean());
+          image_ = null;
+        }
+        return imageBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -24368,6 +27230,21 @@ public final class ServerResponseMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_WhiteBoardMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -24433,65 +27310,76 @@ public final class ServerResponseMessage {
       "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DO",
       "WNLOAD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026SolvedQuestionRe" +
       "sponse\022\022\n\nquestionID\030\002 \001(\003\022\017\n\007success\030\001 " +
-      "\001(\010\"o\n\rUpdateMessage\022+\n\tuserEnter\030\001 \001(\0132" +
-      "\030.UpdateMessage.UserEnter\0321\n\tUserEnter\022\020" +
-      "\n\010username\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(\003\"\224\002\n" +
-      "\023GetUserListResponse\022\017\n\007success\030\001 \001(\010\022.\n" +
-      "\005users\030\002 \003(\0132\037.GetUserListResponse.Users" +
-      "Entry\022\022\n\nquestionID\030\003 \001(\003\0229\n\014userListTyp" +
-      "e\030\004 \001(\0162#.GetUserListResponse.USER_LIST_" +
-      "TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value",
-      "\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n\021ACQUAINT" +
-      "ANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\220\002\n\021" +
-      "WhiteBoardMessage\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(" +
-      "\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005" +
-      "\022\016\n\006stroke\030\006 \001(\002\022\022\n\nquestionId\030\007 \001(\003\022\r\n\005" +
-      "isCls\030\010 \001(\010\022\016\n\006isACls\030\t \001(\010\022\r\n\005image\030\n \001" +
-      "(\014\"j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELL" +
-      "OW\020\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007M" +
-      "AGENTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\312\007\n\007Messa" +
-      "ge\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002",
-      " \001(\t\022&\n\rlauchResponse\030\003 \001(\0132\017.LaunchResp" +
-      "onse\022+\n\020registerResponse\030\004 \001(\0132\021.Registe" +
-      "rResponse\022!\n\013sendContent\030\005 \001(\0132\014.SendCon" +
-      "tent\0221\n\023announcementMessage\030\006 \001(\0132\024.Anno" +
-      "uncementMessage\0225\n\025questionEnterResponse" +
-      "\030\007 \001(\0132\026.QuestionEnterResponse\0223\n\024goodQu" +
-      "estionResponse\030\010 \001(\0132\025.GoodQuestionRespo" +
-      "nse\022+\n\020goodUserResponse\030\n \001(\0132\021.GoodUser" +
-      "Response\022#\n\014fileResponse\030\t \001(\0132\r.FileRes" +
-      "ponse\022%\n\rupdateMessage\030\013 \001(\0132\016.UpdateMes",
-      "sage\022A\n\033questionInformationResponse\030\r \001(" +
-      "\0132\034.QuestionInformationResponse\0229\n\027userI" +
-      "nformationResponse\030\016 \001(\0132\030.UserInformati" +
-      "onResponse\0229\n\027getQuestionListResponse\030\017 " +
-      "\001(\0132\030.GetQuestionListResponse\0227\n\026createQ" +
-      "uestionResponse\030\022 \001(\0132\027.CreateQuestionRe" +
-      "sponse\0229\n\027abandonQuestionResponse\030\023 \001(\0132" +
-      "\030.AbandonQuestionResponse\022=\n\031searchInfor" +
-      "mationResponse\030\024 \001(\0132\032.SearchInformation" +
-      "Response\0227\n\026solvedQuestionResponse\030\025 \001(\013",
-      "2\027.SolvedQuestionResponse\0221\n\023getUserList" +
-      "Response\030\026 \001(\0132\024.GetUserListResponse\022-\n\021" +
-      "whiteBoardMessage\030\027 \001(\0132\022.WhiteBoardMess" +
-      "age*\371\003\n\003MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGI" +
-      "STER_RESPONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANN" +
-      "OUNCEMENT_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RE" +
-      "SPONSE\020\004\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022" +
-      "GOOD_USER_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010" +
-      "\022\021\n\rFILE_RESPONSE\020\t\022!\n\035QUESTION_INFORMAT" +
-      "ION_RESPONSE\020\n\022\035\n\031USER_INFORMATION_RESPO",
-      "NSE\020\013\022\036\n\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n" +
-      "\030CREATE_QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_Q" +
-      "UESTION_RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION" +
-      "_RESPONSE\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020" +
-      "\022\022\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESP" +
-      "ONSE\020\024\022\027\n\023WHITE_BOARD_MESSAGE\020\025*H\n\014CONTE" +
-      "NT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MES" +
-      "SAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE" +
-      "\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYP" +
-      "E\022\007\n\003MP4\020\000B\034\n\003comB\025ServerResponseMessage",
-      "b\006proto3"
+      "\001(\010\"\233\001\n\rUpdateMessage\022+\n\tuserEnter\030\001 \001(\013" +
+      "2\030.UpdateMessage.UserEnter\022\027\n\017whiteBoard" +
+      "Image\030\002 \001(\014\022\021\n\tsendImage\030\003 \001(\010\0321\n\tUserEn" +
+      "ter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(" +
+      "\003\"\224\002\n\023GetUserListResponse\022\017\n\007success\030\001 \001" +
+      "(\010\022.\n\005users\030\002 \003(\0132\037.GetUserListResponse." +
+      "UsersEntry\022\022\n\nquestionID\030\003 \001(\003\0229\n\014userLi" +
+      "stType\030\004 \001(\0162#.GetUserListResponse.USER_",
+      "LIST_TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005" +
+      "value\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n\021ACQ" +
+      "UAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001" +
+      "\"\223\005\n\021WhiteBoardMessage\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1" +
+      "\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030" +
+      "\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\022\022\n\nquestionId\030\007 \001" +
+      "(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n\006isACls\030\t \001(\010\022\021\n\tisR" +
+      "efresh\030\n \001(\010\022\026\n\016isReceiveImage\030\013 \001(\010\0221\n\005" +
+      "image\030\014 \001(\0132\".WhiteBoardMessage.WhiteBoa" +
+      "rdImage\032\260\002\n\017WhiteBoardImage\022?\n\006points\030\001 ",
+      "\003(\0132/.WhiteBoardMessage.WhiteBoardImage." +
+      "GraphicPoint\022=\n\005rects\030\002 \003(\0132..WhiteBoard" +
+      "Message.WhiteBoardImage.GraphicRect\032^\n\014G" +
+      "raphicPoint\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x" +
+      "2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\017\n\007pe" +
+      "nsize\030\006 \001(\002\032=\n\013GraphicRect\022\n\n\002x1\030\001 \001(\005\022\n" +
+      "\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\"j\n\005CO" +
+      "LOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020\002\022\t\n\005" +
+      "GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA\020\006" +
+      "\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\312\007\n\007Message\022\026\n\010ms",
+      "g_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\r" +
+      "lauchResponse\030\003 \001(\0132\017.LaunchResponse\022+\n\020" +
+      "registerResponse\030\004 \001(\0132\021.RegisterRespons" +
+      "e\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023" +
+      "announcementMessage\030\006 \001(\0132\024.Announcement" +
+      "Message\0225\n\025questionEnterResponse\030\007 \001(\0132\026" +
+      ".QuestionEnterResponse\0223\n\024goodQuestionRe" +
+      "sponse\030\010 \001(\0132\025.GoodQuestionResponse\022+\n\020g" +
+      "oodUserResponse\030\n \001(\0132\021.GoodUserResponse" +
+      "\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022%\n",
+      "\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n\033" +
+      "questionInformationResponse\030\r \001(\0132\034.Ques" +
+      "tionInformationResponse\0229\n\027userInformati" +
+      "onResponse\030\016 \001(\0132\030.UserInformationRespon" +
+      "se\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.Ge" +
+      "tQuestionListResponse\0227\n\026createQuestionR" +
+      "esponse\030\022 \001(\0132\027.CreateQuestionResponse\0229" +
+      "\n\027abandonQuestionResponse\030\023 \001(\0132\030.Abando" +
+      "nQuestionResponse\022=\n\031searchInformationRe" +
+      "sponse\030\024 \001(\0132\032.SearchInformationResponse",
+      "\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Solve" +
+      "dQuestionResponse\0221\n\023getUserListResponse" +
+      "\030\026 \001(\0132\024.GetUserListResponse\022-\n\021whiteBoa" +
+      "rdMessage\030\027 \001(\0132\022.WhiteBoardMessage*\215\004\n\003" +
+      "MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER_RES" +
+      "PONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMEN" +
+      "T_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPONSE\020\004" +
+      "\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD_USE" +
+      "R_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFILE" +
+      "_RESPONSE\020\t\022!\n\035QUESTION_INFORMATION_RESP",
+      "ONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n" +
+      "\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CREATE_" +
+      "QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_" +
+      "RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RESPONS" +
+      "E\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022\017\n\013BAD" +
+      "_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESPONSE\020\024\022\027" +
+      "\n\023WHITE_BOARD_MESSAGE\020\025\022\022\n\016IGNORE_MESSAG" +
+      "E\020\026*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n" +
+      "\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n" +
+      "\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002",
+      "*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerRes" +
+      "ponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -24642,7 +27530,7 @@ public final class ServerResponseMessage {
     internal_static_UpdateMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateMessage_descriptor,
-        new java.lang.String[] { "UserEnter", });
+        new java.lang.String[] { "UserEnter", "WhiteBoardImage", "SendImage", });
     internal_static_UpdateMessage_UserEnter_descriptor =
       internal_static_UpdateMessage_descriptor.getNestedTypes().get(0);
     internal_static_UpdateMessage_UserEnter_fieldAccessorTable = new
@@ -24666,7 +27554,25 @@ public final class ServerResponseMessage {
     internal_static_WhiteBoardMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_WhiteBoardMessage_descriptor,
-        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Stroke", "QuestionId", "IsCls", "IsACls", "Image", });
+        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Pensize", "QuestionId", "IsCls", "IsACls", "IsRefresh", "IsReceiveImage", "Image", });
+    internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor =
+      internal_static_WhiteBoardMessage_descriptor.getNestedTypes().get(0);
+    internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor,
+        new java.lang.String[] { "Points", "Rects", });
+    internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor =
+      internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor.getNestedTypes().get(0);
+    internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor,
+        new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Pensize", });
+    internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor =
+      internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor.getNestedTypes().get(1);
+    internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor,
+        new java.lang.String[] { "X1", "Y1", "X2", "Y2", });
     internal_static_Message_descriptor =
       getDescriptor().getMessageTypes().get(22);
     internal_static_Message_fieldAccessorTable = new

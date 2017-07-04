@@ -226,7 +226,10 @@ public class Client extends Thread{
 					it.remove();
 					continue;
 				}
-				md5s.add(file.getName().substring(0, file.getName().lastIndexOf(".")));
+
+				String md5 = MD5Tools.FileToMD5(file);
+				md5s.add(md5);
+				file.renameTo(new File(PICTPATH+md5));
 			}
 			contentBuider.addAllPictures(md5s);
 			for(String md5 : md5s) {
@@ -321,7 +324,7 @@ public class Client extends Thread{
 				  .setUsername(username)
 				  .setQuestionEnterRequest(
 							 ClientSendMessage.QuestionEnterRequest.newBuilder()
-										.setQuestionID(Long.valueOf(questionID))
+										.setQuestionID(questionID)
 				  ).build();
 		sendIt(sendMessage);
 	}
@@ -590,9 +593,10 @@ public class Client extends Thread{
 								ClientSendMessage.WhiteBoardMessage.newBuilder()
 								.setColor(event.getColor())
 								.setQuestionId(event.getQuestionID())
-								.setStroke(event.getStroke())
+								.setPensize(event.getPensize())
 								.setX1(event.getX1()).setY1(event.getY1()).setX2(event.getX2()).setY2(event.getY2())
 								.setIsCls(event.isCls()).setIsACls(event.isACls())
+								.setIsReceiveImage(event.isReceiveImage()).setIsRefresh(event.isRefresh())
 						).build();
 		sendIt(message);
 	}

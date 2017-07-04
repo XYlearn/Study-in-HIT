@@ -7,6 +7,7 @@ import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -16,6 +17,10 @@ import java.net.InetSocketAddress;
 public class Server {
 	private static int port = Config.ServerConfig.getPort();
 	public static DatabaseConnection databaseConnection = new DatabaseConnection();
+	public static Panel tempPanel = new Panel();
+	static {
+		tempPanel.setSize(1600, 900);
+	}
 
 	public static void main(String[] args) throws IOException {
 		IoAcceptor acceptor = new NioSocketAcceptor();

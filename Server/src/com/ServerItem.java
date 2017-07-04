@@ -3,14 +3,17 @@ package com;
 import com.google.protobuf.ProtocolStringList;
 import org.apache.mina.core.session.IoSession;
 import util.AcquaintanceParser;
+import util.GraphicPoints;
 import util.SQLStringParser;
+import util.WhiteBoardConvert;
 
-import java.io.IOException;
+import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.util.List;
 
 import static com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.ACQUAINTANCE_LIST;
 import static com.ServerResponseMessage.GetUserListResponse.USER_LIST_TYPE.USERS_IN_ROOM_LIST;
@@ -149,7 +152,7 @@ public class ServerItem {
 	public boolean isLaunched(){
 		String name = ServerHandler.session_user_map.get(session);
 		if("" != name) {
-			return name.equals(this.username);
+				return name.equals(this.username);
 		} else {
 			return false;
 		}
@@ -476,9 +479,9 @@ public class ServerItem {
 	handleLogout()
 			  throws SQLException {
 		ServerHandler.serviceMap.remove(session);
-		ArrayList<String> questions = ServerHandler.session_questions_map.get(session);
+		ArrayList<Long> questions = ServerHandler.session_questions_map.get(session);
 		if(!(null == questions)) {
-			for (String question : questions) {
+			for (Long question : questions) {
 				ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(question);
 				if(!(null == sessions)) {
 					break;
@@ -616,7 +619,7 @@ public class ServerItem {
 		sendBuider.setIsmyself(false);
 		sendBuider.setRecordID(recordID);
 		responseSend  = sendBuider.build();
-		ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID+"");
+		ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID);
 
 		//给每一个处于房间中的用户发送信息（自己除外）
 		if(null != ioSessions) {
@@ -751,42 +754,54 @@ public class ServerItem {
 					  .setAllow(true)
 					  .build();
 			//将用户session添加进question_sessions列表中
-			ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID.toString());
+			ArrayList<IoSession> ioSessions = ServerHandler.question_sessions_map.get(questionID);
 			if(null==ioSessions) {
 				ioSessions = new ArrayList<>();
 				ioSessions.add(session);
-				ServerHandler.question_sessions_map.put(questionID.toString(), ioSessions);
+				ServerHandler.question_sessions_map.put(questionID, ioSessions);
 			} else {
 				if(!ioSessions.contains(session)) {
 					ioSessions.add(session);
-					ServerHandler.question_sessions_map.replace(questionID.toString(), ioSessions);
+					ServerHandler.question_sessions_map.replace(questionID, ioSessions);
 				}
 			}
 
 			//向用户问题表中添加问题
-			ArrayList<String> questions = ServerHandler.session_questions_map.get(session);
+			ArrayList<Long> questions = ServerHandler.session_questions_map.get(session);
 			if(null == questions) {
 				questions = new ArrayList<>();
-				questions.add(questionID.toString());
+				questions.add(questionID);
 				ServerHandler.session_questions_map.replace(session, questions);
 			}
 
+			//添加画板
+			if(!ServerHandler.question_image_map.containsKey(questionID)) {
+				ServerHandler.question_image_map.put(questionID, new GraphicPoints());
+			} else {
+				//向用户发送画板内容
+				ServerResponseMessage.Message updateWhiteboard = ServerResponseMessage.Message.newBuilder()
+						.setUsername("")
+						.setMsgType(ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE)
+						.setWhiteBoardMessage(WhiteBoardConvert.server2client(ServerHandler.question_image_map.get(questionID)))
+						.build();
+				session.write(updateWhiteboard);
+			}
+
+			ServerResponseMessage.Message sendMessage =
+					ServerResponseMessage.Message.newBuilder()
+							.setMsgType(ServerResponseMessage.MSG.UPDATE_MESSAGE)
+							.setUpdateMessage(
+									ServerResponseMessage.UpdateMessage.newBuilder()
+											.setUserEnter(
+													ServerResponseMessage.UpdateMessage.UserEnter.newBuilder()
+															.setQuestionID(questionID)
+															.setUsername(username).build()
+											).setSendImage(false)
+							).build();
 			for(IoSession is : ioSessions) {
 				//若客户端链接中断
 				if(is.isClosing())
 					break;
-
-				ServerResponseMessage.Message sendMessage =
-						  ServerResponseMessage.Message.newBuilder()
-									 .setMsgType(ServerResponseMessage.MSG.UPDATE_MESSAGE)
-									 .setUpdateMessage(
-												ServerResponseMessage.UpdateMessage.newBuilder()
-														  .setUserEnter(
-																	 ServerResponseMessage.UpdateMessage.UserEnter.newBuilder()
-																				.setQuestionID(questionID)
-																				.setUsername(username).build()
-														  ).build()
-									 ).build();
 				is.write(sendMessage);
 			}
 		}
@@ -1324,30 +1339,41 @@ public class ServerItem {
 
 	private ServerResponseMessage.WhiteBoardMessage
 	handleWhiteBoardMessage (ClientSendMessage.WhiteBoardMessage request) {
-		ServerResponseMessage.WhiteBoardMessage response =
-				ServerResponseMessage.WhiteBoardMessage.newBuilder()
-						.setColor(request.getColor())
-						.setStroke(request.getStroke())
-						.setX1(request.getX1())
-						.setY1(request.getY1())
-						.setX2(request.getX2())
-						.setY2(request.getY2())
-						.setQuestionId(request.getQuestionId())
-						.setIsCls(request.getIsCls())
-						.setIsACls(request.getIsACls()).build();
-		ServerResponseMessage.Message message =
-				ServerResponseMessage.Message.newBuilder()
-				.setUsername(username)
-				.setMsgType(ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE)
-				.setWhiteBoardMessage(response).build();
+		ServerResponseMessage.WhiteBoardMessage response = WhiteBoardConvert.client2server(request);
 
+		//在服务端记录图片
+		GraphicPoints image = ServerHandler.question_image_map.get(request.getQuestionId());
+		boolean isCls = request.getIsCls();
+		boolean isACls = request.getIsACls();
+		boolean isRefresh = request.getIsRefresh();
+		boolean isReceiveImage = request.getIsReceiveImage();
 
+		if(request.getQuestionId()==0) {
+			return null;
+		}
 
-		//ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(request.getQuestionId());
-		Set<IoSession> sessions = ServerHandler.serviceMap.keySet();
-		for(IoSession session : sessions) {
-			if(session != this.session)
-				session.write(message);
+		if(isACls) {
+			image.clearAll();
+		} else if(isCls) {
+			image.clear(request.getX1(), request.getY1(), request.getX2(), request.getY2());
+		} else if(isRefresh || isReceiveImage) {
+
+		} else {
+			image.addPoint(request.getX1(), request.getY1(), request.getX2(),
+					request.getY2(), request.getPensize(), new Color(request.getColor()));
+		}
+
+		//向每一个问题房间的用户发送信息
+		if(ServerHandler.question_sessions_map.containsKey(request.getQuestionId())) {
+			for (IoSession session : ServerHandler.question_sessions_map.get(request.getQuestionId())) {
+				session.write(
+						ServerResponseMessage.Message.newBuilder()
+							.setWhiteBoardMessage(response)
+							.setMsgType(ServerResponseMessage.MSG.WHITE_BOARD_MESSAGE)
+							.setUsername("")
+							.build()
+				);
+			}
 		}
 		return response;
 	}

@@ -1,5 +1,6 @@
 package NetEvent;
 
+import NetEvent.dispatcher.WhiteBoardDispatcher;
 import NetEvent.eventcom.*;
 import bin.test;
 import com.ClientSendMessage;
@@ -10,7 +11,7 @@ import com.qcloud.cos.request.UploadFileRequest;
 import gui.ChattingBox;
 import gui.InputBox;
 import gui.ListBox;
-import gui.WhiteBoard;
+import gui.wb.WhiteBoard;
 import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
@@ -71,6 +72,7 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case QUESTION_ENTER_RESPONSE:	//
 					netEvent = handleResponseEnterQuestion(recvMessage);
+					WhiteBoardDispatcher.dispatch(netEvent);
 					InputBox.dispatch(netEvent);
 					ChattingBox.dispatch(netEvent);
 					break;
@@ -116,7 +118,7 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case WHITE_BOARD_MESSAGE:
 					netEvent = handleResponseWhiteBoardMessage(recvMessage);
-					WhiteBoard.dispatch(netEvent);
+					WhiteBoardDispatcher.dispatch(netEvent);
 					break;
 				case BAD_MESSAGE:	//
 					System.out.println("未知消息:\n" + recvMessage);
@@ -216,7 +218,6 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case DOWNLOAD:
 					ProtocolStringList md5s = fileResponse.getMd5List();
-					String localPath = "";
 					i=0;
 					for (Map.Entry<String, String> entry : file_sigs) {
 						try {
@@ -232,7 +233,7 @@ public class ClientHandler extends IoHandlerAdapter {
 							Client.fileOP.getFileLocal(new GetFileLocalRequest(
 									  Client.fileOP.getBucktName(),
 									  "/" + md5s.get(i++),
-									  PICTPATH + entry.getValue()+util.FileOperator.getExtension(entry.getKey())
+									  PICTPATH + entry.getKey()+util.FileOperator.getExtension(entry.getKey())
 							));
 						} catch (Exception e) {
 							e.printStackTrace();
