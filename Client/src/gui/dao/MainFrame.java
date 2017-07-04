@@ -20,18 +20,15 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -90,6 +87,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
+					
 					if(newRoomFrame==null) initNewRoomFrame();
 					newRoomFrame.setVisible(true);
 				}
