@@ -1,5 +1,6 @@
 package NetEvent;
 
+import NetEvent.dispatcher.FileTransDispatcher;
 import NetEvent.dispatcher.WhiteBoardDispatcher;
 import NetEvent.eventcom.*;
 import bin.test;
@@ -15,6 +16,7 @@ import gui.wb.WhiteBoard;
 import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
+import org.json.JSONObject;
 import util.UserInfo;
 
 import java.io.File;
@@ -194,8 +196,14 @@ public class ClientHandler extends IoHandlerAdapter {
 		ServerResponseMessage.FileResponse fileResponse =
 				  recvMessage.getFileResponse();
 
+		ArrayList<String> filenames = new ArrayList<>();
+		ArrayList<Boolean> success = new ArrayList<>();
+		ArrayList<Integer> retCode = new ArrayList<>();
+		FileEvent fileEvent;
+		int code;
+
 		if(fileResponse.getSuccess()) {
-			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSignMap().entrySet();
+			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSignMap().entrySet();//<filename, sign>
 			int i;
 			switch (fileResponse.getSignType()) {
 				case UPLOAD:
@@ -210,11 +218,21 @@ public class ClientHandler extends IoHandlerAdapter {
 												 fileResponse.getLocalFilePath(i++)
 									  )
 							);
+							JSONObject jsonObject = new JSONObject(s);
+							//抛出网络事件
+							code = jsonObject.getInt("code");
+							filenames.add(entry.getKey());
+							success.add(code == 0);
+							retCode.add(code);
+
 							System.out.println(s);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
+					/*upload event*/
+					fileEvent = new FileEvent(filenames, success, retCode, true);
+					FileTransDispatcher.dispatch(fileEvent);
 					break;
 				case DOWNLOAD:
 					ProtocolStringList md5s = fileResponse.getMd5List();
@@ -230,11 +248,21 @@ public class ClientHandler extends IoHandlerAdapter {
 								f.createNewFile();
 							}
 							Client.fileOP.changeSign(entry.getValue());
-							Client.fileOP.getFileLocal(new GetFileLocalRequest(
+							String s = Client.fileOP.getFileLocal(new GetFileLocalRequest(
 									  Client.fileOP.getBucktName(),
 									  "/" + md5s.get(i++),
 									  PICTPATH + entry.getKey()+util.FileOperator.getExtension(entry.getKey())
 							));
+
+							/*抛出网络事件*/
+							JSONObject jsonObject = new JSONObject(s);
+							code = jsonObject.getInt("code");
+							filenames.add(entry.getKey());
+							success.add(code == 0);
+							retCode.add(code);
+							fileEvent = new FileEvent(filenames, success, retCode, false);
+							FileTransDispatcher.dispatch(fileEvent);
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
