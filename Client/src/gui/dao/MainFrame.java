@@ -15,6 +15,7 @@ import gui.InputBox;
 import gui.ListBox;
 import gui.SearchBox;
 import gui.form.UserInformation;
+import gui.form.WhiteBoardFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -52,6 +53,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	private final SearchBox searchBox;
 	private final JFileChooser fileChooser;
 	private NewRoomFrame newRoomFrame=null;
+	private final WhiteBoardFrame whiteboardFrame;
 	
 	private static final Map<Long,JPanel> map=new ConcurrentHashMap<>();
 	
@@ -122,6 +124,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		searchPanel.setLayout(new BorderLayout());
 		searchPanel.add(searchBox,BorderLayout.CENTER);
 		fileChooser=new JFileChooser();
+		whiteboardFrame=new WhiteBoardFrame(test.client);
 		/*try
 		{
 			test.client.requestQuestionList(
@@ -161,6 +164,12 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 				}
 				else
 					System.out.println("创建新房间失败");
+				break;
+			}
+			case ENTER_QUESTION_EVENT:
+			{
+				whiteboardFrame.setVisible(true);
+				break;
 			}
 		}
 	}
