@@ -308,7 +308,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 							0,
 							ex.getQuestionMessage().getAdditionpic(), //PROBLEM!!!
 							new ConcurrentHashMap()));
-					ex.getQuestionMessage().getRecords().forEach(
+					map.get(ex.getQuestionMessage().getId()).pushMessages(ex.getQuestionMessage().getRecords());
+					/*ex.getQuestionMessage().getRecords().forEach(
 						(Record r)->
 					{
 						if (r.getMarkMap().containsKey(CONTENT_MARK.AUDIO.getValue()))
@@ -317,7 +318,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 							map.get(ex.getQuestionMessage().getId()).pushFile(r);
 						else
 							map.get(ex.getQuestionMessage().getId()).pushMessage(r);
-					});
+					});*/
 				}
 				break;
 			}

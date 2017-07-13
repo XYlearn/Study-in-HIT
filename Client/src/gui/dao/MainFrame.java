@@ -125,7 +125,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		searchPanel.add(searchBox,BorderLayout.CENTER);
 		fileChooser=new JFileChooser();
 		whiteboardFrame=new WhiteBoardFrame(test.client);
-		/*try
+		try
 		{
 			test.client.requestQuestionList(
 				ClientSendMessage.LIST_REFERENCE.TIME,
@@ -134,7 +134,7 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		} catch (IOException ex)
 		{
 			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-		}*/
+		}
 	}
 	
 	public void dispatch(NetEvent e)

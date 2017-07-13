@@ -122,9 +122,11 @@ public class ListBox extends JPanel implements Dispatcher
 		{
 			case QUESTION_LIST_EVENT:
 			{
+				System.out.println("start Question List dispatching");
 				QuestionListEvent ex=(QuestionListEvent)e;
 				if(map.containsKey(0))
 					map.get(0).readList(ex.getQuestionListMessage());
+				System.out.println("Question List dispatching finished");
 				break;
 			}
 			case SEARCH_QUESTION_EVENT:
@@ -227,6 +229,5 @@ public class ListBox extends JPanel implements Dispatcher
 				mymodel.addElement(d);
 			});
 		}
-		mylist.validate();
 	}
 }
