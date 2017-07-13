@@ -5,6 +5,7 @@ import gui.wb.WhiteBoardAdapter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Created by xy16 on 17-2-12.
@@ -28,5 +29,11 @@ public class Test {
 			client.launchRequest("test", "123456");
 			client.enterQuestion(1);
 		} catch (Exception e) { e.printStackTrace();}
+
+		try {
+			client.uploadFile("ask.jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

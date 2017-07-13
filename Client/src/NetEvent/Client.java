@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156"; //"localhost";
+	private static String host = "123.207.159.156";//"localhost";
 	private static int port = 8972;
 
 	//connection object
@@ -454,41 +454,14 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
-	public boolean uploadFile(String filePath) throws IOException {
-		ClientSendMessage.Message request = null;
-		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
-
-		File file = new File(filePath);
-		if(!file.exists()) {
-			System.out.println("文件不存在");
-			return false;
-		}
-
-		String filename = file.getName();
-		ArrayList<String> filenames = new ArrayList<>();
-		filenames.add(filename);
-		ArrayList<String> localFilePaths = new ArrayList<>();
-		localFilePaths.add(filePath);
-		ArrayList<String> md5s = new ArrayList<>();
-		md5s.add(MD5Tools.FileToMD5(file));
-
-		builder.addAllFilename(filenames)
-				  .addAllLocalFilePath(localFilePaths)
-				  .addAllMd5(md5s)
-				  .setSignType(ClientSendMessage.FileRequest.SIGNTYPE.UPLOAD);
-
-		request = ClientSendMessage.Message.newBuilder()
-				  .setUsername(username)
-				  .setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
-				  .setFileRequest(builder)
-				  .build();
-
-		sendIt(request);
-
-		return true;
+	/*文件传输标准：传入文件名（md5）,向服务器传输文件名及文件路径*/
+	public boolean uploadFile(String fileName) throws IOException {
+		ArrayList<String> fileNames = new ArrayList<>();
+		fileNames.add(fileName);
+		return uploadFiles(fileNames);
 	}
 
-	public boolean uploadFiles(Iterable<String> filePaths) throws IOException {
+	public boolean uploadFiles(Iterable<String> fileNames) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
@@ -496,7 +469,10 @@ public class Client extends Thread{
 		ArrayList<String> filenames = new ArrayList<>();
 		ArrayList<String> md5s = new ArrayList<>();
 
-		for(String filePath : filePaths) {
+		String filePath;
+
+		for(String fileName : fileNames) {
+			filePath = PICTPATH + fileName;
 			File file = new File(filePath);
 			if (!file.exists()) {
 				System.out.println("文件不存在");
@@ -505,7 +481,7 @@ public class Client extends Thread{
 				String filename = file.getName();
 				filenames.add(filename);
 				localFilePaths.add(filePath);
-				md5s.add(MD5Tools.FileToMD5(file));
+				md5s.add(filename);
 			}
 
 		}
@@ -526,21 +502,10 @@ public class Client extends Thread{
 	}
 
 	public void downloadFile(String filename) throws IOException {
-		ClientSendMessage.Message request = null;
-		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
-
 		ArrayList<String> filenames = new ArrayList<>();
 		filenames.add(filename);
 
-		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
-
-		request = ClientSendMessage.Message.newBuilder()
-				.setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
-				.setUsername(username)
-				.setFileRequest(builder)
-				.build();
-
-		sendIt(request);
+		downloadFiles(filenames);
 	}
 
 	public void downloadFiles(Iterable<String> filenames) throws IOException {
