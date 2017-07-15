@@ -248,10 +248,11 @@ public class ClientHandler extends IoHandlerAdapter {
 								f.createNewFile();
 							}
 							Client.fileOP.changeSign(entry.getValue());
+							String localPath = PICTPATH + entry.getKey();
 							String s = Client.fileOP.getFileLocal(new GetFileLocalRequest(
 									  Client.fileOP.getBucktName(),
 									  "/" + md5s.get(i++),
-									  PICTPATH + entry.getKey()+util.FileOperator.getExtension(entry.getKey())
+									  localPath
 							));
 
 							/*抛出网络事件*/
