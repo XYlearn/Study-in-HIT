@@ -6,156 +6,158 @@ package com;
 public final class ClientSendMessage {
   private ClientSendMessage() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * Protobuf enum {@code MSG}
+   *
    * <pre>
    *消息类型序号
    * </pre>
-   *
-   * Protobuf enum {@code MSG}
    */
   public enum MSG
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
+     * <code>LAUNCH_REQUEST = 0;</code>
+     *
      * <pre>
      *登录登出信息
      * </pre>
-     *
-     * <code>LAUNCH_REQUEST = 0;</code>
      */
-    LAUNCH_REQUEST(0),
+    LAUNCH_REQUEST(0, 0),
     /**
      * <code>LOGOUT_MESSAGE = 1;</code>
      */
-    LOGOUT_MESSAGE(1),
+    LOGOUT_MESSAGE(1, 1),
     /**
+     * <code>REGISTER_REQUEST = 6;</code>
+     *
      * <pre>
      *注册请求
      * </pre>
-     *
-     * <code>REGISTER_REQUEST = 6;</code>
      */
-    REGISTER_REQUEST(6),
+    REGISTER_REQUEST(2, 6),
     /**
+     * <code>SEND_CONTENT = 2;</code>
+     *
      * <pre>
      *发送对话消息
      * </pre>
-     *
-     * <code>SEND_CONTENT = 2;</code>
      */
-    SEND_CONTENT(2),
+    SEND_CONTENT(3, 2),
     /**
      * <code>ANNOUNCEMENT_MESSAGE = 3;</code>
      */
-    ANNOUNCEMENT_MESSAGE(3),
+    ANNOUNCEMENT_MESSAGE(4, 3),
     /**
+     * <code>QUESTION_ENTER_REQUEST = 4;</code>
+     *
      * <pre>
      *进入问题房间
      * </pre>
-     *
-     * <code>QUESTION_ENTER_REQUEST = 4;</code>
      */
-    QUESTION_ENTER_REQUEST(4),
+    QUESTION_ENTER_REQUEST(5, 4),
     /**
+     * <code>GOOD_QUESTION_REQUEST = 5;</code>
+     *
      * <pre>
      *评价信息
      * </pre>
-     *
-     * <code>GOOD_QUESTION_REQUEST = 5;</code>
      */
-    GOOD_QUESTION_REQUEST(5),
+    GOOD_QUESTION_REQUEST(6, 5),
     /**
      * <code>GOOD_USER_REQUEST = 7;</code>
      */
-    GOOD_USER_REQUEST(7),
+    GOOD_USER_REQUEST(7, 7),
     /**
+     * <code>FILE_REQUEST = 9;</code>
+     *
      * <pre>
      *获取Cos签名
      * </pre>
-     *
-     * <code>FILE_REQUEST = 9;</code>
      */
-    FILE_REQUEST(9),
+    FILE_REQUEST(8, 9),
     /**
+     * <code>QUESTION_INFORMATION_REQUEST = 10;</code>
+     *
      * <pre>
      *消息显示信息
      * </pre>
-     *
-     * <code>QUESTION_INFORMATION_REQUEST = 10;</code>
      */
-    QUESTION_INFORMATION_REQUEST(10),
+    QUESTION_INFORMATION_REQUEST(9, 10),
     /**
      * <code>USER_INFORMATION_REQUEST = 11;</code>
      */
-    USER_INFORMATION_REQUEST(11),
+    USER_INFORMATION_REQUEST(10, 11),
     /**
      * <code>GET_QUESTION_LIST_REQUEST = 12;</code>
      */
-    GET_QUESTION_LIST_REQUEST(12),
+    GET_QUESTION_LIST_REQUEST(11, 12),
     /**
+     * <code>CREATE_QUESTION_REQUEST = 15;</code>
+     *
      * <pre>
      *创建取消问题
      * </pre>
-     *
-     * <code>CREATE_QUESTION_REQUEST = 15;</code>
      */
-    CREATE_QUESTION_REQUEST(15),
+    CREATE_QUESTION_REQUEST(12, 15),
     /**
      * <code>ABANDON_QUESTION_REQUEST = 16;</code>
      */
-    ABANDON_QUESTION_REQUEST(16),
+    ABANDON_QUESTION_REQUEST(13, 16),
     /**
+     * <code>SEARCH_INFORMATION_REQUEST = 17;</code>
+     *
      * <pre>
      *搜索内容
      * </pre>
-     *
-     * <code>SEARCH_INFORMATION_REQUEST = 17;</code>
      */
-    SEARCH_INFORMATION_REQUEST(17),
+    SEARCH_INFORMATION_REQUEST(14, 17),
     /**
+     * <code>SOLVED_QUESTION_REQUEST = 18;</code>
+     *
      * <pre>
      *把问题标志为已解决
      * </pre>
-     *
-     * <code>SOLVED_QUESTION_REQUEST = 18;</code>
      */
-    SOLVED_QUESTION_REQUEST(18),
+    SOLVED_QUESTION_REQUEST(15, 18),
     /**
+     * <code>BAD_MESSAGE = 19;</code>
+     *
      * <pre>
      *未知消息
      * </pre>
-     *
-     * <code>BAD_MESSAGE = 19;</code>
      */
-    BAD_MESSAGE(19),
+    BAD_MESSAGE(16, 19),
     /**
+     * <code>GET_USER_LIST_REQUEST = 20;</code>
+     *
      * <pre>
      *获取用户列表
      * </pre>
-     *
-     * <code>GET_USER_LIST_REQUEST = 20;</code>
      */
-    GET_USER_LIST_REQUEST(20),
+    GET_USER_LIST_REQUEST(17, 20),
     /**
      * <code>WHITE_BOARD_MESSAGE = 21;</code>
      */
-    WHITE_BOARD_MESSAGE(21),
-    UNRECOGNIZED(-1),
+    WHITE_BOARD_MESSAGE(18, 21),
+    /**
+     * <code>HEART_BEAT = 22;</code>
+     *
+     * <pre>
+     *心跳包
+     * </pre>
+     */
+    HEART_BEAT(19, 22),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
+     * <code>LAUNCH_REQUEST = 0;</code>
+     *
      * <pre>
      *登录登出信息
      * </pre>
-     *
-     * <code>LAUNCH_REQUEST = 0;</code>
      */
     public static final int LAUNCH_REQUEST_VALUE = 0;
     /**
@@ -163,19 +165,19 @@ public final class ClientSendMessage {
      */
     public static final int LOGOUT_MESSAGE_VALUE = 1;
     /**
+     * <code>REGISTER_REQUEST = 6;</code>
+     *
      * <pre>
      *注册请求
      * </pre>
-     *
-     * <code>REGISTER_REQUEST = 6;</code>
      */
     public static final int REGISTER_REQUEST_VALUE = 6;
     /**
+     * <code>SEND_CONTENT = 2;</code>
+     *
      * <pre>
      *发送对话消息
      * </pre>
-     *
-     * <code>SEND_CONTENT = 2;</code>
      */
     public static final int SEND_CONTENT_VALUE = 2;
     /**
@@ -183,19 +185,19 @@ public final class ClientSendMessage {
      */
     public static final int ANNOUNCEMENT_MESSAGE_VALUE = 3;
     /**
+     * <code>QUESTION_ENTER_REQUEST = 4;</code>
+     *
      * <pre>
      *进入问题房间
      * </pre>
-     *
-     * <code>QUESTION_ENTER_REQUEST = 4;</code>
      */
     public static final int QUESTION_ENTER_REQUEST_VALUE = 4;
     /**
+     * <code>GOOD_QUESTION_REQUEST = 5;</code>
+     *
      * <pre>
      *评价信息
      * </pre>
-     *
-     * <code>GOOD_QUESTION_REQUEST = 5;</code>
      */
     public static final int GOOD_QUESTION_REQUEST_VALUE = 5;
     /**
@@ -203,19 +205,19 @@ public final class ClientSendMessage {
      */
     public static final int GOOD_USER_REQUEST_VALUE = 7;
     /**
+     * <code>FILE_REQUEST = 9;</code>
+     *
      * <pre>
      *获取Cos签名
      * </pre>
-     *
-     * <code>FILE_REQUEST = 9;</code>
      */
     public static final int FILE_REQUEST_VALUE = 9;
     /**
+     * <code>QUESTION_INFORMATION_REQUEST = 10;</code>
+     *
      * <pre>
      *消息显示信息
      * </pre>
-     *
-     * <code>QUESTION_INFORMATION_REQUEST = 10;</code>
      */
     public static final int QUESTION_INFORMATION_REQUEST_VALUE = 10;
     /**
@@ -227,11 +229,11 @@ public final class ClientSendMessage {
      */
     public static final int GET_QUESTION_LIST_REQUEST_VALUE = 12;
     /**
+     * <code>CREATE_QUESTION_REQUEST = 15;</code>
+     *
      * <pre>
      *创建取消问题
      * </pre>
-     *
-     * <code>CREATE_QUESTION_REQUEST = 15;</code>
      */
     public static final int CREATE_QUESTION_REQUEST_VALUE = 15;
     /**
@@ -239,60 +241,60 @@ public final class ClientSendMessage {
      */
     public static final int ABANDON_QUESTION_REQUEST_VALUE = 16;
     /**
+     * <code>SEARCH_INFORMATION_REQUEST = 17;</code>
+     *
      * <pre>
      *搜索内容
      * </pre>
-     *
-     * <code>SEARCH_INFORMATION_REQUEST = 17;</code>
      */
     public static final int SEARCH_INFORMATION_REQUEST_VALUE = 17;
     /**
+     * <code>SOLVED_QUESTION_REQUEST = 18;</code>
+     *
      * <pre>
      *把问题标志为已解决
      * </pre>
-     *
-     * <code>SOLVED_QUESTION_REQUEST = 18;</code>
      */
     public static final int SOLVED_QUESTION_REQUEST_VALUE = 18;
     /**
+     * <code>BAD_MESSAGE = 19;</code>
+     *
      * <pre>
      *未知消息
      * </pre>
-     *
-     * <code>BAD_MESSAGE = 19;</code>
      */
     public static final int BAD_MESSAGE_VALUE = 19;
     /**
+     * <code>GET_USER_LIST_REQUEST = 20;</code>
+     *
      * <pre>
      *获取用户列表
      * </pre>
-     *
-     * <code>GET_USER_LIST_REQUEST = 20;</code>
      */
     public static final int GET_USER_LIST_REQUEST_VALUE = 20;
     /**
      * <code>WHITE_BOARD_MESSAGE = 21;</code>
      */
     public static final int WHITE_BOARD_MESSAGE_VALUE = 21;
+    /**
+     * <code>HEART_BEAT = 22;</code>
+     *
+     * <pre>
+     *心跳包
+     * </pre>
+     */
+    public static final int HEART_BEAT_VALUE = 22;
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static MSG valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static MSG forNumber(int value) {
       switch (value) {
         case 0: return LAUNCH_REQUEST;
         case 1: return LOGOUT_MESSAGE;
@@ -313,6 +315,7 @@ public final class ClientSendMessage {
         case 19: return BAD_MESSAGE;
         case 20: return GET_USER_LIST_REQUEST;
         case 21: return WHITE_BOARD_MESSAGE;
+        case 22: return HEART_BEAT;
         default: return null;
       }
     }
@@ -325,13 +328,13 @@ public final class ClientSendMessage {
         MSG> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<MSG>() {
             public MSG findValueByNumber(int number) {
-              return MSG.forNumber(number);
+              return MSG.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -356,9 +359,11 @@ public final class ClientSendMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private MSG(int value) {
+    private MSG(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -366,27 +371,27 @@ public final class ClientSendMessage {
   }
 
   /**
+   * Protobuf enum {@code CONTENT_TYPE}
+   *
    * <pre>
    *内容类型
    * </pre>
-   *
-   * Protobuf enum {@code CONTENT_TYPE}
    */
   public enum CONTENT_TYPE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>TEXT_MESSAGE = 0;</code>
      */
-    TEXT_MESSAGE(0),
+    TEXT_MESSAGE(0, 0),
     /**
      * <code>PICTURE_MESSAGE = 1;</code>
      */
-    PICTURE_MESSAGE(1),
+    PICTURE_MESSAGE(1, 1),
     /**
      * <code>VOICE_MESSAGE = 2;</code>
      */
-    VOICE_MESSAGE(2),
-    UNRECOGNIZED(-1),
+    VOICE_MESSAGE(2, 2),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -404,22 +409,14 @@ public final class ClientSendMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static CONTENT_TYPE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static CONTENT_TYPE forNumber(int value) {
       switch (value) {
         case 0: return TEXT_MESSAGE;
         case 1: return PICTURE_MESSAGE;
@@ -436,13 +433,13 @@ public final class ClientSendMessage {
         CONTENT_TYPE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<CONTENT_TYPE>() {
             public CONTENT_TYPE findValueByNumber(int number) {
-              return CONTENT_TYPE.forNumber(number);
+              return CONTENT_TYPE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -467,9 +464,11 @@ public final class ClientSendMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private CONTENT_TYPE(int value) {
+    private CONTENT_TYPE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -477,27 +476,27 @@ public final class ClientSendMessage {
   }
 
   /**
+   * Protobuf enum {@code PICTURETYPE}
+   *
    * <pre>
    *图像类型
    * </pre>
-   *
-   * Protobuf enum {@code PICTURETYPE}
    */
   public enum PICTURETYPE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>JPEG = 0;</code>
      */
-    JPEG(0),
+    JPEG(0, 0),
     /**
      * <code>PNG = 1;</code>
      */
-    PNG(1),
+    PNG(1, 1),
     /**
      * <code>GIF = 2;</code>
      */
-    GIF(2),
-    UNRECOGNIZED(-1),
+    GIF(2, 2),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -515,22 +514,14 @@ public final class ClientSendMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static PICTURETYPE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static PICTURETYPE forNumber(int value) {
       switch (value) {
         case 0: return JPEG;
         case 1: return PNG;
@@ -547,13 +538,13 @@ public final class ClientSendMessage {
         PICTURETYPE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<PICTURETYPE>() {
             public PICTURETYPE findValueByNumber(int number) {
-              return PICTURETYPE.forNumber(number);
+              return PICTURETYPE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -578,9 +569,11 @@ public final class ClientSendMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private PICTURETYPE(int value) {
+    private PICTURETYPE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -588,19 +581,19 @@ public final class ClientSendMessage {
   }
 
   /**
+   * Protobuf enum {@code SEARCHTYPE}
+   *
    * <pre>
    *搜索类型
    * </pre>
-   *
-   * Protobuf enum {@code SEARCHTYPE}
    */
   public enum SEARCHTYPE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>QUESTION = 0;</code>
      */
-    QUESTION(0),
-    UNRECOGNIZED(-1),
+    QUESTION(0, 0),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -610,22 +603,14 @@ public final class ClientSendMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static SEARCHTYPE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static SEARCHTYPE forNumber(int value) {
       switch (value) {
         case 0: return QUESTION;
         default: return null;
@@ -640,13 +625,13 @@ public final class ClientSendMessage {
         SEARCHTYPE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<SEARCHTYPE>() {
             public SEARCHTYPE findValueByNumber(int number) {
-              return SEARCHTYPE.forNumber(number);
+              return SEARCHTYPE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -671,9 +656,11 @@ public final class ClientSendMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private SEARCHTYPE(int value) {
+    private SEARCHTYPE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -681,23 +668,23 @@ public final class ClientSendMessage {
   }
 
   /**
+   * Protobuf enum {@code RANKORDER}
+   *
    * <pre>
    * 排序类型
    * </pre>
-   *
-   * Protobuf enum {@code RANKORDER}
    */
   public enum RANKORDER
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>ASCENDING = 0;</code>
      */
-    ASCENDING(0),
+    ASCENDING(0, 0),
     /**
      * <code>DESCENDING = 1;</code>
      */
-    DESCENDING(1),
-    UNRECOGNIZED(-1),
+    DESCENDING(1, 1),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -711,22 +698,14 @@ public final class ClientSendMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static RANKORDER valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static RANKORDER forNumber(int value) {
       switch (value) {
         case 0: return ASCENDING;
         case 1: return DESCENDING;
@@ -742,13 +721,13 @@ public final class ClientSendMessage {
         RANKORDER> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<RANKORDER>() {
             public RANKORDER findValueByNumber(int number) {
-              return RANKORDER.forNumber(number);
+              return RANKORDER.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -773,9 +752,11 @@ public final class ClientSendMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private RANKORDER(int value) {
+    private RANKORDER(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -783,35 +764,35 @@ public final class ClientSendMessage {
   }
 
   /**
+   * Protobuf enum {@code LIST_REFERENCE}
+   *
    * <pre>
    * 排序参照
    * </pre>
-   *
-   * Protobuf enum {@code LIST_REFERENCE}
    */
   public enum LIST_REFERENCE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>QUESTION_NUMBERS = 0;</code>
      */
-    QUESTION_NUMBERS(0),
+    QUESTION_NUMBERS(0, 0),
     /**
      * <code>PRAISE_TIMES = 1;</code>
      */
-    PRAISE_TIMES(1),
+    PRAISE_TIMES(1, 1),
     /**
      * <code>USERS_OF_QUESTION = 2;</code>
      */
-    USERS_OF_QUESTION(2),
+    USERS_OF_QUESTION(2, 2),
     /**
      * <code>CLICK_TIMES = 3;</code>
      */
-    CLICK_TIMES(3),
+    CLICK_TIMES(3, 3),
     /**
      * <code>TIME = 4;</code>
      */
-    TIME(4),
-    UNRECOGNIZED(-1),
+    TIME(4, 4),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -837,22 +818,14 @@ public final class ClientSendMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static LIST_REFERENCE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static LIST_REFERENCE forNumber(int value) {
       switch (value) {
         case 0: return QUESTION_NUMBERS;
         case 1: return PRAISE_TIMES;
@@ -871,13 +844,13 @@ public final class ClientSendMessage {
         LIST_REFERENCE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<LIST_REFERENCE>() {
             public LIST_REFERENCE findValueByNumber(int number) {
-              return LIST_REFERENCE.forNumber(number);
+              return LIST_REFERENCE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -902,9 +875,11 @@ public final class ClientSendMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private LIST_REFERENCE(int value) {
+    private LIST_REFERENCE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -926,18 +901,18 @@ public final class ClientSendMessage {
         getPasswordBytes();
   }
   /**
+   * Protobuf type {@code LaunchRequest}
+   *
    * <pre>
    *登入信息
    * </pre>
-   *
-   * Protobuf type {@code LaunchRequest}
    */
   public  static final class LaunchRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:LaunchRequest)
       LaunchRequestOrBuilder {
     // Use LaunchRequest.newBuilder() to construct.
-    private LaunchRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private LaunchRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private LaunchRequest() {
@@ -951,8 +926,7 @@ public final class ClientSendMessage {
     }
     private LaunchRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -978,10 +952,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -991,7 +966,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_LaunchRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_LaunchRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1045,7 +1020,7 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getPasswordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, password_);
       }
     }
 
@@ -1055,43 +1030,13 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getPasswordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, password_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.LaunchRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.LaunchRequest other = (com.ClientSendMessage.LaunchRequest) obj;
-
-      boolean result = true;
-      result = result && getPassword()
-          .equals(other.getPassword());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.LaunchRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1115,40 +1060,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.LaunchRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.LaunchRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.LaunchRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.LaunchRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.LaunchRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.LaunchRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1165,19 +1104,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code LaunchRequest}
+     *
      * <pre>
      *登入信息
      * </pre>
-     *
-     * Protobuf type {@code LaunchRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:LaunchRequest)
         com.ClientSendMessage.LaunchRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1185,7 +1124,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_LaunchRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_LaunchRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1198,13 +1137,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1238,32 +1176,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.LaunchRequest) {
           return mergeFrom((com.ClientSendMessage.LaunchRequest)other);
@@ -1296,7 +1208,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.LaunchRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1403,7 +1315,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new LaunchRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -1427,18 +1348,18 @@ public final class ClientSendMessage {
       com.google.protobuf.MessageOrBuilder {
   }
   /**
+   * Protobuf type {@code LogoutMessage}
+   *
    * <pre>
    *登出信息
    * </pre>
-   *
-   * Protobuf type {@code LogoutMessage}
    */
   public  static final class LogoutMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:LogoutMessage)
       LogoutMessageOrBuilder {
     // Use LogoutMessage.newBuilder() to construct.
-    private LogoutMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private LogoutMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private LogoutMessage() {
@@ -1451,8 +1372,7 @@ public final class ClientSendMessage {
     }
     private LogoutMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       try {
         boolean done = false;
@@ -1471,10 +1391,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -1484,7 +1405,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_LogoutMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_LogoutMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1515,32 +1436,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.LogoutMessage)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.LogoutMessage other = (com.ClientSendMessage.LogoutMessage) obj;
-
-      boolean result = true;
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.LogoutMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1564,40 +1459,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.LogoutMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.LogoutMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.LogoutMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.LogoutMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.LogoutMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.LogoutMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1614,19 +1503,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code LogoutMessage}
+     *
      * <pre>
      *登出信息
      * </pre>
-     *
-     * Protobuf type {@code LogoutMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:LogoutMessage)
         com.ClientSendMessage.LogoutMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1634,7 +1523,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_LogoutMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_LogoutMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1647,13 +1536,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1684,32 +1572,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.LogoutMessage) {
           return mergeFrom((com.ClientSendMessage.LogoutMessage)other);
@@ -1738,7 +1600,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.LogoutMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1776,7 +1638,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new LogoutMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -1843,11 +1714,11 @@ public final class ClientSendMessage {
    * Protobuf type {@code RegisterRequest}
    */
   public  static final class RegisterRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:RegisterRequest)
       RegisterRequestOrBuilder {
     // Use RegisterRequest.newBuilder() to construct.
-    private RegisterRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private RegisterRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private RegisterRequest() {
@@ -1864,8 +1735,7 @@ public final class ClientSendMessage {
     }
     private RegisterRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -1909,10 +1779,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -1922,7 +1793,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_RegisterRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_RegisterRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -2078,16 +1949,16 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getUsernameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, username_);
       }
       if (!getPasswordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, password_);
       }
       if (!getMailAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, mailAddress_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, mailAddress_);
       }
       if (!getSignatureBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, signature_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, signature_);
       }
     }
 
@@ -2097,64 +1968,22 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getUsernameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, username_);
       }
       if (!getPasswordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, password_);
       }
       if (!getMailAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, mailAddress_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, mailAddress_);
       }
       if (!getSignatureBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, signature_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, signature_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.RegisterRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.RegisterRequest other = (com.ClientSendMessage.RegisterRequest) obj;
-
-      boolean result = true;
-      result = result && getUsername()
-          .equals(other.getUsername());
-      result = result && getPassword()
-          .equals(other.getPassword());
-      result = result && getMailAddress()
-          .equals(other.getMailAddress());
-      result = result && getSignature()
-          .equals(other.getSignature());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getUsername().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
-      hash = (37 * hash) + MAIL_ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getMailAddress().hashCode();
-      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
-      hash = (53 * hash) + getSignature().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.RegisterRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2178,40 +2007,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.RegisterRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.RegisterRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.RegisterRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.RegisterRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.RegisterRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.RegisterRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -2228,7 +2051,7 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2236,7 +2059,7 @@ public final class ClientSendMessage {
      * Protobuf type {@code RegisterRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:RegisterRequest)
         com.ClientSendMessage.RegisterRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -2244,7 +2067,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_RegisterRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_RegisterRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2257,13 +2080,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -2306,32 +2128,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.RegisterRequest) {
           return mergeFrom((com.ClientSendMessage.RegisterRequest)other);
@@ -2376,7 +2172,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.RegisterRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -2690,7 +2486,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new RegisterRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -2731,7 +2536,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string pictures = 5;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getPicturesList();
     /**
      * <code>repeated string pictures = 5;</code>
@@ -2770,50 +2575,22 @@ public final class ClientSendMessage {
     /**
      * <code>map&lt;int32, int64&gt; markMap = 6;</code>
      */
-    int getMarkMapCount();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-    boolean containsMarkMap(
-        int key);
-    /**
-     * Use {@link #getMarkMapMap()} instead.
-     */
-    @java.lang.Deprecated
     java.util.Map<java.lang.Integer, java.lang.Long>
     getMarkMap();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-    java.util.Map<java.lang.Integer, java.lang.Long>
-    getMarkMapMap();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-
-    long getMarkMapOrDefault(
-        int key,
-        long defaultValue);
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-
-    long getMarkMapOrThrow(
-        int key);
   }
   /**
+   * Protobuf type {@code SendContent}
+   *
    * <pre>
    *发送对话消息
    * </pre>
-   *
-   * Protobuf type {@code SendContent}
    */
   public  static final class SendContent extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:SendContent)
       SendContentOrBuilder {
     // Use SendContent.newBuilder() to construct.
-    private SendContent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private SendContent(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private SendContent() {
@@ -2831,8 +2608,7 @@ public final class ClientSendMessage {
     }
     private SendContent(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -2896,10 +2672,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
           pictures_ = pictures_.getUnmodifiableView();
@@ -2923,7 +2700,7 @@ public final class ClientSendMessage {
               "Invalid map field number: " + number);
       }
     }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_SendContent_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -3090,61 +2867,15 @@ public final class ClientSendMessage {
       if (markMap_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
             MarkMapDefaultEntryHolder.defaultEntry);
-      }
+     }
       return markMap_;
     }
-
-    public int getMarkMapCount() {
-      return internalGetMarkMap().getMap().size();
-    }
     /**
      * <code>map&lt;int32, int64&gt; markMap = 6;</code>
      */
 
-    public boolean containsMarkMap(
-        int key) {
-      
-      return internalGetMarkMap().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getMarkMapMap()} instead.
-     */
-    @java.lang.Deprecated
     public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMap() {
-      return getMarkMapMap();
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-
-    public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMapMap() {
       return internalGetMarkMap().getMap();
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-
-    public long getMarkMapOrDefault(
-        int key,
-        long defaultValue) {
-      
-      java.util.Map<java.lang.Integer, java.lang.Long> map =
-          internalGetMarkMap().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-     */
-
-    public long getMarkMapOrThrow(
-        int key) {
-      
-      java.util.Map<java.lang.Integer, java.lang.Long> map =
-          internalGetMarkMap().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3163,16 +2894,16 @@ public final class ClientSendMessage {
         output.writeInt64(1, questionID_);
       }
       if (!getContentBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, content_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, time_);
       }
       if (!getUserBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, user_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, user_);
       }
       for (int i = 0; i < pictures_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, pictures_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, pictures_.getRaw(i));
       }
       for (java.util.Map.Entry<java.lang.Integer, java.lang.Long> entry
            : internalGetMarkMap().getMap().entrySet()) {
@@ -3195,13 +2926,13 @@ public final class ClientSendMessage {
           .computeInt64Size(1, questionID_);
       }
       if (!getContentBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, content_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, time_);
       }
       if (!getUserBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, user_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, user_);
       }
       {
         int dataSize = 0;
@@ -3226,61 +2957,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.SendContent)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.SendContent other = (com.ClientSendMessage.SendContent) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      result = result && getContent()
-          .equals(other.getContent());
-      result = result && getPicturesList()
-          .equals(other.getPicturesList());
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getUser()
-          .equals(other.getUser());
-      result = result && internalGetMarkMap().equals(
-          other.internalGetMarkMap());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
-      hash = (53 * hash) + getContent().hashCode();
-      if (getPicturesCount() > 0) {
-        hash = (37 * hash) + PICTURES_FIELD_NUMBER;
-        hash = (53 * hash) + getPicturesList().hashCode();
-      }
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + USER_FIELD_NUMBER;
-      hash = (53 * hash) + getUser().hashCode();
-      if (!internalGetMarkMap().getMap().isEmpty()) {
-        hash = (37 * hash) + MARKMAP_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetMarkMap().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.SendContent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3304,40 +2980,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.SendContent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.SendContent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.SendContent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.SendContent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.SendContent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.SendContent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -3354,19 +3024,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code SendContent}
+     *
      * <pre>
      *发送对话消息
      * </pre>
-     *
-     * Protobuf type {@code SendContent}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:SendContent)
         com.ClientSendMessage.SendContentOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -3396,7 +3066,7 @@ public final class ClientSendMessage {
                 "Invalid map field number: " + number);
         }
       }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_SendContent_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -3409,13 +3079,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -3471,32 +3140,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.SendContent) {
           return mergeFrom((com.ClientSendMessage.SendContent)other);
@@ -3552,7 +3195,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.SendContent) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -3896,7 +3539,7 @@ public final class ClientSendMessage {
         if (markMap_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MarkMapDefaultEntryHolder.defaultEntry);
-        }
+       }
         return markMap_;
       }
       private com.google.protobuf.MapField<java.lang.Integer, java.lang.Long>
@@ -3911,78 +3554,15 @@ public final class ClientSendMessage {
         }
         return markMap_;
       }
-
-      public int getMarkMapCount() {
-        return internalGetMarkMap().getMap().size();
-      }
       /**
        * <code>map&lt;int32, int64&gt; markMap = 6;</code>
        */
-
-      public boolean containsMarkMap(
-          int key) {
-        
-        return internalGetMarkMap().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getMarkMapMap()} instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMap() {
-        return getMarkMapMap();
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-       */
-
-      public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMapMap() {
         return internalGetMarkMap().getMap();
       }
       /**
        * <code>map&lt;int32, int64&gt; markMap = 6;</code>
        */
-
-      public long getMarkMapOrDefault(
-          int key,
-          long defaultValue) {
-        
-        java.util.Map<java.lang.Integer, java.lang.Long> map =
-            internalGetMarkMap().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-       */
-
-      public long getMarkMapOrThrow(
-          int key) {
-        
-        java.util.Map<java.lang.Integer, java.lang.Long> map =
-            internalGetMarkMap().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearMarkMap() {
-        getMutableMarkMap().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-       */
-
-      public Builder removeMarkMap(
-          int key) {
-        
-        getMutableMarkMap().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.Integer, java.lang.Long>
       getMutableMarkMap() {
         return internalGetMutableMarkMap().getMutableMap();
@@ -3990,18 +3570,6 @@ public final class ClientSendMessage {
       /**
        * <code>map&lt;int32, int64&gt; markMap = 6;</code>
        */
-      public Builder putMarkMap(
-          int key,
-          long value) {
-        
-        
-        getMutableMarkMap().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 6;</code>
-       */
-
       public Builder putAllMarkMap(
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
         getMutableMarkMap().putAll(values);
@@ -4037,7 +3605,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new SendContent(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -4071,18 +3648,18 @@ public final class ClientSendMessage {
         getTextBytes();
   }
   /**
+   * Protobuf type {@code AnnouncementMessage}
+   *
    * <pre>
    *通告信息
    * </pre>
-   *
-   * Protobuf type {@code AnnouncementMessage}
    */
   public  static final class AnnouncementMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:AnnouncementMessage)
       AnnouncementMessageOrBuilder {
     // Use AnnouncementMessage.newBuilder() to construct.
-    private AnnouncementMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private AnnouncementMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private AnnouncementMessage() {
@@ -4096,8 +3673,7 @@ public final class ClientSendMessage {
     }
     private AnnouncementMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -4123,10 +3699,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -4136,7 +3713,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_AnnouncementMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_AnnouncementMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -4190,7 +3767,7 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getTextBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, text_);
       }
     }
 
@@ -4200,43 +3777,13 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getTextBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, text_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, text_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.AnnouncementMessage)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.AnnouncementMessage other = (com.ClientSendMessage.AnnouncementMessage) obj;
-
-      boolean result = true;
-      result = result && getText()
-          .equals(other.getText());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + TEXT_FIELD_NUMBER;
-      hash = (53 * hash) + getText().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.AnnouncementMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4260,40 +3807,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.AnnouncementMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.AnnouncementMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.AnnouncementMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.AnnouncementMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.AnnouncementMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.AnnouncementMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -4310,19 +3851,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code AnnouncementMessage}
+     *
      * <pre>
      *通告信息
      * </pre>
-     *
-     * Protobuf type {@code AnnouncementMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:AnnouncementMessage)
         com.ClientSendMessage.AnnouncementMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -4330,7 +3871,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_AnnouncementMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_AnnouncementMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -4343,13 +3884,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -4383,32 +3923,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.AnnouncementMessage) {
           return mergeFrom((com.ClientSendMessage.AnnouncementMessage)other);
@@ -4441,7 +3955,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.AnnouncementMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -4548,7 +4062,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new AnnouncementMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -4577,18 +4100,18 @@ public final class ClientSendMessage {
     long getQuestionID();
   }
   /**
+   * Protobuf type {@code QuestionEnterRequest}
+   *
    * <pre>
    * //进入问题房间消息
    * </pre>
-   *
-   * Protobuf type {@code QuestionEnterRequest}
    */
   public  static final class QuestionEnterRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:QuestionEnterRequest)
       QuestionEnterRequestOrBuilder {
     // Use QuestionEnterRequest.newBuilder() to construct.
-    private QuestionEnterRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private QuestionEnterRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private QuestionEnterRequest() {
@@ -4602,8 +4125,7 @@ public final class ClientSendMessage {
     }
     private QuestionEnterRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -4628,10 +4150,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -4641,7 +4164,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_QuestionEnterRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_QuestionEnterRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -4688,37 +4211,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.QuestionEnterRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.QuestionEnterRequest other = (com.ClientSendMessage.QuestionEnterRequest) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.QuestionEnterRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4742,40 +4234,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.QuestionEnterRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.QuestionEnterRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.QuestionEnterRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.QuestionEnterRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.QuestionEnterRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.QuestionEnterRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -4792,19 +4278,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code QuestionEnterRequest}
+     *
      * <pre>
      * //进入问题房间消息
      * </pre>
-     *
-     * Protobuf type {@code QuestionEnterRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:QuestionEnterRequest)
         com.ClientSendMessage.QuestionEnterRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -4812,7 +4298,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_QuestionEnterRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_QuestionEnterRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -4825,13 +4311,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -4865,32 +4350,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.QuestionEnterRequest) {
           return mergeFrom((com.ClientSendMessage.QuestionEnterRequest)other);
@@ -4922,7 +4381,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.QuestionEnterRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -4986,7 +4445,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new QuestionEnterRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -5015,18 +4483,18 @@ public final class ClientSendMessage {
     long getQuestionID();
   }
   /**
+   * Protobuf type {@code GoodQuestionRequest}
+   *
    * <pre>
    *赞问题
    * </pre>
-   *
-   * Protobuf type {@code GoodQuestionRequest}
    */
   public  static final class GoodQuestionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GoodQuestionRequest)
       GoodQuestionRequestOrBuilder {
     // Use GoodQuestionRequest.newBuilder() to construct.
-    private GoodQuestionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GoodQuestionRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GoodQuestionRequest() {
@@ -5040,8 +4508,7 @@ public final class ClientSendMessage {
     }
     private GoodQuestionRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -5066,10 +4533,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -5079,7 +4547,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_GoodQuestionRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_GoodQuestionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5126,37 +4594,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.GoodQuestionRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.GoodQuestionRequest other = (com.ClientSendMessage.GoodQuestionRequest) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.GoodQuestionRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5180,40 +4617,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.GoodQuestionRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GoodQuestionRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GoodQuestionRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.GoodQuestionRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GoodQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GoodQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -5230,19 +4661,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GoodQuestionRequest}
+     *
      * <pre>
      *赞问题
      * </pre>
-     *
-     * Protobuf type {@code GoodQuestionRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GoodQuestionRequest)
         com.ClientSendMessage.GoodQuestionRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -5250,7 +4681,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_GoodQuestionRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_GoodQuestionRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5263,13 +4694,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -5303,32 +4733,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.GoodQuestionRequest) {
           return mergeFrom((com.ClientSendMessage.GoodQuestionRequest)other);
@@ -5360,7 +4764,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.GoodQuestionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -5424,7 +4828,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GoodQuestionRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -5458,18 +4871,18 @@ public final class ClientSendMessage {
         getUserBytes();
   }
   /**
+   * Protobuf type {@code GoodUserRequest}
+   *
    * <pre>
    *赞用户
    * </pre>
-   *
-   * Protobuf type {@code GoodUserRequest}
    */
   public  static final class GoodUserRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GoodUserRequest)
       GoodUserRequestOrBuilder {
     // Use GoodUserRequest.newBuilder() to construct.
-    private GoodUserRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GoodUserRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GoodUserRequest() {
@@ -5483,8 +4896,7 @@ public final class ClientSendMessage {
     }
     private GoodUserRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -5510,10 +4922,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -5523,7 +4936,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_GoodUserRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_GoodUserRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5577,7 +4990,7 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getUserBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, user_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, user_);
       }
     }
 
@@ -5587,43 +5000,13 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getUserBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, user_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, user_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.GoodUserRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.GoodUserRequest other = (com.ClientSendMessage.GoodUserRequest) obj;
-
-      boolean result = true;
-      result = result && getUser()
-          .equals(other.getUser());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + USER_FIELD_NUMBER;
-      hash = (53 * hash) + getUser().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.GoodUserRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5647,40 +5030,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.GoodUserRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GoodUserRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GoodUserRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.GoodUserRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GoodUserRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GoodUserRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -5697,19 +5074,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GoodUserRequest}
+     *
      * <pre>
      *赞用户
      * </pre>
-     *
-     * Protobuf type {@code GoodUserRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GoodUserRequest)
         com.ClientSendMessage.GoodUserRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -5717,7 +5094,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_GoodUserRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_GoodUserRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5730,13 +5107,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -5770,32 +5146,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.GoodUserRequest) {
           return mergeFrom((com.ClientSendMessage.GoodUserRequest)other);
@@ -5828,7 +5178,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.GoodUserRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -5935,7 +5285,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GoodUserRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -5964,18 +5323,18 @@ public final class ClientSendMessage {
     long getQuestionID();
   }
   /**
+   * Protobuf type {@code QuestionInformationRequest}
+   *
    * <pre>
    *需要问题信息
    * </pre>
-   *
-   * Protobuf type {@code QuestionInformationRequest}
    */
   public  static final class QuestionInformationRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:QuestionInformationRequest)
       QuestionInformationRequestOrBuilder {
     // Use QuestionInformationRequest.newBuilder() to construct.
-    private QuestionInformationRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private QuestionInformationRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private QuestionInformationRequest() {
@@ -5989,8 +5348,7 @@ public final class ClientSendMessage {
     }
     private QuestionInformationRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -6015,10 +5373,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -6028,7 +5387,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_QuestionInformationRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_QuestionInformationRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6075,37 +5434,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.QuestionInformationRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.QuestionInformationRequest other = (com.ClientSendMessage.QuestionInformationRequest) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.QuestionInformationRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6129,40 +5457,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.QuestionInformationRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.QuestionInformationRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.QuestionInformationRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.QuestionInformationRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.QuestionInformationRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.QuestionInformationRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -6179,19 +5501,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code QuestionInformationRequest}
+     *
      * <pre>
      *需要问题信息
      * </pre>
-     *
-     * Protobuf type {@code QuestionInformationRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:QuestionInformationRequest)
         com.ClientSendMessage.QuestionInformationRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -6199,7 +5521,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_QuestionInformationRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_QuestionInformationRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -6212,13 +5534,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -6252,32 +5573,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.QuestionInformationRequest) {
           return mergeFrom((com.ClientSendMessage.QuestionInformationRequest)other);
@@ -6309,7 +5604,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.QuestionInformationRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -6373,7 +5668,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new QuestionInformationRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -6407,18 +5711,18 @@ public final class ClientSendMessage {
         getUsernameBytes();
   }
   /**
+   * Protobuf type {@code UserInformationRequest}
+   *
    * <pre>
    *需要用户信息
    * </pre>
-   *
-   * Protobuf type {@code UserInformationRequest}
    */
   public  static final class UserInformationRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:UserInformationRequest)
       UserInformationRequestOrBuilder {
     // Use UserInformationRequest.newBuilder() to construct.
-    private UserInformationRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private UserInformationRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private UserInformationRequest() {
@@ -6432,8 +5736,7 @@ public final class ClientSendMessage {
     }
     private UserInformationRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -6459,10 +5762,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -6472,7 +5776,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_UserInformationRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_UserInformationRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6526,7 +5830,7 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getUsernameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, username_);
       }
     }
 
@@ -6536,43 +5840,13 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getUsernameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, username_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.UserInformationRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.UserInformationRequest other = (com.ClientSendMessage.UserInformationRequest) obj;
-
-      boolean result = true;
-      result = result && getUsername()
-          .equals(other.getUsername());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getUsername().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.UserInformationRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6596,40 +5870,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.UserInformationRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.UserInformationRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.UserInformationRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.UserInformationRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.UserInformationRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.UserInformationRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -6646,19 +5914,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code UserInformationRequest}
+     *
      * <pre>
      *需要用户信息
      * </pre>
-     *
-     * Protobuf type {@code UserInformationRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:UserInformationRequest)
         com.ClientSendMessage.UserInformationRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -6666,7 +5934,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_UserInformationRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_UserInformationRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -6679,13 +5947,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -6719,32 +5986,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.UserInformationRequest) {
           return mergeFrom((com.ClientSendMessage.UserInformationRequest)other);
@@ -6777,7 +6018,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.UserInformationRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -6884,7 +6125,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new UserInformationRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -6931,18 +6181,18 @@ public final class ClientSendMessage {
     int getQuestionNumber();
   }
   /**
+   * Protobuf type {@code GetQuestionListRequest}
+   *
    * <pre>
    *更新问题列表请求
    * </pre>
-   *
-   * Protobuf type {@code GetQuestionListRequest}
    */
   public  static final class GetQuestionListRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GetQuestionListRequest)
       GetQuestionListRequestOrBuilder {
     // Use GetQuestionListRequest.newBuilder() to construct.
-    private GetQuestionListRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GetQuestionListRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GetQuestionListRequest() {
@@ -6958,8 +6208,7 @@ public final class ClientSendMessage {
     }
     private GetQuestionListRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -6996,10 +6245,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -7009,7 +6259,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_GetQuestionListRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_GetQuestionListRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -7102,42 +6352,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.GetQuestionListRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.GetQuestionListRequest other = (com.ClientSendMessage.GetQuestionListRequest) obj;
-
-      boolean result = true;
-      result = result && reference_ == other.reference_;
-      result = result && rankorder_ == other.rankorder_;
-      result = result && (getQuestionNumber()
-          == other.getQuestionNumber());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + REFERENCE_FIELD_NUMBER;
-      hash = (53 * hash) + reference_;
-      hash = (37 * hash) + RANKORDER_FIELD_NUMBER;
-      hash = (53 * hash) + rankorder_;
-      hash = (37 * hash) + QUESTIONNUMBER_FIELD_NUMBER;
-      hash = (53 * hash) + getQuestionNumber();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.GetQuestionListRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7161,40 +6375,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.GetQuestionListRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GetQuestionListRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GetQuestionListRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.GetQuestionListRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GetQuestionListRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GetQuestionListRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -7211,19 +6419,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GetQuestionListRequest}
+     *
      * <pre>
      *更新问题列表请求
      * </pre>
-     *
-     * Protobuf type {@code GetQuestionListRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GetQuestionListRequest)
         com.ClientSendMessage.GetQuestionListRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -7231,7 +6439,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_GetQuestionListRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_GetQuestionListRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -7244,13 +6452,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -7290,32 +6497,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.GetQuestionListRequest) {
           return mergeFrom((com.ClientSendMessage.GetQuestionListRequest)other);
@@ -7353,7 +6534,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.GetQuestionListRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -7505,7 +6686,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GetQuestionListRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -7541,7 +6731,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string stempic = 5;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getStempicList();
     /**
      * <code>repeated string stempic = 5;</code>
@@ -7570,7 +6760,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string additionpic = 6;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getAdditionpicList();
     /**
      * <code>repeated string additionpic = 6;</code>
@@ -7599,7 +6789,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string keywords = 4;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getKeywordsList();
     /**
      * <code>repeated string keywords = 4;</code>
@@ -7616,18 +6806,18 @@ public final class ClientSendMessage {
         getKeywordsBytes(int index);
   }
   /**
+   * Protobuf type {@code CreateQuestionRequest}
+   *
    * <pre>
    *提出问题
    * </pre>
-   *
-   * Protobuf type {@code CreateQuestionRequest}
    */
   public  static final class CreateQuestionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:CreateQuestionRequest)
       CreateQuestionRequestOrBuilder {
     // Use CreateQuestionRequest.newBuilder() to construct.
-    private CreateQuestionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private CreateQuestionRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private CreateQuestionRequest() {
@@ -7646,8 +6836,7 @@ public final class ClientSendMessage {
     }
     private CreateQuestionRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -7712,10 +6901,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
           keywords_ = keywords_.getUnmodifiableView();
@@ -7734,7 +6924,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_CreateQuestionRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_CreateQuestionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -7944,22 +7134,22 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getStemBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stem_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, stem_);
       }
       if (!getAdditionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, addition_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, addition_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, time_);
       }
       for (int i = 0; i < keywords_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, keywords_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, keywords_.getRaw(i));
       }
       for (int i = 0; i < stempic_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, stempic_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, stempic_.getRaw(i));
       }
       for (int i = 0; i < additionpic_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, additionpic_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, additionpic_.getRaw(i));
       }
     }
 
@@ -7969,13 +7159,13 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getStemBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stem_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, stem_);
       }
       if (!getAdditionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, addition_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, addition_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, time_);
       }
       {
         int dataSize = 0;
@@ -8006,62 +7196,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.CreateQuestionRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.CreateQuestionRequest other = (com.ClientSendMessage.CreateQuestionRequest) obj;
-
-      boolean result = true;
-      result = result && getStem()
-          .equals(other.getStem());
-      result = result && getStempicList()
-          .equals(other.getStempicList());
-      result = result && getAddition()
-          .equals(other.getAddition());
-      result = result && getAdditionpicList()
-          .equals(other.getAdditionpicList());
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getKeywordsList()
-          .equals(other.getKeywordsList());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + STEM_FIELD_NUMBER;
-      hash = (53 * hash) + getStem().hashCode();
-      if (getStempicCount() > 0) {
-        hash = (37 * hash) + STEMPIC_FIELD_NUMBER;
-        hash = (53 * hash) + getStempicList().hashCode();
-      }
-      hash = (37 * hash) + ADDITION_FIELD_NUMBER;
-      hash = (53 * hash) + getAddition().hashCode();
-      if (getAdditionpicCount() > 0) {
-        hash = (37 * hash) + ADDITIONPIC_FIELD_NUMBER;
-        hash = (53 * hash) + getAdditionpicList().hashCode();
-      }
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      if (getKeywordsCount() > 0) {
-        hash = (37 * hash) + KEYWORDS_FIELD_NUMBER;
-        hash = (53 * hash) + getKeywordsList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.CreateQuestionRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8085,40 +7219,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.CreateQuestionRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.CreateQuestionRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.CreateQuestionRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.CreateQuestionRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.CreateQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.CreateQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -8135,19 +7263,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code CreateQuestionRequest}
+     *
      * <pre>
      *提出问题
      * </pre>
-     *
-     * Protobuf type {@code CreateQuestionRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:CreateQuestionRequest)
         com.ClientSendMessage.CreateQuestionRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -8155,7 +7283,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_CreateQuestionRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_CreateQuestionRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -8168,13 +7296,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -8238,32 +7365,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.CreateQuestionRequest) {
           return mergeFrom((com.ClientSendMessage.CreateQuestionRequest)other);
@@ -8334,7 +7435,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.CreateQuestionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -8862,7 +7963,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new CreateQuestionRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -8891,18 +8001,18 @@ public final class ClientSendMessage {
     long getQuestionID();
   }
   /**
+   * Protobuf type {@code AbandonQuestionRequest}
+   *
    * <pre>
    *取消问题
    * </pre>
-   *
-   * Protobuf type {@code AbandonQuestionRequest}
    */
   public  static final class AbandonQuestionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:AbandonQuestionRequest)
       AbandonQuestionRequestOrBuilder {
     // Use AbandonQuestionRequest.newBuilder() to construct.
-    private AbandonQuestionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private AbandonQuestionRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private AbandonQuestionRequest() {
@@ -8916,8 +8026,7 @@ public final class ClientSendMessage {
     }
     private AbandonQuestionRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -8942,10 +8051,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -8955,7 +8065,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_AbandonQuestionRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_AbandonQuestionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -9002,37 +8112,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.AbandonQuestionRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.AbandonQuestionRequest other = (com.ClientSendMessage.AbandonQuestionRequest) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.AbandonQuestionRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9056,40 +8135,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.AbandonQuestionRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.AbandonQuestionRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.AbandonQuestionRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.AbandonQuestionRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.AbandonQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.AbandonQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -9106,19 +8179,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code AbandonQuestionRequest}
+     *
      * <pre>
      *取消问题
      * </pre>
-     *
-     * Protobuf type {@code AbandonQuestionRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:AbandonQuestionRequest)
         com.ClientSendMessage.AbandonQuestionRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -9126,7 +8199,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_AbandonQuestionRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_AbandonQuestionRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9139,13 +8212,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -9179,32 +8251,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.AbandonQuestionRequest) {
           return mergeFrom((com.ClientSendMessage.AbandonQuestionRequest)other);
@@ -9236,7 +8282,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.AbandonQuestionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -9300,7 +8346,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new AbandonQuestionRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -9326,7 +8381,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string keywords = 1;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getKeywordsList();
     /**
      * <code>repeated string keywords = 1;</code>
@@ -9348,18 +8403,18 @@ public final class ClientSendMessage {
     int getSearchID();
   }
   /**
+   * Protobuf type {@code SearchInformationRequest}
+   *
    * <pre>
    *搜索内容
    * </pre>
-   *
-   * Protobuf type {@code SearchInformationRequest}
    */
   public  static final class SearchInformationRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:SearchInformationRequest)
       SearchInformationRequestOrBuilder {
     // Use SearchInformationRequest.newBuilder() to construct.
-    private SearchInformationRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private SearchInformationRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private SearchInformationRequest() {
@@ -9374,8 +8429,7 @@ public final class ClientSendMessage {
     }
     private SearchInformationRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -9409,10 +8463,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           keywords_ = keywords_.getUnmodifiableView();
@@ -9425,7 +8480,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_SearchInformationRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_SearchInformationRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -9484,7 +8539,7 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < keywords_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, keywords_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, keywords_.getRaw(i));
       }
       if (searchID_ != 0) {
         output.writeInt32(2, searchID_);
@@ -9513,42 +8568,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.SearchInformationRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.SearchInformationRequest other = (com.ClientSendMessage.SearchInformationRequest) obj;
-
-      boolean result = true;
-      result = result && getKeywordsList()
-          .equals(other.getKeywordsList());
-      result = result && (getSearchID()
-          == other.getSearchID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (getKeywordsCount() > 0) {
-        hash = (37 * hash) + KEYWORDS_FIELD_NUMBER;
-        hash = (53 * hash) + getKeywordsList().hashCode();
-      }
-      hash = (37 * hash) + SEARCHID_FIELD_NUMBER;
-      hash = (53 * hash) + getSearchID();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.SearchInformationRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9572,40 +8591,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.SearchInformationRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.SearchInformationRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.SearchInformationRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.SearchInformationRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.SearchInformationRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.SearchInformationRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -9622,19 +8635,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code SearchInformationRequest}
+     *
      * <pre>
      *搜索内容
      * </pre>
-     *
-     * Protobuf type {@code SearchInformationRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:SearchInformationRequest)
         com.ClientSendMessage.SearchInformationRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -9642,7 +8655,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_SearchInformationRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_SearchInformationRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9655,13 +8668,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -9705,32 +8717,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.SearchInformationRequest) {
           return mergeFrom((com.ClientSendMessage.SearchInformationRequest)other);
@@ -9772,7 +8758,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.SearchInformationRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -9931,7 +8917,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new SearchInformationRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -9957,7 +8952,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string filename = 1;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getFilenameList();
     /**
      * <code>repeated string filename = 1;</code>
@@ -9976,7 +8971,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string md5 = 4;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getMd5List();
     /**
      * <code>repeated string md5 = 4;</code>
@@ -9995,7 +8990,7 @@ public final class ClientSendMessage {
     /**
      * <code>repeated string localFilePath = 3;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getLocalFilePathList();
     /**
      * <code>repeated string localFilePath = 3;</code>
@@ -10021,18 +9016,18 @@ public final class ClientSendMessage {
     com.ClientSendMessage.FileRequest.SIGNTYPE getSignType();
   }
   /**
+   * Protobuf type {@code FileRequest}
+   *
    * <pre>
    *文件请求
    * </pre>
-   *
-   * Protobuf type {@code FileRequest}
    */
   public  static final class FileRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:FileRequest)
       FileRequestOrBuilder {
     // Use FileRequest.newBuilder() to construct.
-    private FileRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private FileRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private FileRequest() {
@@ -10049,8 +9044,7 @@ public final class ClientSendMessage {
     }
     private FileRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -10103,10 +9097,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           filename_ = filename_.getUnmodifiableView();
@@ -10125,7 +9120,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_FileRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_FileRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -10140,12 +9135,12 @@ public final class ClientSendMessage {
       /**
        * <code>DOWNLOAD = 0;</code>
        */
-      DOWNLOAD(0),
+      DOWNLOAD(0, 0),
       /**
        * <code>UPLOAD = 1;</code>
        */
-      UPLOAD(1),
-      UNRECOGNIZED(-1),
+      UPLOAD(1, 1),
+      UNRECOGNIZED(-1, -1),
       ;
 
       /**
@@ -10159,22 +9154,14 @@ public final class ClientSendMessage {
 
 
       public final int getNumber() {
-        if (this == UNRECOGNIZED) {
+        if (index == -1) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static SIGNTYPE valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static SIGNTYPE forNumber(int value) {
         switch (value) {
           case 0: return DOWNLOAD;
           case 1: return UPLOAD;
@@ -10190,13 +9177,13 @@ public final class ClientSendMessage {
           SIGNTYPE> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<SIGNTYPE>() {
               public SIGNTYPE findValueByNumber(int number) {
-                return SIGNTYPE.forNumber(number);
+                return SIGNTYPE.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -10221,9 +9208,11 @@ public final class ClientSendMessage {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private SIGNTYPE(int value) {
+      private SIGNTYPE(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -10347,16 +9336,16 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < filename_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, filename_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, filename_.getRaw(i));
       }
       if (signType_ != com.ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD.getNumber()) {
         output.writeEnum(2, signType_);
       }
       for (int i = 0; i < localFilePath_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, localFilePath_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, localFilePath_.getRaw(i));
       }
       for (int i = 0; i < md5_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, md5_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, md5_.getRaw(i));
       }
     }
 
@@ -10398,53 +9387,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.FileRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.FileRequest other = (com.ClientSendMessage.FileRequest) obj;
-
-      boolean result = true;
-      result = result && getFilenameList()
-          .equals(other.getFilenameList());
-      result = result && getMd5List()
-          .equals(other.getMd5List());
-      result = result && getLocalFilePathList()
-          .equals(other.getLocalFilePathList());
-      result = result && signType_ == other.signType_;
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (getFilenameCount() > 0) {
-        hash = (37 * hash) + FILENAME_FIELD_NUMBER;
-        hash = (53 * hash) + getFilenameList().hashCode();
-      }
-      if (getMd5Count() > 0) {
-        hash = (37 * hash) + MD5_FIELD_NUMBER;
-        hash = (53 * hash) + getMd5List().hashCode();
-      }
-      if (getLocalFilePathCount() > 0) {
-        hash = (37 * hash) + LOCALFILEPATH_FIELD_NUMBER;
-        hash = (53 * hash) + getLocalFilePathList().hashCode();
-      }
-      hash = (37 * hash) + SIGNTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + signType_;
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.FileRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -10468,40 +9410,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.FileRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.FileRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.FileRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.FileRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.FileRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.FileRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -10518,19 +9454,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code FileRequest}
+     *
      * <pre>
      *文件请求
      * </pre>
-     *
-     * Protobuf type {@code FileRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:FileRequest)
         com.ClientSendMessage.FileRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -10538,7 +9474,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_FileRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_FileRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -10551,13 +9487,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -10615,32 +9550,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.FileRequest) {
           return mergeFrom((com.ClientSendMessage.FileRequest)other);
@@ -10702,7 +9611,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.FileRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -11067,7 +9976,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new FileRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -11086,6 +10004,381 @@ public final class ClientSendMessage {
 
   }
 
+  public interface HeartBeatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:HeartBeat)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional bool online = 1;</code>
+     */
+    boolean getOnline();
+  }
+  /**
+   * Protobuf type {@code HeartBeat}
+   */
+  public  static final class HeartBeat extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:HeartBeat)
+      HeartBeatOrBuilder {
+    // Use HeartBeat.newBuilder() to construct.
+    private HeartBeat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private HeartBeat() {
+      online_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private HeartBeat(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              online_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw new RuntimeException(e.setUnfinishedMessage(this));
+      } catch (java.io.IOException e) {
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.ClientSendMessage.internal_static_HeartBeat_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.ClientSendMessage.internal_static_HeartBeat_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.ClientSendMessage.HeartBeat.class, com.ClientSendMessage.HeartBeat.Builder.class);
+    }
+
+    public static final int ONLINE_FIELD_NUMBER = 1;
+    private boolean online_;
+    /**
+     * <code>optional bool online = 1;</code>
+     */
+    public boolean getOnline() {
+      return online_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (online_ != false) {
+        output.writeBool(1, online_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (online_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, online_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    public static com.ClientSendMessage.HeartBeat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.HeartBeat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.ClientSendMessage.HeartBeat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.ClientSendMessage.HeartBeat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.ClientSendMessage.HeartBeat prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code HeartBeat}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:HeartBeat)
+        com.ClientSendMessage.HeartBeatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.ClientSendMessage.internal_static_HeartBeat_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.ClientSendMessage.internal_static_HeartBeat_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.ClientSendMessage.HeartBeat.class, com.ClientSendMessage.HeartBeat.Builder.class);
+      }
+
+      // Construct using com.ClientSendMessage.HeartBeat.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        online_ = false;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.ClientSendMessage.internal_static_HeartBeat_descriptor;
+      }
+
+      public com.ClientSendMessage.HeartBeat getDefaultInstanceForType() {
+        return com.ClientSendMessage.HeartBeat.getDefaultInstance();
+      }
+
+      public com.ClientSendMessage.HeartBeat build() {
+        com.ClientSendMessage.HeartBeat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.ClientSendMessage.HeartBeat buildPartial() {
+        com.ClientSendMessage.HeartBeat result = new com.ClientSendMessage.HeartBeat(this);
+        result.online_ = online_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.ClientSendMessage.HeartBeat) {
+          return mergeFrom((com.ClientSendMessage.HeartBeat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.ClientSendMessage.HeartBeat other) {
+        if (other == com.ClientSendMessage.HeartBeat.getDefaultInstance()) return this;
+        if (other.getOnline() != false) {
+          setOnline(other.getOnline());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.ClientSendMessage.HeartBeat parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.ClientSendMessage.HeartBeat) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean online_ ;
+      /**
+       * <code>optional bool online = 1;</code>
+       */
+      public boolean getOnline() {
+        return online_;
+      }
+      /**
+       * <code>optional bool online = 1;</code>
+       */
+      public Builder setOnline(boolean value) {
+        
+        online_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool online = 1;</code>
+       */
+      public Builder clearOnline() {
+        
+        online_ = false;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:HeartBeat)
+    }
+
+    // @@protoc_insertion_point(class_scope:HeartBeat)
+    private static final com.ClientSendMessage.HeartBeat DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.ClientSendMessage.HeartBeat();
+    }
+
+    public static com.ClientSendMessage.HeartBeat getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<HeartBeat>
+        PARSER = new com.google.protobuf.AbstractParser<HeartBeat>() {
+      public HeartBeat parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
+          return new HeartBeat(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
+      }
+    };
+
+    public static com.google.protobuf.Parser<HeartBeat> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HeartBeat> getParserForType() {
+      return PARSER;
+    }
+
+    public com.ClientSendMessage.HeartBeat getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface SolvedQuestionRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:SolvedQuestionRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -11096,18 +10389,18 @@ public final class ClientSendMessage {
     long getQuestionID();
   }
   /**
+   * Protobuf type {@code SolvedQuestionRequest}
+   *
    * <pre>
    *标志问题为解决状态
    * </pre>
-   *
-   * Protobuf type {@code SolvedQuestionRequest}
    */
   public  static final class SolvedQuestionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:SolvedQuestionRequest)
       SolvedQuestionRequestOrBuilder {
     // Use SolvedQuestionRequest.newBuilder() to construct.
-    private SolvedQuestionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private SolvedQuestionRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private SolvedQuestionRequest() {
@@ -11121,8 +10414,7 @@ public final class ClientSendMessage {
     }
     private SolvedQuestionRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -11147,10 +10439,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -11160,7 +10453,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_SolvedQuestionRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_SolvedQuestionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -11207,37 +10500,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.SolvedQuestionRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.SolvedQuestionRequest other = (com.ClientSendMessage.SolvedQuestionRequest) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11261,40 +10523,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.SolvedQuestionRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.SolvedQuestionRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.SolvedQuestionRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -11311,19 +10567,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code SolvedQuestionRequest}
+     *
      * <pre>
      *标志问题为解决状态
      * </pre>
-     *
-     * Protobuf type {@code SolvedQuestionRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:SolvedQuestionRequest)
         com.ClientSendMessage.SolvedQuestionRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -11331,7 +10587,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_SolvedQuestionRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_SolvedQuestionRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -11344,13 +10600,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -11384,32 +10639,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.SolvedQuestionRequest) {
           return mergeFrom((com.ClientSendMessage.SolvedQuestionRequest)other);
@@ -11441,7 +10670,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.SolvedQuestionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -11505,7 +10734,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new SolvedQuestionRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -11558,18 +10796,18 @@ public final class ClientSendMessage {
         getParamBytes();
   }
   /**
+   * Protobuf type {@code GetUserListRequest}
+   *
    * <pre>
    *获取用户列表
    * </pre>
-   *
-   * Protobuf type {@code GetUserListRequest}
    */
   public  static final class GetUserListRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GetUserListRequest)
       GetUserListRequestOrBuilder {
     // Use GetUserListRequest.newBuilder() to construct.
-    private GetUserListRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GetUserListRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GetUserListRequest() {
@@ -11585,8 +10823,7 @@ public final class ClientSendMessage {
     }
     private GetUserListRequest(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -11624,10 +10861,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -11637,7 +10875,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_GetUserListRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_GetUserListRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -11652,12 +10890,12 @@ public final class ClientSendMessage {
       /**
        * <code>ACQUAINTANCE_LIST = 0;</code>
        */
-      ACQUAINTANCE_LIST(0),
+      ACQUAINTANCE_LIST(0, 0),
       /**
        * <code>USERS_IN_ROOM_LIST = 1;</code>
        */
-      USERS_IN_ROOM_LIST(1),
-      UNRECOGNIZED(-1),
+      USERS_IN_ROOM_LIST(1, 1),
+      UNRECOGNIZED(-1, -1),
       ;
 
       /**
@@ -11671,22 +10909,14 @@ public final class ClientSendMessage {
 
 
       public final int getNumber() {
-        if (this == UNRECOGNIZED) {
+        if (index == -1) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static USER_LIST_TYPE valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static USER_LIST_TYPE forNumber(int value) {
         switch (value) {
           case 0: return ACQUAINTANCE_LIST;
           case 1: return USERS_IN_ROOM_LIST;
@@ -11702,13 +10932,13 @@ public final class ClientSendMessage {
           USER_LIST_TYPE> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<USER_LIST_TYPE>() {
               public USER_LIST_TYPE findValueByNumber(int number) {
-                return USER_LIST_TYPE.forNumber(number);
+                return USER_LIST_TYPE.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -11733,9 +10963,11 @@ public final class ClientSendMessage {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private USER_LIST_TYPE(int value) {
+      private USER_LIST_TYPE(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -11839,13 +11071,13 @@ public final class ClientSendMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getReferenceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, reference_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, reference_);
       }
       if (userListType_ != com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST.getNumber()) {
         output.writeEnum(2, userListType_);
       }
       if (!getParamBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, param_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, param_);
       }
     }
 
@@ -11855,57 +11087,20 @@ public final class ClientSendMessage {
 
       size = 0;
       if (!getReferenceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, reference_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, reference_);
       }
       if (userListType_ != com.ClientSendMessage.GetUserListRequest.USER_LIST_TYPE.ACQUAINTANCE_LIST.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, userListType_);
       }
       if (!getParamBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, param_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, param_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.GetUserListRequest)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.GetUserListRequest other = (com.ClientSendMessage.GetUserListRequest) obj;
-
-      boolean result = true;
-      result = result && getReference()
-          .equals(other.getReference());
-      result = result && userListType_ == other.userListType_;
-      result = result && getParam()
-          .equals(other.getParam());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + REFERENCE_FIELD_NUMBER;
-      hash = (53 * hash) + getReference().hashCode();
-      hash = (37 * hash) + USERLISTTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + userListType_;
-      hash = (37 * hash) + PARAM_FIELD_NUMBER;
-      hash = (53 * hash) + getParam().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.GetUserListRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11929,40 +11124,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.GetUserListRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GetUserListRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GetUserListRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.GetUserListRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.GetUserListRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.GetUserListRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -11979,19 +11168,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GetUserListRequest}
+     *
      * <pre>
      *获取用户列表
      * </pre>
-     *
-     * Protobuf type {@code GetUserListRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GetUserListRequest)
         com.ClientSendMessage.GetUserListRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -11999,7 +11188,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_GetUserListRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_GetUserListRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -12012,13 +11201,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -12058,32 +11246,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.GetUserListRequest) {
           return mergeFrom((com.ClientSendMessage.GetUserListRequest)other);
@@ -12123,7 +11285,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.GetUserListRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -12343,7 +11505,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GetUserListRequest(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -12438,11 +11609,11 @@ public final class ClientSendMessage {
    * Protobuf type {@code WhiteBoardMessage}
    */
   public  static final class WhiteBoardMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:WhiteBoardMessage)
       WhiteBoardMessageOrBuilder {
     // Use WhiteBoardMessage.newBuilder() to construct.
-    private WhiteBoardMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private WhiteBoardMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private WhiteBoardMessage() {
@@ -12466,8 +11637,7 @@ public final class ClientSendMessage {
     }
     private WhiteBoardMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -12555,10 +11725,11 @@ public final class ClientSendMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -12568,7 +11739,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_WhiteBoardMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_WhiteBoardMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -12583,40 +11754,40 @@ public final class ClientSendMessage {
       /**
        * <code>RED = 0;</code>
        */
-      RED(0),
+      RED(0, 0),
       /**
        * <code>ORANGE = 1;</code>
        */
-      ORANGE(1),
+      ORANGE(1, 1),
       /**
        * <code>YELLOW = 2;</code>
        */
-      YELLOW(2),
+      YELLOW(2, 2),
       /**
        * <code>GREEN = 3;</code>
        */
-      GREEN(3),
+      GREEN(3, 3),
       /**
        * <code>CYAN = 4;</code>
        */
-      CYAN(4),
+      CYAN(4, 4),
       /**
        * <code>BLUE = 5;</code>
        */
-      BLUE(5),
+      BLUE(5, 5),
       /**
        * <code>MAGENTA = 6;</code>
        */
-      MAGENTA(6),
+      MAGENTA(6, 6),
       /**
        * <code>WHITE = 7;</code>
        */
-      WHITE(7),
+      WHITE(7, 7),
       /**
        * <code>BLACK = 8;</code>
        */
-      BLACK(8),
-      UNRECOGNIZED(-1),
+      BLACK(8, 8),
+      UNRECOGNIZED(-1, -1),
       ;
 
       /**
@@ -12658,22 +11829,14 @@ public final class ClientSendMessage {
 
 
       public final int getNumber() {
-        if (this == UNRECOGNIZED) {
+        if (index == -1) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static COLOR valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static COLOR forNumber(int value) {
         switch (value) {
           case 0: return RED;
           case 1: return ORANGE;
@@ -12696,13 +11859,13 @@ public final class ClientSendMessage {
           COLOR> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<COLOR>() {
               public COLOR findValueByNumber(int number) {
-                return COLOR.forNumber(number);
+                return COLOR.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -12727,9 +11890,11 @@ public final class ClientSendMessage {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private COLOR(int value) {
+      private COLOR(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -12792,11 +11957,11 @@ public final class ClientSendMessage {
      * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage}
      */
     public  static final class WhiteBoardImage extends
-        com.google.protobuf.GeneratedMessageV3 implements
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage)
         WhiteBoardImageOrBuilder {
       // Use WhiteBoardImage.newBuilder() to construct.
-      private WhiteBoardImage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private WhiteBoardImage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
       }
       private WhiteBoardImage() {
@@ -12811,8 +11976,7 @@ public final class ClientSendMessage {
       }
       private WhiteBoardImage(
           com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
         this();
         int mutable_bitField0_ = 0;
         try {
@@ -12834,8 +11998,7 @@ public final class ClientSendMessage {
                   points_ = new java.util.ArrayList<com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint>();
                   mutable_bitField0_ |= 0x00000001;
                 }
-                points_.add(
-                    input.readMessage(com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.parser(), extensionRegistry));
+                points_.add(input.readMessage(com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.parser(), extensionRegistry));
                 break;
               }
               case 18: {
@@ -12843,17 +12006,17 @@ public final class ClientSendMessage {
                   rects_ = new java.util.ArrayList<com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect>();
                   mutable_bitField0_ |= 0x00000002;
                 }
-                rects_.add(
-                    input.readMessage(com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.parser(), extensionRegistry));
+                rects_.add(input.readMessage(com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.parser(), extensionRegistry));
                 break;
               }
             }
           }
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
+          throw new RuntimeException(e.setUnfinishedMessage(this));
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+          throw new RuntimeException(
+              new com.google.protobuf.InvalidProtocolBufferException(
+                  e.getMessage()).setUnfinishedMessage(this));
         } finally {
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             points_ = java.util.Collections.unmodifiableList(points_);
@@ -12869,7 +12032,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -12914,11 +12077,11 @@ public final class ClientSendMessage {
        * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicPoint}
        */
       public  static final class GraphicPoint extends
-          com.google.protobuf.GeneratedMessageV3 implements
+          com.google.protobuf.GeneratedMessage implements
           // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
           GraphicPointOrBuilder {
         // Use GraphicPoint.newBuilder() to construct.
-        private GraphicPoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        private GraphicPoint(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
           super(builder);
         }
         private GraphicPoint() {
@@ -12937,8 +12100,7 @@ public final class ClientSendMessage {
         }
         private GraphicPoint(
             com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
           this();
           int mutable_bitField0_ = 0;
           try {
@@ -12988,10 +12150,11 @@ public final class ClientSendMessage {
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
+            throw new RuntimeException(e.setUnfinishedMessage(this));
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e).setUnfinishedMessage(this);
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
           } finally {
             makeExtensionsImmutable();
           }
@@ -13001,7 +12164,7 @@ public final class ClientSendMessage {
           return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -13128,59 +12291,6 @@ public final class ClientSendMessage {
         }
 
         private static final long serialVersionUID = 0L;
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
-          if (obj == this) {
-           return true;
-          }
-          if (!(obj instanceof com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint)) {
-            return super.equals(obj);
-          }
-          com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint other = (com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) obj;
-
-          boolean result = true;
-          result = result && (getX1()
-              == other.getX1());
-          result = result && (getY1()
-              == other.getY1());
-          result = result && (getX2()
-              == other.getX2());
-          result = result && (getY2()
-              == other.getY2());
-          result = result && (getColor()
-              == other.getColor());
-          result = result && (
-              java.lang.Float.floatToIntBits(getPensize())
-              == java.lang.Float.floatToIntBits(
-                  other.getPensize()));
-          return result;
-        }
-
-        @java.lang.Override
-        public int hashCode() {
-          if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-          }
-          int hash = 41;
-          hash = (19 * hash) + getDescriptorForType().hashCode();
-          hash = (37 * hash) + X1_FIELD_NUMBER;
-          hash = (53 * hash) + getX1();
-          hash = (37 * hash) + Y1_FIELD_NUMBER;
-          hash = (53 * hash) + getY1();
-          hash = (37 * hash) + X2_FIELD_NUMBER;
-          hash = (53 * hash) + getX2();
-          hash = (37 * hash) + Y2_FIELD_NUMBER;
-          hash = (53 * hash) + getY2();
-          hash = (37 * hash) + COLOR_FIELD_NUMBER;
-          hash = (53 * hash) + getColor();
-          hash = (37 * hash) + PENSIZE_FIELD_NUMBER;
-          hash = (53 * hash) + java.lang.Float.floatToIntBits(
-              getPensize());
-          hash = (29 * hash) + unknownFields.hashCode();
-          memoizedHashCode = hash;
-          return hash;
-        }
-
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
@@ -13204,40 +12314,34 @@ public final class ClientSendMessage {
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          return PARSER.parseDelimitedFrom(input);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseDelimitedFrom(input, extensionRegistry);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
 
         public Builder newBuilderForType() { return newBuilder(); }
@@ -13254,7 +12358,7 @@ public final class ClientSendMessage {
 
         @java.lang.Override
         protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
           return builder;
         }
@@ -13262,7 +12366,7 @@ public final class ClientSendMessage {
          * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicPoint}
          */
         public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            com.google.protobuf.GeneratedMessage.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
             com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder {
           public static final com.google.protobuf.Descriptors.Descriptor
@@ -13270,7 +12374,7 @@ public final class ClientSendMessage {
             return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
           }
 
-          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
               internalGetFieldAccessorTable() {
             return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
@@ -13283,13 +12387,12 @@ public final class ClientSendMessage {
           }
 
           private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
           }
           private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             }
           }
           public Builder clear() {
@@ -13338,32 +12441,6 @@ public final class ClientSendMessage {
             return result;
           }
 
-          public Builder clone() {
-            return (Builder) super.clone();
-          }
-          public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.setField(field, value);
-          }
-          public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
-          }
-          public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
-          }
-          public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
-          }
-          public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.addRepeatedField(field, value);
-          }
           public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) {
               return mergeFrom((com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint)other);
@@ -13410,7 +12487,7 @@ public final class ClientSendMessage {
               parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
               parsedMessage = (com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
+              throw e;
             } finally {
               if (parsedMessage != null) {
                 mergeFrom(parsedMessage);
@@ -13604,7 +12681,16 @@ public final class ClientSendMessage {
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
+            try {
               return new GraphicPoint(input, extensionRegistry);
+            } catch (RuntimeException e) {
+              if (e.getCause() instanceof
+                  com.google.protobuf.InvalidProtocolBufferException) {
+                throw (com.google.protobuf.InvalidProtocolBufferException)
+                    e.getCause();
+              }
+              throw e;
+            }
           }
         };
 
@@ -13651,11 +12737,11 @@ public final class ClientSendMessage {
        * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicRect}
        */
       public  static final class GraphicRect extends
-          com.google.protobuf.GeneratedMessageV3 implements
+          com.google.protobuf.GeneratedMessage implements
           // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
           GraphicRectOrBuilder {
         // Use GraphicRect.newBuilder() to construct.
-        private GraphicRect(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        private GraphicRect(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
           super(builder);
         }
         private GraphicRect() {
@@ -13672,8 +12758,7 @@ public final class ClientSendMessage {
         }
         private GraphicRect(
             com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
           this();
           int mutable_bitField0_ = 0;
           try {
@@ -13713,10 +12798,11 @@ public final class ClientSendMessage {
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
+            throw new RuntimeException(e.setUnfinishedMessage(this));
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e).setUnfinishedMessage(this);
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
           } finally {
             makeExtensionsImmutable();
           }
@@ -13726,7 +12812,7 @@ public final class ClientSendMessage {
           return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -13821,48 +12907,6 @@ public final class ClientSendMessage {
         }
 
         private static final long serialVersionUID = 0L;
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
-          if (obj == this) {
-           return true;
-          }
-          if (!(obj instanceof com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect)) {
-            return super.equals(obj);
-          }
-          com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect other = (com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) obj;
-
-          boolean result = true;
-          result = result && (getX1()
-              == other.getX1());
-          result = result && (getY1()
-              == other.getY1());
-          result = result && (getX2()
-              == other.getX2());
-          result = result && (getY2()
-              == other.getY2());
-          return result;
-        }
-
-        @java.lang.Override
-        public int hashCode() {
-          if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-          }
-          int hash = 41;
-          hash = (19 * hash) + getDescriptorForType().hashCode();
-          hash = (37 * hash) + X1_FIELD_NUMBER;
-          hash = (53 * hash) + getX1();
-          hash = (37 * hash) + Y1_FIELD_NUMBER;
-          hash = (53 * hash) + getY1();
-          hash = (37 * hash) + X2_FIELD_NUMBER;
-          hash = (53 * hash) + getX2();
-          hash = (37 * hash) + Y2_FIELD_NUMBER;
-          hash = (53 * hash) + getY2();
-          hash = (29 * hash) + unknownFields.hashCode();
-          memoizedHashCode = hash;
-          return hash;
-        }
-
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
@@ -13886,40 +12930,34 @@ public final class ClientSendMessage {
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          return PARSER.parseDelimitedFrom(input);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseDelimitedFrom(input, extensionRegistry);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
 
         public Builder newBuilderForType() { return newBuilder(); }
@@ -13936,7 +12974,7 @@ public final class ClientSendMessage {
 
         @java.lang.Override
         protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
           return builder;
         }
@@ -13944,7 +12982,7 @@ public final class ClientSendMessage {
          * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicRect}
          */
         public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            com.google.protobuf.GeneratedMessage.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
             com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder {
           public static final com.google.protobuf.Descriptors.Descriptor
@@ -13952,7 +12990,7 @@ public final class ClientSendMessage {
             return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
           }
 
-          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
               internalGetFieldAccessorTable() {
             return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
@@ -13965,13 +13003,12 @@ public final class ClientSendMessage {
           }
 
           private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
           }
           private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             }
           }
           public Builder clear() {
@@ -14014,32 +13051,6 @@ public final class ClientSendMessage {
             return result;
           }
 
-          public Builder clone() {
-            return (Builder) super.clone();
-          }
-          public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.setField(field, value);
-          }
-          public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
-          }
-          public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
-          }
-          public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
-          }
-          public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.addRepeatedField(field, value);
-          }
           public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) {
               return mergeFrom((com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect)other);
@@ -14080,7 +13091,7 @@ public final class ClientSendMessage {
               parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
               parsedMessage = (com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
+              throw e;
             } finally {
               if (parsedMessage != null) {
                 mergeFrom(parsedMessage);
@@ -14222,7 +13233,16 @@ public final class ClientSendMessage {
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
+            try {
               return new GraphicRect(input, extensionRegistry);
+            } catch (RuntimeException e) {
+              if (e.getCause() instanceof
+                  com.google.protobuf.InvalidProtocolBufferException) {
+                throw (com.google.protobuf.InvalidProtocolBufferException)
+                    e.getCause();
+              }
+              throw e;
+            }
           }
         };
 
@@ -14349,44 +13369,6 @@ public final class ClientSendMessage {
       }
 
       private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage)) {
-          return super.equals(obj);
-        }
-        com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage other = (com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage) obj;
-
-        boolean result = true;
-        result = result && getPointsList()
-            .equals(other.getPointsList());
-        result = result && getRectsList()
-            .equals(other.getRectsList());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (getPointsCount() > 0) {
-          hash = (37 * hash) + POINTS_FIELD_NUMBER;
-          hash = (53 * hash) + getPointsList().hashCode();
-        }
-        if (getRectsCount() > 0) {
-          hash = (37 * hash) + RECTS_FIELD_NUMBER;
-          hash = (53 * hash) + getRectsList().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -14410,40 +13392,34 @@ public final class ClientSendMessage {
       }
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
       public Builder newBuilderForType() { return newBuilder(); }
@@ -14460,7 +13436,7 @@ public final class ClientSendMessage {
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -14468,7 +13444,7 @@ public final class ClientSendMessage {
        * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage)
           com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -14476,7 +13452,7 @@ public final class ClientSendMessage {
           return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ClientSendMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -14489,13 +13465,12 @@ public final class ClientSendMessage {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             getPointsFieldBuilder();
             getRectsFieldBuilder();
           }
@@ -14559,32 +13534,6 @@ public final class ClientSendMessage {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage) {
             return mergeFrom((com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage)other);
@@ -14615,7 +13564,7 @@ public final class ClientSendMessage {
                 points_ = other.points_;
                 bitField0_ = (bitField0_ & ~0x00000001);
                 pointsBuilder_ = 
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                      getPointsFieldBuilder() : null;
               } else {
                 pointsBuilder_.addAllMessages(other.points_);
@@ -14641,7 +13590,7 @@ public final class ClientSendMessage {
                 rects_ = other.rects_;
                 bitField0_ = (bitField0_ & ~0x00000002);
                 rectsBuilder_ = 
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                      getRectsFieldBuilder() : null;
               } else {
                 rectsBuilder_.addAllMessages(other.rects_);
@@ -14665,7 +13614,7 @@ public final class ClientSendMessage {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -14684,7 +13633,7 @@ public final class ClientSendMessage {
            }
         }
 
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> pointsBuilder_;
 
         /**
@@ -14900,11 +13849,11 @@ public final class ClientSendMessage {
              getPointsBuilderList() {
           return getPointsFieldBuilder().getBuilderList();
         }
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> 
             getPointsFieldBuilder() {
           if (pointsBuilder_ == null) {
-            pointsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            pointsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
                 com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder>(
                     points_,
                     ((bitField0_ & 0x00000001) == 0x00000001),
@@ -14924,7 +13873,7 @@ public final class ClientSendMessage {
            }
         }
 
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> rectsBuilder_;
 
         /**
@@ -15140,11 +14089,11 @@ public final class ClientSendMessage {
              getRectsBuilderList() {
           return getRectsFieldBuilder().getBuilderList();
         }
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> 
             getRectsFieldBuilder() {
           if (rectsBuilder_ == null) {
-            rectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            rectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
                 com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder>(
                     rects_,
                     ((bitField0_ & 0x00000002) == 0x00000002),
@@ -15184,7 +14133,16 @@ public final class ClientSendMessage {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
+          try {
             return new WhiteBoardImage(input, extensionRegistry);
+          } catch (RuntimeException e) {
+            if (e.getCause() instanceof
+                com.google.protobuf.InvalidProtocolBufferException) {
+              throw (com.google.protobuf.InvalidProtocolBufferException)
+                  e.getCause();
+            }
+            throw e;
+          }
         }
       };
 
@@ -15431,93 +14389,6 @@ public final class ClientSendMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.WhiteBoardMessage)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.WhiteBoardMessage other = (com.ClientSendMessage.WhiteBoardMessage) obj;
-
-      boolean result = true;
-      result = result && (getX1()
-          == other.getX1());
-      result = result && (getY1()
-          == other.getY1());
-      result = result && (getX2()
-          == other.getX2());
-      result = result && (getY2()
-          == other.getY2());
-      result = result && (getColor()
-          == other.getColor());
-      result = result && (
-          java.lang.Float.floatToIntBits(getPensize())
-          == java.lang.Float.floatToIntBits(
-              other.getPensize()));
-      result = result && (getQuestionId()
-          == other.getQuestionId());
-      result = result && (getIsCls()
-          == other.getIsCls());
-      result = result && (getIsACls()
-          == other.getIsACls());
-      result = result && (getIsRefresh()
-          == other.getIsRefresh());
-      result = result && (getIsReceiveImage()
-          == other.getIsReceiveImage());
-      result = result && (hasImage() == other.hasImage());
-      if (hasImage()) {
-        result = result && getImage()
-            .equals(other.getImage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + X1_FIELD_NUMBER;
-      hash = (53 * hash) + getX1();
-      hash = (37 * hash) + Y1_FIELD_NUMBER;
-      hash = (53 * hash) + getY1();
-      hash = (37 * hash) + X2_FIELD_NUMBER;
-      hash = (53 * hash) + getX2();
-      hash = (37 * hash) + Y2_FIELD_NUMBER;
-      hash = (53 * hash) + getY2();
-      hash = (37 * hash) + COLOR_FIELD_NUMBER;
-      hash = (53 * hash) + getColor();
-      hash = (37 * hash) + PENSIZE_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getPensize());
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionId());
-      hash = (37 * hash) + ISCLS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsCls());
-      hash = (37 * hash) + ISACLS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsACls());
-      hash = (37 * hash) + ISREFRESH_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsRefresh());
-      hash = (37 * hash) + ISRECEIVEIMAGE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsReceiveImage());
-      if (hasImage()) {
-        hash = (37 * hash) + IMAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getImage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.WhiteBoardMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -15541,40 +14412,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.WhiteBoardMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.WhiteBoardMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.WhiteBoardMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.WhiteBoardMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.WhiteBoardMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.WhiteBoardMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -15591,7 +14456,7 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -15599,7 +14464,7 @@ public final class ClientSendMessage {
      * Protobuf type {@code WhiteBoardMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:WhiteBoardMessage)
         com.ClientSendMessage.WhiteBoardMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -15607,7 +14472,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_WhiteBoardMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_WhiteBoardMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -15620,13 +14485,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -15701,32 +14565,6 @@ public final class ClientSendMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.WhiteBoardMessage) {
           return mergeFrom((com.ClientSendMessage.WhiteBoardMessage)other);
@@ -15791,7 +14629,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.WhiteBoardMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -16087,7 +14925,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage image_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder> imageBuilder_;
       /**
        * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
@@ -16189,11 +15027,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder> 
           getImageFieldBuilder() {
         if (imageBuilder_ == null) {
-          imageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          imageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ClientSendMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder>(
                   getImage(),
                   getParentForChildren(),
@@ -16232,7 +15070,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new WhiteBoardMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -16507,20 +15354,33 @@ public final class ClientSendMessage {
      * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
      */
     com.ClientSendMessage.WhiteBoardMessageOrBuilder getWhiteBoardMessageOrBuilder();
+
+    /**
+     * <code>optional .HeartBeat heartBeat = 24;</code>
+     */
+    boolean hasHeartBeat();
+    /**
+     * <code>optional .HeartBeat heartBeat = 24;</code>
+     */
+    com.ClientSendMessage.HeartBeat getHeartBeat();
+    /**
+     * <code>optional .HeartBeat heartBeat = 24;</code>
+     */
+    com.ClientSendMessage.HeartBeatOrBuilder getHeartBeatOrBuilder();
   }
   /**
+   * Protobuf type {@code Message}
+   *
    * <pre>
    *----------------顶层消息----------------------
    * </pre>
-   *
-   * Protobuf type {@code Message}
    */
   public  static final class Message extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:Message)
       MessageOrBuilder {
     // Use Message.newBuilder() to construct.
-    private Message(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Message(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private Message() {
@@ -16535,8 +15395,7 @@ public final class ClientSendMessage {
     }
     private Message(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -16799,13 +15658,27 @@ public final class ClientSendMessage {
 
               break;
             }
+            case 194: {
+              com.ClientSendMessage.HeartBeat.Builder subBuilder = null;
+              if (heartBeat_ != null) {
+                subBuilder = heartBeat_.toBuilder();
+              }
+              heartBeat_ = input.readMessage(com.ClientSendMessage.HeartBeat.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(heartBeat_);
+                heartBeat_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -16815,7 +15688,7 @@ public final class ClientSendMessage {
       return com.ClientSendMessage.internal_static_Message_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ClientSendMessage.internal_static_Message_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -17250,6 +16123,27 @@ public final class ClientSendMessage {
       return getWhiteBoardMessage();
     }
 
+    public static final int HEARTBEAT_FIELD_NUMBER = 24;
+    private com.ClientSendMessage.HeartBeat heartBeat_;
+    /**
+     * <code>optional .HeartBeat heartBeat = 24;</code>
+     */
+    public boolean hasHeartBeat() {
+      return heartBeat_ != null;
+    }
+    /**
+     * <code>optional .HeartBeat heartBeat = 24;</code>
+     */
+    public com.ClientSendMessage.HeartBeat getHeartBeat() {
+      return heartBeat_ == null ? com.ClientSendMessage.HeartBeat.getDefaultInstance() : heartBeat_;
+    }
+    /**
+     * <code>optional .HeartBeat heartBeat = 24;</code>
+     */
+    public com.ClientSendMessage.HeartBeatOrBuilder getHeartBeatOrBuilder() {
+      return getHeartBeat();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -17266,7 +16160,7 @@ public final class ClientSendMessage {
         output.writeEnum(1, msgType_);
       }
       if (!getUsernameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, username_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, username_);
       }
       if (lauchRequest_ != null) {
         output.writeMessage(3, getLauchRequest());
@@ -17322,6 +16216,9 @@ public final class ClientSendMessage {
       if (whiteBoardMessage_ != null) {
         output.writeMessage(23, getWhiteBoardMessage());
       }
+      if (heartBeat_ != null) {
+        output.writeMessage(24, getHeartBeat());
+      }
     }
 
     public int getSerializedSize() {
@@ -17334,7 +16231,7 @@ public final class ClientSendMessage {
           .computeEnumSize(1, msgType_);
       }
       if (!getUsernameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, username_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, username_);
       }
       if (lauchRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -17408,206 +16305,15 @@ public final class ClientSendMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(23, getWhiteBoardMessage());
       }
+      if (heartBeat_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(24, getHeartBeat());
+      }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ClientSendMessage.Message)) {
-        return super.equals(obj);
-      }
-      com.ClientSendMessage.Message other = (com.ClientSendMessage.Message) obj;
-
-      boolean result = true;
-      result = result && msgType_ == other.msgType_;
-      result = result && getUsername()
-          .equals(other.getUsername());
-      result = result && (hasLauchRequest() == other.hasLauchRequest());
-      if (hasLauchRequest()) {
-        result = result && getLauchRequest()
-            .equals(other.getLauchRequest());
-      }
-      result = result && (hasLogoutMessage() == other.hasLogoutMessage());
-      if (hasLogoutMessage()) {
-        result = result && getLogoutMessage()
-            .equals(other.getLogoutMessage());
-      }
-      result = result && (hasSendContent() == other.hasSendContent());
-      if (hasSendContent()) {
-        result = result && getSendContent()
-            .equals(other.getSendContent());
-      }
-      result = result && (hasAnnouncementMessage() == other.hasAnnouncementMessage());
-      if (hasAnnouncementMessage()) {
-        result = result && getAnnouncementMessage()
-            .equals(other.getAnnouncementMessage());
-      }
-      result = result && (hasQuestionEnterRequest() == other.hasQuestionEnterRequest());
-      if (hasQuestionEnterRequest()) {
-        result = result && getQuestionEnterRequest()
-            .equals(other.getQuestionEnterRequest());
-      }
-      result = result && (hasGoodQuestionRequest() == other.hasGoodQuestionRequest());
-      if (hasGoodQuestionRequest()) {
-        result = result && getGoodQuestionRequest()
-            .equals(other.getGoodQuestionRequest());
-      }
-      result = result && (hasFileRequest() == other.hasFileRequest());
-      if (hasFileRequest()) {
-        result = result && getFileRequest()
-            .equals(other.getFileRequest());
-      }
-      result = result && (hasGoodUserRequest() == other.hasGoodUserRequest());
-      if (hasGoodUserRequest()) {
-        result = result && getGoodUserRequest()
-            .equals(other.getGoodUserRequest());
-      }
-      result = result && (hasRegisterRequest() == other.hasRegisterRequest());
-      if (hasRegisterRequest()) {
-        result = result && getRegisterRequest()
-            .equals(other.getRegisterRequest());
-      }
-      result = result && (hasQuestionInformationRequest() == other.hasQuestionInformationRequest());
-      if (hasQuestionInformationRequest()) {
-        result = result && getQuestionInformationRequest()
-            .equals(other.getQuestionInformationRequest());
-      }
-      result = result && (hasUserInformationRequest() == other.hasUserInformationRequest());
-      if (hasUserInformationRequest()) {
-        result = result && getUserInformationRequest()
-            .equals(other.getUserInformationRequest());
-      }
-      result = result && (hasGetQuestionListRequest() == other.hasGetQuestionListRequest());
-      if (hasGetQuestionListRequest()) {
-        result = result && getGetQuestionListRequest()
-            .equals(other.getGetQuestionListRequest());
-      }
-      result = result && (hasCreateQuestionRequest() == other.hasCreateQuestionRequest());
-      if (hasCreateQuestionRequest()) {
-        result = result && getCreateQuestionRequest()
-            .equals(other.getCreateQuestionRequest());
-      }
-      result = result && (hasAbandonQuestionRequest() == other.hasAbandonQuestionRequest());
-      if (hasAbandonQuestionRequest()) {
-        result = result && getAbandonQuestionRequest()
-            .equals(other.getAbandonQuestionRequest());
-      }
-      result = result && (hasSearchInformationRequest() == other.hasSearchInformationRequest());
-      if (hasSearchInformationRequest()) {
-        result = result && getSearchInformationRequest()
-            .equals(other.getSearchInformationRequest());
-      }
-      result = result && (hasSolvedQuestionRequest() == other.hasSolvedQuestionRequest());
-      if (hasSolvedQuestionRequest()) {
-        result = result && getSolvedQuestionRequest()
-            .equals(other.getSolvedQuestionRequest());
-      }
-      result = result && (hasGetUserListRequest() == other.hasGetUserListRequest());
-      if (hasGetUserListRequest()) {
-        result = result && getGetUserListRequest()
-            .equals(other.getGetUserListRequest());
-      }
-      result = result && (hasWhiteBoardMessage() == other.hasWhiteBoardMessage());
-      if (hasWhiteBoardMessage()) {
-        result = result && getWhiteBoardMessage()
-            .equals(other.getWhiteBoardMessage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + MSG_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + msgType_;
-      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getUsername().hashCode();
-      if (hasLauchRequest()) {
-        hash = (37 * hash) + LAUCHREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getLauchRequest().hashCode();
-      }
-      if (hasLogoutMessage()) {
-        hash = (37 * hash) + LOGOUTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getLogoutMessage().hashCode();
-      }
-      if (hasSendContent()) {
-        hash = (37 * hash) + SENDCONTENT_FIELD_NUMBER;
-        hash = (53 * hash) + getSendContent().hashCode();
-      }
-      if (hasAnnouncementMessage()) {
-        hash = (37 * hash) + ANNOUNCEMENTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getAnnouncementMessage().hashCode();
-      }
-      if (hasQuestionEnterRequest()) {
-        hash = (37 * hash) + QUESTIONENTERREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionEnterRequest().hashCode();
-      }
-      if (hasGoodQuestionRequest()) {
-        hash = (37 * hash) + GOODQUESTIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getGoodQuestionRequest().hashCode();
-      }
-      if (hasFileRequest()) {
-        hash = (37 * hash) + FILEREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getFileRequest().hashCode();
-      }
-      if (hasGoodUserRequest()) {
-        hash = (37 * hash) + GOODUSERREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getGoodUserRequest().hashCode();
-      }
-      if (hasRegisterRequest()) {
-        hash = (37 * hash) + REGISTERREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getRegisterRequest().hashCode();
-      }
-      if (hasQuestionInformationRequest()) {
-        hash = (37 * hash) + QUESTIONINFORMATIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionInformationRequest().hashCode();
-      }
-      if (hasUserInformationRequest()) {
-        hash = (37 * hash) + USERINFORMATIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getUserInformationRequest().hashCode();
-      }
-      if (hasGetQuestionListRequest()) {
-        hash = (37 * hash) + GETQUESTIONLISTREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getGetQuestionListRequest().hashCode();
-      }
-      if (hasCreateQuestionRequest()) {
-        hash = (37 * hash) + CREATEQUESTIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getCreateQuestionRequest().hashCode();
-      }
-      if (hasAbandonQuestionRequest()) {
-        hash = (37 * hash) + ABANDONQUESTIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getAbandonQuestionRequest().hashCode();
-      }
-      if (hasSearchInformationRequest()) {
-        hash = (37 * hash) + SEARCHINFORMATIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getSearchInformationRequest().hashCode();
-      }
-      if (hasSolvedQuestionRequest()) {
-        hash = (37 * hash) + SOLVEDQUESTIONREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getSolvedQuestionRequest().hashCode();
-      }
-      if (hasGetUserListRequest()) {
-        hash = (37 * hash) + GETUSERLISTREQUEST_FIELD_NUMBER;
-        hash = (53 * hash) + getGetUserListRequest().hashCode();
-      }
-      if (hasWhiteBoardMessage()) {
-        hash = (37 * hash) + WHITEBOARDMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getWhiteBoardMessage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ClientSendMessage.Message parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -17631,40 +16337,34 @@ public final class ClientSendMessage {
     }
     public static com.ClientSendMessage.Message parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.Message parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.Message parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ClientSendMessage.Message parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ClientSendMessage.Message parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ClientSendMessage.Message parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -17681,19 +16381,19 @@ public final class ClientSendMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code Message}
+     *
      * <pre>
      *----------------顶层消息----------------------
      * </pre>
-     *
-     * Protobuf type {@code Message}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Message)
         com.ClientSendMessage.MessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -17701,7 +16401,7 @@ public final class ClientSendMessage {
         return com.ClientSendMessage.internal_static_Message_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ClientSendMessage.internal_static_Message_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -17714,13 +16414,12 @@ public final class ClientSendMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -17837,6 +16536,12 @@ public final class ClientSendMessage {
           whiteBoardMessage_ = null;
           whiteBoardMessageBuilder_ = null;
         }
+        if (heartBeatBuilder_ == null) {
+          heartBeat_ = null;
+        } else {
+          heartBeat_ = null;
+          heartBeatBuilder_ = null;
+        }
         return this;
       }
 
@@ -17951,36 +16656,15 @@ public final class ClientSendMessage {
         } else {
           result.whiteBoardMessage_ = whiteBoardMessageBuilder_.build();
         }
+        if (heartBeatBuilder_ == null) {
+          result.heartBeat_ = heartBeat_;
+        } else {
+          result.heartBeat_ = heartBeatBuilder_.build();
+        }
         onBuilt();
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ClientSendMessage.Message) {
           return mergeFrom((com.ClientSendMessage.Message)other);
@@ -18053,6 +16737,9 @@ public final class ClientSendMessage {
         if (other.hasWhiteBoardMessage()) {
           mergeWhiteBoardMessage(other.getWhiteBoardMessage());
         }
+        if (other.hasHeartBeat()) {
+          mergeHeartBeat(other.getHeartBeat());
+        }
         onChanged();
         return this;
       }
@@ -18070,7 +16757,7 @@ public final class ClientSendMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ClientSendMessage.Message) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -18193,7 +16880,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.LaunchRequest lauchRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.LaunchRequest, com.ClientSendMessage.LaunchRequest.Builder, com.ClientSendMessage.LaunchRequestOrBuilder> lauchRequestBuilder_;
       /**
        * <code>optional .LaunchRequest lauchRequest = 3;</code>
@@ -18295,11 +16982,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .LaunchRequest lauchRequest = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.LaunchRequest, com.ClientSendMessage.LaunchRequest.Builder, com.ClientSendMessage.LaunchRequestOrBuilder> 
           getLauchRequestFieldBuilder() {
         if (lauchRequestBuilder_ == null) {
-          lauchRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          lauchRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.LaunchRequest, com.ClientSendMessage.LaunchRequest.Builder, com.ClientSendMessage.LaunchRequestOrBuilder>(
                   getLauchRequest(),
                   getParentForChildren(),
@@ -18310,7 +16997,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.LogoutMessage logoutMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.LogoutMessage, com.ClientSendMessage.LogoutMessage.Builder, com.ClientSendMessage.LogoutMessageOrBuilder> logoutMessageBuilder_;
       /**
        * <code>optional .LogoutMessage logoutMessage = 4;</code>
@@ -18412,11 +17099,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .LogoutMessage logoutMessage = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.LogoutMessage, com.ClientSendMessage.LogoutMessage.Builder, com.ClientSendMessage.LogoutMessageOrBuilder> 
           getLogoutMessageFieldBuilder() {
         if (logoutMessageBuilder_ == null) {
-          logoutMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          logoutMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.LogoutMessage, com.ClientSendMessage.LogoutMessage.Builder, com.ClientSendMessage.LogoutMessageOrBuilder>(
                   getLogoutMessage(),
                   getParentForChildren(),
@@ -18427,7 +17114,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.SendContent sendContent_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.SendContent, com.ClientSendMessage.SendContent.Builder, com.ClientSendMessage.SendContentOrBuilder> sendContentBuilder_;
       /**
        * <code>optional .SendContent sendContent = 5;</code>
@@ -18529,11 +17216,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .SendContent sendContent = 5;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.SendContent, com.ClientSendMessage.SendContent.Builder, com.ClientSendMessage.SendContentOrBuilder> 
           getSendContentFieldBuilder() {
         if (sendContentBuilder_ == null) {
-          sendContentBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          sendContentBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.SendContent, com.ClientSendMessage.SendContent.Builder, com.ClientSendMessage.SendContentOrBuilder>(
                   getSendContent(),
                   getParentForChildren(),
@@ -18544,7 +17231,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.AnnouncementMessage announcementMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.AnnouncementMessage, com.ClientSendMessage.AnnouncementMessage.Builder, com.ClientSendMessage.AnnouncementMessageOrBuilder> announcementMessageBuilder_;
       /**
        * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
@@ -18646,11 +17333,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.AnnouncementMessage, com.ClientSendMessage.AnnouncementMessage.Builder, com.ClientSendMessage.AnnouncementMessageOrBuilder> 
           getAnnouncementMessageFieldBuilder() {
         if (announcementMessageBuilder_ == null) {
-          announcementMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          announcementMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.AnnouncementMessage, com.ClientSendMessage.AnnouncementMessage.Builder, com.ClientSendMessage.AnnouncementMessageOrBuilder>(
                   getAnnouncementMessage(),
                   getParentForChildren(),
@@ -18661,7 +17348,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.QuestionEnterRequest questionEnterRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.QuestionEnterRequest, com.ClientSendMessage.QuestionEnterRequest.Builder, com.ClientSendMessage.QuestionEnterRequestOrBuilder> questionEnterRequestBuilder_;
       /**
        * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
@@ -18763,11 +17450,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .QuestionEnterRequest questionEnterRequest = 7;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.QuestionEnterRequest, com.ClientSendMessage.QuestionEnterRequest.Builder, com.ClientSendMessage.QuestionEnterRequestOrBuilder> 
           getQuestionEnterRequestFieldBuilder() {
         if (questionEnterRequestBuilder_ == null) {
-          questionEnterRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionEnterRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.QuestionEnterRequest, com.ClientSendMessage.QuestionEnterRequest.Builder, com.ClientSendMessage.QuestionEnterRequestOrBuilder>(
                   getQuestionEnterRequest(),
                   getParentForChildren(),
@@ -18778,7 +17465,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.GoodQuestionRequest goodQuestionRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GoodQuestionRequest, com.ClientSendMessage.GoodQuestionRequest.Builder, com.ClientSendMessage.GoodQuestionRequestOrBuilder> goodQuestionRequestBuilder_;
       /**
        * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
@@ -18880,11 +17567,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .GoodQuestionRequest goodQuestionRequest = 8;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GoodQuestionRequest, com.ClientSendMessage.GoodQuestionRequest.Builder, com.ClientSendMessage.GoodQuestionRequestOrBuilder> 
           getGoodQuestionRequestFieldBuilder() {
         if (goodQuestionRequestBuilder_ == null) {
-          goodQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          goodQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.GoodQuestionRequest, com.ClientSendMessage.GoodQuestionRequest.Builder, com.ClientSendMessage.GoodQuestionRequestOrBuilder>(
                   getGoodQuestionRequest(),
                   getParentForChildren(),
@@ -18895,7 +17582,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.FileRequest fileRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.FileRequest, com.ClientSendMessage.FileRequest.Builder, com.ClientSendMessage.FileRequestOrBuilder> fileRequestBuilder_;
       /**
        * <code>optional .FileRequest fileRequest = 9;</code>
@@ -18997,11 +17684,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .FileRequest fileRequest = 9;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.FileRequest, com.ClientSendMessage.FileRequest.Builder, com.ClientSendMessage.FileRequestOrBuilder> 
           getFileRequestFieldBuilder() {
         if (fileRequestBuilder_ == null) {
-          fileRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          fileRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.FileRequest, com.ClientSendMessage.FileRequest.Builder, com.ClientSendMessage.FileRequestOrBuilder>(
                   getFileRequest(),
                   getParentForChildren(),
@@ -19012,7 +17699,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.GoodUserRequest goodUserRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GoodUserRequest, com.ClientSendMessage.GoodUserRequest.Builder, com.ClientSendMessage.GoodUserRequestOrBuilder> goodUserRequestBuilder_;
       /**
        * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
@@ -19114,11 +17801,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .GoodUserRequest goodUserRequest = 10;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GoodUserRequest, com.ClientSendMessage.GoodUserRequest.Builder, com.ClientSendMessage.GoodUserRequestOrBuilder> 
           getGoodUserRequestFieldBuilder() {
         if (goodUserRequestBuilder_ == null) {
-          goodUserRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          goodUserRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.GoodUserRequest, com.ClientSendMessage.GoodUserRequest.Builder, com.ClientSendMessage.GoodUserRequestOrBuilder>(
                   getGoodUserRequest(),
                   getParentForChildren(),
@@ -19129,7 +17816,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.RegisterRequest registerRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder> registerRequestBuilder_;
       /**
        * <code>optional .RegisterRequest registerRequest = 11;</code>
@@ -19231,11 +17918,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .RegisterRequest registerRequest = 11;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder> 
           getRegisterRequestFieldBuilder() {
         if (registerRequestBuilder_ == null) {
-          registerRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          registerRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.RegisterRequest, com.ClientSendMessage.RegisterRequest.Builder, com.ClientSendMessage.RegisterRequestOrBuilder>(
                   getRegisterRequest(),
                   getParentForChildren(),
@@ -19246,7 +17933,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.QuestionInformationRequest questionInformationRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.QuestionInformationRequest, com.ClientSendMessage.QuestionInformationRequest.Builder, com.ClientSendMessage.QuestionInformationRequestOrBuilder> questionInformationRequestBuilder_;
       /**
        * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
@@ -19348,11 +18035,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .QuestionInformationRequest questionInformationRequest = 13;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.QuestionInformationRequest, com.ClientSendMessage.QuestionInformationRequest.Builder, com.ClientSendMessage.QuestionInformationRequestOrBuilder> 
           getQuestionInformationRequestFieldBuilder() {
         if (questionInformationRequestBuilder_ == null) {
-          questionInformationRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionInformationRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.QuestionInformationRequest, com.ClientSendMessage.QuestionInformationRequest.Builder, com.ClientSendMessage.QuestionInformationRequestOrBuilder>(
                   getQuestionInformationRequest(),
                   getParentForChildren(),
@@ -19363,7 +18050,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.UserInformationRequest userInformationRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.UserInformationRequest, com.ClientSendMessage.UserInformationRequest.Builder, com.ClientSendMessage.UserInformationRequestOrBuilder> userInformationRequestBuilder_;
       /**
        * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
@@ -19465,11 +18152,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .UserInformationRequest userInformationRequest = 14;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.UserInformationRequest, com.ClientSendMessage.UserInformationRequest.Builder, com.ClientSendMessage.UserInformationRequestOrBuilder> 
           getUserInformationRequestFieldBuilder() {
         if (userInformationRequestBuilder_ == null) {
-          userInformationRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          userInformationRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.UserInformationRequest, com.ClientSendMessage.UserInformationRequest.Builder, com.ClientSendMessage.UserInformationRequestOrBuilder>(
                   getUserInformationRequest(),
                   getParentForChildren(),
@@ -19480,7 +18167,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.GetQuestionListRequest getQuestionListRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GetQuestionListRequest, com.ClientSendMessage.GetQuestionListRequest.Builder, com.ClientSendMessage.GetQuestionListRequestOrBuilder> getQuestionListRequestBuilder_;
       /**
        * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
@@ -19582,11 +18269,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .GetQuestionListRequest getQuestionListRequest = 15;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GetQuestionListRequest, com.ClientSendMessage.GetQuestionListRequest.Builder, com.ClientSendMessage.GetQuestionListRequestOrBuilder> 
           getGetQuestionListRequestFieldBuilder() {
         if (getQuestionListRequestBuilder_ == null) {
-          getQuestionListRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          getQuestionListRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.GetQuestionListRequest, com.ClientSendMessage.GetQuestionListRequest.Builder, com.ClientSendMessage.GetQuestionListRequestOrBuilder>(
                   getGetQuestionListRequest(),
                   getParentForChildren(),
@@ -19597,7 +18284,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.CreateQuestionRequest createQuestionRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.CreateQuestionRequest, com.ClientSendMessage.CreateQuestionRequest.Builder, com.ClientSendMessage.CreateQuestionRequestOrBuilder> createQuestionRequestBuilder_;
       /**
        * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
@@ -19699,11 +18386,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .CreateQuestionRequest createQuestionRequest = 18;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.CreateQuestionRequest, com.ClientSendMessage.CreateQuestionRequest.Builder, com.ClientSendMessage.CreateQuestionRequestOrBuilder> 
           getCreateQuestionRequestFieldBuilder() {
         if (createQuestionRequestBuilder_ == null) {
-          createQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          createQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.CreateQuestionRequest, com.ClientSendMessage.CreateQuestionRequest.Builder, com.ClientSendMessage.CreateQuestionRequestOrBuilder>(
                   getCreateQuestionRequest(),
                   getParentForChildren(),
@@ -19714,7 +18401,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.AbandonQuestionRequest abandonQuestionRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.AbandonQuestionRequest, com.ClientSendMessage.AbandonQuestionRequest.Builder, com.ClientSendMessage.AbandonQuestionRequestOrBuilder> abandonQuestionRequestBuilder_;
       /**
        * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
@@ -19816,11 +18503,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .AbandonQuestionRequest abandonQuestionRequest = 19;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.AbandonQuestionRequest, com.ClientSendMessage.AbandonQuestionRequest.Builder, com.ClientSendMessage.AbandonQuestionRequestOrBuilder> 
           getAbandonQuestionRequestFieldBuilder() {
         if (abandonQuestionRequestBuilder_ == null) {
-          abandonQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          abandonQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.AbandonQuestionRequest, com.ClientSendMessage.AbandonQuestionRequest.Builder, com.ClientSendMessage.AbandonQuestionRequestOrBuilder>(
                   getAbandonQuestionRequest(),
                   getParentForChildren(),
@@ -19831,7 +18518,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.SearchInformationRequest searchInformationRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.SearchInformationRequest, com.ClientSendMessage.SearchInformationRequest.Builder, com.ClientSendMessage.SearchInformationRequestOrBuilder> searchInformationRequestBuilder_;
       /**
        * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
@@ -19933,11 +18620,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .SearchInformationRequest searchInformationRequest = 20;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.SearchInformationRequest, com.ClientSendMessage.SearchInformationRequest.Builder, com.ClientSendMessage.SearchInformationRequestOrBuilder> 
           getSearchInformationRequestFieldBuilder() {
         if (searchInformationRequestBuilder_ == null) {
-          searchInformationRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          searchInformationRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.SearchInformationRequest, com.ClientSendMessage.SearchInformationRequest.Builder, com.ClientSendMessage.SearchInformationRequestOrBuilder>(
                   getSearchInformationRequest(),
                   getParentForChildren(),
@@ -19948,7 +18635,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.SolvedQuestionRequest solvedQuestionRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.SolvedQuestionRequest, com.ClientSendMessage.SolvedQuestionRequest.Builder, com.ClientSendMessage.SolvedQuestionRequestOrBuilder> solvedQuestionRequestBuilder_;
       /**
        * <code>optional .SolvedQuestionRequest solvedQuestionRequest = 21;</code>
@@ -20050,11 +18737,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .SolvedQuestionRequest solvedQuestionRequest = 21;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.SolvedQuestionRequest, com.ClientSendMessage.SolvedQuestionRequest.Builder, com.ClientSendMessage.SolvedQuestionRequestOrBuilder> 
           getSolvedQuestionRequestFieldBuilder() {
         if (solvedQuestionRequestBuilder_ == null) {
-          solvedQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          solvedQuestionRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.SolvedQuestionRequest, com.ClientSendMessage.SolvedQuestionRequest.Builder, com.ClientSendMessage.SolvedQuestionRequestOrBuilder>(
                   getSolvedQuestionRequest(),
                   getParentForChildren(),
@@ -20065,7 +18752,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.GetUserListRequest getUserListRequest_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GetUserListRequest, com.ClientSendMessage.GetUserListRequest.Builder, com.ClientSendMessage.GetUserListRequestOrBuilder> getUserListRequestBuilder_;
       /**
        * <code>optional .GetUserListRequest getUserListRequest = 22;</code>
@@ -20167,11 +18854,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .GetUserListRequest getUserListRequest = 22;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.GetUserListRequest, com.ClientSendMessage.GetUserListRequest.Builder, com.ClientSendMessage.GetUserListRequestOrBuilder> 
           getGetUserListRequestFieldBuilder() {
         if (getUserListRequestBuilder_ == null) {
-          getUserListRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          getUserListRequestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.GetUserListRequest, com.ClientSendMessage.GetUserListRequest.Builder, com.ClientSendMessage.GetUserListRequestOrBuilder>(
                   getGetUserListRequest(),
                   getParentForChildren(),
@@ -20182,7 +18869,7 @@ public final class ClientSendMessage {
       }
 
       private com.ClientSendMessage.WhiteBoardMessage whiteBoardMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.WhiteBoardMessage, com.ClientSendMessage.WhiteBoardMessage.Builder, com.ClientSendMessage.WhiteBoardMessageOrBuilder> whiteBoardMessageBuilder_;
       /**
        * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
@@ -20284,11 +18971,11 @@ public final class ClientSendMessage {
       /**
        * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ClientSendMessage.WhiteBoardMessage, com.ClientSendMessage.WhiteBoardMessage.Builder, com.ClientSendMessage.WhiteBoardMessageOrBuilder> 
           getWhiteBoardMessageFieldBuilder() {
         if (whiteBoardMessageBuilder_ == null) {
-          whiteBoardMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          whiteBoardMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ClientSendMessage.WhiteBoardMessage, com.ClientSendMessage.WhiteBoardMessage.Builder, com.ClientSendMessage.WhiteBoardMessageOrBuilder>(
                   getWhiteBoardMessage(),
                   getParentForChildren(),
@@ -20296,6 +18983,123 @@ public final class ClientSendMessage {
           whiteBoardMessage_ = null;
         }
         return whiteBoardMessageBuilder_;
+      }
+
+      private com.ClientSendMessage.HeartBeat heartBeat_ = null;
+      private com.google.protobuf.SingleFieldBuilder<
+          com.ClientSendMessage.HeartBeat, com.ClientSendMessage.HeartBeat.Builder, com.ClientSendMessage.HeartBeatOrBuilder> heartBeatBuilder_;
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public boolean hasHeartBeat() {
+        return heartBeatBuilder_ != null || heartBeat_ != null;
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public com.ClientSendMessage.HeartBeat getHeartBeat() {
+        if (heartBeatBuilder_ == null) {
+          return heartBeat_ == null ? com.ClientSendMessage.HeartBeat.getDefaultInstance() : heartBeat_;
+        } else {
+          return heartBeatBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public Builder setHeartBeat(com.ClientSendMessage.HeartBeat value) {
+        if (heartBeatBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          heartBeat_ = value;
+          onChanged();
+        } else {
+          heartBeatBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public Builder setHeartBeat(
+          com.ClientSendMessage.HeartBeat.Builder builderForValue) {
+        if (heartBeatBuilder_ == null) {
+          heartBeat_ = builderForValue.build();
+          onChanged();
+        } else {
+          heartBeatBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public Builder mergeHeartBeat(com.ClientSendMessage.HeartBeat value) {
+        if (heartBeatBuilder_ == null) {
+          if (heartBeat_ != null) {
+            heartBeat_ =
+              com.ClientSendMessage.HeartBeat.newBuilder(heartBeat_).mergeFrom(value).buildPartial();
+          } else {
+            heartBeat_ = value;
+          }
+          onChanged();
+        } else {
+          heartBeatBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public Builder clearHeartBeat() {
+        if (heartBeatBuilder_ == null) {
+          heartBeat_ = null;
+          onChanged();
+        } else {
+          heartBeat_ = null;
+          heartBeatBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public com.ClientSendMessage.HeartBeat.Builder getHeartBeatBuilder() {
+        
+        onChanged();
+        return getHeartBeatFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      public com.ClientSendMessage.HeartBeatOrBuilder getHeartBeatOrBuilder() {
+        if (heartBeatBuilder_ != null) {
+          return heartBeatBuilder_.getMessageOrBuilder();
+        } else {
+          return heartBeat_ == null ?
+              com.ClientSendMessage.HeartBeat.getDefaultInstance() : heartBeat_;
+        }
+      }
+      /**
+       * <code>optional .HeartBeat heartBeat = 24;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.ClientSendMessage.HeartBeat, com.ClientSendMessage.HeartBeat.Builder, com.ClientSendMessage.HeartBeatOrBuilder> 
+          getHeartBeatFieldBuilder() {
+        if (heartBeatBuilder_ == null) {
+          heartBeatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.ClientSendMessage.HeartBeat, com.ClientSendMessage.HeartBeat.Builder, com.ClientSendMessage.HeartBeatOrBuilder>(
+                  getHeartBeat(),
+                  getParentForChildren(),
+                  isClean());
+          heartBeat_ = null;
+        }
+        return heartBeatBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -20327,7 +19131,16 @@ public final class ClientSendMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new Message(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -20346,127 +19159,132 @@ public final class ClientSendMessage {
 
   }
 
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_LaunchRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_LaunchRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_LogoutMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_LogoutMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_RegisterRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_RegisterRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SendContent_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SendContent_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SendContent_MarkMapEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SendContent_MarkMapEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_AnnouncementMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_AnnouncementMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionEnterRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_QuestionEnterRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GoodQuestionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GoodQuestionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GoodUserRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GoodUserRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionInformationRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_QuestionInformationRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_UserInformationRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_UserInformationRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GetQuestionListRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GetQuestionListRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_CreateQuestionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CreateQuestionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_AbandonQuestionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_AbandonQuestionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SearchInformationRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SearchInformationRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_FileRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_FileRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_HeartBeat_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_HeartBeat_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SolvedQuestionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SolvedQuestionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GetUserListRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GetUserListRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Message_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -20497,74 +19315,76 @@ public final class ClientSendMessage {
       "(\005\"\222\001\n\013FileRequest\022\020\n\010filename\030\001 \003(\t\022\013\n\003" +
       "md5\030\004 \003(\t\022\025\n\rlocalFilePath\030\003 \003(\t\022\'\n\010sign" +
       "Type\030\002 \001(\0162\025.FileRequest.SIGNTYPE\"$\n\010SIG" +
-      "NTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"+\n\025Solve" +
-      "dQuestionRequest\022\022\n\nquestionID\030\001 \001(\003\"\261\001\n" +
-      "\022GetUserListRequest\022\021\n\treference\030\001 \001(\t\0228",
-      "\n\014userListType\030\002 \001(\0162\".GetUserListReques" +
-      "t.USER_LIST_TYPE\022\r\n\005param\030\003 \001(\t\"?\n\016USER_" +
-      "LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026\n\022USER" +
-      "S_IN_ROOM_LIST\020\001\"\223\005\n\021WhiteBoardMessage\022\n" +
-      "\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2" +
-      "\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\022\022" +
-      "\n\nquestionId\030\007 \001(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n\006isA" +
-      "Cls\030\t \001(\010\022\021\n\tisRefresh\030\n \001(\010\022\026\n\016isReceiv" +
-      "eImage\030\013 \001(\010\0221\n\005image\030\014 \001(\0132\".WhiteBoard" +
-      "Message.WhiteBoardImage\032\260\002\n\017WhiteBoardIm",
-      "age\022?\n\006points\030\001 \003(\0132/.WhiteBoardMessage." +
-      "WhiteBoardImage.GraphicPoint\022=\n\005rects\030\002 " +
-      "\003(\0132..WhiteBoardMessage.WhiteBoardImage." +
-      "GraphicRect\032^\n\014GraphicPoint\022\n\n\002x1\030\001 \001(\005\022" +
+      "NTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"\033\n\tHeart" +
+      "Beat\022\016\n\006online\030\001 \001(\010\"+\n\025SolvedQuestionRe" +
+      "quest\022\022\n\nquestionID\030\001 \001(\003\"\261\001\n\022GetUserLis",
+      "tRequest\022\021\n\treference\030\001 \001(\t\0228\n\014userListT" +
+      "ype\030\002 \001(\0162\".GetUserListRequest.USER_LIST" +
+      "_TYPE\022\r\n\005param\030\003 \001(\t\"?\n\016USER_LIST_TYPE\022\025" +
+      "\n\021ACQUAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_L" +
+      "IST\020\001\"\223\005\n\021WhiteBoardMessage\022\n\n\002x1\030\001 \001(\005\022" +
       "\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005c" +
-      "olor\030\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\032=\n\013GraphicRe" +
-      "ct\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n" +
-      "\n\002y2\030\004 \001(\005\"j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001" +
-      "\022\n\n\006YELLOW\020\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLU" +
-      "E\020\005\022\013\n\007MAGENTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\256",
-      "\007\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010us" +
-      "ername\030\002 \001(\t\022$\n\014lauchRequest\030\003 \001(\0132\016.Lau" +
-      "nchRequest\022%\n\rlogoutMessage\030\004 \001(\0132\016.Logo" +
-      "utMessage\022!\n\013sendContent\030\005 \001(\0132\014.SendCon" +
-      "tent\0221\n\023announcementMessage\030\006 \001(\0132\024.Anno" +
-      "uncementMessage\0223\n\024questionEnterRequest\030" +
-      "\007 \001(\0132\025.QuestionEnterRequest\0221\n\023goodQues" +
-      "tionRequest\030\010 \001(\0132\024.GoodQuestionRequest\022" +
-      "!\n\013fileRequest\030\t \001(\0132\014.FileRequest\022)\n\017go" +
-      "odUserRequest\030\n \001(\0132\020.GoodUserRequest\022)\n",
-      "\017registerRequest\030\013 \001(\0132\020.RegisterRequest" +
-      "\022?\n\032questionInformationRequest\030\r \001(\0132\033.Q" +
-      "uestionInformationRequest\0227\n\026userInforma" +
-      "tionRequest\030\016 \001(\0132\027.UserInformationReque" +
-      "st\0227\n\026getQuestionListRequest\030\017 \001(\0132\027.Get" +
-      "QuestionListRequest\0225\n\025createQuestionReq" +
-      "uest\030\022 \001(\0132\026.CreateQuestionRequest\0227\n\026ab" +
-      "andonQuestionRequest\030\023 \001(\0132\027.AbandonQues" +
-      "tionRequest\022;\n\030searchInformationRequest\030" +
-      "\024 \001(\0132\031.SearchInformationRequest\0225\n\025solv",
-      "edQuestionRequest\030\025 \001(\0132\026.SolvedQuestion" +
-      "Request\022/\n\022getUserListRequest\030\026 \001(\0132\023.Ge" +
-      "tUserListRequest\022-\n\021whiteBoardMessage\030\027 " +
-      "\001(\0132\022.WhiteBoardMessage*\353\003\n\003MSG\022\022\n\016LAUNC" +
-      "H_REQUEST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024\n\020REGIS" +
-      "TER_REQUEST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOU" +
-      "NCEMENT_MESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQU" +
-      "EST\020\004\022\031\n\025GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD" +
-      "_USER_REQUEST\020\007\022\020\n\014FILE_REQUEST\020\t\022 \n\034QUE" +
-      "STION_INFORMATION_REQUEST\020\n\022\034\n\030USER_INFO",
-      "RMATION_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_R" +
-      "EQUEST\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n" +
-      "\030ABANDON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_IN" +
-      "FORMATION_REQUEST\020\021\022\033\n\027SOLVED_QUESTION_R" +
-      "EQUEST\020\022\022\017\n\013BAD_MESSAGE\020\023\022\031\n\025GET_USER_LI" +
-      "ST_REQUEST\020\024\022\027\n\023WHITE_BOARD_MESSAGE\020\025*H\n" +
-      "\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTU" +
-      "RE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTU" +
-      "RETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSE" +
-      "ARCHTYPE\022\014\n\010QUESTION\020\000**\n\tRANKORDER\022\r\n\tA",
-      "SCENDING\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIST_REFER" +
-      "ENCE\022\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRAISE_TIM" +
-      "ES\020\001\022\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013CLICK_TIM" +
-      "ES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021ClientSendMessage" +
-      "b\006proto3"
+      "olor\030\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\022\022\n\nquestionI" +
+      "d\030\007 \001(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n\006isACls\030\t \001(\010\022\021" +
+      "\n\tisRefresh\030\n \001(\010\022\026\n\016isReceiveImage\030\013 \001(" +
+      "\010\0221\n\005image\030\014 \001(\0132\".WhiteBoardMessage.Whi",
+      "teBoardImage\032\260\002\n\017WhiteBoardImage\022?\n\006poin" +
+      "ts\030\001 \003(\0132/.WhiteBoardMessage.WhiteBoardI" +
+      "mage.GraphicPoint\022=\n\005rects\030\002 \003(\0132..White" +
+      "BoardMessage.WhiteBoardImage.GraphicRect" +
+      "\032^\n\014GraphicPoint\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005" +
+      "\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022" +
+      "\017\n\007pensize\030\006 \001(\002\032=\n\013GraphicRect\022\n\n\002x1\030\001 " +
+      "\001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\"" +
+      "j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020" +
+      "\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGE",
+      "NTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\315\007\n\007Message\022" +
+      "\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(" +
+      "\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchRequest\022" +
+      "%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMessage\022!" +
+      "\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023ann" +
+      "ouncementMessage\030\006 \001(\0132\024.AnnouncementMes" +
+      "sage\0223\n\024questionEnterRequest\030\007 \001(\0132\025.Que" +
+      "stionEnterRequest\0221\n\023goodQuestionRequest" +
+      "\030\010 \001(\0132\024.GoodQuestionRequest\022!\n\013fileRequ" +
+      "est\030\t \001(\0132\014.FileRequest\022)\n\017goodUserReque",
+      "st\030\n \001(\0132\020.GoodUserRequest\022)\n\017registerRe" +
+      "quest\030\013 \001(\0132\020.RegisterRequest\022?\n\032questio" +
+      "nInformationRequest\030\r \001(\0132\033.QuestionInfo" +
+      "rmationRequest\0227\n\026userInformationRequest" +
+      "\030\016 \001(\0132\027.UserInformationRequest\0227\n\026getQu" +
+      "estionListRequest\030\017 \001(\0132\027.GetQuestionLis" +
+      "tRequest\0225\n\025createQuestionRequest\030\022 \001(\0132" +
+      "\026.CreateQuestionRequest\0227\n\026abandonQuesti" +
+      "onRequest\030\023 \001(\0132\027.AbandonQuestionRequest" +
+      "\022;\n\030searchInformationRequest\030\024 \001(\0132\031.Sea",
+      "rchInformationRequest\0225\n\025solvedQuestionR" +
+      "equest\030\025 \001(\0132\026.SolvedQuestionRequest\022/\n\022" +
+      "getUserListRequest\030\026 \001(\0132\023.GetUserListRe" +
+      "quest\022-\n\021whiteBoardMessage\030\027 \001(\0132\022.White" +
+      "BoardMessage\022\035\n\theartBeat\030\030 \001(\0132\n.HeartB" +
+      "eat*\373\003\n\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOU" +
+      "T_MESSAGE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEN" +
+      "D_CONTENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n" +
+      "\026QUESTION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTI" +
+      "ON_REQUEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\020\n\014F",
+      "ILE_REQUEST\020\t\022 \n\034QUESTION_INFORMATION_RE" +
+      "QUEST\020\n\022\034\n\030USER_INFORMATION_REQUEST\020\013\022\035\n" +
+      "\031GET_QUESTION_LIST_REQUEST\020\014\022\033\n\027CREATE_Q" +
+      "UESTION_REQUEST\020\017\022\034\n\030ABANDON_QUESTION_RE" +
+      "QUEST\020\020\022\036\n\032SEARCH_INFORMATION_REQUEST\020\021\022" +
+      "\033\n\027SOLVED_QUESTION_REQUEST\020\022\022\017\n\013BAD_MESS" +
+      "AGE\020\023\022\031\n\025GET_USER_LIST_REQUEST\020\024\022\027\n\023WHIT" +
+      "E_BOARD_MESSAGE\020\025\022\016\n\nHEART_BEAT\020\026*H\n\014CON" +
+      "TENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_M" +
+      "ESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETY",
+      "PE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCH" +
+      "TYPE\022\014\n\010QUESTION\020\000**\n\tRANKORDER\022\r\n\tASCEN" +
+      "DING\020\000\022\016\n\nDESCENDING\020\001*j\n\016LIST_REFERENCE" +
+      "\022\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001" +
+      "\022\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003" +
+      "\022\010\n\004TIME\020\004B\030\n\003comB\021ClientSendMessageb\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -20581,141 +19401,147 @@ public final class ClientSendMessage {
     internal_static_LaunchRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_LaunchRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_LaunchRequest_descriptor,
         new java.lang.String[] { "Password", });
     internal_static_LogoutMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_LogoutMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_LogoutMessage_descriptor,
         new java.lang.String[] { });
     internal_static_RegisterRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_RegisterRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,
         new java.lang.String[] { "Username", "Password", "MailAddress", "Signature", });
     internal_static_SendContent_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_SendContent_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SendContent_descriptor,
         new java.lang.String[] { "QuestionID", "Content", "Pictures", "Time", "User", "MarkMap", });
     internal_static_SendContent_MarkMapEntry_descriptor =
       internal_static_SendContent_descriptor.getNestedTypes().get(0);
     internal_static_SendContent_MarkMapEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SendContent_MarkMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_AnnouncementMessage_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_AnnouncementMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_AnnouncementMessage_descriptor,
         new java.lang.String[] { "Text", });
     internal_static_QuestionEnterRequest_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_QuestionEnterRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_QuestionEnterRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_GoodQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_GoodQuestionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GoodQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_GoodUserRequest_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_GoodUserRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GoodUserRequest_descriptor,
         new java.lang.String[] { "User", });
     internal_static_QuestionInformationRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_QuestionInformationRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_QuestionInformationRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_UserInformationRequest_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_UserInformationRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_UserInformationRequest_descriptor,
         new java.lang.String[] { "Username", });
     internal_static_GetQuestionListRequest_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_GetQuestionListRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GetQuestionListRequest_descriptor,
         new java.lang.String[] { "Reference", "Rankorder", "QuestionNumber", });
     internal_static_CreateQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_CreateQuestionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_CreateQuestionRequest_descriptor,
         new java.lang.String[] { "Stem", "Stempic", "Addition", "Additionpic", "Time", "Keywords", });
     internal_static_AbandonQuestionRequest_descriptor =
       getDescriptor().getMessageTypes().get(12);
     internal_static_AbandonQuestionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_AbandonQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_SearchInformationRequest_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_SearchInformationRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SearchInformationRequest_descriptor,
         new java.lang.String[] { "Keywords", "SearchID", });
     internal_static_FileRequest_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_FileRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_FileRequest_descriptor,
         new java.lang.String[] { "Filename", "Md5", "LocalFilePath", "SignType", });
-    internal_static_SolvedQuestionRequest_descriptor =
+    internal_static_HeartBeat_descriptor =
       getDescriptor().getMessageTypes().get(15);
+    internal_static_HeartBeat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_HeartBeat_descriptor,
+        new java.lang.String[] { "Online", });
+    internal_static_SolvedQuestionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(16);
     internal_static_SolvedQuestionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SolvedQuestionRequest_descriptor,
         new java.lang.String[] { "QuestionID", });
     internal_static_GetUserListRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_GetUserListRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GetUserListRequest_descriptor,
         new java.lang.String[] { "Reference", "UserListType", "Param", });
     internal_static_WhiteBoardMessage_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_WhiteBoardMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_descriptor,
         new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Pensize", "QuestionId", "IsCls", "IsACls", "IsRefresh", "IsReceiveImage", "Image", });
     internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor =
       internal_static_WhiteBoardMessage_descriptor.getNestedTypes().get(0);
     internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor,
         new java.lang.String[] { "Points", "Rects", });
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor =
       internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor.getNestedTypes().get(0);
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor,
         new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Pensize", });
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor =
       internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor.getNestedTypes().get(1);
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor,
         new java.lang.String[] { "X1", "Y1", "X2", "Y2", });
     internal_static_Message_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_Message_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Message_descriptor,
-        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "FileRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", "SolvedQuestionRequest", "GetUserListRequest", "WhiteBoardMessage", });
+        new java.lang.String[] { "MsgType", "Username", "LauchRequest", "LogoutMessage", "SendContent", "AnnouncementMessage", "QuestionEnterRequest", "GoodQuestionRequest", "FileRequest", "GoodUserRequest", "RegisterRequest", "QuestionInformationRequest", "UserInformationRequest", "GetQuestionListRequest", "CreateQuestionRequest", "AbandonQuestionRequest", "SearchInformationRequest", "SolvedQuestionRequest", "GetUserListRequest", "WhiteBoardMessage", "HeartBeat", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
