@@ -18,18 +18,17 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ServerItem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="1345" column="33" lean-forward="false" selection-start-line="1345" selection-start-column="33" selection-end-line="1345" selection-end-column="33" />
+            <state relative-caret-position="-1870">
+              <caret line="436" column="0" lean-forward="false" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="class#CONTENT_MARK#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#ServerItem#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#pstmtInit#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#BadMessage#0;class#ServerItem#0" expanded="false" />
-                <element signature="method#handleLaunch#0;class#ServerItem#0" expanded="false" />
-                <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
@@ -45,6 +44,29 @@
                 <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleSolvedQuestionRequest#0;class#ServerItem#0" expanded="false" />
                 <element signature="method#handleGetUserListRequest#0;class#ServerItem#0" expanded="false" />
+                <element signature="method#handleWhiteBoardMessage#0;class#ServerItem#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cos.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Cos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="539">
+              <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerResponseMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerResponseMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-16241">
+              <caret line="24277" column="0" lean-forward="false" selection-start-line="24277" selection-start-column="0" selection-end-line="24277" selection-end-column="0" />
+              <folding>
+                <marker date="1500087312839" expanded="true" signature="868097:868639" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -53,53 +75,19 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="234">
+              <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/config/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+            <state relative-caret-position="312">
+              <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientSend.proto" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ClientSend.proto">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-43">
-              <caret line="180" column="30" lean-forward="true" selection-start-line="180" selection-start-column="30" selection-end-line="180" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerResponse.proto" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ServerResponse.proto">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="237" column="25" lean-forward="false" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/DatabaseConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="32" column="59" lean-forward="false" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -107,45 +95,65 @@
       <file leaf-file-name="ServerHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="1388">
+              <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+              <folding>
+                <element signature="e#3480#3481#0" expanded="true" />
+                <element signature="e#3507#3508#0" expanded="true" />
+                <element signature="e#3567#3568#0" expanded="true" />
+                <element signature="e#3628#3629#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientSendMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ClientSendMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17351">
+              <caret line="15265" column="0" lean-forward="false" selection-start-line="15265" selection-start-column="0" selection-end-line="15265" selection-end-column="0" />
+              <folding>
+                <marker date="1500087312765" expanded="true" signature="676298:676308" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Study-in-HIT/Client/src/NetEvent/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+              <folding>
+                <marker date="1500093183276" expanded="false" signature="2122:2128" ph=" { " />
+                <marker date="1500093183276" expanded="false" signature="2147:2151" ph=" }" />
+                <marker date="1500093183276" expanded="false" signature="2176:2182" ph=" { " />
+                <marker date="1500093183276" expanded="false" signature="2200:2204" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeartBeatHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/HeartBeatHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-95">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
+                <element signature="e#1355#1356#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/DatabaseConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-459">
+              <caret line="32" column="59" lean-forward="false" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetPackageCodeFacotry.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/NetPackageCodeFacotry.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResponseDecoder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/ResponseDecoder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResponseEncoder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/ResponseEncoder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -171,11 +179,24 @@
       <find>upload</find>
       <find>dbconn.close</find>
       <find>List</find>
-      <find>enter</find>
       <find>send to</find>
       <find>send</find>
       <find>enum</find>
       <find>null</find>
+      <find>update</find>
+      <find>stroke</find>
+      <find>Update</find>
+      <find>UpdateMe</find>
+      <find>put</find>
+      <find>write</find>
+      <find>sendIt</find>
+      <find>enter</find>
+      <find>question_sessions</find>
+      <find>question_sess</find>
+      <find>questionEn</find>
+      <find>File</find>
+      <find>getquestionL</find>
+      <find>Heat</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -194,20 +215,27 @@
         <option value="$PROJECT_DIR$/../SIHServer/src/com/dataPack/SendDecoder.java" />
         <option value="$PROJECT_DIR$/../SIHServer/src/com/dataPack/ResponseDecoder.java" />
         <option value="$PROJECT_DIR$/../SIHServer/src/com/DatabaseConnection.java" />
-        <option value="$PROJECT_DIR$/../SIHServer/src/com/Cos.java" />
-        <option value="$PROJECT_DIR$/../SIHServer/src/com/ServerHandler.java" />
-        <option value="$PROJECT_DIR$/../SIHServer/src/com/config/Config.java" />
-        <option value="$PROJECT_DIR$/../SIHServer/src/protobuffer/ClientSend.proto" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/ServerResponseMessage.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/util/ImageConverter.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/util/GraphicPoints.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/util/WhiteBoardConvert.java" />
         <option value="$PROJECT_DIR$/../SIHServer/src/protobuffer/ServerResponse.proto" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/Cos.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/protobuffer/ClientSend.proto" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/dataPack/HeartBeatHandler.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/Server.java" />
         <option value="$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/ServerHandler.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/HeartBeatHandler.java" />
+        <option value="$USER_HOME$/Study-in-HIT/Client/src/NetEvent/Client.java" />
+        <option value="$PROJECT_DIR$/../SIHServer/src/com/config/Config.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1918" />
-    <option name="height" value="1078" />
+    <option name="x" value="-9" />
+    <option name="width" value="1932" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -224,6 +252,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -248,6 +277,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SIHServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SIHServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,7 +380,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -346,6 +392,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="SearchEverywhereHistoryKey" value="r&#9;PSI&#9;JAVA://com.ServerResponseMessage.RecordOrBuilder" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -607,37 +654,37 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1918" height="1078" extended-state="1" />
+    <frame x="-9" y="0" width="1932" height="1092" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35175344" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35078534" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24894737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24817137" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4059511" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4052356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -648,7 +695,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java</url>
-          <line>924</line>
+          <line>931</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -658,8 +705,20 @@
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java</url>
+          <line>738</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java</url>
+          <line>773</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="50" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -668,74 +727,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27872">
-          <caret line="1088" column="55" lean-forward="false" selection-start-line="1088" selection-start-column="55" selection-end-line="1088" selection-end-column="55" />
-          <folding>
-            <element signature="class#CONTENT_MARK#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#ServerItem#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#pstmtInit#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#BadMessage#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLaunch#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#getMarkMap#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleQuestionEnterRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleGoodQuestionMessage#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleGoodUserMessage#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleCreateQuestion#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleAbandonQuestion#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleUserInformationRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleFileRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleGetQuestionListRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleSolvedQuestionRequest#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleGetUserListRequest#0;class#ServerItem#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/SendEncoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/ResponseDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="33" column="83" lean-forward="false" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/NetPackageCodeFacotry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ClientSend.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4030">
-          <caret line="155" column="23" lean-forward="false" selection-start-line="155" selection-start-column="23" selection-end-line="155" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ServerResponse.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4758">
@@ -754,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -770,9 +760,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -781,12 +769,11 @@
         <state relative-caret-position="28080">
           <caret line="1088" column="55" lean-forward="false" selection-start-line="1088" selection-start-column="55" selection-end-line="1088" selection-end-column="55" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="class#CONTENT_MARK#0;class#ServerItem#0" expanded="false" />
             <element signature="method#ServerItem#0;class#ServerItem#0" expanded="false" />
             <element signature="method#pstmtInit#0;class#ServerItem#0" expanded="false" />
             <element signature="method#BadMessage#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLaunch#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
@@ -802,6 +789,7 @@
             <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleSolvedQuestionRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleGetUserListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleWhiteBoardMessage#0;class#ServerItem#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -852,7 +840,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
           <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
+          <folding>
+            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="e#3507#3508#0" expanded="true" />
+            <element signature="e#3567#3568#0" expanded="true" />
+            <element signature="e#3628#3629#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -867,9 +860,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -878,12 +869,11 @@
         <state relative-caret-position="6994">
           <caret line="269" column="32" lean-forward="false" selection-start-line="269" selection-start-column="32" selection-end-line="269" selection-end-column="32" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="class#CONTENT_MARK#0;class#ServerItem#0" expanded="false" />
             <element signature="method#ServerItem#0;class#ServerItem#0" expanded="false" />
             <element signature="method#pstmtInit#0;class#ServerItem#0" expanded="false" />
             <element signature="method#BadMessage#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLaunch#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
@@ -899,6 +889,7 @@
             <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleSolvedQuestionRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleGetUserListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleWhiteBoardMessage#0;class#ServerItem#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -907,9 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,7 +913,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="858">
           <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
-          <folding />
+          <folding>
+            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="e#3507#3508#0" expanded="true" />
+            <element signature="e#3567#3568#0" expanded="true" />
+            <element signature="e#3628#3629#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -933,20 +926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/rt.jar!/sun/nio/ch/SocketDispatcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1022">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ClientSendMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23556">
-          <caret line="999" column="0" lean-forward="false" selection-start-line="999" selection-start-column="0" selection-end-line="999" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -964,67 +943,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/SendEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar!/org/apache/mina/core/session/AbstractIoSession.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar!/org/apache/mina/core/filterchain/DefaultIoFilterChain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13208">
-          <caret line="534" column="0" lean-forward="false" selection-start-line="534" selection-start-column="0" selection-end-line="534" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar!/org/apache/mina/filter/codec/ProtocolCodecFilter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8242">
-          <caret line="344" column="0" lean-forward="false" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/SendDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerResponseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555386">
-          <caret line="22536" column="0" lean-forward="false" selection-start-line="22536" selection-start-column="0" selection-end-line="22536" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/util/MD5Tools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Cos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1612">
-          <caret line="67" column="50" lean-forward="false" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1037,23 +959,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/DatabaseConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="32" column="59" lean-forward="false" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/NetPackageCodeFacotry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1061,9 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="676">
           <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1071,65 +977,123 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Server.java">
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/util/ImageConverter.java" />
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/util/MD5Tools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="26">
+          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/config/Config.java">
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/dataPack/SendDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+        <state relative-caret-position="286">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/util/GraphicPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/util/WhiteBoardConvert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1820">
+          <caret line="71" column="110" lean-forward="false" selection-start-line="71" selection-start-column="110" selection-end-line="71" selection-end-column="110" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerHandler.java">
+    <entry file="jar://$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar!/org/apache/mina/filter/codec/ProtocolCodecFilter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="371" column="9" lean-forward="true" selection-start-line="371" selection-start-column="9" selection-end-line="371" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar!/org/apache/mina/core/session/AbstractIoSession.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4914">
+          <caret line="248" column="0" lean-forward="false" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+          <folding>
+            <element signature="e#9611#9612#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ServerResponse.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5018">
+          <caret line="193" column="19" lean-forward="false" selection-start-line="193" selection-start-column="19" selection-end-line="193" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../SIHServer/lib/mina-core-2.0.0.jar!/org/apache/mina/core/filterchain/DefaultIoFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8450">
+          <caret line="345" column="0" lean-forward="false" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ClientSend.proto">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="180" column="30" lean-forward="true" selection-start-line="180" selection-start-column="30" selection-end-line="180" selection-end-column="30" />
+        <state relative-caret-position="341">
+          <caret line="253" column="8" lean-forward="false" selection-start-line="253" selection-start-column="8" selection-end-line="253" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SIHServer/src/protobuffer/ServerResponse.proto">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/rt.jar!/sun/nio/ch/Net.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="237" column="25" lean-forward="false" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
+        <state relative-caret-position="174">
+          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/rt.jar!/sun/nio/ch/SocketDispatcher.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerResponseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16241">
+          <caret line="24277" column="0" lean-forward="false" selection-start-line="24277" selection-start-column="0" selection-end-line="24277" selection-end-column="0" />
+          <folding>
+            <marker date="1500087312839" expanded="true" signature="868097:868639" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="1345" column="33" lean-forward="false" selection-start-line="1345" selection-start-column="33" selection-end-line="1345" selection-end-column="33" />
+        <state relative-caret-position="-1870">
+          <caret line="436" column="0" lean-forward="false" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="class#CONTENT_MARK#0;class#ServerItem#0" expanded="false" />
             <element signature="method#ServerItem#0;class#ServerItem#0" expanded="false" />
             <element signature="method#pstmtInit#0;class#ServerItem#0" expanded="false" />
             <element signature="method#BadMessage#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLaunch#0;class#ServerItem#0" expanded="false" />
-            <element signature="method#handleLogout#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleRegisterRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleSendContent#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleQuestionInformationRequest#0;class#ServerItem#0" expanded="false" />
@@ -1145,7 +1109,88 @@
             <element signature="method#handleSearchInformationRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleSolvedQuestionRequest#0;class#ServerItem#0" expanded="false" />
             <element signature="method#handleGetUserListRequest#0;class#ServerItem#0" expanded="false" />
+            <element signature="method#handleWhiteBoardMessage#0;class#ServerItem#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1388">
+          <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding>
+            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="e#3507#3508#0" expanded="true" />
+            <element signature="e#3567#3568#0" expanded="true" />
+            <element signature="e#3628#3629#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/HeartBeatHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1355#1356#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/DatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-459">
+          <caret line="32" column="59" lean-forward="false" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/Cos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="58" column="13" lean-forward="false" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/ClientSendMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17351">
+          <caret line="15265" column="0" lean-forward="false" selection-start-line="15265" selection-start-column="0" selection-end-line="15265" selection-end-column="0" />
+          <folding>
+            <marker date="1500087312765" expanded="true" signature="676298:676308" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Study-in-HIT/Client/src/NetEvent/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+          <folding>
+            <marker date="1500093183276" expanded="false" signature="2122:2128" ph=" { " />
+            <marker date="1500093183276" expanded="false" signature="2147:2151" ph=" }" />
+            <marker date="1500093183276" expanded="false" signature="2176:2182" ph=" { " />
+            <marker date="1500093183276" expanded="false" signature="2200:2204" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SIHServer/src/com/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
