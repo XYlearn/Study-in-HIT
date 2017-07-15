@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";//"localhost";//
+	private static String host = "localhost";//"123.207.159.156";//
 	private static int port = 8972;
 	public static Client client = null;
 
@@ -112,6 +112,7 @@ public class Client extends Thread{
 		//set the flag
 		connected = true;
 
+		//开始发送心跳包
 		heartBeat.start();
 
 		//wait for the connection attempt to be finished

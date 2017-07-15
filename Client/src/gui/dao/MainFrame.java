@@ -31,14 +31,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import util.AudioTools;
 import util.Dispatcher;
@@ -59,9 +52,13 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	private static final Map<Long,JPanel> map=new ConcurrentHashMap<>();
 	
 	private static final int QUESTION_LIST_NUMBER=20;
+
+	//add by x
+	public static MainFrame mainFrame;
 	
 	public MainFrame()
 	{
+		mainFrame = this;
 		initComponents();
 		Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize((int)(screenSize.getWidth()*0.7),(int)(screenSize.getHeight()*0.7));
@@ -331,7 +328,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			tmpPanel.setLayout(new BorderLayout());
 		}
 	}
-	
+
+	//return jScrollPanel to fix mouse position
+	public JScrollPane getjScrollPane1() {return this.jScrollPane1;}
+
 	/**
 	 *
 	 * @param questionID

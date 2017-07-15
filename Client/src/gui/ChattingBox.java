@@ -6,22 +6,21 @@ import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.SolvedQuestionEvent;
 import NetEvent.messagecom.Record;
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.JScrollPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JMenuItem;
+
+import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import java.awt.*;
 import java.io.File;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.BorderLayout;
+
+import gui.dao.MainFrame;
 import util.AudioTools;
 import bin.test;
-import java.awt.Font;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -431,7 +430,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						//abspeak.setEnabled(true);
 						getInfo.setEnabled(true);
 						reset.setEnabled(true);
-						userMenu.show(ChattingBox.this, e.getX(), e.getY());
+						userMenu.show(myPane, e.getX(), e.getY());
 					}
 					else if(HYPERLINK_TYPE_PICTURE.equals(cmd))
 					{}
@@ -446,7 +445,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 				{
 					copy.setEnabled(true);
 					reset.setEnabled(true);
-					textMenu.show(ChattingBox.this, e.getX(), e.getY());
+					textMenu.show(myPane, e.getX(), e.getY());
 				}
 		}
 
