@@ -203,7 +203,7 @@ public class ClientHandler extends IoHandlerAdapter {
 		int code;
 
 		if(fileResponse.getSuccess()) {
-			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSignMap().entrySet();//<filename, sign>
+			Set<Map.Entry<String, String>> file_sigs = fileResponse.getSign().entrySet();//<filename, sign>
 			int i;
 			switch (fileResponse.getSignType()) {
 				case UPLOAD:

@@ -24,7 +24,7 @@ public class Cos {
 
     String getDownloadSign(String filename, TYPE type) {
         try {
-            String root = "/";
+            String root;
             switch (type) {
                 case FILE:
                     root = "/";

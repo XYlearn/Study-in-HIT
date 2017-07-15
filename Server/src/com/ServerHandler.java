@@ -7,6 +7,7 @@ import org.apache.mina.core.session.IoSession;
 import util.GraphicPoints;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,12 +104,32 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionIdle(IoSession session, IdleStatus status) {
-
+		sessionShut(session);
 	}
 
 	@Override
 	public void sessionOpened(IoSession session) {
+		HeartBeatHandler.session_online_map.put(session, true);
+	}
 
+	public static void sessionShut(IoSession session) {
+		ServerHandler.serviceMap.remove(session);
+		ArrayList<Long> questions = ServerHandler.session_questions_map.get(session);
+		if(!(null == questions)) {
+			for (Long question : questions) {
+				ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(question);
+				if(!(null == sessions)) {
+					break;
+				} else {
+					sessions.remove(question);
+				}
+			}
+		}
+
+		String username = ServerHandler.session_user_map.get(session);
+		ServerHandler.session_user_map.remove(session);
+
+		ServerHandler.log.info(username+" Log out");
 	}
 }
 

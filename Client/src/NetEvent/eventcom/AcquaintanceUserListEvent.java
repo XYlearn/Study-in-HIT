@@ -15,7 +15,7 @@ public class AcquaintanceUserListEvent extends NetEvent {
 		super(EventType.ACQUAINTANCE_USER_LIST_EVENT);
 
 		this.success = getUserListResponse.getSuccess();
-		this.userAndPictureMap = getUserListResponse.getUsersMap();
+		this.userAndPictureMap = getUserListResponse.getUsers();
 	}
 
 	public boolean isSuccess() {return this.success;}

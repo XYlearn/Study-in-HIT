@@ -1,4 +1,4 @@
-package NetEvent;
+﻿package NetEvent;
 
 import Cos.CosHttpClient;
 import Cos.FileOP;
@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";//"localhost";
+	private static String host = "123.207.159.156";//"localhost";//
 	private static int port = 8972;
 
 	//connection object
@@ -36,6 +36,7 @@ public class Client extends Thread{
 	private NioSocketConnector connector = null;
 	private IoSession session = null;
 	private boolean launched = false;
+	private HeartBeat heartBeat = new HeartBeat(this);
 
 	//当前用户名
 	private String username = "";
@@ -108,6 +109,8 @@ public class Client extends Thread{
 		//set the flag
 		connected = true;
 
+		heartBeat.start();
+
 		//wait for the connection attempt to be finished
 		connectFuture.awaitUninterruptibly();
 
@@ -154,7 +157,7 @@ public class Client extends Thread{
 	}
 
 	//发送消息（一般形式
-	private void sendIt(ClientSendMessage.Message sendMessage) throws IOException {
+	void sendIt(ClientSendMessage.Message sendMessage) throws IOException {
 		if(connected) {
 			connectFuture.getSession().write(sendMessage);
 		}

@@ -21,6 +21,7 @@ public class Server {
 	static {
 		tempPanel.setSize(1600, 900);
 	}
+	private static HeartBeatHandler heartBeatHandler = new HeartBeatHandler();
 
 	public static void main(String[] args) throws IOException {
 		IoAcceptor acceptor = new NioSocketAcceptor();
@@ -37,10 +38,12 @@ public class Server {
 		acceptor.getSessionConfig().setReadBufferSize(102400);
 
 		//set idle time
-		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 20);
+		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 60);
 
 		//bind the port
 		acceptor.bind(new InetSocketAddress(port));
+
+		heartBeatHandler.start();
 
 		System.out.println("Server start...");
 	}

@@ -284,7 +284,7 @@ public class ServerItem {
 					}
 				case GET_QUESTION_LIST_REQUEST:	//获取问题列表
 					try {
-						if (message.hasGetQuestionListRequest() && isLaunched()) {
+						if (isLaunched() && message.hasGetQuestionListRequest()) {
 							return ServerResponseMessage.Message.newBuilder()
 									  .setMsgType(ServerResponseMessage.MSG.GET_QUESTION_LIST_RESPONSE)
 									  .setUsername(username)
@@ -409,6 +409,9 @@ public class ServerItem {
 						ServerHandler.log.error("", e);
 					}
 					break;
+				case HEART_BEAT:
+					HeartBeatHandler.session_online_map.replace(session, true);
+					break;
 				default:
 					throw new Exception("MSG type cant be recognized\n"+message.toString());
 			}
@@ -478,19 +481,8 @@ public class ServerItem {
 	private void
 	handleLogout()
 			  throws SQLException {
-		ServerHandler.serviceMap.remove(session);
-		ArrayList<Long> questions = ServerHandler.session_questions_map.get(session);
-		if(!(null == questions)) {
-			for (Long question : questions) {
-				ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(question);
-				if(!(null == sessions)) {
-					break;
-				} else {
-					sessions.remove(question);
-				}
-			}
-		}
-		ServerHandler.log.info(username+" Log out");
+		if(session != null)
+			ServerHandler.sessionShut(session);
 	}
 
 	private ServerResponseMessage.RegisterResponse
@@ -538,7 +530,7 @@ public class ServerItem {
 		long questionID = sendMessage.getQuestionID();
 		String time = sendMessage.getTime();
 		String record = sendMessage.getContent();
-		Map<Integer, Long> markMap = sendMessage.getMarkMapMap();
+		Map<Integer, Long> markMap = sendMessage.getMarkMap();
 		ProtocolStringList pictures = sendMessage.getPicturesList();
 
 		pstmtSelectQuestion.setLong(1,questionID);
@@ -1074,22 +1066,25 @@ public class ServerItem {
 
 		if(isLaunched()) {
 			int i=0;
+			Map<String, String> signs = new HashMap<>();
 			switch (fileRequest.getSignType()) {
 				case DOWNLOAD:
 					for(String filename : files) {
 						sign = cos.getDownloadSign(filename);
-						builder.putSign(filename, sign);
+						signs.put(filename, sign);
 						builder.addMd5(fileRequest.getMd5(i++));
 						builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.DOWNLOAD);
 					}
+					builder.putAllSign(signs);
 					builder.setSuccess(true);
 					break;
 				case UPLOAD:
 					for(String filename : files) {
 						sign = cos.getUploadSign(filename);
-						builder.putSign(filename, sign);
+						signs.put(filename, sign);
 						builder.addMd5(fileRequest.getMd5(i++));
 					}
+					builder.putAllSign(signs);
 					builder.setSuccess(true);
 					builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.UPLOAD);
 					builder.addAllLocalFilePath(fileRequest.getLocalFilePathList());
@@ -1146,7 +1141,7 @@ public class ServerItem {
 			if(null != list) {
 				Iterator<IoSession> ite = list.iterator();
 				if (ite != null) {
-					while (ite.next() != null) {
+					while (ite.hasNext()) {
 						userNum++;
 					}
 				}

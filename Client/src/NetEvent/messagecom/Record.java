@@ -44,7 +44,7 @@ public class Record
 		this.recordpic=new ArrayList<>();
 		for (String pic:record.getRecordpicList())
 			recordpic.add(pic);
-		this.markMap=record.getMarkMapMap();
+		this.markMap=record.getMarkMap();
 	}
 
 	public String getUser()

@@ -25,7 +25,7 @@ public class ContentMessageEvent extends NetEvent {
 				  content.getTime(),
 				  content.getRecordID(),
 				  content.getPicturesList(),
-				  content.getMarkMapMap()
+				  content.getMarkMap()
 		);
 		this.success = content.getSuccess();
 		this.isMyself = content.getIsmyself();

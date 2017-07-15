@@ -16,7 +16,7 @@ public class QuestionUserListEvent extends NetEvent {
 		super(EventType.QUESTION_USER_LIST_EVENT);
 
 		this.success = getUserListResponse.getSuccess();
-		this.userAndPictureMap = getUserListResponse.getUsersMap();
+		this.userAndPictureMap = getUserListResponse.getUsers();
 		this.questionID = getUserListResponse.getQuestionID();
 	}
 

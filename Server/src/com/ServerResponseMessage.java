@@ -6,156 +6,150 @@ package com;
 public final class ServerResponseMessage {
   private ServerResponseMessage() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * Protobuf enum {@code MSG}
+   *
    * <pre>
    *消息类型序号
    * </pre>
-   *
-   * Protobuf enum {@code MSG}
    */
   public enum MSG
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
+     * <code>LAUNCH_RESPONSE = 0;</code>
+     *
      * <pre>
      *登录登出回复
      * </pre>
-     *
-     * <code>LAUNCH_RESPONSE = 0;</code>
      */
-    LAUNCH_RESPONSE(0),
+    LAUNCH_RESPONSE(0, 0),
     /**
      * <code>REGISTER_RESPONSE = 1;</code>
      */
-    REGISTER_RESPONSE(1),
+    REGISTER_RESPONSE(1, 1),
     /**
+     * <code>SEND_CONTENT = 2;</code>
+     *
      * <pre>
      *发送对话消息及公告消息
      * </pre>
-     *
-     * <code>SEND_CONTENT = 2;</code>
      */
-    SEND_CONTENT(2),
+    SEND_CONTENT(2, 2),
     /**
      * <code>ANNOUNCEMENT_MESSAGE = 3;</code>
      */
-    ANNOUNCEMENT_MESSAGE(3),
+    ANNOUNCEMENT_MESSAGE(3, 3),
     /**
+     * <code>QUESTION_ENTER_RESPONSE = 4;</code>
+     *
      * <pre>
      *进入问题房间回复
      * </pre>
-     *
-     * <code>QUESTION_ENTER_RESPONSE = 4;</code>
      */
-    QUESTION_ENTER_RESPONSE(4),
+    QUESTION_ENTER_RESPONSE(4, 4),
     /**
+     * <code>GOOD_QUESTION_RESPONSE = 5;</code>
+     *
      * <pre>
      *评价信息
      * </pre>
-     *
-     * <code>GOOD_QUESTION_RESPONSE = 5;</code>
      */
-    GOOD_QUESTION_RESPONSE(5),
+    GOOD_QUESTION_RESPONSE(5, 5),
     /**
      * <code>GOOD_USER_RESPONSE = 7;</code>
      */
-    GOOD_USER_RESPONSE(7),
+    GOOD_USER_RESPONSE(6, 7),
     /**
+     * <code>UPDATE_MESSAGE = 8;</code>
+     *
      * <pre>
      *更新消息
      * </pre>
-     *
-     * <code>UPDATE_MESSAGE = 8;</code>
      */
-    UPDATE_MESSAGE(8),
+    UPDATE_MESSAGE(7, 8),
     /**
+     * <code>FILE_RESPONSE = 9;</code>
+     *
      * <pre>
      *获取COS Sign回复
      * </pre>
-     *
-     * <code>FILE_RESPONSE = 9;</code>
      */
-    FILE_RESPONSE(9),
+    FILE_RESPONSE(8, 9),
     /**
+     * <code>QUESTION_INFORMATION_RESPONSE = 10;</code>
+     *
      * <pre>
      *消息显示信息
      * </pre>
-     *
-     * <code>QUESTION_INFORMATION_RESPONSE = 10;</code>
      */
-    QUESTION_INFORMATION_RESPONSE(10),
+    QUESTION_INFORMATION_RESPONSE(9, 10),
     /**
      * <code>USER_INFORMATION_RESPONSE = 11;</code>
      */
-    USER_INFORMATION_RESPONSE(11),
+    USER_INFORMATION_RESPONSE(10, 11),
     /**
      * <code>GET_QUESTION_LIST_RESPONSE = 12;</code>
      */
-    GET_QUESTION_LIST_RESPONSE(12),
+    GET_QUESTION_LIST_RESPONSE(11, 12),
     /**
+     * <code>CREATE_QUESTION_RESPONSE = 15;</code>
+     *
      * <pre>
      *创建取消问题
      * </pre>
-     *
-     * <code>CREATE_QUESTION_RESPONSE = 15;</code>
      */
-    CREATE_QUESTION_RESPONSE(15),
+    CREATE_QUESTION_RESPONSE(12, 15),
     /**
      * <code>ABANDON_QUESTION_RESPONSE = 16;</code>
      */
-    ABANDON_QUESTION_RESPONSE(16),
+    ABANDON_QUESTION_RESPONSE(13, 16),
     /**
+     * <code>SEARCH_INFORMATION_RESPONSE = 17;</code>
+     *
      * <pre>
      *搜索内容
      * </pre>
-     *
-     * <code>SEARCH_INFORMATION_RESPONSE = 17;</code>
      */
-    SEARCH_INFORMATION_RESPONSE(17),
+    SEARCH_INFORMATION_RESPONSE(14, 17),
     /**
      * <code>SOLVED_QUESTION_RESPONSE = 18;</code>
      */
-    SOLVED_QUESTION_RESPONSE(18),
+    SOLVED_QUESTION_RESPONSE(15, 18),
     /**
+     * <code>BAD_MESSAGE = 19;</code>
+     *
      * <pre>
      *未知消息
      * </pre>
-     *
-     * <code>BAD_MESSAGE = 19;</code>
      */
-    BAD_MESSAGE(19),
+    BAD_MESSAGE(16, 19),
     /**
+     * <code>GET_USER_LIST_RESPONSE = 20;</code>
+     *
      * <pre>
      *获取用户列表反馈
      * </pre>
-     *
-     * <code>GET_USER_LIST_RESPONSE = 20;</code>
      */
-    GET_USER_LIST_RESPONSE(20),
+    GET_USER_LIST_RESPONSE(17, 20),
     /**
      * <code>WHITE_BOARD_MESSAGE = 21;</code>
      */
-    WHITE_BOARD_MESSAGE(21),
+    WHITE_BOARD_MESSAGE(18, 21),
     /**
      * <code>IGNORE_MESSAGE = 22;</code>
      */
-    IGNORE_MESSAGE(22),
-    UNRECOGNIZED(-1),
+    IGNORE_MESSAGE(19, 22),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
+     * <code>LAUNCH_RESPONSE = 0;</code>
+     *
      * <pre>
      *登录登出回复
      * </pre>
-     *
-     * <code>LAUNCH_RESPONSE = 0;</code>
      */
     public static final int LAUNCH_RESPONSE_VALUE = 0;
     /**
@@ -163,11 +157,11 @@ public final class ServerResponseMessage {
      */
     public static final int REGISTER_RESPONSE_VALUE = 1;
     /**
+     * <code>SEND_CONTENT = 2;</code>
+     *
      * <pre>
      *发送对话消息及公告消息
      * </pre>
-     *
-     * <code>SEND_CONTENT = 2;</code>
      */
     public static final int SEND_CONTENT_VALUE = 2;
     /**
@@ -175,19 +169,19 @@ public final class ServerResponseMessage {
      */
     public static final int ANNOUNCEMENT_MESSAGE_VALUE = 3;
     /**
+     * <code>QUESTION_ENTER_RESPONSE = 4;</code>
+     *
      * <pre>
      *进入问题房间回复
      * </pre>
-     *
-     * <code>QUESTION_ENTER_RESPONSE = 4;</code>
      */
     public static final int QUESTION_ENTER_RESPONSE_VALUE = 4;
     /**
+     * <code>GOOD_QUESTION_RESPONSE = 5;</code>
+     *
      * <pre>
      *评价信息
      * </pre>
-     *
-     * <code>GOOD_QUESTION_RESPONSE = 5;</code>
      */
     public static final int GOOD_QUESTION_RESPONSE_VALUE = 5;
     /**
@@ -195,27 +189,27 @@ public final class ServerResponseMessage {
      */
     public static final int GOOD_USER_RESPONSE_VALUE = 7;
     /**
+     * <code>UPDATE_MESSAGE = 8;</code>
+     *
      * <pre>
      *更新消息
      * </pre>
-     *
-     * <code>UPDATE_MESSAGE = 8;</code>
      */
     public static final int UPDATE_MESSAGE_VALUE = 8;
     /**
+     * <code>FILE_RESPONSE = 9;</code>
+     *
      * <pre>
      *获取COS Sign回复
      * </pre>
-     *
-     * <code>FILE_RESPONSE = 9;</code>
      */
     public static final int FILE_RESPONSE_VALUE = 9;
     /**
+     * <code>QUESTION_INFORMATION_RESPONSE = 10;</code>
+     *
      * <pre>
      *消息显示信息
      * </pre>
-     *
-     * <code>QUESTION_INFORMATION_RESPONSE = 10;</code>
      */
     public static final int QUESTION_INFORMATION_RESPONSE_VALUE = 10;
     /**
@@ -227,11 +221,11 @@ public final class ServerResponseMessage {
      */
     public static final int GET_QUESTION_LIST_RESPONSE_VALUE = 12;
     /**
+     * <code>CREATE_QUESTION_RESPONSE = 15;</code>
+     *
      * <pre>
      *创建取消问题
      * </pre>
-     *
-     * <code>CREATE_QUESTION_RESPONSE = 15;</code>
      */
     public static final int CREATE_QUESTION_RESPONSE_VALUE = 15;
     /**
@@ -239,11 +233,11 @@ public final class ServerResponseMessage {
      */
     public static final int ABANDON_QUESTION_RESPONSE_VALUE = 16;
     /**
+     * <code>SEARCH_INFORMATION_RESPONSE = 17;</code>
+     *
      * <pre>
      *搜索内容
      * </pre>
-     *
-     * <code>SEARCH_INFORMATION_RESPONSE = 17;</code>
      */
     public static final int SEARCH_INFORMATION_RESPONSE_VALUE = 17;
     /**
@@ -251,19 +245,19 @@ public final class ServerResponseMessage {
      */
     public static final int SOLVED_QUESTION_RESPONSE_VALUE = 18;
     /**
+     * <code>BAD_MESSAGE = 19;</code>
+     *
      * <pre>
      *未知消息
      * </pre>
-     *
-     * <code>BAD_MESSAGE = 19;</code>
      */
     public static final int BAD_MESSAGE_VALUE = 19;
     /**
+     * <code>GET_USER_LIST_RESPONSE = 20;</code>
+     *
      * <pre>
      *获取用户列表反馈
      * </pre>
-     *
-     * <code>GET_USER_LIST_RESPONSE = 20;</code>
      */
     public static final int GET_USER_LIST_RESPONSE_VALUE = 20;
     /**
@@ -277,22 +271,14 @@ public final class ServerResponseMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static MSG valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static MSG forNumber(int value) {
       switch (value) {
         case 0: return LAUNCH_RESPONSE;
         case 1: return REGISTER_RESPONSE;
@@ -326,13 +312,13 @@ public final class ServerResponseMessage {
         MSG> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<MSG>() {
             public MSG findValueByNumber(int number) {
-              return MSG.forNumber(number);
+              return MSG.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -357,9 +343,11 @@ public final class ServerResponseMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private MSG(int value) {
+    private MSG(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -367,27 +355,27 @@ public final class ServerResponseMessage {
   }
 
   /**
+   * Protobuf enum {@code CONTENT_TYPE}
+   *
    * <pre>
    *内容类型
    * </pre>
-   *
-   * Protobuf enum {@code CONTENT_TYPE}
    */
   public enum CONTENT_TYPE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>TEXT_MESSAGE = 0;</code>
      */
-    TEXT_MESSAGE(0),
+    TEXT_MESSAGE(0, 0),
     /**
      * <code>PICTURE_MESSAGE = 1;</code>
      */
-    PICTURE_MESSAGE(1),
+    PICTURE_MESSAGE(1, 1),
     /**
      * <code>VOICE_MESSAGE = 2;</code>
      */
-    VOICE_MESSAGE(2),
-    UNRECOGNIZED(-1),
+    VOICE_MESSAGE(2, 2),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -405,22 +393,14 @@ public final class ServerResponseMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static CONTENT_TYPE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static CONTENT_TYPE forNumber(int value) {
       switch (value) {
         case 0: return TEXT_MESSAGE;
         case 1: return PICTURE_MESSAGE;
@@ -437,13 +417,13 @@ public final class ServerResponseMessage {
         CONTENT_TYPE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<CONTENT_TYPE>() {
             public CONTENT_TYPE findValueByNumber(int number) {
-              return CONTENT_TYPE.forNumber(number);
+              return CONTENT_TYPE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -468,9 +448,11 @@ public final class ServerResponseMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private CONTENT_TYPE(int value) {
+    private CONTENT_TYPE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -478,27 +460,27 @@ public final class ServerResponseMessage {
   }
 
   /**
+   * Protobuf enum {@code PICTURETYPE}
+   *
    * <pre>
    *图像类型
    * </pre>
-   *
-   * Protobuf enum {@code PICTURETYPE}
    */
   public enum PICTURETYPE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>JPEG = 0;</code>
      */
-    JPEG(0),
+    JPEG(0, 0),
     /**
      * <code>PNG = 1;</code>
      */
-    PNG(1),
+    PNG(1, 1),
     /**
      * <code>GIF = 2;</code>
      */
-    GIF(2),
-    UNRECOGNIZED(-1),
+    GIF(2, 2),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -516,22 +498,14 @@ public final class ServerResponseMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static PICTURETYPE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static PICTURETYPE forNumber(int value) {
       switch (value) {
         case 0: return JPEG;
         case 1: return PNG;
@@ -548,13 +522,13 @@ public final class ServerResponseMessage {
         PICTURETYPE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<PICTURETYPE>() {
             public PICTURETYPE findValueByNumber(int number) {
-              return PICTURETYPE.forNumber(number);
+              return PICTURETYPE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -579,9 +553,11 @@ public final class ServerResponseMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private PICTURETYPE(int value) {
+    private PICTURETYPE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -589,19 +565,19 @@ public final class ServerResponseMessage {
   }
 
   /**
+   * Protobuf enum {@code VOICETYPE}
+   *
    * <pre>
    *音频类型
    * </pre>
-   *
-   * Protobuf enum {@code VOICETYPE}
    */
   public enum VOICETYPE
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>MP4 = 0;</code>
      */
-    MP4(0),
-    UNRECOGNIZED(-1),
+    MP4(0, 0),
+    UNRECOGNIZED(-1, -1),
     ;
 
     /**
@@ -611,22 +587,14 @@ public final class ServerResponseMessage {
 
 
     public final int getNumber() {
-      if (this == UNRECOGNIZED) {
+      if (index == -1) {
         throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
     public static VOICETYPE valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static VOICETYPE forNumber(int value) {
       switch (value) {
         case 0: return MP4;
         default: return null;
@@ -641,13 +609,13 @@ public final class ServerResponseMessage {
         VOICETYPE> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<VOICETYPE>() {
             public VOICETYPE findValueByNumber(int number) {
-              return VOICETYPE.forNumber(number);
+              return VOICETYPE.valueOf(number);
             }
           };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
+      return getDescriptor().getValues().get(index);
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
@@ -672,9 +640,11 @@ public final class ServerResponseMessage {
       return VALUES[desc.getIndex()];
     }
 
+    private final int index;
     private final int value;
 
-    private VOICETYPE(int value) {
+    private VOICETYPE(int index, int value) {
+      this.index = index;
       this.value = value;
     }
 
@@ -723,41 +693,13 @@ public final class ServerResponseMessage {
     /**
      * <code>map&lt;int32, int64&gt; markMap = 5;</code>
      */
-    int getMarkMapCount();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-    boolean containsMarkMap(
-        int key);
-    /**
-     * Use {@link #getMarkMapMap()} instead.
-     */
-    @java.lang.Deprecated
     java.util.Map<java.lang.Integer, java.lang.Long>
     getMarkMap();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-    java.util.Map<java.lang.Integer, java.lang.Long>
-    getMarkMapMap();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-
-    long getMarkMapOrDefault(
-        int key,
-        long defaultValue);
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-
-    long getMarkMapOrThrow(
-        int key);
 
     /**
      * <code>repeated string recordpic = 6;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getRecordpicList();
     /**
      * <code>repeated string recordpic = 6;</code>
@@ -774,18 +716,18 @@ public final class ServerResponseMessage {
         getRecordpicBytes(int index);
   }
   /**
+   * Protobuf type {@code Record}
+   *
    * <pre>
    *记录消息体
    * </pre>
-   *
-   * Protobuf type {@code Record}
    */
   public  static final class Record extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:Record)
       RecordOrBuilder {
     // Use Record.newBuilder() to construct.
-    private Record(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Record(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private Record() {
@@ -803,8 +745,7 @@ public final class ServerResponseMessage {
     }
     private Record(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -868,10 +809,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
           recordpic_ = recordpic_.getUnmodifiableView();
@@ -895,7 +837,7 @@ public final class ServerResponseMessage {
               "Invalid map field number: " + number);
       }
     }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_Record_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1033,61 +975,15 @@ public final class ServerResponseMessage {
       if (markMap_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
             MarkMapDefaultEntryHolder.defaultEntry);
-      }
+     }
       return markMap_;
     }
-
-    public int getMarkMapCount() {
-      return internalGetMarkMap().getMap().size();
-    }
     /**
      * <code>map&lt;int32, int64&gt; markMap = 5;</code>
      */
 
-    public boolean containsMarkMap(
-        int key) {
-      
-      return internalGetMarkMap().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getMarkMapMap()} instead.
-     */
-    @java.lang.Deprecated
     public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMap() {
-      return getMarkMapMap();
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-
-    public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMapMap() {
       return internalGetMarkMap().getMap();
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-
-    public long getMarkMapOrDefault(
-        int key,
-        long defaultValue) {
-      
-      java.util.Map<java.lang.Integer, java.lang.Long> map =
-          internalGetMarkMap().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-     */
-
-    public long getMarkMapOrThrow(
-        int key) {
-      
-      java.util.Map<java.lang.Integer, java.lang.Long> map =
-          internalGetMarkMap().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
     }
 
     public static final int RECORDPIC_FIELD_NUMBER = 6;
@@ -1132,13 +1028,13 @@ public final class ServerResponseMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getContentMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, contentMessage_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, contentMessage_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, time_);
       }
       if (!getUserBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, user_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, user_);
       }
       if (recordID_ != 0L) {
         output.writeInt64(4, recordID_);
@@ -1153,7 +1049,7 @@ public final class ServerResponseMessage {
         output.writeMessage(5, markMap);
       }
       for (int i = 0; i < recordpic_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, recordpic_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, recordpic_.getRaw(i));
       }
     }
 
@@ -1163,13 +1059,13 @@ public final class ServerResponseMessage {
 
       size = 0;
       if (!getContentMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, contentMessage_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, contentMessage_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, time_);
       }
       if (!getUserBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, user_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, user_);
       }
       if (recordID_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -1198,61 +1094,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.Record)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.Record other = (com.ServerResponseMessage.Record) obj;
-
-      boolean result = true;
-      result = result && getContentMessage()
-          .equals(other.getContentMessage());
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getUser()
-          .equals(other.getUser());
-      result = result && (getRecordID()
-          == other.getRecordID());
-      result = result && internalGetMarkMap().equals(
-          other.internalGetMarkMap());
-      result = result && getRecordpicList()
-          .equals(other.getRecordpicList());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + CONTENTMESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getContentMessage().hashCode();
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + USER_FIELD_NUMBER;
-      hash = (53 * hash) + getUser().hashCode();
-      hash = (37 * hash) + RECORDID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRecordID());
-      if (!internalGetMarkMap().getMap().isEmpty()) {
-        hash = (37 * hash) + MARKMAP_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetMarkMap().hashCode();
-      }
-      if (getRecordpicCount() > 0) {
-        hash = (37 * hash) + RECORDPIC_FIELD_NUMBER;
-        hash = (53 * hash) + getRecordpicList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.Record parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1276,40 +1117,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.Record parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.Record parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.Record parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.Record parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.Record parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.Record parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -1326,19 +1161,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code Record}
+     *
      * <pre>
      *记录消息体
      * </pre>
-     *
-     * Protobuf type {@code Record}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Record)
         com.ServerResponseMessage.RecordOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1368,7 +1203,7 @@ public final class ServerResponseMessage {
                 "Invalid map field number: " + number);
         }
       }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_Record_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1381,13 +1216,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -1443,32 +1277,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.Record) {
           return mergeFrom((com.ServerResponseMessage.Record)other);
@@ -1524,7 +1332,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.Record) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1774,7 +1582,7 @@ public final class ServerResponseMessage {
         if (markMap_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MarkMapDefaultEntryHolder.defaultEntry);
-        }
+       }
         return markMap_;
       }
       private com.google.protobuf.MapField<java.lang.Integer, java.lang.Long>
@@ -1789,78 +1597,15 @@ public final class ServerResponseMessage {
         }
         return markMap_;
       }
-
-      public int getMarkMapCount() {
-        return internalGetMarkMap().getMap().size();
-      }
       /**
        * <code>map&lt;int32, int64&gt; markMap = 5;</code>
        */
-
-      public boolean containsMarkMap(
-          int key) {
-        
-        return internalGetMarkMap().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getMarkMapMap()} instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMap() {
-        return getMarkMapMap();
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-       */
-
-      public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMapMap() {
         return internalGetMarkMap().getMap();
       }
       /**
        * <code>map&lt;int32, int64&gt; markMap = 5;</code>
        */
-
-      public long getMarkMapOrDefault(
-          int key,
-          long defaultValue) {
-        
-        java.util.Map<java.lang.Integer, java.lang.Long> map =
-            internalGetMarkMap().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-       */
-
-      public long getMarkMapOrThrow(
-          int key) {
-        
-        java.util.Map<java.lang.Integer, java.lang.Long> map =
-            internalGetMarkMap().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearMarkMap() {
-        getMutableMarkMap().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-       */
-
-      public Builder removeMarkMap(
-          int key) {
-        
-        getMutableMarkMap().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.Integer, java.lang.Long>
       getMutableMarkMap() {
         return internalGetMutableMarkMap().getMutableMap();
@@ -1868,18 +1613,6 @@ public final class ServerResponseMessage {
       /**
        * <code>map&lt;int32, int64&gt; markMap = 5;</code>
        */
-      public Builder putMarkMap(
-          int key,
-          long value) {
-        
-        
-        getMutableMarkMap().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 5;</code>
-       */
-
       public Builder putAllMarkMap(
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
         getMutableMarkMap().putAll(values);
@@ -2009,7 +1742,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new Record(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -2078,18 +1820,18 @@ public final class ServerResponseMessage {
         getOwnerBytes();
   }
   /**
+   * Protobuf type {@code QuestionListMessage}
+   *
    * <pre>
    *问题列表项消息体
    * </pre>
-   *
-   * Protobuf type {@code QuestionListMessage}
    */
   public  static final class QuestionListMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:QuestionListMessage)
       QuestionListMessageOrBuilder {
     // Use QuestionListMessage.newBuilder() to construct.
-    private QuestionListMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private QuestionListMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private QuestionListMessage() {
@@ -2108,8 +1850,7 @@ public final class ServerResponseMessage {
     }
     private QuestionListMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -2162,10 +1903,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -2175,7 +1917,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_QuestionListMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_QuestionListMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -2327,7 +2069,7 @@ public final class ServerResponseMessage {
         output.writeInt64(1, questionID_);
       }
       if (!getQuestionDescriptionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, questionDescription_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, questionDescription_);
       }
       if (good_ != 0) {
         output.writeInt32(3, good_);
@@ -2336,10 +2078,10 @@ public final class ServerResponseMessage {
         output.writeInt32(5, userNum_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 6, time_);
       }
       if (!getOwnerBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, owner_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 8, owner_);
       }
     }
 
@@ -2353,7 +2095,7 @@ public final class ServerResponseMessage {
           .computeInt64Size(1, questionID_);
       }
       if (!getQuestionDescriptionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, questionDescription_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, questionDescription_);
       }
       if (good_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -2364,67 +2106,16 @@ public final class ServerResponseMessage {
           .computeInt32Size(5, userNum_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(6, time_);
       }
       if (!getOwnerBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, owner_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(8, owner_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.QuestionListMessage)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.QuestionListMessage other = (com.ServerResponseMessage.QuestionListMessage) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      result = result && getQuestionDescription()
-          .equals(other.getQuestionDescription());
-      result = result && (getGood()
-          == other.getGood());
-      result = result && (getUserNum()
-          == other.getUserNum());
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getOwner()
-          .equals(other.getOwner());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (37 * hash) + QUESTIONDESCRIPTION_FIELD_NUMBER;
-      hash = (53 * hash) + getQuestionDescription().hashCode();
-      hash = (37 * hash) + GOOD_FIELD_NUMBER;
-      hash = (53 * hash) + getGood();
-      hash = (37 * hash) + USERNUM_FIELD_NUMBER;
-      hash = (53 * hash) + getUserNum();
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + OWNER_FIELD_NUMBER;
-      hash = (53 * hash) + getOwner().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.QuestionListMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2448,40 +2139,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.QuestionListMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionListMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionListMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.QuestionListMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionListMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionListMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -2498,19 +2183,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code QuestionListMessage}
+     *
      * <pre>
      *问题列表项消息体
      * </pre>
-     *
-     * Protobuf type {@code QuestionListMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:QuestionListMessage)
         com.ServerResponseMessage.QuestionListMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -2518,7 +2203,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_QuestionListMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_QuestionListMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2531,13 +2216,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -2586,32 +2270,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.QuestionListMessage) {
           return mergeFrom((com.ServerResponseMessage.QuestionListMessage)other);
@@ -2661,7 +2319,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.QuestionListMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -2984,7 +2642,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new QuestionListMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -3020,7 +2687,7 @@ public final class ServerResponseMessage {
     /**
      * <code>repeated string stempic = 10;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getStempicList();
     /**
      * <code>repeated string stempic = 10;</code>
@@ -3049,7 +2716,7 @@ public final class ServerResponseMessage {
     /**
      * <code>repeated string additionpic = 11;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getAdditionpicList();
     /**
      * <code>repeated string additionpic = 11;</code>
@@ -3125,18 +2792,18 @@ public final class ServerResponseMessage {
     long getId();
   }
   /**
+   * Protobuf type {@code QuestionMessage}
+   *
    * <pre>
    *问题信息消息体
    * </pre>
-   *
-   * Protobuf type {@code QuestionMessage}
    */
   public  static final class QuestionMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:QuestionMessage)
       QuestionMessageOrBuilder {
     // Use QuestionMessage.newBuilder() to construct.
-    private QuestionMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private QuestionMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private QuestionMessage() {
@@ -3159,8 +2826,7 @@ public final class ServerResponseMessage {
     }
     private QuestionMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -3206,8 +2872,7 @@ public final class ServerResponseMessage {
                 record_ = new java.util.ArrayList<com.ServerResponseMessage.Record>();
                 mutable_bitField0_ |= 0x00000040;
               }
-              record_.add(
-                  input.readMessage(com.ServerResponseMessage.Record.parser(), extensionRegistry));
+              record_.add(input.readMessage(com.ServerResponseMessage.Record.parser(), extensionRegistry));
               break;
             }
             case 56: {
@@ -3246,10 +2911,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
           record_ = java.util.Collections.unmodifiableList(record_);
@@ -3268,7 +2934,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_QuestionMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_QuestionMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -3545,16 +3211,16 @@ public final class ServerResponseMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getStemBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stem_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, stem_);
       }
       if (!getAdditionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, addition_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, addition_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, time_);
       }
       if (!getOwnerBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, owner_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, owner_);
       }
       for (int i = 0; i < record_.size(); i++) {
         output.writeMessage(6, record_.get(i));
@@ -3569,10 +3235,10 @@ public final class ServerResponseMessage {
         output.writeInt64(9, id_);
       }
       for (int i = 0; i < stempic_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, stempic_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 10, stempic_.getRaw(i));
       }
       for (int i = 0; i < additionpic_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, additionpic_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 11, additionpic_.getRaw(i));
       }
     }
 
@@ -3582,16 +3248,16 @@ public final class ServerResponseMessage {
 
       size = 0;
       if (!getStemBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stem_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, stem_);
       }
       if (!getAdditionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, addition_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, addition_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, time_);
       }
       if (!getOwnerBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, owner_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(5, owner_);
       }
       for (int i = 0; i < record_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -3630,80 +3296,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.QuestionMessage)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.QuestionMessage other = (com.ServerResponseMessage.QuestionMessage) obj;
-
-      boolean result = true;
-      result = result && getStem()
-          .equals(other.getStem());
-      result = result && getStempicList()
-          .equals(other.getStempicList());
-      result = result && getAddition()
-          .equals(other.getAddition());
-      result = result && getAdditionpicList()
-          .equals(other.getAdditionpicList());
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getOwner()
-          .equals(other.getOwner());
-      result = result && getRecordList()
-          .equals(other.getRecordList());
-      result = result && (getSolved()
-          == other.getSolved());
-      result = result && (getGood()
-          == other.getGood());
-      result = result && (getId()
-          == other.getId());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + STEM_FIELD_NUMBER;
-      hash = (53 * hash) + getStem().hashCode();
-      if (getStempicCount() > 0) {
-        hash = (37 * hash) + STEMPIC_FIELD_NUMBER;
-        hash = (53 * hash) + getStempicList().hashCode();
-      }
-      hash = (37 * hash) + ADDITION_FIELD_NUMBER;
-      hash = (53 * hash) + getAddition().hashCode();
-      if (getAdditionpicCount() > 0) {
-        hash = (37 * hash) + ADDITIONPIC_FIELD_NUMBER;
-        hash = (53 * hash) + getAdditionpicList().hashCode();
-      }
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + OWNER_FIELD_NUMBER;
-      hash = (53 * hash) + getOwner().hashCode();
-      if (getRecordCount() > 0) {
-        hash = (37 * hash) + RECORD_FIELD_NUMBER;
-        hash = (53 * hash) + getRecordList().hashCode();
-      }
-      hash = (37 * hash) + SOLVED_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSolved());
-      hash = (37 * hash) + GOOD_FIELD_NUMBER;
-      hash = (53 * hash) + getGood();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getId());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.QuestionMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3727,40 +3319,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.QuestionMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.QuestionMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -3777,19 +3363,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code QuestionMessage}
+     *
      * <pre>
      *问题信息消息体
      * </pre>
-     *
-     * Protobuf type {@code QuestionMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:QuestionMessage)
         com.ServerResponseMessage.QuestionMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -3797,7 +3383,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_QuestionMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_QuestionMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -3810,13 +3396,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getRecordFieldBuilder();
         }
       }
@@ -3901,32 +3486,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.QuestionMessage) {
           return mergeFrom((com.ServerResponseMessage.QuestionMessage)other);
@@ -3993,7 +3552,7 @@ public final class ServerResponseMessage {
               record_ = other.record_;
               bitField0_ = (bitField0_ & ~0x00000040);
               recordBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getRecordFieldBuilder() : null;
             } else {
               recordBuilder_.addAllMessages(other.record_);
@@ -4026,7 +3585,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.QuestionMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -4509,7 +4068,7 @@ public final class ServerResponseMessage {
          }
       }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.RepeatedFieldBuilder<
           com.ServerResponseMessage.Record, com.ServerResponseMessage.Record.Builder, com.ServerResponseMessage.RecordOrBuilder> recordBuilder_;
 
       /**
@@ -4725,11 +4284,11 @@ public final class ServerResponseMessage {
            getRecordBuilderList() {
         return getRecordFieldBuilder().getBuilderList();
       }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.RepeatedFieldBuilder<
           com.ServerResponseMessage.Record, com.ServerResponseMessage.Record.Builder, com.ServerResponseMessage.RecordOrBuilder> 
           getRecordFieldBuilder() {
         if (recordBuilder_ == null) {
-          recordBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          recordBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.ServerResponseMessage.Record, com.ServerResponseMessage.Record.Builder, com.ServerResponseMessage.RecordOrBuilder>(
                   record_,
                   ((bitField0_ & 0x00000040) == 0x00000040),
@@ -4847,7 +4406,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new QuestionMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -4931,18 +4499,18 @@ public final class ServerResponseMessage {
         getPicUrlBytes();
   }
   /**
+   * Protobuf type {@code UserMessage}
+   *
    * <pre>
    *用户信息消息体
    * </pre>
-   *
-   * Protobuf type {@code UserMessage}
    */
   public  static final class UserMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:UserMessage)
       UserMessageOrBuilder {
     // Use UserMessage.newBuilder() to construct.
-    private UserMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private UserMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private UserMessage() {
@@ -4963,8 +4531,7 @@ public final class ServerResponseMessage {
     }
     private UserMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -5028,10 +4595,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -5041,7 +4609,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_UserMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_UserMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5233,7 +4801,7 @@ public final class ServerResponseMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getUsernameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, username_);
       }
       if (good_ != 0) {
         output.writeInt32(2, good_);
@@ -5248,13 +4816,13 @@ public final class ServerResponseMessage {
         output.writeInt32(6, bonus_);
       }
       if (!getSignatureBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, signature_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 7, signature_);
       }
       if (!getMailAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, mailAddress_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 8, mailAddress_);
       }
       if (!getPicUrlBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, picUrl_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 9, picUrl_);
       }
     }
 
@@ -5264,7 +4832,7 @@ public final class ServerResponseMessage {
 
       size = 0;
       if (!getUsernameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, username_);
       }
       if (good_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -5283,77 +4851,19 @@ public final class ServerResponseMessage {
           .computeInt32Size(6, bonus_);
       }
       if (!getSignatureBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, signature_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(7, signature_);
       }
       if (!getMailAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, mailAddress_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(8, mailAddress_);
       }
       if (!getPicUrlBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, picUrl_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(9, picUrl_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.UserMessage)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.UserMessage other = (com.ServerResponseMessage.UserMessage) obj;
-
-      boolean result = true;
-      result = result && getUsername()
-          .equals(other.getUsername());
-      result = result && (getGood()
-          == other.getGood());
-      result = result && (getQuestionNum()
-          == other.getQuestionNum());
-      result = result && (getSolvedQuestionNum()
-          == other.getSolvedQuestionNum());
-      result = result && (getBonus()
-          == other.getBonus());
-      result = result && getSignature()
-          .equals(other.getSignature());
-      result = result && getMailAddress()
-          .equals(other.getMailAddress());
-      result = result && getPicUrl()
-          .equals(other.getPicUrl());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getUsername().hashCode();
-      hash = (37 * hash) + GOOD_FIELD_NUMBER;
-      hash = (53 * hash) + getGood();
-      hash = (37 * hash) + QUESTIONNUM_FIELD_NUMBER;
-      hash = (53 * hash) + getQuestionNum();
-      hash = (37 * hash) + SOLVEDQUESTIONNUM_FIELD_NUMBER;
-      hash = (53 * hash) + getSolvedQuestionNum();
-      hash = (37 * hash) + BONUS_FIELD_NUMBER;
-      hash = (53 * hash) + getBonus();
-      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
-      hash = (53 * hash) + getSignature().hashCode();
-      hash = (37 * hash) + MAIL_ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getMailAddress().hashCode();
-      hash = (37 * hash) + PIC_URL_FIELD_NUMBER;
-      hash = (53 * hash) + getPicUrl().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.UserMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5377,40 +4887,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.UserMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.UserMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.UserMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.UserMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.UserMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.UserMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -5427,19 +4931,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code UserMessage}
+     *
      * <pre>
      *用户信息消息体
      * </pre>
-     *
-     * Protobuf type {@code UserMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:UserMessage)
         com.ServerResponseMessage.UserMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -5447,7 +4951,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_UserMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_UserMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5460,13 +4964,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -5521,32 +5024,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.UserMessage) {
           return mergeFrom((com.ServerResponseMessage.UserMessage)other);
@@ -5603,7 +5080,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.UserMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -6021,7 +5498,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new UserMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -6073,18 +5559,18 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.UserMessageOrBuilder getUserMessageOrBuilder();
   }
   /**
+   * Protobuf type {@code LaunchResponse}
+   *
    * <pre>
    *登入回复
    * </pre>
-   *
-   * Protobuf type {@code LaunchResponse}
    */
   public  static final class LaunchResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:LaunchResponse)
       LaunchResponseOrBuilder {
     // Use LaunchResponse.newBuilder() to construct.
-    private LaunchResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private LaunchResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private LaunchResponse() {
@@ -6099,8 +5585,7 @@ public final class ServerResponseMessage {
     }
     private LaunchResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -6144,10 +5629,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -6157,7 +5643,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_LaunchResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_LaunchResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6244,7 +5730,7 @@ public final class ServerResponseMessage {
         output.writeBool(1, status_);
       }
       if (!getInformationBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, information_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, information_);
       }
       if (userMessage_ != null) {
         output.writeMessage(3, getUserMessage());
@@ -6261,7 +5747,7 @@ public final class ServerResponseMessage {
           .computeBoolSize(1, status_);
       }
       if (!getInformationBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, information_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, information_);
       }
       if (userMessage_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -6272,50 +5758,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.LaunchResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.LaunchResponse other = (com.ServerResponseMessage.LaunchResponse) obj;
-
-      boolean result = true;
-      result = result && (getStatus()
-          == other.getStatus());
-      result = result && getInformation()
-          .equals(other.getInformation());
-      result = result && (hasUserMessage() == other.hasUserMessage());
-      if (hasUserMessage()) {
-        result = result && getUserMessage()
-            .equals(other.getUserMessage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getStatus());
-      hash = (37 * hash) + INFORMATION_FIELD_NUMBER;
-      hash = (53 * hash) + getInformation().hashCode();
-      if (hasUserMessage()) {
-        hash = (37 * hash) + USERMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getUserMessage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.LaunchResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6339,40 +5781,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.LaunchResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.LaunchResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.LaunchResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.LaunchResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.LaunchResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.LaunchResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -6389,19 +5825,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code LaunchResponse}
+     *
      * <pre>
      *登入回复
      * </pre>
-     *
-     * Protobuf type {@code LaunchResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:LaunchResponse)
         com.ServerResponseMessage.LaunchResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -6409,7 +5845,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_LaunchResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_LaunchResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -6422,13 +5858,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -6476,32 +5911,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.LaunchResponse) {
           return mergeFrom((com.ServerResponseMessage.LaunchResponse)other);
@@ -6540,7 +5949,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.LaunchResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -6645,7 +6054,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.UserMessage userMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> userMessageBuilder_;
       /**
        * <code>optional .UserMessage userMessage = 3;</code>
@@ -6747,11 +6156,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .UserMessage userMessage = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> 
           getUserMessageFieldBuilder() {
         if (userMessageBuilder_ == null) {
-          userMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          userMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder>(
                   getUserMessage(),
                   getParentForChildren(),
@@ -6790,7 +6199,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new LaunchResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -6829,18 +6247,18 @@ public final class ServerResponseMessage {
         getInformationBytes();
   }
   /**
+   * Protobuf type {@code RegisterResponse}
+   *
    * <pre>
    *注册回复
    * </pre>
-   *
-   * Protobuf type {@code RegisterResponse}
    */
   public  static final class RegisterResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:RegisterResponse)
       RegisterResponseOrBuilder {
     // Use RegisterResponse.newBuilder() to construct.
-    private RegisterResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private RegisterResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private RegisterResponse() {
@@ -6855,8 +6273,7 @@ public final class ServerResponseMessage {
     }
     private RegisterResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -6887,10 +6304,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -6900,7 +6318,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_RegisterResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_RegisterResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6966,7 +6384,7 @@ public final class ServerResponseMessage {
         output.writeBool(1, success_);
       }
       if (!getInformationBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, information_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, information_);
       }
     }
 
@@ -6980,48 +6398,13 @@ public final class ServerResponseMessage {
           .computeBoolSize(1, success_);
       }
       if (!getInformationBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, information_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, information_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.RegisterResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.RegisterResponse other = (com.ServerResponseMessage.RegisterResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      result = result && getInformation()
-          .equals(other.getInformation());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (37 * hash) + INFORMATION_FIELD_NUMBER;
-      hash = (53 * hash) + getInformation().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.RegisterResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7045,40 +6428,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.RegisterResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.RegisterResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.RegisterResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.RegisterResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.RegisterResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.RegisterResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -7095,19 +6472,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code RegisterResponse}
+     *
      * <pre>
      *注册回复
      * </pre>
-     *
-     * Protobuf type {@code RegisterResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:RegisterResponse)
         com.ServerResponseMessage.RegisterResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -7115,7 +6492,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_RegisterResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_RegisterResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -7128,13 +6505,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -7171,32 +6547,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.RegisterResponse) {
           return mergeFrom((com.ServerResponseMessage.RegisterResponse)other);
@@ -7232,7 +6582,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.RegisterResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -7365,7 +6715,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new RegisterResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -7426,7 +6785,7 @@ public final class ServerResponseMessage {
     /**
      * <code>repeated string pictures = 5;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getPicturesList();
     /**
      * <code>repeated string pictures = 5;</code>
@@ -7455,36 +6814,8 @@ public final class ServerResponseMessage {
     /**
      * <code>map&lt;int32, int64&gt; markMap = 8;</code>
      */
-    int getMarkMapCount();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-    boolean containsMarkMap(
-        int key);
-    /**
-     * Use {@link #getMarkMapMap()} instead.
-     */
-    @java.lang.Deprecated
     java.util.Map<java.lang.Integer, java.lang.Long>
     getMarkMap();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-    java.util.Map<java.lang.Integer, java.lang.Long>
-    getMarkMapMap();
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-
-    long getMarkMapOrDefault(
-        int key,
-        long defaultValue);
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-
-    long getMarkMapOrThrow(
-        int key);
 
     /**
      * <code>optional int64 recordID = 9;</code>
@@ -7495,11 +6826,11 @@ public final class ServerResponseMessage {
    * Protobuf type {@code SendContent}
    */
   public  static final class SendContent extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:SendContent)
       SendContentOrBuilder {
     // Use SendContent.newBuilder() to construct.
-    private SendContent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private SendContent(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private SendContent() {
@@ -7520,8 +6851,7 @@ public final class ServerResponseMessage {
     }
     private SendContent(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -7600,10 +6930,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
           pictures_ = pictures_.getUnmodifiableView();
@@ -7627,7 +6958,7 @@ public final class ServerResponseMessage {
               "Invalid map field number: " + number);
       }
     }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_SendContent_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -7812,61 +7143,15 @@ public final class ServerResponseMessage {
       if (markMap_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
             MarkMapDefaultEntryHolder.defaultEntry);
-      }
+     }
       return markMap_;
     }
-
-    public int getMarkMapCount() {
-      return internalGetMarkMap().getMap().size();
-    }
     /**
      * <code>map&lt;int32, int64&gt; markMap = 8;</code>
      */
 
-    public boolean containsMarkMap(
-        int key) {
-      
-      return internalGetMarkMap().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getMarkMapMap()} instead.
-     */
-    @java.lang.Deprecated
     public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMap() {
-      return getMarkMapMap();
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-
-    public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMapMap() {
       return internalGetMarkMap().getMap();
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-
-    public long getMarkMapOrDefault(
-        int key,
-        long defaultValue) {
-      
-      java.util.Map<java.lang.Integer, java.lang.Long> map =
-          internalGetMarkMap().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-     */
-
-    public long getMarkMapOrThrow(
-        int key) {
-      
-      java.util.Map<java.lang.Integer, java.lang.Long> map =
-          internalGetMarkMap().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
     }
 
     public static final int RECORDID_FIELD_NUMBER = 9;
@@ -7894,16 +7179,16 @@ public final class ServerResponseMessage {
         output.writeInt64(1, questionID_);
       }
       if (!getContentBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, content_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 3, time_);
       }
       if (!getUserBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, user_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, user_);
       }
       for (int i = 0; i < pictures_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, pictures_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, pictures_.getRaw(i));
       }
       if (success_ != false) {
         output.writeBool(6, success_);
@@ -7935,13 +7220,13 @@ public final class ServerResponseMessage {
           .computeInt64Size(1, questionID_);
       }
       if (!getContentBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, content_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, content_);
       }
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(3, time_);
       }
       if (!getUserBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, user_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, user_);
       }
       {
         int dataSize = 0;
@@ -7978,76 +7263,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.SendContent)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.SendContent other = (com.ServerResponseMessage.SendContent) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      result = result && getContent()
-          .equals(other.getContent());
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getUser()
-          .equals(other.getUser());
-      result = result && getPicturesList()
-          .equals(other.getPicturesList());
-      result = result && (getSuccess()
-          == other.getSuccess());
-      result = result && (getIsmyself()
-          == other.getIsmyself());
-      result = result && internalGetMarkMap().equals(
-          other.internalGetMarkMap());
-      result = result && (getRecordID()
-          == other.getRecordID());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
-      hash = (53 * hash) + getContent().hashCode();
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + USER_FIELD_NUMBER;
-      hash = (53 * hash) + getUser().hashCode();
-      if (getPicturesCount() > 0) {
-        hash = (37 * hash) + PICTURES_FIELD_NUMBER;
-        hash = (53 * hash) + getPicturesList().hashCode();
-      }
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (37 * hash) + ISMYSELF_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsmyself());
-      if (!internalGetMarkMap().getMap().isEmpty()) {
-        hash = (37 * hash) + MARKMAP_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetMarkMap().hashCode();
-      }
-      hash = (37 * hash) + RECORDID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRecordID());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.SendContent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8071,40 +7286,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.SendContent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.SendContent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.SendContent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.SendContent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.SendContent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.SendContent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -8121,7 +7330,7 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -8129,7 +7338,7 @@ public final class ServerResponseMessage {
      * Protobuf type {@code SendContent}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:SendContent)
         com.ServerResponseMessage.SendContentOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -8159,7 +7368,7 @@ public final class ServerResponseMessage {
                 "Invalid map field number: " + number);
         }
       }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_SendContent_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -8172,13 +7381,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -8243,32 +7451,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.SendContent) {
           return mergeFrom((com.ServerResponseMessage.SendContent)other);
@@ -8333,7 +7515,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.SendContent) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -8729,7 +7911,7 @@ public final class ServerResponseMessage {
         if (markMap_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MarkMapDefaultEntryHolder.defaultEntry);
-        }
+       }
         return markMap_;
       }
       private com.google.protobuf.MapField<java.lang.Integer, java.lang.Long>
@@ -8744,78 +7926,15 @@ public final class ServerResponseMessage {
         }
         return markMap_;
       }
-
-      public int getMarkMapCount() {
-        return internalGetMarkMap().getMap().size();
-      }
       /**
        * <code>map&lt;int32, int64&gt; markMap = 8;</code>
        */
-
-      public boolean containsMarkMap(
-          int key) {
-        
-        return internalGetMarkMap().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getMarkMapMap()} instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMap() {
-        return getMarkMapMap();
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-       */
-
-      public java.util.Map<java.lang.Integer, java.lang.Long> getMarkMapMap() {
         return internalGetMarkMap().getMap();
       }
       /**
        * <code>map&lt;int32, int64&gt; markMap = 8;</code>
        */
-
-      public long getMarkMapOrDefault(
-          int key,
-          long defaultValue) {
-        
-        java.util.Map<java.lang.Integer, java.lang.Long> map =
-            internalGetMarkMap().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-       */
-
-      public long getMarkMapOrThrow(
-          int key) {
-        
-        java.util.Map<java.lang.Integer, java.lang.Long> map =
-            internalGetMarkMap().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearMarkMap() {
-        getMutableMarkMap().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-       */
-
-      public Builder removeMarkMap(
-          int key) {
-        
-        getMutableMarkMap().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.Integer, java.lang.Long>
       getMutableMarkMap() {
         return internalGetMutableMarkMap().getMutableMap();
@@ -8823,18 +7942,6 @@ public final class ServerResponseMessage {
       /**
        * <code>map&lt;int32, int64&gt; markMap = 8;</code>
        */
-      public Builder putMarkMap(
-          int key,
-          long value) {
-        
-        
-        getMutableMarkMap().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;int32, int64&gt; markMap = 8;</code>
-       */
-
       public Builder putAllMarkMap(
           java.util.Map<java.lang.Integer, java.lang.Long> values) {
         getMutableMarkMap().putAll(values);
@@ -8896,7 +8003,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new SendContent(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -8940,18 +8056,18 @@ public final class ServerResponseMessage {
         getTextBytes();
   }
   /**
+   * Protobuf type {@code AnnouncementMessage}
+   *
    * <pre>
    *通告信息
    * </pre>
-   *
-   * Protobuf type {@code AnnouncementMessage}
    */
   public  static final class AnnouncementMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:AnnouncementMessage)
       AnnouncementMessageOrBuilder {
     // Use AnnouncementMessage.newBuilder() to construct.
-    private AnnouncementMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private AnnouncementMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private AnnouncementMessage() {
@@ -8966,8 +8082,7 @@ public final class ServerResponseMessage {
     }
     private AnnouncementMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -8999,10 +8114,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -9012,7 +8128,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_AnnouncementMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_AnnouncementMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -9100,10 +8216,10 @@ public final class ServerResponseMessage {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, time_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, time_);
       }
       if (!getTextBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, text_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, text_);
       }
     }
 
@@ -9113,50 +8229,16 @@ public final class ServerResponseMessage {
 
       size = 0;
       if (!getTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, time_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, time_);
       }
       if (!getTextBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, text_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, text_);
       }
       memoizedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.AnnouncementMessage)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.AnnouncementMessage other = (com.ServerResponseMessage.AnnouncementMessage) obj;
-
-      boolean result = true;
-      result = result && getTime()
-          .equals(other.getTime());
-      result = result && getText()
-          .equals(other.getText());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime().hashCode();
-      hash = (37 * hash) + TEXT_FIELD_NUMBER;
-      hash = (53 * hash) + getText().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.AnnouncementMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9180,40 +8262,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.AnnouncementMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.AnnouncementMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.AnnouncementMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.AnnouncementMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.AnnouncementMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.AnnouncementMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -9230,19 +8306,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code AnnouncementMessage}
+     *
      * <pre>
      *通告信息
      * </pre>
-     *
-     * Protobuf type {@code AnnouncementMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:AnnouncementMessage)
         com.ServerResponseMessage.AnnouncementMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -9250,7 +8326,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_AnnouncementMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_AnnouncementMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9263,13 +8339,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -9306,32 +8381,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.AnnouncementMessage) {
           return mergeFrom((com.ServerResponseMessage.AnnouncementMessage)other);
@@ -9368,7 +8417,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.AnnouncementMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -9544,7 +8593,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new AnnouncementMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -9586,18 +8644,18 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
   }
   /**
+   * Protobuf type {@code QuestionEnterResponse}
+   *
    * <pre>
    *进入问题房间回复
    * </pre>
-   *
-   * Protobuf type {@code QuestionEnterResponse}
    */
   public  static final class QuestionEnterResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:QuestionEnterResponse)
       QuestionEnterResponseOrBuilder {
     // Use QuestionEnterResponse.newBuilder() to construct.
-    private QuestionEnterResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private QuestionEnterResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private QuestionEnterResponse() {
@@ -9611,8 +8669,7 @@ public final class ServerResponseMessage {
     }
     private QuestionEnterResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -9650,10 +8707,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -9663,7 +8721,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_QuestionEnterResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_QuestionEnterResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -9738,46 +8796,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.QuestionEnterResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.QuestionEnterResponse other = (com.ServerResponseMessage.QuestionEnterResponse) obj;
-
-      boolean result = true;
-      result = result && (getAllow()
-          == other.getAllow());
-      result = result && (hasQuestionMessage() == other.hasQuestionMessage());
-      if (hasQuestionMessage()) {
-        result = result && getQuestionMessage()
-            .equals(other.getQuestionMessage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + ALLOW_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getAllow());
-      if (hasQuestionMessage()) {
-        hash = (37 * hash) + QUESTIONMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionMessage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.QuestionEnterResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9801,40 +8819,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.QuestionEnterResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionEnterResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionEnterResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.QuestionEnterResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionEnterResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionEnterResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -9851,19 +8863,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code QuestionEnterResponse}
+     *
      * <pre>
      *进入问题房间回复
      * </pre>
-     *
-     * Protobuf type {@code QuestionEnterResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:QuestionEnterResponse)
         com.ServerResponseMessage.QuestionEnterResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -9871,7 +8883,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_QuestionEnterResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_QuestionEnterResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9884,13 +8896,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -9935,32 +8946,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.QuestionEnterResponse) {
           return mergeFrom((com.ServerResponseMessage.QuestionEnterResponse)other);
@@ -9995,7 +8980,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.QuestionEnterResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -10031,7 +9016,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.QuestionMessage questionMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
       /**
        * <code>optional .QuestionMessage questionMessage = 2;</code>
@@ -10133,11 +9118,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
           getQuestionMessageFieldBuilder() {
         if (questionMessageBuilder_ == null) {
-          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder>(
                   getQuestionMessage(),
                   getParentForChildren(),
@@ -10176,7 +9161,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new QuestionEnterResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -10205,18 +9199,18 @@ public final class ServerResponseMessage {
     boolean getSuccess();
   }
   /**
+   * Protobuf type {@code GoodQuestionResponse}
+   *
    * <pre>
    *赞问题回复
    * </pre>
-   *
-   * Protobuf type {@code GoodQuestionResponse}
    */
   public  static final class GoodQuestionResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GoodQuestionResponse)
       GoodQuestionResponseOrBuilder {
     // Use GoodQuestionResponse.newBuilder() to construct.
-    private GoodQuestionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GoodQuestionResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GoodQuestionResponse() {
@@ -10230,8 +9224,7 @@ public final class ServerResponseMessage {
     }
     private GoodQuestionResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -10256,10 +9249,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -10269,7 +9263,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_GoodQuestionResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_GoodQuestionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -10316,37 +9310,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.GoodQuestionResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.GoodQuestionResponse other = (com.ServerResponseMessage.GoodQuestionResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.GoodQuestionResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -10370,40 +9333,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.GoodQuestionResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GoodQuestionResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GoodQuestionResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.GoodQuestionResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GoodQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GoodQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -10420,19 +9377,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GoodQuestionResponse}
+     *
      * <pre>
      *赞问题回复
      * </pre>
-     *
-     * Protobuf type {@code GoodQuestionResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GoodQuestionResponse)
         com.ServerResponseMessage.GoodQuestionResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -10440,7 +9397,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_GoodQuestionResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_GoodQuestionResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -10453,13 +9410,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -10493,32 +9449,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.GoodQuestionResponse) {
           return mergeFrom((com.ServerResponseMessage.GoodQuestionResponse)other);
@@ -10550,7 +9480,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.GoodQuestionResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -10614,7 +9544,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GoodQuestionResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -10643,18 +9582,18 @@ public final class ServerResponseMessage {
     boolean getSuccess();
   }
   /**
+   * Protobuf type {@code GoodUserResponse}
+   *
    * <pre>
    *赞用户回复
    * </pre>
-   *
-   * Protobuf type {@code GoodUserResponse}
    */
   public  static final class GoodUserResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GoodUserResponse)
       GoodUserResponseOrBuilder {
     // Use GoodUserResponse.newBuilder() to construct.
-    private GoodUserResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GoodUserResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GoodUserResponse() {
@@ -10668,8 +9607,7 @@ public final class ServerResponseMessage {
     }
     private GoodUserResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -10694,10 +9632,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -10707,7 +9646,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_GoodUserResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_GoodUserResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -10754,37 +9693,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.GoodUserResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.GoodUserResponse other = (com.ServerResponseMessage.GoodUserResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.GoodUserResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -10808,40 +9716,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.GoodUserResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GoodUserResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GoodUserResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.GoodUserResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GoodUserResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GoodUserResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -10858,19 +9760,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GoodUserResponse}
+     *
      * <pre>
      *赞用户回复
      * </pre>
-     *
-     * Protobuf type {@code GoodUserResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GoodUserResponse)
         com.ServerResponseMessage.GoodUserResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -10878,7 +9780,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_GoodUserResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_GoodUserResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -10891,13 +9793,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -10931,32 +9832,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.GoodUserResponse) {
           return mergeFrom((com.ServerResponseMessage.GoodUserResponse)other);
@@ -10988,7 +9863,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.GoodUserResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -11052,7 +9927,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GoodUserResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -11094,18 +9978,18 @@ public final class ServerResponseMessage {
     boolean getExist();
   }
   /**
+   * Protobuf type {@code QuestionInformationResponse}
+   *
    * <pre>
    *问题信息回复
    * </pre>
-   *
-   * Protobuf type {@code QuestionInformationResponse}
    */
   public  static final class QuestionInformationResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:QuestionInformationResponse)
       QuestionInformationResponseOrBuilder {
     // Use QuestionInformationResponse.newBuilder() to construct.
-    private QuestionInformationResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private QuestionInformationResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private QuestionInformationResponse() {
@@ -11119,8 +10003,7 @@ public final class ServerResponseMessage {
     }
     private QuestionInformationResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -11158,10 +10041,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -11171,7 +10055,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_QuestionInformationResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_QuestionInformationResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -11246,46 +10130,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.QuestionInformationResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.QuestionInformationResponse other = (com.ServerResponseMessage.QuestionInformationResponse) obj;
-
-      boolean result = true;
-      result = result && (hasQuestionMessage() == other.hasQuestionMessage());
-      if (hasQuestionMessage()) {
-        result = result && getQuestionMessage()
-            .equals(other.getQuestionMessage());
-      }
-      result = result && (getExist()
-          == other.getExist());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasQuestionMessage()) {
-        hash = (37 * hash) + QUESTIONMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionMessage().hashCode();
-      }
-      hash = (37 * hash) + EXIST_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getExist());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.QuestionInformationResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11309,40 +10153,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.QuestionInformationResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionInformationResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionInformationResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.QuestionInformationResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.QuestionInformationResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.QuestionInformationResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -11359,19 +10197,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code QuestionInformationResponse}
+     *
      * <pre>
      *问题信息回复
      * </pre>
-     *
-     * Protobuf type {@code QuestionInformationResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:QuestionInformationResponse)
         com.ServerResponseMessage.QuestionInformationResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -11379,7 +10217,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_QuestionInformationResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_QuestionInformationResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -11392,13 +10230,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -11443,32 +10280,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.QuestionInformationResponse) {
           return mergeFrom((com.ServerResponseMessage.QuestionInformationResponse)other);
@@ -11503,7 +10314,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.QuestionInformationResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -11513,7 +10324,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.QuestionMessage questionMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
       /**
        * <code>optional .QuestionMessage questionMessage = 1;</code>
@@ -11615,11 +10426,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .QuestionMessage questionMessage = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
           getQuestionMessageFieldBuilder() {
         if (questionMessageBuilder_ == null) {
-          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder>(
                   getQuestionMessage(),
                   getParentForChildren(),
@@ -11684,7 +10495,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new QuestionInformationResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -11726,18 +10546,18 @@ public final class ServerResponseMessage {
     boolean getExist();
   }
   /**
+   * Protobuf type {@code UserInformationResponse}
+   *
    * <pre>
    *用户信息回复
    * </pre>
-   *
-   * Protobuf type {@code UserInformationResponse}
    */
   public  static final class UserInformationResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:UserInformationResponse)
       UserInformationResponseOrBuilder {
     // Use UserInformationResponse.newBuilder() to construct.
-    private UserInformationResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private UserInformationResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private UserInformationResponse() {
@@ -11751,8 +10571,7 @@ public final class ServerResponseMessage {
     }
     private UserInformationResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -11790,10 +10609,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -11803,7 +10623,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_UserInformationResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_UserInformationResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -11878,46 +10698,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.UserInformationResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.UserInformationResponse other = (com.ServerResponseMessage.UserInformationResponse) obj;
-
-      boolean result = true;
-      result = result && (hasUserMessage() == other.hasUserMessage());
-      if (hasUserMessage()) {
-        result = result && getUserMessage()
-            .equals(other.getUserMessage());
-      }
-      result = result && (getExist()
-          == other.getExist());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasUserMessage()) {
-        hash = (37 * hash) + USERMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getUserMessage().hashCode();
-      }
-      hash = (37 * hash) + EXIST_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getExist());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.UserInformationResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11941,40 +10721,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.UserInformationResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.UserInformationResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.UserInformationResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.UserInformationResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.UserInformationResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.UserInformationResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -11991,19 +10765,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code UserInformationResponse}
+     *
      * <pre>
      *用户信息回复
      * </pre>
-     *
-     * Protobuf type {@code UserInformationResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:UserInformationResponse)
         com.ServerResponseMessage.UserInformationResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -12011,7 +10785,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_UserInformationResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_UserInformationResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -12024,13 +10798,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -12075,32 +10848,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.UserInformationResponse) {
           return mergeFrom((com.ServerResponseMessage.UserInformationResponse)other);
@@ -12135,7 +10882,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.UserInformationResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -12145,7 +10892,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.UserMessage userMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> userMessageBuilder_;
       /**
        * <code>optional .UserMessage userMessage = 1;</code>
@@ -12247,11 +10994,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .UserMessage userMessage = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder> 
           getUserMessageFieldBuilder() {
         if (userMessageBuilder_ == null) {
-          userMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          userMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.UserMessage, com.ServerResponseMessage.UserMessage.Builder, com.ServerResponseMessage.UserMessageOrBuilder>(
                   getUserMessage(),
                   getParentForChildren(),
@@ -12316,7 +11063,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new UserInformationResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -12369,18 +11125,18 @@ public final class ServerResponseMessage {
         int index);
   }
   /**
+   * Protobuf type {@code GetQuestionListResponse}
+   *
    * <pre>
    *更新问题房间列表回复
    * </pre>
-   *
-   * Protobuf type {@code GetQuestionListResponse}
    */
   public  static final class GetQuestionListResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GetQuestionListResponse)
       GetQuestionListResponseOrBuilder {
     // Use GetQuestionListResponse.newBuilder() to construct.
-    private GetQuestionListResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GetQuestionListResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GetQuestionListResponse() {
@@ -12395,8 +11151,7 @@ public final class ServerResponseMessage {
     }
     private GetQuestionListResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -12423,17 +11178,17 @@ public final class ServerResponseMessage {
                 questionListMessage_ = new java.util.ArrayList<com.ServerResponseMessage.QuestionListMessage>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              questionListMessage_.add(
-                  input.readMessage(com.ServerResponseMessage.QuestionListMessage.parser(), extensionRegistry));
+              questionListMessage_.add(input.readMessage(com.ServerResponseMessage.QuestionListMessage.parser(), extensionRegistry));
               break;
             }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
           questionListMessage_ = java.util.Collections.unmodifiableList(questionListMessage_);
@@ -12446,7 +11201,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_GetQuestionListResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_GetQuestionListResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -12536,42 +11291,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.GetQuestionListResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.GetQuestionListResponse other = (com.ServerResponseMessage.GetQuestionListResponse) obj;
-
-      boolean result = true;
-      result = result && (getNum()
-          == other.getNum());
-      result = result && getQuestionListMessageList()
-          .equals(other.getQuestionListMessageList());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + NUM_FIELD_NUMBER;
-      hash = (53 * hash) + getNum();
-      if (getQuestionListMessageCount() > 0) {
-        hash = (37 * hash) + QUESTIONLISTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionListMessageList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.GetQuestionListResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -12595,40 +11314,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.GetQuestionListResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GetQuestionListResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GetQuestionListResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.GetQuestionListResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GetQuestionListResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GetQuestionListResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -12645,19 +11358,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code GetQuestionListResponse}
+     *
      * <pre>
      *更新问题房间列表回复
      * </pre>
-     *
-     * Protobuf type {@code GetQuestionListResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GetQuestionListResponse)
         com.ServerResponseMessage.GetQuestionListResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -12665,7 +11378,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_GetQuestionListResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_GetQuestionListResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -12678,13 +11391,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getQuestionListMessageFieldBuilder();
         }
       }
@@ -12737,32 +11449,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.GetQuestionListResponse) {
           return mergeFrom((com.ServerResponseMessage.GetQuestionListResponse)other);
@@ -12796,7 +11482,7 @@ public final class ServerResponseMessage {
               questionListMessage_ = other.questionListMessage_;
               bitField0_ = (bitField0_ & ~0x00000002);
               questionListMessageBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getQuestionListMessageFieldBuilder() : null;
             } else {
               questionListMessageBuilder_.addAllMessages(other.questionListMessage_);
@@ -12820,7 +11506,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.GetQuestionListResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -12865,7 +11551,7 @@ public final class ServerResponseMessage {
          }
       }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.RepeatedFieldBuilder<
           com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> questionListMessageBuilder_;
 
       /**
@@ -13081,11 +11767,11 @@ public final class ServerResponseMessage {
            getQuestionListMessageBuilderList() {
         return getQuestionListMessageFieldBuilder().getBuilderList();
       }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.RepeatedFieldBuilder<
           com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> 
           getQuestionListMessageFieldBuilder() {
         if (questionListMessageBuilder_ == null) {
-          questionListMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          questionListMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder>(
                   questionListMessage_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
@@ -13125,7 +11811,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GetQuestionListResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -13167,18 +11862,18 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.QuestionMessageOrBuilder getQuestionMessageOrBuilder();
   }
   /**
+   * Protobuf type {@code CreateQuestionResponse}
+   *
    * <pre>
    *提出问题回复
    * </pre>
-   *
-   * Protobuf type {@code CreateQuestionResponse}
    */
   public  static final class CreateQuestionResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:CreateQuestionResponse)
       CreateQuestionResponseOrBuilder {
     // Use CreateQuestionResponse.newBuilder() to construct.
-    private CreateQuestionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private CreateQuestionResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private CreateQuestionResponse() {
@@ -13192,8 +11887,7 @@ public final class ServerResponseMessage {
     }
     private CreateQuestionResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -13231,10 +11925,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -13244,7 +11939,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_CreateQuestionResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_CreateQuestionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -13319,46 +12014,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.CreateQuestionResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.CreateQuestionResponse other = (com.ServerResponseMessage.CreateQuestionResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      result = result && (hasQuestionMessage() == other.hasQuestionMessage());
-      if (hasQuestionMessage()) {
-        result = result && getQuestionMessage()
-            .equals(other.getQuestionMessage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      if (hasQuestionMessage()) {
-        hash = (37 * hash) + QUESTIONMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionMessage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.CreateQuestionResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -13382,40 +12037,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.CreateQuestionResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.CreateQuestionResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.CreateQuestionResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.CreateQuestionResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.CreateQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.CreateQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -13432,19 +12081,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code CreateQuestionResponse}
+     *
      * <pre>
      *提出问题回复
      * </pre>
-     *
-     * Protobuf type {@code CreateQuestionResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:CreateQuestionResponse)
         com.ServerResponseMessage.CreateQuestionResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -13452,7 +12101,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_CreateQuestionResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_CreateQuestionResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -13465,13 +12114,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -13516,32 +12164,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.CreateQuestionResponse) {
           return mergeFrom((com.ServerResponseMessage.CreateQuestionResponse)other);
@@ -13576,7 +12198,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.CreateQuestionResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -13612,7 +12234,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.QuestionMessage questionMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> questionMessageBuilder_;
       /**
        * <code>optional .QuestionMessage questionMessage = 2;</code>
@@ -13714,11 +12336,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .QuestionMessage questionMessage = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder> 
           getQuestionMessageFieldBuilder() {
         if (questionMessageBuilder_ == null) {
-          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.QuestionMessage, com.ServerResponseMessage.QuestionMessage.Builder, com.ServerResponseMessage.QuestionMessageOrBuilder>(
                   getQuestionMessage(),
                   getParentForChildren(),
@@ -13757,7 +12379,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new CreateQuestionResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -13786,18 +12417,18 @@ public final class ServerResponseMessage {
     boolean getSuccess();
   }
   /**
+   * Protobuf type {@code AbandonQuestionResponse}
+   *
    * <pre>
    *取消问题回复
    * </pre>
-   *
-   * Protobuf type {@code AbandonQuestionResponse}
    */
   public  static final class AbandonQuestionResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:AbandonQuestionResponse)
       AbandonQuestionResponseOrBuilder {
     // Use AbandonQuestionResponse.newBuilder() to construct.
-    private AbandonQuestionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private AbandonQuestionResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private AbandonQuestionResponse() {
@@ -13811,8 +12442,7 @@ public final class ServerResponseMessage {
     }
     private AbandonQuestionResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -13837,10 +12467,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -13850,7 +12481,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_AbandonQuestionResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_AbandonQuestionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -13897,37 +12528,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.AbandonQuestionResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.AbandonQuestionResponse other = (com.ServerResponseMessage.AbandonQuestionResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.AbandonQuestionResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -13951,40 +12551,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.AbandonQuestionResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.AbandonQuestionResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.AbandonQuestionResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.AbandonQuestionResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.AbandonQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.AbandonQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -14001,19 +12595,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code AbandonQuestionResponse}
+     *
      * <pre>
      *取消问题回复
      * </pre>
-     *
-     * Protobuf type {@code AbandonQuestionResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:AbandonQuestionResponse)
         com.ServerResponseMessage.AbandonQuestionResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -14021,7 +12615,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_AbandonQuestionResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_AbandonQuestionResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -14034,13 +12628,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -14074,32 +12667,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.AbandonQuestionResponse) {
           return mergeFrom((com.ServerResponseMessage.AbandonQuestionResponse)other);
@@ -14131,7 +12698,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.AbandonQuestionResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -14195,7 +12762,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new AbandonQuestionResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -14248,18 +12824,18 @@ public final class ServerResponseMessage {
         int index);
   }
   /**
+   * Protobuf type {@code SearchInformationResponse}
+   *
    * <pre>
    *搜索内容回复
    * </pre>
-   *
-   * Protobuf type {@code SearchInformationResponse}
    */
   public  static final class SearchInformationResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:SearchInformationResponse)
       SearchInformationResponseOrBuilder {
     // Use SearchInformationResponse.newBuilder() to construct.
-    private SearchInformationResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private SearchInformationResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private SearchInformationResponse() {
@@ -14274,8 +12850,7 @@ public final class ServerResponseMessage {
     }
     private SearchInformationResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -14302,17 +12877,17 @@ public final class ServerResponseMessage {
                 questionListMessage_ = new java.util.ArrayList<com.ServerResponseMessage.QuestionListMessage>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              questionListMessage_.add(
-                  input.readMessage(com.ServerResponseMessage.QuestionListMessage.parser(), extensionRegistry));
+              questionListMessage_.add(input.readMessage(com.ServerResponseMessage.QuestionListMessage.parser(), extensionRegistry));
               break;
             }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
           questionListMessage_ = java.util.Collections.unmodifiableList(questionListMessage_);
@@ -14325,7 +12900,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_SearchInformationResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_SearchInformationResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -14415,42 +12990,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.SearchInformationResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.SearchInformationResponse other = (com.ServerResponseMessage.SearchInformationResponse) obj;
-
-      boolean result = true;
-      result = result && (getSearchID()
-          == other.getSearchID());
-      result = result && getQuestionListMessageList()
-          .equals(other.getQuestionListMessageList());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SEARCHID_FIELD_NUMBER;
-      hash = (53 * hash) + getSearchID();
-      if (getQuestionListMessageCount() > 0) {
-        hash = (37 * hash) + QUESTIONLISTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionListMessageList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.SearchInformationResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -14474,40 +13013,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.SearchInformationResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.SearchInformationResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.SearchInformationResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.SearchInformationResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.SearchInformationResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.SearchInformationResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -14524,19 +13057,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code SearchInformationResponse}
+     *
      * <pre>
      *搜索内容回复
      * </pre>
-     *
-     * Protobuf type {@code SearchInformationResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:SearchInformationResponse)
         com.ServerResponseMessage.SearchInformationResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -14544,7 +13077,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_SearchInformationResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_SearchInformationResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -14557,13 +13090,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getQuestionListMessageFieldBuilder();
         }
       }
@@ -14616,32 +13148,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.SearchInformationResponse) {
           return mergeFrom((com.ServerResponseMessage.SearchInformationResponse)other);
@@ -14675,7 +13181,7 @@ public final class ServerResponseMessage {
               questionListMessage_ = other.questionListMessage_;
               bitField0_ = (bitField0_ & ~0x00000002);
               questionListMessageBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getQuestionListMessageFieldBuilder() : null;
             } else {
               questionListMessageBuilder_.addAllMessages(other.questionListMessage_);
@@ -14699,7 +13205,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.SearchInformationResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -14744,7 +13250,7 @@ public final class ServerResponseMessage {
          }
       }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.RepeatedFieldBuilder<
           com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> questionListMessageBuilder_;
 
       /**
@@ -14960,11 +13466,11 @@ public final class ServerResponseMessage {
            getQuestionListMessageBuilderList() {
         return getQuestionListMessageFieldBuilder().getBuilderList();
       }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
+      private com.google.protobuf.RepeatedFieldBuilder<
           com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder> 
           getQuestionListMessageFieldBuilder() {
         if (questionListMessageBuilder_ == null) {
-          questionListMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          questionListMessageBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               com.ServerResponseMessage.QuestionListMessage, com.ServerResponseMessage.QuestionListMessage.Builder, com.ServerResponseMessage.QuestionListMessageOrBuilder>(
                   questionListMessage_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
@@ -15004,7 +13510,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new SearchInformationResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -15035,41 +13550,13 @@ public final class ServerResponseMessage {
     /**
      * <code>map&lt;string, string&gt; sign = 2;</code>
      */
-    int getSignCount();
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-    boolean containsSign(
-        java.lang.String key);
-    /**
-     * Use {@link #getSignMap()} instead.
-     */
-    @java.lang.Deprecated
     java.util.Map<java.lang.String, java.lang.String>
     getSign();
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.String>
-    getSignMap();
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-
-    java.lang.String getSignOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-
-    java.lang.String getSignOrThrow(
-        java.lang.String key);
 
     /**
      * <code>repeated string md5 = 5;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getMd5List();
     /**
      * <code>repeated string md5 = 5;</code>
@@ -15097,7 +13584,7 @@ public final class ServerResponseMessage {
     /**
      * <code>repeated string localFilePath = 4;</code>
      */
-    java.util.List<java.lang.String>
+    com.google.protobuf.ProtocolStringList
         getLocalFilePathList();
     /**
      * <code>repeated string localFilePath = 4;</code>
@@ -15114,18 +13601,18 @@ public final class ServerResponseMessage {
         getLocalFilePathBytes(int index);
   }
   /**
+   * Protobuf type {@code FileResponse}
+   *
    * <pre>
    *文件回复
    * </pre>
-   *
-   * Protobuf type {@code FileResponse}
    */
   public  static final class FileResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:FileResponse)
       FileResponseOrBuilder {
     // Use FileResponse.newBuilder() to construct.
-    private FileResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private FileResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private FileResponse() {
@@ -15142,8 +13629,7 @@ public final class ServerResponseMessage {
     }
     private FileResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -15204,10 +13690,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
           localFilePath_ = localFilePath_.getUnmodifiableView();
@@ -15234,7 +13721,7 @@ public final class ServerResponseMessage {
               "Invalid map field number: " + number);
       }
     }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_FileResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -15249,12 +13736,12 @@ public final class ServerResponseMessage {
       /**
        * <code>DOWNLOAD = 0;</code>
        */
-      DOWNLOAD(0),
+      DOWNLOAD(0, 0),
       /**
        * <code>UPLOAD = 1;</code>
        */
-      UPLOAD(1),
-      UNRECOGNIZED(-1),
+      UPLOAD(1, 1),
+      UNRECOGNIZED(-1, -1),
       ;
 
       /**
@@ -15268,22 +13755,14 @@ public final class ServerResponseMessage {
 
 
       public final int getNumber() {
-        if (this == UNRECOGNIZED) {
+        if (index == -1) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static SIGNTYPE valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static SIGNTYPE forNumber(int value) {
         switch (value) {
           case 0: return DOWNLOAD;
           case 1: return UPLOAD;
@@ -15299,13 +13778,13 @@ public final class ServerResponseMessage {
           SIGNTYPE> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<SIGNTYPE>() {
               public SIGNTYPE findValueByNumber(int number) {
-                return SIGNTYPE.forNumber(number);
+                return SIGNTYPE.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -15330,9 +13809,11 @@ public final class ServerResponseMessage {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private SIGNTYPE(int value) {
+      private SIGNTYPE(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -15368,61 +13849,15 @@ public final class ServerResponseMessage {
       if (sign_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
             SignDefaultEntryHolder.defaultEntry);
-      }
+     }
       return sign_;
     }
-
-    public int getSignCount() {
-      return internalGetSign().getMap().size();
-    }
     /**
      * <code>map&lt;string, string&gt; sign = 2;</code>
      */
 
-    public boolean containsSign(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetSign().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getSignMap()} instead.
-     */
-    @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getSign() {
-      return getSignMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.String> getSignMap() {
       return internalGetSign().getMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-
-    public java.lang.String getSignOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetSign().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, string&gt; sign = 2;</code>
-     */
-
-    public java.lang.String getSignOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetSign().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
     }
 
     public static final int MD5_FIELD_NUMBER = 5;
@@ -15527,10 +13962,10 @@ public final class ServerResponseMessage {
         output.writeEnum(3, signType_);
       }
       for (int i = 0; i < localFilePath_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, localFilePath_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, localFilePath_.getRaw(i));
       }
       for (int i = 0; i < md5_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, md5_.getRaw(i));
+        com.google.protobuf.GeneratedMessage.writeString(output, 5, md5_.getRaw(i));
       }
     }
 
@@ -15578,58 +14013,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.FileResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.FileResponse other = (com.ServerResponseMessage.FileResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      result = result && internalGetSign().equals(
-          other.internalGetSign());
-      result = result && getMd5List()
-          .equals(other.getMd5List());
-      result = result && signType_ == other.signType_;
-      result = result && getLocalFilePathList()
-          .equals(other.getLocalFilePathList());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      if (!internalGetSign().getMap().isEmpty()) {
-        hash = (37 * hash) + SIGN_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetSign().hashCode();
-      }
-      if (getMd5Count() > 0) {
-        hash = (37 * hash) + MD5_FIELD_NUMBER;
-        hash = (53 * hash) + getMd5List().hashCode();
-      }
-      hash = (37 * hash) + SIGNTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + signType_;
-      if (getLocalFilePathCount() > 0) {
-        hash = (37 * hash) + LOCALFILEPATH_FIELD_NUMBER;
-        hash = (53 * hash) + getLocalFilePathList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.FileResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -15653,40 +14036,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.FileResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.FileResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.FileResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.FileResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.FileResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.FileResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -15703,19 +14080,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code FileResponse}
+     *
      * <pre>
      *文件回复
      * </pre>
-     *
-     * Protobuf type {@code FileResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:FileResponse)
         com.ServerResponseMessage.FileResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -15745,7 +14122,7 @@ public final class ServerResponseMessage {
                 "Invalid map field number: " + number);
         }
       }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_FileResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -15758,13 +14135,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -15821,32 +14197,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.FileResponse) {
           return mergeFrom((com.ServerResponseMessage.FileResponse)other);
@@ -15903,7 +14253,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.FileResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -15946,7 +14296,7 @@ public final class ServerResponseMessage {
         if (sign_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               SignDefaultEntryHolder.defaultEntry);
-        }
+       }
         return sign_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -15961,78 +14311,15 @@ public final class ServerResponseMessage {
         }
         return sign_;
       }
-
-      public int getSignCount() {
-        return internalGetSign().getMap().size();
-      }
       /**
        * <code>map&lt;string, string&gt; sign = 2;</code>
        */
-
-      public boolean containsSign(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetSign().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getSignMap()} instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getSign() {
-        return getSignMap();
-      }
-      /**
-       * <code>map&lt;string, string&gt; sign = 2;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.String> getSignMap() {
         return internalGetSign().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; sign = 2;</code>
        */
-
-      public java.lang.String getSignOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetSign().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, string&gt; sign = 2;</code>
-       */
-
-      public java.lang.String getSignOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetSign().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearSign() {
-        getMutableSign().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, string&gt; sign = 2;</code>
-       */
-
-      public Builder removeSign(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        getMutableSign().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
       getMutableSign() {
         return internalGetMutableSign().getMutableMap();
@@ -16040,18 +14327,6 @@ public final class ServerResponseMessage {
       /**
        * <code>map&lt;string, string&gt; sign = 2;</code>
        */
-      public Builder putSign(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        getMutableSign().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;string, string&gt; sign = 2;</code>
-       */
-
       public Builder putAllSign(
           java.util.Map<java.lang.String, java.lang.String> values) {
         getMutableSign().putAll(values);
@@ -16319,7 +14594,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new FileResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -16353,18 +14637,18 @@ public final class ServerResponseMessage {
     boolean getSuccess();
   }
   /**
+   * Protobuf type {@code SolvedQuestionResponse}
+   *
    * <pre>
    *标志解决问题的回复
    * </pre>
-   *
-   * Protobuf type {@code SolvedQuestionResponse}
    */
   public  static final class SolvedQuestionResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:SolvedQuestionResponse)
       SolvedQuestionResponseOrBuilder {
     // Use SolvedQuestionResponse.newBuilder() to construct.
-    private SolvedQuestionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private SolvedQuestionResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private SolvedQuestionResponse() {
@@ -16379,8 +14663,7 @@ public final class ServerResponseMessage {
     }
     private SolvedQuestionResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -16410,10 +14693,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -16423,7 +14707,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -16486,42 +14770,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.SolvedQuestionResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.SolvedQuestionResponse other = (com.ServerResponseMessage.SolvedQuestionResponse) obj;
-
-      boolean result = true;
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      result = result && (getSuccess()
-          == other.getSuccess());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -16545,40 +14793,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.SolvedQuestionResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.SolvedQuestionResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.SolvedQuestionResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -16595,19 +14837,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code SolvedQuestionResponse}
+     *
      * <pre>
      *标志解决问题的回复
      * </pre>
-     *
-     * Protobuf type {@code SolvedQuestionResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:SolvedQuestionResponse)
         com.ServerResponseMessage.SolvedQuestionResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -16615,7 +14857,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_SolvedQuestionResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -16628,13 +14870,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -16671,32 +14912,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.SolvedQuestionResponse) {
           return mergeFrom((com.ServerResponseMessage.SolvedQuestionResponse)other);
@@ -16731,7 +14946,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.SolvedQuestionResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -16821,7 +15036,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new SolvedQuestionResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -16871,11 +15095,11 @@ public final class ServerResponseMessage {
    * Protobuf type {@code UpdateMessage}
    */
   public  static final class UpdateMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:UpdateMessage)
       UpdateMessageOrBuilder {
     // Use UpdateMessage.newBuilder() to construct.
-    private UpdateMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private UpdateMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private UpdateMessage() {
@@ -16890,8 +15114,7 @@ public final class ServerResponseMessage {
     }
     private UpdateMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -16934,10 +15157,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -16947,7 +15171,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_UpdateMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_UpdateMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -16977,11 +15201,11 @@ public final class ServerResponseMessage {
      * Protobuf type {@code UpdateMessage.UserEnter}
      */
     public  static final class UserEnter extends
-        com.google.protobuf.GeneratedMessageV3 implements
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:UpdateMessage.UserEnter)
         UserEnterOrBuilder {
       // Use UserEnter.newBuilder() to construct.
-      private UserEnter(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private UserEnter(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
       }
       private UserEnter() {
@@ -16996,8 +15220,7 @@ public final class ServerResponseMessage {
       }
       private UserEnter(
           com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
         this();
         int mutable_bitField0_ = 0;
         try {
@@ -17028,10 +15251,11 @@ public final class ServerResponseMessage {
             }
           }
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
+          throw new RuntimeException(e.setUnfinishedMessage(this));
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+          throw new RuntimeException(
+              new com.google.protobuf.InvalidProtocolBufferException(
+                  e.getMessage()).setUnfinishedMessage(this));
         } finally {
           makeExtensionsImmutable();
         }
@@ -17041,7 +15265,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_UpdateMessage_UserEnter_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_UpdateMessage_UserEnter_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -17104,7 +15328,7 @@ public final class ServerResponseMessage {
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (!getUsernameBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+          com.google.protobuf.GeneratedMessage.writeString(output, 1, username_);
         }
         if (questionID_ != 0L) {
           output.writeInt64(2, questionID_);
@@ -17117,7 +15341,7 @@ public final class ServerResponseMessage {
 
         size = 0;
         if (!getUsernameBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+          size += com.google.protobuf.GeneratedMessage.computeStringSize(1, username_);
         }
         if (questionID_ != 0L) {
           size += com.google.protobuf.CodedOutputStream
@@ -17128,41 +15352,6 @@ public final class ServerResponseMessage {
       }
 
       private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ServerResponseMessage.UpdateMessage.UserEnter)) {
-          return super.equals(obj);
-        }
-        com.ServerResponseMessage.UpdateMessage.UserEnter other = (com.ServerResponseMessage.UpdateMessage.UserEnter) obj;
-
-        boolean result = true;
-        result = result && getUsername()
-            .equals(other.getUsername());
-        result = result && (getQuestionID()
-            == other.getQuestionID());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-        hash = (53 * hash) + getUsername().hashCode();
-        hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getQuestionID());
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -17186,40 +15375,34 @@ public final class ServerResponseMessage {
       }
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static com.ServerResponseMessage.UpdateMessage.UserEnter parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
       public Builder newBuilderForType() { return newBuilder(); }
@@ -17236,7 +15419,7 @@ public final class ServerResponseMessage {
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -17244,7 +15427,7 @@ public final class ServerResponseMessage {
        * Protobuf type {@code UpdateMessage.UserEnter}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:UpdateMessage.UserEnter)
           com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -17252,7 +15435,7 @@ public final class ServerResponseMessage {
           return com.ServerResponseMessage.internal_static_UpdateMessage_UserEnter_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ServerResponseMessage.internal_static_UpdateMessage_UserEnter_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -17265,13 +15448,12 @@ public final class ServerResponseMessage {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           }
         }
         public Builder clear() {
@@ -17308,32 +15490,6 @@ public final class ServerResponseMessage {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof com.ServerResponseMessage.UpdateMessage.UserEnter) {
             return mergeFrom((com.ServerResponseMessage.UpdateMessage.UserEnter)other);
@@ -17369,7 +15525,7 @@ public final class ServerResponseMessage {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (com.ServerResponseMessage.UpdateMessage.UserEnter) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -17502,7 +15658,16 @@ public final class ServerResponseMessage {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
+          try {
             return new UserEnter(input, extensionRegistry);
+          } catch (RuntimeException e) {
+            if (e.getCause() instanceof
+                com.google.protobuf.InvalidProtocolBufferException) {
+              throw (com.google.protobuf.InvalidProtocolBufferException)
+                  e.getCause();
+            }
+            throw e;
+          }
         }
       };
 
@@ -17605,50 +15770,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.UpdateMessage)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.UpdateMessage other = (com.ServerResponseMessage.UpdateMessage) obj;
-
-      boolean result = true;
-      result = result && (hasUserEnter() == other.hasUserEnter());
-      if (hasUserEnter()) {
-        result = result && getUserEnter()
-            .equals(other.getUserEnter());
-      }
-      result = result && getWhiteBoardImage()
-          .equals(other.getWhiteBoardImage());
-      result = result && (getSendImage()
-          == other.getSendImage());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasUserEnter()) {
-        hash = (37 * hash) + USERENTER_FIELD_NUMBER;
-        hash = (53 * hash) + getUserEnter().hashCode();
-      }
-      hash = (37 * hash) + WHITEBOARDIMAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getWhiteBoardImage().hashCode();
-      hash = (37 * hash) + SENDIMAGE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSendImage());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.UpdateMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -17672,40 +15793,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.UpdateMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.UpdateMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.UpdateMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.UpdateMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.UpdateMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.UpdateMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -17722,7 +15837,7 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -17730,7 +15845,7 @@ public final class ServerResponseMessage {
      * Protobuf type {@code UpdateMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:UpdateMessage)
         com.ServerResponseMessage.UpdateMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -17738,7 +15853,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_UpdateMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_UpdateMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -17751,13 +15866,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -17805,32 +15919,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.UpdateMessage) {
           return mergeFrom((com.ServerResponseMessage.UpdateMessage)other);
@@ -17868,7 +15956,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.UpdateMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -17878,7 +15966,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.UpdateMessage.UserEnter userEnter_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UpdateMessage.UserEnter, com.ServerResponseMessage.UpdateMessage.UserEnter.Builder, com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder> userEnterBuilder_;
       /**
        * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
@@ -17980,11 +16068,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .UpdateMessage.UserEnter userEnter = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UpdateMessage.UserEnter, com.ServerResponseMessage.UpdateMessage.UserEnter.Builder, com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder> 
           getUserEnterFieldBuilder() {
         if (userEnterBuilder_ == null) {
-          userEnterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          userEnterBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.UpdateMessage.UserEnter, com.ServerResponseMessage.UpdateMessage.UserEnter.Builder, com.ServerResponseMessage.UpdateMessage.UserEnterOrBuilder>(
                   getUserEnter(),
                   getParentForChildren(),
@@ -18078,7 +16166,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new UpdateMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -18109,43 +16206,15 @@ public final class ServerResponseMessage {
     /**
      * <code>map&lt;string, string&gt; users = 2;</code>
      */
-    int getUsersCount();
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-    boolean containsUsers(
-        java.lang.String key);
-    /**
-     * Use {@link #getUsersMap()} instead.
-     */
-    @java.lang.Deprecated
     java.util.Map<java.lang.String, java.lang.String>
     getUsers();
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.String>
-    getUsersMap();
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-
-    java.lang.String getUsersOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-
-    java.lang.String getUsersOrThrow(
-        java.lang.String key);
 
     /**
+     * <code>optional int64 questionID = 3;</code>
+     *
      * <pre>
      *nessesary when need users in question room
      * </pre>
-     *
-     * <code>optional int64 questionID = 3;</code>
      */
     long getQuestionID();
 
@@ -18162,11 +16231,11 @@ public final class ServerResponseMessage {
    * Protobuf type {@code GetUserListResponse}
    */
   public  static final class GetUserListResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:GetUserListResponse)
       GetUserListResponseOrBuilder {
     // Use GetUserListResponse.newBuilder() to construct.
-    private GetUserListResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private GetUserListResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private GetUserListResponse() {
@@ -18182,8 +16251,7 @@ public final class ServerResponseMessage {
     }
     private GetUserListResponse(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -18231,10 +16299,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -18255,7 +16324,7 @@ public final class ServerResponseMessage {
               "Invalid map field number: " + number);
       }
     }
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_GetUserListResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -18270,12 +16339,12 @@ public final class ServerResponseMessage {
       /**
        * <code>ACQUAINTANCE_LIST = 0;</code>
        */
-      ACQUAINTANCE_LIST(0),
+      ACQUAINTANCE_LIST(0, 0),
       /**
        * <code>USERS_IN_ROOM_LIST = 1;</code>
        */
-      USERS_IN_ROOM_LIST(1),
-      UNRECOGNIZED(-1),
+      USERS_IN_ROOM_LIST(1, 1),
+      UNRECOGNIZED(-1, -1),
       ;
 
       /**
@@ -18289,22 +16358,14 @@ public final class ServerResponseMessage {
 
 
       public final int getNumber() {
-        if (this == UNRECOGNIZED) {
+        if (index == -1) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static USER_LIST_TYPE valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static USER_LIST_TYPE forNumber(int value) {
         switch (value) {
           case 0: return ACQUAINTANCE_LIST;
           case 1: return USERS_IN_ROOM_LIST;
@@ -18320,13 +16381,13 @@ public final class ServerResponseMessage {
           USER_LIST_TYPE> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<USER_LIST_TYPE>() {
               public USER_LIST_TYPE findValueByNumber(int number) {
-                return USER_LIST_TYPE.forNumber(number);
+                return USER_LIST_TYPE.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -18351,9 +16412,11 @@ public final class ServerResponseMessage {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private USER_LIST_TYPE(int value) {
+      private USER_LIST_TYPE(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -18389,71 +16452,25 @@ public final class ServerResponseMessage {
       if (users_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
             UsersDefaultEntryHolder.defaultEntry);
-      }
+     }
       return users_;
     }
-
-    public int getUsersCount() {
-      return internalGetUsers().getMap().size();
-    }
     /**
      * <code>map&lt;string, string&gt; users = 2;</code>
      */
 
-    public boolean containsUsers(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetUsers().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getUsersMap()} instead.
-     */
-    @java.lang.Deprecated
     public java.util.Map<java.lang.String, java.lang.String> getUsers() {
-      return getUsersMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.String> getUsersMap() {
       return internalGetUsers().getMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-
-    public java.lang.String getUsersOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetUsers().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <code>map&lt;string, string&gt; users = 2;</code>
-     */
-
-    public java.lang.String getUsersOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetUsers().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
     }
 
     public static final int QUESTIONID_FIELD_NUMBER = 3;
     private long questionID_;
     /**
+     * <code>optional int64 questionID = 3;</code>
+     *
      * <pre>
      *nessesary when need users in question room
      * </pre>
-     *
-     * <code>optional int64 questionID = 3;</code>
      */
     public long getQuestionID() {
       return questionID_;
@@ -18539,51 +16556,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.GetUserListResponse)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.GetUserListResponse other = (com.ServerResponseMessage.GetUserListResponse) obj;
-
-      boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      result = result && internalGetUsers().equals(
-          other.internalGetUsers());
-      result = result && (getQuestionID()
-          == other.getQuestionID());
-      result = result && userListType_ == other.userListType_;
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      if (!internalGetUsers().getMap().isEmpty()) {
-        hash = (37 * hash) + USERS_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetUsers().hashCode();
-      }
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionID());
-      hash = (37 * hash) + USERLISTTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + userListType_;
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.GetUserListResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -18607,40 +16579,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.GetUserListResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GetUserListResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GetUserListResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.GetUserListResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.GetUserListResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.GetUserListResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -18657,7 +16623,7 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -18665,7 +16631,7 @@ public final class ServerResponseMessage {
      * Protobuf type {@code GetUserListResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:GetUserListResponse)
         com.ServerResponseMessage.GetUserListResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -18695,7 +16661,7 @@ public final class ServerResponseMessage {
                 "Invalid map field number: " + number);
         }
       }
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_GetUserListResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -18708,13 +16674,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -18760,32 +16725,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.GetUserListResponse) {
           return mergeFrom((com.ServerResponseMessage.GetUserListResponse)other);
@@ -18825,7 +16764,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.GetUserListResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -18868,7 +16807,7 @@ public final class ServerResponseMessage {
         if (users_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               UsersDefaultEntryHolder.defaultEntry);
-        }
+       }
         return users_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.String>
@@ -18883,78 +16822,15 @@ public final class ServerResponseMessage {
         }
         return users_;
       }
-
-      public int getUsersCount() {
-        return internalGetUsers().getMap().size();
-      }
       /**
        * <code>map&lt;string, string&gt; users = 2;</code>
        */
-
-      public boolean containsUsers(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetUsers().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getUsersMap()} instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String> getUsers() {
-        return getUsersMap();
-      }
-      /**
-       * <code>map&lt;string, string&gt; users = 2;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.String> getUsersMap() {
         return internalGetUsers().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; users = 2;</code>
        */
-
-      public java.lang.String getUsersOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetUsers().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <code>map&lt;string, string&gt; users = 2;</code>
-       */
-
-      public java.lang.String getUsersOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetUsers().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearUsers() {
-        getMutableUsers().clear();
-        return this;
-      }
-      /**
-       * <code>map&lt;string, string&gt; users = 2;</code>
-       */
-
-      public Builder removeUsers(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        getMutableUsers().remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
       getMutableUsers() {
         return internalGetMutableUsers().getMutableMap();
@@ -18962,18 +16838,6 @@ public final class ServerResponseMessage {
       /**
        * <code>map&lt;string, string&gt; users = 2;</code>
        */
-      public Builder putUsers(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        getMutableUsers().put(key, value);
-        return this;
-      }
-      /**
-       * <code>map&lt;string, string&gt; users = 2;</code>
-       */
-
       public Builder putAllUsers(
           java.util.Map<java.lang.String, java.lang.String> values) {
         getMutableUsers().putAll(values);
@@ -18982,21 +16846,21 @@ public final class ServerResponseMessage {
 
       private long questionID_ ;
       /**
+       * <code>optional int64 questionID = 3;</code>
+       *
        * <pre>
        *nessesary when need users in question room
        * </pre>
-       *
-       * <code>optional int64 questionID = 3;</code>
        */
       public long getQuestionID() {
         return questionID_;
       }
       /**
+       * <code>optional int64 questionID = 3;</code>
+       *
        * <pre>
        *nessesary when need users in question room
        * </pre>
-       *
-       * <code>optional int64 questionID = 3;</code>
        */
       public Builder setQuestionID(long value) {
         
@@ -19005,11 +16869,11 @@ public final class ServerResponseMessage {
         return this;
       }
       /**
+       * <code>optional int64 questionID = 3;</code>
+       *
        * <pre>
        *nessesary when need users in question room
        * </pre>
-       *
-       * <code>optional int64 questionID = 3;</code>
        */
       public Builder clearQuestionID() {
         
@@ -19091,7 +16955,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new GetUserListResponse(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -19186,11 +17059,11 @@ public final class ServerResponseMessage {
    * Protobuf type {@code WhiteBoardMessage}
    */
   public  static final class WhiteBoardMessage extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:WhiteBoardMessage)
       WhiteBoardMessageOrBuilder {
     // Use WhiteBoardMessage.newBuilder() to construct.
-    private WhiteBoardMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private WhiteBoardMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private WhiteBoardMessage() {
@@ -19214,8 +17087,7 @@ public final class ServerResponseMessage {
     }
     private WhiteBoardMessage(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -19303,10 +17175,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -19316,7 +17189,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_WhiteBoardMessage_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_WhiteBoardMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -19331,40 +17204,40 @@ public final class ServerResponseMessage {
       /**
        * <code>RED = 0;</code>
        */
-      RED(0),
+      RED(0, 0),
       /**
        * <code>ORANGE = 1;</code>
        */
-      ORANGE(1),
+      ORANGE(1, 1),
       /**
        * <code>YELLOW = 2;</code>
        */
-      YELLOW(2),
+      YELLOW(2, 2),
       /**
        * <code>GREEN = 3;</code>
        */
-      GREEN(3),
+      GREEN(3, 3),
       /**
        * <code>CYAN = 4;</code>
        */
-      CYAN(4),
+      CYAN(4, 4),
       /**
        * <code>BLUE = 5;</code>
        */
-      BLUE(5),
+      BLUE(5, 5),
       /**
        * <code>MAGENTA = 6;</code>
        */
-      MAGENTA(6),
+      MAGENTA(6, 6),
       /**
        * <code>WHITE = 7;</code>
        */
-      WHITE(7),
+      WHITE(7, 7),
       /**
        * <code>BLACK = 8;</code>
        */
-      BLACK(8),
-      UNRECOGNIZED(-1),
+      BLACK(8, 8),
+      UNRECOGNIZED(-1, -1),
       ;
 
       /**
@@ -19406,22 +17279,14 @@ public final class ServerResponseMessage {
 
 
       public final int getNumber() {
-        if (this == UNRECOGNIZED) {
+        if (index == -1) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
       }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static COLOR valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static COLOR forNumber(int value) {
         switch (value) {
           case 0: return RED;
           case 1: return ORANGE;
@@ -19444,13 +17309,13 @@ public final class ServerResponseMessage {
           COLOR> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<COLOR>() {
               public COLOR findValueByNumber(int number) {
-                return COLOR.forNumber(number);
+                return COLOR.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -19475,9 +17340,11 @@ public final class ServerResponseMessage {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private COLOR(int value) {
+      private COLOR(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -19540,11 +17407,11 @@ public final class ServerResponseMessage {
      * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage}
      */
     public  static final class WhiteBoardImage extends
-        com.google.protobuf.GeneratedMessageV3 implements
+        com.google.protobuf.GeneratedMessage implements
         // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage)
         WhiteBoardImageOrBuilder {
       // Use WhiteBoardImage.newBuilder() to construct.
-      private WhiteBoardImage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      private WhiteBoardImage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
         super(builder);
       }
       private WhiteBoardImage() {
@@ -19559,8 +17426,7 @@ public final class ServerResponseMessage {
       }
       private WhiteBoardImage(
           com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
         this();
         int mutable_bitField0_ = 0;
         try {
@@ -19582,8 +17448,7 @@ public final class ServerResponseMessage {
                   points_ = new java.util.ArrayList<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint>();
                   mutable_bitField0_ |= 0x00000001;
                 }
-                points_.add(
-                    input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.parser(), extensionRegistry));
+                points_.add(input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.parser(), extensionRegistry));
                 break;
               }
               case 18: {
@@ -19591,17 +17456,17 @@ public final class ServerResponseMessage {
                   rects_ = new java.util.ArrayList<com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect>();
                   mutable_bitField0_ |= 0x00000002;
                 }
-                rects_.add(
-                    input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.parser(), extensionRegistry));
+                rects_.add(input.readMessage(com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.parser(), extensionRegistry));
                 break;
               }
             }
           }
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
+          throw new RuntimeException(e.setUnfinishedMessage(this));
         } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+          throw new RuntimeException(
+              new com.google.protobuf.InvalidProtocolBufferException(
+                  e.getMessage()).setUnfinishedMessage(this));
         } finally {
           if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
             points_ = java.util.Collections.unmodifiableList(points_);
@@ -19617,7 +17482,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -19662,11 +17527,11 @@ public final class ServerResponseMessage {
        * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicPoint}
        */
       public  static final class GraphicPoint extends
-          com.google.protobuf.GeneratedMessageV3 implements
+          com.google.protobuf.GeneratedMessage implements
           // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
           GraphicPointOrBuilder {
         // Use GraphicPoint.newBuilder() to construct.
-        private GraphicPoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        private GraphicPoint(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
           super(builder);
         }
         private GraphicPoint() {
@@ -19685,8 +17550,7 @@ public final class ServerResponseMessage {
         }
         private GraphicPoint(
             com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
           this();
           int mutable_bitField0_ = 0;
           try {
@@ -19736,10 +17600,11 @@ public final class ServerResponseMessage {
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
+            throw new RuntimeException(e.setUnfinishedMessage(this));
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e).setUnfinishedMessage(this);
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
           } finally {
             makeExtensionsImmutable();
           }
@@ -19749,7 +17614,7 @@ public final class ServerResponseMessage {
           return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -19876,59 +17741,6 @@ public final class ServerResponseMessage {
         }
 
         private static final long serialVersionUID = 0L;
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
-          if (obj == this) {
-           return true;
-          }
-          if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint)) {
-            return super.equals(obj);
-          }
-          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint other = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) obj;
-
-          boolean result = true;
-          result = result && (getX1()
-              == other.getX1());
-          result = result && (getY1()
-              == other.getY1());
-          result = result && (getX2()
-              == other.getX2());
-          result = result && (getY2()
-              == other.getY2());
-          result = result && (getColor()
-              == other.getColor());
-          result = result && (
-              java.lang.Float.floatToIntBits(getPensize())
-              == java.lang.Float.floatToIntBits(
-                  other.getPensize()));
-          return result;
-        }
-
-        @java.lang.Override
-        public int hashCode() {
-          if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-          }
-          int hash = 41;
-          hash = (19 * hash) + getDescriptorForType().hashCode();
-          hash = (37 * hash) + X1_FIELD_NUMBER;
-          hash = (53 * hash) + getX1();
-          hash = (37 * hash) + Y1_FIELD_NUMBER;
-          hash = (53 * hash) + getY1();
-          hash = (37 * hash) + X2_FIELD_NUMBER;
-          hash = (53 * hash) + getX2();
-          hash = (37 * hash) + Y2_FIELD_NUMBER;
-          hash = (53 * hash) + getY2();
-          hash = (37 * hash) + COLOR_FIELD_NUMBER;
-          hash = (53 * hash) + getColor();
-          hash = (37 * hash) + PENSIZE_FIELD_NUMBER;
-          hash = (53 * hash) + java.lang.Float.floatToIntBits(
-              getPensize());
-          hash = (29 * hash) + unknownFields.hashCode();
-          memoizedHashCode = hash;
-          return hash;
-        }
-
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
@@ -19952,40 +17764,34 @@ public final class ServerResponseMessage {
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          return PARSER.parseDelimitedFrom(input);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseDelimitedFrom(input, extensionRegistry);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
 
         public Builder newBuilderForType() { return newBuilder(); }
@@ -20002,7 +17808,7 @@ public final class ServerResponseMessage {
 
         @java.lang.Override
         protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
           return builder;
         }
@@ -20010,7 +17816,7 @@ public final class ServerResponseMessage {
          * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicPoint}
          */
         public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            com.google.protobuf.GeneratedMessage.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage.GraphicPoint)
             com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder {
           public static final com.google.protobuf.Descriptors.Descriptor
@@ -20018,7 +17824,7 @@ public final class ServerResponseMessage {
             return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
           }
 
-          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
               internalGetFieldAccessorTable() {
             return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
@@ -20031,13 +17837,12 @@ public final class ServerResponseMessage {
           }
 
           private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
           }
           private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             }
           }
           public Builder clear() {
@@ -20086,32 +17891,6 @@ public final class ServerResponseMessage {
             return result;
           }
 
-          public Builder clone() {
-            return (Builder) super.clone();
-          }
-          public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.setField(field, value);
-          }
-          public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
-          }
-          public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
-          }
-          public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
-          }
-          public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.addRepeatedField(field, value);
-          }
           public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) {
               return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint)other);
@@ -20158,7 +17937,7 @@ public final class ServerResponseMessage {
               parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
               parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
+              throw e;
             } finally {
               if (parsedMessage != null) {
                 mergeFrom(parsedMessage);
@@ -20352,7 +18131,16 @@ public final class ServerResponseMessage {
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
+            try {
               return new GraphicPoint(input, extensionRegistry);
+            } catch (RuntimeException e) {
+              if (e.getCause() instanceof
+                  com.google.protobuf.InvalidProtocolBufferException) {
+                throw (com.google.protobuf.InvalidProtocolBufferException)
+                    e.getCause();
+              }
+              throw e;
+            }
           }
         };
 
@@ -20399,11 +18187,11 @@ public final class ServerResponseMessage {
        * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicRect}
        */
       public  static final class GraphicRect extends
-          com.google.protobuf.GeneratedMessageV3 implements
+          com.google.protobuf.GeneratedMessage implements
           // @@protoc_insertion_point(message_implements:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
           GraphicRectOrBuilder {
         // Use GraphicRect.newBuilder() to construct.
-        private GraphicRect(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        private GraphicRect(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
           super(builder);
         }
         private GraphicRect() {
@@ -20420,8 +18208,7 @@ public final class ServerResponseMessage {
         }
         private GraphicRect(
             com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
           this();
           int mutable_bitField0_ = 0;
           try {
@@ -20461,10 +18248,11 @@ public final class ServerResponseMessage {
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
+            throw new RuntimeException(e.setUnfinishedMessage(this));
           } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                e).setUnfinishedMessage(this);
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
           } finally {
             makeExtensionsImmutable();
           }
@@ -20474,7 +18262,7 @@ public final class ServerResponseMessage {
           return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -20569,48 +18357,6 @@ public final class ServerResponseMessage {
         }
 
         private static final long serialVersionUID = 0L;
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj) {
-          if (obj == this) {
-           return true;
-          }
-          if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect)) {
-            return super.equals(obj);
-          }
-          com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect other = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) obj;
-
-          boolean result = true;
-          result = result && (getX1()
-              == other.getX1());
-          result = result && (getY1()
-              == other.getY1());
-          result = result && (getX2()
-              == other.getX2());
-          result = result && (getY2()
-              == other.getY2());
-          return result;
-        }
-
-        @java.lang.Override
-        public int hashCode() {
-          if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-          }
-          int hash = 41;
-          hash = (19 * hash) + getDescriptorForType().hashCode();
-          hash = (37 * hash) + X1_FIELD_NUMBER;
-          hash = (53 * hash) + getX1();
-          hash = (37 * hash) + Y1_FIELD_NUMBER;
-          hash = (53 * hash) + getY1();
-          hash = (37 * hash) + X2_FIELD_NUMBER;
-          hash = (53 * hash) + getX2();
-          hash = (37 * hash) + Y2_FIELD_NUMBER;
-          hash = (53 * hash) + getY2();
-          hash = (29 * hash) + unknownFields.hashCode();
-          memoizedHashCode = hash;
-          return hash;
-        }
-
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
@@ -20634,40 +18380,34 @@ public final class ServerResponseMessage {
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input);
+          return PARSER.parseDelimitedFrom(input);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseDelimitedFrom(input, extensionRegistry);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input);
+          return PARSER.parseFrom(input);
         }
         public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          return com.google.protobuf.GeneratedMessageV3
-              .parseWithIOException(PARSER, input, extensionRegistry);
+          return PARSER.parseFrom(input, extensionRegistry);
         }
 
         public Builder newBuilderForType() { return newBuilder(); }
@@ -20684,7 +18424,7 @@ public final class ServerResponseMessage {
 
         @java.lang.Override
         protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
           return builder;
         }
@@ -20692,7 +18432,7 @@ public final class ServerResponseMessage {
          * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage.GraphicRect}
          */
         public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            com.google.protobuf.GeneratedMessage.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage.GraphicRect)
             com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder {
           public static final com.google.protobuf.Descriptors.Descriptor
@@ -20700,7 +18440,7 @@ public final class ServerResponseMessage {
             return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
           }
 
-          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
               internalGetFieldAccessorTable() {
             return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
@@ -20713,13 +18453,12 @@ public final class ServerResponseMessage {
           }
 
           private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
           }
           private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
+            if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             }
           }
           public Builder clear() {
@@ -20762,32 +18501,6 @@ public final class ServerResponseMessage {
             return result;
           }
 
-          public Builder clone() {
-            return (Builder) super.clone();
-          }
-          public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.setField(field, value);
-          }
-          public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
-          }
-          public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
-          }
-          public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
-          }
-          public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              Object value) {
-            return (Builder) super.addRepeatedField(field, value);
-          }
           public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) {
               return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect)other);
@@ -20828,7 +18541,7 @@ public final class ServerResponseMessage {
               parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
               parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
+              throw e;
             } finally {
               if (parsedMessage != null) {
                 mergeFrom(parsedMessage);
@@ -20970,7 +18683,16 @@ public final class ServerResponseMessage {
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
+            try {
               return new GraphicRect(input, extensionRegistry);
+            } catch (RuntimeException e) {
+              if (e.getCause() instanceof
+                  com.google.protobuf.InvalidProtocolBufferException) {
+                throw (com.google.protobuf.InvalidProtocolBufferException)
+                    e.getCause();
+              }
+              throw e;
+            }
           }
         };
 
@@ -21097,44 +18819,6 @@ public final class ServerResponseMessage {
       }
 
       private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage)) {
-          return super.equals(obj);
-        }
-        com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage other = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage) obj;
-
-        boolean result = true;
-        result = result && getPointsList()
-            .equals(other.getPointsList());
-        result = result && getRectsList()
-            .equals(other.getRectsList());
-        return result;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptorForType().hashCode();
-        if (getPointsCount() > 0) {
-          hash = (37 * hash) + POINTS_FIELD_NUMBER;
-          hash = (53 * hash) + getPointsList().hashCode();
-        }
-        if (getRectsCount() > 0) {
-          hash = (37 * hash) + RECTS_FIELD_NUMBER;
-          hash = (53 * hash) + getRectsList().hashCode();
-        }
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -21158,40 +18842,34 @@ public final class ServerResponseMessage {
       }
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        return PARSER.parseDelimitedFrom(input);
       }
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        return PARSER.parseFrom(input);
       }
       public static com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        return PARSER.parseFrom(input, extensionRegistry);
       }
 
       public Builder newBuilderForType() { return newBuilder(); }
@@ -21208,7 +18886,7 @@ public final class ServerResponseMessage {
 
       @java.lang.Override
       protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -21216,7 +18894,7 @@ public final class ServerResponseMessage {
        * Protobuf type {@code WhiteBoardMessage.WhiteBoardImage}
        */
       public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:WhiteBoardMessage.WhiteBoardImage)
           com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -21224,7 +18902,7 @@ public final class ServerResponseMessage {
           return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
         }
 
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return com.ServerResponseMessage.internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -21237,13 +18915,12 @@ public final class ServerResponseMessage {
         }
 
         private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
         private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             getPointsFieldBuilder();
             getRectsFieldBuilder();
           }
@@ -21307,32 +18984,6 @@ public final class ServerResponseMessage {
           return result;
         }
 
-        public Builder clone() {
-          return (Builder) super.clone();
-        }
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
-        }
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
-        }
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
-        }
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
-        }
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
-        }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage) {
             return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage)other);
@@ -21363,7 +19014,7 @@ public final class ServerResponseMessage {
                 points_ = other.points_;
                 bitField0_ = (bitField0_ & ~0x00000001);
                 pointsBuilder_ = 
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                      getPointsFieldBuilder() : null;
               } else {
                 pointsBuilder_.addAllMessages(other.points_);
@@ -21389,7 +19040,7 @@ public final class ServerResponseMessage {
                 rects_ = other.rects_;
                 bitField0_ = (bitField0_ & ~0x00000002);
                 rectsBuilder_ = 
-                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                      getRectsFieldBuilder() : null;
               } else {
                 rectsBuilder_.addAllMessages(other.rects_);
@@ -21413,7 +19064,7 @@ public final class ServerResponseMessage {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
+            throw e;
           } finally {
             if (parsedMessage != null) {
               mergeFrom(parsedMessage);
@@ -21432,7 +19083,7 @@ public final class ServerResponseMessage {
            }
         }
 
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> pointsBuilder_;
 
         /**
@@ -21648,11 +19299,11 @@ public final class ServerResponseMessage {
              getPointsBuilderList() {
           return getPointsFieldBuilder().getBuilderList();
         }
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder> 
             getPointsFieldBuilder() {
           if (pointsBuilder_ == null) {
-            pointsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            pointsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
                 com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPoint.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicPointOrBuilder>(
                     points_,
                     ((bitField0_ & 0x00000001) == 0x00000001),
@@ -21672,7 +19323,7 @@ public final class ServerResponseMessage {
            }
         }
 
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> rectsBuilder_;
 
         /**
@@ -21888,11 +19539,11 @@ public final class ServerResponseMessage {
              getRectsBuilderList() {
           return getRectsFieldBuilder().getBuilderList();
         }
-        private com.google.protobuf.RepeatedFieldBuilderV3<
+        private com.google.protobuf.RepeatedFieldBuilder<
             com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder> 
             getRectsFieldBuilder() {
           if (rectsBuilder_ == null) {
-            rectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            rectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
                 com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRect.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.GraphicRectOrBuilder>(
                     rects_,
                     ((bitField0_ & 0x00000002) == 0x00000002),
@@ -21932,7 +19583,16 @@ public final class ServerResponseMessage {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
+          try {
             return new WhiteBoardImage(input, extensionRegistry);
+          } catch (RuntimeException e) {
+            if (e.getCause() instanceof
+                com.google.protobuf.InvalidProtocolBufferException) {
+              throw (com.google.protobuf.InvalidProtocolBufferException)
+                  e.getCause();
+            }
+            throw e;
+          }
         }
       };
 
@@ -22179,93 +19839,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.WhiteBoardMessage)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.WhiteBoardMessage other = (com.ServerResponseMessage.WhiteBoardMessage) obj;
-
-      boolean result = true;
-      result = result && (getX1()
-          == other.getX1());
-      result = result && (getY1()
-          == other.getY1());
-      result = result && (getX2()
-          == other.getX2());
-      result = result && (getY2()
-          == other.getY2());
-      result = result && (getColor()
-          == other.getColor());
-      result = result && (
-          java.lang.Float.floatToIntBits(getPensize())
-          == java.lang.Float.floatToIntBits(
-              other.getPensize()));
-      result = result && (getQuestionId()
-          == other.getQuestionId());
-      result = result && (getIsCls()
-          == other.getIsCls());
-      result = result && (getIsACls()
-          == other.getIsACls());
-      result = result && (getIsRefresh()
-          == other.getIsRefresh());
-      result = result && (getIsReceiveImage()
-          == other.getIsReceiveImage());
-      result = result && (hasImage() == other.hasImage());
-      if (hasImage()) {
-        result = result && getImage()
-            .equals(other.getImage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + X1_FIELD_NUMBER;
-      hash = (53 * hash) + getX1();
-      hash = (37 * hash) + Y1_FIELD_NUMBER;
-      hash = (53 * hash) + getY1();
-      hash = (37 * hash) + X2_FIELD_NUMBER;
-      hash = (53 * hash) + getX2();
-      hash = (37 * hash) + Y2_FIELD_NUMBER;
-      hash = (53 * hash) + getY2();
-      hash = (37 * hash) + COLOR_FIELD_NUMBER;
-      hash = (53 * hash) + getColor();
-      hash = (37 * hash) + PENSIZE_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getPensize());
-      hash = (37 * hash) + QUESTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getQuestionId());
-      hash = (37 * hash) + ISCLS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsCls());
-      hash = (37 * hash) + ISACLS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsACls());
-      hash = (37 * hash) + ISREFRESH_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsRefresh());
-      hash = (37 * hash) + ISRECEIVEIMAGE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsReceiveImage());
-      if (hasImage()) {
-        hash = (37 * hash) + IMAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getImage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -22289,40 +19862,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.WhiteBoardMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.WhiteBoardMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.WhiteBoardMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -22339,7 +19906,7 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -22347,7 +19914,7 @@ public final class ServerResponseMessage {
      * Protobuf type {@code WhiteBoardMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:WhiteBoardMessage)
         com.ServerResponseMessage.WhiteBoardMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -22355,7 +19922,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_WhiteBoardMessage_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_WhiteBoardMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -22368,13 +19935,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -22449,32 +20015,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.WhiteBoardMessage) {
           return mergeFrom((com.ServerResponseMessage.WhiteBoardMessage)other);
@@ -22539,7 +20079,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.WhiteBoardMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -22835,7 +20375,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage image_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder> imageBuilder_;
       /**
        * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
@@ -22937,11 +20477,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .WhiteBoardMessage.WhiteBoardImage image = 12;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder> 
           getImageFieldBuilder() {
         if (imageBuilder_ == null) {
-          imageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          imageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImage.Builder, com.ServerResponseMessage.WhiteBoardMessage.WhiteBoardImageOrBuilder>(
                   getImage(),
                   getParentForChildren(),
@@ -22980,7 +20520,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new WhiteBoardMessage(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -23257,18 +20806,18 @@ public final class ServerResponseMessage {
     com.ServerResponseMessage.WhiteBoardMessageOrBuilder getWhiteBoardMessageOrBuilder();
   }
   /**
+   * Protobuf type {@code Message}
+   *
    * <pre>
    *----------------顶层消息----------------------
    * </pre>
-   *
-   * Protobuf type {@code Message}
    */
   public  static final class Message extends
-      com.google.protobuf.GeneratedMessageV3 implements
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:Message)
       MessageOrBuilder {
     // Use Message.newBuilder() to construct.
-    private Message(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Message(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
     private Message() {
@@ -23283,8 +20832,7 @@ public final class ServerResponseMessage {
     }
     private Message(
         com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry) {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -23550,10 +21098,11 @@ public final class ServerResponseMessage {
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
+        throw new RuntimeException(e.setUnfinishedMessage(this));
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+        throw new RuntimeException(
+            new com.google.protobuf.InvalidProtocolBufferException(
+                e.getMessage()).setUnfinishedMessage(this));
       } finally {
         makeExtensionsImmutable();
       }
@@ -23563,7 +21112,7 @@ public final class ServerResponseMessage {
       return com.ServerResponseMessage.internal_static_Message_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.ServerResponseMessage.internal_static_Message_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -24014,7 +21563,7 @@ public final class ServerResponseMessage {
         output.writeEnum(1, msgType_);
       }
       if (!getUsernameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, username_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, username_);
       }
       if (lauchResponse_ != null) {
         output.writeMessage(3, getLauchResponse());
@@ -24082,7 +21631,7 @@ public final class ServerResponseMessage {
           .computeEnumSize(1, msgType_);
       }
       if (!getUsernameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, username_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, username_);
       }
       if (lauchResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -24161,201 +21710,6 @@ public final class ServerResponseMessage {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.ServerResponseMessage.Message)) {
-        return super.equals(obj);
-      }
-      com.ServerResponseMessage.Message other = (com.ServerResponseMessage.Message) obj;
-
-      boolean result = true;
-      result = result && msgType_ == other.msgType_;
-      result = result && getUsername()
-          .equals(other.getUsername());
-      result = result && (hasLauchResponse() == other.hasLauchResponse());
-      if (hasLauchResponse()) {
-        result = result && getLauchResponse()
-            .equals(other.getLauchResponse());
-      }
-      result = result && (hasRegisterResponse() == other.hasRegisterResponse());
-      if (hasRegisterResponse()) {
-        result = result && getRegisterResponse()
-            .equals(other.getRegisterResponse());
-      }
-      result = result && (hasSendContent() == other.hasSendContent());
-      if (hasSendContent()) {
-        result = result && getSendContent()
-            .equals(other.getSendContent());
-      }
-      result = result && (hasAnnouncementMessage() == other.hasAnnouncementMessage());
-      if (hasAnnouncementMessage()) {
-        result = result && getAnnouncementMessage()
-            .equals(other.getAnnouncementMessage());
-      }
-      result = result && (hasQuestionEnterResponse() == other.hasQuestionEnterResponse());
-      if (hasQuestionEnterResponse()) {
-        result = result && getQuestionEnterResponse()
-            .equals(other.getQuestionEnterResponse());
-      }
-      result = result && (hasGoodQuestionResponse() == other.hasGoodQuestionResponse());
-      if (hasGoodQuestionResponse()) {
-        result = result && getGoodQuestionResponse()
-            .equals(other.getGoodQuestionResponse());
-      }
-      result = result && (hasGoodUserResponse() == other.hasGoodUserResponse());
-      if (hasGoodUserResponse()) {
-        result = result && getGoodUserResponse()
-            .equals(other.getGoodUserResponse());
-      }
-      result = result && (hasFileResponse() == other.hasFileResponse());
-      if (hasFileResponse()) {
-        result = result && getFileResponse()
-            .equals(other.getFileResponse());
-      }
-      result = result && (hasUpdateMessage() == other.hasUpdateMessage());
-      if (hasUpdateMessage()) {
-        result = result && getUpdateMessage()
-            .equals(other.getUpdateMessage());
-      }
-      result = result && (hasQuestionInformationResponse() == other.hasQuestionInformationResponse());
-      if (hasQuestionInformationResponse()) {
-        result = result && getQuestionInformationResponse()
-            .equals(other.getQuestionInformationResponse());
-      }
-      result = result && (hasUserInformationResponse() == other.hasUserInformationResponse());
-      if (hasUserInformationResponse()) {
-        result = result && getUserInformationResponse()
-            .equals(other.getUserInformationResponse());
-      }
-      result = result && (hasGetQuestionListResponse() == other.hasGetQuestionListResponse());
-      if (hasGetQuestionListResponse()) {
-        result = result && getGetQuestionListResponse()
-            .equals(other.getGetQuestionListResponse());
-      }
-      result = result && (hasCreateQuestionResponse() == other.hasCreateQuestionResponse());
-      if (hasCreateQuestionResponse()) {
-        result = result && getCreateQuestionResponse()
-            .equals(other.getCreateQuestionResponse());
-      }
-      result = result && (hasAbandonQuestionResponse() == other.hasAbandonQuestionResponse());
-      if (hasAbandonQuestionResponse()) {
-        result = result && getAbandonQuestionResponse()
-            .equals(other.getAbandonQuestionResponse());
-      }
-      result = result && (hasSearchInformationResponse() == other.hasSearchInformationResponse());
-      if (hasSearchInformationResponse()) {
-        result = result && getSearchInformationResponse()
-            .equals(other.getSearchInformationResponse());
-      }
-      result = result && (hasSolvedQuestionResponse() == other.hasSolvedQuestionResponse());
-      if (hasSolvedQuestionResponse()) {
-        result = result && getSolvedQuestionResponse()
-            .equals(other.getSolvedQuestionResponse());
-      }
-      result = result && (hasGetUserListResponse() == other.hasGetUserListResponse());
-      if (hasGetUserListResponse()) {
-        result = result && getGetUserListResponse()
-            .equals(other.getGetUserListResponse());
-      }
-      result = result && (hasWhiteBoardMessage() == other.hasWhiteBoardMessage());
-      if (hasWhiteBoardMessage()) {
-        result = result && getWhiteBoardMessage()
-            .equals(other.getWhiteBoardMessage());
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + MSG_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + msgType_;
-      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getUsername().hashCode();
-      if (hasLauchResponse()) {
-        hash = (37 * hash) + LAUCHRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getLauchResponse().hashCode();
-      }
-      if (hasRegisterResponse()) {
-        hash = (37 * hash) + REGISTERRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getRegisterResponse().hashCode();
-      }
-      if (hasSendContent()) {
-        hash = (37 * hash) + SENDCONTENT_FIELD_NUMBER;
-        hash = (53 * hash) + getSendContent().hashCode();
-      }
-      if (hasAnnouncementMessage()) {
-        hash = (37 * hash) + ANNOUNCEMENTMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getAnnouncementMessage().hashCode();
-      }
-      if (hasQuestionEnterResponse()) {
-        hash = (37 * hash) + QUESTIONENTERRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionEnterResponse().hashCode();
-      }
-      if (hasGoodQuestionResponse()) {
-        hash = (37 * hash) + GOODQUESTIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getGoodQuestionResponse().hashCode();
-      }
-      if (hasGoodUserResponse()) {
-        hash = (37 * hash) + GOODUSERRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getGoodUserResponse().hashCode();
-      }
-      if (hasFileResponse()) {
-        hash = (37 * hash) + FILERESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getFileResponse().hashCode();
-      }
-      if (hasUpdateMessage()) {
-        hash = (37 * hash) + UPDATEMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getUpdateMessage().hashCode();
-      }
-      if (hasQuestionInformationResponse()) {
-        hash = (37 * hash) + QUESTIONINFORMATIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getQuestionInformationResponse().hashCode();
-      }
-      if (hasUserInformationResponse()) {
-        hash = (37 * hash) + USERINFORMATIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getUserInformationResponse().hashCode();
-      }
-      if (hasGetQuestionListResponse()) {
-        hash = (37 * hash) + GETQUESTIONLISTRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getGetQuestionListResponse().hashCode();
-      }
-      if (hasCreateQuestionResponse()) {
-        hash = (37 * hash) + CREATEQUESTIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getCreateQuestionResponse().hashCode();
-      }
-      if (hasAbandonQuestionResponse()) {
-        hash = (37 * hash) + ABANDONQUESTIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getAbandonQuestionResponse().hashCode();
-      }
-      if (hasSearchInformationResponse()) {
-        hash = (37 * hash) + SEARCHINFORMATIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getSearchInformationResponse().hashCode();
-      }
-      if (hasSolvedQuestionResponse()) {
-        hash = (37 * hash) + SOLVEDQUESTIONRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getSolvedQuestionResponse().hashCode();
-      }
-      if (hasGetUserListResponse()) {
-        hash = (37 * hash) + GETUSERLISTRESPONSE_FIELD_NUMBER;
-        hash = (53 * hash) + getGetUserListResponse().hashCode();
-      }
-      if (hasWhiteBoardMessage()) {
-        hash = (37 * hash) + WHITEBOARDMESSAGE_FIELD_NUMBER;
-        hash = (53 * hash) + getWhiteBoardMessage().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
     public static com.ServerResponseMessage.Message parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -24379,40 +21733,34 @@ public final class ServerResponseMessage {
     }
     public static com.ServerResponseMessage.Message parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.Message parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.Message parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.ServerResponseMessage.Message parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.ServerResponseMessage.Message parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.ServerResponseMessage.Message parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
@@ -24429,19 +21777,19 @@ public final class ServerResponseMessage {
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code Message}
+     *
      * <pre>
      *----------------顶层消息----------------------
      * </pre>
-     *
-     * Protobuf type {@code Message}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:Message)
         com.ServerResponseMessage.MessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -24449,7 +21797,7 @@ public final class ServerResponseMessage {
         return com.ServerResponseMessage.internal_static_Message_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.ServerResponseMessage.internal_static_Message_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -24462,13 +21810,12 @@ public final class ServerResponseMessage {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
       public Builder clear() {
@@ -24703,32 +22050,6 @@ public final class ServerResponseMessage {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.ServerResponseMessage.Message) {
           return mergeFrom((com.ServerResponseMessage.Message)other);
@@ -24818,7 +22139,7 @@ public final class ServerResponseMessage {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.ServerResponseMessage.Message) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -24941,7 +22262,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.LaunchResponse lauchResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.LaunchResponse, com.ServerResponseMessage.LaunchResponse.Builder, com.ServerResponseMessage.LaunchResponseOrBuilder> lauchResponseBuilder_;
       /**
        * <code>optional .LaunchResponse lauchResponse = 3;</code>
@@ -25043,11 +22364,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .LaunchResponse lauchResponse = 3;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.LaunchResponse, com.ServerResponseMessage.LaunchResponse.Builder, com.ServerResponseMessage.LaunchResponseOrBuilder> 
           getLauchResponseFieldBuilder() {
         if (lauchResponseBuilder_ == null) {
-          lauchResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          lauchResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.LaunchResponse, com.ServerResponseMessage.LaunchResponse.Builder, com.ServerResponseMessage.LaunchResponseOrBuilder>(
                   getLauchResponse(),
                   getParentForChildren(),
@@ -25058,7 +22379,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.RegisterResponse registerResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.RegisterResponse, com.ServerResponseMessage.RegisterResponse.Builder, com.ServerResponseMessage.RegisterResponseOrBuilder> registerResponseBuilder_;
       /**
        * <code>optional .RegisterResponse registerResponse = 4;</code>
@@ -25160,11 +22481,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .RegisterResponse registerResponse = 4;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.RegisterResponse, com.ServerResponseMessage.RegisterResponse.Builder, com.ServerResponseMessage.RegisterResponseOrBuilder> 
           getRegisterResponseFieldBuilder() {
         if (registerResponseBuilder_ == null) {
-          registerResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          registerResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.RegisterResponse, com.ServerResponseMessage.RegisterResponse.Builder, com.ServerResponseMessage.RegisterResponseOrBuilder>(
                   getRegisterResponse(),
                   getParentForChildren(),
@@ -25175,7 +22496,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.SendContent sendContent_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.SendContent, com.ServerResponseMessage.SendContent.Builder, com.ServerResponseMessage.SendContentOrBuilder> sendContentBuilder_;
       /**
        * <code>optional .SendContent sendContent = 5;</code>
@@ -25277,11 +22598,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .SendContent sendContent = 5;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.SendContent, com.ServerResponseMessage.SendContent.Builder, com.ServerResponseMessage.SendContentOrBuilder> 
           getSendContentFieldBuilder() {
         if (sendContentBuilder_ == null) {
-          sendContentBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          sendContentBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.SendContent, com.ServerResponseMessage.SendContent.Builder, com.ServerResponseMessage.SendContentOrBuilder>(
                   getSendContent(),
                   getParentForChildren(),
@@ -25292,7 +22613,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.AnnouncementMessage announcementMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.AnnouncementMessage, com.ServerResponseMessage.AnnouncementMessage.Builder, com.ServerResponseMessage.AnnouncementMessageOrBuilder> announcementMessageBuilder_;
       /**
        * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
@@ -25394,11 +22715,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .AnnouncementMessage announcementMessage = 6;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.AnnouncementMessage, com.ServerResponseMessage.AnnouncementMessage.Builder, com.ServerResponseMessage.AnnouncementMessageOrBuilder> 
           getAnnouncementMessageFieldBuilder() {
         if (announcementMessageBuilder_ == null) {
-          announcementMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          announcementMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.AnnouncementMessage, com.ServerResponseMessage.AnnouncementMessage.Builder, com.ServerResponseMessage.AnnouncementMessageOrBuilder>(
                   getAnnouncementMessage(),
                   getParentForChildren(),
@@ -25409,7 +22730,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.QuestionEnterResponse questionEnterResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionEnterResponse, com.ServerResponseMessage.QuestionEnterResponse.Builder, com.ServerResponseMessage.QuestionEnterResponseOrBuilder> questionEnterResponseBuilder_;
       /**
        * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
@@ -25511,11 +22832,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .QuestionEnterResponse questionEnterResponse = 7;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionEnterResponse, com.ServerResponseMessage.QuestionEnterResponse.Builder, com.ServerResponseMessage.QuestionEnterResponseOrBuilder> 
           getQuestionEnterResponseFieldBuilder() {
         if (questionEnterResponseBuilder_ == null) {
-          questionEnterResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionEnterResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.QuestionEnterResponse, com.ServerResponseMessage.QuestionEnterResponse.Builder, com.ServerResponseMessage.QuestionEnterResponseOrBuilder>(
                   getQuestionEnterResponse(),
                   getParentForChildren(),
@@ -25526,7 +22847,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.GoodQuestionResponse goodQuestionResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GoodQuestionResponse, com.ServerResponseMessage.GoodQuestionResponse.Builder, com.ServerResponseMessage.GoodQuestionResponseOrBuilder> goodQuestionResponseBuilder_;
       /**
        * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
@@ -25628,11 +22949,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .GoodQuestionResponse goodQuestionResponse = 8;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GoodQuestionResponse, com.ServerResponseMessage.GoodQuestionResponse.Builder, com.ServerResponseMessage.GoodQuestionResponseOrBuilder> 
           getGoodQuestionResponseFieldBuilder() {
         if (goodQuestionResponseBuilder_ == null) {
-          goodQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          goodQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.GoodQuestionResponse, com.ServerResponseMessage.GoodQuestionResponse.Builder, com.ServerResponseMessage.GoodQuestionResponseOrBuilder>(
                   getGoodQuestionResponse(),
                   getParentForChildren(),
@@ -25643,7 +22964,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.GoodUserResponse goodUserResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GoodUserResponse, com.ServerResponseMessage.GoodUserResponse.Builder, com.ServerResponseMessage.GoodUserResponseOrBuilder> goodUserResponseBuilder_;
       /**
        * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
@@ -25745,11 +23066,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .GoodUserResponse goodUserResponse = 10;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GoodUserResponse, com.ServerResponseMessage.GoodUserResponse.Builder, com.ServerResponseMessage.GoodUserResponseOrBuilder> 
           getGoodUserResponseFieldBuilder() {
         if (goodUserResponseBuilder_ == null) {
-          goodUserResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          goodUserResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.GoodUserResponse, com.ServerResponseMessage.GoodUserResponse.Builder, com.ServerResponseMessage.GoodUserResponseOrBuilder>(
                   getGoodUserResponse(),
                   getParentForChildren(),
@@ -25760,7 +23081,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.FileResponse fileResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.FileResponse, com.ServerResponseMessage.FileResponse.Builder, com.ServerResponseMessage.FileResponseOrBuilder> fileResponseBuilder_;
       /**
        * <code>optional .FileResponse fileResponse = 9;</code>
@@ -25862,11 +23183,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .FileResponse fileResponse = 9;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.FileResponse, com.ServerResponseMessage.FileResponse.Builder, com.ServerResponseMessage.FileResponseOrBuilder> 
           getFileResponseFieldBuilder() {
         if (fileResponseBuilder_ == null) {
-          fileResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          fileResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.FileResponse, com.ServerResponseMessage.FileResponse.Builder, com.ServerResponseMessage.FileResponseOrBuilder>(
                   getFileResponse(),
                   getParentForChildren(),
@@ -25877,7 +23198,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.UpdateMessage updateMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UpdateMessage, com.ServerResponseMessage.UpdateMessage.Builder, com.ServerResponseMessage.UpdateMessageOrBuilder> updateMessageBuilder_;
       /**
        * <code>optional .UpdateMessage updateMessage = 11;</code>
@@ -25979,11 +23300,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .UpdateMessage updateMessage = 11;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UpdateMessage, com.ServerResponseMessage.UpdateMessage.Builder, com.ServerResponseMessage.UpdateMessageOrBuilder> 
           getUpdateMessageFieldBuilder() {
         if (updateMessageBuilder_ == null) {
-          updateMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          updateMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.UpdateMessage, com.ServerResponseMessage.UpdateMessage.Builder, com.ServerResponseMessage.UpdateMessageOrBuilder>(
                   getUpdateMessage(),
                   getParentForChildren(),
@@ -25994,7 +23315,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.QuestionInformationResponse questionInformationResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionInformationResponse, com.ServerResponseMessage.QuestionInformationResponse.Builder, com.ServerResponseMessage.QuestionInformationResponseOrBuilder> questionInformationResponseBuilder_;
       /**
        * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
@@ -26096,11 +23417,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .QuestionInformationResponse questionInformationResponse = 13;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.QuestionInformationResponse, com.ServerResponseMessage.QuestionInformationResponse.Builder, com.ServerResponseMessage.QuestionInformationResponseOrBuilder> 
           getQuestionInformationResponseFieldBuilder() {
         if (questionInformationResponseBuilder_ == null) {
-          questionInformationResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          questionInformationResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.QuestionInformationResponse, com.ServerResponseMessage.QuestionInformationResponse.Builder, com.ServerResponseMessage.QuestionInformationResponseOrBuilder>(
                   getQuestionInformationResponse(),
                   getParentForChildren(),
@@ -26111,7 +23432,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.UserInformationResponse userInformationResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UserInformationResponse, com.ServerResponseMessage.UserInformationResponse.Builder, com.ServerResponseMessage.UserInformationResponseOrBuilder> userInformationResponseBuilder_;
       /**
        * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
@@ -26213,11 +23534,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .UserInformationResponse userInformationResponse = 14;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.UserInformationResponse, com.ServerResponseMessage.UserInformationResponse.Builder, com.ServerResponseMessage.UserInformationResponseOrBuilder> 
           getUserInformationResponseFieldBuilder() {
         if (userInformationResponseBuilder_ == null) {
-          userInformationResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          userInformationResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.UserInformationResponse, com.ServerResponseMessage.UserInformationResponse.Builder, com.ServerResponseMessage.UserInformationResponseOrBuilder>(
                   getUserInformationResponse(),
                   getParentForChildren(),
@@ -26228,7 +23549,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.GetQuestionListResponse getQuestionListResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GetQuestionListResponse, com.ServerResponseMessage.GetQuestionListResponse.Builder, com.ServerResponseMessage.GetQuestionListResponseOrBuilder> getQuestionListResponseBuilder_;
       /**
        * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
@@ -26330,11 +23651,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .GetQuestionListResponse getQuestionListResponse = 15;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GetQuestionListResponse, com.ServerResponseMessage.GetQuestionListResponse.Builder, com.ServerResponseMessage.GetQuestionListResponseOrBuilder> 
           getGetQuestionListResponseFieldBuilder() {
         if (getQuestionListResponseBuilder_ == null) {
-          getQuestionListResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          getQuestionListResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.GetQuestionListResponse, com.ServerResponseMessage.GetQuestionListResponse.Builder, com.ServerResponseMessage.GetQuestionListResponseOrBuilder>(
                   getGetQuestionListResponse(),
                   getParentForChildren(),
@@ -26345,7 +23666,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.CreateQuestionResponse createQuestionResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.CreateQuestionResponse, com.ServerResponseMessage.CreateQuestionResponse.Builder, com.ServerResponseMessage.CreateQuestionResponseOrBuilder> createQuestionResponseBuilder_;
       /**
        * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
@@ -26447,11 +23768,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .CreateQuestionResponse createQuestionResponse = 18;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.CreateQuestionResponse, com.ServerResponseMessage.CreateQuestionResponse.Builder, com.ServerResponseMessage.CreateQuestionResponseOrBuilder> 
           getCreateQuestionResponseFieldBuilder() {
         if (createQuestionResponseBuilder_ == null) {
-          createQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          createQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.CreateQuestionResponse, com.ServerResponseMessage.CreateQuestionResponse.Builder, com.ServerResponseMessage.CreateQuestionResponseOrBuilder>(
                   getCreateQuestionResponse(),
                   getParentForChildren(),
@@ -26462,7 +23783,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.AbandonQuestionResponse abandonQuestionResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.AbandonQuestionResponse, com.ServerResponseMessage.AbandonQuestionResponse.Builder, com.ServerResponseMessage.AbandonQuestionResponseOrBuilder> abandonQuestionResponseBuilder_;
       /**
        * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
@@ -26564,11 +23885,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .AbandonQuestionResponse abandonQuestionResponse = 19;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.AbandonQuestionResponse, com.ServerResponseMessage.AbandonQuestionResponse.Builder, com.ServerResponseMessage.AbandonQuestionResponseOrBuilder> 
           getAbandonQuestionResponseFieldBuilder() {
         if (abandonQuestionResponseBuilder_ == null) {
-          abandonQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          abandonQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.AbandonQuestionResponse, com.ServerResponseMessage.AbandonQuestionResponse.Builder, com.ServerResponseMessage.AbandonQuestionResponseOrBuilder>(
                   getAbandonQuestionResponse(),
                   getParentForChildren(),
@@ -26579,7 +23900,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.SearchInformationResponse searchInformationResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.SearchInformationResponse, com.ServerResponseMessage.SearchInformationResponse.Builder, com.ServerResponseMessage.SearchInformationResponseOrBuilder> searchInformationResponseBuilder_;
       /**
        * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
@@ -26681,11 +24002,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .SearchInformationResponse searchInformationResponse = 20;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.SearchInformationResponse, com.ServerResponseMessage.SearchInformationResponse.Builder, com.ServerResponseMessage.SearchInformationResponseOrBuilder> 
           getSearchInformationResponseFieldBuilder() {
         if (searchInformationResponseBuilder_ == null) {
-          searchInformationResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          searchInformationResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.SearchInformationResponse, com.ServerResponseMessage.SearchInformationResponse.Builder, com.ServerResponseMessage.SearchInformationResponseOrBuilder>(
                   getSearchInformationResponse(),
                   getParentForChildren(),
@@ -26696,7 +24017,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.SolvedQuestionResponse solvedQuestionResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder> solvedQuestionResponseBuilder_;
       /**
        * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
@@ -26798,11 +24119,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .SolvedQuestionResponse solvedQuestionResponse = 21;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder> 
           getSolvedQuestionResponseFieldBuilder() {
         if (solvedQuestionResponseBuilder_ == null) {
-          solvedQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          solvedQuestionResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.SolvedQuestionResponse, com.ServerResponseMessage.SolvedQuestionResponse.Builder, com.ServerResponseMessage.SolvedQuestionResponseOrBuilder>(
                   getSolvedQuestionResponse(),
                   getParentForChildren(),
@@ -26813,7 +24134,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.GetUserListResponse getUserListResponse_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder> getUserListResponseBuilder_;
       /**
        * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
@@ -26915,11 +24236,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .GetUserListResponse getUserListResponse = 22;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder> 
           getGetUserListResponseFieldBuilder() {
         if (getUserListResponseBuilder_ == null) {
-          getUserListResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          getUserListResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.GetUserListResponse, com.ServerResponseMessage.GetUserListResponse.Builder, com.ServerResponseMessage.GetUserListResponseOrBuilder>(
                   getGetUserListResponse(),
                   getParentForChildren(),
@@ -26930,7 +24251,7 @@ public final class ServerResponseMessage {
       }
 
       private com.ServerResponseMessage.WhiteBoardMessage whiteBoardMessage_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.WhiteBoardMessage, com.ServerResponseMessage.WhiteBoardMessage.Builder, com.ServerResponseMessage.WhiteBoardMessageOrBuilder> whiteBoardMessageBuilder_;
       /**
        * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
@@ -27032,11 +24353,11 @@ public final class ServerResponseMessage {
       /**
        * <code>optional .WhiteBoardMessage whiteBoardMessage = 23;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
+      private com.google.protobuf.SingleFieldBuilder<
           com.ServerResponseMessage.WhiteBoardMessage, com.ServerResponseMessage.WhiteBoardMessage.Builder, com.ServerResponseMessage.WhiteBoardMessageOrBuilder> 
           getWhiteBoardMessageFieldBuilder() {
         if (whiteBoardMessageBuilder_ == null) {
-          whiteBoardMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+          whiteBoardMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.ServerResponseMessage.WhiteBoardMessage, com.ServerResponseMessage.WhiteBoardMessage.Builder, com.ServerResponseMessage.WhiteBoardMessageOrBuilder>(
                   getWhiteBoardMessage(),
                   getParentForChildren(),
@@ -27075,7 +24396,16 @@ public final class ServerResponseMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
+        try {
           return new Message(input, extensionRegistry);
+        } catch (RuntimeException e) {
+          if (e.getCause() instanceof
+              com.google.protobuf.InvalidProtocolBufferException) {
+            throw (com.google.protobuf.InvalidProtocolBufferException)
+                e.getCause();
+          }
+          throw e;
+        }
       }
     };
 
@@ -27094,167 +24424,167 @@ public final class ServerResponseMessage {
 
   }
 
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Record_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Record_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Record_MarkMapEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Record_MarkMapEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionListMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_QuestionListMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_QuestionMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_UserMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_UserMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_LaunchResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_LaunchResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_RegisterResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_RegisterResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SendContent_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SendContent_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SendContent_MarkMapEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SendContent_MarkMapEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_AnnouncementMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_AnnouncementMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionEnterResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_QuestionEnterResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GoodQuestionResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GoodQuestionResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GoodUserResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GoodUserResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_QuestionInformationResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_QuestionInformationResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_UserInformationResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_UserInformationResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GetQuestionListResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GetQuestionListResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_CreateQuestionResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_CreateQuestionResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_AbandonQuestionResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_AbandonQuestionResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SearchInformationResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SearchInformationResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_FileResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_FileResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_FileResponse_SignEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_FileResponse_SignEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_SolvedQuestionResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_SolvedQuestionResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_UpdateMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_UpdateMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_UpdateMessage_UserEnter_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_UpdateMessage_UserEnter_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GetUserListResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GetUserListResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GetUserListResponse_UsersEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_GetUserListResponse_UsersEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Message_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Message_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -27396,187 +24726,187 @@ public final class ServerResponseMessage {
     internal_static_Record_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_Record_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Record_descriptor,
         new java.lang.String[] { "ContentMessage", "Time", "User", "RecordID", "MarkMap", "Recordpic", });
     internal_static_Record_MarkMapEntry_descriptor =
       internal_static_Record_descriptor.getNestedTypes().get(0);
     internal_static_Record_MarkMapEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Record_MarkMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_QuestionListMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_QuestionListMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_QuestionListMessage_descriptor,
         new java.lang.String[] { "QuestionID", "QuestionDescription", "Good", "UserNum", "Time", "Owner", });
     internal_static_QuestionMessage_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_QuestionMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_QuestionMessage_descriptor,
         new java.lang.String[] { "Stem", "Stempic", "Addition", "Additionpic", "Time", "Owner", "Record", "Solved", "Good", "Id", });
     internal_static_UserMessage_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_UserMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_UserMessage_descriptor,
         new java.lang.String[] { "Username", "Good", "QuestionNum", "SolvedQuestionNum", "Bonus", "Signature", "MailAddress", "PicUrl", });
     internal_static_LaunchResponse_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_LaunchResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_LaunchResponse_descriptor,
         new java.lang.String[] { "Status", "Information", "UserMessage", });
     internal_static_RegisterResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_RegisterResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_RegisterResponse_descriptor,
         new java.lang.String[] { "Success", "Information", });
     internal_static_SendContent_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_SendContent_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SendContent_descriptor,
         new java.lang.String[] { "QuestionID", "Content", "Time", "User", "Pictures", "Success", "Ismyself", "MarkMap", "RecordID", });
     internal_static_SendContent_MarkMapEntry_descriptor =
       internal_static_SendContent_descriptor.getNestedTypes().get(0);
     internal_static_SendContent_MarkMapEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SendContent_MarkMapEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_AnnouncementMessage_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_AnnouncementMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_AnnouncementMessage_descriptor,
         new java.lang.String[] { "Time", "Text", });
     internal_static_QuestionEnterResponse_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_QuestionEnterResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_QuestionEnterResponse_descriptor,
         new java.lang.String[] { "Allow", "QuestionMessage", });
     internal_static_GoodQuestionResponse_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_GoodQuestionResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GoodQuestionResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_GoodUserResponse_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_GoodUserResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GoodUserResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_QuestionInformationResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_QuestionInformationResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_QuestionInformationResponse_descriptor,
         new java.lang.String[] { "QuestionMessage", "Exist", });
     internal_static_UserInformationResponse_descriptor =
       getDescriptor().getMessageTypes().get(12);
     internal_static_UserInformationResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_UserInformationResponse_descriptor,
         new java.lang.String[] { "UserMessage", "Exist", });
     internal_static_GetQuestionListResponse_descriptor =
       getDescriptor().getMessageTypes().get(13);
     internal_static_GetQuestionListResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GetQuestionListResponse_descriptor,
         new java.lang.String[] { "Num", "QuestionListMessage", });
     internal_static_CreateQuestionResponse_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_CreateQuestionResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_CreateQuestionResponse_descriptor,
         new java.lang.String[] { "Success", "QuestionMessage", });
     internal_static_AbandonQuestionResponse_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_AbandonQuestionResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_AbandonQuestionResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_SearchInformationResponse_descriptor =
       getDescriptor().getMessageTypes().get(16);
     internal_static_SearchInformationResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SearchInformationResponse_descriptor,
         new java.lang.String[] { "SearchID", "QuestionListMessage", });
     internal_static_FileResponse_descriptor =
       getDescriptor().getMessageTypes().get(17);
     internal_static_FileResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_FileResponse_descriptor,
         new java.lang.String[] { "Success", "Sign", "Md5", "SignType", "LocalFilePath", });
     internal_static_FileResponse_SignEntry_descriptor =
       internal_static_FileResponse_descriptor.getNestedTypes().get(0);
     internal_static_FileResponse_SignEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_FileResponse_SignEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_SolvedQuestionResponse_descriptor =
       getDescriptor().getMessageTypes().get(18);
     internal_static_SolvedQuestionResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_SolvedQuestionResponse_descriptor,
         new java.lang.String[] { "QuestionID", "Success", });
     internal_static_UpdateMessage_descriptor =
       getDescriptor().getMessageTypes().get(19);
     internal_static_UpdateMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_UpdateMessage_descriptor,
         new java.lang.String[] { "UserEnter", "WhiteBoardImage", "SendImage", });
     internal_static_UpdateMessage_UserEnter_descriptor =
       internal_static_UpdateMessage_descriptor.getNestedTypes().get(0);
     internal_static_UpdateMessage_UserEnter_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_UpdateMessage_UserEnter_descriptor,
         new java.lang.String[] { "Username", "QuestionID", });
     internal_static_GetUserListResponse_descriptor =
       getDescriptor().getMessageTypes().get(20);
     internal_static_GetUserListResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GetUserListResponse_descriptor,
         new java.lang.String[] { "Success", "Users", "QuestionID", "UserListType", });
     internal_static_GetUserListResponse_UsersEntry_descriptor =
       internal_static_GetUserListResponse_descriptor.getNestedTypes().get(0);
     internal_static_GetUserListResponse_UsersEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_GetUserListResponse_UsersEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_WhiteBoardMessage_descriptor =
       getDescriptor().getMessageTypes().get(21);
     internal_static_WhiteBoardMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_descriptor,
         new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Pensize", "QuestionId", "IsCls", "IsACls", "IsRefresh", "IsReceiveImage", "Image", });
     internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor =
       internal_static_WhiteBoardMessage_descriptor.getNestedTypes().get(0);
     internal_static_WhiteBoardMessage_WhiteBoardImage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor,
         new java.lang.String[] { "Points", "Rects", });
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor =
       internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor.getNestedTypes().get(0);
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicPoint_descriptor,
         new java.lang.String[] { "X1", "Y1", "X2", "Y2", "Color", "Pensize", });
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor =
       internal_static_WhiteBoardMessage_WhiteBoardImage_descriptor.getNestedTypes().get(1);
     internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_WhiteBoardMessage_WhiteBoardImage_GraphicRect_descriptor,
         new java.lang.String[] { "X1", "Y1", "X2", "Y2", });
     internal_static_Message_descriptor =
       getDescriptor().getMessageTypes().get(22);
     internal_static_Message_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Message_descriptor,
         new java.lang.String[] { "MsgType", "Username", "LauchResponse", "RegisterResponse", "SendContent", "AnnouncementMessage", "QuestionEnterResponse", "GoodQuestionResponse", "GoodUserResponse", "FileResponse", "UpdateMessage", "QuestionInformationResponse", "UserInformationResponse", "GetQuestionListResponse", "CreateQuestionResponse", "AbandonQuestionResponse", "SearchInformationResponse", "SolvedQuestionResponse", "GetUserListResponse", "WhiteBoardMessage", });
   }

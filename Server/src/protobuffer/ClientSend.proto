@@ -35,6 +35,8 @@ enum MSG {
    //获取用户列表
    GET_USER_LIST_REQUEST = 20;
    WHITE_BOARD_MESSAGE = 21;
+   //心跳包
+   HEART_BEAT = 22;
 }
 
 //-----------枚举定义---------------//
@@ -169,6 +171,10 @@ message FileRequest {
     SIGNTYPE signType = 2;
 }
 
+message HeartBeat {
+    bool online = 1;
+}
+
 //标志问题为解决状态
 message SolvedQuestionRequest {
     int64 questionID = 1;
@@ -245,4 +251,5 @@ message Message {
     SolvedQuestionRequest solvedQuestionRequest = 21;
     GetUserListRequest getUserListRequest = 22;
     WhiteBoardMessage whiteBoardMessage = 23;
+    HeartBeat heartBeat = 24;
 }

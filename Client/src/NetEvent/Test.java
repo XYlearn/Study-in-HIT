@@ -1,5 +1,6 @@
 package NetEvent;
 
+import com.ClientSendMessage;
 import gui.wb.WhiteBoard;
 import gui.wb.WhiteBoardAdapter;
 
@@ -27,13 +28,9 @@ public class Test {
 
 		try {
 			client.launchRequest("test", "123456");
-			client.enterQuestion(1);
+			client.waitUntilLaunched();
+			client.requestQuestionList(ClientSendMessage.LIST_REFERENCE.TIME, ClientSendMessage.RANKORDER.DESCENDING, 20);
 		} catch (Exception e) { e.printStackTrace();}
 
-		try {
-			client.uploadFile("ask.jpg");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
