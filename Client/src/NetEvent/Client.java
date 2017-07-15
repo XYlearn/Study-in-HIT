@@ -30,6 +30,7 @@ public class Client extends Thread{
 
 	private static String host = "123.207.159.156";//"localhost";//
 	private static int port = 8972;
+	public static Client client = null;
 
 	//connection object
 	private ConnectFuture connectFuture = null;
@@ -83,6 +84,8 @@ public class Client extends Thread{
 			  "",
 			  new CosHttpClient(CosHttpClient.getDefaultConfig())
 	);
+
+	public Client() {client = this;}
 
 	@Override
 	public void run() {
@@ -213,6 +216,14 @@ public class Client extends Thread{
 		sendIt(sendMessage);
 	}
 
+	public void exitQuestion(long questionID) throws IOException {
+		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
+				.setMsgType(ClientSendMessage.MSG.QUESTION_EXIT)
+				.setUsername(username)
+				.setQuestionExitMessage(ClientSendMessage.QuestionExitMessage.newBuilder().setQuestionID(questionID))
+				.build();
+		sendIt(sendMessage);
+	}
 
 	//not recommend
 	public void sendContent(String contents,ArrayList<String> pictures,long questionID) throws IOException {

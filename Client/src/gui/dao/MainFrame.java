@@ -8,6 +8,7 @@ package gui.dao;
 import NetEvent.eventcom.CreateQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import NetEvent.messagecom.UserMessage;
+import NetEvent.Client;
 import bin.test;
 import com.ClientSendMessage;
 import gui.ChattingBox;
@@ -355,6 +356,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			{
 				if(questionID>=0)
 				{
+					//给服务器发送退出房间消息
+					try {
+						Client.client.exitQuestion(questionID);
+					} catch (IOException ex) {}
 					ChattingBox.unbind(questionID);
 					InputBox.unbind(questionID);
 					map.remove(questionID);

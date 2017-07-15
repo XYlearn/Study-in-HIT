@@ -37,6 +37,8 @@ enum MSG {
    WHITE_BOARD_MESSAGE = 21;
    //心跳包
    HEART_BEAT = 22;
+   //退出房间
+   QUESTION_EXIT = 23;
 }
 
 //-----------枚举定义---------------//
@@ -108,6 +110,11 @@ message AnnouncementMessage {
 
 // //进入问题房间消息
 message QuestionEnterRequest {
+    int64 questionID = 1;
+}
+
+//退出问题房间消息
+message QuestionExitMessage {
     int64 questionID = 1;
 }
 
@@ -252,4 +259,5 @@ message Message {
     GetUserListRequest getUserListRequest = 22;
     WhiteBoardMessage whiteBoardMessage = 23;
     HeartBeat heartBeat = 24;
+    QuestionExitMessage questionExitMessage = 25;
 }

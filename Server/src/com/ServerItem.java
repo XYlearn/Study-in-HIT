@@ -325,6 +325,11 @@ public class ServerItem {
 						ServerHandler.log.error("",e);
 						return null;
 					}
+				case QUESTION_EXIT:	//退出问题
+					if(message.hasQuestionExitMessage() && isLaunched()) {
+						ServerHandler.question_sessions_map.get(message.getQuestionExitMessage().getQuestionID()).remove(session);
+					}
+					return ServerResponseMessage.Message.newBuilder().setMsgType(ServerResponseMessage.MSG.IGNORE_MESSAGE).build();
 				case ABANDON_QUESTION_REQUEST:	//删除问题
 					try {
 						if (message.hasAbandonQuestionRequest() && isLaunched()) {
