@@ -1,4 +1,4 @@
-﻿package NetEvent;
+package NetEvent;
 
 import Cos.CosHttpClient;
 import Cos.FileOP;
