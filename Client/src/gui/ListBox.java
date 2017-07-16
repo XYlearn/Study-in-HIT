@@ -209,10 +209,10 @@ public class ListBox extends JPanel implements Dispatcher
 		mymodel.removeElementAt(index);
 	}
 	
-	public synchronized void readList(Iterable<QuestionListMessage> listData)
+	public void readList(Iterable<QuestionListMessage> listData)
 	{
-		synchronized(mymodel)
-		{
+		//synchronized(mymodel)
+		//{
 			while(mymodel.getSize()!=0) mymodel.removeElementAt(0);
 			listData.forEach((QuestionListMessage msg)->
 			{
@@ -228,6 +228,6 @@ public class ListBox extends JPanel implements Dispatcher
 					"");//lastTime
 				mymodel.addElement(d);
 			});
-		}
+		//}
 	}
 }

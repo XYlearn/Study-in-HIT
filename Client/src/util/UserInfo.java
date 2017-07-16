@@ -6,6 +6,8 @@ import bin.test;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserInfo implements Dispatcher
 {
@@ -27,13 +29,21 @@ public class UserInfo implements Dispatcher
 	public static void requestUserInfo(String username) throws IOException
 	{
 		test.client.requestUserInfo(username);
-		test.client.downloadFile(username+".jpg");
 	}
 	
 	public static void dispatch(UserInfoEvent e)
 	{
 		if(e.isExist())
+		{
 			map.put(e.getUserMessage().getUsername(),e.getUserMessage());
+			try
+			{
+				test.client.downloadFile(e.getUserMessage().getPicUrl());
+			} catch (IOException ex)
+			{
+				Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
 	}
 	
 	public static void setDelay(long delay)

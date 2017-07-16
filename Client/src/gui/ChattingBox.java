@@ -337,11 +337,12 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private static String getUserHead(String userName)
 	{
+		String pic_url="";
 		if (!"匿名".equals(userName))
 		{
 			try
 			{
-				String pic_url = UserInfo.getPicURL(userName);
+				pic_url = UserInfo.getPicURL(userName);
 				Client.client.downloadFile(pic_url);
 			} catch (IOException ex)
 			{
@@ -350,13 +351,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 			}
 		}
 		return "<a href='user:"+userName+"'>"
-				+"<img border='0' src='"+PROPICTPATH+userName+".jpg'></a>";
+				+"<img border='0' width='36px' height='36px' src='"+PROPICTPATH+pic_url+"'></a>";
 	}
-	
-	/*private static Element insertBubbledMessage(Record msg)
-	{
-		
-	}*/
 	
 	static
 	{

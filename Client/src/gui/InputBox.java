@@ -266,7 +266,7 @@ public class InputBox extends JPanel implements Dispatcher
 		Pattern pat=Pattern.compile("<img[^>]*? src=\"file:(.*?)\".*?>");
 		Matcher mat=pat.matcher(str);
 		while (mat.find())
-			pictures.add(test.PICTPATH+mat.group(1));
+			pictures.add(mat.group(1));
 		if (pictures.isEmpty())
 			pictures=null;
 		//replace the images with "%>"

@@ -174,8 +174,8 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	
 	public void setUserInformation(UserMessage msg)
 	{
-		//System.out.println("头像地址："+msg.getPicUrl());
-		headLabel.setIcon(new ImageIcon(test.PICTPATH+msg.getUsername()+".jpg"));
+		System.out.println("头像："+msg.getPicUrl());
+		headLabel.setIcon(new ImageIcon(test.PICTPATH+msg.getPicUrl()));
 		usernameLabel.setText(msg.getUsername());
 		UserInfo.setMyUserName(msg.getUsername());
 	}
