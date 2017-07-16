@@ -29,7 +29,7 @@ public class Test {
 		try {
 			client.launchRequest("test", "123456");
 			client.waitUntilLaunched();
-			client.requestQuestionList(ClientSendMessage.LIST_REFERENCE.TIME, ClientSendMessage.RANKORDER.DESCENDING, 20);
+			client.downloadFile("xy16.jpg");
 		} catch (Exception e) { e.printStackTrace();}
 
 	}

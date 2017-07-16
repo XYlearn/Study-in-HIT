@@ -6,6 +6,7 @@ import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.SolvedQuestionEvent;
 import NetEvent.messagecom.Record;
+import NetEvent.Client;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -340,7 +341,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 		{
 			try
 			{
-				UserInfo.getPicURL(userName);
+				String pic_url = UserInfo.getPicURL(userName);
+				Client.client.downloadFile(pic_url);
 			} catch (IOException ex)
 			{
 				System.out.println("Failed getting userhead.");

@@ -12,6 +12,7 @@ question_num INT DEFAULT 0,
 solved_question_num INT DEFAULT 0,
 register_time DATETIME DEFAULT now(),
 last_launch_time DATETIME DEFAULT now(),
+pic_url VARCHAR(128) DEFAULT "default.jpg",
 PRIMARY KEY(username)
 ); 
 

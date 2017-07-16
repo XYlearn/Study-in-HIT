@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "localhost";//"123.207.159.156";//
+	private static String host = "123.207.159.156";//"localhost";//
 	private static int port = 8972;
 	public static Client client = null;
 
@@ -235,23 +235,20 @@ public class Client extends Thread{
 
 		if(pictures!=null) {
 			ArrayList<String> md5s = new ArrayList<>();
-			for (Iterator<String> it = pictures.iterator(); it.hasNext(); ) {
-				File file = new File(it.next());
+			Set<String> fileNotExist = new HashSet<>();
+			for(String pic : pictures) {
+				File file = new File(pic);
 				if(!file.exists()) {
-					it.remove();
+					fileNotExist.add(pic);
 					continue;
 				}
-
-				String md5 = MD5Tools.FileToMD5(file);
-				md5s.add(md5);
-				file.renameTo(new File(PICTPATH+md5));
 			}
-			contentBuider.addAllPictures(md5s);
-			for(String md5 : md5s) {
-				md5=PICTPATH+md5;
+			for (String pic : fileNotExist) {
+				pictures.remove(pic);
 			}
+			contentBuider.addAllPictures(pictures);
 
-			uploadFiles(md5s);
+			uploadFiles(pictures);
 		}
 
 		ClientSendMessage.Message sendMessage = ClientSendMessage.Message.newBuilder()
@@ -279,22 +276,20 @@ public class Client extends Thread{
 		//图片处理
 		if(pictures!=null) {
 			ArrayList<String> md5s = new ArrayList<>();
-			ArrayList<String> picturesExist = new ArrayList<>();
-			for (String picture : pictures) {
-				File file = new File(picture);
+			Set<String> fileNotExist = new HashSet<>();
+			for(String pic : pictures) {
+				File file = new File(pic);
 				if(!file.exists()) {
+					fileNotExist.add(pic);
 					continue;
-				} else {
-					picturesExist.add(picture);
 				}
-
-				String md5 = MD5Tools.FileToMD5(file);
-				md5s.add(md5);
-				file.renameTo(new File(md5));
 			}
-			contentBuider.addAllPictures(md5s);
+			for (String pic : fileNotExist) {
+				pictures.remove(pic);
+			}
+			contentBuider.addAllPictures(pictures);
 
-			uploadFiles(picturesExist);
+			uploadFiles(pictures);
 		}
 
 		//发送消息
@@ -479,6 +474,7 @@ public class Client extends Thread{
 	public boolean uploadFiles(Iterable<String> fileNames) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
+		boolean flag = true;
 
 		ArrayList<String> localFilePaths = new ArrayList<>();
 		ArrayList<String> filenames = new ArrayList<>();
@@ -491,7 +487,7 @@ public class Client extends Thread{
 			File file = new File(filePath);
 			if (!file.exists()) {
 				System.out.println("文件不存在");
-				return false;
+				flag = false;
 			} else {
 				String filename = file.getName();
 				filenames.add(filename);
@@ -513,7 +509,7 @@ public class Client extends Thread{
 
 		sendIt(request);
 
-		return true;
+		return flag;
 	}
 
 	public void downloadFile(String filename) throws IOException {
@@ -523,9 +519,22 @@ public class Client extends Thread{
 		downloadFiles(filenames);
 	}
 
-	public void downloadFiles(Iterable<String> filenames) throws IOException {
+	public void downloadFiles(ArrayList<String> filenames) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
+
+		Set<String> fileExist = new HashSet<>();
+		for(String filename : filenames) {
+			File f = new File(PICTPATH + filename);
+			if(f.exists())
+				fileExist.add(filename);
+		}
+		for(String filename : fileExist) {
+			filenames.remove(filename);
+		}
+
+		if(filenames.size() == 0)
+			return;
 
 		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
 

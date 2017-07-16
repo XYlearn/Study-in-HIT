@@ -53,7 +53,7 @@ public class UserInfo implements Dispatcher
 		return map.get(username).getSignature();
 	}
 
-	
+
 	public static String getPicURL(String username) throws IOException
 	{
 		requestUserInfoWithTimeOut(username);
