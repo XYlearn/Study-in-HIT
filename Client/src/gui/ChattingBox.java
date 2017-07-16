@@ -116,7 +116,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 		kit.install(myPane);
 		myPane.setEditable(false);
 		myPane.setFont(Font.getFont("宋体"));
-		//myPane.setEditorKit(kit);
 		myPane.setText(HTML_INIT);
 		doc=(HTMLDocument)myPane.getStyledDocument();
 		try
@@ -227,7 +226,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 			for (int i=0; i<msg.getPictures().size(); i++)
 				message=message.replaceAll("[^%]%"+i+" ",
 					HTML_MESSAGE_PICTURE
-					.replaceAll(HTML_TAG_PICTURE_AT_I, msg.getPictureAt(i))
+					.replaceAll(HTML_TAG_PICTURE_AT_I, PROPICTPATH+msg.getPictureAt(i))
 					.replaceAll(HTML_TAG_I, String.valueOf(i)));
 		message=message.replaceAll("%%", "%");
 		records.add(msg);
