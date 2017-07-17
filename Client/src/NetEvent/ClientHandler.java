@@ -74,10 +74,10 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				case QUESTION_ENTER_RESPONSE:	//
 					netEvent = handleResponseEnterQuestion(recvMessage);
-					WhiteBoardDispatcher.dispatch(netEvent);
 					InputBox.dispatch(netEvent);
 					ChattingBox.dispatch(netEvent);
 					test.mainFrame.dispatch(netEvent);
+					WhiteBoardDispatcher.dispatch(netEvent);
 					break;
 				case GOOD_QUESTION_RESPONSE:	//
 					netEvent = handleResponseGoodQuestion(recvMessage);
