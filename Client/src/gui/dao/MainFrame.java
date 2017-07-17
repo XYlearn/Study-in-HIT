@@ -78,7 +78,9 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				new UserInformation(UserInfo.getMyUserName()).setVisible(true);
+				UserInformation usrInfo=new UserInformation();
+				usrInfo.load(UserInfo.getMyUserName());
+				usrInfo.setVisible(true);
 			}
 		});
 		newRoomButton.addMouseListener(

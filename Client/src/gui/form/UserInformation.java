@@ -28,11 +28,8 @@ public class UserInformation extends javax.swing.JFrame
 	private static final String PROPICTPATH="pictures/";
 	private static final String PROFILEPATH="files/";
 	private static final String PROIMGPATH="img_src/";
-	/**
-	 * Creates new form UserInformation
-	 * @param username
-	 */
-	public UserInformation(String username)
+	
+	public UserInformation()
 	{
 		initComponents();
 		setLocationRelativeTo(null);
@@ -59,7 +56,12 @@ public class UserInformation extends javax.swing.JFrame
 			Logger.getLogger(UserInformation.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		content.setEditable(false);
-		System.out.println("loading html....");
+		content.setBounds(0, 0, this.getWidth(), this.getHeight());
+		this.getContentPane().add(content);
+	}
+	
+	public void load(String username)
+	{
 		try
 		{
 			doc.insertAfterStart(doc.getRootElements()[0].getElement(0),
@@ -83,10 +85,6 @@ public class UserInformation extends javax.swing.JFrame
 		{
 			Logger.getLogger(UserInformation.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		System.out.println("init finished..");
-		
-		content.setBounds(0, 0, this.getWidth(), this.getHeight());
-		this.getContentPane().add(content);
 	}
 
 	/**
