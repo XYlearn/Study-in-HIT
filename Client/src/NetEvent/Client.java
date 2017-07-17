@@ -231,7 +231,8 @@ public class Client extends Thread{
 		ClientSendMessage.Message send = null;
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
 				  .setContent(contents)
-				  .setQuestionID(questionID);
+				  .setQuestionID(questionID)
+				  .setUser(username);
 
 		if(pictures!=null) {
 			ArrayList<String> md5s = new ArrayList<>();
