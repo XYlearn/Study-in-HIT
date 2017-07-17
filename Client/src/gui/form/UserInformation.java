@@ -24,6 +24,10 @@ public class UserInformation extends javax.swing.JFrame
 	private JTextPane content;
 	private HTMLDocument doc;
 	private HTMLEditorKit kit;
+
+	private static final String PROPICTPATH="pictures/";
+	private static final String PROFILEPATH="files/";
+	private static final String PROIMGPATH="img_src/";
 	/**
 	 * Creates new form UserInformation
 	 * @param username
@@ -40,6 +44,7 @@ public class UserInformation extends javax.swing.JFrame
 		{
 			System.out.println("UserInfoBackground.jpg not found.");
 		}
+		System.out.println("UserInformation init...");
 		kit=new HTMLEditorKit();
 		content=new JTextPane();
 		content.setContentType("text/html");
@@ -48,17 +53,18 @@ public class UserInformation extends javax.swing.JFrame
 		doc=(HTMLDocument)content.getStyledDocument();
 		try
 		{
-			doc.setBase(new URL("file:"+test.IMGPATH));
+			doc.setBase(new URL("file:"+test.MAINPATH));
 		} catch (MalformedURLException ex)
 		{
 			Logger.getLogger(UserInformation.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		content.setEditable(false);
+		System.out.println("loading html....");
 		try
 		{
 			doc.insertAfterStart(doc.getRootElements()[0].getElement(0),
 					"<body align='center' style='background-image:url(UserInfoBackground.jpg)'>"
-					+"<p><img src='"+username+".jpg' width='50',height='50'></p>"
+					+"<p><img src='"+PROPICTPATH+UserInfo.getPicURL(username)+"' width='50',height='50'></p>"
 					+"<div style='font-size:16px;margin:0 0 0 100px;width:100%'>"
 					+"<p align='left'>用户名："+username+"</p>"
 					+"<p align='left'>签名："+UserInfo.getSignature(username)+"</p>"
@@ -77,6 +83,7 @@ public class UserInformation extends javax.swing.JFrame
 		{
 			Logger.getLogger(UserInformation.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		System.out.println("init finished..");
 		
 		content.setBounds(0, 0, this.getWidth(), this.getHeight());
 		this.getContentPane().add(content);

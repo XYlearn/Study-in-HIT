@@ -13,7 +13,7 @@ public class UserInfo implements Dispatcher
 {
 	private static final Map<String,UserMessage> map=new ConcurrentHashMap<String,UserMessage>();
 	private static long startTime=0;
-	private static long delayTime=10;
+	private static long delayTime=500;
 	private static String myUser="";
 	
 	public static void setMyUserName(String username)
