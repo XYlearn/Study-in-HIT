@@ -265,8 +265,11 @@ public class InputBox extends JPanel implements Dispatcher
 		//get the path of the images
 		Pattern pat=Pattern.compile("<img[^>]*? src=\"file:(.*?)\".*?>");
 		Matcher mat=pat.matcher(str);
-		while (mat.find())
-			pictures.add(mat.group(1));
+		//传入文件名本身 add by x
+		while (mat.find()) {
+			String[] strs = mat.group(1).split("/");
+			pictures.add(strs[strs.length-1]);
+		}
 		if (pictures.isEmpty())
 			pictures=null;
 		//replace the images with "%>"

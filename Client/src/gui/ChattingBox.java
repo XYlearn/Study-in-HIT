@@ -238,7 +238,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 		if (pictures!=null)
 			for (int i=0; i<msg.getPictures().size(); i++)
-				message=message.replaceAll("[^%]%"+i+" ",
+				message=message.replaceAll("^|[^%]%"+i+" ",
 					HTML_MESSAGE_PICTURE
 					.replaceAll(HTML_TAG_PICTURE_AT_I, msg.getPictureAt(i))
 					.replaceAll(HTML_TAG_I, String.valueOf(i)));
