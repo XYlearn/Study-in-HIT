@@ -529,29 +529,40 @@ public class ChattingBox extends JPanel implements Dispatcher
 					//利用图片框打开大图
 				}
 				else if (HYPERLINK_TYPE_AUDIO.equals(cmd))
+				{
 					//System.out.println("激活超链接："+currentHyperlink);
 					if (AudioTools.isPlaying())
+					{
+						System.out.println("playing!!!");
 						try
 						{
-							doc.setInnerHTML(e.getSourceElement().getParentElement(),
+							
+							doc.setOuterHTML(e.getSourceElement(),
 									"<img src='"+PROIMGPATH+"button_play.gif'>");
 						} catch (Exception ex)
 						{
 							System.out.println(ex);
 						}
+					}
 					else
 						try
 						{
-								doc.setInnerHTML(e.getSourceElement().getParentElement(),
+							System.out.println(e.getSourceElement());
+							System.out.println(myPane.getText());
+							System.out.println("stopping!!!");
+							doc.setOuterHTML(e.getSourceElement(),
 									"<img src='"+PROIMGPATH+"button_stop.gif'>");
+							System.out.println(myPane.getText());
 							AudioTools.playAudio(
 									test.AUDIOPATH+currentHyperlink.substring(5),
 									(String currentPlayingAudio)->
 									{
 										try
 										{
-											doc.setInnerHTML(e.getSourceElement().getParentElement(),
+											System.out.println(e.getSourceElement());
+											doc.setOuterHTML(e.getSourceElement(),
 													"<img src='"+PROIMGPATH+"button_play.gif'>");
+											System.out.println(myPane.getText());
 										} catch (Exception ex)
 										{
 											System.out.println(ex);
@@ -561,6 +572,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 						{
 							ex.printStackTrace();
 						}
+				}
 				else if (HYPERLINK_TYPE_FILE.equals(cmd))
 				{
 					File f;
