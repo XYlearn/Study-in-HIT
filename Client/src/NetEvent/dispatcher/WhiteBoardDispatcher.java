@@ -39,8 +39,8 @@ public class WhiteBoardDispatcher implements Dispatcher{
                 WhiteBoard whiteBoard = WhiteBoard.whiteBoard;
                 if(!WhiteBoard.questionIDs.contains(questionID)) {
                     whiteBoard.addPanel(questionID);
-                    whiteBoard.choosePanel(questionID);
                 }
+                whiteBoard.choosePanel(questionID);
             }
         }
     }

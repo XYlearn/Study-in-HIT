@@ -6,6 +6,7 @@
 package gui.dao;
 
 import NetEvent.eventcom.CreateQuestionEvent;
+import NetEvent.eventcom.EnterQuestionEvent;
 import NetEvent.eventcom.NetEvent;
 import NetEvent.messagecom.UserMessage;
 import NetEvent.Client;
@@ -174,7 +175,12 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			}
 			case ENTER_QUESTION_EVENT:
 			{
+				EnterQuestionEvent event = (EnterQuestionEvent) e;
+				long questionID = event.getQuestionMessage().getId();
+				whiteboardFrame.addPanel(questionID);
+				whiteboardFrame.choosePanel(questionID);
 				whiteboardFrame.setVisible(true);
+				whiteboardFrame.choosePanel(questionID);
 				break;
 			}
 		}
