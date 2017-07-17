@@ -12,7 +12,7 @@ import com.qcloud.cos.request.UploadFileRequest;
 import gui.ChattingBox;
 import gui.InputBox;
 import gui.ListBox;
-import gui.wb.WhiteBoard;
+import gui.dao.MainFrame;
 import jdk.nashorn.internal.objects.annotations.Function;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
@@ -77,6 +77,7 @@ public class ClientHandler extends IoHandlerAdapter {
 					WhiteBoardDispatcher.dispatch(netEvent);
 					InputBox.dispatch(netEvent);
 					ChattingBox.dispatch(netEvent);
+					test.mainFrame.dispatch(netEvent);
 					break;
 				case GOOD_QUESTION_RESPONSE:	//
 					netEvent = handleResponseGoodQuestion(recvMessage);

@@ -125,6 +125,11 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 		searchPanel.add(searchBox,BorderLayout.CENTER);
 		fileChooser=new JFileChooser();
 		whiteboardFrame=new WhiteBoardFrame(test.client);
+		whiteboardFrame.setLocationRelativeTo(mainFrame);
+		whiteboardFrame.setBounds((int)(screenSize.getWidth()*0.4),
+							0,
+							(int)(screenSize.getWidth()*0.5),
+							(int)(screenSize.getHeight()*0.5));
 		try
 		{
 			test.client.requestQuestionList(
