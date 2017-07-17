@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -107,7 +108,7 @@ public class ServerItem {
 				pstmtSelectQuestion = dbconn.connection.prepareStatement("SELECT * FROM question WHERE id=?;");
 				pstmtSelectQuestionID = dbconn.connection.prepareStatement("SELECT * FROM question_id?;");
 				pstmtUpdateQuestionSendTime = dbconn.connection.prepareStatement("UPDATE question SET last_send_time=now() WHERE id=?");
-				pstmtInsertQuestionID = dbconn.connection.prepareStatement("INSERT INTO question_id? (record, time, username, markMap, recordpic) VALUES(?,now(),?,?,?);");
+				pstmtInsertQuestionID = dbconn.connection.prepareStatement("INSERT INTO question_id? (record, time, username, markMap, recordpic) VALUES(?,?,?,?,?);");
 				pstmtMaxQuestionID = dbconn.connection.prepareStatement("SELECT max(record_id) FROM question_id?;");
 				pstmtInsertFiles = dbconn.connection.prepareStatement("INSERT INTO files (md5, filename, user) VALUES(?,?,?);");
 				pstmtSelectFiles = dbconn.connection.prepareStatement("SELECT * FROM files WHERE filename=?;");
@@ -327,7 +328,9 @@ public class ServerItem {
 					}
 				case QUESTION_EXIT:	//退出问题
 					if(message.hasQuestionExitMessage() && isLaunched()) {
-						ServerHandler.question_sessions_map.get(message.getQuestionExitMessage().getQuestionID()).remove(session);
+						long questionID = message.getQuestionExitMessage().getQuestionID();
+						ServerHandler.question_sessions_map.get(questionID).remove(session);
+						ServerHandler.session_questions_map.get(session).remove(questionID);
 					}
 					return ServerResponseMessage.Message.newBuilder().setMsgType(ServerResponseMessage.MSG.IGNORE_MESSAGE).build();
 				case ABANDON_QUESTION_REQUEST:	//删除问题
@@ -533,7 +536,7 @@ public class ServerItem {
 		ServerResponseMessage.SendContent.Builder sendBuider = ServerResponseMessage.SendContent.newBuilder();
 		//解析数据
 		long questionID = sendMessage.getQuestionID();
-		String time = sendMessage.getTime();
+		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		String record = sendMessage.getContent();
 		Map<Integer, Long> markMap = sendMessage.getMarkMap();
 		ProtocolStringList pictures = sendMessage.getPicturesList();
@@ -551,9 +554,9 @@ public class ServerItem {
 		//将markMap转化为String
 		StringBuilder markMapStrBuider = new StringBuilder("");
 		if(markMap.size() > 0) {
+			markMapStrBuider = new StringBuilder("");
 			for (Map.Entry<Integer, Long> entry : markMap.entrySet()) {
-				markMapStrBuider.append(entry.getKey())
-						  .append(":").append(entry.getValue()).append(":");
+				markMapStrBuider.append(entry.getKey()).append("/").append(entry.getValue()).append(":");
 			}
 			markMapStrBuider.deleteCharAt(markMapStrBuider.length()-1);
 		}
@@ -568,11 +571,12 @@ public class ServerItem {
 		}
 
 		//在数据库中记录
-		pstmtInsertQuestionID.setLong(1,questionID);
-		pstmtInsertQuestionID.setString(2,record);
-		pstmtInsertQuestionID.setString(3, username);
-		pstmtInsertQuestionID.setString(4, markMap.toString());
-		pstmtInsertQuestionID.setString(5, recordpicStrBuider.toString());
+		pstmtInsertQuestionID.setLong(1, questionID);
+		pstmtInsertQuestionID.setString(2, record);
+		pstmtInsertQuestionID.setString(3, time);
+		pstmtInsertQuestionID.setString(4, username);
+		pstmtInsertQuestionID.setString(5, markMapStrBuider.toString());
+		pstmtInsertQuestionID.setString(6, recordpicStrBuider.toString());
 		pstmtInsertQuestionID.execute();
 
 		//获取id
@@ -722,8 +726,11 @@ public class ServerItem {
 	private Map<Integer, Long> getMarkMap(String str) {
 		Map<Integer, Long> markMap = new HashMap<>();
 		String[] strs = str.split(":");
-		for(int i=0; i<strs.length-1; i++) {
-			markMap.put(Integer.valueOf(strs[i]), Long.valueOf(strs[i+1]));
+		for(int i=0; i<strs.length; i++) {
+			if(strs[i] == "") continue;
+			String[] entryStr = strs[i].split("/");
+			if(!entryStr[0].equals(""))
+				markMap.put(Integer.valueOf(entryStr[0]), Long.valueOf(entryStr[1]));
 		}
 		return markMap;
 	}
@@ -1347,6 +1354,9 @@ public class ServerItem {
 
 		//在服务端记录图片
 		GraphicPoints image = ServerHandler.question_image_map.get(request.getQuestionId());
+		if(image == null) {
+			ServerHandler.question_image_map.put(request.getQuestionId(), new GraphicPoints());
+		}
 		boolean isCls = request.getIsCls();
 		boolean isACls = request.getIsACls();
 		boolean isRefresh = request.getIsRefresh();

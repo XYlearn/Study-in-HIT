@@ -48,7 +48,7 @@ public class ServerHandler extends IoHandlerAdapter {
 		ServerResponseMessage.MSG msgType;
 
 		ServerItem serverItem = serviceMap.get(session);
-		if(serverItem.equals(null)) {
+		if(serverItem==null) {
 			serverItem = new ServerItem(session, dbconn);
 			serviceMap.put(session, serverItem);
 		}

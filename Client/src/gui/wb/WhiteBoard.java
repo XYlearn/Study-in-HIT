@@ -72,8 +72,10 @@ public class WhiteBoard extends JPanel
        }
 
     public void choosePanel(long questionID) {
-        if(!questionIDs.contains(questionID))
+        if(!questionIDs.contains(questionID)) {
+            sP1.refresh();
             return;
+        }
         card.show(canvasPanel, String.valueOf(questionID));
         sP1 = panelList.get(questionIDs.indexOf(questionID));
         sP1.refresh();
@@ -166,10 +168,13 @@ public class WhiteBoard extends JPanel
                 clearAll();
                 WhiteBoardEvent event = new WhiteBoardEvent();
                 event.setACls(true);
+                event.setQuestionID(questionID);
                 /*reset the curImage to blank*/
                 try {
                     client.whiteBoardMessage(event);
-                } catch (IOException ex) {}
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
 
         }
