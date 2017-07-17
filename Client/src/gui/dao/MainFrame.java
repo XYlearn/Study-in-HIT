@@ -254,6 +254,33 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 					}
 				});
 			
+			JButton deleteRoomButton=new JButton("删除房间");
+			deleteRoomButton.addMouseListener(
+				new MouseAdapter()
+				{
+					@Override
+					public void mouseClicked(MouseEvent e)
+					{
+						deleteRoomButton.setEnabled(ListBox.getOwner(questionID).equals(UserInfo.getMyUserName()));
+						if(ListBox.getOwner(questionID).equals(UserInfo.getMyUserName()))
+						{
+							try
+							{
+								test.client.abandonQuestion(questionID);
+								test.client.requestQuestionList(
+									ClientSendMessage.LIST_REFERENCE.TIME,
+									ClientSendMessage.RANKORDER.DESCENDING,
+									QUESTION_LIST_NUMBER);
+								tabPane.remove(tabPane.getSelectedIndex());
+								map.remove(questionID);
+							} catch (IOException ex)
+							{
+								Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+							}
+						}
+					}
+				});
+			
 			JButton sendButton=new JButton("发送(Enter)");
 			sendButton.addMouseListener(
 				new MouseAdapter()
@@ -265,11 +292,12 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 					}
 				});
 			
-			buttonPanel.setLayout(new GridLayout(1,6,5,5));
+			buttonPanel.setLayout(new GridLayout(1,7,5,5));
 			buttonPanel.add(recordAudioButton);
 			buttonPanel.add(insertPictureButton);
 			buttonPanel.add(expressionConvertButton);
 			buttonPanel.add(new JPanel());
+			buttonPanel.add(deleteRoomButton);
 			buttonPanel.add(new JPanel());
 			buttonPanel.add(sendButton);
 			

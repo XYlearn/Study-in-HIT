@@ -14,7 +14,7 @@ public class UserInfo implements Dispatcher
 	private static final Map<String,UserMessage> map=new ConcurrentHashMap<>();
 	private static final Map<String,Boolean> requesting=new ConcurrentHashMap<>();
 	private static long startTime=0;
-	private static long delayTime=500;
+	private static long delayTime=200;
 	private static String myUser="";
 	
 	public static void setMyUserName(String username)
@@ -29,7 +29,7 @@ public class UserInfo implements Dispatcher
 	
 	public static void requestUserInfo(String username) throws IOException
 	{
-		if(requesting.getOrDefault(username, Boolean.FALSE))
+		if(!requesting.getOrDefault(username, Boolean.FALSE))
 		{
 			test.client.requestUserInfo(username);
 			requesting.put(username, Boolean.TRUE);

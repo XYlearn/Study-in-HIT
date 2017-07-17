@@ -32,6 +32,7 @@ public class ListBox extends JPanel implements Dispatcher
 	private Consumer<MouseEvent> mouseListener;
 	
 	private static final Map<Integer,ListBox> map=new ConcurrentHashMap<Integer,ListBox>();
+	private static final Map<Long,String> owner=new ConcurrentHashMap<>();
 	private int searchID=0;
 	
 	private static final String SORT_BY_ID="i";
@@ -122,11 +123,9 @@ public class ListBox extends JPanel implements Dispatcher
 		{
 			case QUESTION_LIST_EVENT:
 			{
-				System.out.println("start Question List dispatching");
 				QuestionListEvent ex=(QuestionListEvent)e;
 				if(map.containsKey(0))
 					map.get(0).readList(ex.getQuestionListMessage());
-				System.out.println("Question List dispatching finished");
 				break;
 			}
 			case SEARCH_QUESTION_EVENT:
@@ -139,6 +138,11 @@ public class ListBox extends JPanel implements Dispatcher
 			default:
 				break;
 		}
+	}
+	
+	public static String getOwner(long questionID)
+	{
+		return owner.getOrDefault(questionID,"");
 	}
 	
 	/**
@@ -227,6 +231,7 @@ public class ListBox extends JPanel implements Dispatcher
 					msg.getUserNum(),
 					"");//lastTime
 				mymodel.addElement(d);
+				owner.put(msg.getQuestionID(),msg.getOwner());
 			});
 		//}
 	}
