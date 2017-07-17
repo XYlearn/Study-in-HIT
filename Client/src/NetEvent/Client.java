@@ -512,14 +512,14 @@ public class Client extends Thread{
 		return flag;
 	}
 
-	public void downloadFile(String filename, boolean contentPic) throws IOException {
+	public void downloadFile(String filename, boolean contentPic, long questionID) throws IOException {
 		ArrayList<String> filenames = new ArrayList<>();
 		filenames.add(filename);
 
-		downloadFiles(filenames, contentPic);
+		downloadFiles(filenames, contentPic, questionID);
 	}
 
-	public void downloadFiles(List<String> filenames, boolean contentPic) throws IOException {
+	public void downloadFiles(List<String> filenames, boolean contentPic, long questionID) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
@@ -538,6 +538,7 @@ public class Client extends Thread{
 
 		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
 		builder.setContentPic(contentPic);
+		builder.setQuestionID(questionID);
 
 		request = ClientSendMessage.Message.newBuilder()
 				.setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
@@ -549,11 +550,11 @@ public class Client extends Thread{
 	}
 
 	public void downloadFile(String filename) throws IOException {
-		downloadFile(filename, false);
+		downloadFile(filename, false, -1);
 	}
 
 	public void downloadFiles(List<String> filenames) throws IOException {
-		downloadFiles(filenames, false);
+		downloadFiles(filenames, false, -1);
 	}
 
 	public void getAcquaintanceList() throws IOException {

@@ -234,7 +234,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		//to download pictures needed add by x
 		List<String> pictures = msg.getPictures();
 		try {
-			Client.client.downloadFiles(pictures, true);
+			Client.client.downloadFiles(pictures, true, questionID);
 		} catch (IOException ex) {}
 
 		if (pictures!=null)
@@ -349,7 +349,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		}
 	}
 
-	private static String getUserHead(String userName)
+	private String getUserHead(String userName)
 	{
 		String pic_url="";
 		if (!"匿名".equals(userName))
@@ -357,7 +357,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 			try
 			{
 				pic_url = UserInfo.getPicURL(userName);
-				Client.client.downloadFile(pic_url, true);
+				Client.client.downloadFile(pic_url, true, questionID);
 			} catch (IOException ex)
 			{
 				System.out.println("Failed getting userhead.");

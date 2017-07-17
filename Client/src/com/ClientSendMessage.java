@@ -9419,6 +9419,11 @@ public final class ClientSendMessage {
      * <code>optional bool contentPic = 5;</code>
      */
     boolean getContentPic();
+
+    /**
+     * <code>optional int64 questionID = 6;</code>
+     */
+    long getQuestionID();
   }
   /**
    * Protobuf type {@code FileRequest}
@@ -9441,6 +9446,7 @@ public final class ClientSendMessage {
       localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       signType_ = 0;
       contentPic_ = false;
+      questionID_ = 0L;
     }
 
     @java.lang.Override
@@ -9503,6 +9509,11 @@ public final class ClientSendMessage {
             case 40: {
 
               contentPic_ = input.readBool();
+              break;
+            }
+            case 48: {
+
+              questionID_ = input.readInt64();
               break;
             }
           }
@@ -9743,6 +9754,15 @@ public final class ClientSendMessage {
       return contentPic_;
     }
 
+    public static final int QUESTIONID_FIELD_NUMBER = 6;
+    private long questionID_;
+    /**
+     * <code>optional int64 questionID = 6;</code>
+     */
+    public long getQuestionID() {
+      return questionID_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -9769,6 +9789,9 @@ public final class ClientSendMessage {
       }
       if (contentPic_ != false) {
         output.writeBool(5, contentPic_);
+      }
+      if (questionID_ != 0L) {
+        output.writeInt64(6, questionID_);
       }
     }
 
@@ -9808,6 +9831,10 @@ public final class ClientSendMessage {
       if (contentPic_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(5, contentPic_);
+      }
+      if (questionID_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, questionID_);
       }
       memoizedSize = size;
       return size;
@@ -9934,6 +9961,8 @@ public final class ClientSendMessage {
 
         contentPic_ = false;
 
+        questionID_ = 0L;
+
         return this;
       }
 
@@ -9975,6 +10004,7 @@ public final class ClientSendMessage {
         result.localFilePath_ = localFilePath_;
         result.signType_ = signType_;
         result.contentPic_ = contentPic_;
+        result.questionID_ = questionID_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -10026,6 +10056,9 @@ public final class ClientSendMessage {
         }
         if (other.getContentPic() != false) {
           setContentPic(other.getContentPic());
+        }
+        if (other.getQuestionID() != 0L) {
+          setQuestionID(other.getQuestionID());
         }
         onChanged();
         return this;
@@ -10402,6 +10435,32 @@ public final class ClientSendMessage {
       public Builder clearContentPic() {
         
         contentPic_ = false;
+        onChanged();
+        return this;
+      }
+
+      private long questionID_ ;
+      /**
+       * <code>optional int64 questionID = 6;</code>
+       */
+      public long getQuestionID() {
+        return questionID_;
+      }
+      /**
+       * <code>optional int64 questionID = 6;</code>
+       */
+      public Builder setQuestionID(long value) {
+        
+        questionID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 questionID = 6;</code>
+       */
+      public Builder clearQuestionID() {
+        
+        questionID_ = 0L;
         onChanged();
         return this;
       }
@@ -19962,81 +20021,81 @@ public final class ClientSendMessage {
       "\010keywords\030\004 \003(\t\",\n\026AbandonQuestionReques" +
       "t\022\022\n\nquestionID\030\001 \001(\003\">\n\030SearchInformati" +
       "onRequest\022\020\n\010keywords\030\001 \003(\t\022\020\n\010searchID\030" +
-      "\002 \001(\005\"\246\001\n\013FileRequest\022\020\n\010filename\030\001 \003(\t\022" +
+      "\002 \001(\005\"\272\001\n\013FileRequest\022\020\n\010filename\030\001 \003(\t\022" +
       "\013\n\003md5\030\004 \003(\t\022\025\n\rlocalFilePath\030\003 \003(\t\022\'\n\010s" +
       "ignType\030\002 \001(\0162\025.FileRequest.SIGNTYPE\022\022\n\n" +
-      "contentPic\030\005 \001(\010\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD" +
-      "\020\000\022\n\n\006UPLOAD\020\001\"\033\n\tHeartBeat\022\016\n\006online\030\001 ",
-      "\001(\010\"+\n\025SolvedQuestionRequest\022\022\n\nquestion" +
-      "ID\030\001 \001(\003\"\261\001\n\022GetUserListRequest\022\021\n\trefer" +
-      "ence\030\001 \001(\t\0228\n\014userListType\030\002 \001(\0162\".GetUs" +
-      "erListRequest.USER_LIST_TYPE\022\r\n\005param\030\003 " +
-      "\001(\t\"?\n\016USER_LIST_TYPE\022\025\n\021ACQUAINTANCE_LI" +
-      "ST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001\"\223\005\n\021WhiteBo" +
-      "ardMessage\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2" +
-      "\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\017\n\007pen" +
-      "size\030\006 \001(\002\022\022\n\nquestionId\030\007 \001(\003\022\r\n\005isCls\030" +
-      "\010 \001(\010\022\016\n\006isACls\030\t \001(\010\022\021\n\tisRefresh\030\n \001(\010",
-      "\022\026\n\016isReceiveImage\030\013 \001(\010\0221\n\005image\030\014 \001(\0132" +
-      "\".WhiteBoardMessage.WhiteBoardImage\032\260\002\n\017" +
-      "WhiteBoardImage\022?\n\006points\030\001 \003(\0132/.WhiteB" +
-      "oardMessage.WhiteBoardImage.GraphicPoint" +
-      "\022=\n\005rects\030\002 \003(\0132..WhiteBoardMessage.Whit" +
-      "eBoardImage.GraphicRect\032^\n\014GraphicPoint\022" +
-      "\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y" +
-      "2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\032" +
-      "=\n\013GraphicRect\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n" +
-      "\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\"j\n\005COLOR\022\007\n\003RED\020\000",
-      "\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020\002\022\t\n\005GREEN\020\003\022\010\n\004C" +
-      "YAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA\020\006\022\t\n\005WHITE\020\007\022" +
-      "\t\n\005BLACK\020\010\"\200\010\n\007Message\022\026\n\010msg_type\030\001 \001(\016" +
-      "2\004.MSG\022\020\n\010username\030\002 \001(\t\022$\n\014lauchRequest" +
-      "\030\003 \001(\0132\016.LaunchRequest\022%\n\rlogoutMessage\030" +
-      "\004 \001(\0132\016.LogoutMessage\022!\n\013sendContent\030\005 \001" +
-      "(\0132\014.SendContent\0221\n\023announcementMessage\030" +
-      "\006 \001(\0132\024.AnnouncementMessage\0223\n\024questionE" +
-      "nterRequest\030\007 \001(\0132\025.QuestionEnterRequest" +
-      "\0221\n\023goodQuestionRequest\030\010 \001(\0132\024.GoodQues",
-      "tionRequest\022!\n\013fileRequest\030\t \001(\0132\014.FileR" +
-      "equest\022)\n\017goodUserRequest\030\n \001(\0132\020.GoodUs" +
-      "erRequest\022)\n\017registerRequest\030\013 \001(\0132\020.Reg" +
-      "isterRequest\022?\n\032questionInformationReque" +
-      "st\030\r \001(\0132\033.QuestionInformationRequest\0227\n" +
-      "\026userInformationRequest\030\016 \001(\0132\027.UserInfo" +
-      "rmationRequest\0227\n\026getQuestionListRequest" +
-      "\030\017 \001(\0132\027.GetQuestionListRequest\0225\n\025creat" +
-      "eQuestionRequest\030\022 \001(\0132\026.CreateQuestionR" +
-      "equest\0227\n\026abandonQuestionRequest\030\023 \001(\0132\027",
-      ".AbandonQuestionRequest\022;\n\030searchInforma" +
-      "tionRequest\030\024 \001(\0132\031.SearchInformationReq" +
-      "uest\0225\n\025solvedQuestionRequest\030\025 \001(\0132\026.So" +
-      "lvedQuestionRequest\022/\n\022getUserListReques" +
-      "t\030\026 \001(\0132\023.GetUserListRequest\022-\n\021whiteBoa" +
-      "rdMessage\030\027 \001(\0132\022.WhiteBoardMessage\022\035\n\th" +
-      "eartBeat\030\030 \001(\0132\n.HeartBeat\0221\n\023questionEx" +
-      "itMessage\030\031 \001(\0132\024.QuestionExitMessage*\216\004" +
-      "\n\003MSG\022\022\n\016LAUNCH_REQUEST\020\000\022\022\n\016LOGOUT_MESS" +
-      "AGE\020\001\022\024\n\020REGISTER_REQUEST\020\006\022\020\n\014SEND_CONT",
-      "ENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\032\n\026QUEST" +
-      "ION_ENTER_REQUEST\020\004\022\031\n\025GOOD_QUESTION_REQ" +
-      "UEST\020\005\022\025\n\021GOOD_USER_REQUEST\020\007\022\020\n\014FILE_RE" +
-      "QUEST\020\t\022 \n\034QUESTION_INFORMATION_REQUEST\020" +
-      "\n\022\034\n\030USER_INFORMATION_REQUEST\020\013\022\035\n\031GET_Q" +
-      "UESTION_LIST_REQUEST\020\014\022\033\n\027CREATE_QUESTIO" +
-      "N_REQUEST\020\017\022\034\n\030ABANDON_QUESTION_REQUEST\020" +
-      "\020\022\036\n\032SEARCH_INFORMATION_REQUEST\020\021\022\033\n\027SOL" +
-      "VED_QUESTION_REQUEST\020\022\022\017\n\013BAD_MESSAGE\020\023\022" +
-      "\031\n\025GET_USER_LIST_REQUEST\020\024\022\027\n\023WHITE_BOAR",
-      "D_MESSAGE\020\025\022\016\n\nHEART_BEAT\020\026\022\021\n\rQUESTION_" +
-      "EXIT\020\027*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000" +
-      "\022\023\n\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002" +
-      "*)\n\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GI" +
-      "F\020\002*\032\n\nSEARCHTYPE\022\014\n\010QUESTION\020\000**\n\tRANKO" +
-      "RDER\022\r\n\tASCENDING\020\000\022\016\n\nDESCENDING\020\001*j\n\016L" +
-      "IST_REFERENCE\022\024\n\020QUESTION_NUMBERS\020\000\022\020\n\014P" +
-      "RAISE_TIMES\020\001\022\025\n\021USERS_OF_QUESTION\020\002\022\017\n\013" +
-      "CLICK_TIMES\020\003\022\010\n\004TIME\020\004B\030\n\003comB\021ClientSe" +
-      "ndMessageb\006proto3"
+      "contentPic\030\005 \001(\010\022\022\n\nquestionID\030\006 \001(\003\"$\n\010" +
+      "SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001\"\033\n\tHe",
+      "artBeat\022\016\n\006online\030\001 \001(\010\"+\n\025SolvedQuestio" +
+      "nRequest\022\022\n\nquestionID\030\001 \001(\003\"\261\001\n\022GetUser" +
+      "ListRequest\022\021\n\treference\030\001 \001(\t\0228\n\014userLi" +
+      "stType\030\002 \001(\0162\".GetUserListRequest.USER_L" +
+      "IST_TYPE\022\r\n\005param\030\003 \001(\t\"?\n\016USER_LIST_TYP" +
+      "E\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROO" +
+      "M_LIST\020\001\"\223\005\n\021WhiteBoardMessage\022\n\n\002x1\030\001 \001" +
+      "(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r" +
+      "\n\005color\030\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\022\022\n\nquesti" +
+      "onId\030\007 \001(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n\006isACls\030\t \001(",
+      "\010\022\021\n\tisRefresh\030\n \001(\010\022\026\n\016isReceiveImage\030\013" +
+      " \001(\010\0221\n\005image\030\014 \001(\0132\".WhiteBoardMessage." +
+      "WhiteBoardImage\032\260\002\n\017WhiteBoardImage\022?\n\006p" +
+      "oints\030\001 \003(\0132/.WhiteBoardMessage.WhiteBoa" +
+      "rdImage.GraphicPoint\022=\n\005rects\030\002 \003(\0132..Wh" +
+      "iteBoardMessage.WhiteBoardImage.GraphicR" +
+      "ect\032^\n\014GraphicPoint\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 " +
+      "\001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001" +
+      "(\005\022\017\n\007pensize\030\006 \001(\002\032=\n\013GraphicRect\022\n\n\002x1" +
+      "\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001",
+      "(\005\"j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELL" +
+      "OW\020\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007M" +
+      "AGENTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\200\010\n\007Messa" +
+      "ge\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002" +
+      " \001(\t\022$\n\014lauchRequest\030\003 \001(\0132\016.LaunchReque" +
+      "st\022%\n\rlogoutMessage\030\004 \001(\0132\016.LogoutMessag" +
+      "e\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023" +
+      "announcementMessage\030\006 \001(\0132\024.Announcement" +
+      "Message\0223\n\024questionEnterRequest\030\007 \001(\0132\025." +
+      "QuestionEnterRequest\0221\n\023goodQuestionRequ",
+      "est\030\010 \001(\0132\024.GoodQuestionRequest\022!\n\013fileR" +
+      "equest\030\t \001(\0132\014.FileRequest\022)\n\017goodUserRe" +
+      "quest\030\n \001(\0132\020.GoodUserRequest\022)\n\017registe" +
+      "rRequest\030\013 \001(\0132\020.RegisterRequest\022?\n\032ques" +
+      "tionInformationRequest\030\r \001(\0132\033.QuestionI" +
+      "nformationRequest\0227\n\026userInformationRequ" +
+      "est\030\016 \001(\0132\027.UserInformationRequest\0227\n\026ge" +
+      "tQuestionListRequest\030\017 \001(\0132\027.GetQuestion" +
+      "ListRequest\0225\n\025createQuestionRequest\030\022 \001" +
+      "(\0132\026.CreateQuestionRequest\0227\n\026abandonQue",
+      "stionRequest\030\023 \001(\0132\027.AbandonQuestionRequ" +
+      "est\022;\n\030searchInformationRequest\030\024 \001(\0132\031." +
+      "SearchInformationRequest\0225\n\025solvedQuesti" +
+      "onRequest\030\025 \001(\0132\026.SolvedQuestionRequest\022" +
+      "/\n\022getUserListRequest\030\026 \001(\0132\023.GetUserLis" +
+      "tRequest\022-\n\021whiteBoardMessage\030\027 \001(\0132\022.Wh" +
+      "iteBoardMessage\022\035\n\theartBeat\030\030 \001(\0132\n.Hea" +
+      "rtBeat\0221\n\023questionExitMessage\030\031 \001(\0132\024.Qu" +
+      "estionExitMessage*\216\004\n\003MSG\022\022\n\016LAUNCH_REQU" +
+      "EST\020\000\022\022\n\016LOGOUT_MESSAGE\020\001\022\024\n\020REGISTER_RE",
+      "QUEST\020\006\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMEN" +
+      "T_MESSAGE\020\003\022\032\n\026QUESTION_ENTER_REQUEST\020\004\022" +
+      "\031\n\025GOOD_QUESTION_REQUEST\020\005\022\025\n\021GOOD_USER_" +
+      "REQUEST\020\007\022\020\n\014FILE_REQUEST\020\t\022 \n\034QUESTION_" +
+      "INFORMATION_REQUEST\020\n\022\034\n\030USER_INFORMATIO" +
+      "N_REQUEST\020\013\022\035\n\031GET_QUESTION_LIST_REQUEST" +
+      "\020\014\022\033\n\027CREATE_QUESTION_REQUEST\020\017\022\034\n\030ABAND" +
+      "ON_QUESTION_REQUEST\020\020\022\036\n\032SEARCH_INFORMAT" +
+      "ION_REQUEST\020\021\022\033\n\027SOLVED_QUESTION_REQUEST" +
+      "\020\022\022\017\n\013BAD_MESSAGE\020\023\022\031\n\025GET_USER_LIST_REQ",
+      "UEST\020\024\022\027\n\023WHITE_BOARD_MESSAGE\020\025\022\016\n\nHEART" +
+      "_BEAT\020\026\022\021\n\rQUESTION_EXIT\020\027*H\n\014CONTENT_TY" +
+      "PE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020" +
+      "\001\022\021\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004J" +
+      "PEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\032\n\nSEARCHTYPE\022\014\n" +
+      "\010QUESTION\020\000**\n\tRANKORDER\022\r\n\tASCENDING\020\000\022" +
+      "\016\n\nDESCENDING\020\001*j\n\016LIST_REFERENCE\022\024\n\020QUE" +
+      "STION_NUMBERS\020\000\022\020\n\014PRAISE_TIMES\020\001\022\025\n\021USE" +
+      "RS_OF_QUESTION\020\002\022\017\n\013CLICK_TIMES\020\003\022\010\n\004TIM" +
+      "E\020\004B\030\n\003comB\021ClientSendMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -20151,7 +20210,7 @@ public final class ClientSendMessage {
     internal_static_FileRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_FileRequest_descriptor,
-        new java.lang.String[] { "Filename", "Md5", "LocalFilePath", "SignType", "ContentPic", });
+        new java.lang.String[] { "Filename", "Md5", "LocalFilePath", "SignType", "ContentPic", "QuestionID", });
     internal_static_HeartBeat_descriptor =
       getDescriptor().getMessageTypes().get(16);
     internal_static_HeartBeat_fieldAccessorTable = new
