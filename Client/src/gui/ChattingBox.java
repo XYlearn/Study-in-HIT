@@ -7,6 +7,7 @@ import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.SolvedQuestionEvent;
 import NetEvent.messagecom.Record;
 import NetEvent.Client;
+import NetEvent.eventcom.FileEvent;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -18,7 +19,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import gui.dao.MainFrame;
 import util.AudioTools;
 import bin.test;
 
@@ -34,7 +34,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
@@ -327,6 +326,16 @@ public class ChattingBox extends JPanel implements Dispatcher
 				if (ex.isSuccess())
 					map.get(ex.getQuestionID()).pushAnnouncement(
 							"该问题已被提问者标记为【已解决】");
+				break;
+			}
+			case FILE_EVENT:
+			{
+				FileEvent ex=(FileEvent)e;
+				int l=ex.getAllSuccess().size();
+				for(int i=0;i<l;i++)
+					if(!ex.getAllSuccess().get(i))
+						System.out.println("transporting file "+ex.getFilename(i)+" failed.");
+				//map.get(ex);
 				break;
 			}
 			default:
