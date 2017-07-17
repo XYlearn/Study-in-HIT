@@ -18,9 +18,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import gui.dao.MainFrame;
 import util.AudioTools;
 import bin.test;
+import gui.form.UserInformation;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -34,7 +34,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
@@ -422,16 +421,13 @@ public class ChattingBox extends JPanel implements Dispatcher
 
 	private class ChattingBoxMouseListener implements MouseListener
 	{
-
-		ChattingBoxMouseListener(){}
-
 		@Override
 		public void mousePressed(MouseEvent e)
 		{
-			//System.out.println("pressed!!");
 			if (onHyperlink)
 				currentHyperlink=mouseHyperlink;
 			if (e.getButton()==MouseEvent.BUTTON3)
+			{
 				//判断用户身份
 				if (onHyperlink)
 				{
@@ -459,6 +455,20 @@ public class ChattingBox extends JPanel implements Dispatcher
 					reset.setEnabled(true);
 					textMenu.show(myPane, e.getX(), e.getY());
 				}
+			}
+			else if(e.getButton()==MouseEvent.BUTTON1)
+			{
+				if(onHyperlink)
+				{
+					String cmd=currentHyperlink.substring(0, 4);
+					if(HYPERLINK_TYPE_USER.equals(cmd))
+					{
+						UserInformation usrInfo=new UserInformation();
+						usrInfo.load(currentHyperlink.substring(5));
+						usrInfo.setVisible(true);
+					}
+				}
+			}
 		}
 
 		public void mouseReleased(MouseEvent e)
