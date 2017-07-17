@@ -90,6 +90,7 @@ public class ClientHandler extends IoHandlerAdapter {
 				case USER_INFORMATION_RESPONSE:	//
 					netEvent = handleResponseUserInformation(recvMessage);
 					UserInfo.dispatch((UserInfoEvent) netEvent);
+					ChattingBox.dispatch((UserInfoEvent) netEvent);
 					break;
 				case GET_QUESTION_LIST_RESPONSE:	//
 					netEvent = handleResponseQuestionList(recvMessage);

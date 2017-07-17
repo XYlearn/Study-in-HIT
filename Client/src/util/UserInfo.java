@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 
 public class UserInfo implements Dispatcher
 {
-	private static final Map<String,UserMessage> map=new ConcurrentHashMap<String,UserMessage>();
+	private static final Map<String,UserMessage> map=new ConcurrentHashMap<>();
+	private static final Map<String,Boolean> requesting=new ConcurrentHashMap<>();
 	private static long startTime=0;
 	private static long delayTime=500;
 	private static String myUser="";
@@ -28,7 +29,11 @@ public class UserInfo implements Dispatcher
 	
 	public static void requestUserInfo(String username) throws IOException
 	{
-		test.client.requestUserInfo(username);
+		if(requesting.getOrDefault(username, Boolean.FALSE))
+		{
+			test.client.requestUserInfo(username);
+			requesting.put(username, Boolean.TRUE);
+		}
 	}
 	
 	public static void dispatch(UserInfoEvent e)
@@ -36,9 +41,10 @@ public class UserInfo implements Dispatcher
 		if(e.isExist())
 		{
 			map.put(e.getUserMessage().getUsername(),e.getUserMessage());
+			requesting.put(e.getUserMessage().getUsername(), Boolean.FALSE);
 			try
 			{
-				test.client.downloadFile(e.getUserMessage().getPicUrl());
+				test.client.downloadFile(e.getUserMessage().getPicUrl(), false, -1);
 			} catch (IOException ex)
 			{
 				Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
