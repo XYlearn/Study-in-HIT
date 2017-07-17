@@ -26,8 +26,8 @@ public class HeartBeatHandler extends Thread {
                 ArrayList<IoSession> sessions_to_remove = new ArrayList<>();
                 for (Map.Entry<IoSession, Boolean> entry : session_online_map.entrySet()) {
                     if(entry.getValue() == false) {
-                        ServerHandler.sessionShut(entry.getKey());
                         sessions_to_remove.add(entry.getKey());
+                        ServerHandler.sessionShut(entry.getKey());
                     }
                     entry.setValue(false);
                 }

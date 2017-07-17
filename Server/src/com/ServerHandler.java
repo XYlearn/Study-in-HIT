@@ -104,12 +104,12 @@ public class ServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionIdle(IoSession session, IdleStatus status) {
-		sessionShut(session);
+
 	}
 
 	@Override
 	public void sessionOpened(IoSession session) {
-		HeartBeatHandler.session_online_map.put(session, true);
+
 	}
 
 	public static void sessionShut(IoSession session) {
@@ -118,10 +118,11 @@ public class ServerHandler extends IoHandlerAdapter {
 		if(!(null == questions)) {
 			for (Long question : questions) {
 				ArrayList<IoSession> sessions = ServerHandler.question_sessions_map.get(question);
-				if(!(null == sessions)) {
+				if(null == sessions) {
 					break;
 				} else {
 					sessions.remove(question);
+					ServerHandler.question_sessions_map.replace(question, sessions);
 				}
 			}
 		}
@@ -129,7 +130,8 @@ public class ServerHandler extends IoHandlerAdapter {
 		String username = ServerHandler.session_user_map.get(session);
 		ServerHandler.session_user_map.remove(session);
 
-		ServerHandler.log.info(username+" Log out");
+		if(null != username)
+			ServerHandler.log.info(username+" Log out");
 	}
 }
 

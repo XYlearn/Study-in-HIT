@@ -436,7 +436,6 @@ public class ServerItem {
 		ServerResponseMessage.UserMessage userMessage = null;
 		String key = launchRequest.getPassword();
 		String realkey = null;
-		boolean inOnlineUser = false;
 
 		//获取密钥
 		pstmtSelectUser.setString(1, username);
@@ -468,6 +467,8 @@ public class ServerItem {
 						  .build();
 				//添加登录用户
 				ServerHandler.session_user_map.put(session, username);
+				ServerHandler.session_questions_map.put(session, new ArrayList<>());
+				HeartBeatHandler.session_online_map.put(session, true);
 				return responseLaunch;
 			} else {
 				responseLaunch = ServerResponseMessage.LaunchResponse.newBuilder()
@@ -511,7 +512,6 @@ public class ServerItem {
 		}
 		rs.close();
 		//邮箱已被注册
-
 		//注册成功
 		pstmtInsertUser.setString(1,username);
 		pstmtInsertUser.setString(2,password);
@@ -767,6 +767,9 @@ public class ServerItem {
 			ArrayList<Long> questions = ServerHandler.session_questions_map.get(session);
 			if(null == questions) {
 				questions = new ArrayList<>();
+				questions.add(questionID);
+				ServerHandler.session_questions_map.replace(session, questions);
+			} else {
 				questions.add(questionID);
 				ServerHandler.session_questions_map.replace(session, questions);
 			}
@@ -1026,6 +1029,7 @@ public class ServerItem {
 		int bonus;
 		String signature;
 		String mail_address;
+		String pic_url;
 
 		pstmtSelectUser.setString(1,username);
 		ResultSet rs = pstmtSelectUser.executeQuery();
@@ -1036,6 +1040,7 @@ public class ServerItem {
 			bonus = rs.getInt("bonus");
 			signature = rs.getString("signature");
 			mail_address = rs.getString("mail_address");
+			pic_url = rs.getString("pic_url");
 		} else {
 			return ServerResponseMessage.UserInformationResponse.newBuilder()
 					  .setExist(false)
@@ -1053,8 +1058,8 @@ public class ServerItem {
 							 .setGood(good).setQuestionNum(questionNum)
 							 .setSolvedQuestionNum(solvedQuesitonNum).setBonus(bonus)
 							 .setSignature(signature).setMailAddress(mail_address)
-							 .setUsername(username)
-				  ).build();
+							 .setUsername(username).setPicUrl(pic_url)
+				  ).setExist(true).build();
 
 		return userInformationResponse;
 	}
@@ -1077,7 +1082,7 @@ public class ServerItem {
 					for(String filename : files) {
 						sign = cos.getDownloadSign(filename);
 						signs.put(filename, sign);
-						builder.addMd5(fileRequest.getMd5(i++));
+						builder.addMd5(filename);
 						builder.setSignType(ServerResponseMessage.FileResponse.SIGNTYPE.DOWNLOAD);
 					}
 					builder.putAllSign(signs);
@@ -1087,7 +1092,7 @@ public class ServerItem {
 					for(String filename : files) {
 						sign = cos.getUploadSign(filename);
 						signs.put(filename, sign);
-						builder.addMd5(fileRequest.getMd5(i++));
+						builder.addMd5(filename);
 					}
 					builder.putAllSign(signs);
 					builder.setSuccess(true);
@@ -1097,6 +1102,9 @@ public class ServerItem {
 				default:
 					throw new Exception("MSG is invalid");
 			}
+			//to add mark to file
+			builder.setContentPic(fileRequest.getContentPic());
+			builder.setQuestionID(fileRequest.getQuestionID());
 			return builder.build();
 
 		} else {
@@ -1140,17 +1148,13 @@ public class ServerItem {
 		ResultSet rs = stmtSelectQuestionByOrder.executeQuery("SELECT * FROM question ORDER BY "+ref+" "+order+";");
 		int i;
 		for(i=0;i<questionNum && rs.next();i++) {
-			int userNum = 0;
 			long questionID = rs.getLong("id");
 			ArrayList list = ServerHandler.question_sessions_map.get(questionID);
-			if(null != list) {
-				Iterator<IoSession> ite = list.iterator();
-				if (ite != null) {
-					while (ite.hasNext()) {
-						userNum++;
-					}
-				}
-			}
+			int userNum;
+			if(null == list)
+				userNum = 0;
+			else
+				userNum = list.size();
 			builder.addQuestionListMessage(
 					  ServerResponseMessage.QuestionListMessage.newBuilder()
 					  .setQuestionID(rs.getLong("id"))

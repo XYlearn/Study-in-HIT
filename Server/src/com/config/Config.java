@@ -14,8 +14,8 @@ public class Config {
 	public static class DataBaseConfig {
 		private static String driver = "org.mariadb.jdbc.Driver";
 		private static String url = "jdbc:mariadb://localhost:3306/sih";
-		private static String user = "Admin";//"root";//
-		private static String password = "SiH@6666";//"aa199877";//
+		private static String user = "root";//"Admin";//
+		private static String password = "aa199877";//"SiH@6666";//
 
 		public static String getDriver() {return driver;}
 		public static String getUrl() {return url;}
