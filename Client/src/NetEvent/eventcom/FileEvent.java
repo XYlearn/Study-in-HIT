@@ -13,8 +13,10 @@ public class FileEvent extends NetEvent {
     private ArrayList<Integer> retCode;
     private boolean upload;
     private int size;
+    private boolean contentPic;
+    private long questionID;
 
-    public FileEvent(ArrayList<String> filenames, ArrayList<Boolean> success, ArrayList<Integer> retCode, boolean upload)
+    public FileEvent(ArrayList<String> filenames, ArrayList<Boolean> success, ArrayList<Integer> retCode, boolean upload, boolean contentPic, long questionID)
     {
         super(EventType.FILE_EVENT);
         if(filenames.size() != success.size() || filenames.size() != retCode.size()) {
@@ -25,6 +27,8 @@ public class FileEvent extends NetEvent {
             this.success = success;
             this.retCode = retCode;
             this.upload = upload;
+            this.contentPic = contentPic;
+            this.questionID = questionID;
         }
     }
 
@@ -49,4 +53,6 @@ public class FileEvent extends NetEvent {
     }
     public int getSize() {return size;}
     public boolean isUpload() {return this.upload;}
+    public long getQuestionID() {return questionID;}
+    public boolean isContentPic() {return contentPic;}
 }

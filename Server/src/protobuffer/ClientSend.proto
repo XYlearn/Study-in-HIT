@@ -176,6 +176,8 @@ message FileRequest {
         UPLOAD = 1;
     }
     SIGNTYPE signType = 2;
+    bool contentPic = 5;
+    int64 questionID = 6;
 }
 
 message HeartBeat {

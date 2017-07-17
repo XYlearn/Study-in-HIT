@@ -232,7 +232,7 @@ public class ClientHandler extends IoHandlerAdapter {
 						}
 					}
 					/*upload event*/
-					fileEvent = new FileEvent(filenames, success, retCode, true);
+					fileEvent = new FileEvent(filenames, success, retCode, true, fileResponse.getContentPic(), fileResponse.getQuestionID());
 					FileTransDispatcher.dispatch(fileEvent);
 					break;
 				case DOWNLOAD:
@@ -262,7 +262,7 @@ public class ClientHandler extends IoHandlerAdapter {
 							filenames.add(entry.getKey());
 							success.add(code == 0);
 							retCode.add(code);
-							fileEvent = new FileEvent(filenames, success, retCode, false);
+							fileEvent = new FileEvent(filenames, success, retCode, true, fileResponse.getContentPic(), fileResponse.getQuestionID());
 							FileTransDispatcher.dispatch(fileEvent);
 
 						} catch (Exception e) {

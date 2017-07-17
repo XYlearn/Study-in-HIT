@@ -197,6 +197,8 @@ message FileResponse {
     }
     SIGNTYPE signType = 3;
     repeated string localFilePath = 4;
+    bool contentPic = 6;
+    int64 questionID = 7;
 }
 
 //标志解决问题的回复
