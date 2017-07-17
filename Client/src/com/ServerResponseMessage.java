@@ -13599,6 +13599,11 @@ public final class ServerResponseMessage {
      */
     com.google.protobuf.ByteString
         getLocalFilePathBytes(int index);
+
+    /**
+     * <code>optional bool contentPic = 6;</code>
+     */
+    boolean getContentPic();
   }
   /**
    * Protobuf type {@code FileResponse}
@@ -13620,6 +13625,7 @@ public final class ServerResponseMessage {
       md5_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       signType_ = 0;
       localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      contentPic_ = false;
     }
 
     @java.lang.Override
@@ -13685,6 +13691,11 @@ public final class ServerResponseMessage {
                 mutable_bitField0_ |= 0x00000004;
               }
               md5_.add(s);
+              break;
+            }
+            case 48: {
+
+              contentPic_ = input.readBool();
               break;
             }
           }
@@ -13934,6 +13945,15 @@ public final class ServerResponseMessage {
       return localFilePath_.getByteString(index);
     }
 
+    public static final int CONTENTPIC_FIELD_NUMBER = 6;
+    private boolean contentPic_;
+    /**
+     * <code>optional bool contentPic = 6;</code>
+     */
+    public boolean getContentPic() {
+      return contentPic_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -13966,6 +13986,9 @@ public final class ServerResponseMessage {
       }
       for (int i = 0; i < md5_.size(); i++) {
         com.google.protobuf.GeneratedMessage.writeString(output, 5, md5_.getRaw(i));
+      }
+      if (contentPic_ != false) {
+        output.writeBool(6, contentPic_);
       }
     }
 
@@ -14007,6 +14030,10 @@ public final class ServerResponseMessage {
         }
         size += dataSize;
         size += 1 * getMd5List().size();
+      }
+      if (contentPic_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, contentPic_);
       }
       memoizedSize = size;
       return size;
@@ -14154,6 +14181,8 @@ public final class ServerResponseMessage {
 
         localFilePath_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000010);
+        contentPic_ = false;
+
         return this;
       }
 
@@ -14192,6 +14221,7 @@ public final class ServerResponseMessage {
           bitField0_ = (bitField0_ & ~0x00000010);
         }
         result.localFilePath_ = localFilePath_;
+        result.contentPic_ = contentPic_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -14235,6 +14265,9 @@ public final class ServerResponseMessage {
             localFilePath_.addAll(other.localFilePath_);
           }
           onChanged();
+        }
+        if (other.getContentPic() != false) {
+          setContentPic(other.getContentPic());
         }
         onChanged();
         return this;
@@ -14561,6 +14594,32 @@ public final class ServerResponseMessage {
   checkByteStringIsUtf8(value);
         ensureLocalFilePathIsMutable();
         localFilePath_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private boolean contentPic_ ;
+      /**
+       * <code>optional bool contentPic = 6;</code>
+       */
+      public boolean getContentPic() {
+        return contentPic_;
+      }
+      /**
+       * <code>optional bool contentPic = 6;</code>
+       */
+      public Builder setContentPic(boolean value) {
+        
+        contentPic_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool contentPic = 6;</code>
+       */
+      public Builder clearContentPic() {
+        
+        contentPic_ = false;
         onChanged();
         return this;
       }
@@ -24632,84 +24691,84 @@ public final class ServerResponseMessage {
       "sage\"*\n\027AbandonQuestionResponse\022\017\n\007succe" +
       "ss\030\001 \001(\010\"`\n\031SearchInformationResponse\022\020\n" +
       "\010searchID\030\001 \001(\005\0221\n\023questionListMessage\030\002" +
-      " \003(\0132\024.QuestionListMessage\"\347\001\n\014FileRespo" +
+      " \003(\0132\024.QuestionListMessage\"\373\001\n\014FileRespo" +
       "nse\022\017\n\007success\030\001 \001(\010\022%\n\004sign\030\002 \003(\0132\027.Fil" +
       "eResponse.SignEntry\022\013\n\003md5\030\005 \003(\t\022(\n\010sign" +
       "Type\030\003 \001(\0162\026.FileResponse.SIGNTYPE\022\025\n\rlo" +
-      "calFilePath\030\004 \003(\t\032+\n\tSignEntry\022\013\n\003key\030\001 " +
-      "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n\010SIGNTYPE\022\014\n\010DO",
-      "WNLOAD\020\000\022\n\n\006UPLOAD\020\001\"=\n\026SolvedQuestionRe" +
-      "sponse\022\022\n\nquestionID\030\002 \001(\003\022\017\n\007success\030\001 " +
-      "\001(\010\"\233\001\n\rUpdateMessage\022+\n\tuserEnter\030\001 \001(\013" +
-      "2\030.UpdateMessage.UserEnter\022\027\n\017whiteBoard" +
-      "Image\030\002 \001(\014\022\021\n\tsendImage\030\003 \001(\010\0321\n\tUserEn" +
-      "ter\022\020\n\010username\030\001 \001(\t\022\022\n\nquestionID\030\002 \001(" +
-      "\003\"\224\002\n\023GetUserListResponse\022\017\n\007success\030\001 \001" +
-      "(\010\022.\n\005users\030\002 \003(\0132\037.GetUserListResponse." +
-      "UsersEntry\022\022\n\nquestionID\030\003 \001(\003\0229\n\014userLi" +
-      "stType\030\004 \001(\0162#.GetUserListResponse.USER_",
-      "LIST_TYPE\032,\n\nUsersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005" +
-      "value\030\002 \001(\t:\0028\001\"?\n\016USER_LIST_TYPE\022\025\n\021ACQ" +
-      "UAINTANCE_LIST\020\000\022\026\n\022USERS_IN_ROOM_LIST\020\001" +
-      "\"\223\005\n\021WhiteBoardMessage\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1" +
-      "\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030" +
-      "\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\022\022\n\nquestionId\030\007 \001" +
-      "(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n\006isACls\030\t \001(\010\022\021\n\tisR" +
-      "efresh\030\n \001(\010\022\026\n\016isReceiveImage\030\013 \001(\010\0221\n\005" +
-      "image\030\014 \001(\0132\".WhiteBoardMessage.WhiteBoa" +
-      "rdImage\032\260\002\n\017WhiteBoardImage\022?\n\006points\030\001 ",
-      "\003(\0132/.WhiteBoardMessage.WhiteBoardImage." +
-      "GraphicPoint\022=\n\005rects\030\002 \003(\0132..WhiteBoard" +
-      "Message.WhiteBoardImage.GraphicRect\032^\n\014G" +
-      "raphicPoint\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x" +
-      "2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\017\n\007pe" +
-      "nsize\030\006 \001(\002\032=\n\013GraphicRect\022\n\n\002x1\030\001 \001(\005\022\n" +
-      "\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\"j\n\005CO" +
-      "LOR\022\007\n\003RED\020\000\022\n\n\006ORANGE\020\001\022\n\n\006YELLOW\020\002\022\t\n\005" +
-      "GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n\004BLUE\020\005\022\013\n\007MAGENTA\020\006" +
-      "\022\t\n\005WHITE\020\007\022\t\n\005BLACK\020\010\"\312\007\n\007Message\022\026\n\010ms",
-      "g_type\030\001 \001(\0162\004.MSG\022\020\n\010username\030\002 \001(\t\022&\n\r" +
-      "lauchResponse\030\003 \001(\0132\017.LaunchResponse\022+\n\020" +
-      "registerResponse\030\004 \001(\0132\021.RegisterRespons" +
-      "e\022!\n\013sendContent\030\005 \001(\0132\014.SendContent\0221\n\023" +
-      "announcementMessage\030\006 \001(\0132\024.Announcement" +
-      "Message\0225\n\025questionEnterResponse\030\007 \001(\0132\026" +
-      ".QuestionEnterResponse\0223\n\024goodQuestionRe" +
-      "sponse\030\010 \001(\0132\025.GoodQuestionResponse\022+\n\020g" +
-      "oodUserResponse\030\n \001(\0132\021.GoodUserResponse" +
-      "\022#\n\014fileResponse\030\t \001(\0132\r.FileResponse\022%\n",
-      "\rupdateMessage\030\013 \001(\0132\016.UpdateMessage\022A\n\033" +
-      "questionInformationResponse\030\r \001(\0132\034.Ques" +
-      "tionInformationResponse\0229\n\027userInformati" +
-      "onResponse\030\016 \001(\0132\030.UserInformationRespon" +
-      "se\0229\n\027getQuestionListResponse\030\017 \001(\0132\030.Ge" +
-      "tQuestionListResponse\0227\n\026createQuestionR" +
-      "esponse\030\022 \001(\0132\027.CreateQuestionResponse\0229" +
-      "\n\027abandonQuestionResponse\030\023 \001(\0132\030.Abando" +
-      "nQuestionResponse\022=\n\031searchInformationRe" +
-      "sponse\030\024 \001(\0132\032.SearchInformationResponse",
-      "\0227\n\026solvedQuestionResponse\030\025 \001(\0132\027.Solve" +
-      "dQuestionResponse\0221\n\023getUserListResponse" +
-      "\030\026 \001(\0132\024.GetUserListResponse\022-\n\021whiteBoa" +
-      "rdMessage\030\027 \001(\0132\022.WhiteBoardMessage*\215\004\n\003" +
-      "MSG\022\023\n\017LAUNCH_RESPONSE\020\000\022\025\n\021REGISTER_RES" +
-      "PONSE\020\001\022\020\n\014SEND_CONTENT\020\002\022\030\n\024ANNOUNCEMEN" +
-      "T_MESSAGE\020\003\022\033\n\027QUESTION_ENTER_RESPONSE\020\004" +
-      "\022\032\n\026GOOD_QUESTION_RESPONSE\020\005\022\026\n\022GOOD_USE" +
-      "R_RESPONSE\020\007\022\022\n\016UPDATE_MESSAGE\020\010\022\021\n\rFILE" +
-      "_RESPONSE\020\t\022!\n\035QUESTION_INFORMATION_RESP",
-      "ONSE\020\n\022\035\n\031USER_INFORMATION_RESPONSE\020\013\022\036\n" +
-      "\032GET_QUESTION_LIST_RESPONSE\020\014\022\034\n\030CREATE_" +
-      "QUESTION_RESPONSE\020\017\022\035\n\031ABANDON_QUESTION_" +
-      "RESPONSE\020\020\022\037\n\033SEARCH_INFORMATION_RESPONS" +
-      "E\020\021\022\034\n\030SOLVED_QUESTION_RESPONSE\020\022\022\017\n\013BAD" +
-      "_MESSAGE\020\023\022\032\n\026GET_USER_LIST_RESPONSE\020\024\022\027" +
-      "\n\023WHITE_BOARD_MESSAGE\020\025\022\022\n\016IGNORE_MESSAG" +
-      "E\020\026*H\n\014CONTENT_TYPE\022\020\n\014TEXT_MESSAGE\020\000\022\023\n" +
-      "\017PICTURE_MESSAGE\020\001\022\021\n\rVOICE_MESSAGE\020\002*)\n" +
-      "\013PICTURETYPE\022\010\n\004JPEG\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002",
-      "*\024\n\tVOICETYPE\022\007\n\003MP4\020\000B\034\n\003comB\025ServerRes" +
-      "ponseMessageb\006proto3"
+      "calFilePath\030\004 \003(\t\022\022\n\ncontentPic\030\006 \001(\010\032+\n" +
+      "\tSignEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002",
+      "8\001\"$\n\010SIGNTYPE\022\014\n\010DOWNLOAD\020\000\022\n\n\006UPLOAD\020\001" +
+      "\"=\n\026SolvedQuestionResponse\022\022\n\nquestionID" +
+      "\030\002 \001(\003\022\017\n\007success\030\001 \001(\010\"\233\001\n\rUpdateMessag" +
+      "e\022+\n\tuserEnter\030\001 \001(\0132\030.UpdateMessage.Use" +
+      "rEnter\022\027\n\017whiteBoardImage\030\002 \001(\014\022\021\n\tsendI" +
+      "mage\030\003 \001(\010\0321\n\tUserEnter\022\020\n\010username\030\001 \001(" +
+      "\t\022\022\n\nquestionID\030\002 \001(\003\"\224\002\n\023GetUserListRes" +
+      "ponse\022\017\n\007success\030\001 \001(\010\022.\n\005users\030\002 \003(\0132\037." +
+      "GetUserListResponse.UsersEntry\022\022\n\nquesti" +
+      "onID\030\003 \001(\003\0229\n\014userListType\030\004 \001(\0162#.GetUs",
+      "erListResponse.USER_LIST_TYPE\032,\n\nUsersEn" +
+      "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"?\n\016U" +
+      "SER_LIST_TYPE\022\025\n\021ACQUAINTANCE_LIST\020\000\022\026\n\022" +
+      "USERS_IN_ROOM_LIST\020\001\"\223\005\n\021WhiteBoardMessa" +
+      "ge\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n" +
+      "\n\002y2\030\004 \001(\005\022\r\n\005color\030\005 \001(\005\022\017\n\007pensize\030\006 \001" +
+      "(\002\022\022\n\nquestionId\030\007 \001(\003\022\r\n\005isCls\030\010 \001(\010\022\016\n" +
+      "\006isACls\030\t \001(\010\022\021\n\tisRefresh\030\n \001(\010\022\026\n\016isRe" +
+      "ceiveImage\030\013 \001(\010\0221\n\005image\030\014 \001(\0132\".WhiteB" +
+      "oardMessage.WhiteBoardImage\032\260\002\n\017WhiteBoa",
+      "rdImage\022?\n\006points\030\001 \003(\0132/.WhiteBoardMess" +
+      "age.WhiteBoardImage.GraphicPoint\022=\n\005rect" +
+      "s\030\002 \003(\0132..WhiteBoardMessage.WhiteBoardIm" +
+      "age.GraphicRect\032^\n\014GraphicPoint\022\n\n\002x1\030\001 " +
+      "\001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001(\005\022\n\n\002y2\030\004 \001(\005\022" +
+      "\r\n\005color\030\005 \001(\005\022\017\n\007pensize\030\006 \001(\002\032=\n\013Graph" +
+      "icRect\022\n\n\002x1\030\001 \001(\005\022\n\n\002y1\030\002 \001(\005\022\n\n\002x2\030\003 \001" +
+      "(\005\022\n\n\002y2\030\004 \001(\005\"j\n\005COLOR\022\007\n\003RED\020\000\022\n\n\006ORAN" +
+      "GE\020\001\022\n\n\006YELLOW\020\002\022\t\n\005GREEN\020\003\022\010\n\004CYAN\020\004\022\010\n" +
+      "\004BLUE\020\005\022\013\n\007MAGENTA\020\006\022\t\n\005WHITE\020\007\022\t\n\005BLACK",
+      "\020\010\"\312\007\n\007Message\022\026\n\010msg_type\030\001 \001(\0162\004.MSG\022\020" +
+      "\n\010username\030\002 \001(\t\022&\n\rlauchResponse\030\003 \001(\0132" +
+      "\017.LaunchResponse\022+\n\020registerResponse\030\004 \001" +
+      "(\0132\021.RegisterResponse\022!\n\013sendContent\030\005 \001" +
+      "(\0132\014.SendContent\0221\n\023announcementMessage\030" +
+      "\006 \001(\0132\024.AnnouncementMessage\0225\n\025questionE" +
+      "nterResponse\030\007 \001(\0132\026.QuestionEnterRespon" +
+      "se\0223\n\024goodQuestionResponse\030\010 \001(\0132\025.GoodQ" +
+      "uestionResponse\022+\n\020goodUserResponse\030\n \001(" +
+      "\0132\021.GoodUserResponse\022#\n\014fileResponse\030\t \001",
+      "(\0132\r.FileResponse\022%\n\rupdateMessage\030\013 \001(\013" +
+      "2\016.UpdateMessage\022A\n\033questionInformationR" +
+      "esponse\030\r \001(\0132\034.QuestionInformationRespo" +
+      "nse\0229\n\027userInformationResponse\030\016 \001(\0132\030.U" +
+      "serInformationResponse\0229\n\027getQuestionLis" +
+      "tResponse\030\017 \001(\0132\030.GetQuestionListRespons" +
+      "e\0227\n\026createQuestionResponse\030\022 \001(\0132\027.Crea" +
+      "teQuestionResponse\0229\n\027abandonQuestionRes" +
+      "ponse\030\023 \001(\0132\030.AbandonQuestionResponse\022=\n" +
+      "\031searchInformationResponse\030\024 \001(\0132\032.Searc",
+      "hInformationResponse\0227\n\026solvedQuestionRe" +
+      "sponse\030\025 \001(\0132\027.SolvedQuestionResponse\0221\n" +
+      "\023getUserListResponse\030\026 \001(\0132\024.GetUserList" +
+      "Response\022-\n\021whiteBoardMessage\030\027 \001(\0132\022.Wh" +
+      "iteBoardMessage*\215\004\n\003MSG\022\023\n\017LAUNCH_RESPON" +
+      "SE\020\000\022\025\n\021REGISTER_RESPONSE\020\001\022\020\n\014SEND_CONT" +
+      "ENT\020\002\022\030\n\024ANNOUNCEMENT_MESSAGE\020\003\022\033\n\027QUEST" +
+      "ION_ENTER_RESPONSE\020\004\022\032\n\026GOOD_QUESTION_RE" +
+      "SPONSE\020\005\022\026\n\022GOOD_USER_RESPONSE\020\007\022\022\n\016UPDA" +
+      "TE_MESSAGE\020\010\022\021\n\rFILE_RESPONSE\020\t\022!\n\035QUEST",
+      "ION_INFORMATION_RESPONSE\020\n\022\035\n\031USER_INFOR" +
+      "MATION_RESPONSE\020\013\022\036\n\032GET_QUESTION_LIST_R" +
+      "ESPONSE\020\014\022\034\n\030CREATE_QUESTION_RESPONSE\020\017\022" +
+      "\035\n\031ABANDON_QUESTION_RESPONSE\020\020\022\037\n\033SEARCH" +
+      "_INFORMATION_RESPONSE\020\021\022\034\n\030SOLVED_QUESTI" +
+      "ON_RESPONSE\020\022\022\017\n\013BAD_MESSAGE\020\023\022\032\n\026GET_US" +
+      "ER_LIST_RESPONSE\020\024\022\027\n\023WHITE_BOARD_MESSAG" +
+      "E\020\025\022\022\n\016IGNORE_MESSAGE\020\026*H\n\014CONTENT_TYPE\022" +
+      "\020\n\014TEXT_MESSAGE\020\000\022\023\n\017PICTURE_MESSAGE\020\001\022\021" +
+      "\n\rVOICE_MESSAGE\020\002*)\n\013PICTURETYPE\022\010\n\004JPEG",
+      "\020\000\022\007\n\003PNG\020\001\022\007\n\003GIF\020\002*\024\n\tVOICETYPE\022\007\n\003MP4" +
+      "\020\000B\034\n\003comB\025ServerResponseMessageb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -24842,7 +24901,7 @@ public final class ServerResponseMessage {
     internal_static_FileResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_FileResponse_descriptor,
-        new java.lang.String[] { "Success", "Sign", "Md5", "SignType", "LocalFilePath", });
+        new java.lang.String[] { "Success", "Sign", "Md5", "SignType", "LocalFilePath", "ContentPic", });
     internal_static_FileResponse_SignEntry_descriptor =
       internal_static_FileResponse_descriptor.getNestedTypes().get(0);
     internal_static_FileResponse_SignEntry_fieldAccessorTable = new

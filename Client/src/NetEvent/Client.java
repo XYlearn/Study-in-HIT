@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";//"localhost";//
+	private static String host = "localhost";//"123.207.159.156";//
 	private static int port = 8972;
 	public static Client client = null;
 
@@ -278,7 +278,7 @@ public class Client extends Thread{
 			ArrayList<String> md5s = new ArrayList<>();
 			Set<String> fileNotExist = new HashSet<>();
 			for(String pic : pictures) {
-				File file = new File(pic);
+				File file = new File(PICTPATH + pic);
 				if(!file.exists()) {
 					fileNotExist.add(pic);
 					continue;
@@ -471,7 +471,7 @@ public class Client extends Thread{
 		return uploadFiles(fileNames);
 	}
 
-	public boolean uploadFiles(Iterable<String> fileNames) throws IOException {
+	public boolean uploadFiles(List<String> fileNames) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 		boolean flag = true;
@@ -512,14 +512,14 @@ public class Client extends Thread{
 		return flag;
 	}
 
-	public void downloadFile(String filename) throws IOException {
+	public void downloadFile(String filename, boolean contentPic) throws IOException {
 		ArrayList<String> filenames = new ArrayList<>();
 		filenames.add(filename);
 
-		downloadFiles(filenames);
+		downloadFiles(filenames, contentPic);
 	}
 
-	public void downloadFiles(ArrayList<String> filenames) throws IOException {
+	public void downloadFiles(List<String> filenames, boolean contentPic) throws IOException {
 		ClientSendMessage.Message request = null;
 		ClientSendMessage.FileRequest.Builder builder = ClientSendMessage.FileRequest.newBuilder();
 
@@ -537,6 +537,7 @@ public class Client extends Thread{
 			return;
 
 		builder.addAllFilename(filenames).setSignType(ClientSendMessage.FileRequest.SIGNTYPE.DOWNLOAD);
+		builder.setContentPic(contentPic);
 
 		request = ClientSendMessage.Message.newBuilder()
 				.setMsgType(ClientSendMessage.MSG.FILE_REQUEST)
@@ -545,6 +546,14 @@ public class Client extends Thread{
 				.build();
 
 		sendIt(request);
+	}
+
+	public void downloadFile(String filename) throws IOException {
+		downloadFile(filename, false);
+	}
+
+	public void downloadFiles(List<String> filenames) throws IOException {
+		downloadFiles(filenames, false);
 	}
 
 	public void getAcquaintanceList() throws IOException {

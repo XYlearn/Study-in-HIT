@@ -7,7 +7,6 @@ import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.SolvedQuestionEvent;
 import NetEvent.messagecom.Record;
 import NetEvent.Client;
-import NetEvent.eventcom.FileEvent;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -19,6 +18,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import gui.dao.MainFrame;
 import util.AudioTools;
 import bin.test;
 
@@ -34,6 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Element;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import util.Dispatcher;
@@ -80,7 +81,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 	private static final String ALIGN_LEFT="left";
 	private static final String ALIGN_RIGHT="right";
 	
-	private static final Map<Long, ChattingBox> map=new ConcurrentHashMap<Long, ChattingBox>();
+	public static final Map<Long, ChattingBox> map=new ConcurrentHashMap<Long, ChattingBox>();
 
 	private final ChattingBoxRightAction rightAction=new ChattingBoxRightAction();
 	private final ChattingBoxHyperlinkListener hyperlinkAction=new ChattingBoxHyperlinkListener();
@@ -115,6 +116,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 		kit.install(myPane);
 		myPane.setEditable(false);
 		myPane.setFont(Font.getFont("宋体"));
+		//myPane.setEditorKit(kit);
 		myPane.setText(HTML_INIT);
 		doc=(HTMLDocument)myPane.getStyledDocument();
 		try
@@ -145,7 +147,14 @@ public class ChattingBox extends JPanel implements Dispatcher
 		this.questionID=questionID;
 		map.put(questionID, this);
 	}
-	
+
+	//刷新
+	public void refresh() {
+		int pos = myScroll.getVerticalScrollBar().getValue();
+		myPane.setDocument(myPane.getDocument());
+		myScroll.getVerticalScrollBar().setValue(pos);
+	}
+
 	public void unbind()
 	{
 		map.remove(this.questionID);
@@ -221,11 +230,18 @@ public class ChattingBox extends JPanel implements Dispatcher
 					.containsKey(CONTENT_MARK.ANONYMOUS.getValue())?"匿名":msg.getUser();
 		String message=msg.getContent().replaceAll("\n", "<br>");
 		message=message.replaceAll(HTML_TAG_RECORD_ID, String.valueOf(msg.getRecordID()));
-		if (msg.getPictures()!=null)
+
+		//to download pictures needed add by x
+		List<String> pictures = msg.getPictures();
+		try {
+			Client.client.downloadFiles(pictures, true);
+		} catch (IOException ex) {}
+
+		if (pictures!=null)
 			for (int i=0; i<msg.getPictures().size(); i++)
 				message=message.replaceAll("[^%]%"+i+" ",
 					HTML_MESSAGE_PICTURE
-					.replaceAll(HTML_TAG_PICTURE_AT_I, PROPICTPATH+msg.getPictureAt(i))
+					.replaceAll(HTML_TAG_PICTURE_AT_I, msg.getPictureAt(i))
 					.replaceAll(HTML_TAG_I, String.valueOf(i)));
 		message=message.replaceAll("%%", "%");
 		records.add(msg);
@@ -328,16 +344,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 							"该问题已被提问者标记为【已解决】");
 				break;
 			}
-			case FILE_EVENT:
-			{
-				FileEvent ex=(FileEvent)e;
-				int l=ex.getAllSuccess().size();
-				for(int i=0;i<l;i++)
-					if(!ex.getAllSuccess().get(i))
-						System.out.println("transporting file "+ex.getFilename(i)+" failed.");
-				//map.get(ex);
-				break;
-			}
 			default:
 				break;
 		}
@@ -351,7 +357,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 			try
 			{
 				pic_url = UserInfo.getPicURL(userName);
-				Client.client.downloadFile(pic_url);
+				Client.client.downloadFile(pic_url, true);
 			} catch (IOException ex)
 			{
 				System.out.println("Failed getting userhead.");
