@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class Client extends Thread{
 
-	private static String host = "123.207.159.156";//"123.207.159.156";//
+	private static String host = "123.207.159.156";//"localhost";//
 	private static int port = 8972;
 	public static Client client = null;
 
@@ -231,8 +231,7 @@ public class Client extends Thread{
 		ClientSendMessage.Message send = null;
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
 				  .setContent(contents)
-				  .setQuestionID(questionID)
-				  .setUser(username);
+				  .setQuestionID(questionID);
 
 		if(pictures!=null) {
 			ArrayList<String> md5s = new ArrayList<>();
@@ -266,7 +265,8 @@ public class Client extends Thread{
 		ClientSendMessage.Message send = null;
 		ClientSendMessage.SendContent.Builder contentBuider = ClientSendMessage.SendContent.newBuilder()
 				  .setContent(contents)
-				  .setQuestionID(questionID);
+				  .setQuestionID(questionID)
+				  .setUser(username);
 
 		if(markMap!=null) {
 			contentBuider.putAllMarkMap(markMap);

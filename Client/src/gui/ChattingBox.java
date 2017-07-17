@@ -533,8 +533,8 @@ public class ChattingBox extends JPanel implements Dispatcher
 					if (AudioTools.isPlaying())
 						try
 						{
-							doc.setInnerHTML(e.getSourceElement(),
-									"<img src='"+PROPICTPATH+"button_play.gif'>");
+							doc.setInnerHTML(e.getSourceElement().getParentElement(),
+									"<img src='"+PROIMGPATH+"button_play.gif'>");
 						} catch (Exception ex)
 						{
 							System.out.println(ex);
@@ -542,16 +542,16 @@ public class ChattingBox extends JPanel implements Dispatcher
 					else
 						try
 						{
-							doc.setInnerHTML(e.getSourceElement(),
-									"<img src='"+PROPICTPATH+"button_stop.gif'>");
+								doc.setInnerHTML(e.getSourceElement().getParentElement(),
+									"<img src='"+PROIMGPATH+"button_stop.gif'>");
 							AudioTools.playAudio(
 									test.AUDIOPATH+currentHyperlink.substring(5),
 									(String currentPlayingAudio)->
 							{
 								try
 								{
-									doc.setInnerHTML(e.getSourceElement(),
-											"<img src='"+PROPICTPATH+"button_play.gif'>");
+									doc.setInnerHTML(e.getSourceElement().getParentElement(),
+											"<img src='"+PROIMGPATH+"button_play.gif'>");
 								} catch (Exception ex)
 								{
 									System.out.println(ex);
@@ -559,7 +559,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 							});
 						} catch (Exception ex)
 						{
-							System.out.println(ex);
+							ex.printStackTrace();
 						}
 				else if (HYPERLINK_TYPE_FILE.equals(cmd))
 				{
