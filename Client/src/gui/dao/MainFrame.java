@@ -22,6 +22,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -182,7 +183,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	public void setUserInformation(UserMessage msg)
 	{
 		System.out.println("头像："+msg.getPicUrl());
-		headLabel.setIcon(new ImageIcon(test.PICTPATH+msg.getPicUrl()));
+		headLabel.setIcon(
+				new ImageIcon(new ImageIcon(test.PICTPATH+msg.getPicUrl())
+						.getImage()
+						.getScaledInstance(headLabel.getWidth(), headLabel.getHeight(), Image.SCALE_DEFAULT)));
 		usernameLabel.setText(msg.getUsername());
 		UserInfo.setMyUserName(msg.getUsername());
 	}

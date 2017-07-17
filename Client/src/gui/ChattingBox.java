@@ -547,16 +547,16 @@ public class ChattingBox extends JPanel implements Dispatcher
 							AudioTools.playAudio(
 									test.AUDIOPATH+currentHyperlink.substring(5),
 									(String currentPlayingAudio)->
-							{
-								try
-								{
-									doc.setInnerHTML(e.getSourceElement().getParentElement(),
-											"<img src='"+PROIMGPATH+"button_play.gif'>");
-								} catch (Exception ex)
-								{
-									System.out.println(ex);
-								}
-							});
+									{
+										try
+										{
+											doc.setInnerHTML(e.getSourceElement().getParentElement(),
+													"<img src='"+PROIMGPATH+"button_play.gif'>");
+										} catch (Exception ex)
+										{
+											System.out.println(ex);
+										}
+									});
 						} catch (Exception ex)
 						{
 							ex.printStackTrace();
