@@ -110,6 +110,9 @@ public class UserInfo implements Dispatcher
 		if(!map.containsKey(username)) requestUserInfo(username);
 		while(!map.containsKey(username))
 			if(System.currentTimeMillis()>startTime+delayTime)
+			{
+				map.put(username,new UserMessage(username,0,0,0,0,"","","default.jpg"));
 				throw new IOException("Request Time Out");
+			}
 	}
 }

@@ -7,6 +7,7 @@ import NetEvent.eventcom.NetEvent;
 import NetEvent.eventcom.SolvedQuestionEvent;
 import NetEvent.messagecom.Record;
 import NetEvent.Client;
+import NetEvent.eventcom.FileEvent;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
@@ -150,7 +152,7 @@ public class ChattingBox extends JPanel implements Dispatcher
 	//刷新
 	public void refresh() {
 		int pos = myScroll.getVerticalScrollBar().getValue();
-		myPane.setDocument(myPane.getDocument());
+		myPane.setStyledDocument(myPane.getStyledDocument());
 		myScroll.getVerticalScrollBar().setValue(pos);
 	}
 
@@ -344,6 +346,17 @@ public class ChattingBox extends JPanel implements Dispatcher
 							"该问题已被提问者标记为【已解决】");
 				break;
 			}
+			case FILE_EVENT:
+			{
+				FileEvent ex=(FileEvent)e;
+				if(ex.getQuestionID()==-1)
+					map.forEach((Long t,ChattingBox cb)->
+					{
+						cb.refresh();
+					});
+				else map.get(ex.getQuestionID()).refresh();
+				break;
+			}
 			default:
 				break;
 		}
@@ -357,7 +370,6 @@ public class ChattingBox extends JPanel implements Dispatcher
 			try
 			{
 				pic_url = UserInfo.getPicURL(userName);
-				Client.client.downloadFile(pic_url, true, questionID);
 			} catch (IOException ex)
 			{
 				System.out.println("Failed getting userhead.");

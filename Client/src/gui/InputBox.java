@@ -52,6 +52,10 @@ public class InputBox extends JPanel implements Dispatcher
 	private final JMenuItem undo=new JMenuItem("撤销");
 	private final JMenuItem redo=new JMenuItem("恢复");
 
+	private static final String PROPICTPATH="pictures/";
+	private static final String PROFILEPATH="files/";
+	private static final String PROIMGPATH="img_src/";
+
 	private long questionID=-1;
 	private Map<Integer,Long> markMap;
 
@@ -195,8 +199,8 @@ public class InputBox extends JPanel implements Dispatcher
 		try
 		{
 			kit.insertHTML(doc, myPane.getCaretPosition(),
-					"<a href='pict:"+filename+"'><img border='0' src='file:/"
-					+test.PICTPATH+filename
+					"<a href='pict:"+filename+"'><img border='0' src='"
+					+PROPICTPATH+filename
 					+"'></a>",
 					0, 0, HTML.Tag.A);
 		} catch (BadLocationException|IOException ex)
