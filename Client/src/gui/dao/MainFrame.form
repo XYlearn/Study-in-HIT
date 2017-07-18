@@ -58,7 +58,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel20" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <Component id="stemLabel" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
@@ -66,19 +66,19 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel25" max="32767" attributes="0"/>
+                                              <Component id="ownerLabel" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel24" max="32767" attributes="0"/>
+                                              <Component id="timeLabel" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel22" max="32767" attributes="0"/>
+                                      <Component id="additionLabel" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
@@ -122,22 +122,22 @@
                               <EmptySpace pref="40" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stemLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="additionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="timeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel25" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Component id="ownerLabel" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
@@ -178,42 +178,42 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel19">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x623f;&#x95f4;&#x603b;&#x6570;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value="&#x623f;&#x95f4;&#x4e3b;&#x9898;&#xff1a;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel20">
+    <Component class="javax.swing.JLabel" name="stemLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="[&#x6682;&#x65e0;&#x6570;&#x636e;]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel21">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x5f85;&#x89e3;&#x51b3;&#x623f;&#x95f4;&#x6570;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value="&#x623f;&#x95f4;&#x8be6;&#x7ec6;&#x8bf4;&#x660e;&#xff1a;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel22">
+    <Component class="javax.swing.JLabel" name="additionLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="[&#x6682;&#x65e0;&#x6570;&#x636e;]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel23">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x5728;&#x7ebf;&#x4eba;&#x6570;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value="&#x521b;&#x5efa;&#x65f6;&#x95f4;&#xff1a;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel24">
+    <Component class="javax.swing.JLabel" name="timeLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="[&#x6682;&#x65e0;&#x6570;&#x636e;]"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel25">
+    <Component class="javax.swing.JLabel" name="ownerLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="[&#x6682;&#x65e0;&#x6570;&#x636e;]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel26">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x7528;&#x6237;&#x4eba;&#x6570;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value="&#x521b;&#x5efa;&#x7528;&#x6237;&#xff1a;"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

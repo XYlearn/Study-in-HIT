@@ -177,6 +177,10 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 			{
 				EnterQuestionEvent event = (EnterQuestionEvent) e;
 				long questionID = event.getQuestionMessage().getId();
+				stemLabel.setText(event.getQuestionMessage().getStem());
+				additionLabel.setText(event.getQuestionMessage().getAddition());
+				timeLabel.setText(event.getQuestionMessage().getTime());
+				ownerLabel.setText(event.getQuestionMessage().getOwner());
 				whiteboardFrame.addPanel(questionID);
 				whiteboardFrame.choosePanel(questionID);
 				whiteboardFrame.setVisible(true);
@@ -544,12 +548,12 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        stemLabel = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        additionLabel = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        ownerLabel = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -574,21 +578,21 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
         jLabel18.setText("暂无公告");
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel19.setText("房间总数：");
+        jLabel19.setText("房间主题：");
 
-        jLabel20.setText("[暂无数据]");
+        stemLabel.setText("[暂无数据]");
 
-        jLabel21.setText("待解决房间数：");
+        jLabel21.setText("房间详细说明：");
 
-        jLabel22.setText("[暂无数据]");
+        additionLabel.setText("[暂无数据]");
 
-        jLabel23.setText("在线人数：");
+        jLabel23.setText("创建时间：");
 
-        jLabel24.setText("[暂无数据]");
+        timeLabel.setText("[暂无数据]");
 
-        jLabel25.setText("[暂无数据]");
+        ownerLabel.setText("[暂无数据]");
 
-        jLabel26.setText("用户人数：");
+        jLabel26.setText("创建用户：");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -656,22 +660,22 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                                     .add(layout.createSequentialGroup()
                                         .add(jLabel19)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jLabel20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .add(stemLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                                         .add(24, 24, 24)
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
                                                 .add(jLabel26)
                                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(jLabel25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .add(ownerLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .add(layout.createSequentialGroup()
                                                 .add(jLabel23)
                                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(jLabel24, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                .add(timeLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                                         .add(jLabel21)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jLabel22, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .add(additionLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .add(14, 14, 14))
                             .add(jLabel17, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .add(0, 33, Short.MAX_VALUE)))
@@ -703,19 +707,19 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 40, Short.MAX_VALUE)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jLabel19)
-                                    .add(jLabel20))
+                                    .add(stemLabel))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jLabel21)
-                                    .add(jLabel22))
+                                    .add(additionLabel))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(jLabel24)
+                                    .add(timeLabel)
                                     .add(jLabel23))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jLabel26)
-                                    .add(jLabel25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(ownerLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(jLabel27)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -734,26 +738,26 @@ public class MainFrame extends javax.swing.JFrame implements Dispatcher
 	 */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel additionLabel;
     private javax.swing.JLabel headLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel listBoxPanel;
     private javax.swing.JButton newRoomButton;
+    private javax.swing.JLabel ownerLabel;
     private javax.swing.JButton refreshQuestionListButton;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JLabel stemLabel;
     private javax.swing.JTabbedPane tabPane;
+    private javax.swing.JLabel timeLabel;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 
